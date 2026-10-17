@@ -115,5 +115,6 @@ See [coding conventions](AGENTS.md), the [package map](docs/architecture.md), an
 - [Real Jinja backport example](examples/jinja-xmlattr/README.md)
 - [Live validation results](docs/live-testing.md)
 - [Multi-library evaluation and gaps](docs/evaluations.md)
+- [Fixes and repeat evaluations](docs/reevaluation.md)
 
 Licensed under [MIT](LICENSE).

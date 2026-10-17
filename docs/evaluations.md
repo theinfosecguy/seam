@@ -6,6 +6,9 @@ verified. Pillow exposed a path-classification defect; Certifi's data-only fix
 was outside the documented scope. Onboarding and historical test environments
 required substantial operator work, including for several successful cases.
 
+See [fixes and repeat evaluations](reevaluation.md) for the subsequent changes
+and installed-wheel reruns.
+
 ## Contents
 
 - [Method](#method)
