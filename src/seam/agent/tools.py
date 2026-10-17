@@ -6,7 +6,7 @@ from pathlib import Path, PurePosixPath
 
 from pydantic import ValidationError
 
-from seam.agent.schemas import ListFiles, ReadFile, SubmitPatch
+from seam.agent.schemas import TOOL_SCHEMAS, ListFiles, ReadFile, SubmitPatch
 from seam.constants import (
     ALLOWED_SUFFIXES,
     MAX_ARGUMENT_BYTES,
@@ -72,7 +72,12 @@ class WorkspaceTools:
                 return self.read_file(ReadFile.model_validate_json(arguments))
             raise AgentError("provider requested an unknown tool")
         except ValidationError:
-            raise AgentError("provider returned invalid tool arguments") from None
+            return {
+                "error": "invalid tool arguments; retry using the declared parameters",
+                "parameters": next(
+                    tool["parameters"] for tool in TOOL_SCHEMAS if tool["name"] == name
+                ),
+            }
         except (OSError, UnicodeError, ValueError):
             return {"error": "requested path is unavailable or not permitted"}
 

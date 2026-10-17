@@ -101,6 +101,11 @@ patch submission must be the only call in its batch. A mixed submission/read
 batch executes nothing: every call receives an error, and the model can retry
 within the same cumulative call limit.
 
+Malformed arguments execute nothing and return a generic error with the declared
+schema, so the model can correct them within the existing limits. Rejected values
+are not echoed in that feedback. Unknown tools and oversized arguments stop the
+session; network failures are not retried automatically.
+
 DeepSeek thinking mode uses automatic tool selection; forcing a required tool is
 rejected by the live service. The controller accepts a patch only through a valid
 `submit_patch` call and bounds corrective prompts for text-only responses by the

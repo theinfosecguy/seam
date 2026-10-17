@@ -13,6 +13,7 @@ from openai import OpenAI
 from seam.agent import DeepSeekPatchAgent, OpenAIPatchAgent
 from seam.constants import DEFAULT_DEEPSEEK_MODEL, DEFAULT_MODEL
 from seam.demo import DemoProject, create_demo
+from seam.exceptions import AgentError
 from seam.repository import git, parent
 from seam.verification.workflow import run_backport
 
@@ -135,3 +136,31 @@ def test_clean_fix_is_applied_without_a_model(
     assert report.adaptation == "direct_application"
     assert report.attempts == 1
     assert report.model_usage == {}
+
+
+def test_unavailable_provider_records_attempted_adaptation(
+    tmp_path: Path, project: DemoProject
+) -> None:
+    class UnavailableAgent:
+        @property
+        def usage(self):
+            return {"calls": 1}
+
+        def propose(self, _context):
+            raise AgentError("provider request failed")
+
+    report = run_backport(
+        project.repo,
+        project.fix,
+        project.target,
+        project.config_path,
+        tmp_path / "provider-failure",
+        proposer=UnavailableAgent(),
+    )
+    assert report.status == "inconclusive"
+    assert report.adaptation == "agent"
+    assert report.attempts == 2
+    assert report.model_usage == {"calls": 1}
+    assert "provider request failed" in report.reason
+    assert report.patch_sha256 is None
+    assert not (tmp_path / "provider-failure" / "backport.patch").exists()

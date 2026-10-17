@@ -11,7 +11,12 @@ from openai import OpenAI
 
 from seam.agent import DeepSeekPatchAgent
 from seam.agent.transport import create_client
-from seam.constants import DEEPSEEK, DEEPSEEK_MODELS, DEFAULT_DEEPSEEK_MODEL
+from seam.constants import (
+    DEEPSEEK,
+    DEEPSEEK_MODELS,
+    DEFAULT_DEEPSEEK_MODEL,
+    MAX_ARGUMENT_BYTES,
+)
 from seam.exceptions import AgentError, BudgetExceeded
 from seam.models import AgentContext
 
@@ -396,19 +401,142 @@ def test_duplicate_call_ids_are_rejected(
         ("submit_patch", {"patch": _PATCH, "explanation": "ok", "shell": "id"}),
         ("read_file", {"path": 42, "start_line": 1, "line_count": 1}),
         ("read_file", {"path": "example.py", "start_line": 0, "line_count": 1}),
+        ("read_file", {"path": "example.py", "start_line": "1", "line_count": 1}),
+        ("read_file", {"path": "example.py", "start_line": True, "line_count": 1}),
+        ("read_file", {"path": "example.py", "start_line": 1}),
+        ("read_file", {"path": "example.py", "start_line": 1, "line_count": 201}),
         ("list_files", {"directory": ".", "endpoint": "https://unintended.invalid"}),
+        ("list_files", {"directory": "rejected-input-marker", "schema": {"evil": 1}}),
     ],
 )
-def test_invalid_tool_arguments_are_rejected_locally(
+def test_invalid_tool_arguments_return_only_declared_schema_before_valid_submission(
     tmp_path: Path,
     make_deepseek_agent: Callable[..., Any],
+    monkeypatch: pytest.MonkeyPatch,
     name: str,
     arguments: dict[str, object] | str,
 ) -> None:
+    def forbidden(*args: object, **kwargs: object) -> None:
+        pytest.fail("Invalid arguments must not execute a workspace operation")
+
+    monkeypatch.setattr("seam.agent.tools.WorkspaceTools.list_files", forbidden)
+    monkeypatch.setattr("seam.agent.tools.WorkspaceTools.read_file", forbidden)
     agent, transport = make_deepseek_agent(
-        [_response(_call(name, arguments, "invalid"))]
+        [_response(_call(name, arguments, "invalid")), _response()]
     )
-    with pytest.raises(AgentError, match="invalid tool arguments"):
+    proposal = agent.propose(_context(tmp_path))
+    assert proposal.patch == _PATCH
+    feedback = json.loads(transport.requests[1]["input"][-1]["output"])
+    schema = next(
+        tool["parameters"]
+        for tool in transport.requests[0]["tools"]
+        if tool["name"] == name
+    )
+    assert feedback == {
+        "error": "invalid tool arguments; retry using the declared parameters",
+        "parameters": schema,
+    }
+    assert "rejected-input-marker" not in json.dumps(feedback)
+    assert len(transport.requests) == 2
+    assert agent.usage["calls"] == 2
+    assert agent.usage["input_tokens"] == 2000
+    assert agent.usage["output_tokens"] == 400
+
+
+def test_invalid_read_can_be_corrected_before_submitting_a_patch(
+    tmp_path: Path, make_deepseek_agent: Callable[..., Any]
+) -> None:
+    (tmp_path / "example.py").write_text("unsafe()\n")
+    agent, transport = make_deepseek_agent(
+        [
+            _response(_call("read_file", {"file": "example.py"}, "invalid")),
+            _response(
+                _call(
+                    "read_file",
+                    {"path": "example.py", "start_line": 1, "line_count": 1},
+                    "corrected",
+                )
+            ),
+            _response(),
+        ]
+    )
+    proposal = agent.propose(_context(tmp_path))
+    assert proposal.patch == _PATCH
+    feedback = json.loads(transport.requests[1]["input"][-1]["output"])
+    assert feedback["parameters"]["required"] == ["path", "start_line", "line_count"]
+    output = json.loads(transport.requests[2]["input"][-1]["output"])
+    assert output["content"] == "unsafe()"
+    assert agent.usage["calls"] == 3
+
+
+def test_repeated_invalid_arguments_exhaust_cumulative_call_budget(
+    tmp_path: Path,
+    make_deepseek_agent: Callable[..., Any],
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    def forbidden(*args: object, **kwargs: object) -> None:
+        pytest.fail("Invalid arguments must not execute a workspace operation")
+
+    monkeypatch.setattr("seam.agent.tools.WorkspaceTools.read_file", forbidden)
+    agent, transport = make_deepseek_agent(
+        [
+            _response(_call("read_file", {"path": "example.py"}, f"invalid_{index}"))
+            for index in range(2)
+        ],
+        max_calls=2,
+    )
+    for _ in range(2):
+        with pytest.raises(AgentError, match="call limit"):
+            agent.propose(_context(tmp_path))
+    assert len(transport.requests) == 2
+    assert agent.usage["calls"] == 2
+    assert agent.usage["input_tokens"] == 2000
+    assert agent.usage["output_tokens"] == 400
+    assert agent.usage["estimated_cost_usd"] == pytest.approx(0.00108)
+    assert agent.usage["reserved_cost_usd"] == 0
+
+
+def test_invalid_arguments_cannot_bypass_finite_budget_for_correction(
+    tmp_path: Path, make_deepseek_agent: Callable[..., Any]
+) -> None:
+    agent, transport = make_deepseek_agent(
+        [_response(_call("read_file", {"path": "example.py"}, "invalid"))],
+        budget_usd=0.3345,
+    )
+    with pytest.raises(BudgetExceeded):
+        agent.propose(_context(tmp_path))
+    assert len(transport.requests) == 1
+    assert agent.usage["calls"] == 1
+    assert agent.usage["estimated_cost_usd"] == pytest.approx(0.00054)
+    assert agent.usage["reserved_cost_usd"] == 0
+    assert agent.usage["budget_usd"] == 0.3345
+
+
+@pytest.mark.parametrize(
+    ("name", "arguments"),
+    [
+        ("shell", "{}"),
+        ("read_file", None),
+        ("read_file", {"path": "example.py"}),
+        ("read_file", "x" * (MAX_ARGUMENT_BYTES + 1)),
+    ],
+    ids=["unknown-tool", "null-arguments", "object-arguments", "oversized-arguments"],
+)
+def test_unauthorized_or_unbounded_calls_still_stop_without_recovery(
+    tmp_path: Path,
+    make_deepseek_agent: Callable[..., Any],
+    monkeypatch: pytest.MonkeyPatch,
+    name: str,
+    arguments: object,
+) -> None:
+    def forbidden(*args: object, **kwargs: object) -> None:
+        pytest.fail("Rejected calls must not execute a workspace operation")
+
+    monkeypatch.setattr("seam.agent.tools.WorkspaceTools.read_file", forbidden)
+    call = _call(name, "{}", "invalid")
+    call["arguments"] = arguments
+    agent, transport = make_deepseek_agent([_response(call)])
+    with pytest.raises(AgentError):
         agent.propose(_context(tmp_path))
     assert len(transport.requests) == 1
 

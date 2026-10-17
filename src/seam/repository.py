@@ -216,7 +216,7 @@ def upstream_patch(repo: Path, before: str, after: str) -> str:
             continue
         if role == "unsupported":
             raise RepositoryError(
-                f"fix includes unsupported runtime changes: {name}"
+                f"fix includes unsupported changed file: {name}"
                 "; only ordinary Python implementation changes can be backported"
             )
         allowed.append(name)

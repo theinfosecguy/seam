@@ -235,13 +235,45 @@ def test_list_tool_omits_hidden_sensitive_binary_and_symlink_entries(
         '{"patch":"diff","explanation":"ok","shell":"id"}',
     ],
 )
-def test_malformed_tool_json_stops_without_another_request(
+def test_malformed_tool_json_returns_schema_before_valid_submission(
     tmp_path: Path, arguments: str, make_agent: Callable[..., Any]
 ) -> None:
-    agent, transport = make_agent([_response(arguments=arguments)])
-    with pytest.raises(AgentError, match="invalid tool arguments"):
-        agent.propose(_context(tmp_path))
-    assert len(transport.requests) == 1
+    agent, transport = make_agent([_response(arguments=arguments), _response()])
+    proposal = agent.propose(_context(tmp_path))
+    assert proposal.patch == _PATCH
+    feedback = json.loads(transport.requests[1]["input"][-1]["output"])
+    schema = next(
+        tool["parameters"]
+        for tool in transport.requests[0]["tools"]
+        if tool["name"] == "submit_patch"
+    )
+    assert feedback == {
+        "error": "invalid tool arguments; retry using the declared parameters",
+        "parameters": schema,
+    }
+    assert agent.usage["calls"] == 2
+
+
+def test_invalid_read_can_be_corrected_before_submitting_a_patch(
+    tmp_path: Path, make_agent: Callable[..., Any]
+) -> None:
+    (tmp_path / "example.py").write_text("unsafe()\n")
+    agent, transport = make_agent(
+        [
+            _response("read_file", {"path": "example.py"}),
+            _response(
+                "read_file", {"path": "example.py", "start_line": 1, "line_count": 1}
+            ),
+            _response(),
+        ]
+    )
+    proposal = agent.propose(_context(tmp_path))
+    assert proposal.patch == _PATCH
+    feedback = json.loads(transport.requests[1]["input"][-1]["output"])
+    assert feedback["parameters"]["required"] == ["path", "start_line", "line_count"]
+    output = json.loads(transport.requests[2]["input"][-1]["output"])
+    assert output["content"] == "unsafe()"
+    assert agent.usage["calls"] == 3
 
 
 def test_budget_reserves_full_context_before_contacting_provider(

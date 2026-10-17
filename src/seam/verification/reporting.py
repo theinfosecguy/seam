@@ -33,6 +33,7 @@ def diagnostic_excerpt(
         or execution.timed_out
         or execution.truncated
         or execution.returncode not in {0, 1}
+        or any(case.outcome in {"error", "skipped"} for case in execution.tests)
     )
     if not messages and not unresolved:
         return ""

@@ -230,7 +230,7 @@ def test_runtime_changes_are_not_silently_dropped(
     monkeypatch.setattr(
         repository, "git", lambda *args, **kwargs: "library.py\x00requirements.txt\x00"
     )
-    with pytest.raises(RepositoryError, match="unsupported runtime"):
+    with pytest.raises(RepositoryError, match="unsupported changed file"):
         repository.upstream_patch(tmp_path, "a" * 40, "b" * 40)
 
 

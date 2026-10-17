@@ -193,3 +193,53 @@ def test_failed_baseline_control_has_diagnostics(tmp_path: Path) -> None:
         app, ["inspect", "--report", str(tmp_path / "report.json")]
     )
     assert "ordinary header changed" in result.output
+
+
+def test_suite_skip_and_failed_control_both_keep_actionable_context(
+    tmp_path: Path,
+) -> None:
+    report = RunReport(
+        status="inconclusive",
+        reason=(
+            "upstream_parent suite: test execution contained errors or skipped tests"
+        ),
+        phases=[
+            PhaseResult(
+                name="upstream_parent",
+                revision="a" * 40,
+                security=ExecutionResult(
+                    returncode=1,
+                    tests=[
+                        Case(
+                            name="test_security",
+                            outcome="failed",
+                            message="AssertionError: EXPECTED_SECURITY_REGRESSION",
+                        ),
+                        Case(
+                            name="test_control",
+                            outcome="failed",
+                            message="AssertionError: ordinary header changed",
+                        ),
+                    ],
+                ),
+                suite=ExecutionResult(
+                    returncode=0,
+                    tests=[
+                        Case(
+                            name="test_future", outcome="skipped", expected_failure=True
+                        )
+                    ],
+                    stdout="355 passed, 6 xfailed",
+                ),
+            )
+        ],
+    )
+    write_report(tmp_path, report)
+    result = CliRunner().invoke(
+        app, ["inspect", "--report", str(tmp_path / "report.json")]
+    )
+    for text in ((tmp_path / "report.md").read_text(), result.output):
+        assert "ordinary header changed" in text
+        assert "suite diagnostics" in text
+        assert "xfailed" in text
+    assert report.phases[0].security.tests[0].outcome == "failed"
