@@ -66,6 +66,19 @@ def test_clone_does_not_change_dirty_original(tmp_path: Path) -> None:
     assert not alternates.exists()
 
 
+def test_clone_destination_is_relative_to_callers_directory(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    original = make_repository(tmp_path / "original")
+    revision = repository.resolve(original, "HEAD")
+    monkeypatch.chdir(tmp_path)
+    repository.clone_at(original, revision, Path("clone"))
+    assert (tmp_path / "clone/library.py").read_text() == (
+        original / "library.py"
+    ).read_text()
+    assert not (original / "clone").exists()
+
+
 @pytest.mark.parametrize("ref", ["--help", "", "--output=/tmp/unsafe"])
 def test_revision_options_are_rejected(tmp_path: Path, ref: str) -> None:
     with pytest.raises(RepositoryError):
@@ -79,6 +92,13 @@ def test_revision_options_are_rejected(tmp_path: Path, ref: str) -> None:
         "/absolute.py",
         ".git/config.py",
         "tests/test_check.py",
+        "Tests/helper.py",
+        "TESTS/helpers/check.py",
+        "src/Test/helper.py",
+        "src/CONFTEST.py",
+        "src/Test_check.py",
+        "src/check_TEST.py",
+        "Docs/helper.py",
         "setup.py",
         "src/conftest.py",
         "src/.env",
@@ -212,3 +232,44 @@ def test_runtime_changes_are_not_silently_dropped(
     )
     with pytest.raises(RepositoryError, match="unsupported runtime"):
         repository.upstream_patch(tmp_path, "a" * 40, "b" * 40)
+
+
+@pytest.mark.parametrize(
+    "path",
+    [
+        "Tests/helper.py",
+        "TESTS/test_imagefont.py",
+        "package/Test/helpers.py",
+        "conftest.py",
+        "Test_regression.py",
+        "package/check_TEST.py",
+        "Docs/config.py",
+        "docs/README.rst",
+    ],
+)
+def test_upstream_excludes_paths_that_candidate_must_not_change(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch, path: str
+) -> None:
+    selected = []
+
+    def git(*arguments: object) -> str:
+        if "--name-only" in arguments:
+            return f"library.py\x00{path}\x00"
+        selected.extend(arguments)
+        return "implementation diff"
+
+    monkeypatch.setattr(repository, "git", git)
+    assert repository.upstream_patch(tmp_path, "a" * 40, "b" * 40) == (
+        "implementation diff"
+    )
+    assert selected[-1] == "library.py"
+    assert path not in selected
+    with pytest.raises(RepositoryError):
+        repository.validate_source_path(path)
+
+
+@pytest.mark.parametrize(
+    "path", ["library.py", "src/news.py", "package/tests_support.py"]
+)
+def test_source_policy_keeps_ordinary_python_modules(path: str) -> None:
+    repository.validate_source_path(path)

@@ -46,6 +46,7 @@ def parse_junit(report: bytes) -> list[TestCaseResult]:
             raise ValueError("JUnit test case has conflicting outcomes")
         outcome: Literal["passed", "failed", "error", "skipped"] = "passed"
         message = ""
+        expected_failure = False
         if states:
             state = states[0]
             if state.tag == "failure":
@@ -54,6 +55,7 @@ def parse_junit(report: bytes) -> list[TestCaseResult]:
                 outcome = "error"
             else:
                 outcome = "skipped"
+                expected_failure = state.get("type") == "pytest.xfail"
             message = "\n".join(
                 value
                 for value in (state.get("message", ""), "".join(state.itertext()))
@@ -65,6 +67,7 @@ def parse_junit(report: bytes) -> list[TestCaseResult]:
                 classname=classname,
                 outcome=outcome,
                 message=message,
+                expected_failure=expected_failure,
             )
         )
 

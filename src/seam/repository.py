@@ -2,8 +2,17 @@
 
 import re
 from pathlib import Path, PurePosixPath
+from typing import Literal
 
-from seam.constants import MAX_PATCH_BYTES
+from seam.constants import (
+    MAX_PATCH_BYTES,
+    SOURCE_DOCUMENTATION_DIRECTORIES,
+    SOURCE_DOCUMENTATION_PREFIXES,
+    SOURCE_DOCUMENTATION_SUFFIXES,
+    SOURCE_FORBIDDEN_NAMES,
+    SOURCE_IGNORED_CONFIG_NAMES,
+    SOURCE_TEST_NAMES,
+)
 from seam.exceptions import RepositoryError
 from seam.execution.processes import run_process
 
@@ -59,6 +68,7 @@ def parent(repo: Path, commit: str) -> str:
 def clone_at(repo: Path, commit: str, destination: Path) -> None:
     """Create an independent clone without shared objects or recursive submodules."""
 
+    destination = destination.absolute()
     git(
         repo,
         "clone",
@@ -78,20 +88,45 @@ def clone_at(repo: Path, commit: str, destination: Path) -> None:
         raise RepositoryError("submodules are unsupported in the first version")
 
 
+def _source_path_role(
+    name: str,
+) -> Literal["implementation", "test", "documentation", "unsupported"]:
+    """Classify paths once for both upstream extraction and candidate validation."""
+    path = PurePosixPath(name)
+    if (
+        not path.parts
+        or path.is_absolute()
+        or ".." in path.parts
+        or "\\" in name
+        or "\x00" in name
+    ):
+        return "unsupported"
+    parts = tuple(part.casefold() for part in path.parts)
+    filename = path.name.casefold()
+    if (
+        any(part in SOURCE_TEST_NAMES for part in parts)
+        or filename.startswith("test_")
+        or filename.endswith("_test.py")
+    ):
+        return "test"
+    if any(part in SOURCE_DOCUMENTATION_DIRECTORIES for part in parts):
+        return "documentation"
+    if path.suffix == ".py" and not any(
+        part.startswith(".") or part in SOURCE_FORBIDDEN_NAMES for part in parts
+    ):
+        return "implementation"
+    if (
+        path.suffix.casefold() in SOURCE_DOCUMENTATION_SUFFIXES
+        or filename.startswith(SOURCE_DOCUMENTATION_PREFIXES)
+        or filename in SOURCE_IGNORED_CONFIG_NAMES
+    ):
+        return "documentation"
+    return "unsupported"
+
+
 def validate_source_path(name: str) -> None:
     """Allow ordinary implementation Python files, excluding tests and setup code."""
-
-    path = PurePosixPath(name)
-    forbidden = {"tests", "test", "conftest.py", "setup.py", "sitecustomize.py"}
-    if (
-        path.is_absolute()
-        or ".." in path.parts
-        or any(part.startswith(".") or part in forbidden for part in path.parts)
-        or path.suffix != ".py"
-        or path.name.startswith("test_")
-        or path.name.endswith("_test.py")
-        or "\\" in name
-    ):
+    if _source_path_role(name) != "implementation":
         raise RepositoryError(
             f"patch path is outside supported implementation files: {name}"
         )
@@ -176,31 +211,14 @@ def upstream_patch(repo: Path, before: str, after: str) -> str:
     names = git(repo, "diff", "--name-only", "-z", before, after).split("\x00")
     allowed = []
     for name in filter(None, names):
-        try:
-            validate_source_path(name)
-        except RepositoryError as error:
-            path = PurePosixPath(name)
-            documentation = path.suffix.lower() in {".md", ".rst"} or any(
-                path.name.casefold().startswith(prefix)
-                for prefix in (
-                    "readme",
-                    "changes",
-                    "changelog",
-                    "license",
-                    "copying",
-                    "authors",
-                    "news",
-                )
-            )
-            test_or_docs = any(
-                part in {"tests", "test", "docs", "doc", ".github"}
-                for part in path.parts
-            )
-            if documentation or test_or_docs or path.name in {"pytest.ini", "tox.ini"}:
-                continue
+        role = _source_path_role(name)
+        if role in {"test", "documentation"}:
+            continue
+        if role == "unsupported":
             raise RepositoryError(
                 f"fix includes unsupported runtime changes: {name}"
-            ) from error
+                "; only ordinary Python implementation changes can be backported"
+            )
         allowed.append(name)
     if not allowed:
         raise RepositoryError("fix has no supported Python implementation changes")

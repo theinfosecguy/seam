@@ -7,10 +7,13 @@ from collections.abc import Callable
 from pathlib import Path
 from typing import Protocol
 
+from pydantic import ValidationError
+
 from seam import repository
 from seam.constants import MAX_PATCH_BYTES
 from seam.exceptions import RepositoryError
 from seam.execution.docker import DockerRunner
+from seam.execution.snapshot import preflight_snapshot
 from seam.models import (
     AgentContext,
     AgentProposal,
@@ -53,47 +56,64 @@ def run_backport(
     Clean application is attempted first otherwise; the model is a fallback.
     """
 
-    repo = repo.resolve(strict=True)
-    if proposer is not None and candidate_patch is not None:
-        raise ValueError("select either a proposer or a supplied candidate")
+    repo = repo.resolve()
     output = output.resolve()
     if output == repo or repo in output.parents:
         raise ValueError("output must be outside the source repository")
     if output.exists() and any(output.iterdir()):
         raise ValueError("output directory must be new or empty")
-    config = load_config(config_path)
-    oracle_bytes = config.oracle.path.read_bytes()
-    config_bytes = (config.model_dump_json(indent=2) + "\n").encode()
-    fix_commit = repository.resolve(repo, fix)
-    parent_commit = repository.parent(repo, fix_commit)
-    target_commit = repository.resolve(repo, target)
-    fix_patch = repository.upstream_patch(repo, parent_commit, fix_commit)
-    if candidate_patch is not None and candidate_patch.stat().st_size > MAX_PATCH_BYTES:
-        raise ValueError("candidate patch exceeds 256 KiB")
-    explicit_patch = candidate_patch.read_text("utf-8") if candidate_patch else None
     output.mkdir(parents=True, exist_ok=True, mode=0o700)
     output.chmod(0o700)
-    (output / "verification.py").write_bytes(oracle_bytes)
-    (output / "config.json").write_bytes(config_bytes)
     report = RunReport(
         status="inconclusive",
         reason="run has not completed",
-        fix_commit=fix_commit,
-        parent_commit=parent_commit,
-        target_commit=target_commit,
-        image_id="",
-        oracle_sha256=hashlib.sha256(oracle_bytes).hexdigest(),
-        config_sha256=hashlib.sha256(config_bytes).hexdigest(),
     )
     write_report(output, report)
-    runner = DockerRunner(config.runner)
     try:
-        report.image_id = runner.resolve_image()
+        repo = repo.resolve(strict=True)
+        if proposer is not None and candidate_patch is not None:
+            raise ValueError("select either a proposer or a supplied candidate")
+        config = load_config(config_path)
+        oracle_bytes = config.oracle.path.read_bytes()
+        config_bytes = (config.model_dump_json(indent=2) + "\n").encode()
+        report.oracle_sha256 = hashlib.sha256(oracle_bytes).hexdigest()
+        report.config_sha256 = hashlib.sha256(config_bytes).hexdigest()
+        (output / "verification.py").write_bytes(oracle_bytes)
+        (output / "config.json").write_bytes(config_bytes)
+        fix_commit = repository.resolve(repo, fix)
+        report.fix_commit = fix_commit
+        parent_commit = repository.parent(repo, fix_commit)
+        report.parent_commit = parent_commit
+        target_commit = repository.resolve(repo, target)
+        report.target_commit = target_commit
+        fix_patch = repository.upstream_patch(repo, parent_commit, fix_commit)
+        if (
+            candidate_patch is not None
+            and candidate_patch.stat().st_size > MAX_PATCH_BYTES
+        ):
+            raise ValueError("candidate patch exceeds 256 KiB")
+        explicit_patch = candidate_patch.read_text("utf-8") if candidate_patch else None
+        runner = DockerRunner(config.runner)
         with tempfile.TemporaryDirectory(prefix="security-backport-") as directory:
             root = Path(directory)
             oracle_path = root / "test_regression.py"
             oracle_path.write_bytes(oracle_bytes)
             frozen_oracle = config.oracle.model_copy(update={"path": oracle_path})
+            baselines: tuple[tuple[PhaseName, str, bool], ...] = (
+                ("upstream_parent", parent_commit, True),
+                ("upstream_fix", fix_commit, False),
+                ("target_baseline", target_commit, True),
+            )
+            for name, revision, _ in baselines:
+                workspace = root / name
+                repository.clone_at(repo, revision, workspace)
+                try:
+                    preflight_snapshot(workspace)
+                except (OSError, ValueError) as error:
+                    raise RepositoryError(f"{name} snapshot: {error}") from error
+            image_id = runner.resolve_image()
+            report.image_id = image_id
+            write_report(output, report)
 
             def check(name: PhaseName, revision: str, workspace: Path) -> PhaseResult:
                 if oracle_path.read_bytes() != oracle_bytes:
@@ -103,25 +123,15 @@ def run_backport(
                 phase = PhaseResult(
                     name=name,
                     revision=revision,
-                    security=runner.run(
-                        workspace, frozen_oracle, report.image_id, "security"
-                    ),
-                    suite=runner.run(
-                        workspace, frozen_oracle, report.image_id, "suite"
-                    ),
+                    security=runner.run(workspace, frozen_oracle, image_id, "security"),
+                    suite=runner.run(workspace, frozen_oracle, image_id, "suite"),
                 )
                 report.phases.append(phase)
                 write_report(output, report)
                 return phase
 
-            baselines: tuple[tuple[PhaseName, str, bool], ...] = (
-                ("upstream_parent", parent_commit, True),
-                ("upstream_fix", fix_commit, False),
-                ("target_baseline", target_commit, True),
-            )
             for name, revision, vulnerable in baselines:
                 workspace = root / name
-                repository.clone_at(repo, revision, workspace)
                 phase = check(name, revision, workspace)
                 status, reason = assess_phase(phase, config, vulnerable=vulnerable)
                 if status != "passed":
@@ -216,10 +226,17 @@ def run_backport(
         report.reason = "Run cancelled; verification did not complete."
         write_report(output, report)
         raise
-    except (OSError, RuntimeError, RepositoryError) as error:
+    except (OSError, ValueError, RuntimeError) as error:
         report.status = "inconclusive"
         # Provider errors are sanitized before reaching the workflow.
-        report.reason = f"Run could not complete: {str(error)[:2000]}"
+        if isinstance(error, ValidationError):
+            details = "; ".join(
+                f"{'.'.join(map(str, item['loc']))}: {item['msg']}"
+                for item in error.errors(include_input=False)
+            )
+        else:
+            details = str(error)
+        report.reason = f"Run could not complete: {details[:2000]}"
     finally:
         if proposer is not None:
             report.model_usage = proposer.usage

@@ -101,3 +101,11 @@ def test_green_exit_with_no_tests_is_inconclusive() -> None:
     result = phase(vulnerable=False)
     result.suite.tests = []
     assert assess_phase(result, configuration(), vulnerable=False)[0] == "inconclusive"
+
+
+def test_known_expected_failure_is_still_incomplete_evidence() -> None:
+    result = phase(vulnerable=False)
+    result.suite.tests = [
+        Case(name="test_known_issue", outcome="skipped", expected_failure=True)
+    ]
+    assert assess_phase(result, configuration(), vulnerable=False)[0] == "inconclusive"

@@ -2,6 +2,7 @@
 
 import pytest
 
+from seam.models import TestCaseResult as Case
 from seam.verification.junit import parse_junit
 
 
@@ -55,3 +56,20 @@ def test_same_function_names_in_different_modules_are_distinct() -> None:
         ("first", "test_value"),
         ("second", "test_value"),
     ]
+
+
+def test_expected_failures_are_identified_without_becoming_passes() -> None:
+    cases = parse_junit(
+        b"""<testsuite tests="2" skipped="2">
+        <testcase name="test_known_issue">
+          <skipped type="pytest.xfail" message="known issue"/>
+        </testcase>
+        <testcase name="test_optional_dependency">
+          <skipped type="pytest.skip" message="not installed"/>
+        </testcase>
+        </testsuite>"""
+    )
+    assert [case.outcome for case in cases] == ["skipped", "skipped"]
+    assert [case.expected_failure for case in cases] == [True, False]
+    with pytest.raises(ValueError, match="expected failures must have a skipped"):
+        Case(name="test_known_issue", outcome="passed", expected_failure=True)

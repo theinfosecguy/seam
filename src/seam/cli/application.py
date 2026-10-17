@@ -31,16 +31,14 @@ app = typer.Typer(
 
 @app.command()
 def run(
-    repo: Annotated[Path, typer.Option(exists=True, file_okay=False)],
+    repo: Annotated[Path, typer.Option(file_okay=False)],
     fix: Annotated[str, typer.Option(help="One upstream security-fix commit.")],
     target: Annotated[str, typer.Option(help="Maintained release ref or commit.")],
-    config: Annotated[Path, typer.Option(exists=True, dir_okay=False)],
+    config: Annotated[Path, typer.Option(dir_okay=False)],
     output: Annotated[Path, typer.Option(help="New directory for patch and evidence.")],
     candidate_patch: Annotated[
         Path | None,
-        typer.Option(
-            exists=True, dir_okay=False, help="Verify a supplied patch offline."
-        ),
+        typer.Option(dir_okay=False, help="Verify a supplied patch offline."),
     ] = None,
     model: Annotated[
         str | None,
@@ -104,6 +102,8 @@ def run(
             proposer.close()
     render_report(report)
     typer.echo(f"Evidence: {output.resolve() / 'report.json'}")
+    if report.status == "verified":
+        typer.echo(f"Patch: {output.resolve() / 'backport.patch'}")
     exit_for_report(report)
 
 
@@ -195,6 +195,8 @@ def demo(
         raise typer.Exit(2) from error
     render_report(report)
     typer.echo(f"Evidence: {evidence / 'report.json'}")
+    if report.status == "verified":
+        typer.echo(f"Patch: {evidence / 'backport.patch'}")
     typer.echo(
         "Synthetic fixture; the reference adaptation is supplied offline. "
         "No AI model or published CVE is involved."
