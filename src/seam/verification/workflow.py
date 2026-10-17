@@ -159,6 +159,7 @@ def run_backport(
                         "provided_patch" if explicit_patch else "direct_application"
                     )
                 elif proposer is not None:
+                    report.adaptation = "agent"
                     proposal = proposer.propose(
                         AgentContext(
                             workspace=workspace,
@@ -167,7 +168,6 @@ def run_backport(
                         )
                     )
                     patch = proposal.patch
-                    report.adaptation = "agent"
                     report.model_usage = proposer.usage
                 else:
                     break
