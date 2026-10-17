@@ -1,0 +1,54 @@
+name: checks
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  quality:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6.1.0
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6.3.0
+        with:
+          python-version: '3.12'
+      - run: python -m pip install uv==0.13.1
+      - run: uv sync --frozen
+      - run: uv run --frozen ruff check .
+      - run: uv run --frozen ruff format --check .
+      - run: uv run --frozen mypy
+      - run: uv run --frozen pytest
+      - run: uv build --no-sources
+      - name: Check installed wheel outside the checkout
+        shell: bash
+        run: |
+          python -m venv "$RUNNER_TEMP/wheel-check"
+          "$RUNNER_TEMP/wheel-check/bin/python" -m pip install dist/*.whl
+          cd "$RUNNER_TEMP"
+          "$RUNNER_TEMP/wheel-check/bin/python" -c 'import backport_harness'
+          "$RUNNER_TEMP/wheel-check/bin/backport" --help
+
+  docker-demo:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6.1.0
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6.3.0
+        with:
+          python-version: '3.12'
+      - run: python -m pip install uv==0.13.1
+      - run: uv sync --frozen
+      - name: Execute independent four-revision verification
+        run: uv run --frozen backport demo --output "$RUNNER_TEMP/backport-demo"
+      - name: Inspect the resulting report
+        run: uv run --frozen backport inspect --report "$RUNNER_TEMP/backport-demo/verification/report.json" --json
+      - name: Exercise SDK protocol and container lifecycle together
+        env:
+          BACKPORT_TEST_IMAGE: security-backport-demo:local
+        run: uv run --frozen pytest -q tests/test_integration.py tests/test_runner.py
