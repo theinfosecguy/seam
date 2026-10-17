@@ -60,7 +60,7 @@ First follow the Jinja example's image-building and preparation steps. Put the
 credential in an ignored local `.env.deepseek` file with mode `0600`, then run:
 
 ```bash
-uv run backport run \
+uv run seam run \
   --repo /tmp/jinja-backport/repo \
   --fix 7dd3680e6eea0d77fde024763657aa4d884ddb23 --target 3.0.3 \
   --config /tmp/jinja-backport/harness.toml \

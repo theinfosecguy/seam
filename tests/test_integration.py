@@ -10,15 +10,11 @@ import httpx
 import pytest
 from openai import OpenAI
 
-from backport_harness.agent import (
-    DEFAULT_DEEPSEEK_MODEL,
-    DEFAULT_MODEL,
-    DeepSeekPatchAgent,
-    OpenAIPatchAgent,
-)
-from backport_harness.demo import DemoProject, create_demo
-from backport_harness.repository import git, parent
-from backport_harness.verification.workflow import run_backport
+from seam.agent import DeepSeekPatchAgent, OpenAIPatchAgent
+from seam.constants import DEFAULT_DEEPSEEK_MODEL, DEFAULT_MODEL
+from seam.demo import DemoProject, create_demo
+from seam.repository import git, parent
+from seam.verification.workflow import run_backport
 
 
 @pytest.fixture

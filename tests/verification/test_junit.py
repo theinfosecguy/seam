@@ -2,7 +2,7 @@
 
 import pytest
 
-from backport_harness.verification.junit import parse_junit
+from seam.verification.junit import parse_junit
 
 
 def test_junit_preserves_failure_reason_and_other_outcomes() -> None:

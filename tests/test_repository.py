@@ -5,8 +5,9 @@ from pathlib import Path
 
 import pytest
 
-from backport_harness import repository
-from backport_harness.execution.processes import safe_environment
+from seam import repository
+from seam.exceptions import RepositoryError
+from seam.execution.processes import safe_environment
 
 
 def make_repository(path: Path) -> Path:
@@ -67,7 +68,7 @@ def test_clone_does_not_change_dirty_original(tmp_path: Path) -> None:
 
 @pytest.mark.parametrize("ref", ["--help", "", "--output=/tmp/unsafe"])
 def test_revision_options_are_rejected(tmp_path: Path, ref: str) -> None:
-    with pytest.raises(repository.RepositoryError):
+    with pytest.raises(RepositoryError):
         repository.resolve(tmp_path, ref)
 
 
@@ -85,7 +86,7 @@ def test_revision_options_are_rejected(tmp_path: Path, ref: str) -> None:
     ],
 )
 def test_patch_paths_are_confined(path: str) -> None:
-    with pytest.raises(repository.RepositoryError):
+    with pytest.raises(RepositoryError):
         repository.validate_source_path(path)
 
 
@@ -101,7 +102,7 @@ def test_apply_patch_and_reject_test_change(tmp_path: Path) -> None:
     )
     repository.apply_patch(repo, patch)
     assert "return 2" in (repo / "library.py").read_text()
-    with pytest.raises(repository.RepositoryError):
+    with pytest.raises(RepositoryError):
         repository.apply_patch(repo, patch.replace("library.py", "tests/test_check.py"))
 
 
@@ -145,7 +146,7 @@ def test_recounting_does_not_accept_incorrect_context(tmp_path: Path) -> None:
         "-    return 1\n"
         "+    return 2\n"
     )
-    with pytest.raises(repository.RepositoryError):
+    with pytest.raises(RepositoryError):
         repository.apply_patch(repo, patch)
 
 
@@ -193,13 +194,13 @@ def test_symlink_patch_rejected(tmp_path: Path) -> None:
         "@@ -0,0 +1 @@\n"
         "+/etc/passwd\n"
     )
-    with pytest.raises(repository.RepositoryError, match="symlink"):
+    with pytest.raises(RepositoryError, match="symlink"):
         repository.validate_patch(repo, patch)
 
 
 def test_root_commit_is_not_an_ordinary_fix(tmp_path: Path) -> None:
     repo = make_repository(tmp_path / "repo")
-    with pytest.raises(repository.RepositoryError, match="one parent"):
+    with pytest.raises(RepositoryError, match="one parent"):
         repository.parent(repo, repository.resolve(repo, "HEAD"))
 
 
@@ -209,5 +210,5 @@ def test_runtime_changes_are_not_silently_dropped(
     monkeypatch.setattr(
         repository, "git", lambda *args, **kwargs: "library.py\x00requirements.txt\x00"
     )
-    with pytest.raises(repository.RepositoryError, match="unsupported runtime"):
+    with pytest.raises(RepositoryError, match="unsupported runtime"):
         repository.upstream_patch(tmp_path, "a" * 40, "b" * 40)

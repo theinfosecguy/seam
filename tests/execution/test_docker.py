@@ -7,9 +7,10 @@ from pathlib import Path
 
 import pytest
 
-import backport_harness.execution.docker as runner_module
-from backport_harness.execution.docker import DockerRunner, RunnerError
-from backport_harness.models import OracleConfig, ProcessResult, RunnerConfig
+import seam.execution.docker as runner_module
+from seam.exceptions import RunnerError
+from seam.execution.docker import DockerRunner
+from seam.models import OracleConfig, ProcessResult, RunnerConfig
 
 IMAGE_ID = "sha256:" + "a" * 64
 PASSING_REPORT = (

@@ -9,15 +9,11 @@ import httpx
 import pytest
 from openai import OpenAI
 
-from backport_harness.agent import (
-    DEEPSEEK_MODELS,
-    DEFAULT_DEEPSEEK_MODEL,
-    AgentError,
-    BudgetExceeded,
-    DeepSeekPatchAgent,
-)
-from backport_harness.agent.transport import DEEPSEEK, create_client
-from backport_harness.models import AgentContext
+from seam.agent import DeepSeekPatchAgent
+from seam.agent.transport import create_client
+from seam.constants import DEEPSEEK, DEEPSEEK_MODELS, DEFAULT_DEEPSEEK_MODEL
+from seam.exceptions import AgentError, BudgetExceeded
+from seam.models import AgentContext
 
 _PATCH = "--- a/example.py\n+++ b/example.py\n@@ -1 +1 @@\n-unsafe()\n+safe()\n"
 _TEST_KEY = "offline-deepseek-test-key"
@@ -288,12 +284,8 @@ def test_mixed_submission_batch_is_rejected_before_standalone_retry(
     def forbidden(*args: object, **kwargs: object) -> None:
         pytest.fail("A rejected submission batch must not execute any read tools")
 
-    monkeypatch.setattr(
-        "backport_harness.agent.tools.WorkspaceTools.list_files", forbidden
-    )
-    monkeypatch.setattr(
-        "backport_harness.agent.tools.WorkspaceTools.read_file", forbidden
-    )
+    monkeypatch.setattr("seam.agent.tools.WorkspaceTools.list_files", forbidden)
+    monkeypatch.setattr("seam.agent.tools.WorkspaceTools.read_file", forbidden)
     calls = [_submission("submit_one")]
     if submission_count == 1:
         calls.append(_call("list_files", {"directory": "."}, "listing"))
@@ -347,9 +339,7 @@ def test_repeated_mixed_submission_batches_stop_at_call_ceiling(
     def forbidden(*args: object, **kwargs: object) -> None:
         pytest.fail("Rejected batches must not run source-read tools")
 
-    monkeypatch.setattr(
-        "backport_harness.agent.tools.WorkspaceTools.list_files", forbidden
-    )
+    monkeypatch.setattr("seam.agent.tools.WorkspaceTools.list_files", forbidden)
     agent, transport = make_deepseek_agent(
         [
             _response(

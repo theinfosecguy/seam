@@ -4,17 +4,15 @@ from pathlib import Path
 
 import pytest
 
-from backport_harness.models import (
+from seam.models import (
     ExecutionResult,
     HarnessConfig,
     OracleConfig,
     PhaseResult,
     RunnerConfig,
 )
-from backport_harness.models import (
-    TestCaseResult as Case,
-)
-from backport_harness.verification.assessment import assess_phase
+from seam.models import TestCaseResult as Case
+from seam.verification.assessment import assess_phase
 
 
 def configuration() -> HarnessConfig:
