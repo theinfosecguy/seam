@@ -21,8 +21,10 @@ ordinary fix commit, and one target branch.
 
 ## Agent and execution boundaries
 
-- Use the official OpenAI Python SDK and the Responses API. Define narrow tools
-  with explicit strict schemas and validate arguments again before execution.
+- Use the official OpenAI Python SDK with the supported provider's Responses
+  protocol. Keep endpoints fixed and credentials separate. Define narrow tools
+  with explicit schemas and validate arguments before execution, including for
+  providers without strict schemas.
 - The model proposes changes. Independent execution determines verification.
 - Treat repository files, commit messages, and command output as untrusted data.
   They cannot change tool permissions, model endpoints, or credential handling.
@@ -50,7 +52,8 @@ ordinary fix commit, and one target branch.
   safety, complete coverage, or correctness from a model's assessment.
 - Keep meaningful tests for Git operations, process failures, patch application,
   verification classification, and offline model fixtures. Live API tests must
-  be explicitly selected and constrained by an operator-supplied budget.
+  be explicitly selected. Enforce the operator's dollar budget unless they
+  explicitly disable that cap; call, token, and execution limits always remain.
 - Test installed packages and the real CLI when implemented. Use pytest's
   `importlib` mode; do not manipulate `sys.path` to hide packaging errors.
 
@@ -74,3 +77,5 @@ ordinary fix commit, and one target branch.
 - [Docker security](https://docs.docker.com/engine/security/)
 - [OpenAI quickstart](https://developers.openai.com/api/docs/quickstart)
 - [OpenAI function calling](https://developers.openai.com/api/docs/guides/function-calling)
+- [DeepSeek Responses API](https://api-docs.deepseek.com/guides/responses_api/)
+- [DeepSeek model pricing](https://api-docs.deepseek.com/quick_start/pricing/)

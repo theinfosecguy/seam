@@ -332,10 +332,8 @@ def test_unknown_model_requires_explicit_pricing_before_network(
         make_agent([], model="unknown-model")
 
 
-@pytest.mark.parametrize("budget", [0, -1, 10.01, float("nan"), float("inf")])
-def test_rejects_invalid_or_unauthorized_budget(
-    budget: float, make_agent: Callable[..., Any]
-) -> None:
+@pytest.mark.parametrize("budget", [0, -1, float("nan"), float("inf")])
+def test_rejects_invalid_budget(budget: float, make_agent: Callable[..., Any]) -> None:
     with pytest.raises(ValueError, match="budget"):
         make_agent([], budget_usd=budget)
 

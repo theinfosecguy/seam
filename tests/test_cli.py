@@ -47,8 +47,9 @@ def arguments(tmp_path: Path) -> list[str]:
 @pytest.mark.parametrize(
     "status,exit_code", [("verified", 0), ("failed", 1), ("inconclusive", 2)]
 )
+@pytest.mark.parametrize("provider_args", [[], ["--provider", "deepseek"]])
 def test_run_reports_status_and_never_enables_model_implicitly(
-    tmp_path, monkeypatch, status, exit_code
+    tmp_path, monkeypatch, status, exit_code, provider_args
 ):
     def fake_run(*args, **kwargs):
         assert kwargs["proposer"] is None
@@ -59,7 +60,8 @@ def test_run_reports_status_and_never_enables_model_implicitly(
 
     monkeypatch.setattr(core, "run_backport", fake_run)
     monkeypatch.setattr(cli, "make_openai_proposer", forbidden)
-    result = runner.invoke(cli.app, arguments(tmp_path))
+    monkeypatch.setattr(cli, "make_deepseek_proposer", forbidden)
+    result = runner.invoke(cli.app, [*arguments(tmp_path), *provider_args])
     assert result.exit_code == exit_code, result.output
     assert status.upper() in result.output
     assert "recorded oracle" in result.output
@@ -171,13 +173,125 @@ def test_inspect_validates_and_returns_json(tmp_path):
     assert result.exit_code == 2
 
 
-def test_offline_budget_ceiling_is_validated_before_provider(tmp_path, monkeypatch):
+@pytest.mark.parametrize("budget", ["0", "nan", "inf", "-1"])
+def test_invalid_budget_is_validated_before_provider(tmp_path, monkeypatch, budget):
     def forbidden(*args, **kwargs):
-        pytest.fail("Provider must not be constructed for excessive budgets")
+        pytest.fail("Provider must not be constructed for an invalid budget")
 
     monkeypatch.setattr(cli, "make_openai_proposer", forbidden)
     result = runner.invoke(
         cli.app,
-        [*arguments(tmp_path), "--model", "some-model", "--api-budget-usd", "11"],
+        [*arguments(tmp_path), "--model", "some-model", "--api-budget-usd", budget],
     )
     assert result.exit_code == 2
+
+
+@pytest.mark.parametrize(
+    "budget_args,budget",
+    [([], 10), (["--api-budget-usd", "25"], 25), (["--no-api-budget-cap"], None)],
+)
+def test_deepseek_provider_receives_selected_model_and_budget(
+    tmp_path, monkeypatch, budget_args, budget
+):
+    closed = []
+
+    class Provider:
+        def close(self):
+            closed.append(True)
+
+    sentinel = Provider()
+
+    def factory(model, actual_budget, path):
+        assert (model, actual_budget, path) == ("deepseek-flash", budget, None)
+        return sentinel
+
+    def forbidden(*args, **kwargs):
+        pytest.fail("DeepSeek selection must not construct the OpenAI provider")
+
+    def fake_run(*args, **kwargs):
+        assert kwargs["proposer"] is sentinel
+        return report()
+
+    monkeypatch.setattr(cli, "make_openai_proposer", forbidden)
+    monkeypatch.setattr(cli, "make_deepseek_proposer", factory)
+    monkeypatch.setattr(core, "run_backport", fake_run)
+    result = runner.invoke(
+        cli.app,
+        [
+            *arguments(tmp_path),
+            "--provider",
+            "deepseek",
+            "--model",
+            "deepseek-flash",
+            *budget_args,
+        ],
+    )
+    assert result.exit_code == 0, result.output
+    assert closed == [True]
+
+
+def test_unknown_provider_is_rejected_before_key_read(tmp_path, monkeypatch):
+    def forbidden(*args, **kwargs):
+        pytest.fail("Unknown provider must not read any credentials")
+
+    monkeypatch.setattr(cli, "_local_api_key", forbidden)
+    result = runner.invoke(
+        cli.app,
+        [*arguments(tmp_path), "--provider", "untrusted", "--model", "some-model"],
+    )
+    assert result.exit_code == 2
+
+
+def test_unknown_deepseek_model_is_rejected_before_key_read(tmp_path, monkeypatch):
+    def forbidden(*args, **kwargs):
+        pytest.fail("Unknown DeepSeek model must not read any credentials")
+
+    monkeypatch.setattr(cli, "_local_api_key", forbidden)
+    result = runner.invoke(
+        cli.app,
+        [
+            *arguments(tmp_path),
+            "--provider",
+            "deepseek",
+            "--model",
+            "unknown-deepseek-model",
+        ],
+    )
+    assert result.exit_code == 2
+    assert "Unsupported DeepSeek model" in result.output
+
+
+def test_environment_credentials_are_selected_by_provider(monkeypatch):
+    monkeypatch.setenv("OPENAI_API_KEY", "openai-only-key")
+    monkeypatch.setenv("DEEPSEEK_API_KEY", "deepseek-only-key")
+    assert cli._local_api_key(None) == "openai-only-key"
+    assert cli._local_api_key(None, cli.ModelProvider.DEEPSEEK) == "deepseek-only-key"
+    monkeypatch.delenv("DEEPSEEK_API_KEY")
+    with pytest.raises(ValueError, match="Set DEEPSEEK_API_KEY"):
+        cli._local_api_key(None, cli.ModelProvider.DEEPSEEK)
+
+
+def test_explicit_credentials_select_one_service_and_reject_duplicate_keys(tmp_path):
+    credentials = tmp_path / "key"
+    credentials.write_text(
+        "OPENAI_API_KEY=openai-only-key\nDEEPSEEK_API_KEY='deepseek-only-key'\n"
+    )
+    assert cli._local_api_key(credentials) == "openai-only-key"
+    assert (
+        cli._local_api_key(credentials, cli.ModelProvider.DEEPSEEK)
+        == "deepseek-only-key"
+    )
+    credentials.write_text("OPENAI_API_KEY=openai-only-key\n")
+    with pytest.raises(ValueError, match="Set DEEPSEEK_API_KEY"):
+        cli._local_api_key(credentials, cli.ModelProvider.DEEPSEEK)
+    credentials.write_text("DEEPSEEK_API_KEY=first\nDEEPSEEK_API_KEY=second\n")
+    with pytest.raises(ValueError) as caught:
+        cli._local_api_key(credentials, cli.ModelProvider.DEEPSEEK)
+    assert "first" not in str(caught.value)
+    assert "second" not in str(caught.value)
+
+
+def test_no_api_budget_cap_requires_explicit_model(tmp_path):
+    result = runner.invoke(cli.app, [*arguments(tmp_path), "--no-api-budget-cap"])
+    assert result.exit_code == 2
+    assert "requires an explicit --model" in result.output

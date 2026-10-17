@@ -126,8 +126,9 @@ inconclusive report.
 
 ## Enable AI adaptation explicitly
 
-The agent uses the official OpenAI Python SDK and Responses API. Ordinary runs
-and the demo do not construct a model client. A paid run requires `--model`:
+The agent supports OpenAI and DeepSeek through their Responses APIs using the
+official OpenAI Python SDK. Ordinary runs and the demo do not construct a model
+client. A paid run requires `--model`:
 
 ```bash
 # Store the key locally; do not paste it into chat or commit it.
@@ -144,12 +145,33 @@ uv run backport run \
 read only when explicitly selected; the harness never discovers a repository's
 `.env`. The key stays in the controller and is not forwarded into test containers.
 
+To use DeepSeek, store `DEEPSEEK_API_KEY=your-value` in a separate ignored
+`.env.deepseek` file, protect it with `chmod 600 .env.deepseek`, then select the
+provider and model explicitly:
+
+```bash
+uv run backport run \
+  --repo /path/to/library --fix FIX_COMMIT --target release/1.x \
+  --config /path/to/harness.toml --output /tmp/backport-deepseek \
+  --provider deepseek --model deepseek-flash \
+  --api-budget-usd 1 --env-file .env.deepseek
+```
+
+`deepseek-v4-pro` is also supported. `DEEPSEEK_API_KEY` in the controller
+environment works without a credential file. Each provider reads only its own
+key and uses a fixed service endpoint.
+
 The local budget accounts for known model prices and reserves the model's full
 input context plus the permitted output before each request. Unknown models are
-rejected. The CLI
-allows a maximum of US$10 per run. This is separate from the provider dashboard's
-spend alerts, which do not stop requests. Keep a dedicated project key and
-monitor account usage. See [API operation](docs/api.md) for limits.
+rejected. The default cap is US$10 per run; change it with `--api-budget-usd`.
+An operator can explicitly remove the dollar cap with `--no-api-budget-cap`.
+Call, token, output, execution, and adaptation-attempt limits still apply. This
+is separate from provider account controls and usage reports. Keep a dedicated
+key and monitor account usage. See [API operation](docs/api.md) for limits.
+
+[Recorded live validation](docs/live-testing.md) includes a DeepSeek Flash
+backport of Jinja's CVE-2024-22195 fix, with all 120 existing target filter tests
+preserved. It also records unsuccessful attempts and the fixes they exposed.
 
 ## Review the output
 
