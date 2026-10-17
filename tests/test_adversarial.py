@@ -45,7 +45,7 @@ image = "test-image"
     monkeypatch.setattr(core.repository, "parent", lambda *_: "a" * 40)
     monkeypatch.setattr(core.repository, "upstream_patch", lambda *_: "source patch")
     monkeypatch.setattr(core.repository, "clone_at", lambda _r, _c, dst: dst.mkdir())
-    monkeypatch.setattr(core.repository, "apply_patch", lambda *_: None)
+    monkeypatch.setattr(core.repository, "apply_patch", lambda _workspace, patch: patch)
 
     class Runner:
         def __init__(self, _config) -> None:

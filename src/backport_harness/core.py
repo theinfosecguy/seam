@@ -282,8 +282,11 @@ def run_backport(
                     report.model_usage = proposer.usage
                 else:
                     break
+                # Preserve rejected proposals too, so an unsuccessful adaptation
+                # remains reviewable without recording provider conversations.
+                (output / f"attempt-{attempt}.patch").write_text(patch, "utf-8")
                 try:
-                    repository.apply_patch(workspace, patch)
+                    patch = repository.apply_patch(workspace, patch)
                 except repository.RepositoryError as error:
                     feedback = str(error)
                     (output / f"attempt-{attempt}.txt").write_text(
@@ -294,7 +297,6 @@ def run_backport(
                     if explicit_patch is not None:
                         break
                     continue
-                (output / f"attempt-{attempt}.patch").write_text(patch, "utf-8")
                 phase = check("backport", target_commit, workspace)
                 status, reason = assess_phase(phase, config, vulnerable=False)
                 candidate_suite = {

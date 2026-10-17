@@ -16,6 +16,7 @@ def git(path: Path, *arguments: str, input_text: str | None = None) -> str:
     result = run_process(
         [
             "git",
+            "--literal-pathspecs",
             "-c",
             "core.hooksPath=/dev/null",
             "-c",
@@ -119,7 +120,9 @@ def validate_patch(workspace: Path, patch: str) -> tuple[str, ...]:
         raise RepositoryError(
             "binary, symlink, submodule, rename, and mode changes unsupported"
         )
-    stats = git(workspace, "apply", "--numstat", "-z", "-", input_text=patch)
+    stats = git(
+        workspace, "apply", "--recount", "--numstat", "-z", "-", input_text=patch
+    )
     names = []
     for record in stats.split("\x00"):
         if not record:
@@ -142,12 +145,31 @@ def validate_patch(workspace: Path, patch: str) -> tuple[str, ...]:
     return tuple(names)
 
 
-def apply_patch(workspace: Path, patch: str) -> None:
-    """Apply only a validated patch, leaving the independent oracle untouched."""
+def apply_patch(workspace: Path, patch: str) -> str:
+    """Apply a confined patch and return a canonical diff from its actual changes.
 
-    validate_patch(workspace, patch)
-    git(workspace, "apply", "--check", "--whitespace=error", "-", input_text=patch)
-    git(workspace, "apply", "--whitespace=error", "-", input_text=patch)
+    Recounting repairs generated hunk lengths, while Git still requires matching
+    context and the same path and whitespace checks. Exported diffs come from
+    Git, so reviewers do not need a special flag to apply them.
+    """
+
+    names = validate_patch(workspace, patch)
+    git(
+        workspace,
+        "apply",
+        "--recount",
+        "--check",
+        "--whitespace=error",
+        "-",
+        input_text=patch,
+    )
+    git(workspace, "apply", "--recount", "--whitespace=error", "-", input_text=patch)
+    git(workspace, "add", "--intent-to-add", "--", *names)
+    canonical = git(
+        workspace, "diff", "--no-ext-diff", "--no-textconv", "HEAD", "--", *names
+    )
+    validate_patch(workspace, canonical)
+    return canonical
 
 
 def upstream_patch(repo: Path, before: str, after: str) -> str:
