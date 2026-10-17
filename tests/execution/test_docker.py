@@ -171,6 +171,38 @@ def test_suite_uses_explicit_paths_and_prefix(
     assert "--noconftest" not in result.command
 
 
+@pytest.mark.parametrize("kind", ["security", "suite"])
+def test_trusted_plugins_and_import_mode_apply_without_filtering_the_oracle(
+    target: tuple[Path, OracleConfig],
+    monkeypatch: pytest.MonkeyPatch,
+    kind: str,
+) -> None:
+    workspace, oracle = target
+    docker = DockerStub()
+    monkeypatch.setattr(runner_module, "run_process", docker)
+    config = RunnerConfig(
+        image="operator-image",
+        plugins=("anyio.pytest_plugin", "pytest_django.plugin"),
+        import_mode="prepend",
+        suite_markers="not xfail",
+    )
+    runner = DockerRunner(config)
+    if kind == "security":
+        result = runner.run(workspace, oracle, IMAGE_ID, "security")
+        assert "-m" not in result.command
+        assert "/oracle/oracle.py::test_security" in result.command
+        assert "/oracle/oracle.py::test_control" in result.command
+    else:
+        result = runner.run(workspace, oracle, IMAGE_ID, "suite")
+        assert result.command[-3:] == ["-m", "not xfail", "tests"]
+    assert result.evidence_error is None
+    assert "--import-mode=prepend" in result.command
+    for module in config.plugins:
+        assert result.command[result.command.index(module) - 1] == "-p"
+    assert "PYTEST_DISABLE_PLUGIN_AUTOLOAD=1" in docker.calls[0]
+    assert "PYTEST_PLUGINS=" in docker.calls[0]
+
+
 @pytest.mark.parametrize("suite", ["../outside", "/tmp", "--help", "tests::"])
 def test_suite_cannot_add_flags_or_escape_workspace(
     target: tuple[Path, OracleConfig],
@@ -467,3 +499,63 @@ def test_docker_integration_preserves_skips_and_removes_timed_out_container(
     assert commands[-1][:3] == ["rm", "--force", "--volumes"]
     removed_name = commands[-1][-1]
     assert original(["container", "inspect", removed_name]).returncode != 0
+
+
+def test_docker_integration_explicit_plugin_and_suite_marker_selection(
+    target: tuple[Path, OracleConfig],
+) -> None:
+    image = os.environ.get("BACKPORT_TEST_IMAGE")
+    if not image:
+        pytest.skip("Set BACKPORT_TEST_IMAGE to run the real pytest integration check")
+    workspace, oracle = target
+    (workspace / "pytest.ini").write_text(
+        "[pytest]\nfilterwarnings =\n    error\n"
+        "markers =\n    smoke: excluded suite group\n"
+    )
+    (workspace / "selected_plugin.py").write_text(
+        "import pytest\n"
+        "from library import VALUE\n"
+        "@pytest.fixture\n"
+        "def target_value():\n    return VALUE\n"
+    )
+    (workspace / "tests").mkdir()
+    (workspace / "tests" / "test_selected.py").write_text(
+        "import pytest\n"
+        "def test_plugin_fixture(pytester, target_value):\n"
+        "    assert pytester.path.is_dir()\n    assert target_value == 1\n"
+        "@pytest.mark.xfail(reason='known upstream failure')\n"
+        "def test_known_xfail():\n    assert False\n"
+        "@pytest.mark.smoke\n"
+        "def test_not_selected():\n    assert False\n"
+    )
+    oracle.path.write_text(
+        "import pytest\n"
+        "@pytest.mark.smoke\n"
+        "def test_security(pytester, target_value):\n"
+        "    assert pytester.path.is_dir()\n    assert target_value == 1\n"
+        "def test_control():\n    assert True\n"
+    )
+    docker = tuple(shlex.split(os.environ.get("BACKPORT_TEST_DOCKER", "docker")))
+    runner = DockerRunner(
+        RunnerConfig(
+            image=image,
+            docker=docker,
+            plugins=("_pytest.pytester", "selected_plugin"),
+            import_mode="prepend",
+            suite_markers="not (xfail or smoke)",
+        )
+    )
+    image_id = runner.resolve_image()
+    suite = runner.run(workspace, oracle, image_id, "suite")
+    assert suite.evidence_error is None, suite.model_dump()
+    assert suite.returncode == 0, suite.model_dump()
+    assert [(case.name, case.outcome) for case in suite.tests] == [
+        ("test_plugin_fixture", "passed")
+    ]
+    security = runner.run(workspace, oracle, image_id, "security")
+    assert security.evidence_error is None, security.model_dump()
+    assert security.returncode == 0, security.model_dump()
+    assert [(case.name, case.outcome) for case in security.tests] == [
+        ("test_security", "passed"),
+        ("test_control", "passed"),
+    ]

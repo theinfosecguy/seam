@@ -7,7 +7,7 @@ from enum import StrEnum
 from pathlib import Path
 from typing import Literal
 
-from pydantic import BaseModel, ConfigDict, Field, field_validator
+from pydantic import BaseModel, ConfigDict, Field, field_validator, model_validator
 
 
 class ModelProvider(StrEnum):
@@ -70,6 +70,42 @@ class RunnerConfig(Record):
     pids: int = Field(default=128, ge=16, le=1024)
     max_output_bytes: int = Field(default=131072, ge=1024, le=1048576)
     suite: tuple[str, ...] = ("tests",)
+    plugins: tuple[str, ...] = ()
+    import_mode: Literal["importlib", "prepend", "append"] = "importlib"
+    suite_markers: str | None = None
+
+    @field_validator("plugins")
+    @classmethod
+    def valid_plugins(cls, modules: tuple[str, ...]) -> tuple[str, ...]:
+        # Constants also construct provider records from this module.
+        from seam.constants import MAX_PYTEST_PLUGIN_NAME, MAX_PYTEST_PLUGINS
+
+        if (
+            len(modules) > MAX_PYTEST_PLUGINS
+            or len(set(modules)) != len(modules)
+            or any(
+                len(module) > MAX_PYTEST_PLUGIN_NAME
+                or not re.fullmatch(
+                    r"[A-Za-z_][A-Za-z0-9_]*(?:\.[A-Za-z_][A-Za-z0-9_]*)*", module
+                )
+                for module in modules
+            )
+        ):
+            raise ValueError("plugins must be unique dotted Python module names")
+        return modules
+
+    @field_validator("suite_markers")
+    @classmethod
+    def valid_suite_markers(cls, expression: str | None) -> str | None:
+        from seam.constants import MAX_PYTEST_MARKER_EXPRESSION
+
+        if expression is not None and (
+            not expression.strip()
+            or len(expression) > MAX_PYTEST_MARKER_EXPRESSION
+            or not re.fullmatch(r"[A-Za-z0-9_(). \t]+", expression)
+        ):
+            raise ValueError("suite_markers must be a pytest boolean marker expression")
+        return expression
 
     @field_validator("docker", "suite")
     @classmethod
@@ -107,6 +143,14 @@ class TestCaseResult(Record):
     classname: str = ""
     outcome: Literal["passed", "failed", "error", "skipped"]
     message: str = ""
+    expected_failure: bool = False
+
+    @model_validator(mode="after")
+    def valid_expected_failure(self) -> "TestCaseResult":
+        """Keep pytest expected failures classified as incomplete evidence."""
+        if self.expected_failure and self.outcome != "skipped":
+            raise ValueError("expected failures must have a skipped outcome")
+        return self
 
 
 class ExecutionResult(ProcessResult):
@@ -146,17 +190,41 @@ class AgentProposal(Record):
 class RunReport(Record):
     """Describe exactly what a backport run established and where it stopped."""
 
-    schema_version: Literal[1] = 1
+    schema_version: Literal[1, 2] = 2
     status: Literal["verified", "failed", "inconclusive"]
     reason: str
-    fix_commit: str
-    parent_commit: str
-    target_commit: str
-    image_id: str
-    oracle_sha256: str
-    config_sha256: str
+    fix_commit: str | None = None
+    parent_commit: str | None = None
+    target_commit: str | None = None
+    image_id: str | None = None
+    oracle_sha256: str | None = None
+    config_sha256: str | None = None
     patch_sha256: str | None = None
     phases: list[PhaseResult] = Field(default_factory=list)
     attempts: int = 0
     adaptation: str = "none"
     model_usage: dict[str, int | float | str] = Field(default_factory=dict)
+
+    @model_validator(mode="after")
+    def verified_evidence_complete(self) -> "RunReport":
+        """Reject a verified verdict without the completed evidence matrix."""
+        if self.status == "verified" and (
+            not all(
+                (
+                    self.fix_commit,
+                    self.parent_commit,
+                    self.target_commit,
+                    self.image_id,
+                    self.oracle_sha256,
+                    self.config_sha256,
+                    self.patch_sha256,
+                )
+            )
+            or {phase.name for phase in self.phases}
+            != {"upstream_parent", "upstream_fix", "target_baseline", "backport"}
+            or self.phases[-1].name != "backport"
+        ):
+            raise ValueError(
+                "verified reports require provenance, patch, and four phases"
+            )
+        return self

@@ -54,6 +54,29 @@ MAX_ORACLE_BYTES: Final = 131072
 MAX_REPORT_BYTES: Final = 1_048_576
 MAX_SNAPSHOT_BYTES: Final = 256 * 1_048_576
 MAX_SNAPSHOT_FILES: Final = 20_000
+MAX_PYTEST_PLUGINS: Final = 32
+MAX_PYTEST_PLUGIN_NAME: Final = 200
+MAX_PYTEST_MARKER_EXPRESSION: Final = 1024
+MAX_DIAGNOSTIC_CHARACTERS: Final = 2000
+MAX_DIAGNOSTIC_LINES: Final = 12
+MAX_SNAPSHOT_DEPTH: Final = 100
+MAX_SNAPSHOT_LINKS: Final = 40
+MAX_SNAPSHOT_PATH_CHARACTERS: Final = 1024
+
+SOURCE_TEST_NAMES: Final = frozenset({"test", "tests", "conftest.py"})
+SOURCE_DOCUMENTATION_DIRECTORIES: Final = frozenset({"docs", "doc", ".github"})
+SOURCE_DOCUMENTATION_SUFFIXES: Final = frozenset({".md", ".rst"})
+SOURCE_DOCUMENTATION_PREFIXES: Final = (
+    "readme",
+    "changes",
+    "changelog",
+    "license",
+    "copying",
+    "authors",
+    "news",
+)
+SOURCE_IGNORED_CONFIG_NAMES: Final = frozenset({"pytest.ini", "tox.ini"})
+SOURCE_FORBIDDEN_NAMES: Final = frozenset({"setup.py", "sitecustomize.py"})
 
 ALLOWED_SUFFIXES: Final = frozenset(
     {".py", ".md", ".rst", ".txt", ".toml", ".cfg", ".ini"}

@@ -6,6 +6,8 @@ Maintainers often need an upstream security fix on an older release where APIs
 or files have changed. Seam prepares the backport in disposable clones, then
 checks the vulnerability and existing behavior before calling the patch verified.
 It can apply a fix directly, check your patch, or ask an AI model to adapt it.
+Fixes must change Python implementation files; package data, dependency updates,
+build scripts, and native-code changes are outside the current scope.
 
 ## Contents
 
@@ -32,6 +34,7 @@ The demo verifies a supplied reference patch for a synthetic archive traversal
 bug; it does not generate a patch with AI or reproduce a published CVE.
 The image build needs network access; test execution has networking disabled.
 For Docker command prefixes or an existing image, see [usage](docs/usage.md#demo).
+If you prefer pip, use the [virtualenv installation](docs/usage.md#installation).
 
 ## Use your own repository
 
@@ -45,8 +48,9 @@ uv run seam run \
   --config /path/to/harness.toml --output /tmp/seam-result
 ```
 
-Use a new output directory for each run. Review its `report.md` and candidate
-patch before applying it. Seam preserves your checkout and never pushes or merges.
+Use a new output directory for each run. Review its `report.md` and
+`backport.patch` before applying it. Seam preserves your checkout and never
+pushes or merges.
 To check an existing adaptation, add `--candidate-patch /path/to/adapted.patch`.
 
 ## Optional AI adaptation

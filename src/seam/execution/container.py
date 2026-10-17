@@ -39,11 +39,13 @@ def build_container_arguments(
     pytest_args = [
         "-q",
         "--tb=short",
-        "--import-mode=importlib",
+        f"--import-mode={config.import_mode}",
         "-p",
         "no:cacheprovider",
         "--junitxml=/report.xml",
     ]
+    for module in config.plugins:
+        pytest_args.extend(["-p", module])
     if kind == "security":
         pytest_args.extend(["-c", "/dev/null", "--noconftest", "--rootdir=/oracle"])
         pytest_args.extend(
@@ -51,6 +53,8 @@ def build_container_arguments(
             for test in (oracle.security_test, *oracle.controls)
         )
     else:
+        if config.suite_markers is not None:
+            pytest_args.extend(["-m", config.suite_markers])
         pytest_args.extend(_suite_paths(config.suite))
     return [
         "create",

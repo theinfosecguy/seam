@@ -23,6 +23,21 @@ def report(status: str = "verified") -> RunReport:
             "image_id": "sha256:" + "d" * 64,
             "oracle_sha256": "e" * 64,
             "config_sha256": "f" * 64,
+            "patch_sha256": "1" * 64 if status == "verified" else None,
+            "phases": [
+                {
+                    "name": name,
+                    "revision": "a" * 40,
+                    "security": {"returncode": 0},
+                    "suite": {"returncode": 0},
+                }
+                for name in (
+                    "upstream_parent",
+                    "upstream_fix",
+                    "target_baseline",
+                    "backport",
+                )
+            ],
         }
     )
 
@@ -66,6 +81,8 @@ def test_run_reports_status_and_never_enables_model_implicitly(
     assert result.exit_code == exit_code, result.output
     assert status.upper() in result.output
     assert "recorded oracle" in result.output
+    if status == "verified":
+        assert f"Patch: {tmp_path / 'evidence' / 'backport.patch'}" in result.output
 
 
 def test_explicit_model_passes_budget_and_explicit_key_file(tmp_path, monkeypatch):
@@ -248,3 +265,59 @@ def test_no_api_budget_cap_requires_explicit_model(tmp_path):
     result = runner.invoke(cli.app, [*arguments(tmp_path), "--no-api-budget-cap"])
     assert result.exit_code == 2
     assert "requires an explicit --model" in result.output
+
+
+def test_real_config_rejection_has_report_and_inconclusive_exit(tmp_path):
+    source = tmp_path / "source"
+    source.mkdir()
+    config = tmp_path / "bad.toml"
+    config.write_text('unexpected = "private-value"\n')
+    output = tmp_path / "evidence"
+    result = runner.invoke(
+        cli.app,
+        [
+            "run",
+            "--repo",
+            str(source),
+            "--fix",
+            "main",
+            "--target",
+            "release",
+            "--config",
+            str(config),
+            "--output",
+            str(output),
+        ],
+    )
+    assert result.exit_code == 2, result.output
+    assert "INCONCLUSIVE" in result.output
+    assert str(output / "report.json") in result.output
+    assert "private-value" not in result.output
+    saved = RunReport.model_validate_json((output / "report.json").read_bytes())
+    assert saved.status == "inconclusive" and saved.phases == []
+
+
+def test_missing_repository_and_config_paths_reach_structured_report(tmp_path):
+    output = tmp_path / "evidence"
+    result = runner.invoke(
+        cli.app,
+        [
+            "run",
+            "--repo",
+            str(tmp_path / "missing-repository"),
+            "--fix",
+            "main",
+            "--target",
+            "release",
+            "--config",
+            str(tmp_path / "missing.toml"),
+            "--output",
+            str(output),
+        ],
+    )
+    assert result.exit_code == 2
+    assert "INCONCLUSIVE" in result.output
+    assert (
+        RunReport.model_validate_json((output / "report.json").read_bytes()).status
+        == "inconclusive"
+    )

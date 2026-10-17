@@ -22,6 +22,18 @@ missing checks produce unresolved evidence rather than a successful verdict.
 Normal-behavior controls and the project suite check whether the candidate
 achieves security by breaking valid behavior.
 
+Source snapshots materialize relative file links only when resolution stays
+inside the checkout and ends at an ordinary file. Excluded paths, escapes,
+directory links, absolute links, cycles and hard links remain rejected. A shared
+preflight checks every selected revision before image preparation; staging repeats
+the checks because preflight cannot freeze a mutable filesystem.
+
+The operator's explicit pytest plugins, import mode and suite marker expression
+are frozen verification inputs. Plugins run in the container with target code;
+they must be reviewed like the image and oracle. Marker filters apply only to
+the existing suite, never the explicitly selected security regression or
+controls. Excluding marked cases narrows the recorded compatibility coverage.
+
 Prefer a Docker daemon accessible to the controller without privilege elevation.
 If an operator explicitly selects a `sudo` command, timeout cleanup may also use
 noninteractive `sudo` to signal only the process group created for that command.
