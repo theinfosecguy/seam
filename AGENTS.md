@@ -10,17 +10,19 @@ ordinary fix commit, and one target branch.
   declared interpreter and dependencies in the execution environment.
 - Follow PEP 8 and PEP 257. Use four spaces, descriptive names, grouped imports,
   and concise public docstrings. Ruff enforces the project's 88-column line length.
-- Keep importable code under `src/backport_harness/` and tests under `tests/`.
+- Keep importable code under `src/seam/` and tests under `tests/`.
 - Group modules by responsibility: `agent`, `cli`, `demo`, `execution`, and
-  `verification`. Keep module dependencies explicit and avoid catch-all helper
-  or constants modules. Shared validated records live in `models.py`; Git
-  operations live in `repository.py`.
+  `verification`. Keep module dependencies explicit and avoid catch-all helpers.
+  Shared records live in `models.py`; Git operations live in `repository.py`.
+- Keep shared limits, defaults, provider settings, and other policy constants in
+  `seam/constants.py`; annotate them as `Final`. Keep custom exception classes in
+  `seam/exceptions.py`. Import both from those canonical modules.
 - Use absolute imports throughout. Group standard library, third-party, and
   application imports in that order; let Ruff sort each group. `TID252` rejects
   relative imports, and `I` enforces import sorting in local and CI checks.
 - Keep prompts, demo fixtures, and container bootstrap code in package resources.
   Load them through `importlib.resources` so installed wheels behave like the
-  source checkout. Keep domain-specific limits and settings with their owner.
+  source checkout. Generated tool schemas belong with their argument models.
 - Type function signatures. Run mypy in strict mode. Validate external data at
   boundaries; static annotations do not validate model responses or JSON.
 - Prefer small functions and explicit records. Add abstractions when actual

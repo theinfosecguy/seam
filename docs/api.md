@@ -33,12 +33,26 @@ rejected. Protect credential files with mode `0600` and exclude them from Git.
 ```bash
 # .env.deepseek contains DEEPSEEK_API_KEY=your-value; never paste it into chat.
 chmod 600 .env.deepseek
-uv run backport run \
+uv run seam run \
   --repo /path/to/library --fix FIX_COMMIT --target release/1.x \
   --config /path/to/harness.toml --output /tmp/backport-deepseek \
   --provider deepseek --model deepseek-flash \
   --api-budget-usd 1 --env-file .env.deepseek
 ```
+
+For OpenAI, store `OPENAI_API_KEY=your-value` in an ignored `.env` file with
+mode `0600`. The default provider is OpenAI, so the corresponding command is:
+
+```bash
+uv run seam run \
+  --repo /path/to/library --fix FIX_COMMIT --target release/1.x \
+  --config /path/to/harness.toml --output /tmp/seam-openai \
+  --model gpt-5.4-mini-2026-03-17 --api-budget-usd 1 --env-file .env
+```
+
+Exporting the selected provider's key in the controller environment also works;
+omit `--env-file` in that case. Do not put credentials in source files or shell
+arguments.
 
 ## Models and spending
 
@@ -62,7 +76,7 @@ different positive amount, or explicitly remove the dollar cap with
 `--no-api-budget-cap`:
 
 ```bash
-uv run backport run \
+uv run seam run \
   --repo /path/to/library --fix FIX_COMMIT --target release/1.x \
   --config /path/to/harness.toml --output /tmp/backport-deepseek \
   --provider deepseek --model deepseek-v4-pro \

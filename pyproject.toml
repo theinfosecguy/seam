@@ -3,7 +3,7 @@ requires = ["hatchling>=1.26"]
 build-backend = "hatchling.build"
 
 [project]
-name = "security-backport-harness"
+name = "seam"
 version = "0.1.0"
 description = "Agent-assisted security backports with execution evidence."
 readme = "README.md"
@@ -13,13 +13,13 @@ license-files = ["LICENSE"]
 dependencies = ["httpx>=0.28,<1", "openai>=2.0,<3", "pydantic>=2.10,<3", "typer>=0.16,<1"]
 
 [project.scripts]
-backport = "backport_harness.cli:app"
+seam = "seam.cli:app"
 
 [dependency-groups]
 dev = ["build", "mypy", "pytest", "ruff"]
 
 [tool.hatch.build.targets.wheel]
-packages = ["src/backport_harness"]
+packages = ["src/seam"]
 
 [tool.ruff]
 target-version = "py312"

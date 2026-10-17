@@ -4,10 +4,10 @@ from pathlib import Path
 
 import pytest
 
-from backport_harness.demo.commands import docker_arguments
-from backport_harness.demo.fixture import create_demo
-from backport_harness.execution.processes import run_process
-from backport_harness.verification.config import load_config
+from seam.demo.commands import docker_arguments
+from seam.demo.fixture import create_demo
+from seam.execution.processes import run_process
+from seam.verification.config import load_config
 
 
 def git(repo: Path, *arguments: str) -> str:

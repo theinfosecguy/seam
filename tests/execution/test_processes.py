@@ -11,8 +11,8 @@ from unittest.mock import Mock
 
 import pytest
 
-import backport_harness.execution.processes as processes_module
-from backport_harness.execution.processes import _kill_group, run_process
+import seam.execution.processes as processes_module
+from seam.execution.processes import _kill_group, run_process
 
 
 def test_process_does_not_inherit_credentials() -> None:

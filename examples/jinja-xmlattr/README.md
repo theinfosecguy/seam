@@ -26,7 +26,7 @@ uv run python examples/jinja-xmlattr/prepare.py \
   --output /tmp/jinja-backport \
   --docker docker \
   --image security-backport-jinja:local
-uv run backport run \
+uv run seam run \
   --repo /tmp/jinja-backport/repo \
   --fix 7dd3680e6eea0d77fde024763657aa4d884ddb23 \
   --target 3.0.3 \

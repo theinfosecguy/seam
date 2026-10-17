@@ -2,9 +2,9 @@
 
 from pathlib import Path
 
-from backport_harness.models import ExecutionResult
-from backport_harness.models import TestCaseResult as Case
-from backport_harness.verification import workflow
+from seam.models import ExecutionResult
+from seam.models import TestCaseResult as Case
+from seam.verification import workflow
 
 
 def test_backport_cannot_drop_previously_collected_suite_tests(

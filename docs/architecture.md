@@ -1,13 +1,14 @@
 # Package structure and verification flow
 
 ```text
-src/backport_harness/
+src/seam/
 ├── agent/
 │   ├── instructions/      # Trusted system and retry prompts
-│   ├── pricing.py         # Model rates and cumulative request accounting
+│   ├── pricing.py         # Cumulative request accounting
 │   ├── providers.py       # OpenAI and DeepSeek adapters
+│   ├── schemas.py         # Tool argument validation and generated schemas
 │   ├── session.py         # Bounded tool conversation
-│   ├── tools.py           # Tool schemas and confined workspace access
+│   ├── tools.py           # Confined workspace access
 │   └── transport.py       # Fixed endpoints and provider request dialects
 ├── cli/
 │   ├── application.py     # Commands and argument validation
@@ -29,7 +30,9 @@ src/backport_harness/
 │   ├── junit.py           # Bounded report reading and parsing
 │   ├── reporting.py       # JSON and Markdown report persistence
 │   └── workflow.py        # Four-revision run coordinator
-├── models.py              # Shared validated records
+├── constants.py           # Defaults, provider rates, and security limits
+├── exceptions.py          # Repository, execution, and agent error types
+├── models.py              # Shared records and validated data
 └── repository.py          # Local Git inspection, cloning, and patch confinement
 ```
 
@@ -47,10 +50,11 @@ accepts a small `PatchProposer` protocol; it does not depend on a model provider
 Provider adapters compose a tool session, HTTP transport, and usage ledger.
 Neither the model nor the transport can classify a verification result.
 
-Constants stay with the policy they describe: rates in pricing, read limits in
-tools, and staging limits in snapshot. Prompts and executable fixture text are
-resources rather than source strings inside the orchestration code. There is no
-global constants or utilities module.
+Named defaults, provider endpoints and rates, and security limits live in
+`seam.constants`; domain error types live in `seam.exceptions`. Callers import
+these definitions rather than duplicating values or declaring local exceptions.
+`seam.models` owns shared records and validation schemas. Prompts and executable
+fixture text are package resources, loaded by the subsystem that uses them.
 
 ## One run
 

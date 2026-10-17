@@ -5,9 +5,9 @@ from pathlib import Path
 import pytest
 from typer.testing import CliRunner
 
-from backport_harness import cli
-from backport_harness.cli import application, credentials
-from backport_harness.models import RunReport
+from seam import cli
+from seam.cli import application, credentials
+from seam.models import RunReport
 
 runner = CliRunner()
 

@@ -10,14 +10,11 @@ import httpx
 import pytest
 from openai import OpenAI
 
-from backport_harness.agent import (
-    DEFAULT_MODEL,
-    AgentError,
-    BudgetExceeded,
-    OpenAIPatchAgent,
-)
-from backport_harness.agent.transport import OPENAI, create_client
-from backport_harness.models import AgentContext
+from seam.agent import OpenAIPatchAgent
+from seam.agent.transport import create_client
+from seam.constants import DEFAULT_MODEL, OPENAI
+from seam.exceptions import AgentError, BudgetExceeded
+from seam.models import AgentContext
 
 _PATCH = "--- a/example.py\n+++ b/example.py\n@@ -1 +1 @@\n-unsafe()\n+safe()\n"
 

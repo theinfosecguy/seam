@@ -35,16 +35,16 @@ jobs:
           from pathlib import Path
           from tempfile import TemporaryDirectory
 
-          from backport_harness.agent.prompts import instruction
-          from backport_harness.demo import create_demo
-          from backport_harness.verification.config import load_config
+          from seam.agent.prompts import instruction
+          from seam.demo import create_demo
+          from seam.verification.config import load_config
 
           for name in ("system", "require_submission", "standalone_submission"):
               assert instruction(name)
-          assert files("backport_harness.demo").joinpath(
+          assert files("seam.demo").joinpath(
               "resources/Dockerfile.txt"
           ).read_text(encoding="utf-8")
-          assert files("backport_harness.execution").joinpath(
+          assert files("seam.execution").joinpath(
               "resources/bootstrap.py.txt"
           ).read_text(encoding="utf-8")
           with TemporaryDirectory() as directory:
@@ -53,8 +53,8 @@ jobs:
               assert config.oracle.path.is_file()
               assert project.candidate_patch.read_text(encoding="utf-8")
           PY
-          "$RUNNER_TEMP/wheel-check/bin/backport" --help
-          "$RUNNER_TEMP/wheel-check/bin/python" -m backport_harness.cli --help
+          "$RUNNER_TEMP/wheel-check/bin/seam" --help
+          "$RUNNER_TEMP/wheel-check/bin/python" -m seam.cli --help
 
   docker-demo:
     runs-on: ubuntu-latest
@@ -68,9 +68,9 @@ jobs:
       - run: python -m pip install uv==0.13.1
       - run: uv sync --frozen
       - name: Execute independent four-revision verification
-        run: uv run --frozen backport demo --output "$RUNNER_TEMP/backport-demo"
+        run: uv run --frozen seam demo --output "$RUNNER_TEMP/backport-demo"
       - name: Inspect the resulting report
-        run: uv run --frozen backport inspect --report "$RUNNER_TEMP/backport-demo/verification/report.json" --json
+        run: uv run --frozen seam inspect --report "$RUNNER_TEMP/backport-demo/verification/report.json" --json
       - name: Exercise SDK protocol and container lifecycle together
         env:
           BACKPORT_TEST_IMAGE: security-backport-demo:local

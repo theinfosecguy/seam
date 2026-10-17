@@ -2,7 +2,7 @@
 
 import sys
 
-from backport_harness.execution.processes import run_process
+from seam.execution.processes import run_process
 
 
 def test_timeout_still_applies_after_child_closes_output_pipes() -> None:

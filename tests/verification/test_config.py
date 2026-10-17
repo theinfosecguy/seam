@@ -4,7 +4,7 @@ from pathlib import Path
 
 import pytest
 
-from backport_harness.verification.config import load_config
+from seam.verification.config import load_config
 
 
 def test_config_unknown_fields_and_unsafe_suite_are_rejected(tmp_path: Path) -> None:

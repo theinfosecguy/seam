@@ -6,7 +6,8 @@ import json
 import shlex
 from pathlib import Path
 
-from backport_harness import repository
+from seam import repository
+from seam.exceptions import RepositoryError
 
 UPSTREAM = "https://github.com/pallets/jinja.git"
 FIX = "7dd3680e6eea0d77fde024763657aa4d884ddb23"
@@ -124,7 +125,7 @@ def main() -> None:
     arguments = parser.parse_args()
     try:
         prepare(arguments.output, arguments.source, arguments.image, arguments.docker)
-    except (OSError, ValueError, repository.RepositoryError) as error:
+    except (OSError, ValueError, RepositoryError) as error:
         parser.exit(2, f"Preparation failed: {error}\n")
 
 
