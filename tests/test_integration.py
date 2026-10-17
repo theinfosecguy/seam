@@ -10,7 +10,12 @@ import httpx
 import pytest
 from openai import OpenAI
 
-from backport_harness.agent import DEFAULT_MODEL, OpenAIPatchAgent
+from backport_harness.agent import (
+    DEFAULT_DEEPSEEK_MODEL,
+    DEFAULT_MODEL,
+    DeepSeekPatchAgent,
+    OpenAIPatchAgent,
+)
 from backport_harness.core import run_backport
 from backport_harness.demo import DemoProject, create_demo
 from backport_harness.repository import git, parent
@@ -25,9 +30,16 @@ def project(tmp_path: Path) -> DemoProject:
     return create_demo(tmp_path / "project", image=image, docker=docker)
 
 
+@pytest.mark.parametrize("provider", ["openai", "deepseek"])
 def test_sdk_tools_adapt_conflict_and_real_verifier_accepts_patch(
-    tmp_path: Path, project: DemoProject
+    tmp_path: Path, project: DemoProject, provider: str
 ) -> None:
+    base_url = (
+        "https://api.deepseek.com"
+        if provider == "deepseek"
+        else "https://api.openai.com/v1"
+    )
+    model = DEFAULT_DEEPSEEK_MODEL if provider == "deepseek" else DEFAULT_MODEL
     patch = project.candidate_patch.read_text()
     calls = [
         ("list_files", {"directory": "src/parcel_paths"}),
@@ -45,7 +57,7 @@ def test_sdk_tools_adapt_conflict_and_real_verifier_accepts_patch(
     def respond(request: httpx.Request) -> httpx.Response:
         payload = json.loads(request.content)
         requests.append(payload)
-        assert request.url == "https://api.openai.com/v1/responses"
+        assert str(request.url) == base_url + "/responses"
         assert "offline-test-credential" not in request.content.decode()
         name, arguments = calls[len(requests) - 1]
         return httpx.Response(
@@ -54,7 +66,7 @@ def test_sdk_tools_adapt_conflict_and_real_verifier_accepts_patch(
                 "id": f"resp_{len(requests)}",
                 "created_at": 1,
                 "object": "response",
-                "model": DEFAULT_MODEL,
+                "model": model,
                 "status": "completed",
                 "output": [
                     {
@@ -76,12 +88,12 @@ def test_sdk_tools_adapt_conflict_and_real_verifier_accepts_patch(
 
     client = OpenAI(
         api_key="offline-test-credential",
+        base_url=base_url,
         max_retries=0,
         http_client=httpx.Client(transport=httpx.MockTransport(respond)),
     )
-    agent = OpenAIPatchAgent(
-        api_key="offline-test-credential", client=client, budget_usd=1
-    )
+    agent_type = DeepSeekPatchAgent if provider == "deepseek" else OpenAIPatchAgent
+    agent = agent_type(api_key="offline-test-credential", client=client, budget_usd=1)
     original_status = git(project.repo, "status", "--porcelain")
     oracle = (project.config_path.parent / "oracle.py").read_bytes()
     try:

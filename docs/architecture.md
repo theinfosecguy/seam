@@ -21,15 +21,17 @@ in pytest's process and could interfere with collection or forge JUnit output.
 Frozen input files do not make the runtime evidence tamper-resistant; review the
 source and candidate before relying on a successful report.
 
-`repository.py` handles disposable clones and patch application. `processes.py`
-provides bounded subprocess execution with a restricted host environment and
-process-group cleanup. `runner.py` resolves the chosen image and launches
-restricted containers, then parses their pytest evidence.
+`repository.py` handles disposable clones and patch application. It recomputes
+generated hunk lengths, requires matching context, and exports a canonical Git
+diff from the actual changes. Rejected proposals remain available for review.
+`processes.py` provides bounded subprocess execution with a restricted host
+environment and process-group cleanup. `runner.py` resolves the chosen image and
+launches restricted containers, then parses their pytest evidence.
 
-`agent.py` implements the optional OpenAI Responses tool loop. Its tools expose
-bounded source reads and candidate submission rather than shell execution. It
-reserves a known maximum request cost before every model call, caps model
-iterations, and returns a patch for the core to evaluate.
+`agent.py` implements optional OpenAI and DeepSeek Responses tool loops. Its tools
+expose bounded source reads and candidate submission. It reserves a known maximum
+request cost before every model call, caps model iterations, and returns a patch
+for the core to evaluate.
 
 `models.py` validates configuration, tool boundaries, and structured reports.
 `cli.py` exposes execution, report inspection, prerequisite checks, and the

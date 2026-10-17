@@ -1,7 +1,9 @@
 """Expose backport preparation and verification through a small CLI."""
 
+import math
 import os
 from collections import Counter
+from enum import StrEnum
 from pathlib import Path
 from typing import TYPE_CHECKING, Annotated
 
@@ -13,7 +15,7 @@ from .models import RunReport, TestCaseResult
 from .processes import run_process
 
 if TYPE_CHECKING:
-    from .agent import OpenAIPatchAgent
+    from .agent import DeepSeekPatchAgent, OpenAIPatchAgent
 
 app = typer.Typer(
     help="Adapt a security fix to an older release and verify the execution evidence.",
@@ -22,42 +24,77 @@ app = typer.Typer(
 )
 
 
-def _local_api_key(env_file: Path | None) -> str:
+class ModelProvider(StrEnum):
+    """Limit paid adaptation to explicitly supported provider endpoints."""
+
+    OPENAI = "openai"
+    DEEPSEEK = "deepseek"
+
+
+_KEY_NAMES = {
+    ModelProvider.OPENAI: "OPENAI_API_KEY",
+    ModelProvider.DEEPSEEK: "DEEPSEEK_API_KEY",
+}
+
+
+def _local_api_key(
+    env_file: Path | None, provider: ModelProvider = ModelProvider.OPENAI
+) -> str:
     """Read only explicitly selected local credentials, never target config."""
+    key_name = _KEY_NAMES[provider]
     if env_file is None:
-        value = os.environ.get("OPENAI_API_KEY", "").strip()
+        value = os.environ.get(key_name, "").strip()
     else:
         value = ""
-        found = False
+        found: set[str] = set()
+        if env_file.stat().st_size > 65536:
+            raise ValueError("Credential file exceeds 64 KiB")
         for line in env_file.read_text(encoding="utf-8").splitlines():
             line = line.strip()
             if not line or line.startswith("#"):
                 continue
             name, separator, candidate = line.partition("=")
-            if name.strip() != "OPENAI_API_KEY" or not separator or found:
+            name = name.strip()
+            if name not in _KEY_NAMES.values() or not separator or name in found:
                 raise ValueError(
-                    "Credential file must contain one OPENAI_API_KEY assignment "
-                    "and optional comments"
+                    "Credential file accepts only OPENAI_API_KEY and "
+                    "DEEPSEEK_API_KEY assignments, once each, and optional comments"
                 )
-            found = True
-            value = candidate.strip()
-            if len(value) >= 2 and value[0] == value[-1] and value[0] in "\"'":
-                value = value[1:-1]
+            found.add(name)
+            if name == key_name:
+                value = candidate.strip()
+                if len(value) >= 2 and value[0] == value[-1] and value[0] in "\"'":
+                    value = value[1:-1]
     if not value or "\n" in value or "\r" in value:
         raise ValueError(
-            "Set OPENAI_API_KEY in the controller environment or use --env-file"
+            f"Set {key_name} in the controller environment or use --env-file"
         )
     return value
 
 
 def make_openai_proposer(
-    model: str, api_budget_usd: float, env_file: Path | None
+    model: str, api_budget_usd: float | None, env_file: Path | None
 ) -> "OpenAIPatchAgent":
     """Create a paid proposer only when the operator explicitly selects a model."""
     from .agent import OpenAIPatchAgent
 
     return OpenAIPatchAgent(
         api_key=_local_api_key(env_file), model=model, budget_usd=api_budget_usd
+    )
+
+
+def make_deepseek_proposer(
+    model: str, api_budget_usd: float | None, env_file: Path | None
+) -> "DeepSeekPatchAgent":
+    """Keep DeepSeek credentials separate from the OpenAI integration."""
+    from .agent import DEEPSEEK_MODELS, DeepSeekPatchAgent
+
+    if model not in DEEPSEEK_MODELS:
+        raise ValueError("Unsupported DeepSeek model")
+    return DeepSeekPatchAgent(
+        api_key=_local_api_key(env_file, ModelProvider.DEEPSEEK),
+        model=model,
+        budget_usd=api_budget_usd,
     )
 
 
@@ -106,12 +143,22 @@ def run(
     ] = None,
     model: Annotated[
         str | None,
-        typer.Option(help="Explicitly enable paid adaptation with this OpenAI model."),
+        typer.Option(help="Explicitly enable paid adaptation with this model."),
     ] = None,
+    provider: Annotated[
+        ModelProvider, typer.Option(help="Model service used only with --model.")
+    ] = ModelProvider.OPENAI,
     api_budget_usd: Annotated[
         float,
-        typer.Option(min=0.01, max=10, help="Local maximum API reservation in USD."),
+        typer.Option(min=0.01, help="Local maximum API reservation in USD."),
     ] = 10,
+    no_api_budget_cap: Annotated[
+        bool,
+        typer.Option(
+            "--no-api-budget-cap",
+            help="Disable the dollar cap; call, token, and execution limits remain.",
+        ),
+    ] = False,
     env_file: Annotated[
         Path | None,
         typer.Option(exists=True, dir_okay=False, help="Explicit controller key file."),
@@ -124,10 +171,19 @@ def run(
         raise typer.BadParameter("Use either --candidate-patch or --model")
     if env_file is not None and model is None:
         raise typer.BadParameter("--env-file requires an explicit --model")
+    if no_api_budget_cap and model is None:
+        raise typer.BadParameter("--no-api-budget-cap requires an explicit --model")
+    if not math.isfinite(api_budget_usd):
+        raise typer.BadParameter("--api-budget-usd must be finite")
     proposer = None
     try:
+        factory = (
+            make_deepseek_proposer
+            if provider == ModelProvider.DEEPSEEK
+            else make_openai_proposer
+        )
         proposer = (
-            make_openai_proposer(model, api_budget_usd, env_file)
+            factory(model, None if no_api_budget_cap else api_budget_usd, env_file)
             if model is not None
             else None
         )
