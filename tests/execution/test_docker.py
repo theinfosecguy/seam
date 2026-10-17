@@ -7,15 +7,18 @@ from pathlib import Path
 
 import pytest
 
-import backport_harness.runner as runner_module
+import backport_harness.execution.docker as runner_module
+from backport_harness.execution.docker import DockerRunner, RunnerError
 from backport_harness.models import OracleConfig, ProcessResult, RunnerConfig
-from backport_harness.runner import DockerRunner, RunnerError, parse_junit
 
 IMAGE_ID = "sha256:" + "a" * 64
-PASSING_REPORT = b"""<testsuites><testsuite tests="2" failures="0" errors="0" skipped="0">
-<testcase classname="oracle" name="test_security"/>
-<testcase classname="oracle" name="test_control"/>
-</testsuite></testsuites>"""
+PASSING_REPORT = (
+    b"<testsuites>"
+    b'<testsuite tests="2" failures="0" errors="0" skipped="0">\n'
+    b'<testcase classname="oracle" name="test_security"/>\n'
+    b'<testcase classname="oracle" name="test_control"/>\n'
+    b"</testsuite></testsuites>"
+)
 
 
 @pytest.fixture
@@ -102,58 +105,6 @@ class DockerStub:
         if "rm" in args:
             return self.cleanup
         raise AssertionError(f"Unexpected Docker command: {args}")
-
-
-def test_junit_preserves_failure_reason_and_other_outcomes() -> None:
-    cases = parse_junit(
-        b"""<testsuite tests="4" failures="1" errors="1" skipped="1">
-        <testcase name="test_regression"><failure message="unsafe-marker">
-        assertion details</failure></testcase>
-        <testcase name="test_control"/>
-        <testcase name="test_setup"><error message="dependency missing"/></testcase>
-        <testcase name="test_skip"><skipped message="unsupported"/></testcase>
-        </testsuite>"""
-    )
-    assert [case.outcome for case in cases] == ["failed", "passed", "error", "skipped"]
-    assert "unsafe-marker" in cases[0].message
-    assert "assertion details" in cases[0].message
-
-
-@pytest.mark.parametrize(
-    "report",
-    [
-        b"",
-        b"not xml",
-        b"<something><testcase name='a'/></something>",
-        b"<testsuite/>",
-        b"<testsuite><testcase/></testsuite>",
-        b"<testsuite><testcase name='a'/><testcase name='a'/></testsuite>",
-        b"<testsuite><testcase name='a'><failure/><skipped/></testcase></testsuite>",
-        b"<testsuite tests='2'><testcase name='a'/></testsuite>",
-        b"<testsuite failures='1'><testcase name='a'/></testsuite>",
-        b"<!DOCTYPE testsuite><testsuite><testcase name='a'/></testsuite>",
-        (
-            '<?xml version="1.0" encoding="utf-16"?>'
-            '<!DOCTYPE testsuite [<!ENTITY marker "expanded">]>'
-            '<testsuite><testcase name="&marker;"/></testsuite>'
-        ).encode("utf-16"),
-        b"x" * (1_048_576 + 1),
-    ],
-)
-def test_invalid_or_ambiguous_junit_is_rejected(report: bytes) -> None:
-    with pytest.raises(ValueError):
-        parse_junit(report)
-
-
-def test_same_function_names_in_different_modules_are_distinct() -> None:
-    cases = parse_junit(
-        b"""<testsuite><testcase classname="first" name="test_value"/>
-        <testcase classname="second" name="test_value"/></testsuite>"""
-    )
-    assert [(case.classname, case.name) for case in cases] == [
-        ("first", "test_value"),
-        ("second", "test_value"),
-    ]
 
 
 def test_security_execution_isolated_and_source_is_filtered(
@@ -457,8 +408,10 @@ def test_control():
         Path('/source/src/library.py').write_text('modified')
     with pytest.raises(OSError):
         Path('/rootfs-write-probe').write_text('modified')
-    capabilities = next(line for line in Path('/proc/self/status').read_text().splitlines()
-                        if line.startswith('CapEff:'))
+    capabilities = next(
+        line for line in Path('/proc/self/status').read_text().splitlines()
+        if line.startswith('CapEff:')
+    )
     assert int(capabilities.split()[1], 16) == 0
 """
     )

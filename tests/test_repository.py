@@ -6,7 +6,7 @@ from pathlib import Path
 import pytest
 
 from backport_harness import repository
-from backport_harness.processes import safe_environment
+from backport_harness.execution.processes import safe_environment
 
 
 def make_repository(path: Path) -> Path:
@@ -91,7 +91,14 @@ def test_patch_paths_are_confined(path: str) -> None:
 
 def test_apply_patch_and_reject_test_change(tmp_path: Path) -> None:
     repo = make_repository(tmp_path / "repo")
-    patch = "--- a/library.py\n+++ b/library.py\n@@ -1,2 +1,2 @@\n def answer():\n-    return 1\n+    return 2\n"
+    patch = (
+        "--- a/library.py\n"
+        "+++ b/library.py\n"
+        "@@ -1,2 +1,2 @@\n"
+        " def answer():\n"
+        "-    return 1\n"
+        "+    return 2\n"
+    )
     repository.apply_patch(repo, patch)
     assert "return 2" in (repo / "library.py").read_text()
     with pytest.raises(repository.RepositoryError):
@@ -103,7 +110,14 @@ def test_recounts_generated_hunks_and_exports_an_ordinary_applicable_diff(
 ) -> None:
     repo = make_repository(tmp_path / "repo")
     revision = repository.resolve(repo, "HEAD")
-    patch = "--- a/library.py\n+++ b/library.py\n@@ -1,99 +1,777 @@\n def answer():\n-    return 1\n+    return 2\n"
+    patch = (
+        "--- a/library.py\n"
+        "+++ b/library.py\n"
+        "@@ -1,99 +1,777 @@\n"
+        " def answer():\n"
+        "-    return 1\n"
+        "+    return 2\n"
+    )
     canonical = repository.apply_patch(repo, patch)
     assert "return 2" in (repo / "library.py").read_text()
     clone = tmp_path / "consumer"
@@ -123,7 +137,14 @@ def test_canonical_patch_includes_new_implementation_files(tmp_path: Path) -> No
 
 def test_recounting_does_not_accept_incorrect_context(tmp_path: Path) -> None:
     repo = make_repository(tmp_path / "repo")
-    patch = "--- a/library.py\n+++ b/library.py\n@@ -1,99 +1,777 @@\n def missing():\n-    return 1\n+    return 2\n"
+    patch = (
+        "--- a/library.py\n"
+        "+++ b/library.py\n"
+        "@@ -1,99 +1,777 @@\n"
+        " def missing():\n"
+        "-    return 1\n"
+        "+    return 2\n"
+    )
     with pytest.raises(repository.RepositoryError):
         repository.apply_patch(repo, patch)
 
@@ -134,9 +155,24 @@ def test_pathspec_magic_cannot_hide_verified_changes_from_the_export(
     repo = make_repository(tmp_path / "repo")
     revision = repository.resolve(repo, "HEAD")
     patch = (
-        "--- a/library.py\n+++ b/library.py\n@@ -1,2 +1,2 @@\n def answer():\n-    return 1\n+    return 2\n"
-        "diff --git a/helper.py b/helper.py\nnew file mode 100644\n--- /dev/null\n+++ b/helper.py\n@@ -0,0 +1 @@\n+VALUE = 1\n"
-        "diff --git a/:!library.py b/:!library.py\nnew file mode 100644\n--- /dev/null\n+++ b/:!library.py\n@@ -0,0 +1 @@\n+VALUE = 0\n"
+        "--- a/library.py\n"
+        "+++ b/library.py\n"
+        "@@ -1,2 +1,2 @@\n"
+        " def answer():\n"
+        "-    return 1\n"
+        "+    return 2\n"
+        "diff --git a/helper.py b/helper.py\n"
+        "new file mode 100644\n"
+        "--- /dev/null\n"
+        "+++ b/helper.py\n"
+        "@@ -0,0 +1 @@\n"
+        "+VALUE = 1\n"
+        "diff --git a/:!library.py b/:!library.py\n"
+        "new file mode 100644\n"
+        "--- /dev/null\n"
+        "+++ b/:!library.py\n"
+        "@@ -0,0 +1 @@\n"
+        "+VALUE = 0\n"
     )
     canonical = repository.apply_patch(repo, patch)
     consumer = tmp_path / "consumer"
@@ -148,7 +184,15 @@ def test_pathspec_magic_cannot_hide_verified_changes_from_the_export(
 
 def test_symlink_patch_rejected(tmp_path: Path) -> None:
     repo = make_repository(tmp_path / "repo")
-    patch = "diff --git a/link.py b/link.py\nnew file mode 120000\nindex 0000000..a222d88\n--- /dev/null\n+++ b/link.py\n@@ -0,0 +1 @@\n+/etc/passwd\n"
+    patch = (
+        "diff --git a/link.py b/link.py\n"
+        "new file mode 120000\n"
+        "index 0000000..a222d88\n"
+        "--- /dev/null\n"
+        "+++ b/link.py\n"
+        "@@ -0,0 +1 @@\n"
+        "+/etc/passwd\n"
+    )
     with pytest.raises(repository.RepositoryError, match="symlink"):
         repository.validate_patch(repo, patch)
 

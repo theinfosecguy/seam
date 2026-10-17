@@ -1,24 +1,24 @@
-"""Coordinate independent evidence collection and bounded patch attempts."""
+"""Coordinate frozen evidence collection and bounded backport attempts."""
 
 import hashlib
 import json
 import tempfile
-import tomllib
 from collections.abc import Callable
 from pathlib import Path
 from typing import Protocol
 
 from backport_harness import repository
+from backport_harness.execution.docker import DockerRunner
 from backport_harness.models import (
     AgentContext,
     AgentProposal,
-    ExecutionResult,
-    HarnessConfig,
     PhaseName,
     PhaseResult,
     RunReport,
 )
-from backport_harness.runner import DockerRunner
+from backport_harness.verification.assessment import assess_phase
+from backport_harness.verification.config import load_config
+from backport_harness.verification.reporting import write_report
 
 
 class PatchProposer(Protocol):
@@ -32,129 +32,6 @@ class PatchProposer(Protocol):
     def usage(self) -> dict[str, int | float | str]:
         """Return bounded model usage without credentials or raw transcripts."""
         ...
-
-
-def load_config(path: Path) -> HarnessConfig:
-    """Read one explicitly selected TOML file, resolving its oracle relative to it."""
-
-    if path.stat().st_size > 65536:
-        raise ValueError("configuration exceeds 64 KiB")
-    config = HarnessConfig.model_validate(tomllib.loads(path.read_text("utf-8")))
-    original = config.oracle.path
-    if not original.is_absolute():
-        original = path.resolve().parent / original
-    if original.is_symlink() or not original.is_file() or original.suffix != ".py":
-        raise ValueError("oracle must be a regular Python file")
-    if original.stat().st_size > 131072:
-        raise ValueError("oracle exceeds 128 KiB")
-    config.oracle.path = original.resolve()
-    if config.oracle.security_test in config.oracle.controls:
-        raise ValueError("security test cannot also be a normal-behavior control")
-    for selector in config.runner.suite:
-        file = selector.split("::", 1)[0]
-        candidate = Path(file)
-        if (
-            selector.startswith("-")
-            or candidate.is_absolute()
-            or ".." in candidate.parts
-            or "\\" in selector
-        ):
-            raise ValueError(
-                "suite selectors must be relative pytest paths, not options"
-            )
-    return config
-
-
-def _unresolved(execution: ExecutionResult) -> str | None:
-    if execution.timed_out:
-        return "test execution timed out"
-    if execution.truncated:
-        return "test output exceeded the configured limit"
-    if execution.evidence_error:
-        return execution.evidence_error
-    if execution.returncode not in {0, 1}:
-        return "pytest did not complete a normal test run"
-    if not execution.tests:
-        return "test execution produced no test cases"
-    if any(test.outcome in {"error", "skipped"} for test in execution.tests):
-        return "test execution contained errors or skipped tests"
-    return None
-
-
-def assess_phase(
-    phase: PhaseResult, config: HarnessConfig, *, vulnerable: bool
-) -> tuple[str, str]:
-    """Require the expected assertion and working controls, never just a red exit."""
-
-    for label, execution in (("security", phase.security), ("suite", phase.suite)):
-        reason = _unresolved(execution)
-        if reason:
-            return "inconclusive", f"{phase.name} {label}: {reason}"
-    cases = {test.name: test for test in phase.security.tests}
-    if len(cases) != len(phase.security.tests):
-        return "inconclusive", f"{phase.name}: duplicate security test names"
-    required = {config.oracle.security_test, *config.oracle.controls}
-    if not required.issubset(cases):
-        return "inconclusive", f"{phase.name}: required security tests are missing"
-    controls = [
-        case for name, case in cases.items() if name != config.oracle.security_test
-    ]
-    if any(case.outcome != "passed" for case in controls):
-        return "failed", f"{phase.name}: normal-behavior controls failed"
-    if phase.suite.returncode != 0 or any(
-        test.outcome != "passed" for test in phase.suite.tests
-    ):
-        return "failed", f"{phase.name}: existing project suite failed"
-    security = cases[config.oracle.security_test]
-    if vulnerable:
-        if (
-            phase.security.returncode == 1
-            and security.outcome == "failed"
-            and config.oracle.failure_marker in security.message
-            and "AssertionError" in security.message
-        ):
-            return "passed", "expected security assertion reproduced; controls passed"
-        return (
-            "inconclusive",
-            f"{phase.name}: expected security assertion was not reproduced",
-        )
-    if phase.security.returncode == 0 and security.outcome == "passed":
-        return "passed", "security regression and compatibility checks passed"
-    return "failed", f"{phase.name}: security regression still fails"
-
-
-def _write_report(output: Path, report: RunReport) -> RunReport:
-    (output / "report.json").write_text(
-        report.model_dump_json(indent=2) + "\n", "utf-8"
-    )
-    rows = [
-        "# Security backport evidence",
-        "",
-        f"Status: **{report.status}**",
-        "",
-        report.reason,
-        "",
-        "Verification is limited to the recorded tests, revisions, and execution image.",
-        "",
-        f"- Fix: `{report.fix_commit}`",
-        f"- Target: `{report.target_commit}`",
-        f"- Image: `{report.image_id}`",
-        f"- Oracle SHA-256: `{report.oracle_sha256}`",
-        f"- Patch SHA-256: `{report.patch_sha256 or 'none'}`",
-        "",
-        "| Revision | Security exit | Suite exit | Test cases |",
-        "| --- | ---: | ---: | ---: |",
-    ]
-    for phase in report.phases:
-        rows.append(
-            f"| {phase.name} | {phase.security.returncode} | {phase.suite.returncode} "
-            f"| {len(phase.security.tests) + len(phase.suite.tests)} |"
-        )
-    rows.extend(
-        ["", "See report.json for individual outcomes and bounded execution logs.", ""]
-    )
-    (output / "report.md").write_text("\n".join(rows), "utf-8")
-    return report
 
 
 def run_backport(
@@ -206,7 +83,7 @@ def run_backport(
         oracle_sha256=hashlib.sha256(oracle_bytes).hexdigest(),
         config_sha256=hashlib.sha256(config_bytes).hexdigest(),
     )
-    _write_report(output, report)
+    write_report(output, report)
     runner = DockerRunner(config.runner)
     try:
         report.image_id = runner.resolve_image()
@@ -232,7 +109,7 @@ def run_backport(
                     ),
                 )
                 report.phases.append(phase)
-                _write_report(output, report)
+                write_report(output, report)
                 return phase
 
             baselines: tuple[tuple[PhaseName, str, bool], ...] = (
@@ -250,7 +127,7 @@ def run_backport(
                     report.reason = (
                         f"Verification prerequisites were not established: {reason}"
                     )
-                    return _write_report(output, report)
+                    return write_report(output, report)
 
             feedback = ""
             baseline_suite = {
@@ -293,7 +170,7 @@ def run_backport(
                         feedback + "\n", "utf-8"
                     )
                     report.reason = "Candidate could not be applied: " + feedback
-                    _write_report(output, report)
+                    write_report(output, report)
                     if explicit_patch is not None:
                         break
                     continue
@@ -304,13 +181,19 @@ def run_backport(
                 }
                 if status == "passed" and candidate_suite != baseline_suite:
                     status = "inconclusive"
-                    reason = "backport: existing suite collection changed from the target baseline"
+                    reason = (
+                        "backport: existing suite collection changed "
+                        "from the target baseline"
+                    )
                 if status == "passed":
                     report.status = "verified"
-                    report.reason = "All four revisions met the frozen security and compatibility checks."
+                    report.reason = (
+                        "All four revisions met the frozen security "
+                        "and compatibility checks."
+                    )
                     report.patch_sha256 = hashlib.sha256(patch.encode()).hexdigest()
                     (output / "backport.patch").write_text(patch, "utf-8")
-                    return _write_report(output, report)
+                    return write_report(output, report)
                 report.status = "failed" if status == "failed" else "inconclusive"
                 report.reason = reason
                 feedback = json.dumps(
@@ -329,14 +212,14 @@ def run_backport(
     except KeyboardInterrupt:
         report.status = "inconclusive"
         report.reason = "Run cancelled; verification did not complete."
-        _write_report(output, report)
+        write_report(output, report)
         raise
     except (OSError, RuntimeError, repository.RepositoryError) as error:
         report.status = "inconclusive"
-        # Provider errors are sanitized at their boundary; avoid serializing arbitrary objects.
+        # Provider errors are sanitized before reaching the workflow.
         report.reason = f"Run could not complete: {str(error)[:2000]}"
     finally:
         if proposer is not None:
             report.model_usage = proposer.usage
-        _write_report(output, report)
+        write_report(output, report)
     return report

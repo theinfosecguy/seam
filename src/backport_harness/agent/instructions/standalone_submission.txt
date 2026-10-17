@@ -1,0 +1,1 @@
+Patch submission must be a standalone tool call. The entire batch was rejected and no tools ran. Request any remaining reads separately, then submit_patch alone.

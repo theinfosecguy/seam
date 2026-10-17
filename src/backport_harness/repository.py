@@ -3,7 +3,7 @@
 import re
 from pathlib import Path, PurePosixPath
 
-from backport_harness.processes import run_process
+from backport_harness.execution.processes import run_process
 
 
 class RepositoryError(RuntimeError):

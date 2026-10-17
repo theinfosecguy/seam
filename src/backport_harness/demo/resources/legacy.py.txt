@@ -1,0 +1,8 @@
+"""Resolve archive member names for the 1.x public API."""
+
+from pathlib import Path
+
+
+def member_path(destination: str, member: str) -> str:
+    """Return the extraction path for an archive member."""
+    return str(Path(destination) / member)

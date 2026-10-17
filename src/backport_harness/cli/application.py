@@ -1,131 +1,33 @@
-"""Expose backport preparation and verification through a small CLI."""
+"""Expose preparation, verification, and report inspection commands."""
 
 import math
-import os
-from collections import Counter
-from enum import StrEnum
 from pathlib import Path
-from typing import TYPE_CHECKING, Annotated
+from typing import Annotated
 
 import typer
 from pydantic import ValidationError
 
-from .demo import DEFAULT_IMAGE, build_demo_image, create_demo, docker_arguments
-from .models import RunReport, TestCaseResult
-from .processes import run_process
-
-if TYPE_CHECKING:
-    from .agent import DeepSeekPatchAgent, OpenAIPatchAgent
+from backport_harness.cli.credentials import (
+    ModelProvider,
+    make_deepseek_proposer,
+    make_openai_proposer,
+)
+from backport_harness.cli.presentation import exit_for_report, render_report
+from backport_harness.demo import (
+    DEFAULT_IMAGE,
+    build_demo_image,
+    create_demo,
+    docker_arguments,
+)
+from backport_harness.execution.processes import run_process
+from backport_harness.models import RunReport
+from backport_harness.verification.workflow import run_backport
 
 app = typer.Typer(
     help="Adapt a security fix to an older release and verify the execution evidence.",
     no_args_is_help=True,
     pretty_exceptions_enable=False,
 )
-
-
-class ModelProvider(StrEnum):
-    """Limit paid adaptation to explicitly supported provider endpoints."""
-
-    OPENAI = "openai"
-    DEEPSEEK = "deepseek"
-
-
-_KEY_NAMES = {
-    ModelProvider.OPENAI: "OPENAI_API_KEY",
-    ModelProvider.DEEPSEEK: "DEEPSEEK_API_KEY",
-}
-
-
-def _local_api_key(
-    env_file: Path | None, provider: ModelProvider = ModelProvider.OPENAI
-) -> str:
-    """Read only explicitly selected local credentials, never target config."""
-    key_name = _KEY_NAMES[provider]
-    if env_file is None:
-        value = os.environ.get(key_name, "").strip()
-    else:
-        value = ""
-        found: set[str] = set()
-        if env_file.stat().st_size > 65536:
-            raise ValueError("Credential file exceeds 64 KiB")
-        for line in env_file.read_text(encoding="utf-8").splitlines():
-            line = line.strip()
-            if not line or line.startswith("#"):
-                continue
-            name, separator, candidate = line.partition("=")
-            name = name.strip()
-            if name not in _KEY_NAMES.values() or not separator or name in found:
-                raise ValueError(
-                    "Credential file accepts only OPENAI_API_KEY and "
-                    "DEEPSEEK_API_KEY assignments, once each, and optional comments"
-                )
-            found.add(name)
-            if name == key_name:
-                value = candidate.strip()
-                if len(value) >= 2 and value[0] == value[-1] and value[0] in "\"'":
-                    value = value[1:-1]
-    if not value or "\n" in value or "\r" in value:
-        raise ValueError(
-            f"Set {key_name} in the controller environment or use --env-file"
-        )
-    return value
-
-
-def make_openai_proposer(
-    model: str, api_budget_usd: float | None, env_file: Path | None
-) -> "OpenAIPatchAgent":
-    """Create a paid proposer only when the operator explicitly selects a model."""
-    from .agent import OpenAIPatchAgent
-
-    return OpenAIPatchAgent(
-        api_key=_local_api_key(env_file), model=model, budget_usd=api_budget_usd
-    )
-
-
-def make_deepseek_proposer(
-    model: str, api_budget_usd: float | None, env_file: Path | None
-) -> "DeepSeekPatchAgent":
-    """Keep DeepSeek credentials separate from the OpenAI integration."""
-    from .agent import DEEPSEEK_MODELS, DeepSeekPatchAgent
-
-    if model not in DEEPSEEK_MODELS:
-        raise ValueError("Unsupported DeepSeek model")
-    return DeepSeekPatchAgent(
-        api_key=_local_api_key(env_file, ModelProvider.DEEPSEEK),
-        model=model,
-        budget_usd=api_budget_usd,
-    )
-
-
-def _test_summary(cases: list[TestCaseResult]) -> str:
-    if not cases:
-        return "no test evidence"
-    counts = Counter(case.outcome for case in cases)
-    summary = ", ".join(
-        f"{count} {outcome}" for outcome, count in sorted(counts.items())
-    )
-    rejected = [repr(case.name) for case in cases if case.outcome != "passed"]
-    if rejected:
-        summary += "; " + ", ".join(rejected[:5])
-        if len(rejected) > 5:
-            summary += f"; and {len(rejected) - 5} more (see report)"
-    return summary
-
-
-def _render(report: RunReport) -> None:
-    typer.echo(f"{report.status.upper()}: {report.reason}")
-    if report.phases:
-        typer.echo("Checks:")
-    for phase in report.phases:
-        typer.echo(f"  {phase.name}: {_test_summary(phase.security.tests)}")
-        typer.echo(f"    suite: {_test_summary(phase.suite.tests)}")
-    typer.echo("Verification covers the recorded oracle, controls, and suite only.")
-
-
-def _exit_for(report: RunReport) -> None:
-    if report.status != "verified":
-        raise typer.Exit(1 if report.status == "failed" else 2)
 
 
 @app.command()
@@ -165,8 +67,6 @@ def run(
     ] = None,
 ) -> None:
     """Verify an existing fix against its parent and an older maintained release."""
-    from .core import run_backport
-
     if candidate_patch is not None and model is not None:
         raise typer.BadParameter("Use either --candidate-patch or --model")
     if env_file is not None and model is None:
@@ -203,9 +103,9 @@ def run(
     finally:
         if proposer is not None:
             proposer.close()
-    _render(report)
+    render_report(report)
     typer.echo(f"Evidence: {output.resolve() / 'report.json'}")
-    _exit_for(report)
+    exit_for_report(report)
 
 
 @app.command()
@@ -225,7 +125,7 @@ def inspect(
     if json_output:
         typer.echo(record.model_dump_json(indent=2))
     else:
-        _render(record)
+        render_report(record)
 
 
 @app.command()
@@ -274,8 +174,6 @@ def demo(
     ] = None,
 ) -> None:
     """Run a complete synthetic backport exercise without an API key."""
-    from .core import run_backport
-
     try:
         command = docker_arguments(docker)
         project = create_demo(output, docker=command, image=image or DEFAULT_IMAGE)
@@ -296,14 +194,10 @@ def demo(
     except (OSError, ValueError, RuntimeError) as error:
         typer.echo(f"Demo error: {error}", err=True)
         raise typer.Exit(2) from error
-    _render(report)
+    render_report(report)
     typer.echo(f"Evidence: {evidence / 'report.json'}")
     typer.echo(
         "Synthetic fixture; the reference adaptation is supplied offline. "
         "No AI model or published CVE is involved."
     )
-    _exit_for(report)
-
-
-if __name__ == "__main__":
-    app()
+    exit_for_report(report)

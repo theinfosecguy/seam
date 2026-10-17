@@ -16,9 +16,9 @@ from backport_harness.agent import (
     DeepSeekPatchAgent,
     OpenAIPatchAgent,
 )
-from backport_harness.core import run_backport
 from backport_harness.demo import DemoProject, create_demo
 from backport_harness.repository import git, parent
+from backport_harness.verification.workflow import run_backport
 
 
 @pytest.fixture

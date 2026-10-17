@@ -1,0 +1,4 @@
+"""Synthetic archive path library."""
+from parcel_paths.legacy import member_path
+
+__all__ = ["member_path"]

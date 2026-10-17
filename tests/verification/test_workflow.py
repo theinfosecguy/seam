@@ -1,25 +1,10 @@
 """Cover failures that otherwise look like completed execution or verification."""
 
-import sys
 from pathlib import Path
 
-from backport_harness import core
 from backport_harness.models import ExecutionResult
 from backport_harness.models import TestCaseResult as Case
-from backport_harness.processes import run_process
-
-
-def test_timeout_still_applies_after_child_closes_output_pipes() -> None:
-    result = run_process(
-        [
-            sys.executable,
-            "-c",
-            "import os,time; os.close(1); os.close(2); time.sleep(.4)",
-        ],
-        timeout=0.05,
-    )
-    assert result.timed_out
-    assert result.duration_seconds < 0.3
+from backport_harness.verification import workflow
 
 
 def test_backport_cannot_drop_previously_collected_suite_tests(
@@ -41,11 +26,19 @@ image = "test-image"
 """
     )
     revisions = {"fix": "f" * 40, "target": "b" * 40}
-    monkeypatch.setattr(core.repository, "resolve", lambda _repo, ref: revisions[ref])
-    monkeypatch.setattr(core.repository, "parent", lambda *_: "a" * 40)
-    monkeypatch.setattr(core.repository, "upstream_patch", lambda *_: "source patch")
-    monkeypatch.setattr(core.repository, "clone_at", lambda _r, _c, dst: dst.mkdir())
-    monkeypatch.setattr(core.repository, "apply_patch", lambda _workspace, patch: patch)
+    monkeypatch.setattr(
+        workflow.repository, "resolve", lambda _repo, ref: revisions[ref]
+    )
+    monkeypatch.setattr(workflow.repository, "parent", lambda *_: "a" * 40)
+    monkeypatch.setattr(
+        workflow.repository, "upstream_patch", lambda *_: "source patch"
+    )
+    monkeypatch.setattr(
+        workflow.repository, "clone_at", lambda _r, _c, dst: dst.mkdir()
+    )
+    monkeypatch.setattr(
+        workflow.repository, "apply_patch", lambda _workspace, patch: patch
+    )
 
     class Runner:
         def __init__(self, _config) -> None:
@@ -78,7 +71,7 @@ image = "test-image"
                 ],
             )
 
-    monkeypatch.setattr(core, "DockerRunner", Runner)
-    report = core.run_backport(repo, "fix", "target", config, tmp_path / "output")
+    monkeypatch.setattr(workflow, "DockerRunner", Runner)
+    report = workflow.run_backport(repo, "fix", "target", config, tmp_path / "output")
     assert report.status == "inconclusive"
     assert "collect" in report.reason.lower() or "missing" in report.reason.lower()

@@ -1,0 +1,12 @@
+"""Resolve archive member names for the 2.x public API."""
+
+from pathlib import Path
+
+
+def resolve_member(root: Path, name: str) -> Path:
+    """Reject archive members that escape the extraction directory."""
+    root = root.resolve()
+    candidate = (root / name).resolve()
+    if not candidate.is_relative_to(root):
+        raise ValueError("archive member escapes extraction directory")
+    return candidate

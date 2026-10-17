@@ -30,8 +30,31 @@ jobs:
           python -m venv "$RUNNER_TEMP/wheel-check"
           "$RUNNER_TEMP/wheel-check/bin/python" -m pip install dist/*.whl
           cd "$RUNNER_TEMP"
-          "$RUNNER_TEMP/wheel-check/bin/python" -c 'import backport_harness'
+          "$RUNNER_TEMP/wheel-check/bin/python" - <<'PY'
+          from importlib.resources import files
+          from pathlib import Path
+          from tempfile import TemporaryDirectory
+
+          from backport_harness.agent.prompts import instruction
+          from backport_harness.demo import create_demo
+          from backport_harness.verification.config import load_config
+
+          for name in ("system", "require_submission", "standalone_submission"):
+              assert instruction(name)
+          assert files("backport_harness.demo").joinpath(
+              "resources/Dockerfile.txt"
+          ).read_text(encoding="utf-8")
+          assert files("backport_harness.execution").joinpath(
+              "resources/bootstrap.py.txt"
+          ).read_text(encoding="utf-8")
+          with TemporaryDirectory() as directory:
+              project = create_demo(Path(directory) / "fixture")
+              config = load_config(project.config_path)
+              assert config.oracle.path.is_file()
+              assert project.candidate_patch.read_text(encoding="utf-8")
+          PY
           "$RUNNER_TEMP/wheel-check/bin/backport" --help
+          "$RUNNER_TEMP/wheel-check/bin/python" -m backport_harness.cli --help
 
   docker-demo:
     runs-on: ubuntu-latest
@@ -51,4 +74,6 @@ jobs:
       - name: Exercise SDK protocol and container lifecycle together
         env:
           BACKPORT_TEST_IMAGE: security-backport-demo:local
-        run: uv run --frozen pytest -q tests/test_integration.py tests/test_runner.py
+        run: >-
+          uv run --frozen pytest -q tests/test_integration.py
+          tests/execution tests/verification/test_junit.py

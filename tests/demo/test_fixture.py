@@ -4,9 +4,10 @@ from pathlib import Path
 
 import pytest
 
-from backport_harness.core import load_config
-from backport_harness.demo import create_demo, docker_arguments
-from backport_harness.processes import run_process
+from backport_harness.demo.commands import docker_arguments
+from backport_harness.demo.fixture import create_demo
+from backport_harness.execution.processes import run_process
+from backport_harness.verification.config import load_config
 
 
 def git(repo: Path, *arguments: str) -> str:

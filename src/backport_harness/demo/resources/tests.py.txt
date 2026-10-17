@@ -1,0 +1,19 @@
+"""Compatibility checks shared by the maintained releases."""
+
+from pathlib import Path
+
+import parcel_paths
+
+
+def resolve(root: Path, name: str) -> Path:
+    if hasattr(parcel_paths, "resolve_member"):
+        return parcel_paths.resolve_member(root, name)
+    return Path(parcel_paths.member_path(str(root), name))
+
+
+def test_nested_member(tmp_path):
+    assert resolve(tmp_path, "docs/readme.txt") == tmp_path / "docs/readme.txt"
+
+
+def test_repeated_dots_in_filename(tmp_path):
+    assert resolve(tmp_path, "release..notes.txt") == tmp_path / "release..notes.txt"

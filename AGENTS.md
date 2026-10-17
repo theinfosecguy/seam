@@ -9,8 +9,18 @@ ordinary fix commit, and one target branch.
 - Require Python 3.12 or newer for the controller. Target releases use their own
   declared interpreter and dependencies in the execution environment.
 - Follow PEP 8 and PEP 257. Use four spaces, descriptive names, grouped imports,
-  and concise public docstrings. The project chooses an 88-column line length.
+  and concise public docstrings. Ruff enforces the project's 88-column line length.
 - Keep importable code under `src/backport_harness/` and tests under `tests/`.
+- Group modules by responsibility: `agent`, `cli`, `demo`, `execution`, and
+  `verification`. Keep module dependencies explicit and avoid catch-all helper
+  or constants modules. Shared validated records live in `models.py`; Git
+  operations live in `repository.py`.
+- Use absolute imports throughout. Group standard library, third-party, and
+  application imports in that order; let Ruff sort each group. `TID252` rejects
+  relative imports, and `I` enforces import sorting in local and CI checks.
+- Keep prompts, demo fixtures, and container bootstrap code in package resources.
+  Load them through `importlib.resources` so installed wheels behave like the
+  source checkout. Keep domain-specific limits and settings with their owner.
 - Type function signatures. Run mypy in strict mode. Validate external data at
   boundaries; static annotations do not validate model responses or JSON.
 - Prefer small functions and explicit records. Add abstractions when actual
@@ -72,6 +82,7 @@ ordinary fix commit, and one target branch.
 - [Package layout](https://packaging.python.org/en/latest/discussions/src-layout-vs-flat-layout/)
 - [pytest integration practices](https://docs.pytest.org/en/stable/explanation/goodpractices.html)
 - [Ruff configuration](https://docs.astral.sh/ruff/configuration/)
+- [Absolute import enforcement](https://docs.astral.sh/ruff/rules/relative-imports/)
 - [Python subprocess](https://docs.python.org/3/library/subprocess.html)
 - [Git clone](https://git-scm.com/docs/git-clone)
 - [Docker security](https://docs.docker.com/engine/security/)
