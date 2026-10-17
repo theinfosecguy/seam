@@ -11,8 +11,8 @@ from unittest.mock import Mock
 
 import pytest
 
-import backport_harness.processes as processes_module
-from backport_harness.processes import _kill_group, run_process
+import backport_harness.execution.processes as processes_module
+from backport_harness.execution.processes import _kill_group, run_process
 
 
 def test_process_does_not_inherit_credentials() -> None:

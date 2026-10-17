@@ -1,0 +1,39 @@
+"""Independent path containment and compatibility checks.
+
+This synthetic fixture is not a reproduction of a published vulnerability.
+"""
+
+from pathlib import Path
+
+import parcel_paths
+
+
+def resolve(root: Path, name: str) -> Path:
+    if hasattr(parcel_paths, "resolve_member"):
+        return parcel_paths.resolve_member(root, name)
+    return Path(parcel_paths.member_path(str(root), name))
+
+
+def test_security_traversal(tmp_path):
+    root = tmp_path / "extraction"
+    root.mkdir()
+    for name in ("../outside.txt", str(tmp_path / "absolute.txt")):
+        try:
+            candidate = resolve(root, name)
+        except ValueError:
+            continue
+        assert candidate.resolve().is_relative_to(root.resolve()), (
+            "TRAVERSAL_SECURITY_ORACLE: member escaped extraction directory"
+        )
+
+
+def test_control_nested_path(tmp_path):
+    assert resolve(tmp_path, "docs/readme.txt") == tmp_path / "docs/readme.txt"
+
+
+def test_control_repeated_dots(tmp_path):
+    assert resolve(tmp_path, "release..notes.txt") == tmp_path / "release..notes.txt"
+
+
+def test_control_unicode_filename(tmp_path):
+    assert resolve(tmp_path, "résumé.txt") == tmp_path / "résumé.txt"

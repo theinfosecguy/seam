@@ -16,6 +16,7 @@ from backport_harness.agent import (
     BudgetExceeded,
     DeepSeekPatchAgent,
 )
+from backport_harness.agent.transport import DEEPSEEK, create_client
 from backport_harness.models import AgentContext
 
 _PATCH = "--- a/example.py\n+++ b/example.py\n@@ -1 +1 @@\n-unsafe()\n+safe()\n"
@@ -134,16 +135,15 @@ def test_default_client_uses_fixed_endpoint_and_ignores_environment_routing(
     monkeypatch.setenv("OPENAI_BASE_URL", "https://unintended.invalid")
     monkeypatch.setenv("OPENAI_ORG_ID", "unintended-organization")
     monkeypatch.setenv("OPENAI_PROJECT_ID", "unintended-project")
-    agent = DeepSeekPatchAgent(api_key=_TEST_KEY, timeout_seconds=37)
+    client = create_client(DEEPSEEK, _TEST_KEY, 37)
     try:
-        assert str(agent._client.base_url).rstrip("/") == "https://api.deepseek.com"
-        assert agent._client.max_retries == 0
-        assert agent._client.timeout == 37
-        assert agent._client.organization is None
-        assert agent._client.project is None
-        assert agent.usage["budget_usd"] == "unlimited"
+        assert str(client.base_url).rstrip("/") == "https://api.deepseek.com"
+        assert client.max_retries == 0
+        assert client.timeout == 37
+        assert client.organization is None
+        assert client.project is None
     finally:
-        agent.close()
+        client.close()
 
 
 def test_request_uses_supported_parameters_and_locally_validated_tools(
@@ -288,8 +288,12 @@ def test_mixed_submission_batch_is_rejected_before_standalone_retry(
     def forbidden(*args: object, **kwargs: object) -> None:
         pytest.fail("A rejected submission batch must not execute any read tools")
 
-    monkeypatch.setattr("backport_harness.agent._list_files", forbidden)
-    monkeypatch.setattr("backport_harness.agent._read_file", forbidden)
+    monkeypatch.setattr(
+        "backport_harness.agent.tools.WorkspaceTools.list_files", forbidden
+    )
+    monkeypatch.setattr(
+        "backport_harness.agent.tools.WorkspaceTools.read_file", forbidden
+    )
     calls = [_submission("submit_one")]
     if submission_count == 1:
         calls.append(_call("list_files", {"directory": "."}, "listing"))
@@ -343,7 +347,9 @@ def test_repeated_mixed_submission_batches_stop_at_call_ceiling(
     def forbidden(*args: object, **kwargs: object) -> None:
         pytest.fail("Rejected batches must not run source-read tools")
 
-    monkeypatch.setattr("backport_harness.agent._list_files", forbidden)
+    monkeypatch.setattr(
+        "backport_harness.agent.tools.WorkspaceTools.list_files", forbidden
+    )
     agent, transport = make_deepseek_agent(
         [
             _response(

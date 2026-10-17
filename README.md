@@ -188,6 +188,11 @@ uv run backport inspect --report /tmp/backport-result/report.json --json
 
 ## Engineering and boundaries
 
+Source code is grouped into `agent`, `cli`, `demo`, `execution`, and `verification`
+packages. Prompts, container bootstrap, and demo programs are packaged resources.
+The [architecture guide](docs/architecture.md) maps responsibilities and dependency
+direction. Ruff enforces sorted absolute imports; strict mypy checks the controller.
+
 The implementation uses typed Python, Pydantic input validation, Typer, direct
 Git subprocesses, and a small explicit verification state machine. Model tools
 can list and read permitted source files and submit a unified diff. They cannot
@@ -216,7 +221,7 @@ adaptation, and container lifecycle without contacting an API:
 
 ```bash
 BACKPORT_TEST_IMAGE=security-backport-demo:local \
-  uv run pytest -q tests/test_integration.py tests/test_runner.py
+  uv run pytest -q tests/test_integration.py tests/execution tests/verification/test_junit.py
 ```
 
 For a prefixed Docker command, also set `BACKPORT_TEST_DOCKER='sudo -n docker'`.

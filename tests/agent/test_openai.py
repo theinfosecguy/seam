@@ -16,6 +16,7 @@ from backport_harness.agent import (
     BudgetExceeded,
     OpenAIPatchAgent,
 )
+from backport_harness.agent.transport import OPENAI, create_client
 from backport_harness.models import AgentContext
 
 _PATCH = "--- a/example.py\n+++ b/example.py\n@@ -1 +1 @@\n-unsafe()\n+safe()\n"
@@ -107,15 +108,15 @@ def test_default_client_omits_environment_routing_headers(
 ) -> None:
     monkeypatch.setenv("OPENAI_ORG_ID", "unintended-organization")
     monkeypatch.setenv("OPENAI_PROJECT_ID", "unintended-project")
-    agent = OpenAIPatchAgent(api_key="offline-test-key")
+    client = create_client(OPENAI, "offline-test-key", 90)
     try:
-        assert agent._client.organization is None
-        assert agent._client.project is None
-        headers = agent._client.default_headers
+        assert client.organization is None
+        assert client.project is None
+        headers = client.default_headers
         assert not isinstance(headers["OpenAI-Organization"], str)
         assert not isinstance(headers["OpenAI-Project"], str)
     finally:
-        agent.close()
+        client.close()
 
 
 def test_sdk_submission_is_strict_stateless_and_usage_counts_reasoning_once(
@@ -284,13 +285,13 @@ def test_network_failure_retains_reservation_and_never_retries(
 
 
 def test_real_sdk_configuration_uses_fixed_endpoint_timeout_and_no_retries() -> None:
-    agent = OpenAIPatchAgent(api_key="test-only-key", timeout_seconds=37)
+    client = create_client(OPENAI, "test-only-key", 37)
     try:
-        assert agent._client.max_retries == 0
-        assert str(agent._client.base_url) == "https://api.openai.com/v1/"
-        assert agent._client.timeout == 37
+        assert client.max_retries == 0
+        assert str(client.base_url) == "https://api.openai.com/v1/"
+        assert client.timeout == 37
     finally:
-        agent.close()
+        client.close()
 
 
 def test_call_ceiling_stops_read_loop(
