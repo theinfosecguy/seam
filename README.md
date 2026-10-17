@@ -1,4 +1,6 @@
-# Security Backport Harness
+# Seam
+
+A security backport harness for Python libraries.
 
 An upstream security fix does not always fit an older release. Files move, APIs
 change, and a clean-looking adaptation can silently break legitimate behavior.
