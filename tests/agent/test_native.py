@@ -142,6 +142,7 @@ def test_native_sdk_tool_round_trip(
     provider: str, tmp_path: Path, monkeypatch: pytest.MonkeyPatch
 ) -> None:
     """Each registered protocol sends tools/results and ignores ambient routing."""
+    (tmp_path / "example.py").write_text("unsafe()\n")
     for variable in (
         "OPENAI_BASE_URL",
         "ANTHROPIC_BASE_URL",
@@ -164,7 +165,11 @@ def test_native_sdk_tool_round_trip(
         headers.append(dict(request.headers))
         requests.append(json.loads(request.content))
         result = (
-            reply(provider, "list_files", {"directory": "."})
+            reply(
+                provider,
+                "read_file",
+                {"path": "example.py", "start_line": 1, "line_count": 1},
+            )
             if len(requests) == 1
             else reply(provider, call_id="call_2")
         )
@@ -215,7 +220,7 @@ def test_native_sdk_tool_round_trip(
         assert requests[0]["tools"][0]["functionDeclarations"]
         assert (
             requests[1]["contents"][-1]["parts"][0]["functionResponse"]["name"]
-            == "list_files"
+            == "read_file"
         )
     else:
         assert urls[0].endswith("/chat/completions")
@@ -313,12 +318,21 @@ def test_unknown_models_need_prices_for_cap_and_are_opaque_when_uncapped() -> No
 
 
 def test_owned_event_loop_is_reused_and_closed(tmp_path: Path) -> None:
+    (tmp_path / "example.py").write_text("unsafe()\n")
     loops = []
 
     async def model(messages: Any, info: Any) -> ModelResponse:
         loops.append(asyncio.get_running_loop())
+        call = (
+            ToolCallPart(
+                "read_file",
+                {"path": "example.py", "start_line": 1, "line_count": 1},
+            )
+            if len(messages) == 1
+            else ToolCallPart("submit_patch", {"patch": PATCH, "explanation": "ok"})
+        )
         return ModelResponse(
-            parts=[ToolCallPart("submit_patch", {"patch": PATCH, "explanation": "ok"})],
+            parts=[call],
             usage=RequestUsage(input_tokens=100, output_tokens=50),
             finish_reason="tool_call",
         )
@@ -329,7 +343,7 @@ def test_owned_event_loop_is_reused_and_closed(tmp_path: Path) -> None:
     agent.propose(AgentContext(workspace=tmp_path, upstream_diff=PATCH))
     agent.propose(AgentContext(workspace=tmp_path, upstream_diff=PATCH))
     agent.close()
-    assert len(loops) == 2 and loops[0] is loops[1]
+    assert len(loops) == 4 and all(loop is loops[0] for loop in loops)
     assert loops[0].is_closed()
 
 
@@ -420,6 +434,7 @@ def test_bedrock_native_converse_with_explicit_auth_and_zero_retries(
 ) -> None:
     from botocore.stub import Stubber
 
+    (tmp_path / "example.py").write_text("unsafe()\n")
     monkeypatch.setenv("AWS_BEARER_TOKEN_BEDROCK", "unintended-token")
     monkeypatch.setenv("AWS_ENDPOINT_URL_BEDROCK_RUNTIME", "https://unintended.invalid")
     monkeypatch.setenv("HTTPS_PROXY", "https://unintended.invalid")
@@ -439,6 +454,32 @@ def test_bedrock_native_converse_with_explicit_auth_and_zero_retries(
     assert client.meta.config.retries["total_max_attempts"] == 1
     assert client.meta.config.proxies == {}
     stubber = Stubber(client)
+    stubber.add_response(
+        "converse",
+        {
+            "output": {
+                "message": {
+                    "role": "assistant",
+                    "content": [
+                        {
+                            "toolUse": {
+                                "toolUseId": "inspect",
+                                "name": "read_file",
+                                "input": {
+                                    "path": "example.py",
+                                    "start_line": 1,
+                                    "line_count": 1,
+                                },
+                            }
+                        }
+                    ],
+                }
+            },
+            "stopReason": "tool_use",
+            "usage": {"inputTokens": 100, "outputTokens": 50, "totalTokens": 150},
+            "metrics": {"latencyMs": 1},
+        },
+    )
     stubber.add_response(
         "converse",
         {
@@ -472,8 +513,8 @@ def test_bedrock_native_converse_with_explicit_auth_and_zero_retries(
                 ).patch
                 == PATCH
             )
-        assert agent.usage["input_tokens"] == 100
-        assert agent.usage["output_tokens"] == 50
+        assert agent.usage["input_tokens"] == 200
+        assert agent.usage["output_tokens"] == 100
     finally:
         agent.close()
 
@@ -484,6 +525,7 @@ def test_vertex_uses_explicit_service_account_without_refresh_network(
     from cryptography.hazmat.primitives import serialization
     from cryptography.hazmat.primitives.asymmetric import rsa
 
+    (tmp_path / "example.py").write_text("unsafe()\n")
     private = rsa.generate_private_key(public_exponent=65537, key_size=2048)
     credential_file = tmp_path / "synthetic-account.json"
     credential_file.write_text(
@@ -512,7 +554,16 @@ def test_vertex_uses_explicit_service_account_without_refresh_network(
         requests.append(request)
         assert request.url.host == "us-central1-aiplatform.googleapis.com"
         assert request.headers["authorization"].startswith("Bearer ey")
-        return httpx2.Response(200, json=reply("google"))
+        result = (
+            reply(
+                "google",
+                "read_file",
+                {"path": "example.py", "start_line": 1, "line_count": 1},
+            )
+            if len(requests) == 1
+            else reply("google", call_id="submit")
+        )
+        return httpx2.Response(200, json=result)
 
     agent = PatchAgent(
         provider="vertex",
@@ -528,8 +579,8 @@ def test_vertex_uses_explicit_service_account_without_refresh_network(
     try:
         proposal = agent.propose(AgentContext(workspace=tmp_path, upstream_diff=PATCH))
         assert proposal.patch == PATCH
-        assert len(requests) == 1
-        assert agent.usage["output_tokens"] == 50
+        assert len(requests) == 2
+        assert agent.usage["output_tokens"] == 100
     finally:
         agent.close()
 

@@ -276,3 +276,31 @@ def test_additional_oracle_cases_can_differ_between_revisions(
             {"name": f"test_extra_{index}", "outcome": "passed"}
         )
     assert RunReport.model_validate(complete_report_data).status == "verified"
+
+
+@pytest.mark.parametrize("calls", [None, 0, -1, 1.0, "1", True])
+def test_verified_ai_report_requires_positive_integer_model_calls(
+    complete_report_data: dict, calls: object
+) -> None:
+    complete_report_data["adaptation"] = "agent"
+    complete_report_data["model_usage"] = {} if calls is None else {"calls": calls}
+    with pytest.raises(ValidationError):
+        RunReport.model_validate(complete_report_data)
+
+
+def test_ai_usage_is_visible_when_inspecting_completed_report(
+    tmp_path: Path, complete_report_data: dict
+) -> None:
+    complete_report_data["adaptation"] = "agent"
+    complete_report_data["model_usage"] = {
+        "provider": "deepseek",
+        "model": "test-model",
+        "calls": 2,
+    }
+    report = RunReport.model_validate(complete_report_data)
+    write_report(tmp_path, report)
+    inspected = CliRunner().invoke(
+        app, ["inspect", "--report", str(tmp_path / "report.json")]
+    )
+    assert inspected.exit_code == 0
+    assert "AI adaptation: deepseek / test-model; model requests: 2" in inspected.output

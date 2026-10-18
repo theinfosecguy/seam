@@ -13,8 +13,9 @@ from seam.constants.agent import (
     MAX_TEXT_BYTES,
 )
 from seam.constants.security import ALLOWED_SUFFIXES
-from seam.exceptions import AgentError
+from seam.exceptions import AgentError, RepositoryError
 from seam.models import AgentProposal
+from seam.repository import validate_source_path
 from seam.security import contains_secret, is_sensitive_path
 
 
@@ -52,10 +53,30 @@ def _open_directory(root: Path, parts: tuple[str, ...]) -> int:
 class WorkspaceTools:
     """Expose only safe directory listings, bounded reads, and patch submission."""
 
-    def __init__(self, root: Path) -> None:
+    def __init__(
+        self,
+        root: Path,
+        upstream_parent: Path | None = None,
+        upstream_fix: Path | None = None,
+    ) -> None:
         self.root = root.absolute()
-        if self.root.is_symlink() or not self.root.is_dir():
-            raise AgentError("agent workspace must be a real directory")
+        self.inspected_target = False
+        self._roots = {
+            "target": self.root,
+            "upstream_parent": upstream_parent,
+            "upstream_fix": upstream_fix,
+        }
+        for workspace in self._roots.values():
+            if workspace is not None and (
+                workspace.is_symlink() or not workspace.is_dir()
+            ):
+                raise AgentError("agent workspace must be a real directory")
+
+    def _root(self, revision: str) -> Path:
+        root = self._roots[revision]
+        if root is None:
+            raise ValueError("requested revision is unavailable")
+        return root
 
     def execute(self, name: str, arguments: str) -> AgentProposal | dict[str, object]:
         """Validate every call locally, including providers without strict schemas."""
@@ -87,7 +108,7 @@ class WorkspaceTools:
     def list_files(self, argument: ListFiles) -> dict[str, object]:
         """List safe immediate entries without following symbolic links."""
         parts = _safe_parts(argument.directory, root_allowed=True)
-        descriptor = _open_directory(self.root, parts)
+        descriptor = _open_directory(self._root(argument.revision), parts)
         try:
             result: list[str] = []
             scanned = 0
@@ -118,7 +139,7 @@ class WorkspaceTools:
         parts = _safe_parts(argument.path)
         if Path(parts[-1]).suffix.lower() not in ALLOWED_SUFFIXES:
             raise ValueError("file type is not allowed")
-        directory = _open_directory(self.root, parts[:-1])
+        directory = _open_directory(self._root(argument.revision), parts[:-1])
         try:
             descriptor = os.open(
                 parts[-1], os.O_RDONLY | os.O_NOFOLLOW | os.O_NONBLOCK, dir_fd=directory
@@ -137,10 +158,19 @@ class WorkspaceTools:
         lines = text.splitlines()
         start = argument.start_line - 1
         end = start + argument.line_count
+        selected = "\n".join(lines[start:end])
+        if argument.revision == "target" and selected.strip():
+            try:
+                validate_source_path(argument.path)
+            except RepositoryError:
+                pass
+            else:
+                self.inspected_target = True
         return {
+            "revision": argument.revision,
             "path": argument.path,
             "start_line": argument.start_line,
-            "content": "\n".join(lines[start:end]),
+            "content": selected,
             "truncated": truncated or end < len(lines),
             "readable_lines": len(lines),
         }

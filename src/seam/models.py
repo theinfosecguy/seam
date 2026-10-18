@@ -7,8 +7,18 @@ from enum import StrEnum
 from pathlib import Path
 from typing import Literal
 
-from pydantic import BaseModel, ConfigDict, Field, field_validator, model_validator
+from pydantic import (
+    BaseModel,
+    ConfigDict,
+    Field,
+    StrictFloat,
+    StrictInt,
+    StrictStr,
+    field_validator,
+    model_validator,
+)
 
+from seam.constants.repository import MAX_PATCH_BYTES
 from seam.constants.verification import (
     MAX_PYTEST_MARKER_EXPRESSION,
     MAX_PYTEST_PLUGIN_NAME,
@@ -238,18 +248,29 @@ class PhaseResult(Record):
 
 
 class AgentContext(Record):
-    """Give a patch proposer read access to a disposable target checkout."""
+    """Give a patch proposer bounded evidence and disposable source checkouts."""
 
     workspace: Path
     upstream_diff: str
     feedback: str = ""
+    upstream_parent_workspace: Path | None = None
+    upstream_fix_workspace: Path | None = None
+    previous_patch: str = ""
 
 
 class AgentProposal(Record):
     """Return a candidate diff; the model cannot execute host commands."""
 
-    patch: str = Field(min_length=1, max_length=262144)
+    patch: str = Field(min_length=1, max_length=MAX_PATCH_BYTES)
     explanation: str = Field(max_length=4000)
+
+    @field_validator("patch")
+    @classmethod
+    def bounded_patch(cls, value: str) -> str:
+        """Reject oversized UTF-8 diffs before they enter the retry context."""
+        if len(value.encode("utf-8")) > MAX_PATCH_BYTES:
+            raise ValueError("candidate patch exceeds 256 KiB")
+        return value
 
 
 class RunReport(Record):
@@ -268,7 +289,9 @@ class RunReport(Record):
     phases: list[PhaseResult] = Field(default_factory=list)
     attempts: int = 0
     adaptation: str = "none"
-    model_usage: dict[str, int | float | str] = Field(default_factory=dict)
+    model_usage: dict[str, StrictInt | StrictFloat | StrictStr] = Field(
+        default_factory=dict
+    )
     reviewed_tests: ReviewedTestsConfig | None = None
     reviewed_fixtures: dict[str, tuple[str, ...]] = Field(default_factory=dict)
 
@@ -285,6 +308,10 @@ class RunReport(Record):
         """Reject a verified verdict without the completed evidence matrix."""
         if self.status != "verified":
             return self
+        if self.adaptation == "agent":
+            calls = self.model_usage.get("calls")
+            if type(calls) is not int or calls < 1:
+                raise ValueError("verified AI reports require a recorded model request")
         names = [phase.name for phase in self.phases]
         if (
             not all(

@@ -13,6 +13,7 @@ import pytest
 from seam.agent import OpenAIPatchAgent
 from seam.agent.schemas import TOOL_SCHEMAS
 from seam.constants.providers import DEFAULT_MODEL
+from seam.constants.repository import MAX_PATCH_BYTES
 from seam.exceptions import AgentError, BudgetExceeded
 from seam.models import AgentContext
 
@@ -98,13 +99,22 @@ def make_agent() -> Callable[..., tuple[OpenAIPatchAgent, _Transport]]:
 
 
 def _context(workspace: Path) -> AgentContext:
+    source = workspace / "example.py"
+    if not source.exists() or not source.read_text():
+        source.write_text("unsafe()\n")
     return AgentContext(workspace=workspace, upstream_diff=_PATCH)
+
+
+def _inspection() -> dict[str, object]:
+    return _response(
+        "read_file", {"path": "example.py", "start_line": 1, "line_count": 1}
+    )
 
 
 def test_sdk_submission_is_strict_stateless_and_usage_counts_reasoning_once(
     tmp_path: Path, make_agent: Callable[..., Any]
 ) -> None:
-    agent, transport = make_agent([_response()])
+    agent, transport = make_agent([_inspection(), _response()])
     proposal = agent.propose(_context(tmp_path))
     assert proposal.patch == _PATCH
     request = transport.requests[0]
@@ -121,10 +131,10 @@ def test_sdk_submission_is_strict_stateless_and_usage_counts_reasoning_once(
     assert all(
         tool["parameters"]["additionalProperties"] is False for tool in request["tools"]
     )
-    assert agent.usage["calls"] == 1
-    assert agent.usage["input_tokens"] == 100
-    assert agent.usage["output_tokens"] == 50
-    assert agent.usage["estimated_cost_usd"] == pytest.approx(0.0003)
+    assert agent.usage["calls"] == 2
+    assert agent.usage["input_tokens"] == 200
+    assert agent.usage["output_tokens"] == 100
+    assert agent.usage["estimated_cost_usd"] == pytest.approx(0.0006)
     assert agent.usage["reserved_cost_usd"] == 0
     assert "test-only-key" not in json.dumps(request)
 
@@ -158,6 +168,7 @@ def test_read_tool_denies_escape_hidden_and_sensitive_paths(
     agent, transport = make_agent(
         [
             _response("read_file", {"path": path, "start_line": 1, "line_count": 10}),
+            _inspection(),
             _response(),
         ]
     )
@@ -186,6 +197,7 @@ def test_read_tool_rejects_symlinks_hardlinks_and_nonregular_files(
     agent, transport = make_agent(
         [
             _response("read_file", {"path": path, "start_line": 1, "line_count": 10}),
+            _inspection(),
             _response(),
         ]
     )
@@ -203,7 +215,7 @@ def test_list_tool_omits_hidden_sensitive_binary_and_symlink_entries(
     (tmp_path / "src").mkdir()
     (tmp_path / "linked.py").symlink_to(tmp_path / "example.py")
     agent, transport = make_agent(
-        [_response("list_files", {"directory": "."}), _response()]
+        [_response("list_files", {"directory": "."}), _inspection(), _response()]
     )
     agent.propose(_context(tmp_path))
     output = json.loads(transport.requests[1]["input"][-1]["output"])
@@ -225,7 +237,9 @@ def test_list_tool_omits_hidden_sensitive_binary_and_symlink_entries(
 def test_malformed_tool_json_returns_schema_before_valid_submission(
     tmp_path: Path, arguments: str, make_agent: Callable[..., Any]
 ) -> None:
-    agent, transport = make_agent([_response(arguments=arguments), _response()])
+    agent, transport = make_agent(
+        [_response(arguments=arguments), _inspection(), _response()]
+    )
     proposal = agent.propose(_context(tmp_path))
     assert proposal.patch == _PATCH
     feedback = json.loads(transport.requests[1]["input"][-1]["output"])
@@ -236,7 +250,7 @@ def test_malformed_tool_json_returns_schema_before_valid_submission(
         "error": "invalid tool arguments; retry using the declared parameters",
         "parameters": schema,
     }
-    assert agent.usage["calls"] == 2
+    assert agent.usage["calls"] == 3
 
 
 def test_invalid_read_can_be_corrected_before_submitting_a_patch(
@@ -261,6 +275,30 @@ def test_invalid_read_can_be_corrected_before_submitting_a_patch(
     assert agent.usage["calls"] == 3
 
 
+def test_unicode_patch_exceeding_byte_limit_is_corrected_locally(
+    tmp_path: Path, make_agent: Callable[..., Any]
+) -> None:
+    oversized = "é" * (MAX_PATCH_BYTES // 2 + 1)
+    agent, transport = make_agent(
+        [
+            _inspection(),
+            _response(
+                arguments=json.dumps(
+                    {"patch": oversized, "explanation": "Preserve the release API."},
+                    ensure_ascii=False,
+                )
+            ),
+            _response(),
+        ]
+    )
+    assert agent.propose(_context(tmp_path)).patch == _PATCH
+    feedback = json.loads(transport.requests[2]["input"][-1]["output"])
+    assert "invalid tool arguments" in feedback["error"]
+    assert "parameters" in feedback
+    assert oversized not in json.dumps(feedback, ensure_ascii=False)
+    assert agent.usage["calls"] == 3
+
+
 def test_budget_reserves_full_context_before_contacting_provider(
     tmp_path: Path, make_agent: Callable[..., Any]
 ) -> None:
@@ -275,13 +313,14 @@ def test_budget_and_call_counts_are_cumulative_across_proposals(
     tmp_path: Path, make_agent: Callable[..., Any]
 ) -> None:
     agent, transport = make_agent(
-        [_response(input_tokens=400000, output_tokens=8192)], budget_usd=0.4
+        [_inspection(), _response(input_tokens=400000, output_tokens=8192)],
+        budget_usd=0.4,
     )
     agent.propose(_context(tmp_path))
     with pytest.raises(BudgetExceeded):
         agent.propose(_context(tmp_path))
-    assert len(transport.requests) == 1
-    assert agent.usage["estimated_cost_usd"] == pytest.approx(0.336864)
+    assert len(transport.requests) == 2
+    assert agent.usage["estimated_cost_usd"] == pytest.approx(0.337164)
 
 
 def test_network_failure_retains_reservation_and_never_retries(
