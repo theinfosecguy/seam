@@ -10,7 +10,7 @@ from typing import Protocol
 from pydantic import ValidationError
 
 from seam import repository
-from seam.constants import MAX_PATCH_BYTES
+from seam.constants.repository import MAX_PATCH_BYTES
 from seam.exceptions import RepositoryError
 from seam.execution.docker import DockerRunner
 from seam.execution.snapshot import preflight_snapshot

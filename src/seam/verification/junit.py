@@ -6,7 +6,7 @@ from pathlib import Path
 from typing import Literal
 from xml.etree import ElementTree
 
-from seam.constants import MAX_REPORT_BYTES
+from seam.constants.verification import MAX_REPORT_BYTES
 from seam.models import TestCaseResult
 
 

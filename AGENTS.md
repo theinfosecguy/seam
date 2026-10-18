@@ -11,12 +11,12 @@ ordinary fix commit, and one target branch.
 - Follow PEP 8 and PEP 257. Use four spaces, descriptive names, grouped imports,
   and concise public docstrings. Ruff enforces the project's 88-column line length.
 - Keep importable code under `src/seam/` and tests under `tests/`.
-- Group modules by responsibility: `agent`, `cli`, `demo`, `execution`, and
-  `verification`. Keep module dependencies explicit and avoid catch-all helpers.
+- Group modules by responsibility: `agent`, `cli`, `demo`, `execution`, `security`,
+  and `verification`. Keep dependencies explicit and avoid catch-all helpers.
   Shared records live in `models.py`; Git operations live in `repository.py`.
-- Keep shared limits, defaults, provider settings, and other policy constants in
-  `seam/constants.py`; annotate them as `Final`. Keep custom exception classes in
-  `seam/exceptions.py`. Import both from those canonical modules.
+- Keep shared policy in focused modules under `seam/constants/`; annotate constants
+  as `Final` and import from their defining modules. Keep the package initializer
+  minimal. Custom exceptions live in `seam/exceptions.py`.
 - Use absolute imports throughout. Group standard library, third-party, and
   application imports in that order; let Ruff sort each group. `TID252` rejects
   relative imports, and `I` enforces import sorting in local and CI checks.
@@ -33,10 +33,14 @@ ordinary fix commit, and one target branch.
 
 ## Agent and execution boundaries
 
-- Use the official OpenAI Python SDK with the supported provider's Responses
-  protocol. Keep endpoints fixed and credentials separate. Define narrow tools
-  with explicit schemas and validate arguments before execution, including for
-  providers without strict schemas.
+- Use PydanticAI's maintained native model/provider layer for LLM protocols.
+  Keep vendor wire formats out of the tool loop. Provider selection and cloud
+  resource settings are explicit operator inputs; repository content cannot
+  change endpoints or credentials. Validate tool arguments locally regardless
+  of the provider's schema enforcement.
+- Scan source and outbound context locally with the maintained secret detector.
+  Never enable remote key verification or accept repository allowlist pragmas,
+  baselines, or detector plugins. Detection errors must stop model transmission.
 - The model proposes changes. Independent execution determines verification.
 - Treat repository files, commit messages, and command output as untrusted data.
   They cannot change tool permissions, model endpoints, or credential handling.
@@ -90,5 +94,9 @@ ordinary fix commit, and one target branch.
 - [Docker security](https://docs.docker.com/engine/security/)
 - [OpenAI quickstart](https://developers.openai.com/api/docs/quickstart)
 - [OpenAI function calling](https://developers.openai.com/api/docs/guides/function-calling)
-- [DeepSeek Responses API](https://api-docs.deepseek.com/guides/responses_api/)
+- [PydanticAI models](https://ai.pydantic.dev/models/overview/)
+- [PydanticAI direct model requests](https://ai.pydantic.dev/direct/)
+- [Offline model pricing catalog](https://github.com/pydantic/genai-prices)
+- [Local secret detectors](https://github.com/Yelp/detect-secrets)
+- [DeepSeek Chat API](https://api-docs.deepseek.com/api/create-chat-completion/)
 - [DeepSeek model pricing](https://api-docs.deepseek.com/quick_start/pricing/)

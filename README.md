@@ -66,8 +66,9 @@ uv run seam run \
   --api-budget-usd 1 --env-file .env.deepseek
 ```
 
-A paid client is created only when you supply `--model`. OpenAI and DeepSeek are
-supported; keys stay in the controller, outside test containers. See
+A paid client is created only when you supply `--model`. Native adapters cover
+OpenAI, Anthropic, Gemini, DeepSeek, and other major APIs; keys stay in the
+controller, outside test containers. See
 [API setup](docs/api.md) for models, credentials, and spending limits.
 
 ## What verification means
@@ -116,5 +117,6 @@ See [coding conventions](AGENTS.md), the [package map](docs/architecture.md), an
 - [Live validation results](docs/live-testing.md)
 - [Multi-library evaluation and gaps](docs/evaluations.md)
 - [Fixes and repeat evaluations](docs/reevaluation.md)
+- [Provider and credential-screening validation](docs/provider-validation.md)
 
 Licensed under [MIT](LICENSE).

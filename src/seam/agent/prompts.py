@@ -1,14 +1,22 @@
 """Load trusted instructions and keep untrusted evidence in bounded messages."""
 
 import json
+from collections.abc import Sequence
 from functools import cache
 from importlib.resources import files
 
-from openai.types.responses import ResponseInputParam
+from pydantic_ai.messages import (
+    ModelMessage,
+    ModelMessagesTypeAdapter,
+    ModelRequest,
+    SystemPromptPart,
+    UserPromptPart,
+)
 
-from seam.constants import MAX_CONTEXT_BYTES, MAX_CONVERSATION_BYTES, SENSITIVE_CONTENT
+from seam.constants.agent import MAX_CONTEXT_BYTES, MAX_CONVERSATION_BYTES
 from seam.exceptions import AgentError
 from seam.models import AgentContext
+from seam.security import contains_secret
 
 
 @cache
@@ -22,22 +30,29 @@ def instruction(name: str) -> str:
     )
 
 
-def initial_conversation(context: AgentContext) -> ResponseInputParam:
+def initial_conversation(context: AgentContext) -> list[ModelMessage]:
     """Serialize repository evidence as user data, separate from instructions."""
     payload = json.dumps(
         {"upstream_diff": context.upstream_diff, "feedback": context.feedback}
     )
     if len(payload.encode("utf-8")) > MAX_CONTEXT_BYTES:
         raise AgentError("patch context exceeds the supported prompt size")
-    if SENSITIVE_CONTENT.search(payload):
+    if contains_secret(payload):
         raise AgentError("patch context may contain credentials")
-    return [{"role": "user", "content": payload}]
+    return [
+        ModelRequest(
+            parts=[
+                SystemPromptPart(instruction("system")),
+                UserPromptPart(payload),
+            ]
+        )
+    ]
 
 
-def check_conversation_size(conversation: ResponseInputParam) -> None:
-    """Bound accumulated provider reasoning, calls, and read results."""
-    serialized = json.dumps(
-        conversation, default=lambda item: item.model_dump(mode="json")
-    )
-    if len(serialized.encode("utf-8")) > MAX_CONVERSATION_BYTES:
+def check_conversation_size(conversation: Sequence[ModelMessage]) -> None:
+    """Bound and scan every outbound message, including reasoning and tool output."""
+    serialized = ModelMessagesTypeAdapter.dump_json(list(conversation))
+    if len(serialized) > MAX_CONVERSATION_BYTES:
         raise AgentError("conversation exceeds the supported size limit")
+    if contains_secret(serialized.decode("utf-8")):
+        raise AgentError("conversation may contain credentials")

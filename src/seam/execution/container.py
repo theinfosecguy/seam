@@ -4,7 +4,7 @@ from importlib.resources import files
 from pathlib import Path, PurePosixPath
 from typing import Literal
 
-from seam.constants import MAX_SNAPSHOT_BYTES
+from seam.constants.execution import MAX_SNAPSHOT_BYTES
 from seam.models import OracleConfig, RunnerConfig
 
 

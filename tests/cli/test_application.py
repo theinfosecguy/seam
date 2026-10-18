@@ -7,7 +7,7 @@ from typer.testing import CliRunner
 
 from seam import cli
 from seam.cli import application, credentials
-from seam.models import RunReport
+from seam.models import ModelProvider, RunReport
 
 runner = CliRunner()
 
@@ -75,8 +75,7 @@ def test_run_reports_status_and_never_enables_model_implicitly(
         pytest.fail("Default CLI unexpectedly constructed a model provider")
 
     monkeypatch.setattr(application, "run_backport", fake_run)
-    monkeypatch.setattr(application, "make_openai_proposer", forbidden)
-    monkeypatch.setattr(application, "make_deepseek_proposer", forbidden)
+    monkeypatch.setattr(application, "make_proposer", forbidden)
     result = runner.invoke(cli.app, [*arguments(tmp_path), *provider_args])
     assert result.exit_code == exit_code, result.output
     assert status.upper() in result.output
@@ -96,15 +95,17 @@ def test_explicit_model_passes_budget_and_explicit_key_file(tmp_path, monkeypatc
     key_file = tmp_path / "credentials"
     key_file.write_text("OPENAI_API_KEY=test-only-value\n")
 
-    def factory(model, budget, path):
+    def factory(provider, model, budget, path, **options):
+        assert provider == ModelProvider.OPENAI
         assert (model, budget, path) == ("approved-model", 0.25, key_file)
+        assert all(value is None for value in options.values())
         return sentinel
 
     def fake_run(*args, **kwargs):
         assert kwargs["proposer"] is sentinel
         return report()
 
-    monkeypatch.setattr(application, "make_openai_proposer", factory)
+    monkeypatch.setattr(application, "make_proposer", factory)
     monkeypatch.setattr(application, "run_backport", fake_run)
     result = runner.invoke(
         cli.app,
@@ -133,7 +134,9 @@ def test_provider_is_closed_when_verification_raises(tmp_path, monkeypatch):
     def fail(*args, **kwargs):
         raise RuntimeError("verification stopped")
 
-    monkeypatch.setattr(application, "make_openai_proposer", lambda *args: Provider())
+    monkeypatch.setattr(
+        application, "make_proposer", lambda *args, **kwargs: Provider()
+    )
     monkeypatch.setattr(application, "run_backport", fail)
     result = runner.invoke(cli.app, [*arguments(tmp_path), "--model", "approved-model"])
     assert result.exit_code == 2
@@ -178,7 +181,7 @@ def test_invalid_budget_is_validated_before_provider(tmp_path, monkeypatch, budg
     def forbidden(*args, **kwargs):
         pytest.fail("Provider must not be constructed for an invalid budget")
 
-    monkeypatch.setattr(application, "make_openai_proposer", forbidden)
+    monkeypatch.setattr(application, "make_proposer", forbidden)
     result = runner.invoke(
         cli.app,
         [*arguments(tmp_path), "--model", "some-model", "--api-budget-usd", budget],
@@ -201,19 +204,16 @@ def test_deepseek_provider_receives_selected_model_and_budget(
 
     sentinel = Provider()
 
-    def factory(model, actual_budget, path):
+    def factory(provider, model, actual_budget, path, **options):
+        assert provider == ModelProvider.DEEPSEEK
         assert (model, actual_budget, path) == ("deepseek-flash", budget, None)
         return sentinel
-
-    def forbidden(*args, **kwargs):
-        pytest.fail("DeepSeek selection must not construct the OpenAI provider")
 
     def fake_run(*args, **kwargs):
         assert kwargs["proposer"] is sentinel
         return report()
 
-    monkeypatch.setattr(application, "make_openai_proposer", forbidden)
-    monkeypatch.setattr(application, "make_deepseek_proposer", factory)
+    monkeypatch.setattr(application, "make_proposer", factory)
     monkeypatch.setattr(application, "run_backport", fake_run)
     result = runner.invoke(
         cli.app,
@@ -242,23 +242,37 @@ def test_unknown_provider_is_rejected_before_key_read(tmp_path, monkeypatch):
     assert result.exit_code == 2
 
 
-def test_unknown_deepseek_model_is_rejected_before_key_read(tmp_path, monkeypatch):
-    def forbidden(*args, **kwargs):
-        pytest.fail("Unknown DeepSeek model must not read any credentials")
+@pytest.mark.parametrize("provider", list(ModelProvider))
+def test_model_identifiers_pass_unchanged_through_one_factory(
+    tmp_path, monkeypatch, provider
+):
+    calls = []
 
-    monkeypatch.setattr(credentials, "load_api_key", forbidden)
+    class Provider:
+        def close(self):
+            calls.append("closed")
+
+    def factory(selected, model, budget, path, **options):
+        assert selected == provider
+        assert model == "new-model-id-without-a-code-change"
+        assert budget is None
+        return Provider()
+
+    monkeypatch.setattr(application, "make_proposer", factory)
+    monkeypatch.setattr(application, "run_backport", lambda *args, **kwargs: report())
     result = runner.invoke(
         cli.app,
         [
             *arguments(tmp_path),
             "--provider",
-            "deepseek",
+            provider.value,
             "--model",
-            "unknown-deepseek-model",
+            "new-model-id-without-a-code-change",
+            "--no-api-budget-cap",
         ],
     )
-    assert result.exit_code == 2
-    assert "Unsupported DeepSeek model" in result.output
+    assert result.exit_code == 0, result.output
+    assert calls == ["closed"]
 
 
 def test_no_api_budget_cap_requires_explicit_model(tmp_path):
@@ -321,3 +335,67 @@ def test_missing_repository_and_config_paths_reach_structured_report(tmp_path):
         RunReport.model_validate_json((output / "report.json").read_bytes()).status
         == "inconclusive"
     )
+
+
+@pytest.mark.parametrize(
+    "option,value",
+    [
+        ("--input-price-per-million", "nan"),
+        ("--output-price-per-million", "inf"),
+        ("--context-tokens", "0"),
+    ],
+)
+def test_invalid_pricing_is_rejected_before_provider(
+    tmp_path, monkeypatch, option, value
+):
+    def forbidden(*args, **kwargs):
+        pytest.fail("Invalid price or context must not construct a provider")
+
+    monkeypatch.setattr(application, "make_proposer", forbidden)
+    result = runner.invoke(
+        cli.app, [*arguments(tmp_path), "--model", "custom", option, value]
+    )
+    assert result.exit_code == 2
+
+
+def test_cloud_and_pricing_options_reach_provider_factory(tmp_path, monkeypatch):
+    settings = tmp_path / "azure.toml"
+    settings.write_text('azure_endpoint = "https://review.openai.azure.com"\n')
+    seen = {}
+
+    class Provider:
+        def close(self):
+            pass
+
+    def factory(provider, model, budget, env_file, **options):
+        assert provider == ModelProvider.AZURE
+        seen.update(options)
+        return Provider()
+
+    monkeypatch.setattr(application, "make_proposer", factory)
+    monkeypatch.setattr(application, "run_backport", lambda *args, **kwargs: report())
+    result = runner.invoke(
+        cli.app,
+        [
+            *arguments(tmp_path),
+            "--provider",
+            "azure",
+            "--model",
+            "deployment-name",
+            "--provider-config",
+            str(settings),
+            "--input-price-per-million",
+            "0.5",
+            "--output-price-per-million",
+            "2",
+            "--context-tokens",
+            "100000",
+        ],
+    )
+    assert result.exit_code == 0, result.output
+    assert seen == {
+        "provider_config": settings,
+        "input_price_per_million": 0.5,
+        "output_price_per_million": 2.0,
+        "context_tokens": 100000,
+    }

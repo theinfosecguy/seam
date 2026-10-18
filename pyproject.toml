@@ -10,7 +10,15 @@ readme = "README.md"
 requires-python = ">=3.12"
 license = "MIT"
 license-files = ["LICENSE"]
-dependencies = ["httpx>=0.28,<1", "openai>=2.0,<3", "pydantic>=2.10,<3", "typer>=0.16,<1"]
+dependencies = [
+    "detect-secrets>=1.5,<2",
+    "genai-prices>=0.0.67,<1",
+    "httpx>=0.28,<1",
+    "httpx2>=2.10,<3",
+    "pydantic-ai-slim[anthropic,bedrock,google,groq,mistral,openai,openrouter]>=2.57,<3",
+    "pydantic>=2.10,<3",
+    "typer>=0.16,<1",
+]
 
 [project.scripts]
 seam = "seam.cli:app"
@@ -41,3 +49,7 @@ files = ["src"]
 testpaths = ["tests"]
 addopts = ["--import-mode=importlib", "--strict-config", "--strict-markers"]
 filterwarnings = ["error"]
+
+[[tool.mypy.overrides]]
+module = ["detect_secrets.*", "boto3.*", "botocore.*"]
+ignore_missing_imports = true

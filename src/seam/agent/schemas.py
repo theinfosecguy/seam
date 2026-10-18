@@ -1,11 +1,10 @@
 """Validated model tool arguments and their generated provider schemas."""
 
-from typing import Final
+from typing import Any, Final, TypedDict
 
-from openai.types.responses import FunctionToolParam
 from pydantic import BaseModel, ConfigDict, Field
 
-from seam.constants import MAX_PATCH_CHARACTERS
+from seam.constants.agent import MAX_PATCH_CHARACTERS
 
 
 class Arguments(BaseModel):
@@ -35,17 +34,23 @@ class SubmitPatch(Arguments):
     explanation: str = Field(max_length=4000)
 
 
-def _tool(name: str, description: str, schema: type[Arguments]) -> FunctionToolParam:
+class ToolSchema(TypedDict):
+    """Provider-independent metadata generated from locally validated arguments."""
+
+    name: str
+    description: str
+    parameters: dict[str, Any]
+
+
+def _tool(name: str, description: str, schema: type[Arguments]) -> ToolSchema:
     return {
-        "type": "function",
         "name": name,
         "description": description,
-        "strict": True,
         "parameters": schema.model_json_schema(),
     }
 
 
-TOOL_SCHEMAS: Final[list[FunctionToolParam]] = [
+TOOL_SCHEMAS: Final[list[ToolSchema]] = [
     _tool("list_files", "List one project directory; use '.' for root.", ListFiles),
     _tool("read_file", "Read a bounded range of a safe UTF-8 project file.", ReadFile),
     _tool("submit_patch", "Submit the candidate implementation diff.", SubmitPatch),

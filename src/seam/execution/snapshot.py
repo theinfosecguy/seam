@@ -4,23 +4,19 @@ import os
 import stat
 from pathlib import Path
 
-from seam.constants import (
+from seam.constants.execution import (
     MAX_SNAPSHOT_BYTES,
     MAX_SNAPSHOT_DEPTH,
     MAX_SNAPSHOT_FILES,
     MAX_SNAPSHOT_LINKS,
     MAX_SNAPSHOT_PATH_CHARACTERS,
-    SNAPSHOT_EXCLUDED_NAMES,
 )
+from seam.constants.security import SNAPSHOT_EXCLUDED_NAMES
+from seam.security import contains_secret, is_sensitive_path
 
 
 def _excluded(name: str) -> bool:
-    return (
-        name in SNAPSHOT_EXCLUDED_NAMES
-        or name == ".env"
-        or name.startswith(".env.")
-        or name.endswith((".pem", ".key", ".p12", ".pfx"))
-    )
+    return Path(name).name in SNAPSHOT_EXCLUDED_NAMES or is_sensitive_path(name)
 
 
 def _read_regular_file(descriptor: int, limit: int) -> tuple[bytes, int]:
@@ -75,7 +71,9 @@ def _link_target_parts(
     if target.startswith("/"):
         raise ValueError("Absolute symbolic link targets are unsupported")
     components = target.split("/")
-    if any(_excluded(part) for part in components):
+    if is_sensitive_path(Path(*parent) / target) or any(
+        _excluded(part) for part in components
+    ):
         raise ValueError("Symbolic link target enters an excluded path")
     normalized = list(parent)
     descriptor = _open_parent(root_fd, parent)
@@ -137,7 +135,8 @@ def _open_link_target(root_fd: int, relative: Path) -> int:
 
 
 def _display_path(path: str | bytes | Path | None) -> str:
-    displayed = repr(os.fsdecode(path)) if path is not None else "'.'"
+    decoded = os.fsdecode(path) if path is not None else "."
+    displayed = "'[sensitive path]'" if contains_secret(decoded) else repr(decoded)
     if len(displayed) > MAX_SNAPSHOT_PATH_CHARACTERS:
         return displayed[:MAX_SNAPSHOT_PATH_CHARACTERS] + "..."
     return displayed
@@ -172,8 +171,10 @@ def _snapshot(workspace: Path, destination: Path | None) -> None:
                     f"Snapshot path {_display_path(relative)}: "
                     "directory nesting exceeds the limit"
                 )
-            directories[:] = [name for name in directories if not _excluded(name)]
-            files = [name for name in files if not _excluded(name)]
+            directories[:] = [
+                name for name in directories if not _excluded(str(relative / name))
+            ]
+            files = [name for name in files if not _excluded(str(relative / name))]
             total_entries += len(directories) + len(files)
             if total_entries > MAX_SNAPSHOT_FILES:
                 raise ValueError(
@@ -192,7 +193,8 @@ def _snapshot(workspace: Path, destination: Path | None) -> None:
                         copied.chmod(0o755)
                 except (OSError, ValueError) as error:
                     raise ValueError(
-                        f"Snapshot path {_display_path(path)}: {error}"
+                        f"Snapshot path {_display_path(path)}: "
+                        f"{error.strerror if isinstance(error, OSError) else error}"
                     ) from error
             for name in files:
                 path = relative / name
@@ -218,7 +220,8 @@ def _snapshot(workspace: Path, destination: Path | None) -> None:
                         copied.chmod(mode)
                 except (OSError, ValueError) as error:
                     raise ValueError(
-                        f"Snapshot path {_display_path(path)}: {error}"
+                        f"Snapshot path {_display_path(path)}: "
+                        f"{error.strerror if isinstance(error, OSError) else error}"
                     ) from error
     finally:
         os.close(root_fd)

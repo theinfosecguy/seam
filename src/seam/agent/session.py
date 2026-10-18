@@ -1,12 +1,13 @@
-"""Run a bounded tool conversation over an independently configured transport."""
+"""Keep native reasoning/history while validating every bounded tool batch locally."""
 
 import json
-from typing import cast
 
-from openai.types.responses import (
-    Response,
-    ResponseFunctionToolCall,
-    ResponseInputParam,
+from pydantic_ai.messages import (
+    ModelRequest,
+    ModelResponse,
+    ToolCallPart,
+    ToolReturnPart,
+    UserPromptPart,
 )
 
 from seam.agent.prompts import (
@@ -15,96 +16,100 @@ from seam.agent.prompts import (
     instruction,
 )
 from seam.agent.tools import WorkspaceTools
-from seam.agent.transport import ResponsesTransport
-from seam.constants import MAX_PARALLEL_READ_CALLS
+from seam.agent.transport import ModelTransport
+from seam.constants.agent import MAX_ARGUMENT_BYTES, MAX_PARALLEL_READ_CALLS
 from seam.exceptions import AgentError
 from seam.models import AgentContext, AgentProposal
 
 
-def _calls(
-    response: Response, *, parallel_reads: bool, seen_ids: set[str]
-) -> list[ResponseFunctionToolCall]:
-    """Reject malformed batches before any workspace operation can run."""
-    calls = [
-        item for item in response.output if isinstance(item, ResponseFunctionToolCall)
-    ]
-    limit = MAX_PARALLEL_READ_CALLS if parallel_reads else 1
-    if (
-        not calls
-        or len(calls) > limit
-        or any(call.status not in {None, "completed"} for call in calls)
-    ):
+def _arguments(call: ToolCallPart) -> str:
+    """Keep JSON strings intact and serialize native object-argument dialects."""
+    if isinstance(call.args, str):
+        return call.args
+    if isinstance(call.args, dict):
+        return json.dumps(call.args)
+    raise AgentError("provider returned invalid tool arguments")
+
+
+def _calls(response: ModelResponse, seen_ids: set[str]) -> list[ToolCallPart]:
+    """Preflight an entire batch before it can inspect any workspace file."""
+    calls = [part for part in response.parts if isinstance(part, ToolCallPart)]
+    if not calls or len(calls) > MAX_PARALLEL_READ_CALLS:
         raise AgentError("provider returned an invalid or oversized tool-call batch")
-    ids = [call.call_id for call in calls]
-    if parallel_reads and (
-        not all(ids) or len(set(ids)) != len(ids) or seen_ids.intersection(ids)
+    ids = [call.tool_call_id for call in calls]
+    if (
+        not all(isinstance(value, str) and value for value in ids)
+        or len(set(ids)) != len(ids)
+        or seen_ids.intersection(ids)
     ):
         raise AgentError("provider returned duplicate or empty tool call IDs")
+    for call in calls:
+        if call.tool_name not in {"list_files", "read_file", "submit_patch"}:
+            raise AgentError("provider returned an unauthorized tool")
+        if len(_arguments(call).encode("utf-8")) > MAX_ARGUMENT_BYTES:
+            raise AgentError("provider returned oversized tool arguments")
     seen_ids.update(ids)
     return calls
 
 
 class PatchSession:
-    """Coordinate evidence, workspace tools, and one cumulative provider ledger."""
+    """Coordinate local workspace tools with one cumulative native provider ledger."""
 
-    def __init__(self, transport: ResponsesTransport) -> None:
+    def __init__(self, transport: ModelTransport) -> None:
         self._transport = transport
 
     @property
     def usage(self) -> dict[str, int | float | str]:
-        """Return cumulative usage without source text or provider error bodies."""
+        """Return aggregate usage without provider errors, source or credentials."""
         return self._transport.ledger.snapshot()
 
     def close(self) -> None:
-        """Release the provider connection pool."""
+        """Release provider connections."""
         self._transport.close()
 
     def propose(self, context: AgentContext) -> AgentProposal:
-        """Inspect bounded project evidence and return one unexecuted diff."""
+        """Inspect bounded evidence and return one diff for independent verification."""
         tools = WorkspaceTools(context.workspace)
         conversation = initial_conversation(context)
         seen_ids: set[str] = set()
-        parallel_reads = self._transport.provider.parallel_reads
         while True:
             check_conversation_size(conversation)
             response = self._transport.request(conversation)
-            if not isinstance(response.output, list):
-                raise AgentError("provider returned invalid output items")
-            # Preserve each provider's reasoning representation in stateless loops.
-            conversation.extend(cast(ResponseInputParam, response.output))
-            if (
-                parallel_reads
-                and not any(
-                    isinstance(item, ResponseFunctionToolCall)
-                    for item in response.output
+            conversation.append(response)
+            if not any(isinstance(part, ToolCallPart) for part in response.parts):
+                conversation.append(
+                    ModelRequest(
+                        parts=[UserPromptPart(instruction("require_submission"))]
+                    )
                 )
-                and any(item.type == "message" for item in response.output)
+                continue
+            calls = _calls(response, seen_ids)
+            if len(calls) > 1 and any(
+                call.tool_name == "submit_patch" for call in calls
             ):
                 conversation.append(
-                    {"role": "user", "content": instruction("require_submission")}
+                    ModelRequest(
+                        parts=[
+                            ToolReturnPart(
+                                tool_name=call.tool_name,
+                                tool_call_id=call.tool_call_id,
+                                content={"error": instruction("standalone_submission")},
+                            )
+                            for call in calls
+                        ]
+                    )
                 )
                 continue
-            calls = _calls(response, parallel_reads=parallel_reads, seen_ids=seen_ids)
-            if len(calls) > 1 and any(call.name == "submit_patch" for call in calls):
-                for call in calls:
-                    conversation.append(
-                        {
-                            "type": "function_call_output",
-                            "call_id": call.call_id,
-                            "output": json.dumps(
-                                {"error": instruction("standalone_submission")}
-                            ),
-                        }
-                    )
-                continue
+            outputs: list[ToolReturnPart] = []
             for call in calls:
-                result = tools.execute(call.name, call.arguments)
+                result = tools.execute(call.tool_name, _arguments(call))
                 if isinstance(result, AgentProposal):
                     return result
-                conversation.append(
-                    {
-                        "type": "function_call_output",
-                        "call_id": call.call_id,
-                        "output": json.dumps(result),
-                    }
+                outputs.append(
+                    ToolReturnPart(
+                        tool_name=call.tool_name,
+                        tool_call_id=call.tool_call_id,
+                        content=result,
+                    )
                 )
+            conversation.append(ModelRequest(parts=outputs))

@@ -3,7 +3,7 @@
 import tomllib
 from pathlib import Path
 
-from seam.constants import MAX_CONFIG_BYTES, MAX_ORACLE_BYTES
+from seam.constants.verification import MAX_CONFIG_BYTES, MAX_ORACLE_BYTES
 from seam.models import HarnessConfig
 
 

@@ -7,7 +7,10 @@ from pydantic import ValidationError
 from typer.testing import CliRunner
 
 from seam.cli import app
-from seam.constants import MAX_DIAGNOSTIC_CHARACTERS, MAX_DIAGNOSTIC_LINES
+from seam.constants.verification import (
+    MAX_DIAGNOSTIC_CHARACTERS,
+    MAX_DIAGNOSTIC_LINES,
+)
 from seam.models import ExecutionResult, PhaseResult, RunReport
 from seam.models import TestCaseResult as Case
 from seam.verification.reporting import diagnostic_excerpt, display_text, write_report

@@ -4,7 +4,7 @@ import re
 from pathlib import Path, PurePosixPath
 from typing import Literal
 
-from seam.constants import (
+from seam.constants.repository import (
     MAX_PATCH_BYTES,
     SOURCE_DOCUMENTATION_DIRECTORIES,
     SOURCE_DOCUMENTATION_PREFIXES,

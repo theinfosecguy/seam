@@ -1,0 +1,31 @@
+"""Bound model requests, conversation context, and workspace tools."""
+
+from typing import Final
+
+from seam.constants.repository import MAX_PATCH_BYTES
+
+MAX_PATCH_CHARACTERS: Final = 262144
+
+MAX_CONTEXT_BYTES: Final = 262144
+
+MAX_CONVERSATION_BYTES: Final = 1048576
+
+MAX_ARGUMENT_BYTES: Final = MAX_PATCH_BYTES + 8192
+
+MAX_TEXT_BYTES: Final = 65536
+
+MAX_ENTRIES: Final = 1000
+
+MAX_API_CALLS: Final = 32
+
+MIN_OUTPUT_TOKENS: Final = 256
+
+MAX_OUTPUT_TOKENS: Final = 32768
+
+MAX_REQUEST_TIMEOUT_SECONDS: Final = 300
+
+MAX_PARALLEL_READ_CALLS: Final = 8
+
+CLI_MODEL_CALLS: Final = 16
+CLI_OUTPUT_TOKENS: Final = 16384
+CLI_REQUEST_TIMEOUT_SECONDS: Final = 120

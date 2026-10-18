@@ -1,72 +1,57 @@
-"""Load explicitly selected controller credentials and construct providers."""
+"""Read only explicitly selected controller credentials without shell evaluation."""
 
 import os
 from pathlib import Path
-from typing import TYPE_CHECKING
 
-from seam.constants import API_KEY_NAMES, DEEPSEEK_MODELS, MAX_CREDENTIAL_BYTES
+from seam.constants.providers import API_KEY_NAMES, AWS_CREDENTIAL_NAMES
+from seam.constants.security import MAX_CREDENTIAL_BYTES
 from seam.models import ModelProvider
+from seam.security.files import read_controller_text
 
-if TYPE_CHECKING:
-    from seam.agent import DeepSeekPatchAgent, OpenAIPatchAgent
+
+def load_credentials(env_file: Path | None, names: tuple[str, ...]) -> dict[str, str]:
+    """Select named credentials from the controller environment or explicit file."""
+    if env_file is None:
+        selected = {name: os.environ.get(name, "").strip() for name in names}
+    else:
+        allowed = {*API_KEY_NAMES.values(), *AWS_CREDENTIAL_NAMES}
+        assignments: dict[str, str] = {}
+        for line in read_controller_text(env_file, MAX_CREDENTIAL_BYTES).splitlines():
+            line = line.strip()
+            if not line or line.startswith("#"):
+                continue
+            name, separator, value = line.partition("=")
+            name = name.strip()
+            if not separator or name not in allowed or name in assignments:
+                raise ValueError(
+                    "Credential file accepts supported provider key assignments "
+                    "once each, plus optional comments"
+                )
+            value = value.strip()
+            if len(value) >= 2 and value[0] == value[-1] and value[0] in "\"'":
+                value = value[1:-1]
+            assignments[name] = value
+        selected = {name: assignments.get(name, "") for name in names}
+    if any(
+        any(ord(character) < 32 or ord(character) == 127 for character in value)
+        for value in selected.values()
+    ):
+        raise ValueError("Controller credentials must not contain control characters")
+    return selected
 
 
 def load_api_key(
     env_file: Path | None, provider: ModelProvider = ModelProvider.OPENAI
 ) -> str:
-    """Read only explicitly selected local credentials, never target config."""
+    """Read the selected service's key without discovering target config files."""
+    if provider not in API_KEY_NAMES:
+        raise ValueError(
+            "This provider uses explicit cloud credentials, not an API key"
+        )
     key_name = API_KEY_NAMES[provider]
-    if env_file is None:
-        value = os.environ.get(key_name, "").strip()
-    else:
-        value = ""
-        found: set[str] = set()
-        if env_file.stat().st_size > MAX_CREDENTIAL_BYTES:
-            raise ValueError("Credential file exceeds 64 KiB")
-        for line in env_file.read_text(encoding="utf-8").splitlines():
-            line = line.strip()
-            if not line or line.startswith("#"):
-                continue
-            name, separator, candidate = line.partition("=")
-            name = name.strip()
-            if name not in API_KEY_NAMES.values() or not separator or name in found:
-                raise ValueError(
-                    "Credential file accepts only OPENAI_API_KEY and "
-                    "DEEPSEEK_API_KEY assignments, once each, and optional comments"
-                )
-            found.add(name)
-            if name == key_name:
-                value = candidate.strip()
-                if len(value) >= 2 and value[0] == value[-1] and value[0] in "\"'":
-                    value = value[1:-1]
-    if not value or "\n" in value or "\r" in value:
+    value = load_credentials(env_file, (key_name,))[key_name]
+    if not value:
         raise ValueError(
             f"Set {key_name} in the controller environment or use --env-file"
         )
     return value
-
-
-def make_openai_proposer(
-    model: str, api_budget_usd: float | None, env_file: Path | None
-) -> "OpenAIPatchAgent":
-    """Create a paid proposer only when the operator explicitly selects a model."""
-    from seam.agent import OpenAIPatchAgent
-
-    return OpenAIPatchAgent(
-        api_key=load_api_key(env_file), model=model, budget_usd=api_budget_usd
-    )
-
-
-def make_deepseek_proposer(
-    model: str, api_budget_usd: float | None, env_file: Path | None
-) -> "DeepSeekPatchAgent":
-    """Keep DeepSeek credentials separate from the OpenAI integration."""
-    from seam.agent import DeepSeekPatchAgent
-
-    if model not in DEEPSEEK_MODELS:
-        raise ValueError("Unsupported DeepSeek model")
-    return DeepSeekPatchAgent(
-        api_key=load_api_key(env_file, ModelProvider.DEEPSEEK),
-        model=model,
-        budget_usd=api_budget_usd,
-    )
