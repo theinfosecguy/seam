@@ -12,7 +12,7 @@ from seam.constants.agent import (
     MAX_ENTRIES,
     MAX_TEXT_BYTES,
 )
-from seam.constants.security import ALLOWED_SUFFIXES
+from seam.constants.security import ALLOWED_SUFFIXES, MAX_SECRET_PARSE_BYTES
 from seam.exceptions import AgentError, RepositoryError
 from seam.models import AgentProposal
 from seam.repository import validate_source_path
@@ -150,15 +150,21 @@ class WorkspaceTools:
             metadata = os.fstat(stream.fileno())
             if not stat.S_ISREG(metadata.st_mode) or metadata.st_nlink != 1:
                 raise ValueError("only independent regular files can be read")
-            content = stream.read(MAX_TEXT_BYTES + 1)
-        truncated = len(content) > MAX_TEXT_BYTES
-        text = content[:MAX_TEXT_BYTES].decode("utf-8")
+            if metadata.st_size > MAX_SECRET_PARSE_BYTES:
+                raise ValueError("file exceeds the supported scan size")
+            content = stream.read(MAX_SECRET_PARSE_BYTES + 1)
+        if len(content) > MAX_SECRET_PARSE_BYTES:
+            raise ValueError("file exceeds the supported scan size")
+        text = content.decode("utf-8")
         if "\x00" in text or contains_secret(text):
             raise ValueError("file may contain binary data or credentials")
         lines = text.splitlines()
         start = argument.start_line - 1
         end = start + argument.line_count
-        selected = "\n".join(lines[start:end])
+        selected_bytes = "\n".join(lines[start:end]).encode("utf-8")
+        truncated = len(selected_bytes) > MAX_TEXT_BYTES or end < len(lines)
+        # The complete file decoded strictly; omit only a cut final code point.
+        selected = selected_bytes[:MAX_TEXT_BYTES].decode("utf-8", errors="ignore")
         if argument.revision == "target" and selected.strip():
             try:
                 validate_source_path(argument.path)
@@ -171,6 +177,6 @@ class WorkspaceTools:
             "path": argument.path,
             "start_line": argument.start_line,
             "content": selected,
-            "truncated": truncated or end < len(lines),
+            "truncated": truncated,
             "readable_lines": len(lines),
         }

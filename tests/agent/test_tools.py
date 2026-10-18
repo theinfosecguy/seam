@@ -21,6 +21,7 @@ from seam.agent.schemas import TOOL_SCHEMAS
 from seam.agent.tools import WorkspaceTools
 from seam.constants.agent import MAX_CONTEXT_BYTES, MAX_TEXT_BYTES
 from seam.constants.repository import MAX_PATCH_BYTES
+from seam.constants.security import MAX_SECRET_PARSE_BYTES
 from seam.exceptions import AgentError
 from seam.models import AgentContext
 
@@ -131,6 +132,193 @@ def test_all_revision_reads_remain_bounded(tmp_path: Path, revision: str) -> Non
     assert isinstance(result, dict)
     assert result["truncated"] is True
     assert len(str(result["content"])) == MAX_TEXT_BYTES
+
+
+@pytest.mark.parametrize("revision", REVISIONS)
+def test_line_window_reaches_late_implementation(tmp_path: Path, revision: str) -> None:
+    tools = _tools(tmp_path)
+    prefix = "# ordinary source padding to reach a late function\n" * 1900
+    content = "def late_function():\n    return 'parsed'\n"
+    assert len(prefix.encode("utf-8")) > MAX_TEXT_BYTES
+    (tmp_path / revision / "source.py").write_text(prefix + content)
+    result = tools.execute(
+        "read_file",
+        json.dumps(
+            {
+                "path": "source.py",
+                "start_line": 1901,
+                "line_count": 2,
+                "revision": revision,
+            }
+        ),
+    )
+    assert isinstance(result, dict)
+    assert result["content"] == content.rstrip("\n")
+    assert result["readable_lines"] == 1902
+    assert result["truncated"] is False
+    assert tools.inspected_target is (revision == "target")
+
+
+@pytest.mark.parametrize("revision", REVISIONS)
+@pytest.mark.parametrize("character", ["é", "€", "🐍"])
+def test_output_byte_limit_preserves_utf8(
+    tmp_path: Path, revision: str, character: str
+) -> None:
+    tools = _tools(tmp_path)
+    prefix = "x" * (MAX_TEXT_BYTES - 1)
+    (tmp_path / revision / "source.py").write_text(prefix + character * 2)
+    result = tools.execute(
+        "read_file",
+        json.dumps(
+            {
+                "path": "source.py",
+                "start_line": 1,
+                "line_count": 1,
+                "revision": revision,
+            }
+        ),
+    )
+    assert isinstance(result, dict)
+    assert result["content"] == prefix
+    assert result["readable_lines"] == 1
+    assert result["truncated"] is True
+
+
+@pytest.mark.parametrize("revision", REVISIONS)
+def test_utf8_before_requested_line_does_not_prevent_late_read(
+    tmp_path: Path, revision: str
+) -> None:
+    tools = _tools(tmp_path)
+    (tmp_path / revision / "source.py").write_text("é" * 40000 + "\nlate_function()\n")
+    result = tools.execute(
+        "read_file",
+        json.dumps(
+            {
+                "path": "source.py",
+                "start_line": 2,
+                "line_count": 1,
+                "revision": revision,
+            }
+        ),
+    )
+    assert isinstance(result, dict)
+    assert result["content"] == "late_function()"
+    assert result["readable_lines"] == 2
+    assert result["truncated"] is False
+
+
+@pytest.mark.parametrize("revision", REVISIONS)
+@pytest.mark.parametrize("stale_size", [False, True])
+def test_source_scan_limit_rejects_oversized_file(
+    tmp_path: Path,
+    revision: str,
+    stale_size: bool,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    tools = _tools(tmp_path)
+    (tmp_path / revision / "source.py").write_text("x" * (MAX_SECRET_PARSE_BYTES + 1))
+    if stale_size:
+        original_fstat = os.fstat
+
+        def stale_fstat(descriptor: int) -> os.stat_result:
+            fields = list(original_fstat(descriptor))
+            fields[6] = 1
+            return os.stat_result(fields)
+
+        monkeypatch.setattr("seam.agent.tools.os.fstat", stale_fstat)
+    result = tools.execute(
+        "read_file",
+        json.dumps(
+            {
+                "path": "source.py",
+                "start_line": 1,
+                "line_count": 1,
+                "revision": revision,
+            }
+        ),
+    )
+    assert result == {"error": "requested path is unavailable or not permitted"}
+    assert not tools.inspected_target
+
+
+def test_source_scan_accepts_exact_file_limit(tmp_path: Path) -> None:
+    (tmp_path / "source.py").write_text("x" * MAX_SECRET_PARSE_BYTES)
+    result = WorkspaceTools(tmp_path).execute(
+        "read_file",
+        json.dumps({"path": "source.py", "start_line": 1, "line_count": 1}),
+    )
+    assert isinstance(result, dict)
+    assert result["content"] == "x" * MAX_TEXT_BYTES
+    assert result["readable_lines"] == 1
+    assert result["truncated"] is True
+
+
+@pytest.mark.parametrize("revision", REVISIONS)
+@pytest.mark.parametrize("invalid", [b"\xff", b"\x00"])
+def test_invalid_file_data_outside_requested_window_is_rejected(
+    tmp_path: Path, revision: str, invalid: bytes
+) -> None:
+    tools = _tools(tmp_path)
+    (tmp_path / revision / "source.py").write_bytes(
+        b"ordinary_source()\n" + b"x" * MAX_TEXT_BYTES + invalid
+    )
+    result = tools.execute(
+        "read_file",
+        json.dumps(
+            {
+                "path": "source.py",
+                "start_line": 1,
+                "line_count": 1,
+                "revision": revision,
+            }
+        ),
+    )
+    assert result == {"error": "requested path is unavailable or not permitted"}
+    assert not tools.inspected_target
+
+
+@pytest.mark.parametrize("revision", REVISIONS)
+@pytest.mark.parametrize("secret_location", ["before", "selected", "after"])
+def test_entire_file_secret_scan_precedes_line_selection(
+    tmp_path: Path, revision: str, secret_location: str
+) -> None:
+    tools = _tools(tmp_path)
+    secret = 'password = "synthetic-private-value"\n'
+    lines = ["# ordinary source padding to reach a late function\n"] * 1902
+    index = {"before": 0, "selected": 1900, "after": 1901}[secret_location]
+    lines[index] = secret
+    (tmp_path / revision / "source.py").write_text("".join(lines))
+    result = tools.execute(
+        "read_file",
+        json.dumps(
+            {
+                "path": "source.py",
+                "start_line": 1901,
+                "line_count": 1,
+                "revision": revision,
+            }
+        ),
+    )
+    assert result == {"error": "requested path is unavailable or not permitted"}
+    assert not tools.inspected_target
+
+
+def test_readable_line_total_and_remaining_content_are_truthful(tmp_path: Path) -> None:
+    tools = WorkspaceTools(tmp_path)
+    (tmp_path / "source.py").write_text("first\nsecond\nthird\n")
+    for start, expected, truncated in (
+        (2, "second", True),
+        (3, "third", False),
+        (4, "", False),
+    ):
+        result = tools.execute(
+            "read_file",
+            json.dumps({"path": "source.py", "start_line": start, "line_count": 1}),
+        )
+        assert isinstance(result, dict)
+        assert result["content"] == expected
+        assert result["readable_lines"] == 3
+        assert result["truncated"] is truncated
 
 
 @pytest.mark.parametrize("name", ["list_files", "read_file"])
