@@ -1,0 +1,18 @@
+schema_version = 1
+max_attempts = 3
+
+[oracle]
+path = "oracle.py"
+security_test = "test_security_regression"
+controls = ["test_ordinary_request", "test_session_read", "test_refresh_disabled"]
+failure_marker = "EXPECTED_SECURITY_REGRESSION"
+
+[runner]
+image = "seam-eval-flask:python-v1"
+docker = ["docker"]
+timeout_seconds = 120.0
+memory_mb = 512
+cpus = 1.0
+pids = 128
+max_output_bytes = 131072
+suite = ["tests/test_basic.py"]

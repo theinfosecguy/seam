@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "instance_id": "h11",
+  "repo": "python-hyper/h11",
+  "base_commit": "467c5cfc5f9a1364c7da6b754d591092ee409931",
+  "upstream_parent_commit": "31e626c64e1e28db3cd73a6aa0ac057f1b915c18",
+  "upstream_fix_commit": "dff7cc397a26ed4acdedd92d1bda6c8f18a6ed9f",
+  "advisory_ids": [
+    "CVE-2025-43859",
+    "GHSA-vqfr-h8mv-ghfj"
+  ],
+  "problem_statement": "Reject malformed non-CRLF chunk footers while continuing to accept ordinary chunked bodies and CRLF footers fragmented across receive calls.",
+  "target_version": "0.14.0",
+  "platform": "linux/amd64",
+  "expected_suite_cases": 17,
+  "upstream_license": "MIT",
+  "notes": [
+    "The reference patch is the upstream implementation change under the MIT license in LICENSE.upstream.",
+    "The original MIT-licensed evaluation oracle uses tiny in-memory HTTP messages; it starts no proxy or server.",
+    "The advisory merge 114803a29ce50116dc47951c690ad4892b1a36ed resolves to the selected ordinary fix commit; exact lineage is used rather than ambiguous patched-version prose.",
+    "Only h11/tests/test_io.py and the external oracle are selected; request chaining, deployed proxies and complete parser coverage are outside this case."
+  ],
+  "asset_sha256": {
+    "Dockerfile": "ae046464bbdfbbb490c34570b44476320923f3fa530701138e59dd702dcc9e82",
+    "LICENSE.upstream": "37db5bb85926db28a427a25867f10b1232003aea1be69ccb851138adb8e6f361",
+    "harness.toml": "d9b24723c25a2c8dd463cacaf4441be2b83911254b731bc55d0f3e526c159a0f",
+    "oracle.py": "61be92eccf140c8380b0908cca80f3eb59994c96e5006a2195b29fffc5741b4d",
+    "reference.patch": "623d0a52e07c14128935a46445d0d8a5b0bdcc36bb5da45da0e65f3ad2ac2515",
+    "requirements.lock": "8371ec0c682e32030102e770d3e02778f90f4c0ba8112a7a54d99c1280ed2e87"
+  }
+}

@@ -1,0 +1,21 @@
+schema_version = 1
+max_attempts = 3
+[oracle]
+path = "oracle.py"
+security_test = "test_security_regression"
+controls = ["test_same_origin_cookie", "test_cross_origin_public_header", "test_explicit_redirect_policy"]
+failure_marker = "EXPECTED_COOKIE_LEAK"
+[runner]
+plugins = ["pytest_freezegun", "urllib3_legacy_warnings"]
+image = "seam-eval-urllib3:python-v1"
+docker = ["docker"]
+suite = ["test/test_retry.py"]
+timeout_seconds = 120
+memory_mb = 512
+cpus = 1
+pids = 128
+
+[reviewed_tests]
+path = "reviewed-tests.patch"
+sha256 = "de8aced063da425a1a53f7d8657fe7227f1ccdf4366dcd23ec7b23bcd8829e17"
+reason = "Reviewed upstream Cookie-removal header policy: preserve the default-policy and custom-policy tests, updating only their assertion expectations to the upstream set comparisons; target-context adaptation preserves original function signatures and test identities."

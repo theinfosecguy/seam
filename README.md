@@ -12,6 +12,7 @@ build scripts, and native-code changes are outside the current scope.
 ## Contents
 
 - [Try it without an API key](#try-it-without-an-api-key)
+- [Public Python evaluations](#public-python-evaluations)
 - [Use your own repository](#use-your-own-repository)
 - [Optional AI adaptation](#optional-ai-adaptation)
 - [What verification means](#what-verification-means)
@@ -37,6 +38,22 @@ For Docker command prefixes or an existing image, see [usage](docs/usage.md#demo
 If you prefer pip, use the [virtualenv installation](docs/usage.md#installation).
 `doctor` prints the installed version and package path so you can identify the
 environment used for a run or report inspection.
+
+## Public Python evaluations
+
+The [evaluation collection](evals/README.md) includes Jinja2, Requests, Flask,
+h11, sqlparse, python-multipart, urllib3, and Authlib. Each case pins its source
+revisions, external security test, selected project tests, and reference patch.
+
+```bash
+uv run seam eval qualify jinja2 --build-image --output /tmp/seam-jinja2-eval
+```
+
+Use a new output directory. Reference qualification checks the supplied patch
+and requires an executed negative check; it makes no model API calls. A passing
+reference run does not rank AI models. AI adaptation results need separate runs
+and reporting. See the [dataset card](evals/python/README.md) for case details and
+the [publication guide](docs/eval-publication.md) for release checks.
 
 ## Use your own repository
 

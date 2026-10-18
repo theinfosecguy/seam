@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "instance_id": "jinja2",
+  "repo": "pallets/jinja",
+  "base_commit": "2a48dd898d72f1a119ee923996e70aa43da04ea4",
+  "upstream_parent_commit": "d84a1743e4158733222105ff3b9c9d5da108868f",
+  "upstream_fix_commit": "7dd3680e6eea0d77fde024763657aa4d884ddb23",
+  "advisory_ids": [
+    "CVE-2024-22195",
+    "GHSA-h5c8-rqwp-cp95"
+  ],
+  "problem_statement": "Backport rejection of ASCII whitespace in xmlattr attribute keys while preserving escaping, omitted values, the historical function signature and autospace behavior.",
+  "target_version": "3.0.3",
+  "platform": "linux/amd64",
+  "expected_suite_cases": 120,
+  "upstream_license": "BSD-3-Clause",
+  "notes": [
+    "The reference patch adapts the upstream implementation to the historical function location; its Jinja-derived code is BSD-3-Clause under LICENSE.upstream.",
+    "The external behavioral oracle is original evaluation code under the compilation MIT license; it tests all six ASCII whitespace characters and three compatibility controls.",
+    "Only tests/test_filters.py and the external oracle are selected; later attribute-key vulnerabilities and the full project suite are outside this case."
+  ],
+  "asset_sha256": {
+    "Dockerfile": "780636b02e5714032e8db252c8a3647c18822343e3dc93159e62aa99c70ff185",
+    "LICENSE.upstream": "3b49dcee4105eb37bac10faf1be260408fe85d252b8e9df2e0979fc1e094437b",
+    "harness.toml": "eef64fcbd434e6a6e64a9f9c65abfc78c49c06bfdde04b657ea24d06b9883ac3",
+    "oracle.py": "2370d5390600000e033978f9b80aba9bb04572a018000371410f4d8ac7f9487f",
+    "reference.patch": "0aa0d4d46abcfe5b7637185016876fdca71f90f5d47ba58ea2833b76e04b304f",
+    "requirements.lock": "99f5cfc4bdfdfee66e54e3b555303044e01ff86bb6a8a9fba18aa4b9c632bee1"
+  }
+}

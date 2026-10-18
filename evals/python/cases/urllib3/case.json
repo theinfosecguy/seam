@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "instance_id": "urllib3",
+  "repo": "urllib3/urllib3",
+  "base_commit": "d94029b7e2193ff47b627906a70e06377a09aae8",
+  "upstream_parent_commit": "740380c59ca2a7c2dceca19e5dba99f6b7060e62",
+  "upstream_fix_commit": "644124ecd0b6e417c527191f866daa05a5a2056d",
+  "advisory_ids": [
+    "GHSA-v845-jxx5-vc9f",
+    "CVE-2023-43804"
+  ],
+  "problem_statement": "Backport the upstream redirect-header security fix to urllib3 1.26.16. A cross-origin redirect must remove Cookie regardless of header spelling, while same-origin cookies, public headers, and an explicitly configured redirect policy retain their intended behavior.",
+  "target_version": "1.26.16",
+  "platform": "linux/amd64",
+  "expected_suite_cases": 59,
+  "upstream_license": "MIT",
+  "notes": [
+    "Selected existing suite: test/test_retry.py (59 target cases), plus one external loopback security test and three controls; this is not the entire urllib3 suite.",
+    "reviewed-tests.patch adapts only two target-context assertions to the upstream Cookie-removal header policy and preserves the existing function signatures and test identities. Its SHA-256 and review reason are frozen in harness.toml; upstream-test-expectation-change.patch records the upstream assertion change.",
+    "urllib3_legacy_warnings.py suppresses only the distutils Version classes deprecation emitted by the historical pytest-freezegun helper. The plugin source and complete dependency lock are included; no urllib3 source or oracle is installed in the image.",
+    "Upstream source and advisory: https://github.com/urllib3/urllib3 and https://github.com/urllib3/urllib3/security/advisories/GHSA-v845-jxx5-vc9f.",
+    "The source-only reference.patch excludes the separately reviewed test assertion patch. Oracle evaluation uses loopback servers and requires no external network."
+  ],
+  "asset_sha256": {
+    ".dockerignore": "8262b5d8f3f4504d3d3ba5ca5e296c66388da3ec5fd969dbff347ded70b41e37",
+    "Dockerfile": "6a2f1f69dec1d13a9db00049e30601d617dd3a851aa90dc4f69a50ee72fff2b3",
+    "LICENSE.upstream": "c37bf186e27cf9dbe9619e55edfe3cea7b30091ceb3da63c7dacbe0e6d77907b",
+    "harness.toml": "78d2c74104b8175ab0a447de53e86e21088386897bf8ed979618b46839d8790a",
+    "oracle.py": "d7dc9e90fc28c1374cc873e91d59c7fa420db7b449e4e82e562675ef523823ca",
+    "reference.patch": "caf6bddccc3e6b3c17f9ea8ba2a52bdce522032f4841683f60e66654e8afa3d4",
+    "requirements.lock": "38ba9645a093f720a016134eff21e96385d15fa49d1424cd8a2e129163427d23",
+    "reviewed-tests.patch": "de8aced063da425a1a53f7d8657fe7227f1ccdf4366dcd23ec7b23bcd8829e17",
+    "upstream-test-expectation-change.patch": "68aa05901f3e16a12fdd8c73a7a3b475db6c349e5d9d2a9792ebc875d7280223",
+    "urllib3_legacy_warnings.py": "95371579abb66801a4d15a2314bbf4a59efc627ac96490b3b13e8babc309aa65"
+  }
+}

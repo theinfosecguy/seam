@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "dataset_version": "0.1.0",
+  "language": "python",
+  "platforms": [
+    "linux/amd64"
+  ],
+  "instance_ids": [
+    "authlib",
+    "flask",
+    "h11",
+    "jinja2",
+    "python-multipart",
+    "requests",
+    "sqlparse",
+    "urllib3"
+  ],
+  "description": "Public, executable Python security-backport evaluation pilot. Each reference must satisfy the four-revision matrix and preserve the selected target suite."
+}

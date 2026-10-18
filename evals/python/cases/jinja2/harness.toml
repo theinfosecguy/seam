@@ -1,0 +1,14 @@
+schema_version = 1
+max_attempts = 3
+
+[oracle]
+path = "oracle.py"
+security_test = "test_security_whitespace_attribute_keys"
+controls = ["test_control_valid_attributes_are_escaped", "test_control_none_and_undefined_are_omitted", "test_control_autospace_false_preserves_output"]
+failure_marker = "XMLATTR_WHITESPACE_SECURITY_REGRESSION"
+
+[runner]
+image = "seam-eval-jinja2:python-v1"
+docker = ["docker"]
+suite = ["tests/test_filters.py"]
+timeout_seconds = 120

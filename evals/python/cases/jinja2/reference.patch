@@ -1,0 +1,36 @@
+--- a/src/jinja2/filters.py
++++ b/src/jinja2/filters.py
+@@ -271,6 +271,9 @@
+     return soft_str(s).lower()
+ 
+ 
++_space_re = re.compile(r"\s", flags=re.ASCII)
++
++
+ @pass_eval_context
+ def do_xmlattr(
+     eval_ctx: "EvalContext", d: t.Mapping[str, t.Any], autospace: bool = True
+@@ -297,11 +300,18 @@
+     As you can see it automatically prepends a space in front of the item
+     if the filter returned something unless the second parameter is false.
+     """
+-    rv = " ".join(
+-        f'{escape(key)}="{escape(value)}"'
+-        for key, value in d.items()
+-        if value is not None and not isinstance(value, Undefined)
+-    )
++    items = []
++
++    for key, value in d.items():
++        if value is None or isinstance(value, Undefined):
++            continue
++
++        if _space_re.search(key) is not None:
++            raise ValueError(f"Spaces are not allowed in attributes: '{key}'")
++
++        items.append(f'{escape(key)}="{escape(value)}"')
++
++    rv = " ".join(items)
+ 
+     if autospace and rv:
+         rv = " " + rv

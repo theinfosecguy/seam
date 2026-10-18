@@ -9,6 +9,7 @@ from typing import Annotated
 import typer
 from pydantic import ValidationError
 
+from seam.cli.evals import app as eval_app
 from seam.cli.presentation import exit_for_report, render_report
 from seam.cli.providers import make_proposer
 from seam.constants.agent import CLI_MODEL_CALLS, MAX_API_CALLS
@@ -28,6 +29,7 @@ app = typer.Typer(
     no_args_is_help=True,
     pretty_exceptions_enable=False,
 )
+app.add_typer(eval_app, name="eval")
 
 
 @app.command()

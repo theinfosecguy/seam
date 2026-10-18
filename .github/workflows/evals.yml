@@ -1,0 +1,69 @@
+name: Python evaluation qualification
+
+on:
+  pull_request:
+    paths:
+      - 'evals/**'
+      - 'src/**'
+      - 'tests/**'
+      - 'pyproject.toml'
+      - 'uv.lock'
+      - '.github/workflows/evals.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  qualify:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    strategy:
+      fail-fast: false
+      max-parallel: 2
+      matrix:
+        case:
+          - jinja2
+          - requests
+          - flask
+          - h11
+          - sqlparse
+          - python-multipart
+          - urllib3
+          - authlib
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6.1.0
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6.3.0
+        with:
+          python-version: '3.12'
+      - name: Install locked build tools
+        run: |
+          python -m pip install uv==0.13.1
+          uv sync --frozen
+      - name: Build and install the release wheel
+        shell: bash
+        run: |
+          uv build --wheel --no-sources
+          python -m venv "$RUNNER_TEMP/eval-controller"
+          "$RUNNER_TEMP/eval-controller/bin/python" -m pip install dist/*.whl
+      - name: Validate the installed dataset and source export
+        working-directory: ${{ runner.temp }}
+        shell: bash
+        run: |
+          "$RUNNER_TEMP/eval-controller/bin/seam" doctor
+          "$RUNNER_TEMP/eval-controller/bin/seam" eval check
+          "$RUNNER_TEMP/eval-controller/bin/seam" eval check \
+            --dataset "$GITHUB_WORKSPACE/evals/python"
+          "$RUNNER_TEMP/eval-controller/bin/seam" eval export \
+            --dataset "$GITHUB_WORKSPACE/evals/python" \
+            --output "$RUNNER_TEMP/tasks.jsonl"
+          cmp "$RUNNER_TEMP/tasks.jsonl" "$GITHUB_WORKSPACE/evals/python/tasks.jsonl"
+      - name: Rebuild and qualify reference, repeat and negative runs
+        working-directory: ${{ runner.temp }}
+        shell: bash
+        run: |
+          "$RUNNER_TEMP/eval-controller/bin/seam" eval qualify '${{ matrix.case }}' \
+            --dataset "$GITHUB_WORKSPACE/evals/python" \
+            --build-image --output "$RUNNER_TEMP/qualification"

@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "instance_id": "python-multipart",
+  "repo": "Kludex/python-multipart",
+  "base_commit": "9d3ead568a259f222cff6425262ff63e88d930d4",
+  "upstream_parent_commit": "6b837d47bc68826ed5cbbcb50c6c6a6093444494",
+  "upstream_fix_commit": "c814948acf509cef7881fa75c969969b19239bbf",
+  "advisory_ids": [
+    "GHSA-v9pg-7xvm-68hf"
+  ],
+  "problem_statement": "Reject negative Content-Length before reading a request body while retaining positive-length limits and normal parsing when the header is absent.",
+  "target_version": "0.0.30",
+  "platform": "linux/amd64",
+  "expected_suite_cases": 24,
+  "upstream_license": "Apache-2.0",
+  "notes": [
+    "The reference patch is the upstream implementation change under Apache-2.0 in LICENSE.upstream.",
+    "The original MIT-licensed evaluation oracle uses a 15-byte in-memory stream and confirms rejection before any bytes are consumed.",
+    "Only TestHelperFunctions and TestParseOptionsHeader from tests/test_multipart.py plus the external oracle are selected; large bodies and concurrent memory pressure are outside this case."
+  ],
+  "asset_sha256": {
+    "Dockerfile": "14daef5a68c4fe8a7d7b365ad7ad9375b99938cfb771c55ec8f20734e2b9a435",
+    "LICENSE.upstream": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+    "harness.toml": "c614018af954aab10268265eada175d30a45884b34a61f5fe2677ae233196a72",
+    "oracle.py": "bc465bbfee6293cb92f1ddbe53adace9efb3b90fd4bddb1acaf2613cacbae69e",
+    "reference.patch": "0594bd3831aec64172f4ae77462fc9e2a5087f28d40b725aac2f1194a098abbc",
+    "requirements.lock": "b8c878e7e499f4ffa9723d7253286a3eb1fd17658644781b37d878e58918e645"
+  }
+}

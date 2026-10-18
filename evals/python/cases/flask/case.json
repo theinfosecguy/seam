@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "instance_id": "flask",
+  "repo": "pallets/flask",
+  "base_commit": "a1c478bc93d3dc018a6e7a1ba3cf5409553c9df3",
+  "upstream_parent_commit": "a6367dac747c1e149c60767eee7e8aa9c281c58e",
+  "upstream_fix_commit": "8646edca6f47e2cd57464081b3911218d4734f8d",
+  "advisory_ids": [
+    "CVE-2023-30861",
+    "GHSA-m2qf-hxjv-5gpq"
+  ],
+  "problem_statement": "Ensure responses that refresh a permanent session cookie include Vary: Cookie while preserving ordinary requests, session reads and disabled-refresh behavior.",
+  "target_version": "2.2.2",
+  "platform": "linux/amd64",
+  "expected_suite_cases": 132,
+  "upstream_license": "BSD-3-Clause",
+  "notes": [
+    "The reference patch is the upstream implementation change under BSD-3-Clause in LICENSE.upstream.",
+    "The original MIT-licensed evaluation oracle uses Flask test clients and a public evaluation-only signing string; no service is started.",
+    "Only tests/test_basic.py and the external oracle are selected; this is not a complete Flask security assessment."
+  ],
+  "asset_sha256": {
+    "Dockerfile": "3a222a08cb508f6b93fc0c70cb67e9abaef97dd84ecaff14d8b82297e5463c34",
+    "LICENSE.upstream": "489a8e1108509ed98a37bb983e11e0f7e1d31f0bd8f99a79c8448e7ff37d07ea",
+    "harness.toml": "02542d6d2a837ea44f70df1c4502f2e8e6265e9bd72e1ce9cdf192d7eb9ae16b",
+    "oracle.py": "79839c4f5151f75c2c63f6c665a8e0640c5c23ff1a8d5babd77b28207e9f6997",
+    "reference.patch": "259e4d684efbfede8e2cc0dff6cdbc961604de5362ef3f02b63499e38e8c6822",
+    "requirements.lock": "b7f2d1ffbcec43716ad7e78606cb0a9cd1a7f1aede0d0dac4d4f319890093b08"
+  }
+}
