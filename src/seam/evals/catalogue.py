@@ -55,8 +55,16 @@ def load_case(dataset: Path, instance_id: str) -> tuple[EvalCase, Path]:
     for path in directory.rglob("*"):
         if path.is_symlink():
             raise ValueError("evaluation assets cannot be symbolic links")
-        if path.is_file() and path.name != "case.json":
-            actual_assets.add(path.relative_to(directory).as_posix())
+        if path.is_file() and path != directory / "case.json":
+            name = path.relative_to(directory).as_posix()
+            # Installers may compile bundled Python assets during installation.
+            if (
+                path.parent.name == "__pycache__"
+                and path.suffix == ".pyc"
+                and name not in case.asset_sha256
+            ):
+                continue
+            actual_assets.add(name)
     if actual_assets != set(case.asset_sha256):
         raise ValueError("evaluation case has unlisted or missing assets")
     for name, digest in case.asset_sha256.items():

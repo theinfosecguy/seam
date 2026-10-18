@@ -70,8 +70,19 @@ dependencies selected by each container recipe. Fetching repositories, base
 images and dependencies requires network access; test containers run with
 network access disabled.
 
-After installing the reviewed harness wheel, validate a downloaded dataset and
-qualify each case from a fresh output directory:
+Download `seam-0.3.0-py3-none-any.whl` from the
+[GitHub Release](https://github.com/theinfosecguy/seam/releases/tag/v0.3.0),
+then install it in a virtual environment:
+
+```bash
+python3 -m venv .venv
+. .venv/bin/activate
+python -m pip install ./seam-0.3.0-py3-none-any.whl
+seam eval check
+```
+
+The wheel includes the dataset. To validate and qualify a separately downloaded
+source dataset, use a fresh output directory:
 
 ```bash
 seam eval list --dataset /path/to/python-dataset
@@ -92,9 +103,7 @@ configured local image, either previously built or loaded from the optional
 release archive. Qualification reuses its first immutable execution image ID for
 the repeat and negative runs.
 
-The planned
-[v0.3.0 GitHub Release](https://github.com/theinfosecguy/seam/releases/tag/v0.3.0)
-distributes the source dataset, harness wheel, qualification evidence and
+The release contains the source dataset, harness wheel, qualification evidence and
 `SHA256SUMS`. Its optional `seam-python-evals-images-0.1.0.tar.gz` is for
 **Linux x86-64 only** and preserves all eight configured image tags. After
 downloading the archive and `SHA256SUMS` from that release, verify before loading:
@@ -154,11 +163,10 @@ each case's provenance and preserve its license and notice files when copying
 or redistributing it. Downloaded dependencies and base images have their own
 licenses and are excluded from the source dataset.
 
-## Publication status
+## Qualification record
 
-The GitHub Release above is the publication target. Publish only after all eight
-cases qualify against the same dataset revision and harness release, with
-matching qualification evidence and downloadable artifacts. A historical local
-result does not qualify a changed package. The repository's publication guide
-describes the release procedure and the separation between reference and model
-results.
+The release evidence records the exact tested wheel, source revision and case
+hashes. Match those identifiers when comparing a run with the published result.
+A historical local result does not qualify a changed package. The repository's
+publication guide describes the release procedure and the separation between
+reference and model results.

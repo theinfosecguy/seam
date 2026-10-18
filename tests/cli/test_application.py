@@ -10,7 +10,8 @@ from seam.cli import application, credentials
 from seam.constants.agent import CLI_MODEL_CALLS, MAX_API_CALLS
 from seam.models import ModelProvider, ProcessResult, RunReport
 
-runner = CliRunner()
+# Rich forces terminal styling in CI even when CliRunner disables color.
+runner = CliRunner(env={"TERM": "dumb"})
 
 
 def report(status: str = "verified") -> RunReport:
