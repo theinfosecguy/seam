@@ -10,7 +10,7 @@ from seam.exceptions import RepositoryError
 from seam.execution.processes import safe_environment
 
 
-def make_repository(path: Path) -> Path:
+def make_repository(path: Path, content: str = "def answer():\n    return 1\n") -> Path:
     path.mkdir()
     environment = safe_environment() | {
         "GIT_AUTHOR_NAME": "Test Maintainer",
@@ -21,7 +21,7 @@ def make_repository(path: Path) -> Path:
     subprocess.run(
         ["git", "init", "-b", "main", str(path)], check=True, capture_output=True
     )
-    (path / "library.py").write_text("def answer():\n    return 1\n", "utf-8")
+    (path / "library.py").write_text(content, "utf-8")
     repository.git(path, "add", "library.py")
     message = "Add initial library"
     prohibited = bytes([99, 111, 100, 101, 120]).decode()
@@ -110,7 +110,8 @@ def test_patch_paths_are_confined(path: str) -> None:
         repository.validate_source_path(path)
 
 
-def test_apply_patch_and_reject_test_change(tmp_path: Path) -> None:
+@pytest.mark.parametrize("final_newline", ["\n", ""])
+def test_apply_patch_and_reject_test_change(tmp_path: Path, final_newline: str) -> None:
     repo = make_repository(tmp_path / "repo")
     patch = (
         "--- a/library.py\n"
@@ -118,11 +119,11 @@ def test_apply_patch_and_reject_test_change(tmp_path: Path) -> None:
         "@@ -1,2 +1,2 @@\n"
         " def answer():\n"
         "-    return 1\n"
-        "+    return 2\n"
+        "+    return 2" + final_newline
     )
     repository.apply_patch(repo, patch)
     assert "return 2" in (repo / "library.py").read_text()
-    with pytest.raises(RepositoryError):
+    with pytest.raises(RepositoryError, match="outside supported implementation"):
         repository.apply_patch(repo, patch.replace("library.py", "tests/test_check.py"))
 
 
@@ -148,6 +149,76 @@ def test_recounts_generated_hunks_and_exports_an_ordinary_applicable_diff(
     assert (clone / "library.py").read_text() == (repo / "library.py").read_text()
 
 
+def test_captured_unterminated_hunk_exports_an_ordinary_applicable_diff(
+    tmp_path: Path,
+) -> None:
+    source = "\n" * 1890 + (
+        "def parse_form(headers):\n"
+        "    content_length: int | float | bytes | None = "
+        'headers.get("Content-Length")\n'
+        "    if content_length is not None:\n"
+        "        content_length = int(content_length)\n"
+        "    else:\n"
+        '        content_length = float("inf")\n'
+        "    bytes_read = 0\n"
+    )
+    repo = make_repository(tmp_path / "repo", source)
+    revision = repository.resolve(repo, "HEAD")
+    patch = (
+        "diff --git a/library.py b/library.py\n"
+        "--- a/library.py\n"
+        "+++ b/library.py\n"
+        "@@ -1900,6 +1900,8 @@ def parse_form(\n"
+        "     content_length: int | float | bytes | None = "
+        'headers.get("Content-Length")\n'
+        "     if content_length is not None:\n"
+        "         content_length = int(content_length)\n"
+        "+        if content_length < 0:\n"
+        '+            raise ValueError("Content-Length must be non-negative")\n'
+        "     else:\n"
+        '         content_length = float("inf")\n'
+        "     bytes_read = 0"
+    )
+    canonical = repository.apply_patch(repo, patch)
+    expected = source.replace(
+        "        content_length = int(content_length)\n",
+        "        content_length = int(content_length)\n"
+        "        if content_length < 0:\n"
+        '            raise ValueError("Content-Length must be non-negative")\n',
+    )
+    assert (repo / "library.py").read_text() == expected
+    assert canonical.endswith("\n")
+    consumer = tmp_path / "consumer"
+    repository.clone_at(repo, revision, consumer)
+    repository.git(consumer, "apply", "--check", "-", input_text=canonical)
+    repository.git(consumer, "apply", "-", input_text=canonical)
+    assert (consumer / "library.py").read_text() == expected
+
+
+def test_missing_patch_terminator_preserves_explicit_file_newline_marker(
+    tmp_path: Path,
+) -> None:
+    repo = make_repository(tmp_path / "repo")
+    revision = repository.resolve(repo, "HEAD")
+    patch = (
+        "--- a/library.py\n"
+        "+++ b/library.py\n"
+        "@@ -1,2 +1,2 @@\n"
+        " def answer():\n"
+        "-    return 1\n"
+        "+    return 2\n"
+        "\\ No newline at end of file"
+    )
+    canonical = repository.apply_patch(repo, patch)
+    expected = "def answer():\n    return 2"
+    assert (repo / "library.py").read_text() == expected
+    assert "\\ No newline at end of file\n" in canonical
+    consumer = tmp_path / "consumer"
+    repository.clone_at(repo, revision, consumer)
+    repository.git(consumer, "apply", "-", input_text=canonical)
+    assert (consumer / "library.py").read_text() == expected
+
+
 def test_canonical_patch_includes_new_implementation_files(tmp_path: Path) -> None:
     repo = make_repository(tmp_path / "repo")
     patch = "--- /dev/null\n+++ b/helper.py\n@@ -0,0 +1 @@\n+VALUE = 1\n"
@@ -156,7 +227,10 @@ def test_canonical_patch_includes_new_implementation_files(tmp_path: Path) -> No
     assert "+VALUE = 1" in canonical
 
 
-def test_recounting_does_not_accept_incorrect_context(tmp_path: Path) -> None:
+@pytest.mark.parametrize("final_newline", ["\n", ""])
+def test_recounting_does_not_accept_incorrect_context(
+    tmp_path: Path, final_newline: str
+) -> None:
     repo = make_repository(tmp_path / "repo")
     patch = (
         "--- a/library.py\n"
@@ -164,7 +238,7 @@ def test_recounting_does_not_accept_incorrect_context(tmp_path: Path) -> None:
         "@@ -1,99 +1,777 @@\n"
         " def missing():\n"
         "-    return 1\n"
-        "+    return 2\n"
+        "+    return 2" + final_newline
     )
     with pytest.raises(RepositoryError):
         repository.apply_patch(repo, patch)

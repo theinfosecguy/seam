@@ -181,11 +181,13 @@ def validate_patch(workspace: Path, patch: str) -> tuple[str, ...]:
 def apply_patch(workspace: Path, patch: str) -> str:
     """Apply a confined patch and return a canonical diff from its actual changes.
 
-    Recounting repairs generated hunk lengths, while Git still requires matching
-    context and the same path and whitespace checks. Exported diffs come from
-    Git, so reviewers do not need a special flag to apply them.
+    Restore a missing patch terminator and recount generated hunk lengths while
+    retaining Git's context, path, and whitespace checks. Exported diffs come
+    from Git, so reviewers do not need a special flag to apply them.
     """
 
+    if patch and not patch.endswith("\n"):
+        patch += "\n"
     names = validate_patch(workspace, patch)
     git(
         workspace,
