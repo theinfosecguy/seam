@@ -5,17 +5,14 @@ from collections.abc import Callable, Iterator
 from pathlib import Path
 from typing import Any
 
-import httpx
+import httpx2 as httpx
 import pytest
-from openai import OpenAI
 
 from seam.agent import DeepSeekPatchAgent
-from seam.agent.transport import create_client
-from seam.constants import (
-    DEEPSEEK,
-    DEEPSEEK_MODELS,
+from seam.agent.schemas import TOOL_SCHEMAS
+from seam.constants.agent import MAX_ARGUMENT_BYTES
+from seam.constants.providers import (
     DEFAULT_DEEPSEEK_MODEL,
-    MAX_ARGUMENT_BYTES,
 )
 from seam.exceptions import AgentError, BudgetExceeded
 from seam.models import AgentContext
@@ -30,12 +27,14 @@ def _call(
     call_id: str,
 ) -> dict[str, object]:
     return {
-        "type": "function_call",
-        "id": f"fc_{call_id}",
-        "call_id": call_id,
-        "name": name,
-        "arguments": arguments if isinstance(arguments, str) else json.dumps(arguments),
-        "status": "completed",
+        "type": "function",
+        "id": call_id,
+        "function": {
+            "name": name,
+            "arguments": arguments
+            if isinstance(arguments, str)
+            else json.dumps(arguments),
+        },
     }
 
 
@@ -54,24 +53,38 @@ def _response(
     output_tokens: int = 200,
     status: str = "completed",
 ) -> dict[str, object]:
+    supplied = list(items) if items else [_submission()]
+    calls = [item for item in supplied if item["type"] == "function"]
+    message: dict[str, object] = {"role": "assistant", "content": None}
+    if calls:
+        message["tool_calls"] = calls
+    for item in supplied:
+        if item["type"] == "message":
+            message["content"] = item["content"][0]["text"]
+        if item["type"] == "reasoning":
+            message["reasoning_content"] = item["content"][0]["text"]
     return {
-        "id": "resp_offline",
-        "created_at": 1,
-        "object": "response",
+        "id": "chat_offline",
+        "created": 1,
+        "object": "chat.completion",
         "model": model,
-        "status": status,
-        "parallel_tool_calls": True,
-        "store": False,
-        "previous_response_id": None,
-        "error": None,
-        "incomplete_details": None,
-        "output": list(items) if items else [_submission()],
+        "choices": [
+            {
+                "index": 0,
+                "message": message,
+                "finish_reason": "length"
+                if status != "completed"
+                else "tool_calls"
+                if calls
+                else "stop",
+            }
+        ],
         "usage": {
-            "input_tokens": input_tokens,
-            "output_tokens": output_tokens,
+            "prompt_tokens": input_tokens,
+            "completion_tokens": output_tokens,
             "total_tokens": input_tokens + output_tokens,
-            "input_tokens_details": {"cached_tokens": input_tokens},
-            "output_tokens_details": {"reasoning_tokens": 100},
+            "prompt_tokens_details": {"cached_tokens": input_tokens},
+            "completion_tokens_details": {"reasoning_tokens": 100},
         },
     }
 
@@ -84,7 +97,7 @@ class _Transport:
         self.requests: list[dict[str, Any]] = []
 
     def __call__(self, request: httpx.Request) -> httpx.Response:
-        assert str(request.url) == "https://api.deepseek.com/responses"
+        assert str(request.url) == "https://api.deepseek.com/chat/completions"
         assert request.headers["authorization"] == f"Bearer {_TEST_KEY}"
         self.requests.append(json.loads(request.content))
         response = self.responses.pop(0)
@@ -106,13 +119,9 @@ def make_deepseek_agent() -> Iterator[
         **options: Any,
     ) -> tuple[DeepSeekPatchAgent, _Transport]:
         transport = _Transport(responses)
-        client = OpenAI(
-            api_key=_TEST_KEY,
-            base_url="https://api.deepseek.com",
-            max_retries=0,
-            http_client=httpx.Client(transport=httpx.MockTransport(transport)),
+        agent = DeepSeekPatchAgent(
+            api_key=_TEST_KEY, http_transport=httpx.MockTransport(transport), **options
         )
-        agent = DeepSeekPatchAgent(api_key=_TEST_KEY, client=client, **options)
         agents.append(agent)
         return agent, transport
 
@@ -125,28 +134,6 @@ def _context(workspace: Path) -> AgentContext:
     return AgentContext(workspace=workspace, upstream_diff=_PATCH)
 
 
-def test_deepseek_models_use_current_public_names() -> None:
-    assert DEFAULT_DEEPSEEK_MODEL == "deepseek-flash"
-    assert set(DEEPSEEK_MODELS) == {"deepseek-flash", "deepseek-v4-pro"}
-
-
-def test_default_client_uses_fixed_endpoint_and_ignores_environment_routing(
-    monkeypatch: pytest.MonkeyPatch,
-) -> None:
-    monkeypatch.setenv("OPENAI_BASE_URL", "https://unintended.invalid")
-    monkeypatch.setenv("OPENAI_ORG_ID", "unintended-organization")
-    monkeypatch.setenv("OPENAI_PROJECT_ID", "unintended-project")
-    client = create_client(DEEPSEEK, _TEST_KEY, 37)
-    try:
-        assert str(client.base_url).rstrip("/") == "https://api.deepseek.com"
-        assert client.max_retries == 0
-        assert client.timeout == 37
-        assert client.organization is None
-        assert client.project is None
-    finally:
-        client.close()
-
-
 def test_request_uses_supported_parameters_and_locally_validated_tools(
     tmp_path: Path, make_deepseek_agent: Callable[..., Any]
 ) -> None:
@@ -156,7 +143,7 @@ def test_request_uses_supported_parameters_and_locally_validated_tools(
     request = transport.requests[0]
     assert request["model"] == "deepseek-flash"
     assert request["tool_choice"] == "auto"
-    assert request["max_output_tokens"] == 16384
+    assert request["max_completion_tokens"] == 16384
     assert not {
         "include",
         "store",
@@ -165,14 +152,15 @@ def test_request_uses_supported_parameters_and_locally_validated_tools(
         "parallel_tool_calls",
         "previous_response_id",
     }.intersection(request)
-    assert {tool["name"] for tool in request["tools"]} == {
+    assert {tool["function"]["name"] for tool in request["tools"]} == {
         "list_files",
         "read_file",
         "submit_patch",
     }
-    assert all("strict" not in tool for tool in request["tools"])
+    assert all("strict" not in tool["function"] for tool in request["tools"])
     assert all(
-        tool["parameters"]["additionalProperties"] is False for tool in request["tools"]
+        tool["function"]["parameters"]["additionalProperties"] is False
+        for tool in request["tools"]
     )
     assert _TEST_KEY not in json.dumps(request)
 
@@ -195,17 +183,17 @@ def test_parallel_read_calls_return_every_result_before_next_request(
         ]
     )
     agent.propose(_context(tmp_path))
-    history = transport.requests[1]["input"]
-    outputs = [item for item in history if item.get("type") == "function_call_output"]
-    assert [item["call_id"] for item in outputs] == ["listing", "reading"]
-    assert json.loads(outputs[0]["output"])["entries"] == ["example.py"]
-    assert json.loads(outputs[1]["output"])["content"] == "unsafe()"
+    history = transport.requests[1]["messages"]
+    outputs = [item for item in history if item.get("role") == "tool"]
+    assert [item["tool_call_id"] for item in outputs] == ["listing", "reading"]
+    assert json.loads(outputs[0]["content"])["entries"] == ["example.py"]
+    assert json.loads(outputs[1]["content"])["content"] == "unsafe()"
     assert [
-        item["call_id"] for item in history if item.get("type") == "function_call"
-    ] == [
-        "listing",
-        "reading",
-    ]
+        call["id"]
+        for item in history
+        if item.get("role") == "assistant"
+        for call in item.get("tool_calls", [])
+    ] == ["listing", "reading"]
     assert len(transport.requests) == 2
 
 
@@ -226,11 +214,10 @@ def test_plaintext_reasoning_is_preserved_in_stateless_tool_history(
         ]
     )
     agent.propose(_context(tmp_path))
-    history = transport.requests[1]["input"]
-    preserved = [item for item in history if item.get("type") == "reasoning"]
+    history = transport.requests[1]["messages"]
+    preserved = [item for item in history if item.get("reasoning_content")]
     assert len(preserved) == 1
-    assert preserved[0]["content"] == reasoning["content"]
-    assert not preserved[0].get("encrypted_content")
+    assert preserved[0]["reasoning_content"] == "Inspect the older API first."
 
 
 def _message(text: str) -> dict[str, object]:
@@ -251,9 +238,9 @@ def test_text_only_response_is_corrected_before_accepting_a_tool_submission(
     proposal = agent.propose(_context(tmp_path))
     assert proposal.patch == _PATCH
     assert len(transport.requests) == 2
-    history = transport.requests[1]["input"]
-    assert history[-2]["type"] == "message"
-    assert history[-2]["content"][0]["text"] == text
+    history = transport.requests[1]["messages"]
+    assert history[-2]["role"] == "assistant"
+    assert history[-2]["content"] == text
     assert history[-1]["role"] == "user"
     assert "submit_patch" in history[-1]["content"]
     assert "text message cannot submit a patch" in history[-1]["content"]
@@ -320,15 +307,13 @@ def test_mixed_submission_batch_is_rejected_before_standalone_retry(
     assert proposal.patch == retry_patch
     assert len(transport.requests) == 2
     outputs = [
-        item
-        for item in transport.requests[1]["input"]
-        if item.get("type") == "function_call_output"
+        item for item in transport.requests[1]["messages"] if item.get("role") == "tool"
     ]
-    assert [output["call_id"] for output in outputs] == [
-        call["call_id"] for call in calls
+    assert [output["tool_call_id"] for output in outputs] == [
+        call["id"] for call in calls
     ]
     for output in outputs:
-        result = json.loads(output["output"])
+        result = json.loads(output["content"])
         assert set(result) == {"error"}
         assert "entire batch was rejected" in result["error"]
         assert "no tools ran" in result["error"]
@@ -426,12 +411,8 @@ def test_invalid_tool_arguments_return_only_declared_schema_before_valid_submiss
     )
     proposal = agent.propose(_context(tmp_path))
     assert proposal.patch == _PATCH
-    feedback = json.loads(transport.requests[1]["input"][-1]["output"])
-    schema = next(
-        tool["parameters"]
-        for tool in transport.requests[0]["tools"]
-        if tool["name"] == name
-    )
+    feedback = json.loads(transport.requests[1]["messages"][-1]["content"])
+    schema = next(tool["parameters"] for tool in TOOL_SCHEMAS if tool["name"] == name)
     assert feedback == {
         "error": "invalid tool arguments; retry using the declared parameters",
         "parameters": schema,
@@ -462,9 +443,9 @@ def test_invalid_read_can_be_corrected_before_submitting_a_patch(
     )
     proposal = agent.propose(_context(tmp_path))
     assert proposal.patch == _PATCH
-    feedback = json.loads(transport.requests[1]["input"][-1]["output"])
+    feedback = json.loads(transport.requests[1]["messages"][-1]["content"])
     assert feedback["parameters"]["required"] == ["path", "start_line", "line_count"]
-    output = json.loads(transport.requests[2]["input"][-1]["output"])
+    output = json.loads(transport.requests[2]["messages"][-1]["content"])
     assert output["content"] == "unsafe()"
     assert agent.usage["calls"] == 3
 
@@ -534,7 +515,7 @@ def test_unauthorized_or_unbounded_calls_still_stop_without_recovery(
 
     monkeypatch.setattr("seam.agent.tools.WorkspaceTools.read_file", forbidden)
     call = _call(name, "{}", "invalid")
-    call["arguments"] = arguments
+    call["function"]["arguments"] = arguments
     agent, transport = make_deepseek_agent([_response(call)])
     with pytest.raises(AgentError):
         agent.propose(_context(tmp_path))
@@ -626,7 +607,7 @@ def test_unresolved_response_cannot_submit_a_patch(
 ) -> None:
     response = _response()
     if kind == "incomplete":
-        response["status"] = "incomplete"
+        response["choices"][0]["finish_reason"] = "length"
     elif kind == "missing_usage":
         response["usage"] = None
     else:
@@ -637,7 +618,7 @@ def test_unresolved_response_cannot_submit_a_patch(
     assert len(transport.requests) == 1
 
 
-@pytest.mark.parametrize("field", ["input_tokens", "output_tokens"])
+@pytest.mark.parametrize("field", ["prompt_tokens", "completion_tokens"])
 @pytest.mark.parametrize("value", [None, "sensitive-provider-usage", True])
 def test_malformed_token_usage_stops_without_exposing_provider_values(
     tmp_path: Path,
@@ -667,4 +648,6 @@ def test_unknown_model_is_rejected_before_any_request(
     make_deepseek_agent: Callable[..., Any],
 ) -> None:
     with pytest.raises(ValueError):
-        make_deepseek_agent([], model="unrelated-provider-model")
+        make_deepseek_agent([], model="unrelated-provider-model", budget_usd=1)
+    agent, _ = make_deepseek_agent([], model="unrelated-provider-model")
+    assert agent.usage["estimated_cost_usd"] == "unknown"

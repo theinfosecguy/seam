@@ -1,5 +1,5 @@
-"""Provider adapters for bounded, read-only security patch generation."""
+"""Native provider adapters for bounded security patch proposals."""
 
-from seam.agent.providers import DeepSeekPatchAgent, OpenAIPatchAgent
+from seam.agent.providers import DeepSeekPatchAgent, OpenAIPatchAgent, PatchAgent
 
-__all__ = ["DeepSeekPatchAgent", "OpenAIPatchAgent"]
+__all__ = ["DeepSeekPatchAgent", "OpenAIPatchAgent", "PatchAgent"]

@@ -58,6 +58,29 @@ These restrictions have limits:
   enable paid adaptation for code you are authorized to send. The harness's
   bounded file reader is not a complete secret scanner.
 
+## Credential screening
+
+Source excerpts, prompts, feedback, tool results, model text, reasoning, and patch
+submissions are screened locally. Maintained `detect-secrets` detectors recognize
+structured credentials and private keys. Literal normalization adds contextual
+credential assignments in Python, JSON, and common configuration text. Parsing
+is bounded. Ordinary source identifiers and public hashes are not rejected just
+because they resemble credential names or have high entropy.
+
+Seam calls only installed built-in detector matching methods. It does not verify
+keys over a network, load repository detector configuration or plugins, obey
+source allowlist comments, or persist findings containing the matched value.
+Detection failures prevent transmission. The selected controller API key and
+AWS credentials are also checked by exact value before each model request,
+independent of their format.
+
+This is a precaution, not a complete secret scanner. Maintained rules can lag
+new vendor formats. Unknown bare tokens, computed or obfuscated values, and
+ambiguous constant references can be missed; ordinary examples containing
+literal credentials can be refused. Credential-store paths and private-key
+extensions are excluded separately. Do not use these checks as permission to
+send an unreviewed repository to an external model.
+
 Do not put secrets in the target repository, oracle, or model-visible source.
 Keep generated artifacts out of version control unless you have reviewed their
 contents. The initial implementation has no service, multi-tenant isolation,

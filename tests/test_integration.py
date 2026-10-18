@@ -6,12 +6,11 @@ import os
 import shlex
 from pathlib import Path
 
-import httpx
+import httpx2
 import pytest
-from openai import OpenAI
 
-from seam.agent import DeepSeekPatchAgent, OpenAIPatchAgent
-from seam.constants import DEFAULT_DEEPSEEK_MODEL, DEFAULT_MODEL
+from seam.agent import PatchAgent
+from seam.constants.providers import DEFAULT_DEEPSEEK_MODEL, DEFAULT_MODEL
 from seam.demo import DemoProject, create_demo
 from seam.exceptions import AgentError
 from seam.repository import git, parent
@@ -51,13 +50,49 @@ def test_sdk_tools_adapt_conflict_and_real_verifier_accepts_patch(
     ]
     requests: list[dict[str, object]] = []
 
-    def respond(request: httpx.Request) -> httpx.Response:
+    def respond(request: httpx2.Request) -> httpx2.Response:
         payload = json.loads(request.content)
         requests.append(payload)
-        assert str(request.url) == base_url + "/responses"
+        endpoint = "/chat/completions" if provider == "deepseek" else "/responses"
+        assert str(request.url) == base_url + endpoint
         assert "offline-test-credential" not in request.content.decode()
         name, arguments = calls[len(requests) - 1]
-        return httpx.Response(
+        if provider == "deepseek":
+            return httpx2.Response(
+                200,
+                json={
+                    "id": f"chat_{len(requests)}",
+                    "created": 1,
+                    "object": "chat.completion",
+                    "model": model,
+                    "choices": [
+                        {
+                            "index": 0,
+                            "finish_reason": "tool_calls",
+                            "message": {
+                                "role": "assistant",
+                                "content": None,
+                                "tool_calls": [
+                                    {
+                                        "id": f"call_{len(requests)}",
+                                        "type": "function",
+                                        "function": {
+                                            "name": name,
+                                            "arguments": json.dumps(arguments),
+                                        },
+                                    }
+                                ],
+                            },
+                        }
+                    ],
+                    "usage": {
+                        "prompt_tokens": 200,
+                        "completion_tokens": 100,
+                        "total_tokens": 300,
+                    },
+                },
+            )
+        return httpx2.Response(
             200,
             json={
                 "id": f"resp_{len(requests)}",
@@ -83,14 +118,13 @@ def test_sdk_tools_adapt_conflict_and_real_verifier_accepts_patch(
             },
         )
 
-    client = OpenAI(
+    agent = PatchAgent(
+        provider=provider,
+        model=model,
         api_key="offline-test-credential",
-        base_url=base_url,
-        max_retries=0,
-        http_client=httpx.Client(transport=httpx.MockTransport(respond)),
+        http_transport=httpx2.MockTransport(respond),
+        budget_usd=1,
     )
-    agent_type = DeepSeekPatchAgent if provider == "deepseek" else OpenAIPatchAgent
-    agent = agent_type(api_key="offline-test-credential", client=client, budget_usd=1)
     original_status = git(project.repo, "status", "--porcelain")
     oracle = (project.config_path.parent / "oracle.py").read_bytes()
     try:
@@ -119,7 +153,8 @@ def test_sdk_tools_adapt_conflict_and_real_verifier_accepts_patch(
         "target_baseline",
         "backport",
     ]
-    assert "legacy.py" in str(requests[1]["input"])
+    history = "messages" if provider == "deepseek" else "input"
+    assert "legacy.py" in str(requests[1][history])
 
 
 def test_clean_fix_is_applied_without_a_model(

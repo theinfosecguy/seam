@@ -1,128 +1,149 @@
-# Optional API-backed adaptation
+# AI adaptation
 
-Offline verification and the demo need no API key. Paid adaptation is explicitly
-enabled by `--model`; simply having a key in the environment does not enable it.
-The default provider is OpenAI. Select DeepSeek with `--provider deepseek`.
+The demo and supplied-patch verification need no API key. Seam creates a paid
+client only when you supply `--model`. The model reads bounded source excerpts
+and proposes a patch; Seam runs the verification independently.
 
-## Credentials and endpoints
+## Choose a provider
 
-The controller uses the official OpenAI Python SDK with each service's Responses
-API. It reads only the selected service's credential:
+Seam uses [PydanticAI's maintained model adapters](https://ai.pydantic.dev/models/overview/)
+for native message formats, tool calls, reasoning state, and token usage. Its
+own session retains control of tools, validation, request limits, and spending.
 
-| Provider | Environment variable | Endpoint |
+| `--provider` | Credential | API |
 | --- | --- | --- |
-| `openai` | `OPENAI_API_KEY` | `https://api.openai.com/v1` |
-| `deepseek` | `DEEPSEEK_API_KEY` | `https://api.deepseek.com` |
+| `openai` (default) | `OPENAI_API_KEY` | OpenAI Responses |
+| `anthropic` | `ANTHROPIC_API_KEY` | Anthropic Messages |
+| `google` | `GOOGLE_API_KEY` | Gemini GenerateContent |
+| `deepseek` | `DEEPSEEK_API_KEY` | DeepSeek Chat Completions |
+| `xai` | `XAI_API_KEY` | xAI Chat Completions |
+| `mistral` | `MISTRAL_API_KEY` | Mistral Chat Completions |
+| `groq` | `GROQ_API_KEY` | Groq Chat Completions |
+| `openrouter` | `OPENROUTER_API_KEY` | OpenRouter Chat Completions |
+| `together` | `TOGETHER_API_KEY` | Together Chat Completions |
+| `azure` | `AZURE_OPENAI_API_KEY` | Azure OpenAI Responses |
+| `bedrock` | Explicit AWS credentials | Bedrock Converse |
+| `vertex` | Explicit service-account JSON file | Vertex Gemini GenerateContent |
 
-Each endpoint is fixed. Ambient base-URL settings, repository content, and tool
-output cannot redirect authenticated requests. The key stays outside target
-build and test containers.
+Model IDs pass through to the selected adapter. There is no model allowlist;
+choose a text model that supports function tools. A new model can still require
+an updated adapter or different account access. This is not support for every
+model, modality, authentication method, or arbitrary API-compatible host.
 
-The CLI reads the key from the controller environment or an explicitly selected
-`--env-file`; it never searches the target checkout. A credential file accepts
-`OPENAI_API_KEY=value` and/or `DEEPSEEK_API_KEY=value`, each at most once, plus
-optional matching single or double quotes, blank lines, and comments. Only the
-selected provider's assignment is used. That assignment must be present and
-nonempty when a file is explicitly selected. The parser never falls back to the
-other provider's key.
+## API keys
 
-The file is not a shell script: it does not evaluate variable expansion,
-`export`, or command substitutions. Unknown assignments and duplicate keys are
-rejected. Protect credential files with mode `0600` and exclude them from Git.
+Save the selected key in an ignored local file, then run:
 
 ```bash
-# .env.deepseek contains DEEPSEEK_API_KEY=your-value; never paste it into chat.
+# .env.deepseek contains DEEPSEEK_API_KEY=your-value
 chmod 600 .env.deepseek
 uv run seam run \
   --repo /path/to/library --fix FIX_COMMIT --target release/1.x \
-  --config /path/to/harness.toml --output /tmp/backport-deepseek \
+  --config /path/to/harness.toml --output /tmp/seam-ai \
   --provider deepseek --model deepseek-flash \
   --api-budget-usd 1 --env-file .env.deepseek
 ```
 
-For OpenAI, store `OPENAI_API_KEY=your-value` in an ignored `.env` file with
-mode `0600`. The default provider is OpenAI, so the corresponding command is:
+For another provider, change its name, model, and key assignment. The CLI can
+instead read the selected variable from the controller environment; omit
+`--env-file`. Keys never enter target containers. Do not pass keys as arguments.
 
-```bash
-uv run seam run \
-  --repo /path/to/library --fix FIX_COMMIT --target release/1.x \
-  --config /path/to/harness.toml --output /tmp/seam-openai \
-  --model gpt-5.4-mini-2026-03-17 --api-budget-usd 1 --env-file .env
+An explicit credential file accepts the variables in the table and
+`AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, `AWS_SESSION_TOKEN`. Assignments
+must be unique. Matching quotes, comments, and blank lines are accepted. Unknown
+variables, shell commands, and `export` are rejected; variable expansion never
+runs. Seam reads only the selected service's credentials and never searches the
+target repository or falls back from an explicit file to ambient credentials.
+
+## Cloud configuration
+
+Cloud routing belongs in a separate `--provider-config provider.toml`. This is
+operator-supplied metadata, not a repository configuration or credential store.
+Unknown fields and settings for a different provider are rejected.
+
+Azure requires an OpenAI resource endpoint and an explicit API version:
+
+```toml
+azure_endpoint = "https://YOUR-RESOURCE.openai.azure.com"
+azure_api_version = "2025-04-01-preview"
 ```
 
-Exporting the selected provider's key in the controller environment also works;
-omit `--env-file` in that case. Do not put credentials in source files or shell
-arguments.
+Use `--provider azure --model YOUR-DEPLOYMENT --provider-config provider.toml`
+and supply `AZURE_OPENAI_API_KEY`. Azure model IDs are deployment names; provide
+the underlying model's rates and context when the catalog cannot resolve them.
 
-## Models and spending
+Bedrock requires a region in the TOML:
 
-DeepSeek supports `deepseek-flash` and `deepseek-v4-pro`. OpenAI's known model
-registry includes `gpt-5.4-mini-2026-03-17` (the default OpenAI agent model),
-`gpt-5-mini-2025-08-07`, and their matching unpinned aliases. Prices were checked
-against official model documentation on **17 October 2026**. Pinned names make
-the intended model version explicit; remote model availability still requires
-a live test.
-
-Unknown model names are rejected rather than assigned a guessed price. The
-registry uses uncached peak input prices as an upper bound and documented peak
-output prices. Before each request, the controller reserves the model's entire
-documented input context plus the configured maximum output charge. This is
-deliberately conservative and avoids estimating prompt tokens. Recheck the
-registry after provider pricing changes. Unknown usage or a failed request
-retains its reservation.
-
-The default local dollar cap is US$10 per run. Set `--api-budget-usd` to a
-different positive amount, or explicitly remove the dollar cap with
-`--no-api-budget-cap`:
-
-```bash
-uv run seam run \
-  --repo /path/to/library --fix FIX_COMMIT --target release/1.x \
-  --config /path/to/harness.toml --output /tmp/backport-deepseek \
-  --provider deepseek --model deepseek-v4-pro \
-  --no-api-budget-cap --env-file .env.deepseek
+```toml
+aws_region = "us-east-1"
 ```
 
-The opt-out overrides `--api-budget-usd`; it requires an explicit `--model`.
-Model calls, output tokens, tools, source reads, process duration, and adaptation
-attempts remain bounded. Dollar accounting is still recorded. Provider account
-usage is the source of truth for billing. A provider dashboard alert is not a
-substitute for local request limits.
+Use `--provider bedrock --model MODEL-OR-INFERENCE-PROFILE-ID` and select
+`AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` through the controller environment
+or `--env-file`; include `AWS_SESSION_TOKEN` for temporary credentials. Seam uses
+explicit SigV4 credentials. It does not use ambient AWS profiles, metadata
+services, bearer tokens, or custom endpoints.
 
-## Tools and evidence
+Vertex requires these fields:
 
-The model can read relevant source files and submit a unified diff. It receives
-the upstream patch and feedback from independently evaluated attempts. It cannot
-run a terminal command, modify the trusted oracle, access the Docker socket, or
-request the API key through a tool. Every tool argument is validated locally,
-including when the provider does not enforce strict schemas. DeepSeek may
-return parallel tool calls; source reads are handled in bounded batches and
-patch submission must be the only call in its batch. A mixed submission/read
-batch executes nothing: every call receives an error, and the model can retry
-within the same cumulative call limit.
+```toml
+google_project = "YOUR-PROJECT"
+google_location = "us-central1"
+google_credentials_path = "service-account.json"
+```
 
-Malformed arguments execute nothing and return a generic error with the declared
-schema, so the model can correct them within the existing limits. Rejected values
-are not echoed in that feedback. Unknown tools and oversized arguments stop the
-session; network failures are not retried automatically.
+Use `--provider vertex --model MODEL-ID --provider-config provider.toml`.
+The credential path is relative to this TOML file or absolute. Only an explicitly
+selected service account with a private signing key is supported; ambient
+application-default credentials and `--env-file` are not used for Vertex.
+Protect the JSON file as a secret and keep it outside the target checkout.
 
-DeepSeek thinking mode uses automatic tool selection; forcing a required tool is
-rejected by the live service. The controller accepts a patch only through a valid
-`submit_patch` call and bounds corrective prompts for text-only responses by the
-same cumulative call limit.
+## Prices and limits
 
-Live end-to-end API behavior requires a real key and must be tested explicitly.
-Offline tests exercise orchestration with deterministic provider responses.
-They do not prove current remote model availability or demonstrate a successful
-live adaptation.
+The default CLI dollar cap is US$10 per run. Before each request, Seam reserves
+the full documented context charge plus the maximum output charge. This avoids
+guessing prompt size. It can refuse a request whose actual cost would be small.
 
-Official references:
+Rates come from checked OpenAI/DeepSeek schedules or the bundled
+[`genai-prices` catalog](https://github.com/pydantic/genai-prices). There are no
+network price updates. Seam uses the highest listed text tier, including cache
+write rates. Review current provider pricing before relying on a dollar cap.
+For missing metadata or private deployments, set all missing values explicitly:
 
-- [OpenAI quickstart](https://developers.openai.com/api/docs/quickstart)
-- [OpenAI function calling](https://developers.openai.com/api/docs/guides/function-calling)
-- [Spend alerts and limits](https://developers.openai.com/api/docs/guides/terraform/rate-limits-and-spend)
-- [GPT-5.4 mini model](https://developers.openai.com/api/docs/models/gpt-5.4-mini)
-- [GPT-5 mini model](https://developers.openai.com/api/docs/models/gpt-5-mini)
-- [DeepSeek Responses API](https://api-docs.deepseek.com/guides/responses_api/)
-- [DeepSeek models and pricing](https://api-docs.deepseek.com/quick_start/pricing/)
-- [DeepSeek thinking-mode tool selection](https://api-docs.deepseek.com/api/create-chat-completion/)
+```text
+--input-price-per-million 3 --output-price-per-million 15 --context-tokens 200000
+```
+
+Alternatively, `--no-api-budget-cap` explicitly removes the dollar cap. If prices
+or context remain unknown, reported cost is `unknown`, not zero. Call, output,
+source-read, tool, execution-time, and adaptation limits still apply. Missing,
+invalid, or incomplete usage stops the session and retains the reservation.
+Provider account billing remains the source of truth.
+
+SDK network retries and automatic continuation are disabled. A request guard
+also rejects an additional HTTP request within one reservation. Failed requests
+are not automatically retried. Native SDK error bodies and debug logs are not
+included in Seam's diagnostics.
+
+The CLI allows 16 model requests per run, at most 16,384 output tokens per
+request, and a 120-second request timeout. These limits are shared across
+adaptation attempts. The public Python agent also accepts explicit limits
+within the hard bounds; its constructor defaults are independent of the CLI.
+
+Bedrock uses a synchronous AWS client in a worker thread. On timeout or
+cancellation, Seam waits for its in-flight call to finish before closing the
+client. AWS connect/read timeouts still apply; cleanup can exceed the outer
+request timeout. The reservation is retained and another request is refused.
+
+## Tools and testing
+
+All providers use the same confined tools and locally validated schemas. The
+model cannot run commands or modify the oracle. A patch submission must be the
+only call in its batch; a mixed read/submission batch executes nothing. Malformed
+arguments receive generic corrective feedback without echoing rejected values.
+
+Tests exercise native SDK serialization and replies with mock HTTP transports,
+plus Bedrock and Vertex authentication paths. These checks do not establish live
+availability or account permissions. Live tests require a separate credential
+for each service; see [validation results](provider-validation.md) for exactly
+what was run.

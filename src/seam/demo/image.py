@@ -2,7 +2,7 @@
 
 from pathlib import Path
 
-from seam.constants import DEFAULT_IMAGE
+from seam.constants.demo import DEFAULT_IMAGE
 from seam.demo.commands import execute_setup
 from seam.demo.templates import write_template
 

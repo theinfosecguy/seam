@@ -7,12 +7,9 @@ from typing import Annotated
 import typer
 from pydantic import ValidationError
 
-from seam.cli.credentials import (
-    make_deepseek_proposer,
-    make_openai_proposer,
-)
 from seam.cli.presentation import exit_for_report, render_report
-from seam.constants import DEFAULT_IMAGE
+from seam.cli.providers import make_proposer
+from seam.constants.demo import DEFAULT_IMAGE
 from seam.demo import (
     build_demo_image,
     create_demo,
@@ -62,6 +59,22 @@ def run(
         Path | None,
         typer.Option(exists=True, dir_okay=False, help="Explicit controller key file."),
     ] = None,
+    provider_config: Annotated[
+        Path | None,
+        typer.Option(
+            exists=True, dir_okay=False, help="Explicit non-secret cloud provider TOML."
+        ),
+    ] = None,
+    input_price_per_million: Annotated[
+        float | None, typer.Option(min=0, help="Explicit input USD per million tokens.")
+    ] = None,
+    output_price_per_million: Annotated[
+        float | None,
+        typer.Option(min=0, help="Explicit output USD per million tokens."),
+    ] = None,
+    context_tokens: Annotated[
+        int | None, typer.Option(min=1, help="Explicit model input context ceiling.")
+    ] = None,
 ) -> None:
     """Verify an existing fix against its parent and an older maintained release."""
     if candidate_patch is not None and model is not None:
@@ -72,18 +85,34 @@ def run(
         raise typer.BadParameter("--no-api-budget-cap requires an explicit --model")
     if not math.isfinite(api_budget_usd):
         raise typer.BadParameter("--api-budget-usd must be finite")
+    if model is None and any(
+        value is not None
+        for value in (
+            provider_config,
+            input_price_per_million,
+            output_price_per_million,
+            context_tokens,
+        )
+    ):
+        raise typer.BadParameter("Provider settings require an explicit --model")
+    if any(
+        price is not None and not math.isfinite(price)
+        for price in (input_price_per_million, output_price_per_million)
+    ):
+        raise typer.BadParameter("Model prices must be finite")
     proposer = None
     try:
-        factory = (
-            make_deepseek_proposer
-            if provider == ModelProvider.DEEPSEEK
-            else make_openai_proposer
-        )
-        proposer = (
-            factory(model, None if no_api_budget_cap else api_budget_usd, env_file)
-            if model is not None
-            else None
-        )
+        if model is not None:
+            proposer = make_proposer(
+                provider,
+                model,
+                None if no_api_budget_cap else api_budget_usd,
+                env_file,
+                provider_config=provider_config,
+                input_price_per_million=input_price_per_million,
+                output_price_per_million=output_price_per_million,
+                context_tokens=context_tokens,
+            )
         report = run_backport(
             repo,
             fix,

@@ -7,7 +7,7 @@ import tempfile
 from dataclasses import dataclass
 from pathlib import Path
 
-from seam.constants import DEFAULT_IMAGE, FAILURE_MARKER
+from seam.constants.demo import DEFAULT_IMAGE, FAILURE_MARKER
 from seam.demo.commands import execute_setup
 from seam.demo.templates import write_template
 from seam.models import HarnessConfig, OracleConfig, RunnerConfig

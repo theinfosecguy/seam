@@ -7,7 +7,8 @@ from contextlib import suppress
 from pathlib import Path
 from typing import Literal
 
-from seam.constants import IMAGE_ID_PATTERN, MAX_REPORT_BYTES
+from seam.constants.execution import IMAGE_ID_PATTERN
+from seam.constants.verification import MAX_REPORT_BYTES
 from seam.exceptions import RunnerError
 from seam.execution.container import build_container_arguments
 from seam.execution.processes import run_process

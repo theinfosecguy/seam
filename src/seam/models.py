@@ -1,7 +1,7 @@
 """Define validated inputs and serializable evidence shared by the harness."""
 
 import re
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from decimal import Decimal
 from enum import StrEnum
 from pathlib import Path
@@ -9,12 +9,28 @@ from typing import Literal
 
 from pydantic import BaseModel, ConfigDict, Field, field_validator, model_validator
 
+from seam.constants.verification import (
+    MAX_PYTEST_MARKER_EXPRESSION,
+    MAX_PYTEST_PLUGIN_NAME,
+    MAX_PYTEST_PLUGINS,
+)
+
 
 class ModelProvider(StrEnum):
     """Limit paid adaptation to explicitly supported provider endpoints."""
 
     OPENAI = "openai"
     DEEPSEEK = "deepseek"
+    ANTHROPIC = "anthropic"
+    GOOGLE = "google"
+    XAI = "xai"
+    MISTRAL = "mistral"
+    GROQ = "groq"
+    OPENROUTER = "openrouter"
+    TOGETHER = "together"
+    AZURE = "azure"
+    BEDROCK = "bedrock"
+    VERTEX = "vertex"
 
 
 @dataclass(frozen=True)
@@ -26,13 +42,19 @@ class ModelPrice:
     context_tokens: int
 
 
-@dataclass(frozen=True)
-class Provider:
-    """Endpoint and Responses capabilities that cannot be changed by model data."""
+@dataclass(frozen=True, kw_only=True)
+class ProviderOptions:
+    """Explicit cloud routing and authentication supplied only by the operator."""
 
-    name: str
-    base_url: str
-    parallel_reads: bool
+    azure_endpoint: str | None = None
+    azure_api_version: str | None = None
+    aws_region: str | None = None
+    aws_access_key_id: str | None = field(default=None, repr=False)
+    aws_secret_access_key: str | None = field(default=None, repr=False)
+    aws_session_token: str | None = field(default=None, repr=False)
+    google_project: str | None = None
+    google_location: str | None = None
+    google_credentials_path: Path | None = None
 
 
 class Record(BaseModel):
@@ -77,9 +99,6 @@ class RunnerConfig(Record):
     @field_validator("plugins")
     @classmethod
     def valid_plugins(cls, modules: tuple[str, ...]) -> tuple[str, ...]:
-        # Constants also construct provider records from this module.
-        from seam.constants import MAX_PYTEST_PLUGIN_NAME, MAX_PYTEST_PLUGINS
-
         if (
             len(modules) > MAX_PYTEST_PLUGINS
             or len(set(modules)) != len(modules)
@@ -97,8 +116,6 @@ class RunnerConfig(Record):
     @field_validator("suite_markers")
     @classmethod
     def valid_suite_markers(cls, expression: str | None) -> str | None:
-        from seam.constants import MAX_PYTEST_MARKER_EXPRESSION
-
         if expression is not None and (
             not expression.strip()
             or len(expression) > MAX_PYTEST_MARKER_EXPRESSION

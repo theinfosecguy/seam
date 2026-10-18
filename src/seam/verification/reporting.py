@@ -2,7 +2,7 @@
 
 from pathlib import Path
 
-from seam.constants import MAX_DIAGNOSTIC_CHARACTERS, MAX_DIAGNOSTIC_LINES
+from seam.constants.verification import MAX_DIAGNOSTIC_CHARACTERS, MAX_DIAGNOSTIC_LINES
 from seam.models import ExecutionResult, RunReport
 
 

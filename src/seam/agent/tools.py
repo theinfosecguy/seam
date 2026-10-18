@@ -7,16 +7,15 @@ from pathlib import Path, PurePosixPath
 from pydantic import ValidationError
 
 from seam.agent.schemas import TOOL_SCHEMAS, ListFiles, ReadFile, SubmitPatch
-from seam.constants import (
-    ALLOWED_SUFFIXES,
+from seam.constants.agent import (
     MAX_ARGUMENT_BYTES,
     MAX_ENTRIES,
     MAX_TEXT_BYTES,
-    SENSITIVE_CONTENT,
-    SENSITIVE_NAME,
 )
+from seam.constants.security import ALLOWED_SUFFIXES
 from seam.exceptions import AgentError
 from seam.models import AgentProposal
+from seam.security import contains_secret, is_sensitive_path
 
 
 def _safe_parts(value: str, *, root_allowed: bool = False) -> tuple[str, ...]:
@@ -28,7 +27,9 @@ def _safe_parts(value: str, *, root_allowed: bool = False) -> tuple[str, ...]:
         or PurePosixPath(value).is_absolute()
         or "\\" in value
         or any(ord(char) < 32 or ord(char) == 127 for char in value)
-        or any(part.startswith(".") or SENSITIVE_NAME.search(part) for part in parts)
+        or any(part.startswith(".") for part in parts)
+        or is_sensitive_path(value)
+        or contains_secret(value)
     ):
         raise ValueError("path is outside the allowed project files")
     return parts
@@ -62,6 +63,8 @@ class WorkspaceTools:
             raise AgentError("provider returned invalid tool arguments")
         if len(arguments.encode("utf-8")) > MAX_ARGUMENT_BYTES:
             raise AgentError("provider tool arguments exceeded the size limit")
+        if contains_secret(arguments):
+            raise AgentError("provider tool arguments may contain credentials")
         try:
             if name == "submit_patch":
                 submission = SubmitPatch.model_validate_json(arguments)
@@ -129,7 +132,7 @@ class WorkspaceTools:
             content = stream.read(MAX_TEXT_BYTES + 1)
         truncated = len(content) > MAX_TEXT_BYTES
         text = content[:MAX_TEXT_BYTES].decode("utf-8")
-        if "\x00" in text or SENSITIVE_CONTENT.search(text):
+        if "\x00" in text or contains_secret(text):
             raise ValueError("file may contain binary data or credentials")
         lines = text.splitlines()
         start = argument.start_line - 1

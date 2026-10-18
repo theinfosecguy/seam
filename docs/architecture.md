@@ -4,15 +4,18 @@
 src/seam/
 ├── agent/
 │   ├── instructions/      # Trusted system and retry prompts
+│   ├── google_model.py    # Disable hidden Gemini follow-up requests
 │   ├── pricing.py         # Cumulative request accounting
-│   ├── providers.py       # OpenAI and DeepSeek adapters
+│   ├── native.py          # Maintained SDK clients with explicit authentication
+│   ├── providers.py       # One PatchAgent and compatibility entry points
 │   ├── schemas.py         # Tool argument validation and generated schemas
 │   ├── session.py         # Bounded tool conversation
 │   ├── tools.py           # Confined workspace access
-│   └── transport.py       # Fixed endpoints and provider request dialects
+│   └── transport.py       # Native model requests and bounded connection lifecycle
 ├── cli/
 │   ├── application.py     # Commands and argument validation
-│   ├── credentials.py     # Explicit local key selection and provider creation
+│   ├── credentials.py     # Bounded explicit controller credential selection
+│   ├── providers.py       # Provider configuration and common agent construction
 │   └── presentation.py    # Terminal output and exit statuses
 ├── demo/
 │   ├── resources/         # Synthetic source, tests, oracle, and Dockerfile
@@ -30,7 +33,18 @@ src/seam/
 │   ├── junit.py           # Bounded report reading and parsing
 │   ├── reporting.py       # JSON and Markdown report persistence
 │   └── workflow.py        # Four-revision run coordinator
-├── constants.py           # Defaults, provider rates, and security limits
+├── constants/
+│   ├── agent.py           # Conversation and tool bounds
+│   ├── demo.py            # Demo image defaults
+│   ├── execution.py       # Process, staging, and Docker limits
+│   ├── providers.py       # Provider endpoints, credential names, checked rates
+│   ├── repository.py      # Git and patch constraints
+│   ├── security.py        # Credential fields and sensitive file policy
+│   └── verification.py    # Configuration and evidence bounds
+├── security/
+│   ├── content.py         # Offline maintained detectors and literal normalization
+│   ├── files.py           # Bounded explicit controller configuration reads
+│   └── paths.py           # Explicit credential-store exclusions
 ├── exceptions.py          # Repository, execution, and agent error types
 ├── models.py              # Shared records and validated data
 └── repository.py          # Local Git inspection, cloning, and patch confinement
@@ -47,11 +61,14 @@ connects the SDK protocol, Git operations, and real Docker execution.
 The CLI selects explicit inputs and invokes `verification.workflow.run_backport`.
 The workflow uses the Git adapter and Docker runner to collect evidence. It
 accepts a small `PatchProposer` protocol; it does not depend on a model provider.
-Provider adapters compose a tool session, HTTP transport, and usage ledger.
+The agent composes a bounded tool session, native model transport, and usage
+ledger. PydanticAI's low-level model adapters translate native messages, tool
+results, and usage; Seam retains the tool loop and verification policy.
 Neither the model nor the transport can classify a verification result.
 
 Named defaults, provider endpoints and rates, and security limits live in
-`seam.constants`; domain error types live in `seam.exceptions`. Callers import
+focused `seam.constants` modules; domain error types live in `seam.exceptions`.
+The constants package does not re-export an umbrella namespace. Callers import
 these definitions rather than duplicating values or declaring local exceptions.
 `seam.models` owns shared records and validation schemas. Prompts and executable
 fixture text are package resources, loaded by the subsystem that uses them.
