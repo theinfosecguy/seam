@@ -6,6 +6,7 @@ import pytest
 
 import seam.agent
 from seam.cli import credentials, providers
+from seam.constants.agent import CLI_MODEL_CALLS, MAX_API_CALLS
 from seam.constants.providers import API_KEY_NAMES
 from seam.models import ModelProvider
 from seam.security.files import read_controller_text
@@ -20,7 +21,10 @@ def test_selected_provider_uses_its_own_key(monkeypatch, provider, key_name):
         credentials.load_api_key(None, provider)
 
 
-def test_provider_factory_keeps_model_and_credentials_separate(tmp_path, monkeypatch):
+@pytest.mark.parametrize("calls", [CLI_MODEL_CALLS, MAX_API_CALLS])
+def test_provider_factory_keeps_model_and_credentials_separate(
+    tmp_path, monkeypatch, calls
+):
     key_file = tmp_path / "controller-key"
     key_file.write_text("ANTHROPIC_API_KEY=selected-anthropic-key\n")
     arguments = {}
@@ -36,6 +40,7 @@ def test_provider_factory_keeps_model_and_credentials_separate(tmp_path, monkeyp
         "new-model-id",
         None,
         key_file,
+        max_model_calls=calls,
         input_price_per_million=1.0,
         output_price_per_million=5.0,
         context_tokens=200000,
@@ -46,9 +51,26 @@ def test_provider_factory_keeps_model_and_credentials_separate(tmp_path, monkeyp
     assert arguments["api_key"] == "selected-anthropic-key"
     assert arguments["budget_usd"] is None
     assert arguments["context_tokens"] == 200000
-    assert arguments["max_calls"] == 16
+    assert arguments["max_calls"] == calls
     assert arguments["max_output_tokens"] == 16384
     assert arguments["timeout_seconds"] == 120
+
+
+@pytest.mark.parametrize("calls", [0, -1, MAX_API_CALLS + 1, 1.5, True, "16"])
+def test_invalid_call_limit_is_rejected_before_credentials_or_provider(
+    monkeypatch, calls
+):
+    def forbidden(*args, **kwargs):
+        pytest.fail("Invalid call limits must fail before settings or credentials")
+
+    monkeypatch.setattr(providers, "load_provider_options", forbidden)
+    monkeypatch.setattr(providers, "load_api_key", forbidden)
+    monkeypatch.setattr(providers, "load_credentials", forbidden)
+    monkeypatch.setattr(seam.agent, "PatchAgent", forbidden)
+    with pytest.raises(ValueError, match="model call limit"):
+        providers.make_proposer(
+            ModelProvider.OPENAI, "some-model", None, None, max_model_calls=calls
+        )
 
 
 def test_cloud_file_cannot_contain_keys_or_foreign_provider_settings(tmp_path):

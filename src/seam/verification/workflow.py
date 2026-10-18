@@ -24,6 +24,10 @@ from seam.models import (
 from seam.verification.assessment import assess_phase
 from seam.verification.config import load_config
 from seam.verification.reporting import write_report
+from seam.verification.reviewed_tests import (
+    apply_reviewed_test_patch,
+    load_reviewed_test_patch,
+)
 
 
 class PatchProposer(Protocol):
@@ -74,6 +78,18 @@ def run_backport(
         if proposer is not None and candidate_patch is not None:
             raise ValueError("select either a proposer or a supplied candidate")
         config = load_config(config_path)
+        reviewed_patch = None
+        if config.reviewed_tests is not None:
+            reviewed_patch = load_reviewed_test_patch(
+                config.reviewed_tests.path, config.reviewed_tests.sha256
+            )
+            (output / "reviewed-tests.patch").write_bytes(
+                reviewed_patch.encode("utf-8")
+            )
+            report.reviewed_tests = config.reviewed_tests.model_copy(
+                update={"path": Path("reviewed-tests.patch")}
+            )
+        report.reviewed_fixtures = config.runner.reviewed_fixtures.copy()
         oracle_bytes = config.oracle.path.read_bytes()
         config_bytes = (config.model_dump_json(indent=2) + "\n").encode()
         report.oracle_sha256 = hashlib.sha256(oracle_bytes).hexdigest()
@@ -108,9 +124,19 @@ def run_backport(
                 workspace = root / name
                 repository.clone_at(repo, revision, workspace)
                 try:
-                    preflight_snapshot(workspace)
+                    preflight_snapshot(
+                        workspace, reviewed_fixtures=config.runner.reviewed_fixtures
+                    )
                 except (OSError, ValueError) as error:
                     raise RepositoryError(f"{name} snapshot: {error}") from error
+            if reviewed_patch is not None:
+                target_workspace = root / "target_baseline"
+                reviewed_paths = apply_reviewed_test_patch(
+                    target_workspace, reviewed_patch
+                )
+                repository.git(
+                    target_workspace, "restore", "--worktree", "--", *reviewed_paths
+                )
             image_id = runner.resolve_image()
             report.image_id = image_id
             write_report(output, report)
@@ -186,6 +212,8 @@ def run_backport(
                     if explicit_patch is not None:
                         break
                     continue
+                if reviewed_patch is not None:
+                    apply_reviewed_test_patch(workspace, reviewed_patch)
                 phase = check("backport", target_commit, workspace)
                 status, reason = assess_phase(phase, config, vulnerable=False)
                 candidate_suite = {
@@ -198,6 +226,11 @@ def run_backport(
                         "from the target baseline"
                     )
                 if status == "passed":
+                    if reviewed_patch is not None:
+                        (output / "implementation.patch").write_text(patch, "utf-8")
+                        patch = repository.git(
+                            workspace, "diff", "--no-ext-diff", "--no-textconv", "HEAD"
+                        )
                     report.status = "verified"
                     report.reason = (
                         "All four revisions met the frozen security "

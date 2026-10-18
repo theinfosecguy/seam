@@ -11,7 +11,7 @@ from seam.constants.verification import (
     MAX_DIAGNOSTIC_CHARACTERS,
     MAX_DIAGNOSTIC_LINES,
 )
-from seam.models import ExecutionResult, PhaseResult, RunReport
+from seam.models import ExecutionResult, PhaseResult, ReviewedTestsConfig, RunReport
 from seam.models import TestCaseResult as Case
 from seam.verification.reporting import diagnostic_excerpt, display_text, write_report
 
@@ -134,6 +134,35 @@ def test_mutated_incomplete_report_cannot_be_serialized_as_verified(
     with pytest.raises(ValidationError, match="verified reports require"):
         write_report(tmp_path, report)
     assert not (tmp_path / "report.json").exists()
+
+
+def test_reviewed_inputs_are_visible_in_saved_and_inspected_reports(
+    tmp_path: Path,
+) -> None:
+    report = RunReport(
+        status="inconclusive",
+        reason="candidate has not run",
+        reviewed_tests=ReviewedTestsConfig(
+            path=Path("reviewed-tests.patch"),
+            sha256="a" * 64,
+            reason="Upstream intentionally changes cookie policy",
+        ),
+        reviewed_fixtures={"tests/files/public.pem": ("b" * 64,)},
+    )
+    write_report(tmp_path, report)
+    saved = RunReport.model_validate_json((tmp_path / "report.json").read_bytes())
+    assert saved.reviewed_tests == report.reviewed_tests
+    assert saved.reviewed_fixtures == report.reviewed_fixtures
+    markdown = (tmp_path / "report.md").read_text()
+    assert "Upstream intentionally changes cookie policy" in markdown
+    assert "Assertion strength depends on the operator's review" in markdown
+    assert "Reviewed cryptographic fixture paths: 1" in markdown
+    result = CliRunner().invoke(
+        app, ["inspect", "--report", str(tmp_path / "report.json")]
+    )
+    assert result.exit_code == 0
+    assert "cookie policy" in result.output
+    assert "1" in result.output and "fixture" in result.output
 
 
 def test_failed_baseline_control_has_diagnostics(tmp_path: Path) -> None:

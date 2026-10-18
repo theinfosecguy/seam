@@ -5,7 +5,9 @@ time. The initial scope is Python libraries tested by pytest, with patches to
 Python implementation files. A fix changing package data (including certificate
 bundles), dependencies, native code, build files, or extensionless scripts is
 rejected. Test and documentation changes are excluded from the upstream patch;
-candidate patches may not change tests or documentation.
+candidate patches may not change tests or documentation. An operator can supply
+a separate, frozen assertion update through `reviewed_tests` when the intended
+security change requires a different existing-test expectation.
 
 ## Installation
 
@@ -13,7 +15,7 @@ The controller needs Linux, Python 3.12+, Git, and Docker. From this checkout:
 
 ```bash
 uv sync --frozen
-uv run seam doctor
+uv run --frozen seam doctor
 ```
 
 Or install in a virtual environment without uv:
@@ -27,6 +29,10 @@ python3 -m venv .venv
 Target interpreters and test dependencies live in the trusted Docker image and
 can differ from the controller. If your Docker socket needs a command prefix,
 use `seam doctor --docker 'sudo -n docker'` and the equivalent runner configuration.
+`doctor` prints the installed distribution version (`0.2.0` for this release)
+and actual package path. Check both when selecting an environment or replaying a
+report: older installations can expose the same command names with different
+validation behavior.
 
 ## Demo
 
@@ -36,7 +42,7 @@ adaptation without contacting a model.
 
 ```bash
 uv sync --frozen
-uv run seam doctor
+uv run --frozen seam doctor
 uv run seam demo --output /tmp/seam-demo
 uv run seam inspect --report /tmp/seam-demo/verification/report.json
 ```
@@ -101,7 +107,38 @@ tests. Relative file symlinks are materialized when their final target is a
 contained ordinary file. Directory links, absolute or escaping links, cycles,
 hard links, and links into excluded paths are rejected with the offending path.
 Snapshots retain file, byte, nesting, and link-chain limits. Credential-like
-paths and certificate/key files are excluded; keep secrets outside the checkout.
+paths and certificate/key files are excluded by default; keep secrets outside
+the checkout. Exact public test-key exceptions require the review below.
+
+## Review public cryptographic fixtures
+
+Some crypto-library suites use private-key files already published as disposable
+test data. Before including them, a human must confirm their upstream provenance
+and that they are public test keys, never operational credentials. Review their
+bytes at each selected parent, fix, and target revision, then pin each required
+file in the trusted configuration. For example, an Authlib test fixture:
+
+```bash
+git -C /path/to/authlib show v1.6.3:tests/files/rsa_private.pem | sha256sum
+```
+
+```toml
+[runner.reviewed_fixtures]
+"tests/files/rsa_private.pem" = [
+  "866aaf545f43fd4e808d5b841fa7e6c8d6f5cd052b214c4af45eb91a98fee29c",
+]
+```
+
+Use the actual hashes you reviewed. Each quoted key is an exact repository-relative
+path, with a list of accepted lowercase SHA-256 hashes; list multiple hashes only
+for reviewed byte variants across revisions. Every declared path must exist as
+an ordinary file and match an accepted hash in every selected revision and
+candidate. Missing paths, changed bytes, symlinks, and hard links stop the run.
+
+This allowance covers only exact `.pem`, `.key`, `.p12`, `.pfx`, or `.jks` files
+outside credential stores. It grants no directory, wildcard, credential-store,
+or model-read exceptions. Fixture hashes are frozen with the runner configuration
+and recorded in the report; the files are staged for independent test execution.
 
 ## Test images
 
@@ -193,6 +230,58 @@ pytest xfails separately without treating them as passes. Baseline and backport
 must collect the same selected suite identities, and every selected case must
 pass. Marker filtering does not authorize missing or skipped security tests.
 
+## Review existing test expectations
+
+A security fix can deliberately change a public default while an older release's
+test still asserts the vulnerable behavior. Review that conflict before changing
+the expectation. For example, urllib3's redirect fix also removes cookies:
+
+```diff
+-        assert list(retry.remove_headers_on_redirect) == ["authorization"]
++        assert retry.remove_headers_on_redirect == {"authorization", "cookie"}
+```
+
+In a separate checkout of the maintained release, edit only the affected existing
+`assert` expressions or messages. Export the reviewed test changes separately
+from the implementation patch and calculate their exact byte hash:
+
+```bash
+git -C /path/to/review-checkout diff -- test/test_retry.py \
+  > /path/to/reviewed-tests.patch
+sha256sum /path/to/reviewed-tests.patch
+```
+
+Add the result and the review rationale to the external harness configuration:
+
+```toml
+[reviewed_tests]
+path = "reviewed-tests.patch"
+sha256 = "68aa05901f3e16a12fdd8c73a7a3b475db6c349e5d9d2a9792ebc875d7280223"
+reason = "Match the upstream redirect policy that removes authorization and cookies."
+```
+
+Replace the example digest with your patch's `sha256sum` output. The path is
+relative to the configuration file or absolute. Seam checks the hash and freezes
+the patch as `reviewed-tests.patch` before adaptation, independently of candidate
+proposals. The model cannot change tests or the reviewed patch.
+
+The patch must touch existing tracked Python test files and change only existing
+assertions. It cannot add or remove assertions or tests, change names, parameters,
+decorators, fixtures, hooks, or other test-body statements, or edit `conftest.py`.
+Decorated functions are eligible only with recognizable `pytest.mark` decorators
+(including direct import aliases). Unknown decorators and assignment, partial,
+or wrapper aliases remain read-only.
+Non-UTF-8 file names and paths containing the U+FFFD replacement character are
+unsupported; parsed patch paths must be unique.
+Skip/xfail calls and assignment/yield flow in changed assertions are rejected.
+These structural checks do not establish that an assertion is meaningful; its
+strength remains the human reviewer's responsibility.
+
+All clean baselines run with their original tests. The reviewed assertion patch
+is applied only to each backport candidate, while the external security oracle
+stays frozen. Target and backport suite case identities must still match, and
+every selected case must pass. The report records the review reason and hash.
+
 ## Run a backport
 
 Try the upstream fix directly:
@@ -216,6 +305,9 @@ An incompatible fix without a supplied candidate or configured agent produces an
 inconclusive report. For model adaptation, select `--model` instead of
 `--candidate-patch`; see [API operation](api.md). The two options cannot be combined.
 Use a new output directory for every run. The original checkout is preserved.
+Model adaptation defaults to 16 requests across all attempts. Select an integer
+from 1 to 32 with `--max-model-calls`, for example `--max-model-calls 32`.
+The dollar budget and other execution limits remain in force.
 
 ## Read the results
 
@@ -225,6 +317,12 @@ The JSON records immutable revision IDs, image identity, input hashes, test
 outcomes, adaptation method, and any model usage. Review the patch and evidence
 before applying it to the maintained branch.
 The canonical patch is `backport.patch`; the command prints its absolute path.
+With `reviewed_tests`, it combines the source changes and approved assertions for
+application to the maintained branch. The accompanying `implementation.patch`
+contains only the source changes. To repeat verification with the same reviewed
+configuration, pass `--candidate-patch /previous-output/implementation.patch`;
+Seam then reapplies the separately frozen test update. A combined `backport.patch`
+is not a valid supplied candidate because candidate test edits remain forbidden.
 CLI and Markdown summaries separate oracle and suite counts and include bounded
 error excerpts when checks fail.
 

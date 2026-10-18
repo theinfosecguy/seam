@@ -25,7 +25,7 @@ You need Linux, Python 3.12+, Git, Docker, and
 
 ```bash
 uv sync --frozen
-uv run seam doctor
+uv run --frozen seam doctor
 uv run seam demo --output /tmp/seam-demo
 uv run seam inspect --report /tmp/seam-demo/verification/report.json
 ```
@@ -35,6 +35,8 @@ bug; it does not generate a patch with AI or reproduce a published CVE.
 The image build needs network access; test execution has networking disabled.
 For Docker command prefixes or an existing image, see [usage](docs/usage.md#demo).
 If you prefer pip, use the [virtualenv installation](docs/usage.md#installation).
+`doctor` prints the installed version and package path so you can identify the
+environment used for a run or report inspection.
 
 ## Use your own repository
 
@@ -52,6 +54,11 @@ Use a new output directory for each run. Review its `report.md` and
 `backport.patch` before applying it. Seam preserves your checkout and never
 pushes or merges.
 To check an existing adaptation, add `--candidate-patch /path/to/adapted.patch`.
+When a security change requires a new existing-test expectation, an operator can
+separately review and freeze an
+[assertion-only patch](docs/usage.md#review-existing-test-expectations).
+Published disposable cryptographic test keys can use an
+[exact-path, hash-pinned fixture allowance](docs/usage.md#review-public-cryptographic-fixtures).
 
 ## Optional AI adaptation
 
@@ -70,6 +77,9 @@ A paid client is created only when you supply `--model`. Native adapters cover
 OpenAI, Anthropic, Gemini, DeepSeek, and other major APIs; keys stay in the
 controller, outside test containers. See
 [API setup](docs/api.md) for models, credentials, and spending limits.
+The CLI defaults to 16 model requests across all adaptation attempts; set
+`--max-model-calls` to an integer from 1 to 32 to change that limit. The dollar
+budget still applies.
 
 ## What verification means
 
@@ -83,8 +93,12 @@ The same external security test runs against four revisions:
 | Maintained branch with backport | Pass | Pass |
 
 `verified` means these checks passed, with the target's existing suite cases
-preserved. `failed` means the checks rejected the candidate. `inconclusive` means
-usable evidence is missing, such as a setup failure, timeout, or skipped test.
+preserved. Separately reviewed assertion changes are recorded in the evidence
+and included in the exported patch. `failed` means the checks rejected the
+candidate. `inconclusive` means usable evidence is missing, such as a setup
+failure, timeout, or skipped test. `inspect` rejects a stored verified verdict
+that contradicts its recorded final checks; it does not rerun or authenticate
+the report.
 
 Use reviewed Python code, a trusted oracle, and a trusted image. Target code runs
 inside pytest and can forge test output; this is not a tamper-proof verifier.
@@ -118,5 +132,6 @@ See [coding conventions](AGENTS.md), the [package map](docs/architecture.md), an
 - [Multi-library evaluation and gaps](docs/evaluations.md)
 - [Fixes and repeat evaluations](docs/reevaluation.md)
 - [Provider and credential-screening validation](docs/provider-validation.md)
+- [Reviewed workflow validation](docs/reviewed-workflow-validation.md)
 
 Licensed under [MIT](LICENSE).

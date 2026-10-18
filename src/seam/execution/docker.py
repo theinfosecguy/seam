@@ -120,7 +120,9 @@ class DockerRunner:
         with tempfile.TemporaryDirectory(prefix="backport-run-") as directory:
             root = Path(directory)
             snapshot = root / "source"
-            stage_snapshot(workspace, snapshot)
+            stage_snapshot(
+                workspace, snapshot, reviewed_fixtures=self.config.reviewed_fixtures
+            )
             oracle_dir = root / "oracle"
             oracle_dir.mkdir(mode=0o755)
             oracle_dir.chmod(0o755)

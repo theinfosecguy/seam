@@ -21,6 +21,11 @@ def load_config(path: Path) -> HarnessConfig:
     if original.stat().st_size > MAX_ORACLE_BYTES:
         raise ValueError("oracle exceeds 128 KiB")
     config.oracle.path = original.resolve()
+    if (
+        config.reviewed_tests is not None
+        and not config.reviewed_tests.path.is_absolute()
+    ):
+        config.reviewed_tests.path = path.resolve().parent / config.reviewed_tests.path
     if config.oracle.security_test in config.oracle.controls:
         raise ValueError("security test cannot also be a normal-behavior control")
     for selector in config.runner.suite:

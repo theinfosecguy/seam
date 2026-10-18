@@ -86,6 +86,22 @@ def write_report(output: Path, report: RunReport) -> RunReport:
     ]
     if report.status == "verified":
         rows.append("- Canonical patch: `backport.patch`")
+    if report.reviewed_tests is not None:
+        rows.extend(
+            [
+                f"- Reviewed assertion patch SHA-256: `{report.reviewed_tests.sha256}`",
+                f"- Review reason: {display_text(report.reviewed_tests.reason)}",
+                "- Frozen assertion input: `reviewed-tests.patch`; "
+                "a verified `backport.patch` includes these changes.",
+                "- Assertion strength depends on the operator's review; "
+                "the independent security oracle is unchanged.",
+            ]
+        )
+    if report.reviewed_fixtures:
+        rows.append(
+            f"- Reviewed cryptographic fixture paths: {len(report.reviewed_fixtures)} "
+            "(SHA-256 pinned in report.json and config.json)"
+        )
     rows.extend(
         [
             "",
