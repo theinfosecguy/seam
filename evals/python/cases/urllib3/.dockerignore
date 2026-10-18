@@ -1,0 +1,4 @@
+*
+!Dockerfile
+!requirements.lock
+!urllib3_legacy_warnings.py

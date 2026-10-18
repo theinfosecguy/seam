@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "instance_id": "sqlparse",
+  "repo": "andialbrecht/sqlparse",
+  "base_commit": "647d1457acf7d88614215841eb15d423df2a1895",
+  "upstream_parent_commit": "f1bcf2f8a7ddf6854c99990c56ff5394f4981d58",
+  "upstream_fix_commit": "b4a39d9850969b4e1d6940d32094ee0b42a2cf03",
+  "advisory_ids": [
+    "CVE-2024-4340",
+    "GHSA-2m57-hf25-phgg"
+  ],
+  "problem_statement": "Convert excessive nested-token recursion into the library SQLParseError while preserving ordinary SELECT statements and bracket-quoted identifiers.",
+  "target_version": "0.4.4",
+  "platform": "linux/amd64",
+  "expected_suite_cases": 75,
+  "upstream_license": "BSD-3-Clause",
+  "notes": [
+    "The reference patch is the upstream implementation change under BSD-3-Clause in LICENSE.upstream.",
+    "The original MIT-licensed evaluation oracle temporarily lowers the recursion limit and parses 300 bracket pairs, restoring the prior limit in finally.",
+    "Only tests/test_parse.py and the external oracle are selected; the bounded reproducer is not an exhaustive SQL grammar or general CPU/memory bound."
+  ],
+  "asset_sha256": {
+    "Dockerfile": "ae046464bbdfbbb490c34570b44476320923f3fa530701138e59dd702dcc9e82",
+    "LICENSE.upstream": "c1938235b80d39e93138eae89edc3af67e18ecbc40d266529fa57b2dce426310",
+    "harness.toml": "51ce0fe2d630825ff816ec62e7b3e3d7ddeed485363a2a79cf71599d62bc0e0d",
+    "oracle.py": "92b602a808eeb3557d4ed5a34e9620a26316b8cc2056fcc8397a430783d166ee",
+    "reference.patch": "131b5df4827ce283e73ff75254d63c7e296d59a9316d788b6b43c58287119eb7",
+    "requirements.lock": "8371ec0c682e32030102e770d3e02778f90f4c0ba8112a7a54d99c1280ed2e87"
+  }
+}

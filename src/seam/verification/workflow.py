@@ -19,6 +19,7 @@ from seam.models import (
     AgentProposal,
     PhaseName,
     PhaseResult,
+    RunnerConfig,
     RunReport,
 )
 from seam.verification.assessment import assess_phase
@@ -53,6 +54,7 @@ def run_backport(
     proposer: PatchProposer | None = None,
     candidate_patch: Path | None = None,
     progress: Callable[[str], None] | None = None,
+    runner_config: RunnerConfig | None = None,
 ) -> RunReport:
     """Adapt one fix in independent clones and export evidence, preserving the source.
 
@@ -78,6 +80,8 @@ def run_backport(
         if proposer is not None and candidate_patch is not None:
             raise ValueError("select either a proposer or a supplied candidate")
         config = load_config(config_path)
+        if runner_config is not None:
+            config.runner = RunnerConfig.model_validate(runner_config.model_dump())
         reviewed_patch = None
         if config.reviewed_tests is not None:
             reviewed_patch = load_reviewed_test_patch(

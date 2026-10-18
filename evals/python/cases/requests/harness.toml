@@ -1,0 +1,19 @@
+schema_version = 1
+max_attempts = 3
+
+[oracle]
+path = "oracle.py"
+security_test = "test_security_regression"
+controls = ["test_http_proxy_auth_retained", "test_https_tunnel_auth_retained", "test_ordinary_redirect_metadata_retained"]
+failure_marker = "EXPECTED_SECURITY_REGRESSION"
+
+[runner]
+image = "seam-eval-requests:python-v1"
+docker = ["docker"]
+timeout_seconds = 120.0
+memory_mb = 512
+cpus = 1.0
+pids = 128
+max_output_bytes = 131072
+suite = ["tests/test_structures.py", "tests/test_hooks.py", "tests/test_utils.py::TestGetEnvironProxies", "tests/test_requests.py::TestRequests::test_proxy_auth", "tests/test_requests.py::TestRequests::test_proxy_auth_empty_pass", "tests/test_requests.py::test_proxy_env_vars_override_default"]
+import_mode = "prepend"

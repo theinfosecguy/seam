@@ -1,0 +1,82 @@
+diff --git a/authlib/jose/errors.py b/authlib/jose/errors.py
+index e2e74440..385a866e 100644
+--- a/authlib/jose/errors.py
++++ b/authlib/jose/errors.py
+@@ -33,6 +33,14 @@ class InvalidHeaderParameterNameError(JoseError):
+         super().__init__(description=description)
+ 
+ 
++class InvalidCritHeaderParameterNameError(JoseError):
++    error = "invalid_crit_header_parameter_name"
++
++    def __init__(self, name):
++        description = f"Invalid Header Parameter Name: {name}"
++        super().__init__(description=description)
++
++
+ class InvalidEncryptionAlgorithmForECDH1PUWithKeyWrappingError(JoseError):
+     error = "invalid_encryption_algorithm_for_ECDH_1PU_with_key_wrapping"
+ 
+diff --git a/authlib/jose/rfc7515/jws.py b/authlib/jose/rfc7515/jws.py
+index 6ec56ce4..0952ca74 100644
+--- a/authlib/jose/rfc7515/jws.py
++++ b/authlib/jose/rfc7515/jws.py
+@@ -4,6 +4,7 @@ from authlib.common.encoding import to_unicode
+ from authlib.common.encoding import urlsafe_b64encode
+ from authlib.jose.errors import BadSignatureError
+ from authlib.jose.errors import DecodeError
++from authlib.jose.errors import InvalidCritHeaderParameterNameError
+ from authlib.jose.errors import InvalidHeaderParameterNameError
+ from authlib.jose.errors import MissingAlgorithmError
+ from authlib.jose.errors import UnsupportedAlgorithmError
+@@ -64,6 +65,7 @@ class JsonWebSignature:
+         """
+         jws_header = JWSHeader(protected, None)
+         self._validate_private_headers(protected)
++        self._validate_crit_headers(protected)
+         algorithm, key = self._prepare_algorithm_key(protected, payload, key)
+ 
+         protected_segment = json_b64encode(jws_header.protected)
+@@ -95,6 +97,7 @@ class JsonWebSignature:
+             raise DecodeError("Not enough segments") from exc
+ 
+         protected = _extract_header(protected_segment)
++        self._validate_crit_headers(protected)
+         jws_header = JWSHeader(protected, None)
+ 
+         payload = _extract_payload(payload_segment)
+@@ -132,6 +135,7 @@ class JsonWebSignature:
+ 
+         def _sign(jws_header):
+             self._validate_private_headers(jws_header)
++            self._validate_crit_headers(jws_header)
+             _alg, _key = self._prepare_algorithm_key(jws_header, payload, key)
+ 
+             protected_segment = json_b64encode(jws_header.protected)
+@@ -272,6 +276,18 @@ class JsonWebSignature:
+                 if k not in names:
+                     raise InvalidHeaderParameterNameError(k)
+ 
++    def _validate_crit_headers(self, header):
++        if "crit" in header:
++            crit_headers = header["crit"]
++            names = self.REGISTERED_HEADER_PARAMETER_NAMES.copy()
++            if self._private_headers:
++                names = names.union(self._private_headers)
++            for k in crit_headers:
++                if k not in names:
++                    raise InvalidCritHeaderParameterNameError(k)
++                elif k not in header:
++                    raise InvalidCritHeaderParameterNameError(k)
++
+     def _validate_json_jws(self, payload_segment, payload, header_obj, key):
+         protected_segment = header_obj.get("protected")
+         if not protected_segment:
+@@ -287,6 +303,7 @@ class JsonWebSignature:
+         if header and not isinstance(header, dict):
+             raise DecodeError('Invalid "header" value')
+ 
++        self._validate_crit_headers(protected)
+         jws_header = JWSHeader(protected, header)
+         algorithm, key = self._prepare_algorithm_key(jws_header, payload, key)
+         signing_input = b".".join([protected_segment, payload_segment])

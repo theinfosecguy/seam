@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "instance_id": "requests",
+  "repo": "psf/requests",
+  "base_commit": "61c324da43dd8b775d3930d76265538b3ca27bc1",
+  "upstream_parent_commit": "302225334678490ec66b3614a9dddb8a02c5f4fe",
+  "upstream_fix_commit": "74ea7cf7a6a27a4eeb2ae24e162bcc942a6706d5",
+  "advisory_ids": [
+    "CVE-2023-32681",
+    "GHSA-j8r2-6x86-q33q"
+  ],
+  "problem_statement": "Prevent Proxy-Authorization from leaking to HTTPS destinations after redirects while retaining HTTP proxy authorization, tunnel authentication and ordinary redirect metadata.",
+  "target_version": "2.28.2",
+  "platform": "linux/amd64",
+  "expected_suite_cases": 61,
+  "upstream_license": "Apache-2.0",
+  "notes": [
+    "The reference patch is the upstream implementation change under Apache-2.0; LICENSE.upstream and NOTICE.upstream preserve its notices.",
+    "The original MIT-licensed evaluation oracle uses an in-memory recording transport and published dummy proxy credentials; it performs no network requests.",
+    "The selected 61-case suite covers structures, hooks and proxy behavior; it is not the full Requests suite."
+  ],
+  "asset_sha256": {
+    "Dockerfile": "7a29a3b05dea7dc9a4ea854d61d938a66bdd55d017b68c869de7331e5b3995c6",
+    "LICENSE.upstream": "09e8a9bcec8067104652c168685ab0931e7868f9c8284b66f5ae6edae5f1130b",
+    "NOTICE.upstream": "f5110972dedad2b4e9d314518daf3b7d72d6e02e499acd802181de6f74571dcc",
+    "harness.toml": "38b6c943cd31fe87f1eb670cf783bd367f01df6d0e4da9b9117369e81e6d5439",
+    "oracle.py": "e5728cc0e11df6a4eb8ed84027aed421985fdd25033d14e16f3bd6ea5d217890",
+    "reference.patch": "a8a1db823b77a95b183a313e4b1d1786a92132e2281385e6c8ca32ac17e9f189",
+    "requirements.lock": "92f7882d950a3807b26f2bc256372d93cbf98d23744be45455f37653c26731db"
+  }
+}

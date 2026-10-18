@@ -1,0 +1,17 @@
+schema_version = 1
+max_attempts = 3
+[oracle]
+path = "oracle.py"
+security_test = "test_security_regression"
+controls = ["test_control_ordinary", "test_control_boundary"]
+failure_marker = "SECURITY_REGRESSION"
+[runner]
+image = "seam-eval-python-multipart:python-v1"
+docker = ["docker"]
+plugins = []
+import_mode = "importlib"
+timeout_seconds = 120
+memory_mb = 768
+cpus = 0.5
+pids = 128
+suite = ["tests/test_multipart.py::TestHelperFunctions", "tests/test_multipart.py::TestParseOptionsHeader"]

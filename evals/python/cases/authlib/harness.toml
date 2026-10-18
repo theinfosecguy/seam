@@ -1,0 +1,29 @@
+schema_version = 1
+max_attempts = 1
+
+[oracle]
+path = "oracle.py"
+security_test = "test_security_unknown_critical_header"
+controls = ["test_control_normal_signed_payload", "test_control_noncritical_private_header", "test_control_known_critical_header"]
+failure_marker = "AUTHLIB_CRITICAL_HEADER_REGRESSION"
+
+[runner]
+image = "seam-eval-authlib:python-v1"
+docker = ["docker"]
+suite = ["tests/jose/test_jws.py"]
+import_mode = "prepend"
+timeout_seconds = 120
+memory_mb = 512
+cpus = 1
+pids = 128
+plugins = []
+
+[runner.reviewed_fixtures]
+"tests/files/ed25519-pkcs8.pem" = ["c4932a9b6b97423b249a53e58d706f820185467464699038ed7ca5b29815ba03"]
+"tests/files/ed25519-pub.pem" = ["7f2d9ed0b71b8e5a6c5cf30e647d6e20b5bca6dac8071f11abe3fef8014db610"]
+"tests/files/rsa_private.pem" = ["866aaf545f43fd4e808d5b841fa7e6c8d6f5cd052b214c4af45eb91a98fee29c"]
+"tests/files/rsa_public.pem" = ["60b6737cd7da707aecb7d593b09d01ed5c8c6adacd5a3f03fa1089c7ee8d364a"]
+"tests/files/secp256k1-private.pem" = ["95f72b083a9ff40103dcb7ca2ab45e7a82eee85805f0976ff292a575d34a9899"]
+"tests/files/secp256k1-pub.pem" = ["2ea119d1ac2c19a75e0ae6c230cd6ff48c78c649146238061dac3c2e87b3600b"]
+"tests/files/ssh_private.pem" = ["be04e9a46fe5cbf88f3cc5f2ede1ee946141ad4aecc99fff59fc8f5886b1ca56"]
+"tests/files/ssh_public.pem" = ["878d840c8c36a30020fbfb51ec92efd89a3b36cd47a37324cb203eb15415cc83"]

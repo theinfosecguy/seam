@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "instance_id": "authlib",
+  "repo": "authlib/authlib",
+  "base_commit": "dbbfa9abcfe725001b452cf08d9e48be0ebfdce9",
+  "upstream_parent_commit": "eb07119430e7afe52d60f885f9dda3287f80ca6b",
+  "upstream_fix_commit": "06f0813901a5238dd0b94521d26a7af9064497a0",
+  "advisory_ids": [
+    "GHSA-9ggr-2464-2j32"
+  ],
+  "problem_statement": "Backport the upstream JWS critical-header deserialization fix to Authlib 1.6.3. Reject an unsupported critical protected header and a critical header missing from the protected header, while preserving ordinary signed payloads, noncritical private headers, and recognized critical headers.",
+  "target_version": "1.6.3",
+  "platform": "linux/amd64",
+  "expected_suite_cases": 16,
+  "upstream_license": "BSD-3-Clause",
+  "notes": [
+    "Selected existing suite: tests/jose/test_jws.py (16 target cases), plus one external compact-JWS security test and three controls; this does not cover the full JOSE or JWT implementation.",
+    "Prerequisite: upstream parent eb07119430e7afe52d60f885f9dda3287f80ca6b introduces the critical-header validator and error class absent from 1.6.3. reference.patch includes that ordinary prerequisite implementation plus the selected receiving-side fix, without changing upstream tests.",
+    "The eight reviewed fixture SHA-256 pins are retained in harness.toml. They identify public upstream test fixtures, not operator credentials; source snapshots fetch them from the pinned public Git history. No upstream PEM test fixture content is copied into this case bundle or dependency image.",
+    "Public fixture provenance: https://github.com/authlib/authlib; tests/files has Git tree 935116faaafff82b7ad83a2462fcaacf0bf3ff87 at target dbbfa9abcfe725001b452cf08d9e48be0ebfdce9, upstream parent eb07119430e7afe52d60f885f9dda3287f80ca6b, and upstream fix 06f0813901a5238dd0b94521d26a7af9064497a0. All three fixture trees are identical.",
+    "The Dockerfile starts from the pinned public Python base and installs only hash-locked dependencies. It does not reuse the historical fixture-bridge image, copy fixtures, or monkeypatch fixture reads.",
+    "Advisory: https://github.com/authlib/authlib/security/advisories/GHSA-9ggr-2464-2j32. The behavioral oracle accepts the intended JOSE rejection rather than requiring one exception subclass."
+  ],
+  "asset_sha256": {
+    ".dockerignore": "a30ad6f894e5d8c7dd8219cbd1fa558bcecd6695be9c109d41df33d2d8fc9e81",
+    "Dockerfile": "d06a15464434d6e055e039822ca6b555b6611f86ec8756723bab024015558596",
+    "LICENSE.upstream": "8e1b48518de9c6cd00cb48c7fe5b8023fd90d5552ca12ebe7362a0df30ddbe45",
+    "harness.toml": "0d0b61d9b973d2ac60339465fa2e80c18697f2160343772e5d1fdb81a864ee3c",
+    "oracle.py": "27c7df74b91ee36cee10925a6ccdacd998ff40c60541c3df23af5c450c4ab635",
+    "reference.patch": "bf1ec2f261ca816480b7e25e13c721ee73a267693b11aa25ba49efbfaf222ab7",
+    "requirements.lock": "49d05af625df650091a68eea6f0db8af640d767001522b8bfed781c413f3e16d"
+  }
+}

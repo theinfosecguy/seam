@@ -15,12 +15,18 @@ src/seam/
 ├── cli/
 │   ├── application.py     # Commands and argument validation
 │   ├── credentials.py     # Bounded explicit controller credential selection
+│   ├── evals.py           # Public case replay and qualification commands
 │   ├── providers.py       # Provider configuration and common agent construction
 │   └── presentation.py    # Terminal output and exit statuses
 ├── demo/
 │   ├── resources/         # Synthetic source, tests, oracle, and Dockerfile
 │   ├── fixture.py         # Divergent release history and reference adaptation
 │   └── image.py           # Trusted demo image build
+├── evals/
+│   ├── catalogue.py       # Bounded case loading and catalogue export
+│   ├── models.py          # Immutable case input validation
+│   ├── qualification.py   # Repeated references and executed negative checks
+│   └── runner.py          # Pinned public source replay and run manifests
 ├── execution/
 │   ├── resources/         # Container bootstrap program
 │   ├── container.py       # Constrained container arguments
@@ -37,6 +43,7 @@ src/seam/
 ├── constants/
 │   ├── agent.py           # Conversation and tool bounds
 │   ├── demo.py            # Demo image defaults
+│   ├── evals.py           # Catalogue and image build bounds
 │   ├── execution.py       # Process, staging, and Docker limits
 │   ├── providers.py       # Provider endpoints, credential names, checked rates
 │   ├── repository.py      # Git and patch constraints
@@ -66,6 +73,11 @@ The agent composes a bounded tool session, native model transport, and usage
 ledger. PydanticAI's low-level model adapters translate native messages, tool
 results, and usage; Seam retains the tool loop and verification policy.
 Neither the model nor the transport can classify a verification result.
+
+Evaluation commands load reviewed cases through `evals.catalogue` and replay
+them through the same verification workflow. `evals.qualification` repeats the
+reference and requires rejection of a negative candidate. The source assets in
+`evals/python/` are bundled under `seam/evals/data/python` in installed wheels.
 
 Named defaults, provider endpoints and rates, and security limits live in
 focused `seam.constants` modules; domain error types live in `seam.exceptions`.
