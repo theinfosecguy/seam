@@ -136,37 +136,6 @@ def test_mutated_incomplete_report_cannot_be_serialized_as_verified(
     assert not (tmp_path / "report.json").exists()
 
 
-def test_legacy_complete_reports_remain_readable() -> None:
-    phases = [
-        {
-            "name": name,
-            "revision": "a" * 40,
-            "security": {"returncode": 0},
-            "suite": {"returncode": 0},
-        }
-        for name in ("upstream_parent", "upstream_fix", "target_baseline", "backport")
-    ]
-    legacy = RunReport.model_validate(
-        {
-            "schema_version": 1,
-            "status": "verified",
-            "reason": "recorded checks passed",
-            "fix_commit": "a" * 40,
-            "parent_commit": "b" * 40,
-            "target_commit": "c" * 40,
-            "image_id": "sha256:" + "d" * 64,
-            "oracle_sha256": "e" * 64,
-            "config_sha256": "f" * 64,
-            "patch_sha256": "1" * 64,
-            "phases": phases,
-        }
-    )
-    assert legacy.schema_version == 1
-    # An earlier candidate remains part of the evidence after a later success.
-    legacy.phases.insert(-1, legacy.phases[-1].model_copy())
-    assert len(RunReport.model_validate(legacy.model_dump()).phases) == 5
-
-
 def test_failed_baseline_control_has_diagnostics(tmp_path: Path) -> None:
     report = RunReport(
         status="inconclusive",

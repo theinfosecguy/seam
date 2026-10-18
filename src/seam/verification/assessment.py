@@ -1,22 +1,6 @@
 """Classify security and compatibility evidence without model judgments."""
 
-from seam.models import ExecutionResult, HarnessConfig, PhaseResult
-
-
-def _unresolved(execution: ExecutionResult) -> str | None:
-    if execution.timed_out:
-        return "test execution timed out"
-    if execution.truncated:
-        return "test output exceeded the configured limit"
-    if execution.evidence_error:
-        return execution.evidence_error
-    if execution.returncode not in {0, 1}:
-        return "pytest did not complete a normal test run"
-    if not execution.tests:
-        return "test execution produced no test cases"
-    if any(test.outcome in {"error", "skipped"} for test in execution.tests):
-        return "test execution contained errors or skipped tests"
-    return None
+from seam.models import HarnessConfig, PhaseResult
 
 
 def assess_phase(
@@ -25,7 +9,7 @@ def assess_phase(
     """Require the expected assertion and working controls, never just a red exit."""
 
     for label, execution in (("security", phase.security), ("suite", phase.suite)):
-        reason = _unresolved(execution)
+        reason = execution.evidence_issue()
         if reason:
             return "inconclusive", f"{phase.name} {label}: {reason}"
     cases = {test.name: test for test in phase.security.tests}
