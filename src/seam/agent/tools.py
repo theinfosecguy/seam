@@ -89,7 +89,13 @@ class WorkspaceTools:
         try:
             if name == "submit_patch":
                 submission = SubmitPatch.model_validate_json(arguments)
-                return AgentProposal(**submission.model_dump())
+                proposal = AgentProposal(**submission.model_dump())
+                if "\n" not in proposal.patch:
+                    return {
+                        "error": "Submit a unified diff with actual line breaks; "
+                        "do not encode line breaks as literal \\n text."
+                    }
+                return proposal
             if name == "list_files":
                 return self.list_files(ListFiles.model_validate_json(arguments))
             if name == "read_file":

@@ -407,7 +407,8 @@ def test_both_maximum_diff_contexts_fit_without_truncation(tmp_path: Path) -> No
 def test_submission_requires_a_target_read_in_each_proposal(tmp_path: Path) -> None:
     (tmp_path / "source.py").write_text("unsafe()\n")
     read = {"path": "source.py", "start_line": 1, "line_count": 1}
-    submit = {"patch": "candidate diff", "explanation": "Preserve the release API."}
+    patch = "--- a/source.py\n+++ b/source.py\n@@ -1 +1 @@\n-unsafe()\n+safe()\n"
+    submit = {"patch": patch, "explanation": "Preserve the release API."}
     calls = [
         ("submit_patch", submit),
         ("read_file", read | {"revision": "upstream_fix"}),
@@ -450,8 +451,8 @@ def test_submission_requires_a_target_read_in_each_proposal(tmp_path: Path) -> N
         upstream_fix_workspace=tmp_path,
     )
     try:
-        assert agent.propose(context).patch == "candidate diff"
-        assert agent.propose(context).patch == "candidate diff"
+        assert agent.propose(context).patch == patch
+        assert agent.propose(context).patch == patch
     finally:
         agent.close()
     assert call_count == 8
