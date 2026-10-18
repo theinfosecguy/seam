@@ -1,12 +1,15 @@
 """Keep public evaluation assets bounded, portable, and faithful in exports."""
 
+import compileall
 import hashlib
 import json
 import shutil
 from pathlib import Path
 
 import pytest
+from typer.testing import CliRunner
 
+from seam.cli import app
 from seam.constants.evals import DATASET_VERSION
 from seam.evals import catalogue
 from seam.verification.config import load_config
@@ -60,6 +63,70 @@ def test_installed_resources_take_precedence_and_ignore_current_directory(
 def test_asset_content_must_match_the_frozen_hash(dataset: Path) -> None:
     oracle = dataset / "cases/h11/oracle.py"
     oracle.write_text(oracle.read_text() + "\n# changed after review\n")
+    with pytest.raises(ValueError, match="SHA-256"):
+        catalogue.load_case(dataset, "h11")
+
+
+def test_installer_bytecode_keeps_the_catalogue_and_cli_check_valid(
+    dataset: Path,
+) -> None:
+    before = catalogue.export_catalogue(dataset)
+    oracle = dataset / "cases/h11/oracle.py"
+    assert compileall.compile_file(str(oracle), quiet=1)
+    assert list(oracle.parent.glob("__pycache__/*.pyc"))
+    assert catalogue.load_case(dataset, "h11")[0].instance_id == "h11"
+    assert catalogue.export_catalogue(dataset) == before
+    result = CliRunner().invoke(app, ["eval", "check", "--dataset", str(dataset)])
+    assert result.exit_code == 0, result.output
+    assert "Validated 8 cases" in result.output
+    oracle.write_text(
+        oracle.read_text() + "\n# source changed despite cached bytecode\n"
+    )
+    with pytest.raises(ValueError, match="SHA-256"):
+        catalogue.load_case(dataset, "h11")
+
+
+@pytest.mark.parametrize("kind", ["directory", "bytecode"])
+def test_installer_cache_exception_still_rejects_symlinks(
+    dataset: Path, tmp_path: Path, kind: str
+) -> None:
+    oracle = dataset / "cases/h11/oracle.py"
+    assert compileall.compile_file(str(oracle), quiet=1)
+    path = oracle.parent / "__pycache__"
+    if kind == "bytecode":
+        path = next(path.glob("*.pyc"))
+    outside = tmp_path / "outside"
+    path.rename(outside)
+    path.symlink_to(outside, target_is_directory=kind == "directory")
+    with pytest.raises(ValueError, match="symbolic links"):
+        catalogue.load_case(dataset, "h11")
+
+
+@pytest.mark.parametrize("name", ["README.md", "helper.py", "case.json"])
+def test_installer_cache_rejects_unlisted_non_bytecode_files(
+    dataset: Path, name: str
+) -> None:
+    cache = dataset / "cases/h11/__pycache__"
+    cache.mkdir()
+    (cache / name).write_text("unreviewed file\n")
+    with pytest.raises(ValueError, match="unlisted or missing"):
+        catalogue.load_case(dataset, "h11")
+
+
+def test_bytecode_outside_the_installer_cache_is_still_unlisted(dataset: Path) -> None:
+    (dataset / "cases/h11/oracle.pyc").write_bytes(b"unexpected bytecode")
+    with pytest.raises(ValueError, match="unlisted or missing"):
+        catalogue.load_case(dataset, "h11")
+
+
+def test_declared_cache_assets_still_require_their_pinned_hash(dataset: Path) -> None:
+    directory = dataset / "cases/h11"
+    cache = directory / "__pycache__"
+    cache.mkdir()
+    (cache / "declared.pyc").write_text("operator-declared input\n")
+    metadata = json.loads((directory / "case.json").read_text())
+    metadata["asset_sha256"]["__pycache__/declared.pyc"] = "a" * 64
+    write_metadata(directory, metadata)
     with pytest.raises(ValueError, match="SHA-256"):
         catalogue.load_case(dataset, "h11")
 
