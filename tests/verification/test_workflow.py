@@ -1,5 +1,8 @@
 """Cover failures that otherwise look like completed execution or verification."""
 
+import difflib
+import hashlib
+import json
 from pathlib import Path
 
 import pytest
@@ -92,7 +95,8 @@ def test_all_revisions_preflight_before_image_preparation(
     project = create_demo(tmp_path / "project")
     checked = []
 
-    def preflight(path: Path) -> None:
+    def preflight(path: Path, *, reviewed_fixtures) -> None:
+        assert reviewed_fixtures == {}
         checked.append(path.name)
         if path.name == "target_baseline":
             raise ValueError("unsupported symlink: docs/broken-link")
@@ -199,3 +203,118 @@ image = "test-image"
     report = workflow.run_backport(repo, "fix", "target", config, tmp_path / "output")
     assert report.status == "inconclusive"
     assert "collect" in report.reason.lower() or "missing" in report.reason.lower()
+
+
+@pytest.mark.parametrize("invalid_review", [None, "hash", "body"])
+def test_reviewed_assertions_are_frozen_and_exported_without_changing_baselines(
+    tmp_path: Path, monkeypatch, invalid_review: str | None
+) -> None:
+    project = create_demo(tmp_path / "project")
+    test_name = "tests/test_paths.py"
+    before = (project.repo / test_name).read_text()
+    after = before.replace(
+        '== tmp_path / "docs/readme.txt"',
+        '== Path(tmp_path, "docs/readme.txt")',
+    )
+    if invalid_review == "body":
+        after = after.replace("def test_nested_member", "def test_removed_member")
+    review = "".join(
+        difflib.unified_diff(
+            before.splitlines(keepends=True),
+            after.splitlines(keepends=True),
+            fromfile=f"a/{test_name}",
+            tofile=f"b/{test_name}",
+        )
+    )
+    review_path = project.config_path.parent / "reviewed.patch"
+    review_path.write_text(review)
+    digest = hashlib.sha256(review.encode()).hexdigest()
+    project.config_path.write_text(
+        project.config_path.read_text()
+        + '\n[reviewed_tests]\npath = "reviewed.patch"\n'
+        + f'sha256 = "{"0" * 64 if invalid_review == "hash" else digest}"\n'
+        + 'reason = "Reviewed assertion compatibility change"\n'
+    )
+    checked = []
+
+    class Runner:
+        def __init__(self, _config) -> None:
+            pass
+
+        def resolve_image(self) -> str:
+            assert invalid_review is None, "Invalid review must stop before Docker"
+            # The selected input can change after freezing without changing the run.
+            review_path.write_text("changed operator input after freezing\n")
+            return "sha256:" + "a" * 64
+
+        def run(self, workspace, _oracle, _image, kind) -> ExecutionResult:
+            candidate = workspace.name.startswith("candidate-")
+            assert (workspace / test_name).read_text() == (
+                after if candidate else before
+            )
+            checked.append((workspace.name, kind))
+            if kind == "suite":
+                return ExecutionResult(
+                    returncode=0,
+                    tests=[Case(name="test_existing", outcome="passed")],
+                )
+            vulnerable = workspace.name in {"upstream_parent", "target_baseline"}
+            return ExecutionResult(
+                returncode=1 if vulnerable else 0,
+                tests=[
+                    Case(
+                        name="test_security_traversal",
+                        outcome="failed" if vulnerable else "passed",
+                        message="AssertionError: TRAVERSAL_SECURITY_ORACLE"
+                        if vulnerable
+                        else "",
+                    ),
+                    *[
+                        Case(name=name, outcome="passed")
+                        for name in (
+                            "test_control_nested_path",
+                            "test_control_repeated_dots",
+                            "test_control_unicode_filename",
+                        )
+                    ],
+                ],
+            )
+
+    monkeypatch.setattr(workflow, "DockerRunner", Runner)
+    output = tmp_path / "evidence"
+    report = workflow.run_backport(
+        project.repo,
+        project.fix,
+        project.target,
+        project.config_path,
+        output,
+        candidate_patch=project.candidate_patch,
+    )
+    assert not workflow.repository.git(project.repo, "status", "--porcelain")
+    if invalid_review:
+        assert report.status == "inconclusive"
+        assert report.image_id is None
+        assert checked == []
+        assert not (output / "backport.patch").exists()
+        expected_reason = "SHA-256" if invalid_review == "hash" else "assertion"
+        assert expected_reason in report.reason
+        return
+    assert report.status == "verified"
+    assert len(checked) == 8
+    assert (output / "reviewed-tests.patch").read_text() == review
+    assert report.reviewed_tests is not None
+    assert report.reviewed_tests.path == Path("reviewed-tests.patch")
+    assert report.reviewed_tests.sha256 == digest
+    frozen_config = json.loads((output / "config.json").read_text())
+    assert frozen_config["reviewed_tests"]["sha256"] == digest
+    canonical = (output / "backport.patch").read_text()
+    assert report.patch_sha256 == hashlib.sha256(canonical.encode()).hexdigest()
+    assert test_name in canonical and "src/parcel_paths/legacy.py" in canonical
+    assert test_name not in (output / "implementation.patch").read_text()
+    exported = tmp_path / "exported"
+    workflow.repository.clone_at(project.repo, report.target_commit, exported)
+    workflow.repository.git(exported, "apply", "-", input_text=canonical)
+    assert (exported / test_name).read_text() == after
+    assert (
+        "Reviewed assertion compatibility change" in (output / "report.md").read_text()
+    )

@@ -1,7 +1,9 @@
 """Stage bounded source snapshots without credentials, unsafe links, or devices."""
 
+import hashlib
 import os
 import stat
+from collections.abc import Mapping
 from pathlib import Path
 
 from seam.constants.execution import (
@@ -13,6 +15,7 @@ from seam.constants.execution import (
 )
 from seam.constants.security import SNAPSHOT_EXCLUDED_NAMES
 from seam.security import contains_secret, is_sensitive_path
+from seam.security.paths import validate_reviewed_fixtures
 
 
 def _excluded(name: str) -> bool:
@@ -148,7 +151,13 @@ def _walk_error(error: OSError) -> None:
     ) from error
 
 
-def _snapshot(workspace: Path, destination: Path | None) -> None:
+def _snapshot(
+    workspace: Path,
+    destination: Path | None,
+    reviewed_fixtures: Mapping[str, tuple[str, ...]],
+) -> None:
+    validate_reviewed_fixtures(reviewed_fixtures)
+    remaining_fixtures = set(reviewed_fixtures)
     try:
         root_fd = os.open(workspace, os.O_RDONLY | os.O_DIRECTORY | os.O_NOFOLLOW)
     except OSError as error:
@@ -174,7 +183,12 @@ def _snapshot(workspace: Path, destination: Path | None) -> None:
             directories[:] = [
                 name for name in directories if not _excluded(str(relative / name))
             ]
-            files = [name for name in files if not _excluded(str(relative / name))]
+            files = [
+                name
+                for name in files
+                if not _excluded(str(relative / name))
+                or str(relative / name) in reviewed_fixtures
+            ]
             total_entries += len(directories) + len(files)
             if total_entries > MAX_SNAPSHOT_FILES:
                 raise ValueError(
@@ -198,9 +212,14 @@ def _snapshot(workspace: Path, destination: Path | None) -> None:
                     ) from error
             for name in files:
                 path = relative / name
+                digests = reviewed_fixtures.get(str(path))
                 try:
                     metadata = os.stat(name, dir_fd=directory_fd, follow_symlinks=False)
                     if stat.S_ISLNK(metadata.st_mode):
+                        if digests is not None:
+                            raise ValueError(
+                                "Reviewed fixtures cannot be symbolic links"
+                            )
                         descriptor = _open_link_target(root_fd, path)
                     else:
                         if not stat.S_ISREG(metadata.st_mode):
@@ -213,6 +232,10 @@ def _snapshot(workspace: Path, destination: Path | None) -> None:
                     data, mode = _read_regular_file(
                         descriptor, MAX_SNAPSHOT_BYTES - total_bytes
                     )
+                    if digests is not None:
+                        if hashlib.sha256(data).hexdigest() not in digests:
+                            raise ValueError("Reviewed fixture SHA-256 does not match")
+                        remaining_fixtures.remove(str(path))
                     total_bytes += len(data)
                     if destination is not None:
                         copied = destination / path
@@ -223,17 +246,31 @@ def _snapshot(workspace: Path, destination: Path | None) -> None:
                         f"Snapshot path {_display_path(path)}: "
                         f"{error.strerror if isinstance(error, OSError) else error}"
                     ) from error
+        if remaining_fixtures:
+            raise ValueError(
+                f"Snapshot path {_display_path(min(remaining_fixtures))}: "
+                "reviewed fixture is missing or excluded"
+            )
     finally:
         os.close(root_fd)
 
 
-def preflight_snapshot(workspace: Path) -> None:
+def preflight_snapshot(
+    workspace: Path,
+    *,
+    reviewed_fixtures: Mapping[str, tuple[str, ...]] | None = None,
+) -> None:
     """Check snapshot compatibility without writing; staging repeats every check."""
-    _snapshot(workspace, None)
+    _snapshot(workspace, None, reviewed_fixtures or {})
 
 
-def stage_snapshot(workspace: Path, destination: Path) -> None:
+def stage_snapshot(
+    workspace: Path,
+    destination: Path,
+    *,
+    reviewed_fixtures: Mapping[str, tuple[str, ...]] | None = None,
+) -> None:
     """Copy a bounded source tree, materializing contained regular file links."""
     destination.mkdir(mode=0o755)
     destination.chmod(0o755)
-    _snapshot(workspace, destination)
+    _snapshot(workspace, destination, reviewed_fixtures or {})

@@ -1,5 +1,6 @@
 """Exercise sandbox boundaries and incomplete pytest evidence handling."""
 
+import hashlib
 import os
 import shlex
 from collections.abc import Mapping, Sequence
@@ -147,6 +148,36 @@ def test_security_execution_isolated_and_source_is_filtered(
     assert create[create.index("--mount") + 1].endswith(",readonly")
     assert docker.calls[-1][1:4] == ["rm", "--force", "--volumes"]
     assert (workspace / "src" / "library.py").read_text() == "VALUE = 1\n"
+
+
+@pytest.mark.parametrize("matches", [False, True])
+def test_container_source_requires_pinned_reviewed_fixture_bytes(
+    target: tuple[Path, OracleConfig],
+    monkeypatch: pytest.MonkeyPatch,
+    matches: bool,
+) -> None:
+    workspace, oracle = target
+    fixture = b"operator-reviewed upstream test fixture"
+    (workspace / "test-key.pem").write_bytes(fixture if matches else b"changed")
+    (workspace / "unreviewed.pem").write_bytes(fixture)
+    docker = DockerStub()
+    monkeypatch.setattr(runner_module, "run_process", docker)
+    result = DockerRunner(
+        RunnerConfig(
+            image="operator-image",
+            reviewed_fixtures={
+                "test-key.pem": (hashlib.sha256(fixture).hexdigest(),),
+            },
+        )
+    ).run(workspace, oracle, IMAGE_ID, "suite")
+    if matches:
+        assert result.evidence_error is None
+        assert "test-key.pem" in docker.staged_paths
+        assert "unreviewed.pem" not in docker.staged_paths
+    else:
+        assert result.evidence_error is not None
+        assert "SHA-256" in result.evidence_error
+        assert docker.calls == []
 
 
 def test_suite_uses_explicit_paths_and_prefix(

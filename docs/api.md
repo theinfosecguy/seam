@@ -4,6 +4,10 @@ The demo and supplied-patch verification need no API key. Seam creates a paid
 client only when you supply `--model`. The model reads bounded source excerpts
 and proposes a patch; Seam runs the verification independently.
 
+Run `uv run --frozen seam doctor` from the intended checkout to see the installed
+version and actual package path, alongside Git and Docker availability. This
+helps distinguish environments when replaying a report with `seam inspect`.
+
 ## Choose a provider
 
 Seam uses [PydanticAI's maintained model adapters](https://ai.pydantic.dev/models/overview/)
@@ -125,10 +129,13 @@ also rejects an additional HTTP request within one reservation. Failed requests
 are not automatically retried. Native SDK error bodies and debug logs are not
 included in Seam's diagnostics.
 
-The CLI allows 16 model requests per run, at most 16,384 output tokens per
-request, and a 120-second request timeout. These limits are shared across
-adaptation attempts. The public Python agent also accepts explicit limits
-within the hard bounds; its constructor defaults are independent of the CLI.
+The CLI defaults to 16 model requests per run. Set `--max-model-calls` to an
+integer from 1 to 32 to select another request limit, for example
+`--max-model-calls 32` with `--model`. The count is cumulative across all attempts;
+raising it preserves the dollar cap and other limits. Each request allows at
+most 16,384 output tokens and has a 120-second timeout. The public Python agent
+also accepts explicit limits within the hard bounds; its constructor defaults
+are independent of the CLI.
 
 Bedrock uses a synchronous AWS client in a worker thread. On timeout or
 cancellation, Seam waits for its in-flight call to finish before closing the
@@ -141,6 +148,8 @@ All providers use the same confined tools and locally validated schemas. The
 model cannot run commands or modify the oracle. A patch submission must be the
 only call in its batch; a mixed read/submission batch executes nothing. Malformed
 arguments receive generic corrective feedback without echoing rejected values.
+Operator-reviewed assertion updates and fixture allowances stay frozen and grant
+no additional model permissions; see the [configuration guide](usage.md).
 
 Tests exercise native SDK serialization and replies with mock HTTP transports,
 plus Bedrock and Vertex authentication paths. These checks do not establish live

@@ -28,6 +28,17 @@ directory links, absolute links, cycles and hard links remain rejected. A shared
 preflight checks every selected revision before image preparation; staging repeats
 the checks because preflight cannot freeze a mutable filesystem.
 
+Public cryptographic test fixtures require exact paths and reviewed SHA-256
+hashes in the operator's configuration. Staging checks those bytes in every
+revision; credential-store, link and model-read restrictions remain in force.
+The operator must establish that these are published disposable test keys.
+
+An optional operator-reviewed assertion patch is frozen separately from model
+proposals. It changes only existing assertions in eligible test functions;
+baselines keep their original tests and the external oracle stays unchanged.
+Structural validation cannot prove assertion strength. The operator owns that
+judgment, and the final exported patch includes the reviewed assertions.
+
 The operator's explicit pytest plugins, import mode and suite marker expression
 are frozen verification inputs. Plugins run in the container with target code;
 they must be reviewed like the image and oracle. Marker filters apply only to
@@ -85,3 +96,6 @@ Do not put secrets in the target repository, oracle, or model-visible source.
 Keep generated artifacts out of version control unless you have reviewed their
 contents. The initial implementation has no service, multi-tenant isolation,
 remote execution worker, or automatic merge path.
+
+Report inspection checks stored consistency, including the final successful
+candidate's evidence. It neither authenticates JSON nor reruns execution.

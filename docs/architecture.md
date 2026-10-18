@@ -26,12 +26,13 @@ src/seam/
 │   ├── container.py       # Constrained container arguments
 │   ├── docker.py          # Image resolution, lifecycle, and watchdog
 │   ├── processes.py       # Bounded host processes and cleanup
-│   └── snapshot.py        # Bounded source staging without credentials
+│   └── snapshot.py        # Bounded snapshots and pinned reviewed fixtures
 ├── verification/
 │   ├── assessment.py      # Evidence classification
 │   ├── config.py          # Trusted TOML loading
 │   ├── junit.py           # Bounded report reading and parsing
 │   ├── reporting.py       # JSON and Markdown report persistence
+│   ├── reviewed_tests.py  # Reviewed assertion-only test patch validation
 │   └── workflow.py        # Four-revision run coordinator
 ├── constants/
 │   ├── agent.py           # Conversation and tool bounds
@@ -44,7 +45,7 @@ src/seam/
 ├── security/
 │   ├── content.py         # Offline maintained detectors and literal normalization
 │   ├── files.py           # Bounded explicit controller configuration reads
-│   └── paths.py           # Explicit credential-store exclusions
+│   └── paths.py           # Credential exclusions and reviewed fixture pins
 ├── exceptions.py          # Repository, execution, and agent error types
 ├── models.py              # Shared records and validated data
 └── repository.py          # Local Git inspection, cloning, and patch confinement
@@ -77,10 +78,12 @@ fixture text are package resources, loaded by the subsystem that uses them.
 
 ```mermaid
 flowchart LR
-    Inputs[Repository + fix + target + trusted config] --> Snapshot[Resolve commits and disposable clones]
+    Inputs[Repository + fix + target + trusted config] --> Freeze[Freeze oracle/config and optional reviewed inputs]
+    Freeze --> Snapshot[Resolve commits / clones / snapshot preflight]
     Snapshot --> Baseline[Upstream parent / fix and target baseline]
     Baseline --> Adapt[Apply fix, supplied patch, or bounded AI proposal]
-    Adapt --> Verify[External oracle + controls + project suite]
+    Adapt --> Assertions[Apply optional reviewed assertions]
+    Assertions --> Verify[External oracle + controls + project suite]
     Verify --> Report[Canonical patch and structured evidence]
     Verify -->|Rejected candidate and attempts remain| Adapt
 ```
@@ -90,6 +93,11 @@ requires the security assertion to reproduce on both vulnerable baselines and
 requires working controls on every revision. The backport must preserve the
 target's collected suite cases. Reports include the immutable commits, execution
 image, input hashes, candidate outcomes, and optional model usage.
+
+Optional fixture pins are checked before image preparation and on every staged
+snapshot. The target baseline keeps its original tests; reviewed assertion edits
+accompany candidate checks and the canonical export. Model proposals retain the
+implementation-only path policy. Human review determines assertion strength.
 
 Git recalculates generated hunk lengths while retaining context, path, mode, and
 whitespace checks. The exported patch is a canonical diff of the actual tested

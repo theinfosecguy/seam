@@ -1,6 +1,8 @@
 """Expose preparation, verification, and report inspection commands."""
 
 import math
+from importlib.metadata import version
+from importlib.resources import files
 from pathlib import Path
 from typing import Annotated
 
@@ -9,6 +11,7 @@ from pydantic import ValidationError
 
 from seam.cli.presentation import exit_for_report, render_report
 from seam.cli.providers import make_proposer
+from seam.constants.agent import CLI_MODEL_CALLS, MAX_API_CALLS
 from seam.constants.demo import DEFAULT_IMAGE
 from seam.demo import (
     build_demo_image,
@@ -56,6 +59,14 @@ def run(
             help="Disable the dollar cap; call, token, and execution limits remain.",
         ),
     ] = False,
+    max_model_calls: Annotated[
+        int,
+        typer.Option(
+            min=1,
+            max=MAX_API_CALLS,
+            help="Maximum model requests shared across all adaptation attempts.",
+        ),
+    ] = CLI_MODEL_CALLS,
     env_file: Annotated[
         Path | None,
         typer.Option(exists=True, dir_okay=False, help="Explicit controller key file."),
@@ -84,6 +95,8 @@ def run(
         raise typer.BadParameter("--env-file requires an explicit --model")
     if no_api_budget_cap and model is None:
         raise typer.BadParameter("--no-api-budget-cap requires an explicit --model")
+    if max_model_calls != CLI_MODEL_CALLS and model is None:
+        raise typer.BadParameter("--max-model-calls requires an explicit --model")
     if not math.isfinite(api_budget_usd):
         raise typer.BadParameter("--api-budget-usd must be finite")
     if model is None and any(
@@ -109,6 +122,7 @@ def run(
                 model,
                 None if no_api_budget_cap else api_budget_usd,
                 env_file,
+                max_model_calls=max_model_calls,
                 provider_config=provider_config,
                 input_price_per_million=input_price_per_million,
                 output_price_per_million=output_price_per_million,
@@ -169,6 +183,7 @@ def doctor(
     ] = "docker",
 ) -> None:
     """Check local Git and Docker prerequisites without API credentials."""
+    typer.echo(f"Seam: {version('seam')} ({files('seam')})")
     try:
         docker_command = docker_arguments(docker)
     except ValueError as error:

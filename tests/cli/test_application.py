@@ -7,7 +7,8 @@ from typer.testing import CliRunner
 
 from seam import cli
 from seam.cli import application, credentials
-from seam.models import ModelProvider, RunReport
+from seam.constants.agent import CLI_MODEL_CALLS, MAX_API_CALLS
+from seam.models import ModelProvider, ProcessResult, RunReport
 
 runner = CliRunner()
 
@@ -115,6 +116,7 @@ def test_explicit_model_passes_budget_and_explicit_key_file(tmp_path, monkeypatc
     def factory(provider, model, budget, path, **options):
         assert provider == ModelProvider.OPENAI
         assert (model, budget, path) == ("approved-model", 0.25, key_file)
+        assert options.pop("max_model_calls") == CLI_MODEL_CALLS
         assert all(value is None for value in options.values())
         return sentinel
 
@@ -204,6 +206,93 @@ def test_invalid_budget_is_validated_before_provider(tmp_path, monkeypatch, budg
         [*arguments(tmp_path), "--model", "some-model", "--api-budget-usd", budget],
     )
     assert result.exit_code == 2
+
+
+@pytest.mark.parametrize("calls", [1, MAX_API_CALLS])
+def test_explicit_model_call_limit_reaches_provider(tmp_path, monkeypatch, calls):
+    class Provider:
+        def close(self):
+            pass
+
+    def factory(*args, **options):
+        assert options["max_model_calls"] == calls
+        return Provider()
+
+    monkeypatch.setattr(application, "make_proposer", factory)
+    monkeypatch.setattr(application, "run_backport", lambda *args, **kwargs: report())
+    result = runner.invoke(
+        cli.app,
+        [
+            *arguments(tmp_path),
+            "--model",
+            "some-model",
+            "--max-model-calls",
+            str(calls),
+        ],
+    )
+    assert result.exit_code == 0, result.output
+
+
+@pytest.mark.parametrize("calls", ["0", "-1", str(MAX_API_CALLS + 1), "1.5", "inf"])
+def test_invalid_model_call_limit_is_rejected_before_provider(
+    tmp_path, monkeypatch, calls
+):
+    def forbidden(*args, **kwargs):
+        pytest.fail("Invalid call limits must not construct a provider")
+
+    monkeypatch.setattr(application, "make_proposer", forbidden)
+    result = runner.invoke(
+        cli.app,
+        [
+            *arguments(tmp_path),
+            "--model",
+            "some-model",
+            "--max-model-calls",
+            calls,
+        ],
+    )
+    assert result.exit_code == 2
+    assert "max-model-calls" in result.output
+
+
+def test_run_help_exposes_model_call_limit():
+    result = runner.invoke(cli.app, ["run", "--help"], color=False)
+    assert result.exit_code == 0, result.output
+    assert "--max-model-calls" in result.output
+
+
+def test_custom_model_call_limit_requires_model(tmp_path, monkeypatch):
+    def forbidden(*args, **kwargs):
+        pytest.fail("Call limits without a model must fail before verification")
+
+    monkeypatch.setattr(application, "make_proposer", forbidden)
+    monkeypatch.setattr(application, "run_backport", forbidden)
+    result = runner.invoke(
+        cli.app, [*arguments(tmp_path), "--max-model-calls", str(MAX_API_CALLS)]
+    )
+    assert result.exit_code == 2
+    assert "--max-model-calls requires an explicit --model" in result.output
+
+
+def test_doctor_identifies_installed_version_and_package_without_provider(
+    tmp_path, monkeypatch
+):
+    def forbidden(*args, **kwargs):
+        pytest.fail("Environment diagnostics must not construct a provider")
+
+    monkeypatch.setattr(application, "version", lambda name: "0.2.0")
+    monkeypatch.setattr(application, "files", lambda name: tmp_path / "seam")
+    monkeypatch.setattr(application, "make_proposer", forbidden)
+    monkeypatch.setattr(
+        application,
+        "run_process",
+        lambda *args, **kwargs: ProcessResult(returncode=0, stdout="available"),
+    )
+    result = runner.invoke(cli.app, ["doctor"])
+    assert result.exit_code == 0, result.output
+    assert f"Seam: 0.2.0 ({tmp_path / 'seam'})" in result.output
+    assert "Git: OK" in result.output
+    assert "Docker: OK" in result.output
 
 
 @pytest.mark.parametrize(
@@ -411,6 +500,7 @@ def test_cloud_and_pricing_options_reach_provider_factory(tmp_path, monkeypatch)
     )
     assert result.exit_code == 0, result.output
     assert seen == {
+        "max_model_calls": CLI_MODEL_CALLS,
         "provider_config": settings,
         "input_price_per_million": 0.5,
         "output_price_per_million": 2.0,

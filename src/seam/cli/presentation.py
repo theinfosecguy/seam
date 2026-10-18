@@ -29,6 +29,17 @@ def test_summary(cases: list[TestCaseResult]) -> str:
 def render_report(report: RunReport) -> None:
     """Display the verification result and the scope of its evidence."""
     typer.echo(f"{report.status.upper()}: {display_text(report.reason)}")
+    if report.reviewed_tests is not None:
+        typer.echo(
+            "Reviewed test expectations: "
+            f"{display_text(report.reviewed_tests.reason)} "
+            f"(SHA-256 {report.reviewed_tests.sha256})"
+        )
+    if report.reviewed_fixtures:
+        typer.echo(
+            f"Reviewed cryptographic fixtures: {len(report.reviewed_fixtures)} "
+            "exact paths with pinned SHA-256 hashes."
+        )
     if report.phases:
         typer.echo("Checks:")
     for phase in report.phases:

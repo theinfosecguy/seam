@@ -13,7 +13,9 @@ from seam.constants.verification import (
     MAX_PYTEST_MARKER_EXPRESSION,
     MAX_PYTEST_PLUGIN_NAME,
     MAX_PYTEST_PLUGINS,
+    MAX_REVIEW_REASON_CHARACTERS,
 )
+from seam.security.paths import validate_reviewed_fixtures
 
 
 class ModelProvider(StrEnum):
@@ -95,6 +97,15 @@ class RunnerConfig(Record):
     plugins: tuple[str, ...] = ()
     import_mode: Literal["importlib", "prepend", "append"] = "importlib"
     suite_markers: str | None = None
+    reviewed_fixtures: dict[str, tuple[str, ...]] = Field(default_factory=dict)
+
+    @field_validator("reviewed_fixtures")
+    @classmethod
+    def valid_reviewed_fixtures(
+        cls, values: dict[str, tuple[str, ...]]
+    ) -> dict[str, tuple[str, ...]]:
+        validate_reviewed_fixtures(values)
+        return values
 
     @field_validator("plugins")
     @classmethod
@@ -132,6 +143,21 @@ class RunnerConfig(Record):
         return values
 
 
+class ReviewedTestsConfig(Record):
+    """Pin an operator-reviewed assertion patch independently of model proposals."""
+
+    path: Path
+    sha256: str = Field(min_length=64, max_length=64, pattern=r"^[0-9a-f]{64}$")
+    reason: str = Field(min_length=1, max_length=MAX_REVIEW_REASON_CHARACTERS)
+
+    @field_validator("reason")
+    @classmethod
+    def meaningful_reason(cls, value: str) -> str:
+        if not value.strip():
+            raise ValueError("reviewed test changes require a review reason")
+        return value
+
+
 class HarnessConfig(Record):
     """Load explicit trusted configuration; repository config is never discovered."""
 
@@ -139,6 +165,7 @@ class HarnessConfig(Record):
     oracle: OracleConfig
     runner: RunnerConfig
     max_attempts: int = Field(default=3, ge=1, le=5)
+    reviewed_tests: ReviewedTestsConfig | None = None
 
 
 class ProcessResult(Record):
@@ -242,6 +269,16 @@ class RunReport(Record):
     attempts: int = 0
     adaptation: str = "none"
     model_usage: dict[str, int | float | str] = Field(default_factory=dict)
+    reviewed_tests: ReviewedTestsConfig | None = None
+    reviewed_fixtures: dict[str, tuple[str, ...]] = Field(default_factory=dict)
+
+    @field_validator("reviewed_fixtures")
+    @classmethod
+    def valid_reviewed_fixtures(
+        cls, values: dict[str, tuple[str, ...]]
+    ) -> dict[str, tuple[str, ...]]:
+        validate_reviewed_fixtures(values)
+        return values
 
     @model_validator(mode="after")
     def verified_evidence_complete(self) -> "RunReport":

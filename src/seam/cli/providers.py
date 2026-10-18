@@ -14,6 +14,7 @@ from seam.constants.agent import (
     CLI_MODEL_CALLS,
     CLI_OUTPUT_TOKENS,
     CLI_REQUEST_TIMEOUT_SECONDS,
+    MAX_API_CALLS,
 )
 from seam.constants.providers import AWS_CREDENTIAL_NAMES, PROVIDER_OPTIONS_PREFIXES
 from seam.constants.verification import MAX_CONFIG_BYTES
@@ -71,12 +72,17 @@ def make_proposer(
     budget_usd: float | None,
     env_file: Path | None,
     *,
+    max_model_calls: int = CLI_MODEL_CALLS,
     provider_config: Path | None = None,
     input_price_per_million: float | None = None,
     output_price_per_million: float | None = None,
     context_tokens: int | None = None,
 ) -> PatchAgent:
     """Keep all provider construction behind one entry point for the CLI."""
+    if type(max_model_calls) is not int or not 1 <= max_model_calls <= MAX_API_CALLS:
+        raise ValueError(
+            f"model call limit must be an integer from 1 to {MAX_API_CALLS}"
+        )
     options = load_provider_options(provider_config, provider)
     api_key = None
     if provider == ModelProvider.BEDROCK:
@@ -103,7 +109,7 @@ def make_proposer(
         model=model,
         api_key=api_key,
         budget_usd=budget_usd,
-        max_calls=CLI_MODEL_CALLS,
+        max_calls=max_model_calls,
         max_output_tokens=CLI_OUTPUT_TOKENS,
         timeout_seconds=CLI_REQUEST_TIMEOUT_SECONDS,
         provider_options=options,
