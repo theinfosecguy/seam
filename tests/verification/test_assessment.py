@@ -109,3 +109,10 @@ def test_known_expected_failure_is_still_incomplete_evidence() -> None:
         Case(name="test_known_issue", outcome="skipped", expected_failure=True)
     ]
     assert assess_phase(result, configuration(), vulnerable=False)[0] == "inconclusive"
+
+
+@pytest.mark.parametrize("name", ["", "test_existing"])
+def test_incomplete_suite_identities_are_inconclusive(name: str) -> None:
+    result = phase(vulnerable=False)
+    result.suite.tests.append(Case(name=name, outcome="passed"))
+    assert assess_phase(result, configuration(), vulnerable=False)[0] == "inconclusive"

@@ -176,6 +176,27 @@ class ExecutionResult(ProcessResult):
     tests: list[TestCaseResult] = Field(default_factory=list)
     evidence_error: str | None = None
 
+    def evidence_issue(self) -> str | None:
+        """Describe incomplete execution evidence without judging expected failures."""
+        if self.timed_out:
+            return "test execution timed out"
+        if self.truncated:
+            return "test output exceeded the configured limit"
+        if self.evidence_error:
+            return self.evidence_error
+        if self.returncode not in {0, 1}:
+            return "pytest did not complete a normal test run"
+        if not self.tests:
+            return "test execution produced no test cases"
+        identities = {(test.classname, test.name) for test in self.tests}
+        if len(identities) != len(self.tests) or any(
+            not test.name for test in self.tests
+        ):
+            return "test cases have missing or duplicate identities"
+        if any(test.outcome in {"error", "skipped"} for test in self.tests):
+            return "test execution contained errors or skipped tests"
+        return None
+
 
 PhaseName = Literal["upstream_parent", "upstream_fix", "target_baseline", "backport"]
 
@@ -225,7 +246,10 @@ class RunReport(Record):
     @model_validator(mode="after")
     def verified_evidence_complete(self) -> "RunReport":
         """Reject a verified verdict without the completed evidence matrix."""
-        if self.status == "verified" and (
+        if self.status != "verified":
+            return self
+        names = [phase.name for phase in self.phases]
+        if (
             not all(
                 (
                     self.fix_commit,
@@ -237,11 +261,81 @@ class RunReport(Record):
                     self.patch_sha256,
                 )
             )
-            or {phase.name for phase in self.phases}
-            != {"upstream_parent", "upstream_fix", "target_baseline", "backport"}
-            or self.phases[-1].name != "backport"
+            or names[:3] != ["upstream_parent", "upstream_fix", "target_baseline"]
+            or len(names) < 4
+            or any(name != "backport" for name in names[3:])
         ):
             raise ValueError(
                 "verified reports require provenance, patch, and four phases"
             )
+        # Earlier rejected candidates remain history; the final candidate must pass.
+        completed = [*self.phases[:3], self.phases[-1]]
+        revisions = (
+            self.parent_commit,
+            self.fix_commit,
+            self.target_commit,
+            self.target_commit,
+        )
+        for phase, revision in zip(completed, revisions, strict=True):
+            if phase.revision != revision:
+                raise ValueError("verified report phase contradicts its revision")
+            for label, execution in (
+                ("security", phase.security),
+                ("suite", phase.suite),
+            ):
+                if execution.evidence_issue():
+                    raise ValueError(
+                        f"verified report has incomplete {phase.name} {label} evidence"
+                    )
+            if phase.suite.returncode != 0 or any(
+                test.outcome != "passed" for test in phase.suite.tests
+            ):
+                raise ValueError(
+                    "verified report contains an unsuccessful project suite"
+                )
+            security = phase.security
+            if len(security.tests) < 2 or len(
+                {test.name for test in security.tests}
+            ) != len(security.tests):
+                raise ValueError(
+                    "verified report requires distinct security and control cases"
+                )
+            if phase.name in {"upstream_parent", "target_baseline"}:
+                failures = [test for test in security.tests if test.outcome == "failed"]
+                if (
+                    security.returncode != 1
+                    or len(failures) != 1
+                    or "AssertionError" not in failures[0].message
+                ):
+                    raise ValueError(
+                        "verified report lacks a reproduced security assertion"
+                    )
+            elif security.returncode != 0 or any(
+                test.outcome != "passed" for test in security.tests
+            ):
+                raise ValueError(
+                    "verified report contains unsuccessful security checks"
+                )
+        regressions = {
+            test.name
+            for phase in (completed[0], completed[2])
+            for test in phase.security.tests
+            if test.outcome == "failed"
+        }
+        oracle_cases = [
+            {test.name for test in phase.security.tests} for phase in completed
+        ]
+        if len(regressions) != 1 or any(
+            not regressions.issubset(cases) for cases in oracle_cases
+        ):
+            raise ValueError(
+                "verified report does not track the same security regression"
+            )
+        common_cases = oracle_cases[0].intersection(*oracle_cases[1:])
+        if not (common_cases - regressions):
+            raise ValueError("verified report lacks a shared passing control")
+        baseline = {(test.classname, test.name) for test in self.phases[2].suite.tests}
+        backport = {(test.classname, test.name) for test in self.phases[-1].suite.tests}
+        if baseline != backport:
+            raise ValueError("verified report changed the target suite collection")
         return self

@@ -17,6 +17,7 @@ from seam.demo import (
 )
 from seam.execution.processes import run_process
 from seam.models import ModelProvider, RunReport
+from seam.verification.reporting import display_text
 from seam.verification.workflow import run_backport
 
 app = typer.Typer(
@@ -148,7 +149,12 @@ def inspect(
     try:
         record = RunReport.model_validate_json(report.read_bytes())
     except (OSError, ValidationError) as error:
-        typer.echo(f"Invalid report: {error}", err=True)
+        detail = (
+            "; ".join(item["msg"] for item in error.errors(include_input=False))
+            if isinstance(error, ValidationError)
+            else str(error)
+        )
+        typer.echo(f"Invalid report: {display_text(detail)}", err=True)
         raise typer.Exit(2) from error
     if json_output:
         typer.echo(record.model_dump_json(indent=2))

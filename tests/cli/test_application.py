@@ -27,15 +27,32 @@ def report(status: str = "verified") -> RunReport:
             "phases": [
                 {
                     "name": name,
-                    "revision": "a" * 40,
-                    "security": {"returncode": 0},
-                    "suite": {"returncode": 0},
+                    "revision": revision,
+                    "security": {
+                        "returncode": 1
+                        if name in {"upstream_parent", "target_baseline"}
+                        else 0,
+                        "tests": [
+                            {
+                                "name": "test_security",
+                                "outcome": "failed"
+                                if name in {"upstream_parent", "target_baseline"}
+                                else "passed",
+                                "message": "AssertionError: SECURITY_REGRESSION",
+                            },
+                            {"name": "test_control", "outcome": "passed"},
+                        ],
+                    },
+                    "suite": {
+                        "returncode": 0,
+                        "tests": [{"name": "test_existing", "outcome": "passed"}],
+                    },
                 }
-                for name in (
-                    "upstream_parent",
-                    "upstream_fix",
-                    "target_baseline",
-                    "backport",
+                for name, revision in (
+                    ("upstream_parent", "b" * 40),
+                    ("upstream_fix", "a" * 40),
+                    ("target_baseline", "c" * 40),
+                    ("backport", "c" * 40),
                 )
             ],
         }

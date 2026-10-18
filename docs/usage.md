@@ -244,12 +244,20 @@ exit with `2` and leave an inconclusive report once a usable output directory
 has been selected. Unavailable provenance fields are `null`. CLI usage and
 credential errors, unsafe output paths, and nonempty output directories are
 rejected before verification and may not create a report. Reports use schema
-version 2; `inspect` also accepts historical version 1 reports.
+version 2; `inspect` also accepts historical version 1 reports with complete
+evidence.
 
-`inspect` exits successfully when it reads a
-valid report, regardless of the recorded verification status. Timeouts, skipped
-tests, malformed reports, missing checks, or a baseline that does not reproduce
-the expected failure cannot establish a verified backport. Passing checks do not
+`inspect` exits successfully when it reads a valid report, regardless of the
+recorded verification status. It rejects a `verified` verdict with missing or
+contradictory test evidence and exits with `2`, including in `--json` mode.
+Checks cover execution completion, passing fixed revisions and project suites,
+reproduced baseline assertions, and preservation of the target suite collection.
+Earlier rejected candidates remain history when the final candidate passes.
+
+Inspection checks the recorded data; it does not rerun tests or authenticate
+hand-edited JSON. Keep the frozen configuration, oracle, and patch for review.
+Timeouts, skipped tests, malformed reports, missing checks, or a baseline that
+does not reproduce the expected failure cannot establish a verified backport. Passing checks do not
 establish that a release has no other vulnerabilities.
 
 ## Development checks
