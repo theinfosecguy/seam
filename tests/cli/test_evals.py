@@ -9,7 +9,6 @@ from typer.testing import CliRunner
 
 from seam import cli
 from seam.cli import evals
-from seam.constants.agent import CLI_MODEL_CALLS
 from seam.constants.repository import MAX_PATCH_BYTES
 from seam.evals import catalogue
 from seam.evals import runner as eval_runner
@@ -207,7 +206,7 @@ def test_setup_failure_points_to_existing_manifest_without_a_report(
         ["--mode", "reference", "--model", "explicit-model"],
         ["--mode", "direct", "--model", "explicit-model"],
         ["--mode", "candidate", "--model", "explicit-model"],
-        ["--max-model-calls", str(CLI_MODEL_CALLS + 1)],
+        ["--max-model-calls", "1"],
         ["--no-api-budget-cap"],
         ["--model", "explicit-model", "--api-budget-usd", "nan"],
         ["--model", "explicit-model", "--api-budget-usd", "inf"],

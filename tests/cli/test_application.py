@@ -5,8 +5,9 @@ from pathlib import Path
 import pytest
 from typer.testing import CliRunner
 
+import seam.agent
 from seam import cli
-from seam.cli import application, credentials
+from seam.cli import application, credentials, providers
 from seam.constants.agent import CLI_MODEL_CALLS, MAX_API_CALLS
 from seam.models import ModelProvider, ProcessResult, RunReport
 
@@ -184,6 +185,37 @@ def test_explicit_model_passes_budget_and_explicit_key_file(tmp_path, monkeypatc
     assert closed == [True]
 
 
+def test_normal_run_defaults_to_32_model_requests_without_changing_budget(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    seen: dict[str, object] = {}
+    closed = []
+
+    class Provider:
+        def close(self) -> None:
+            closed.append(True)
+
+    proposer = Provider()
+
+    def construct(**options: object) -> Provider:
+        seen.update(options)
+        return proposer
+
+    def execute(*args: object, **options: object) -> RunReport:
+        assert options["proposer"] is proposer
+        return report()
+
+    monkeypatch.setattr(seam.agent, "PatchAgent", construct)
+    monkeypatch.setattr(providers, "load_api_key", lambda *_: "offline-test-key")
+    monkeypatch.setattr(application, "run_backport", execute)
+    result = runner.invoke(cli.app, [*arguments(tmp_path), "--model", "explicit-model"])
+
+    assert result.exit_code == 0, result.output
+    assert seen["max_calls"] == 32
+    assert seen["budget_usd"] == 10
+    assert closed == [True]
+
+
 def test_provider_is_closed_when_verification_raises(tmp_path, monkeypatch):
     closed = []
 
@@ -317,6 +349,7 @@ def test_run_help_exposes_model_call_limit():
     result = runner.invoke(cli.app, ["run", "--help"], color=False)
     assert result.exit_code == 0, result.output
     assert "--max-model-calls" in result.output
+    assert "default: 32" in result.output
     assert "--direct" in result.output
     assert "explicit model" in result.output
 
@@ -327,9 +360,7 @@ def test_custom_model_call_limit_requires_model(tmp_path, monkeypatch):
 
     monkeypatch.setattr(application, "make_proposer", forbidden)
     monkeypatch.setattr(application, "run_backport", forbidden)
-    result = runner.invoke(
-        cli.app, [*arguments(tmp_path), "--max-model-calls", str(MAX_API_CALLS)]
-    )
+    result = runner.invoke(cli.app, [*arguments(tmp_path), "--max-model-calls", "1"])
     assert result.exit_code == 2
     assert "--max-model-calls requires an explicit --model" in result.output
 
