@@ -185,6 +185,8 @@ def test_qualification_requires_repeat_and_executed_unchanged_negative(
     assert summary["ordinary_git_apply"] is True
     assert summary["target_suite_cases"] == 2
     assert len(replay["calls"]) == 3
+    assert replay["calls"][0]["mode"] == "reference"
+    assert replay["calls"][1]["mode"] == "reference"
     assert replay["calls"][0]["build_image"] is True
     assert replay["calls"][1]["image"] == IMAGE_ID
     assert replay["calls"][2]["image"] == IMAGE_ID

@@ -25,7 +25,7 @@ from seam.verification.reporting import display_text
 from seam.verification.workflow import run_backport
 
 app = typer.Typer(
-    help="Adapt a security fix to an older release and verify the execution evidence.",
+    help="Use AI to adapt a security fix and verify the execution evidence.",
     no_args_is_help=True,
     pretty_exceptions_enable=False,
 )
@@ -39,13 +39,17 @@ def run(
     target: Annotated[str, typer.Option(help="Maintained release ref or commit.")],
     config: Annotated[Path, typer.Option(dir_okay=False)],
     output: Annotated[Path, typer.Option(help="New directory for patch and evidence.")],
+    direct: Annotated[
+        bool,
+        typer.Option("--direct", help="Apply the upstream fix unchanged offline."),
+    ] = False,
     candidate_patch: Annotated[
         Path | None,
         typer.Option(dir_okay=False, help="Verify a supplied patch offline."),
     ] = None,
     model: Annotated[
         str | None,
-        typer.Option(help="Explicitly enable paid adaptation with this model."),
+        typer.Option(help="Model required for AI adaptation; may incur API charges."),
     ] = None,
     provider: Annotated[
         ModelProvider, typer.Option(help="Model service used only with --model.")
@@ -90,9 +94,11 @@ def run(
         int | None, typer.Option(min=1, help="Explicit model input context ceiling.")
     ] = None,
 ) -> None:
-    """Verify an existing fix against its parent and an older maintained release."""
-    if candidate_patch is not None and model is not None:
-        raise typer.BadParameter("Use either --candidate-patch or --model")
+    """Adapt with an explicit model, or select an offline verification mode."""
+    if sum((model is not None, direct, candidate_patch is not None)) > 1:
+        raise typer.BadParameter("Use only one of --model, --direct, --candidate-patch")
+    if model is not None and not model.strip():
+        raise typer.BadParameter("--model must be nonempty")
     if env_file is not None and model is None:
         raise typer.BadParameter("--env-file requires an explicit --model")
     if no_api_budget_cap and model is None:
@@ -116,6 +122,11 @@ def run(
         for price in (input_price_per_million, output_price_per_million)
     ):
         raise typer.BadParameter("Model prices must be finite")
+    if model is None and not direct and candidate_patch is None:
+        raise typer.BadParameter(
+            "AI adaptation requires an explicit --model; "
+            "use --direct or --candidate-patch for offline verification"
+        )
     proposer = None
     try:
         if model is not None:
@@ -136,6 +147,7 @@ def run(
             target,
             config,
             output,
+            direct=direct,
             proposer=proposer,
             candidate_patch=candidate_patch,
             progress=typer.echo,
@@ -224,7 +236,7 @@ def demo(
         typer.Option(help="Use an existing Python+pytest image; skip the demo build."),
     ] = None,
 ) -> None:
-    """Run a complete synthetic backport exercise without an API key."""
+    """Verify the supplied synthetic reference patch offline; no AI model is used."""
     try:
         command = docker_arguments(docker)
         project = create_demo(output, docker=command, image=image or DEFAULT_IMAGE)

@@ -141,6 +141,7 @@ def test_replay_propagates_native_config_and_records_provenance(
         else None
     )
     assert call[4]["proposer"] is proposer
+    assert call[4]["direct"] is (mode == "direct")
     assert original == (directory / "harness.toml").read_bytes()
     assert not (output / "harness.toml").exists()
     manifest = json.loads((output / "run-manifest.json").read_text())
@@ -169,7 +170,9 @@ def test_replay_propagates_native_config_and_records_provenance(
 def test_build_uses_public_recipe_and_preserves_case_config(
     tmp_path: Path, executor: dict[str, object]
 ) -> None:
-    runner.run_case(DATASET, "h11", tmp_path / "run", build_image=True)
+    runner.run_case(
+        DATASET, "h11", tmp_path / "run", mode="reference", build_image=True
+    )
     command, options = executor["builds"][0]
     assert command[:4] == ["docker", "build", "--pull", "--no-cache"]
     assert command[command.index("--platform") + 1] == "linux/amd64"
@@ -180,13 +183,14 @@ def test_build_uses_public_recipe_and_preserves_case_config(
 @pytest.mark.parametrize(
     "options",
     [
+        {},
         {"mode": "unknown"},
         {"mode": "candidate"},
         {"mode": "agent"},
         {"mode": "direct", "proposer": SimpleNamespace(usage={})},
-        {"docker": ()},
-        {"image": ""},
-        {"image": IMAGE_ID, "build_image": True},
+        {"mode": "reference", "docker": ()},
+        {"mode": "reference", "image": ""},
+        {"mode": "reference", "image": IMAGE_ID, "build_image": True},
     ],
 )
 def test_invalid_inputs_fail_before_output_or_executor(
@@ -197,6 +201,19 @@ def test_invalid_inputs_fail_before_output_or_executor(
         runner.run_case(DATASET, "h11", output, **options)
     assert not output.exists()
     assert not any(executor.values())
+
+
+def test_default_agent_mode_uses_explicit_proposer_without_a_reference_patch(
+    tmp_path: Path, executor: dict[str, object]
+) -> None:
+    proposer = SimpleNamespace(usage={"api_calls": 1})
+    output = tmp_path / "run"
+    runner.run_case(DATASET, "h11", output, proposer=proposer)
+    options = executor["workflow"][0][4]
+    assert options["proposer"] is proposer
+    assert options["candidate_patch"] is None
+    assert options["direct"] is False
+    assert json.loads((output / "run-manifest.json").read_text())["mode"] == "agent"
 
 
 @pytest.mark.parametrize("content", [b"", b"\xff"])
@@ -238,7 +255,9 @@ def test_setup_failure_keeps_inconclusive_manifest_without_report(
 
         monkeypatch.setattr(runner.repository, "git", failed_clone)
     output = tmp_path / "run"
-    report = runner.run_case(DATASET, "h11", output, build_image=failure == "build")
+    report = runner.run_case(
+        DATASET, "h11", output, mode="reference", build_image=failure == "build"
+    )
     assert report.status == "inconclusive"
     manifest = json.loads((output / "run-manifest.json").read_text())
     assert manifest["status"] == "inconclusive"
@@ -259,7 +278,7 @@ def test_published_count_mismatch_updates_both_manifest_and_stored_report(
 
     monkeypatch.setattr(runner, "run_backport", different_count)
     output = tmp_path / "run"
-    report = runner.run_case(DATASET, "h11", output)
+    report = runner.run_case(DATASET, "h11", output, mode="reference")
     assert report.status == "inconclusive"
     assert json.loads((output / "evidence/report.json").read_text())["status"] == (
         "inconclusive"
@@ -274,7 +293,9 @@ def test_missing_case_fails_before_output_and_executor(
 ) -> None:
     output = tmp_path / "run"
     with pytest.raises(OSError):
-        runner.run_case(DATASET, "missing-case", output, build_image=True)
+        runner.run_case(
+            DATASET, "missing-case", output, mode="reference", build_image=True
+        )
     assert not output.exists()
     assert not any(executor.values())
 
@@ -346,6 +367,7 @@ def test_workflow_freezes_validated_runner_override(
         project.target,
         project.config_path,
         output,
+        direct=True,
         runner_config=override,
     )
     assert report.status == "inconclusive"

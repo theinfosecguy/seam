@@ -1,4 +1,4 @@
-"""Replay case patches through the existing four-revision verifier."""
+"""Evaluate model adaptations or explicit offline patches with the verifier."""
 
 import hashlib
 import json
@@ -98,12 +98,12 @@ def run_case(
     docker: tuple[str, ...] = ("docker",),
     build_image: bool = False,
     image: str | None = None,
-    mode: Literal["reference", "direct", "candidate", "agent"] = "reference",
+    mode: Literal["reference", "direct", "candidate", "agent"] = "agent",
     candidate_patch: Path | None = None,
     proposer: PatchProposer | None = None,
     progress: Callable[[str], None] | None = None,
 ) -> RunReport:
-    """Validate inputs, replay a case, and preserve bounded setup-failure evidence."""
+    """Validate inputs, adapt a case, and preserve bounded setup-failure evidence."""
     dataset = dataset.resolve()
     case, directory = load_case(dataset, instance_id)
     if mode not in {"reference", "direct", "candidate", "agent"} or (
@@ -204,6 +204,7 @@ def run_case(
             case.base_commit,
             config_path,
             output / "evidence",
+            direct=mode == "direct",
             runner_config=runner_config,
             candidate_patch=(
                 directory / "reference.patch"

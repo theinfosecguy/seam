@@ -98,7 +98,7 @@ class DockerRunner:
         image_id: str,
         kind: Literal["security", "suite"],
     ) -> ExecutionResult:
-        """Return execution evidence; incomplete reports never become passing checks."""
+        """Return bounded evidence; unresolved container teardown raises RunnerError."""
         if not IMAGE_ID_PATTERN.fullmatch(image_id):
             return ExecutionResult(
                 returncode=125, evidence_error="Tests require an immutable image ID"
@@ -155,7 +155,9 @@ class DockerRunner:
             error: str | None = None
             tests: list[TestCaseResult] = []
             if created and (cleanup.returncode or cleanup.timed_out):
-                error = "Docker could not confirm removal of the test container"
+                raise RunnerError(
+                    "Docker could not confirm removal of the test container"
+                )
             elif result.timed_out:
                 error = "Test execution exceeded its time limit"
             elif result.truncated:

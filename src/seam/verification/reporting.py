@@ -83,7 +83,26 @@ def write_report(output: Path, report: RunReport) -> RunReport:
         f"- Image: `{report.image_id or 'unresolved'}`",
         f"- Oracle SHA-256: `{report.oracle_sha256 or 'unavailable'}`",
         f"- Patch SHA-256: `{report.patch_sha256 or 'none'}`",
+        f"- Adaptation: {display_text(report.adaptation)}",
+        f"- Candidate attempts: {report.attempts}",
     ]
+    if report.adaptation == "agent":
+        provider = display_text(str(report.model_usage.get("provider", "unknown")))
+        model = display_text(str(report.model_usage.get("model", "unknown")))
+        calls = display_text(str(report.model_usage.get("calls", "unknown")))
+        rows.extend(
+            [
+                "",
+                "AI usage:",
+                "",
+                f"    Provider: {provider}",
+                f"    Model: {model}",
+                f"    Requests: {calls}",
+                "",
+                "Each returned candidate has an `attempt-N.patch` and "
+                "`attempt-N.explanation.txt` alongside this report.",
+            ]
+        )
     if report.status == "verified":
         rows.append("- Canonical patch: `backport.patch`")
     if report.reviewed_tests is not None:

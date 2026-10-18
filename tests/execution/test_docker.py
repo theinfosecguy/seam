@@ -311,10 +311,10 @@ def test_failed_cleanup_prevents_verified_evidence(
     docker = DockerStub()
     docker.cleanup = ProcessResult(returncode=1)
     monkeypatch.setattr(runner_module, "run_process", docker)
-    result = DockerRunner(RunnerConfig(image="operator-image")).run(
-        workspace, oracle, IMAGE_ID, "security"
-    )
-    assert "removal" in (result.evidence_error or "")
+    with pytest.raises(RunnerError, match="removal"):
+        DockerRunner(RunnerConfig(image="operator-image")).run(
+            workspace, oracle, IMAGE_ID, "security"
+        )
 
 
 def test_symlink_report_cannot_read_host_file(

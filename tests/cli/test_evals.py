@@ -1,4 +1,4 @@
-"""Keep evaluation commands explicit, keyless by default, and truthful on failure."""
+"""Keep AI evaluation explicit, offline modes deliberate, and failures truthful."""
 
 import json
 import shutil
@@ -16,7 +16,7 @@ from seam.evals import runner as eval_runner
 from seam.models import ModelProvider, ProcessResult, RunReport
 
 DATASET = Path(__file__).resolve().parents[2] / "evals/python"
-runner = CliRunner()
+runner = CliRunner(env={"TERM": "dumb"})
 
 
 def forbidden(*args: object, **kwargs: object) -> None:
@@ -118,7 +118,8 @@ def test_catalogue_commands_are_keyless_and_do_not_execute(
     "status,expected_exit", [("verified", 0), ("failed", 1), ("inconclusive", 2)]
 )
 @pytest.mark.parametrize(
-    "mode_options,mode", [([], "reference"), (["--mode", "direct"], "direct")]
+    "mode_options,mode",
+    [(["--mode", "reference"], "reference"), (["--mode", "direct"], "direct")],
 )
 def test_reference_and_direct_modes_never_construct_a_provider(
     tmp_path: Path,
@@ -181,6 +182,8 @@ def test_setup_failure_points_to_existing_manifest_without_a_report(
         cli.app,
         [
             *arguments(dataset, output),
+            "--mode",
+            "reference",
             *(["--build-image"] if failure == "build" else []),
         ],
     )
@@ -195,22 +198,106 @@ def test_setup_failure_points_to_existing_manifest_without_a_report(
 @pytest.mark.parametrize(
     "options",
     [
+        [],
         ["--mode", "unknown"],
         ["--mode", "candidate"],
         ["--mode", "agent"],
-        ["--model", "explicit-model"],
+        ["--model", ""],
+        ["--model", " "],
+        ["--mode", "reference", "--model", "explicit-model"],
+        ["--mode", "direct", "--model", "explicit-model"],
+        ["--mode", "candidate", "--model", "explicit-model"],
         ["--max-model-calls", str(CLI_MODEL_CALLS + 1)],
         ["--no-api-budget-cap"],
-        ["--api-budget-usd", "nan"],
-        ["--api-budget-usd", "inf"],
+        ["--model", "explicit-model", "--api-budget-usd", "nan"],
+        ["--model", "explicit-model", "--api-budget-usd", "inf"],
         ["--api-budget-usd", "0"],
-        ["--docker", ""],
+        ["--mode", "reference", "--docker", ""],
     ],
 )
 def test_invalid_modes_and_settings_fail_before_provider_or_runner(
     tmp_path: Path, dataset: Path, no_execution: None, options: list[str]
 ) -> None:
     result = runner.invoke(cli.app, [*arguments(dataset, tmp_path / "run"), *options])
+    assert result.exit_code == 2, result.output
+    assert not (tmp_path / "run").exists()
+
+
+def test_candidate_mode_passes_only_the_explicit_patch_offline(
+    tmp_path: Path, dataset: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    candidate = tmp_path / "candidate.patch"
+    candidate.write_text("operator patch\n")
+
+    def execute(*args: object, **options: object) -> RunReport:
+        assert options["mode"] == "candidate"
+        assert options["candidate_patch"] == candidate
+        assert options["proposer"] is None
+        return report("inconclusive")
+
+    monkeypatch.setattr(evals, "make_proposer", forbidden)
+    monkeypatch.setattr(evals, "run_case", execute)
+    result = runner.invoke(
+        cli.app,
+        [
+            *arguments(dataset, tmp_path / "run"),
+            "--mode",
+            "candidate",
+            "--candidate-patch",
+            str(candidate),
+        ],
+    )
+    assert result.exit_code == 2, result.output
+    assert "INCONCLUSIVE" in result.output
+
+
+def test_run_help_describes_agent_default_and_explicit_offline_modes() -> None:
+    result = runner.invoke(cli.app, ["eval", "run", "--help"], color=False)
+    assert result.exit_code == 0, result.output
+    assert "default: agent" in result.output
+    assert "--model" in result.output
+    assert "offline" in result.output
+
+
+def test_provider_failure_never_falls_back_to_an_offline_mode(
+    tmp_path: Path, dataset: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    def fail(*args: object, **kwargs: object) -> None:
+        raise RuntimeError("provider unavailable")
+
+    monkeypatch.setattr(evals, "make_proposer", fail)
+    monkeypatch.setattr(evals, "run_case", forbidden)
+    result = runner.invoke(
+        cli.app, [*arguments(dataset, tmp_path / "run"), "--model", "some-model"]
+    )
+    assert result.exit_code == 2, result.output
+    assert "provider unavailable" in result.output
+    assert not (tmp_path / "run").exists()
+
+
+@pytest.mark.parametrize(
+    "mode_options",
+    [
+        [],
+        ["--mode", "reference"],
+        ["--mode", "direct"],
+        ["--mode", "candidate", "--model", "explicit-model"],
+    ],
+)
+def test_candidate_patch_cannot_be_combined_with_other_modes(
+    tmp_path: Path, dataset: Path, no_execution: None, mode_options: list[str]
+) -> None:
+    candidate = tmp_path / "candidate.patch"
+    candidate.write_text("operator patch\n")
+    result = runner.invoke(
+        cli.app,
+        [
+            *arguments(dataset, tmp_path / "run"),
+            *mode_options,
+            "--candidate-patch",
+            str(candidate),
+        ],
+    )
     assert result.exit_code == 2, result.output
     assert not (tmp_path / "run").exists()
 
@@ -261,8 +348,6 @@ def test_invalid_metadata_does_not_print_pydantic_input(
     options = (
         [
             *arguments(dataset, tmp_path / "run"),
-            "--mode",
-            "agent",
             "--model",
             "explicit-model",
         ]
@@ -297,7 +382,7 @@ def test_mutated_case_asset_never_reaches_provider_or_runner(
 
 
 @pytest.mark.parametrize("setting", ["--env-file", "--provider-config"])
-def test_controller_files_require_explicit_agent_mode(
+def test_controller_files_require_an_explicit_model(
     tmp_path: Path, dataset: Path, no_execution: None, setting: str
 ) -> None:
     path = tmp_path / "controller.toml"
@@ -352,7 +437,7 @@ def test_installed_default_prefers_bundled_data(
     "outcome", ["verified", "failed", "inconclusive", "setup_error"]
 )
 @pytest.mark.parametrize("uncapped", [False, True])
-def test_explicit_agent_settings_usage_and_cleanup(
+def test_default_agent_settings_usage_and_cleanup(
     tmp_path: Path,
     dataset: Path,
     monkeypatch: pytest.MonkeyPatch,
@@ -408,8 +493,6 @@ def test_explicit_agent_settings_usage_and_cleanup(
         cli.app,
         [
             *arguments(dataset, tmp_path / "run"),
-            "--mode",
-            "agent",
             "--model",
             "explicit-model",
             "--provider",

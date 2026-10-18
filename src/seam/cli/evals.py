@@ -1,4 +1,4 @@
-"""List, replay, and qualify the published Python evaluation cases."""
+"""List, adapt, and qualify the published Python evaluation cases."""
 
 import math
 from pathlib import Path
@@ -18,7 +18,7 @@ from seam.models import ModelProvider
 from seam.verification.reporting import display_text
 
 app = typer.Typer(
-    help="Replay the public Python backport evaluation cases.", no_args_is_help=True
+    help="Evaluate AI backports of the public Python cases.", no_args_is_help=True
 )
 
 
@@ -93,11 +93,20 @@ def run(
     dataset: Annotated[Path | None, typer.Option(file_okay=False)] = None,
     docker: str = "docker",
     build_image: bool = False,
-    mode: Literal["reference", "direct", "candidate", "agent"] = "reference",
+    mode: Annotated[
+        Literal["reference", "direct", "candidate", "agent"],
+        typer.Option(help="Agent requires --model; other modes run offline."),
+    ] = "agent",
     candidate_patch: Annotated[
-        Path | None, typer.Option(exists=True, dir_okay=False)
+        Path | None,
+        typer.Option(
+            exists=True, dir_okay=False, help="Supplied patch for --mode candidate."
+        ),
     ] = None,
-    model: str | None = None,
+    model: Annotated[
+        str | None,
+        typer.Option(help="Model required in agent mode; may incur API charges."),
+    ] = None,
     provider: ModelProvider = ModelProvider.OPENAI,
     env_file: Annotated[Path | None, typer.Option(exists=True, dir_okay=False)] = None,
     provider_config: Annotated[
@@ -109,18 +118,20 @@ def run(
     api_budget_usd: Annotated[float, typer.Option(min=0.01)] = 10,
     no_api_budget_cap: bool = False,
 ) -> None:
-    """Run a reference by default; paid adaptation requires agent mode and a model."""
+    """Adapt with an explicit model by default; select offline modes deliberately."""
     selected = dataset or default_dataset()
     proposer = None
     try:
-        load_case(selected.resolve(), instance_id)
         if (mode == "agent") != (model is not None) or (mode == "candidate") != (
             candidate_patch is not None
         ):
             raise ValueError(
-                "select reference/direct, candidate with a patch, "
-                "or agent with an explicit model"
+                "agent mode requires an explicit --model; "
+                "select --mode reference, --mode direct, or --mode candidate "
+                "with --candidate-patch for offline verification"
             )
+        if model is not None and not model.strip():
+            raise ValueError("--model must be nonempty")
         if model is None and (
             env_file is not None
             or provider_config is not None
@@ -130,6 +141,7 @@ def run(
             raise ValueError("model settings require agent mode and an explicit model")
         if not math.isfinite(api_budget_usd):
             raise ValueError("API budget must be finite")
+        load_case(selected.resolve(), instance_id)
         command = docker_arguments(docker)
         if model is not None:
             proposer = make_proposer(

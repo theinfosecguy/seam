@@ -11,6 +11,7 @@ from pydantic import ValidationError
 
 from seam import repository
 from seam.constants.repository import MAX_PATCH_BYTES
+from seam.constants.verification import MAX_ADAPTATION_FEEDBACK_CHARACTERS
 from seam.exceptions import RepositoryError
 from seam.execution.docker import DockerRunner
 from seam.execution.snapshot import preflight_snapshot
@@ -24,7 +25,7 @@ from seam.models import (
 )
 from seam.verification.assessment import assess_phase
 from seam.verification.config import load_config
-from seam.verification.reporting import write_report
+from seam.verification.reporting import diagnostic_excerpt, write_report
 from seam.verification.reviewed_tests import (
     apply_reviewed_test_patch,
     load_reviewed_test_patch,
@@ -53,15 +54,20 @@ def run_backport(
     *,
     proposer: PatchProposer | None = None,
     candidate_patch: Path | None = None,
+    direct: bool = False,
     progress: Callable[[str], None] | None = None,
     runner_config: RunnerConfig | None = None,
 ) -> RunReport:
     """Adapt one fix in independent clones and export evidence, preserving the source.
 
-    A caller-supplied candidate exercises the same verifier without an API call.
-    Clean application is attempted first otherwise; the model is a fallback.
+    A proposer creates every candidate. Supplied patches and direct application
+    exercise the same verifier only when explicitly selected instead.
     """
 
+    if sum((proposer is not None, candidate_patch is not None, direct)) != 1:
+        raise ValueError(
+            "Select a model proposer, a supplied candidate, or direct mode"
+        )
     repo = repo.resolve()
     output = output.resolve()
     if output == repo or repo in output.parents:
@@ -77,8 +83,6 @@ def run_backport(
     write_report(output, report)
     try:
         repo = repo.resolve(strict=True)
-        if proposer is not None and candidate_patch is not None:
-            raise ValueError("select either a proposer or a supplied candidate")
         config = load_config(config_path)
         if runner_config is not None:
             config.runner = RunnerConfig.model_validate(runner_config.model_dump())
@@ -172,35 +176,42 @@ def run_backport(
                     return write_report(output, report)
 
             feedback = ""
+            previous_patch = ""
             baseline_suite = {
                 (test.classname, test.name) for test in report.phases[-1].suite.tests
             }
-            for attempt in range(1, config.max_attempts + 1):
-                if attempt > 1 and proposer is None:
-                    break
+            attempt_limit = config.max_attempts if proposer is not None else 1
+            for attempt in range(1, attempt_limit + 1):
                 report.attempts = attempt
                 if progress is not None:
-                    progress(f"Preparing candidate {attempt} of {config.max_attempts}")
+                    progress(f"Preparing candidate {attempt} of {attempt_limit}")
                 workspace = root / f"candidate-{attempt}"
                 repository.clone_at(repo, target_commit, workspace)
-                if attempt == 1:
-                    patch = explicit_patch if explicit_patch is not None else fix_patch
-                    report.adaptation = (
-                        "provided_patch" if explicit_patch else "direct_application"
-                    )
-                elif proposer is not None:
+                if proposer is not None:
                     report.adaptation = "agent"
                     proposal = proposer.propose(
                         AgentContext(
                             workspace=workspace,
                             upstream_diff=fix_patch,
                             feedback=feedback,
+                            upstream_parent_workspace=root / "upstream_parent",
+                            upstream_fix_workspace=root / "upstream_fix",
+                            previous_patch=previous_patch,
                         )
                     )
                     patch = proposal.patch
                     report.model_usage = proposer.usage
+                    (output / f"attempt-{attempt}.explanation.txt").write_text(
+                        proposal.explanation + "\n", "utf-8"
+                    )
                 else:
-                    break
+                    patch = explicit_patch if explicit_patch is not None else fix_patch
+                    report.adaptation = (
+                        "provided_patch"
+                        if explicit_patch is not None
+                        else "direct_application"
+                    )
+                previous_patch = patch
                 # Preserve rejected proposals too, so an unsuccessful adaptation
                 # remains reviewable without recording provider conversations.
                 (output / f"attempt-{attempt}.patch").write_text(patch, "utf-8")
@@ -211,6 +222,7 @@ def run_backport(
                     (output / f"attempt-{attempt}.txt").write_text(
                         feedback + "\n", "utf-8"
                     )
+                    report.status = "inconclusive"
                     report.reason = "Candidate could not be applied: " + feedback
                     write_report(output, report)
                     if explicit_patch is not None:
@@ -235,29 +247,31 @@ def run_backport(
                         patch = repository.git(
                             workspace, "diff", "--no-ext-diff", "--no-textconv", "HEAD"
                         )
-                    report.status = "verified"
-                    report.reason = (
-                        "All four revisions met the frozen security "
-                        "and compatibility checks."
+                    completed = RunReport.model_validate(
+                        {
+                            **report.model_dump(),
+                            "status": "verified",
+                            "reason": (
+                                "All four revisions met the frozen security "
+                                "and compatibility checks."
+                            ),
+                            "patch_sha256": hashlib.sha256(patch.encode()).hexdigest(),
+                        }
                     )
-                    report.patch_sha256 = hashlib.sha256(patch.encode()).hexdigest()
                     (output / "backport.patch").write_text(patch, "utf-8")
+                    report = completed
                     return write_report(output, report)
                 report.status = "failed" if status == "failed" else "inconclusive"
                 report.reason = reason
                 feedback = json.dumps(
                     {
                         "reason": reason,
+                        "security_diagnostics": diagnostic_excerpt(phase.security),
+                        "suite_diagnostics": diagnostic_excerpt(phase.suite),
                         "security": phase.security.model_dump(),
                         "suite": phase.suite.model_dump(),
                     }
-                )[:16000]
-                if explicit_patch is not None or status == "inconclusive":
-                    break
-            if report.adaptation == "direct_application" and proposer is None:
-                report.reason += (
-                    "; supply --model or --candidate-patch for compatibility adaptation"
-                )
+                )[:MAX_ADAPTATION_FEEDBACK_CHARACTERS]
     except KeyboardInterrupt:
         report.status = "inconclusive"
         report.reason = "Run cancelled; verification did not complete."
