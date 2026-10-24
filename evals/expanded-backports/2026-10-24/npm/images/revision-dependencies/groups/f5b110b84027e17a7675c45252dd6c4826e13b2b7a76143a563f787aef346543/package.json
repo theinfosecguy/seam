@@ -1,0 +1,9 @@
+{
+  "name": "seam-evaluation-dependencies",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {
+    "argparse": "^1.0.7",
+    "esprima": "^4.0.0"
+  }
+}

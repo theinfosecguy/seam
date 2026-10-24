@@ -1,0 +1,37 @@
+# External benchmarks for Seam
+
+Use **BackportBench** for an external comparison, while keeping Seam's four-revision qualification as the deciding security check. It directly evaluates backporting across Python, npm and Java. Its authors publish 202 executable tasks and 619 labeled backport pairs, together with their evaluation controller and Docker images. The code and data are MIT licensed. We pinned commit `a7bb4ed2632305f1c7ef0bc81cf6b751e5d4c292`; the downloaded dataset, license, tool and parser hashes are in `dataset-audit.json`. [Official repository](https://github.com/coxhin/BackportBench), [paper](https://arxiv.org/abs/2512.01396).
+
+Do not add several frameworks simply to make a benchmark sound established. The useful outside contribution here is independently selected tasks, their existing test oracles, and a second executable evaluation of the same patch.
+
+| Project | What it contributes | Decision |
+| --- | --- | --- |
+| BackportBench | Actual security backport pairs, executable tasks and an evaluation controller. | Use now, with the qualifications below. |
+| SWE-bench | Containerized patch evaluation, prediction files and tools for publishing reproducible runs. Current tools support local task repositories containing metadata, patches, tests, an evaluation script and a Dockerfile. | Useful future export format. Existing Seam JSONL resembles its records but is not a complete runnable task repository. Its ordinary before/after patch evaluation does not replace four-revision qualification. [Official CLI](https://www.swebench.com/SWE-bench/reference/cli/). |
+| Inspect | Reusable datasets, solvers, sandboxing, logs and custom scorers. It explicitly distinguishes model failures from unscored infrastructure failures. | Add only if managing multiple model configurations becomes the problem. Wrapping an existing Seam verdict in Inspect would not independently validate that verdict. [Tasks](https://inspect.aisi.org.uk/tasks.html), [scoring policy](https://inspect.aisi.org.uk/scoring-policy.html). |
+| SecBench.js | 600 executable JavaScript vulnerability examples with Jest tests; available records include fixed versions and commits. | A useful source of additional behavioral oracles, rather than evidence of a maintainer backport relationship. A fixed version alone is insufficient. [Official repository](https://github.com/cristianstaicu/SecBench.js). |
+| SEC-bench | Containerized vulnerability repair and proof-of-concept tasks, with an independent verifier. Its documented examples focus on C/C++ and recommend more than 200 GB of disk. | A future option for native-code support; poor fit for this small npm/Python backport evaluation. [Official repository](https://github.com/SEC-bench/SEC-bench). |
+
+## Dataset audit
+
+The pinned executable split contains 112 Python, 23 npm and 67 Java tasks. The Python portion is heavily concentrated in Django: 101 of 112 tasks. The npm portion contains eight node-tar, eight qs, four socket.io-parser and three Vite tasks. These distributions must accompany any aggregate score.
+
+The broader labeled-pair collection adds 71 npm pairs covering 42 advisory IDs. Compared with the existing 25-library catalogue, six exact pairs overlap; 65 pairs and 36 advisory IDs are additional. There are 22 additional repositories after comparing repository URLs, including scoped-package aliases. These are **author-labeled candidates**, not independently qualified results. `npm-additional-pairs.json` includes original advisory and commit URLs and explicit overlap fields. `python-additional-pairs.json` contains 264 labeled Python pairs across 27 repositories.
+
+Five executable tasks name a `unittest.loader._FailedTest` collection error as a fail-to-pass test; those are excluded from our initial selection. Seventy-three tasks declare no pass-to-pass tests. Neither property is silently counted as a successful security backport.
+
+## Execution and scoring
+
+We prepared npm `socket.io-parser_71`, `qs_98`, `node-tar_130` and Python `django_250`, `django_309`, `django_343`. They have explicit failing security tests and passing preservation tests. **Only `qs_98` was executed in the official tool crosscheck**; the other five remained unrun because of image size and local evaluation priorities. `selected-tasks.json` preserves the prepared task definitions; `selected-task-lineage.json` pins their maintainer source fix, backport and both parents.
+
+`run-official.py` runs the original controller without changing its source. A small wrapper resolves its mutable image request to a recorded registry digest, disables target networking and host resource mounts, and limits processes, memory and CPU. All capabilities are dropped except `DAC_OVERRIDE`, needed because the image's root user must write source files owned by another UID. The trusted controller uses the local Docker API; target containers receive no Docker socket or controller credentials. Original controller output, original report and every captured command result remain separate from our independent audit.
+
+The completed qs reference and unfixed control each preserved 219 test identities in both phases. The reference changed six security failures into passes while preserving 213 passing tests; the unfixed control retained all six security failures and all 213 passing tests. Both independent audits passed. Two image pulls stopped at the disk guard, and an initial reference execution failed before tests because of source-directory permissions; those attempts remain recorded. The curated `public-supplement` contains normalized outcomes, exact original official summary reports, pinned inputs, licenses, replay commands and source checksums. No model requests were made.
+
+For each case, run the maintainer reference and a harmless patch that leaves the vulnerable implementation unchanged. Require stable test identities, the expected security test failing before and passing after the reference, preservation tests passing throughout, and the unfixed negative still failing. Record skips, collection failures, absent tests and incomplete runs as inconclusive. The official controller computes fail-to-pass by subtracting final failures from initial failures, which alone does not prove that a disappearing test passed; therefore its raw success flag is insufficient. [Pinned controller](https://github.com/coxhin/BackportBench/blob/a7bb4ed2632305f1c7ef0bc81cf6b751e5d4c292/eval/backport_run_evaluation.py).
+
+## What a published result must say
+
+Publish every selected case and attempt, including failed setup attempts. Separate reference qualification, unchanged patch transfer, fresh model adaptation and repair after test feedback. Freeze the source wheel, dataset revision, task files, image digest/local ID, oracle identities and hashes before scoring. Report all denominators and exclusions; do not turn retries into extra successes or discard provider failures. Record actual inference use and unresolved cost reservations separately.
+
+These tasks and maintainer answers are already public. They are useful regression and integration checks, but do not establish performance on an unseen private holdout. Do not compare our curated subset score directly with the paper's full-dataset score. An official-tool smoke check demonstrates interoperability; only a matched task, model, budget and scoring protocol supports a comparative model benchmark.

@@ -192,3 +192,7 @@ did not certify complete CVE remediation, full library suites, hostile evidence
 forgery resistance, browser behavior, deployed cache/proxy behavior, or broad
 model quality. Read the [execution boundaries](security.md) when interpreting a
 verified result. Product fixes were not mixed into this baseline evaluation.
+
+The [expanded backport study](expanded-benchmarks.md) adds npm coverage, two new
+Python cases and an actual external BackportBench crosscheck. Its original,
+reviewed, direct-transfer and fresh-model cohorts remain separate.

@@ -1,0 +1,12 @@
+[oracle]
+path = "oracle.py"
+security_test = "test_security"
+controls = ["test_complete_field", "test_partial_boundary_waits"]
+failure_marker = "MULTIPART_PENDING_DATA_RELEASED"
+
+[runner]
+image = "sha256:5c994eb5c630681a2141849869f60e16d5b69f55617067b910702c1795b9b0d2"
+docker = ["sudo", "-n", "docker"]
+suite = ["tests/sansio/test_multipart.py"]
+plugins = []
+timeout_seconds = 120

@@ -1,0 +1,15 @@
+const fs = require('node:fs');
+const { spawnSync } = require('node:child_process');
+
+fs.cpSync('/source', '/work/repo', { recursive: true, verbatimSymlinks: true });
+const nodeModules = process.argv[1] || '/opt/seam/node_modules';
+if (process.argv[1] || fs.existsSync(nodeModules)) {
+  if (!fs.statSync(nodeModules).isDirectory()) {
+    throw new Error('Selected Node dependencies must be a directory');
+  }
+  fs.symlinkSync(nodeModules, '/work/repo/node_modules', 'dir');
+}
+process.chdir('/work/repo');
+const result = spawnSync(process.execPath, process.argv.slice(2), { stdio: 'inherit' });
+if (result.error) throw result.error;
+process.exit(result.status === null ? 125 : result.status);

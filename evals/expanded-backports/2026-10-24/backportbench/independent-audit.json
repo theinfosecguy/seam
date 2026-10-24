@@ -1,0 +1,88 @@
+[
+  {
+    "instance_id": "qs_98",
+    "mode": "maintainer_reference",
+    "audit_passed": true,
+    "problems": [],
+    "phase_case_counts": {
+      "before": 219,
+      "after": 219
+    },
+    "official_report": {
+      "backport_success": [
+        "qs_98"
+      ],
+      "only_p2p_fail": [],
+      "only_f2p_fail": [],
+      "both_fail": [],
+      "empty_num": 0,
+      "apply_fail_num": 0
+    },
+    "image_id": "sha256:eac55dcd368164746ff90ec0844a051a803bd255ed025809acf16ef1d10e2fca",
+    "registry_digest": "backportbench/qs@sha256:eac55dcd368164746ff90ec0844a051a803bd255ed025809acf16ef1d10e2fca",
+    "expected_fail_to_pass": 6,
+    "expected_pass_to_pass": 213,
+    "source_head": "02ca358155297dc68fcc4c2ac312c26e10524e47",
+    "parsed_summaries": {
+      "before": [
+        {
+          "total": 219,
+          "pass": 213,
+          "fail": 6,
+          "skip": 0
+        }
+      ],
+      "after": [
+        {
+          "total": 219,
+          "pass": 219,
+          "fail": 0,
+          "skip": 0
+        }
+      ]
+    }
+  },
+  {
+    "instance_id": "qs_98",
+    "mode": "unfixed_negative",
+    "audit_passed": true,
+    "problems": [],
+    "phase_case_counts": {
+      "before": 219,
+      "after": 219
+    },
+    "official_report": {
+      "backport_success": [],
+      "only_p2p_fail": [],
+      "only_f2p_fail": [
+        "qs_98"
+      ],
+      "both_fail": [],
+      "empty_num": 0,
+      "apply_fail_num": 0
+    },
+    "image_id": "sha256:eac55dcd368164746ff90ec0844a051a803bd255ed025809acf16ef1d10e2fca",
+    "registry_digest": "backportbench/qs@sha256:eac55dcd368164746ff90ec0844a051a803bd255ed025809acf16ef1d10e2fca",
+    "expected_fail_to_pass": 6,
+    "expected_pass_to_pass": 213,
+    "source_head": "02ca358155297dc68fcc4c2ac312c26e10524e47",
+    "parsed_summaries": {
+      "before": [
+        {
+          "total": 219,
+          "pass": 213,
+          "fail": 6,
+          "skip": 0
+        }
+      ],
+      "after": [
+        {
+          "total": 219,
+          "pass": 213,
+          "fail": 6,
+          "skip": 0
+        }
+      ]
+    }
+  }
+]

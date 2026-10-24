@@ -1,0 +1,49 @@
+{
+  "advisory_ids": [
+    "GHSA-78xj-cgh5-2h22",
+    "CVE-2023-42282"
+  ],
+  "asset_sha256": {
+    "LICENSE.upstream": "059fcdeafb68ab683a956378f222e85f71554ebe456f328f01632db760c266fd",
+    "harness.toml": "11cc4fd10bb5552549e2cc8cbc737faee9f7c5e264591c69b11fed4c57d4c93d",
+    "oracle.mjs": "ea16155ef515d6cd72f489c020fc9561e46fa5f7ab4bef216d529260cf6d1aaf",
+    "reference.patch": "da1d246becc181a93f164cb2507f37d89781aa940009826cb15b65f33b3d4f5a",
+    "upstream.patch": "3aab48cfc8545ac2339929ff0dfd17a6317380511105d5a384dd0493e739959d"
+  },
+  "backport_implementation_paths": [
+    "lib/ip.js"
+  ],
+  "base_commit": "5dc3b2f3f4b4690fa9a918fa5085b6fca9979fca",
+  "input_scope": "Experimental standalone inputs; no execution result is asserted.",
+  "instance_id": "ip",
+  "license": "MIT",
+  "maintainer_backport_commit": "6a3ada9b471b09d5f0f5be264911ab564bf67894",
+  "maintainer_backport_parent": "5dc3b2f3f4b4690fa9a918fa5085b6fca9979fca",
+  "package": "ip",
+  "patch_scope": "Implementation-only extracts of the maintainer commits; full commits can also change tests, metadata, or dependencies.",
+  "repository_url": "https://github.com/indutny/node-ip.git",
+  "schema_version": 1,
+  "source_links": {
+    "base_commit": "https://github.com/indutny/node-ip/commit/5dc3b2f3f4b4690fa9a918fa5085b6fca9979fca",
+    "maintainer_backport_commit": "https://github.com/indutny/node-ip/commit/6a3ada9b471b09d5f0f5be264911ab564bf67894",
+    "upstream_fix_commit": "https://github.com/indutny/node-ip/commit/32f468f1245574785ec080705737a579be1223aa",
+    "upstream_parent_commit": "https://github.com/indutny/node-ip/commit/4b2f4e7cb52a723fd286611385487afe85f01579"
+  },
+  "source_snapshot_sha256": {
+    "maintainer_backport": "536fccc85ec5d56c6fe66dcaf93b87d2a8644557713e54a27481090f5bbe5521",
+    "target_baseline": "b7b21a4750b21637b3efaa86bb8c25c6327ead2cf8ea601ef996f5f820b8160f",
+    "upstream_fix": "ee98a5c58cf7a291810fc1d25679e1a98d0828e5c4f345fe6a199200aaefd81e",
+    "upstream_parent": "f024df50874743e8fdc52f6e021326da678907269ef35b3420e585bfdd3b22f8"
+  },
+  "target_test_paths": [
+    "test/api-test.js"
+  ],
+  "upstream_fix_commit": "32f468f1245574785ec080705737a579be1223aa",
+  "upstream_implementation_paths": [
+    "lib/ip.js"
+  ],
+  "upstream_parent_commit": "4b2f4e7cb52a723fd286611385487afe85f01579",
+  "upstream_test_paths": [
+    "test/api-test.js"
+  ]
+}

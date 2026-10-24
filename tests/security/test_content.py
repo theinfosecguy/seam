@@ -25,6 +25,25 @@ _OPENAI = "sk-" + "A" * 20 + "T3BlbkFJ" + "B" * 20
         "@@ -1 +1 @@\n+-----BEGIN ENCRYPTED PRIVATE KEY-----\n+synthetic\n"
         "+-----END ENCRYPTED PRIVATE KEY-----",
         'password = "synthetic password"',
+        'const password = "synthetic-private-value";',
+        'let accessToken = "synthetic-private-value";',
+        'var clientSecret = "synthetic-private-value";',
+        'export const apiKey = "synthetic-private-value";',
+        'const config["password"] = "synthetic-private-value";',
+        'config.clientSecret = "synthetic-private-value";',
+        'const password =\n"synthetic-private-value";',
+        "const password = `synthetic-private-value`;",
+        'const config = { password: "synthetic-private-value" };',
+        'module.exports = { clientSecret: "synthetic-private-value" };',
+        'export default { "api-key": "synthetic-private-value" };',
+        "configure({ 'accessToken': 'synthetic-private-value' });",
+        'const config = {\n    password: "synthetic-private-value",\n};',
+        'const config = { password:\n    "synthetic-private-value" };',
+        'const name = "public", password = "synthetic-private-value";',
+        'class Config { static password = "synthetic-private-value"; }',
+        'const config = { password: "synthetic-\\"private-value" };',
+        "const config = { password: `synthetic-private-value` };",
+        '@@ -1 +1 @@\n+module.exports = { password: "synthetic-private-value" };',
         'password = "!synthetic-password"',
         "DEEPSEEK_API_KEY=synthetic-only-value",
         "export API_KEY=synthetic-only-value",
@@ -56,6 +75,18 @@ def test_detects_credential_formats_and_contextual_assignments(text: str) -> Non
         "flask-" + "a" * 24,
         "ordinary_identifier_with_secret_and_credential_substrings",
         'password_algorithm = "pbkdf2_sha256"',
+        'const passwordAlgorithm = "pbkdf2_sha256";',
+        "let accessToken = process.env.ACCESS_TOKEN;",
+        "const apiKey = DEFAULT_API_KEY;",
+        'const clientSecret = "";',
+        'const config = { passwordAlgorithm: "pbkdf2_sha256" };',
+        'const config = { secretKind: "public", credentialFormat: "json" };',
+        'const config = { password: "", apiKey: "" };',
+        'configure({ clientSecret: getSecret("client") });',
+        "const config = { password: process.env.PASSWORD };",
+        'const config = { password: process.env["PASSWORD"] };',
+        "const config = { password: DEFAULT_PASSWORD };",
+        'const name = "public", password = process.env.PASSWORD;',
         'SECRET_KIND = "public"',
         'credential_format = "json"',
         'token = "StartTag"',
@@ -102,6 +133,7 @@ def test_never_verifies_loads_repository_plugins_or_logs_findings(
     for value in (_AWS, _GITHUB, _OPENAI):
         assert contains_secret(value + " # pragma: allowlist secret")
         assert value not in caplog.text
+    assert contains_secret('const config = { password: "synthetic-private-value" };')
     assert not caplog.records
 
 

@@ -1,0 +1,39 @@
+{
+  "normalization_schema_version": 1,
+  "cohort": "initial-npm-20",
+  "case": "semver",
+  "role": "reference",
+  "interpretation": "Setup, application or evidence remained inconclusive; this alone is not a confirmed harness defect.",
+  "execution_context": {
+    "exit_code": 2,
+    "timed_out": false,
+    "log_truncated": false,
+    "wheel_sha256": "fb1afe7d89a0cfd5a50ae6094f1b1a356cb57e6d187beba597d542fe8903c35c",
+    "driver_sha256": "44efbc782d4cbbebb7ecec44e491a9941e5dc2cdd1554eaf7616a307020ec306",
+    "freeze_sha256": "f5fa5b227de18954e8c22fed4b881688a4e93d13428769fa01e21c19ade9c083",
+    "case_assets_unchanged": true,
+    "caller_unchanged": true
+  },
+  "report": {
+    "schema_version": 2,
+    "status": "inconclusive",
+    "reason": "Run could not complete: fix includes unsupported changed file: package.json; only ordinary javascript implementation changes can be backported",
+    "fix_commit": "717534ee353682f3bcf33e60a8af4292626d4441",
+    "parent_commit": "2f738e9a70d9b9468b7b69e9ed3e12418725c650",
+    "target_commit": "39f632690ea5b1b0d64fa913aa0f96f42b9bde32",
+    "image_id": null,
+    "oracle_sha256": "bf59ba7fb942f05deb5d603bccc93364f15f1365b9616c73995575e81bce6b04",
+    "config_sha256": "b4b836f908c5e9c4c8c4d6c78a2de1874943afe24dba78571bb8ff921f5d05bc",
+    "patch_sha256": null,
+    "attempts": 0,
+    "adaptation": "none",
+    "model_usage": {},
+    "reviewed_tests": null,
+    "reviewed_fixtures": {},
+    "reviewed_submodules": {},
+    "phases": []
+  },
+  "original_report_sha256": "1947e600ba9b3915fc0c867f3ff559ed2e3f828e5f4d0d6443b3f3c643391a0b",
+  "original_command_record_sha256": "738c54a19bfcdfe1ed34590b7dcd0384e092a5449f193735c86d7bfe2d7bdbd9",
+  "candidate_patch_inputs": []
+}

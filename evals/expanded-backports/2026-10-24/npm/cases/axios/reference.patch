@@ -1,0 +1,59 @@
+diff --git a/lib/adapters/http.js b/lib/adapters/http.js
+index 25262fb..b0cb128 100755
+--- a/lib/adapters/http.js
++++ b/lib/adapters/http.js
+@@ -109,7 +109,7 @@ module.exports = function httpAdapter(config) {
+     var method = config.method.toUpperCase();
+ 
+     // Parse url
+-    var fullPath = buildFullPath(config.baseURL, config.url);
++    var fullPath = buildFullPath(config.baseURL, config.url, config.allowAbsoluteUrls);
+     var parsed = url.parse(fullPath);
+     var protocol = parsed.protocol || supportedProtocols[0];
+ 
+diff --git a/lib/adapters/xhr.js b/lib/adapters/xhr.js
+index f26e0f3..2dabcae 100644
+--- a/lib/adapters/xhr.js
++++ b/lib/adapters/xhr.js
+@@ -43,7 +43,7 @@ module.exports = function xhrAdapter(config) {
+       requestHeaders.Authorization = 'Basic ' + btoa(username + ':' + password);
+     }
+ 
+-    var fullPath = buildFullPath(config.baseURL, config.url);
++    var fullPath = buildFullPath(config.baseURL, config.url, config.allowAbsoluteUrls);
+ 
+     request.open(config.method.toUpperCase(), buildURL(fullPath, config.params, config.paramsSerializer), true);
+ 
+diff --git a/lib/core/Axios.js b/lib/core/Axios.js
+index e138096..bd79bc0 100644
+--- a/lib/core/Axios.js
++++ b/lib/core/Axios.js
+@@ -136,7 +136,7 @@ Axios.prototype.request = function request(configOrUrl, config) {
+ 
+ Axios.prototype.getUri = function getUri(config) {
+   config = mergeConfig(this.defaults, config);
+-  var fullPath = buildFullPath(config.baseURL, config.url);
++  var fullPath = buildFullPath(config.baseURL, config.url, config.allowAbsoluteUrls);
+   return buildURL(fullPath, config.params, config.paramsSerializer);
+ };
+ 
+diff --git a/lib/core/buildFullPath.js b/lib/core/buildFullPath.js
+index 00b2b05..553cffc 100644
+--- a/lib/core/buildFullPath.js
++++ b/lib/core/buildFullPath.js
+@@ -10,10 +10,13 @@ var combineURLs = require('../helpers/combineURLs');
+  *
+  * @param {string} baseURL The base URL
+  * @param {string} requestedURL Absolute or relative URL to combine
++ * @param {boolean} allowAbsoluteUrls Set to true to allow absolute URLs
++ *
+  * @returns {string} The combined full path
+  */
+-module.exports = function buildFullPath(baseURL, requestedURL) {
+-  if (baseURL && !isAbsoluteURL(requestedURL)) {
++module.exports = function buildFullPath(baseURL, requestedURL, allowAbsoluteUrls) {
++  var isRelativeURL = !isAbsoluteURL(requestedURL);
++  if (baseURL && (isRelativeURL || allowAbsoluteUrls === false)) {
+     return combineURLs(baseURL, requestedURL);
+   }
+   return requestedURL;

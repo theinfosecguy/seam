@@ -1,0 +1,11 @@
+{
+  "name": "seam-evaluation-dependencies",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {
+    "chai": "^3.5.0",
+    "ms": "2.0.0",
+    "sinon": "^1.17.6",
+    "sinon-chai": "^2.8.0"
+  }
+}

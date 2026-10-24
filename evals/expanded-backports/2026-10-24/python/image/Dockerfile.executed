@@ -1,0 +1,5 @@
+FROM sha256:0dda45ece171f75d27acbe4dbd56e41f1009b8afb2ec01dfb868ab0cc3d16c2a
+COPY requirements.txt /tmp/expanded-requirements.txt
+RUN python -m pip install --no-cache-dir --require-hashes -r /tmp/expanded-requirements.txt
+COPY seam_expanded_settings.py /usr/local/lib/python3.12/site-packages/seam_expanded_settings.py
+ENV DJANGO_SETTINGS_MODULE=seam_expanded_settings

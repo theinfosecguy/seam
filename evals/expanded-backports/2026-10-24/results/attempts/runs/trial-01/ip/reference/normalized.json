@@ -1,0 +1,92 @@
+{
+  "normalization_schema_version": 1,
+  "cohort": "development-wheel-initial",
+  "case": "ip",
+  "role": "reference",
+  "interpretation": "Setup, application or evidence remained inconclusive; this alone is not a confirmed harness defect.",
+  "execution_context": {
+    "exit_code": 2,
+    "timed_out": false,
+    "log_truncated": false,
+    "wheel_sha256": "ab3ca1710d00bc0d488146e5116c18f59b1c766f3a59ef2fac0189e1658053ef",
+    "case_assets_unchanged": true,
+    "caller_unchanged": true
+  },
+  "report": {
+    "schema_version": 2,
+    "status": "inconclusive",
+    "reason": "Verification prerequisites were not established: upstream_parent suite: JUnit test case names must identify distinct tests",
+    "fix_commit": "32f468f1245574785ec080705737a579be1223aa",
+    "parent_commit": "4b2f4e7cb52a723fd286611385487afe85f01579",
+    "target_commit": "5dc3b2f3f4b4690fa9a918fa5085b6fca9979fca",
+    "image_id": "sha256:7f5c9714117da799da5c0a107c52c999ccdf38f3b8b0d3a05cf50da7a08466d9",
+    "oracle_sha256": "ea16155ef515d6cd72f489c020fc9561e46fa5f7ab4bef216d529260cf6d1aaf",
+    "config_sha256": "70cbee5dd24343b4c295eab9c032d34cb86b11b94db86bb416ec5c41938cb764",
+    "patch_sha256": null,
+    "attempts": 0,
+    "adaptation": "none",
+    "model_usage": {},
+    "reviewed_tests": null,
+    "reviewed_fixtures": {},
+    "reviewed_submodules": {},
+    "phases": [
+      {
+        "name": "upstream_parent",
+        "revision": "4b2f4e7cb52a723fd286611385487afe85f01579",
+        "security": {
+          "returncode": 1,
+          "timed_out": false,
+          "truncated": false,
+          "duration_seconds": 0.5898,
+          "evidence_error": null,
+          "tests": [
+            {
+              "name": "test_security",
+              "classname": "/oracle/oracle.mjs::test",
+              "outcome": "failed",
+              "expected_failure": false,
+              "original_message_sha256": "d0bf512e5c0350c53d206aa8f8cc95dd26c8ebc58f9bc024367f5c73a40762b6"
+            },
+            {
+              "name": "test_private_dotted_decimal",
+              "classname": "/oracle/oracle.mjs::test",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_public_dotted_decimal",
+              "classname": "/oracle/oracle.mjs::test",
+              "outcome": "passed",
+              "expected_failure": false
+            }
+          ],
+          "command_sha256": "e3c5dc62167de3d1683b6bbce3ba4ae0b4a15495b26c1c9ccdb8ad81eb5d239e",
+          "missing_modules": [],
+          "diagnostic_excerpts": [],
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr_bytes": 0
+        },
+        "suite": {
+          "returncode": 0,
+          "timed_out": false,
+          "truncated": false,
+          "duration_seconds": 0.6406,
+          "evidence_error": "JUnit test case names must identify distinct tests",
+          "tests": [],
+          "command_sha256": "9426fb53723f9ae74eaf9d63a4bb21a32810c665378c7ec4439cb1b4ff7f421f",
+          "missing_modules": [],
+          "diagnostic_excerpts": [],
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 0,
+          "stderr_sha256": "65d5e6bfe62467c65c364e8ac7cabbda2f0def8df51e7206f7cbf35764937d87",
+          "stderr_bytes": 263
+        }
+      }
+    ]
+  },
+  "original_report_sha256": "825f4d243d222a76871ba25b81991ad68ab3832257a317ac336501ac14059eaf",
+  "original_command_record_sha256": "cc1d8d8264ad682470c81578f1e5c3c15d6c3df3fae35149d18e4e8098fdec38",
+  "candidate_patch_inputs": []
+}

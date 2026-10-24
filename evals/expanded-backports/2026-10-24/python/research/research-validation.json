@@ -1,0 +1,24 @@
+{
+  "catalogue": {
+    "libraries": 21,
+    "commit_pairs_pinned": 5,
+    "published_version_backports_confirmed": 16,
+    "executed_evals": 0,
+    "backport_publications_last_six_months": 11,
+    "backport_publications_last_twelve_months": 13,
+    "public_source_descriptors_retrieved": 16
+  },
+  "checks": [
+    "21 unique libraries",
+    "all issue identifiers differ from the original eight cases",
+    "five source/backport commit pairs have exactly one parent on each side",
+    "all rows explicitly not_run and benchmark_ready=false",
+    "sixteen distributor source descriptors retrieved anonymously",
+    "selected public metadata files contain no controller paths or prohibited attribution"
+  ],
+  "files": {
+    "catalogue.json": "dee35bfe1ae78686cfa19799d9bca856e3f89eaba34d6f82241bc8a53a6f2a25",
+    "report.md": "67f7813493b1402eb031a9f67dd6c31fb9fd51a1688f302159d4ebf2da690bc7",
+    "source-package-access.json": "d804b87534a9e217d23ddb8b99abc35a9b89d72ad97781a4ff359b0ee0633820"
+  }
+}

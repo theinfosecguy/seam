@@ -1,0 +1,17 @@
+{
+  "archive": "seam-expanded-eval-images-2026-10-24.tar.gz",
+  "sha256": "0be5b89750922b12252e6c253e80469182aeed9a8a7026741d551bf16d8bb688",
+  "bytes": 140567745,
+  "all_blob_hashes_verified": true,
+  "selected_platform_manifest_and_layer_closure_verified": true,
+  "platform": "linux/amd64",
+  "rootfs_matched_live_images": [
+    "sha256:06d7adf3e0ef61a13f1d28682726366f97a15aa1888c934d3ecec86c33918b53",
+    "sha256:52f40f96867d88d68ced00067878ab5b917744d17f5649b82506f43e72d88cba",
+    "sha256:7f5c9714117da799da5c0a107c52c999ccdf38f3b8b0d3a05cf50da7a08466d9",
+    "sha256:5c994eb5c630681a2141849869f60e16d5b69f55617067b910702c1795b9b0d2"
+  ],
+  "blob_count": 53,
+  "clean_daemon_load_tested": false,
+  "existing_daemon_load_succeeded": true
+}

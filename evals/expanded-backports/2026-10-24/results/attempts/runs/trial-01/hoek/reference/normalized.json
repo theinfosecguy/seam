@@ -1,0 +1,100 @@
+{
+  "normalization_schema_version": 1,
+  "cohort": "development-wheel-initial",
+  "case": "hoek",
+  "role": "reference",
+  "interpretation": "Setup, application or evidence remained inconclusive; this alone is not a confirmed harness defect.",
+  "execution_context": {
+    "exit_code": 2,
+    "timed_out": false,
+    "log_truncated": false,
+    "wheel_sha256": "ab3ca1710d00bc0d488146e5116c18f59b1c766f3a59ef2fac0189e1658053ef",
+    "case_assets_unchanged": true,
+    "caller_unchanged": true
+  },
+  "report": {
+    "schema_version": 2,
+    "status": "inconclusive",
+    "reason": "Verification prerequisites were not established: upstream_parent suite: test execution contained errors or skipped tests",
+    "fix_commit": "948baf98634a5c206875b67d11368f133034fa90",
+    "parent_commit": "0ab1b4f6ff639a2478d4428c6f2986cd70115344",
+    "target_commit": "4ae5f5355f55f600e0969cb61369b7c41b0f50e1",
+    "image_id": "sha256:52f40f96867d88d68ced00067878ab5b917744d17f5649b82506f43e72d88cba",
+    "oracle_sha256": "e4bd4b15e46aa8fbdff86d7cfe298aaed4edfe564cef43d92033644ebc731c49",
+    "config_sha256": "096cba9451464806044b3fb0c084f1d2f1c589ee8433a0fc1c659b25027be64c",
+    "patch_sha256": null,
+    "attempts": 0,
+    "adaptation": "none",
+    "model_usage": {},
+    "reviewed_tests": null,
+    "reviewed_fixtures": {},
+    "reviewed_submodules": {},
+    "phases": [
+      {
+        "name": "upstream_parent",
+        "revision": "0ab1b4f6ff639a2478d4428c6f2986cd70115344",
+        "security": {
+          "returncode": 1,
+          "timed_out": false,
+          "truncated": false,
+          "duration_seconds": 0.5979,
+          "evidence_error": null,
+          "tests": [
+            {
+              "name": "test_security",
+              "classname": "/oracle/oracle.mjs::test",
+              "outcome": "failed",
+              "expected_failure": false,
+              "original_message_sha256": "f0c6b344971a9f1127f0e4c7676afc8d1e2b6579b0dae186de41487c1987ad90"
+            },
+            {
+              "name": "test_nested_clone",
+              "classname": "/oracle/oracle.mjs::test",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_array_clone",
+              "classname": "/oracle/oracle.mjs::test",
+              "outcome": "passed",
+              "expected_failure": false
+            }
+          ],
+          "command_sha256": "e3c5dc62167de3d1683b6bbce3ba4ae0b4a15495b26c1c9ccdb8ad81eb5d239e",
+          "missing_modules": [],
+          "diagnostic_excerpts": [],
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr_bytes": 0
+        },
+        "suite": {
+          "returncode": 1,
+          "timed_out": false,
+          "truncated": false,
+          "duration_seconds": 0.5329,
+          "evidence_error": null,
+          "tests": [
+            {
+              "name": "/work/repo/test/index.js",
+              "classname": "/work/repo/test/index.js::test",
+              "outcome": "error",
+              "expected_failure": false,
+              "original_message_sha256": "7f55e0223987df58d58dfe4f24145416b95cc6fc1b37a5929601fff8efc754ba"
+            }
+          ],
+          "command_sha256": "86711f0e14c3831e2aa8beff2430f96379dfb85cae12b68bc0902cd4508c6797",
+          "missing_modules": [],
+          "diagnostic_excerpts": [],
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr_bytes": 0
+        }
+      }
+    ]
+  },
+  "original_report_sha256": "06d3dacec2c1705ea599ccd9d6425033262227eeaac6f824bf179a4c7d581213",
+  "original_command_record_sha256": "6c66b30299c4304d64cb7f54908d2a895bd340a89f86a5a008557d075ebbc7f3",
+  "candidate_patch_inputs": []
+}

@@ -2,6 +2,7 @@
 
 import ast
 import json
+import re
 from collections.abc import Iterator
 
 from detect_secrets.filters.heuristic import is_indirect_reference
@@ -62,6 +63,10 @@ _DETECTORS = (
     twilio.TwilioKeyDetector(),
 )
 _KEYWORD_DETECTOR = keyword.KeywordDetector()
+_JAVASCRIPT_LITERAL_ASSIGNMENT = re.compile(
+    r"""(?<![\w$])(?P<name>["']?[$A-Za-z_][\w$-]*["']?)\s*[:=]\s*"""
+    r"""(?P<value>(?P<quote>["'`])(?:\\.|(?!(?P=quote))[^\\\r\n])*(?P=quote))"""
+)
 
 
 def _target_name(target: ast.expr) -> str | None:
@@ -80,6 +85,7 @@ def _target_name(target: ast.expr) -> str | None:
 
 def _credential_field(name: str) -> bool:
     normalized = name.strip()
+    normalized = re.sub(r"^(?:const|let|var)\s+", "", normalized)
     if ("." in normalized or "[" in normalized) and len(
         normalized.encode("utf-8")
     ) <= MAX_SECRET_PARSE_BYTES:
@@ -89,6 +95,7 @@ def _credential_field(name: str) -> bool:
             pass
         else:
             normalized = _target_name(target) or normalized
+    normalized = re.sub(r"([a-z0-9])([A-Z])", r"\1_\2", normalized)
     normalized = normalized.strip("\"'[]").lower().replace("-", "_")
     return normalized in CREDENTIAL_FIELD_NAMES or any(
         normalized.endswith("_" + field) for field in CREDENTIAL_FIELD_NAMES
@@ -96,10 +103,16 @@ def _credential_field(name: str) -> bool:
 
 
 def _keyword_value(value: str) -> bool:
+    value = value.strip().removesuffix(";")
     assignment = "secret = " + value
     if is_indirect_reference(assignment):
         return False
     reference = value.strip()
+    if re.fullmatch(
+        r"process\.env(?:\.[A-Za-z_][A-Za-z0-9_]*|\[['\"][A-Za-z_][A-Za-z0-9_]*['\"]\])",
+        reference,
+    ):
+        return False
     if reference.isidentifier() and reference.isupper():
         return False
     if len(value.encode("utf-8")) <= MAX_SECRET_PARSE_BYTES:
@@ -198,6 +211,17 @@ def _python_literals(text: str) -> Iterator[str]:
                     yield f"secret = {json.dumps(value.value)}"
 
 
+def _has_javascript_secret(text: str) -> bool:
+    """Check literal properties and bindings using the existing credential rules."""
+    # shortcut: single-line static strings; computed values need language parsing.
+    if len(text.encode("utf-8")) > MAX_SECRET_PARSE_BYTES:
+        return False
+    return any(
+        _credential_field(match["name"]) and _keyword_value(match["value"])
+        for match in _JAVASCRIPT_LITERAL_ASSIGNMENT.finditer(text)
+    )
+
+
 def contains_secret(text: str) -> bool:
     """Return only a verdict; never verify, log, or return credential material.
 
@@ -229,7 +253,9 @@ def contains_secret(text: str) -> bool:
                 ):
                     return True
                 previous = line
-            if any(_has_match(item) for item in _python_literals(value)):
+            if _has_javascript_secret(value) or any(
+                _has_match(item) for item in _python_literals(value)
+            ):
                 return True
             if len(value.encode("utf-8")) > MAX_SECRET_PARSE_BYTES:
                 continue

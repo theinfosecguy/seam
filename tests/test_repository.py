@@ -87,6 +87,89 @@ def test_mode_only_inventory_still_rejects_submodules(tmp_path: Path) -> None:
         repository.clone_at(repo, repository.resolve(repo, "HEAD"), tmp_path / "clone")
 
 
+def test_reviewed_submodule_is_pinned_empty_and_never_initialized(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    repo = make_repository(tmp_path / "repo")
+    object_id = repository.resolve(repo, "HEAD")
+    module_path = "test/cache-fixtures"
+    repository.git(
+        repo, "update-index", "--add", "--cacheinfo", "160000", object_id, module_path
+    )
+    commit_index(repo, "Add reviewed submodule fixture")
+    revision = repository.resolve(repo, "HEAD")
+    calls = []
+    original = repository.git
+
+    def git(path: Path, *arguments: str, input_text: str | None = None) -> str:
+        calls.append(arguments)
+        return original(path, *arguments, input_text=input_text)
+
+    monkeypatch.setattr(repository, "git", git)
+    clone = tmp_path / "clone"
+    repository.clone_at(
+        repo, revision, clone, reviewed_submodules={module_path: (object_id,)}
+    )
+    assert (clone / module_path).is_dir()
+    assert list((clone / module_path).iterdir()) == []
+    assert ("ls-files", "--stage", "-z", "--", module_path) in calls
+    assert not any(arguments[0] == "submodule" for arguments in calls)
+    assert not (clone / ".git/modules").exists()
+
+
+@pytest.mark.parametrize(
+    "problem", ["wrong_hash", "wrong_path", "extra", "populated", "symlink"]
+)
+def test_reviewed_submodules_do_not_allow_unreviewed_or_hydrated_content(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+    problem: str,
+) -> None:
+    repo = make_repository(tmp_path / "repo")
+    object_id = repository.resolve(repo, "HEAD")
+    module_path = "test/cache-fixtures"
+    repository.git(
+        repo, "update-index", "--add", "--cacheinfo", "160000", object_id, module_path
+    )
+    if problem == "extra":
+        repository.git(
+            repo,
+            "update-index",
+            "--add",
+            "--cacheinfo",
+            "160000",
+            object_id,
+            "unreviewed",
+        )
+    commit_index(repo, "Add submodule boundary fixtures")
+    revision = repository.resolve(repo, "HEAD")
+    modules = {module_path: (object_id,)}
+    if problem == "wrong_hash":
+        modules[module_path] = ("f" * 40,)
+    elif problem == "wrong_path":
+        modules = {"test/other-fixtures": (object_id,)}
+    original = repository.git
+
+    def git(path: Path, *arguments: str, input_text: str | None = None) -> str:
+        result = original(path, *arguments, input_text=input_text)
+        if arguments[0] == "checkout":
+            module = path / module_path
+            if problem == "populated":
+                (module / "unexpected.js").write_text("// unreviewed code")
+            elif problem == "symlink":
+                module.rmdir()
+                (path / "replacement").mkdir()
+                module.symlink_to("../replacement", target_is_directory=True)
+        return result
+
+    monkeypatch.setattr(repository, "git", git)
+    with pytest.raises(RepositoryError, match=r"[Ss]ubmodule"):
+        repository.clone_at(
+            repo, revision, tmp_path / "clone", reviewed_submodules=modules
+        )
+
+
 @pytest.mark.parametrize(
     "result,detail",
     [
@@ -419,3 +502,50 @@ def test_upstream_excludes_paths_that_candidate_must_not_change(
 )
 def test_source_policy_keeps_ordinary_python_modules(path: str) -> None:
     repository.validate_source_path(path)
+
+
+@pytest.mark.parametrize("path", ["lib/parser.js", "src/parser.mjs", "index.cjs"])
+def test_javascript_implementation_requires_explicit_language(path: str) -> None:
+    repository.validate_source_path(path, "javascript")
+    with pytest.raises(RepositoryError):
+        repository.validate_source_path(path)
+
+
+@pytest.mark.parametrize(
+    "path",
+    [
+        "package.json",
+        "package-lock.json",
+        "pnpm-lock.yaml",
+        "src/index.ts",
+        "test.js",
+        "test/parser.js",
+        "src/__tests__/parser.mjs",
+        "lib/parser.test.js",
+        "lib/parser-test.js",
+        "lib/parser.spec.cjs",
+        "fixtures/index.js",
+        "scripts/build.js",
+        "node_modules/library/index.js",
+        "dist/index.js",
+        "webpack.config.js",
+        "gulpfile.js",
+        "Gruntfile.cjs",
+        "gulpfile.mjs",
+        "jest.setup.cjs",
+        "spec/parser.js",
+        "specs/parser.mjs",
+        "spec.js",
+        "foo_spec.js",
+        "spec-helper.cjs",
+        "build.js",
+        "install.mjs",
+        "prepare.cjs",
+        ".hidden/index.js",
+    ],
+)
+def test_javascript_patch_policy_protects_tests_builds_and_dependencies(
+    path: str,
+) -> None:
+    with pytest.raises(RepositoryError):
+        repository.validate_source_path(path, "javascript")

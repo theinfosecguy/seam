@@ -1,0 +1,12 @@
+[oracle]
+path = "oracle.mjs"
+security_test = "test_security"
+controls = ["test_ordinary_match", "test_ordinary_nonmatch"]
+failure_marker = "ROUTE_PATTERN_BOUNDED_WORK"
+
+[runner]
+kind = "mocha"
+image = "sha256:52f40f96867d88d68ced00067878ab5b917744d17f5649b82506f43e72d88cba"
+docker = ["sudo", "-n", "docker"]
+suite = ["test.js"]
+timeout_seconds = 120

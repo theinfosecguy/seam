@@ -1,0 +1,1949 @@
+{
+  "normalization_schema_version": 1,
+  "cohort": "initial-npm-20",
+  "case": "ip",
+  "role": "negative",
+  "interpretation": "Deliberately ineffective control was rejected.",
+  "execution_context": {
+    "exit_code": 1,
+    "timed_out": false,
+    "log_truncated": false,
+    "wheel_sha256": "fb1afe7d89a0cfd5a50ae6094f1b1a356cb57e6d187beba597d542fe8903c35c",
+    "freeze_sha256": "f5fa5b227de18954e8c22fed4b881688a4e93d13428769fa01e21c19ade9c083",
+    "case_assets_unchanged": true,
+    "caller_unchanged": true
+  },
+  "report": {
+    "schema_version": 2,
+    "status": "failed",
+    "reason": "backport: security regression still fails",
+    "fix_commit": "32f468f1245574785ec080705737a579be1223aa",
+    "parent_commit": "4b2f4e7cb52a723fd286611385487afe85f01579",
+    "target_commit": "5dc3b2f3f4b4690fa9a918fa5085b6fca9979fca",
+    "image_id": "sha256:7f5c9714117da799da5c0a107c52c999ccdf38f3b8b0d3a05cf50da7a08466d9",
+    "oracle_sha256": "ea16155ef515d6cd72f489c020fc9561e46fa5f7ab4bef216d529260cf6d1aaf",
+    "config_sha256": "e754fbd18f660de51ffe9c87b46cad770382f2bb2a574aaa934b4c2383ad8bb1",
+    "patch_sha256": null,
+    "attempts": 1,
+    "adaptation": "provided_patch",
+    "model_usage": {},
+    "reviewed_tests": null,
+    "reviewed_fixtures": {},
+    "reviewed_submodules": {},
+    "phases": [
+      {
+        "name": "upstream_parent",
+        "revision": "4b2f4e7cb52a723fd286611385487afe85f01579",
+        "security": {
+          "returncode": 1,
+          "timed_out": false,
+          "truncated": false,
+          "duration_seconds": 0.5983,
+          "evidence_error": null,
+          "tests": [
+            {
+              "name": "test_security",
+              "classname": "/oracle/oracle.mjs::test",
+              "outcome": "failed",
+              "expected_failure": false,
+              "original_message_sha256": "d0bf512e5c0350c53d206aa8f8cc95dd26c8ebc58f9bc024367f5c73a40762b6"
+            },
+            {
+              "name": "test_private_dotted_decimal",
+              "classname": "/oracle/oracle.mjs::test",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_public_dotted_decimal",
+              "classname": "/oracle/oracle.mjs::test",
+              "outcome": "passed",
+              "expected_failure": false
+            }
+          ],
+          "command_sha256": "b0aef0d5bd75daf7808134565f5639427c54910d04e02b1dd1fb3a8ad7314a2c",
+          "missing_modules": [],
+          "diagnostic_excerpts": [
+            "AssertionError [ERR_ASSERTION]: IP_PRIVATE_ALTERNATE_NOTATION"
+          ],
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 0,
+          "stderr_sha256": "d4c465348513ce4dfbcc0e17446e5fd38cedc5c56c92a077e0ff5e550c5acc77",
+          "stderr_bytes": 880
+        },
+        "suite": {
+          "returncode": 0,
+          "timed_out": false,
+          "truncated": false,
+          "duration_seconds": 0.6977,
+          "evidence_error": null,
+          "tests": [
+            {
+              "name": "should convert to buffer IPv4 address",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js toBuffer()/toString() methods",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should convert to buffer IPv4 address in-place",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js toBuffer()/toString() methods",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should convert to buffer IPv6 address",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js toBuffer()/toString() methods",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should convert to buffer IPv6 address in-place",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js toBuffer()/toString() methods",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should convert to buffer IPv6 mapped IPv4 address",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js toBuffer()/toString() methods",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should create IPv4 mask",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js fromPrefixLen() method",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should create IPv6 mask",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js fromPrefixLen() method",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should create IPv6 mask explicitly",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js fromPrefixLen() method",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should reverse bits in address",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js not() method",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should or bits in ipv4 addresses",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js or() method",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should or bits in ipv6 addresses",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js or() method",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should or bits in mixed addresses",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js or() method",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should mask bits in address",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js mask() method",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should not leak data",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js mask() method",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should compute ipv4 network address",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js subnet() method",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should compute ipv4 network's first address",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js subnet() method",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should compute ipv4 network's last address",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js subnet() method",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should compute ipv4 broadcast address",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js subnet() method",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should compute ipv4 subnet number of addresses",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js subnet() method",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should compute ipv4 subnet number of addressable hosts",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js subnet() method",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should compute ipv4 subnet mask",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js subnet() method",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should compute ipv4 subnet mask's length",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js subnet() method",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should know whether a subnet does not contain an address",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js subnet() method",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should compute ipv4 network's first address",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js subnet() method with mask length 32",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should compute ipv4 network's last address",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js subnet() method with mask length 32",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should compute ipv4 subnet number of addressable hosts",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js subnet() method with mask length 32",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should compute ipv4 network's first address",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js subnet() method with mask length 31",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should compute ipv4 network's last address",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js subnet() method with mask length 31",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should compute ipv4 subnet number of addressable hosts",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js subnet() method with mask length 31",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should compute an ipv4 network address",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js cidrSubnet() method",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should compute an ipv4 network's first address",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js cidrSubnet() method",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should compute an ipv4 network's last address",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js cidrSubnet() method",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should compute an ipv4 broadcast address",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js cidrSubnet() method",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should compute an ipv4 subnet number of addresses",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js cidrSubnet() method",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should compute an ipv4 subnet number of addressable hosts",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js cidrSubnet() method",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should compute an ipv4 subnet mask",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js cidrSubnet() method",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should compute an ipv4 subnet mask's length",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js cidrSubnet() method",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should mask address in CIDR notation",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js cidr() method",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should check if addresses are equal",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js isEqual() method",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should check if an address is localhost",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js isPrivate() method",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should check if an address is from a 192.168.x.x network",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js isPrivate() method",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should check if an address is from a 172.16.x.x network",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js isPrivate() method",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should check if an address is from a 169.254.x.x network",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js isPrivate() method",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should check if an address is from a 10.x.x.x network",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js isPrivate() method",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should check if an address is from a private IPv6 network",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js isPrivate() method",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should check if an address is from the internet",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js isPrivate() method",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should check if an address is a loopback IPv6 address",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js isPrivate() method",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should respond with 127.0.0.1",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js loopback() method undefined",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should respond with 127.0.0.1",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js loopback() method ipv4",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should respond with fe80::1",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js loopback() method ipv6",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should respond with true",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js isLoopback() method 127.0.0.1",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should respond with true",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js isLoopback() method 127.8.8.8",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should respond with false",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js isLoopback() method 8.8.8.8",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should respond with true",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js isLoopback() method fe80::1",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should respond with true",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js isLoopback() method ::1",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should respond with true",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js isLoopback() method ::",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should respond with a private ip",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js address() method undefined",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should respond with a private ip",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js address() method private undefined",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should respond with a private ip",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js address() method private ipv4",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should respond with a private ip",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js address() method private ipv6",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should respond with an ipv4 address",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js address() method lo undefined",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should respond with an ipv4 address",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js address() method lo ipv4",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should respond with an ipv6 address",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js address() method lo ipv6",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should respond with a int",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js toLong() method",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should repond with ipv4 address",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js fromLong() method",
+              "outcome": "passed",
+              "expected_failure": false
+            }
+          ],
+          "command_sha256": "7ea0a8ae836b2954ee9d585feb35bdd98ad1929ce92be9eff314d777de9736a9",
+          "missing_modules": [],
+          "diagnostic_excerpts": [],
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 0,
+          "stderr_sha256": "d59be207904ceb66bf1f5e1569a020b0931b2aa23d4db5c5d113008bafdd33d8",
+          "stderr_bytes": 263
+        }
+      },
+      {
+        "name": "upstream_fix",
+        "revision": "32f468f1245574785ec080705737a579be1223aa",
+        "security": {
+          "returncode": 0,
+          "timed_out": false,
+          "truncated": false,
+          "duration_seconds": 0.5997,
+          "evidence_error": null,
+          "tests": [
+            {
+              "name": "test_security",
+              "classname": "/oracle/oracle.mjs::test",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_private_dotted_decimal",
+              "classname": "/oracle/oracle.mjs::test",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_public_dotted_decimal",
+              "classname": "/oracle/oracle.mjs::test",
+              "outcome": "passed",
+              "expected_failure": false
+            }
+          ],
+          "command_sha256": "b0aef0d5bd75daf7808134565f5639427c54910d04e02b1dd1fb3a8ad7314a2c",
+          "missing_modules": [],
+          "diagnostic_excerpts": [],
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 0,
+          "stderr_sha256": "38e3a34baa21af66e33a287bf93c77fca2d9e1fe472da250ec2d082645f56078",
+          "stderr_bytes": 235
+        },
+        "suite": {
+          "returncode": 0,
+          "timed_out": false,
+          "truncated": false,
+          "duration_seconds": 0.6908,
+          "evidence_error": null,
+          "tests": [
+            {
+              "name": "should return true for octal representation \"0177.0.0.1\"",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should return true for octal representation \"0177.0.1\"",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should return true for octal representation \"0177.1\"",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should return true for hexadecimal representation \"0x7f.0.0.1\"",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should return true for hexadecimal representation \"0x7f.0.1\"",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should return true for hexadecimal representation \"0x7f.1\"",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should return true for single long integer representation \"2130706433\"",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should return false for \"192.168.1.1\"",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should convert to buffer IPv4 address",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js toBuffer()/toString() methods",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should convert to buffer IPv4 address in-place",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js toBuffer()/toString() methods",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should convert to buffer IPv6 address",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js toBuffer()/toString() methods",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should convert to buffer IPv6 address in-place",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js toBuffer()/toString() methods",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should convert to buffer IPv6 mapped IPv4 address",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js toBuffer()/toString() methods",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should create IPv4 mask",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js fromPrefixLen() method",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should create IPv6 mask",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js fromPrefixLen() method",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should create IPv6 mask explicitly",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js fromPrefixLen() method",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should reverse bits in address",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js not() method",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should or bits in ipv4 addresses",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js or() method",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should or bits in ipv6 addresses",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js or() method",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should or bits in mixed addresses",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js or() method",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should mask bits in address",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js mask() method",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should not leak data",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js mask() method",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should compute ipv4 network address",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js subnet() method",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should compute ipv4 network's first address",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js subnet() method",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should compute ipv4 network's last address",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js subnet() method",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should compute ipv4 broadcast address",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js subnet() method",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should compute ipv4 subnet number of addresses",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js subnet() method",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should compute ipv4 subnet number of addressable hosts",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js subnet() method",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should compute ipv4 subnet mask",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js subnet() method",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should compute ipv4 subnet mask's length",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js subnet() method",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should know whether a subnet does not contain an address",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js subnet() method",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should compute ipv4 network's first address",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js subnet() method with mask length 32",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should compute ipv4 network's last address",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js subnet() method with mask length 32",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should compute ipv4 subnet number of addressable hosts",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js subnet() method with mask length 32",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should compute ipv4 network's first address",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js subnet() method with mask length 31",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should compute ipv4 network's last address",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js subnet() method with mask length 31",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should compute ipv4 subnet number of addressable hosts",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js subnet() method with mask length 31",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should compute an ipv4 network address",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js cidrSubnet() method",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should compute an ipv4 network's first address",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js cidrSubnet() method",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should compute an ipv4 network's last address",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js cidrSubnet() method",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should compute an ipv4 broadcast address",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js cidrSubnet() method",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should compute an ipv4 subnet number of addresses",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js cidrSubnet() method",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should compute an ipv4 subnet number of addressable hosts",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js cidrSubnet() method",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should compute an ipv4 subnet mask",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js cidrSubnet() method",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should compute an ipv4 subnet mask's length",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js cidrSubnet() method",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should mask address in CIDR notation",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js cidr() method",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should check if addresses are equal",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js isEqual() method",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should correctly normalize \"127.0.0.1\"",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js normalizeIpv4() method",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should correctly handle \"127.1\" as two parts",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js normalizeIpv4() method",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should correctly handle \"127.0.1\" as three parts",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js normalizeIpv4() method",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should correctly handle hexadecimal notation \"0x7f.0x0.0x0.0x1\"",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js normalizeIpv4() method",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should correctly handle \"0x7f000001\" as a single part",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js normalizeIpv4() method",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should correctly handle octal notation \"010.0.0.01\"",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js normalizeIpv4() method",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should return -1 for an invalid address \"256.100.50.25\"",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js normalizeIpv4() method",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should return -1 for an address with invalid octal \"019.0.0.1\"",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js normalizeIpv4() method",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should return -1 for an address with invalid hex \"0xGG.0.0.1\"",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js normalizeIpv4() method",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should return -1 for an empty string",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js normalizeIpv4() method",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should return -1 for a string with too many parts \"192.168.0.1.100\"",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js normalizeIpv4() method",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should check if an address is localhost",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js isPrivate() method",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should check if an address is from a 192.168.x.x network",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js isPrivate() method",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should check if an address is from a 172.16.x.x network",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js isPrivate() method",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should check if an address is from a 169.254.x.x network",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js isPrivate() method",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should check if an address is from a 10.x.x.x network",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js isPrivate() method",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should check if an address is from a private IPv6 network",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js isPrivate() method",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should check if an address is from the internet",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js isPrivate() method",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should check if an address is a loopback IPv6 address",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js isPrivate() method",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should correctly identify hexadecimal IP addresses like '0x7f.1' as private",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js isPrivate() method",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should respond with 127.0.0.1",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js loopback() method undefined",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should respond with 127.0.0.1",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js loopback() method ipv4",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should respond with fe80::1",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js loopback() method ipv6",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should respond with true",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js isLoopback() method 127.0.0.1",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should respond with true",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js isLoopback() method 127.8.8.8",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should respond with false",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js isLoopback() method 8.8.8.8",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should respond with true",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js isLoopback() method fe80::1",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should respond with true",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js isLoopback() method ::1",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should respond with true",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js isLoopback() method ::",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should respond with a private ip",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js address() method undefined",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should respond with a private ip",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js address() method private undefined",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should respond with a private ip",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js address() method private ipv4",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should respond with a private ip",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js address() method private ipv6",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should respond with an ipv4 address",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js address() method lo undefined",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should respond with an ipv4 address",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js address() method lo ipv4",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should respond with an ipv6 address",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js address() method lo ipv6",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should respond with a int",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js toLong() method",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should repond with ipv4 address",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js fromLong() method",
+              "outcome": "passed",
+              "expected_failure": false
+            }
+          ],
+          "command_sha256": "7ea0a8ae836b2954ee9d585feb35bdd98ad1929ce92be9eff314d777de9736a9",
+          "missing_modules": [],
+          "diagnostic_excerpts": [],
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 0,
+          "stderr_sha256": "65d5e6bfe62467c65c364e8ac7cabbda2f0def8df51e7206f7cbf35764937d87",
+          "stderr_bytes": 263
+        }
+      },
+      {
+        "name": "target_baseline",
+        "revision": "5dc3b2f3f4b4690fa9a918fa5085b6fca9979fca",
+        "security": {
+          "returncode": 1,
+          "timed_out": false,
+          "truncated": false,
+          "duration_seconds": 0.6044,
+          "evidence_error": null,
+          "tests": [
+            {
+              "name": "test_security",
+              "classname": "/oracle/oracle.mjs::test",
+              "outcome": "failed",
+              "expected_failure": false,
+              "original_message_sha256": "d0bf512e5c0350c53d206aa8f8cc95dd26c8ebc58f9bc024367f5c73a40762b6"
+            },
+            {
+              "name": "test_private_dotted_decimal",
+              "classname": "/oracle/oracle.mjs::test",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_public_dotted_decimal",
+              "classname": "/oracle/oracle.mjs::test",
+              "outcome": "passed",
+              "expected_failure": false
+            }
+          ],
+          "command_sha256": "b0aef0d5bd75daf7808134565f5639427c54910d04e02b1dd1fb3a8ad7314a2c",
+          "missing_modules": [],
+          "diagnostic_excerpts": [
+            "AssertionError [ERR_ASSERTION]: IP_PRIVATE_ALTERNATE_NOTATION"
+          ],
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 0,
+          "stderr_sha256": "becb0bad11fd984391ae6094891424f521c51a6c47d787e4177f201e9b7594f8",
+          "stderr_bytes": 879
+        },
+        "suite": {
+          "returncode": 0,
+          "timed_out": false,
+          "truncated": false,
+          "duration_seconds": 0.6939,
+          "evidence_error": null,
+          "tests": [
+            {
+              "name": "should convert to buffer IPv4 address",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js toBuffer()/toString() methods",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should convert to buffer IPv4 address in-place",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js toBuffer()/toString() methods",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should convert to buffer IPv6 address",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js toBuffer()/toString() methods",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should convert to buffer IPv6 address in-place",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js toBuffer()/toString() methods",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should convert to buffer IPv6 mapped IPv4 address",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js toBuffer()/toString() methods",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should create IPv4 mask",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js fromPrefixLen() method",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should create IPv6 mask",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js fromPrefixLen() method",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should create IPv6 mask explicitly",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js fromPrefixLen() method",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should reverse bits in address",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js not() method",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should or bits in ipv4 addresses",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js or() method",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should or bits in ipv6 addresses",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js or() method",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should or bits in mixed addresses",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js or() method",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should mask bits in address",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js mask() method",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should not leak data",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js mask() method",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should compute ipv4 network address",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js subnet() method",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should compute ipv4 network's first address",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js subnet() method",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should compute ipv4 network's last address",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js subnet() method",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should compute ipv4 broadcast address",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js subnet() method",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should compute ipv4 subnet number of addresses",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js subnet() method",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should compute ipv4 subnet number of addressable hosts",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js subnet() method",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should compute ipv4 subnet mask",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js subnet() method",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should compute ipv4 subnet mask's length",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js subnet() method",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should know whether a subnet does not contain an address",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js subnet() method",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should compute ipv4 network's first address",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js subnet() method with mask length 32",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should compute ipv4 network's last address",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js subnet() method with mask length 32",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should compute ipv4 subnet number of addressable hosts",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js subnet() method with mask length 32",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should compute ipv4 network's first address",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js subnet() method with mask length 31",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should compute ipv4 network's last address",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js subnet() method with mask length 31",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should compute ipv4 subnet number of addressable hosts",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js subnet() method with mask length 31",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should compute an ipv4 network address",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js cidrSubnet() method",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should compute an ipv4 network's first address",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js cidrSubnet() method",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should compute an ipv4 network's last address",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js cidrSubnet() method",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should compute an ipv4 broadcast address",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js cidrSubnet() method",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should compute an ipv4 subnet number of addresses",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js cidrSubnet() method",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should compute an ipv4 subnet number of addressable hosts",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js cidrSubnet() method",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should compute an ipv4 subnet mask",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js cidrSubnet() method",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should compute an ipv4 subnet mask's length",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js cidrSubnet() method",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should mask address in CIDR notation",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js cidr() method",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should check if addresses are equal",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js isEqual() method",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should check if an address is localhost",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js isPrivate() method",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should check if an address is from a 192.168.x.x network",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js isPrivate() method",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should check if an address is from a 172.16.x.x network",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js isPrivate() method",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should check if an address is from a 169.254.x.x network",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js isPrivate() method",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should check if an address is from a 10.x.x.x network",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js isPrivate() method",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should check if an address is from a private IPv6 network",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js isPrivate() method",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should check if an address is from the internet",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js isPrivate() method",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should check if an address is a loopback IPv6 address",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js isPrivate() method",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should respond with 127.0.0.1",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js loopback() method undefined",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should respond with 127.0.0.1",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js loopback() method ipv4",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should respond with fe80::1",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js loopback() method ipv6",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should respond with true",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js isLoopback() method 127.0.0.1",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should respond with true",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js isLoopback() method 127.8.8.8",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should respond with false",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js isLoopback() method 8.8.8.8",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should respond with true",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js isLoopback() method fe80::1",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should respond with true",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js isLoopback() method ::1",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should respond with true",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js isLoopback() method ::",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should respond with a private ip",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js address() method undefined",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should respond with a private ip",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js address() method private undefined",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should respond with a private ip",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js address() method private ipv4",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should respond with a private ip",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js address() method private ipv6",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should respond with an ipv4 address",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js address() method lo undefined",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should respond with an ipv4 address",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js address() method lo ipv4",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should respond with an ipv6 address",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js address() method lo ipv6",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should respond with a int",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js toLong() method",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should repond with ipv4 address",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js fromLong() method",
+              "outcome": "passed",
+              "expected_failure": false
+            }
+          ],
+          "command_sha256": "7ea0a8ae836b2954ee9d585feb35bdd98ad1929ce92be9eff314d777de9736a9",
+          "missing_modules": [],
+          "diagnostic_excerpts": [],
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 0,
+          "stderr_sha256": "65d5e6bfe62467c65c364e8ac7cabbda2f0def8df51e7206f7cbf35764937d87",
+          "stderr_bytes": 263
+        }
+      },
+      {
+        "name": "backport",
+        "revision": "5dc3b2f3f4b4690fa9a918fa5085b6fca9979fca",
+        "security": {
+          "returncode": 1,
+          "timed_out": false,
+          "truncated": false,
+          "duration_seconds": 0.6015,
+          "evidence_error": null,
+          "tests": [
+            {
+              "name": "test_security",
+              "classname": "/oracle/oracle.mjs::test",
+              "outcome": "failed",
+              "expected_failure": false,
+              "original_message_sha256": "d0bf512e5c0350c53d206aa8f8cc95dd26c8ebc58f9bc024367f5c73a40762b6"
+            },
+            {
+              "name": "test_private_dotted_decimal",
+              "classname": "/oracle/oracle.mjs::test",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_public_dotted_decimal",
+              "classname": "/oracle/oracle.mjs::test",
+              "outcome": "passed",
+              "expected_failure": false
+            }
+          ],
+          "command_sha256": "b0aef0d5bd75daf7808134565f5639427c54910d04e02b1dd1fb3a8ad7314a2c",
+          "missing_modules": [],
+          "diagnostic_excerpts": [
+            "AssertionError [ERR_ASSERTION]: IP_PRIVATE_ALTERNATE_NOTATION"
+          ],
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 0,
+          "stderr_sha256": "9d3b132ffb6fab1fe2925f7475fdc2d96759fdee58e477678ea6306aa1a5e0b9",
+          "stderr_bytes": 880
+        },
+        "suite": {
+          "returncode": 0,
+          "timed_out": false,
+          "truncated": false,
+          "duration_seconds": 0.6854,
+          "evidence_error": null,
+          "tests": [
+            {
+              "name": "should convert to buffer IPv4 address",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js toBuffer()/toString() methods",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should convert to buffer IPv4 address in-place",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js toBuffer()/toString() methods",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should convert to buffer IPv6 address",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js toBuffer()/toString() methods",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should convert to buffer IPv6 address in-place",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js toBuffer()/toString() methods",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should convert to buffer IPv6 mapped IPv4 address",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js toBuffer()/toString() methods",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should create IPv4 mask",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js fromPrefixLen() method",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should create IPv6 mask",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js fromPrefixLen() method",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should create IPv6 mask explicitly",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js fromPrefixLen() method",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should reverse bits in address",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js not() method",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should or bits in ipv4 addresses",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js or() method",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should or bits in ipv6 addresses",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js or() method",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should or bits in mixed addresses",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js or() method",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should mask bits in address",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js mask() method",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should not leak data",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js mask() method",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should compute ipv4 network address",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js subnet() method",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should compute ipv4 network's first address",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js subnet() method",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should compute ipv4 network's last address",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js subnet() method",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should compute ipv4 broadcast address",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js subnet() method",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should compute ipv4 subnet number of addresses",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js subnet() method",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should compute ipv4 subnet number of addressable hosts",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js subnet() method",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should compute ipv4 subnet mask",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js subnet() method",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should compute ipv4 subnet mask's length",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js subnet() method",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should know whether a subnet does not contain an address",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js subnet() method",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should compute ipv4 network's first address",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js subnet() method with mask length 32",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should compute ipv4 network's last address",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js subnet() method with mask length 32",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should compute ipv4 subnet number of addressable hosts",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js subnet() method with mask length 32",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should compute ipv4 network's first address",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js subnet() method with mask length 31",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should compute ipv4 network's last address",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js subnet() method with mask length 31",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should compute ipv4 subnet number of addressable hosts",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js subnet() method with mask length 31",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should compute an ipv4 network address",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js cidrSubnet() method",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should compute an ipv4 network's first address",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js cidrSubnet() method",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should compute an ipv4 network's last address",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js cidrSubnet() method",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should compute an ipv4 broadcast address",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js cidrSubnet() method",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should compute an ipv4 subnet number of addresses",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js cidrSubnet() method",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should compute an ipv4 subnet number of addressable hosts",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js cidrSubnet() method",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should compute an ipv4 subnet mask",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js cidrSubnet() method",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should compute an ipv4 subnet mask's length",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js cidrSubnet() method",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should mask address in CIDR notation",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js cidr() method",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should check if addresses are equal",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js isEqual() method",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should check if an address is localhost",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js isPrivate() method",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should check if an address is from a 192.168.x.x network",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js isPrivate() method",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should check if an address is from a 172.16.x.x network",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js isPrivate() method",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should check if an address is from a 169.254.x.x network",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js isPrivate() method",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should check if an address is from a 10.x.x.x network",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js isPrivate() method",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should check if an address is from a private IPv6 network",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js isPrivate() method",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should check if an address is from the internet",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js isPrivate() method",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should check if an address is a loopback IPv6 address",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js isPrivate() method",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should respond with 127.0.0.1",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js loopback() method undefined",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should respond with 127.0.0.1",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js loopback() method ipv4",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should respond with fe80::1",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js loopback() method ipv6",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should respond with true",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js isLoopback() method 127.0.0.1",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should respond with true",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js isLoopback() method 127.8.8.8",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should respond with false",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js isLoopback() method 8.8.8.8",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should respond with true",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js isLoopback() method fe80::1",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should respond with true",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js isLoopback() method ::1",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should respond with true",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js isLoopback() method ::",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should respond with a private ip",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js address() method undefined",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should respond with a private ip",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js address() method private undefined",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should respond with a private ip",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js address() method private ipv4",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should respond with a private ip",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js address() method private ipv6",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should respond with an ipv4 address",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js address() method lo undefined",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should respond with an ipv4 address",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js address() method lo ipv4",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should respond with an ipv6 address",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js address() method lo ipv6",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should respond with a int",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js toLong() method",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should repond with ipv4 address",
+              "classname": "/work/repo/test/api-test.js::IP library for node.js fromLong() method",
+              "outcome": "passed",
+              "expected_failure": false
+            }
+          ],
+          "command_sha256": "7ea0a8ae836b2954ee9d585feb35bdd98ad1929ce92be9eff314d777de9736a9",
+          "missing_modules": [],
+          "diagnostic_excerpts": [],
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 0,
+          "stderr_sha256": "65d5e6bfe62467c65c364e8ac7cabbda2f0def8df51e7206f7cbf35764937d87",
+          "stderr_bytes": 263
+        }
+      }
+    ]
+  },
+  "original_report_sha256": "acf9717526e86966ef8ccf20813759cf33f123319cf751d6a8eaaff630a05628",
+  "original_command_record_sha256": "239a2ab35c739af7f67771999f213e50e85bb86b26fd2c2d23233b23238339ab",
+  "candidate_patch_inputs": [
+    {
+      "original_filename": "attempt-1.patch",
+      "sha256": "4365af251491290793965ad2e3aec7f2d9cd006dc8b044e7c4596031ce0bf618"
+    }
+  ]
+}

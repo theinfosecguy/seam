@@ -1,0 +1,136 @@
+{
+  "publication_state": "final",
+  "report_attempt_count": 62,
+  "initial_npm_20": {
+    "case_count": 20,
+    "reference_status_counts": {
+      "inconclusive": 15,
+      "verified": 4,
+      "failed": 1
+    },
+    "scope": "Fixed initial cohort; reviewed followups and model attempts excluded."
+  },
+  "cohorts": {
+    "baseline": {
+      "attempt_count": 2,
+      "distinct_cases": 2,
+      "status_counts": {
+        "inconclusive": 2
+      }
+    },
+    "development-smoke": {
+      "attempt_count": 2,
+      "distinct_cases": 2,
+      "status_counts": {
+        "inconclusive": 2
+      }
+    },
+    "development-wheel-initial": {
+      "attempt_count": 7,
+      "distinct_cases": 5,
+      "status_counts": {
+        "inconclusive": 4,
+        "failed": 1,
+        "verified": 2
+      }
+    },
+    "direct-transfer": {
+      "attempt_count": 4,
+      "distinct_cases": 4,
+      "status_counts": {
+        "inconclusive": 1,
+        "verified": 3
+      }
+    },
+    "initial-npm-20": {
+      "attempt_count": 28,
+      "distinct_cases": 20,
+      "status_counts": {
+        "inconclusive": 15,
+        "failed": 5,
+        "verified": 8
+      }
+    },
+    "model-adaptation": {
+      "attempt_count": 4,
+      "distinct_cases": 4,
+      "status_counts": {
+        "verified": 4
+      }
+    },
+    "model-replay-strengthened-oracle": {
+      "attempt_count": 1,
+      "distinct_cases": 1,
+      "status_counts": {
+        "failed": 1
+      }
+    },
+    "model-strengthened-followup": {
+      "attempt_count": 1,
+      "distinct_cases": 1,
+      "status_counts": {
+        "verified": 1
+      }
+    },
+    "npm-reviewed-followup": {
+      "attempt_count": 3,
+      "distinct_cases": 1,
+      "status_counts": {
+        "failed": 1,
+        "verified": 2
+      }
+    },
+    "python-corrected-probe": {
+      "attempt_count": 3,
+      "distinct_cases": 1,
+      "status_counts": {
+        "failed": 1,
+        "verified": 2
+      }
+    },
+    "python-initial": {
+      "attempt_count": 4,
+      "distinct_cases": 2,
+      "status_counts": {
+        "failed": 1,
+        "verified": 2,
+        "inconclusive": 1
+      }
+    },
+    "strengthened-oracle-controls": {
+      "attempt_count": 3,
+      "distinct_cases": 1,
+      "status_counts": {
+        "failed": 1,
+        "verified": 2
+      }
+    }
+  },
+  "python_latest_references": {
+    "case_count": 2,
+    "cases": {
+      "django-language-cache": "verified",
+      "werkzeug-multipart": "verified"
+    },
+    "scope": "Separate Python cohort; the corrected Werkzeug probe does not erase its first inconclusive attempt."
+  },
+  "model_adaptation": {
+    "scope": "Public selected cases and original frozen oracles; passes do not establish maintainer equivalence.",
+    "attempts": 4,
+    "calls": 26,
+    "estimated_cost_usd": 0.1486725,
+    "reserved_cost_usd": 0.0
+  },
+  "model_strengthened_followup": {
+    "attempts": 1,
+    "calls": 5,
+    "estimated_cost_usd": 0.015126,
+    "reserved_cost_usd": 0.0
+  },
+  "all_paid_model_attempts": {
+    "attempts": 5,
+    "calls": 31,
+    "estimated_cost_usd": 0.1637985,
+    "reserved_cost_usd": 0.0
+  }
+}

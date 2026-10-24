@@ -16,6 +16,22 @@ from seam.models import TestCaseResult as Case
 from seam.verification.reporting import diagnostic_excerpt, display_text, write_report
 
 
+def test_reviewed_submodules_disclose_uninitialized_pinned_directories(
+    tmp_path: Path,
+) -> None:
+    modules = {"test/cache-fixtures": ("a" * 40,)}
+    report = RunReport(
+        status="inconclusive", reason="fixture", reviewed_submodules=modules
+    )
+    write_report(tmp_path, report)
+    saved = RunReport.model_validate_json((tmp_path / "report.json").read_bytes())
+    assert saved.reviewed_submodules == modules
+    assert (
+        "directories kept empty and never fetched"
+        in (tmp_path / "report.md").read_text()
+    )
+
+
 def test_root_import_error_visible_in_markdown_and_terminal(tmp_path: Path) -> None:
     failed = ExecutionResult(
         returncode=4,

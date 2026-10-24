@@ -1,0 +1,98 @@
+{
+  "normalization_schema_version": 1,
+  "cohort": "initial-npm-20",
+  "case": "qs",
+  "role": "reference",
+  "interpretation": "Setup, application or evidence remained inconclusive; this alone is not a confirmed harness defect.",
+  "execution_context": {
+    "exit_code": 2,
+    "timed_out": false,
+    "log_truncated": false,
+    "wheel_sha256": "fb1afe7d89a0cfd5a50ae6094f1b1a356cb57e6d187beba597d542fe8903c35c",
+    "driver_sha256": "44efbc782d4cbbebb7ecec44e491a9941e5dc2cdd1554eaf7616a307020ec306",
+    "freeze_sha256": "f5fa5b227de18954e8c22fed4b881688a4e93d13428769fa01e21c19ade9c083",
+    "case_assets_unchanged": true,
+    "caller_unchanged": true
+  },
+  "report": {
+    "schema_version": 2,
+    "status": "inconclusive",
+    "reason": "Verification prerequisites were not established: upstream_parent security: test execution contained errors or skipped tests",
+    "fix_commit": "8b4cc14cda94a5c89341b77e5fe435ec6c41be2d",
+    "parent_commit": "ad63d36ce18cd2c315899ac1e8193de22be08cd8",
+    "target_commit": "02ca358155297dc68fcc4c2ac312c26e10524e47",
+    "image_id": "sha256:52f40f96867d88d68ced00067878ab5b917744d17f5649b82506f43e72d88cba",
+    "oracle_sha256": "7be0c63408b17c05eac2e5caa108beaafc177a384077904b728fcf4cf9eae93a",
+    "config_sha256": "ed4802f3373adef7baa467c1ff339d8a6a96344400d951fd34ad4fb2a8346f19",
+    "patch_sha256": null,
+    "attempts": 0,
+    "adaptation": "none",
+    "model_usage": {},
+    "reviewed_tests": null,
+    "reviewed_fixtures": {},
+    "reviewed_submodules": {},
+    "phases": [
+      {
+        "name": "upstream_parent",
+        "revision": "ad63d36ce18cd2c315899ac1e8193de22be08cd8",
+        "security": {
+          "returncode": 1,
+          "timed_out": false,
+          "truncated": false,
+          "duration_seconds": 1.0948,
+          "evidence_error": null,
+          "tests": [
+            {
+              "name": "/oracle/oracle.mjs",
+              "classname": "/oracle/oracle.mjs::test",
+              "outcome": "error",
+              "expected_failure": false,
+              "original_message_sha256": "7f55e0223987df58d58dfe4f24145416b95cc6fc1b37a5929601fff8efc754ba"
+            }
+          ],
+          "command_sha256": "b0aef0d5bd75daf7808134565f5639427c54910d04e02b1dd1fb3a8ad7314a2c",
+          "missing_modules": [
+            "side-channel"
+          ],
+          "diagnostic_excerpts": [
+            "Error: Cannot find module 'side-channel'"
+          ],
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 0,
+          "stderr_sha256": "1f0ae91841215f148f9c63455971693077aac8632b18a1d75030372c947d0642",
+          "stderr_bytes": 1320
+        },
+        "suite": {
+          "returncode": 1,
+          "timed_out": false,
+          "truncated": false,
+          "duration_seconds": 0.7019,
+          "evidence_error": null,
+          "tests": [
+            {
+              "name": "/work/repo/test/parse.js",
+              "classname": "/work/repo/test/parse.js::test",
+              "outcome": "error",
+              "expected_failure": false,
+              "original_message_sha256": "7f55e0223987df58d58dfe4f24145416b95cc6fc1b37a5929601fff8efc754ba"
+            }
+          ],
+          "command_sha256": "5ec4e3f7ad9fa6b1f996432a4a4037f3d901f52bc1f9b62ed677b471f5aafa98",
+          "missing_modules": [
+            "tape"
+          ],
+          "diagnostic_excerpts": [
+            "Error: Cannot find module 'tape'"
+          ],
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 0,
+          "stderr_sha256": "e4d22939b358cdfa9d9424bceb1db9fb037c4875aeda862fdea87576f7f59d1e",
+          "stderr_bytes": 1160
+        }
+      }
+    ]
+  },
+  "original_report_sha256": "50dc67049d5dd974baf74969541cd0b170e4b7ee70e4bb1cbd20d6e1114d578c",
+  "original_command_record_sha256": "c5b08d90e8051474ef75aaee12c1fe5ac3b55f10c0761d85e13caa7e210a468e",
+  "candidate_patch_inputs": []
+}

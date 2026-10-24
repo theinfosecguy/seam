@@ -1,0 +1,24 @@
+[oracle]
+path = "oracle.mjs"
+security_test = "test_security"
+controls = ["test_invalid_upgrade_rejected", "test_non_get_request_rejected"]
+failure_marker = "WS_MISSING_UPGRADE_REJECTED"
+
+[runner]
+kind = "mocha"
+image = "sha256:52f40f96867d88d68ced00067878ab5b917744d17f5649b82506f43e72d88cba"
+docker = ["sudo", "-n", "docker"]
+suite = ["test/websocket-server.test.js", "test/websocket.test.js"]
+timeout_seconds = 120
+
+[runner.node_dependencies]
+"6a00029edd924499f892aed8003cef1fa724cfe5" = "/opt/seam/dependencies/6a00029edd924499f892aed8003cef1fa724cfe5/node_modules"
+"e55e5106f10fcbaac37cfa89759e4cc0d073a52c" = "/opt/seam/dependencies/e55e5106f10fcbaac37cfa89759e4cc0d073a52c/node_modules"
+"8a78f8770618cc5a1ade485a7445cb6d6f46e2f2" = "/opt/seam/dependencies/8a78f8770618cc5a1ade485a7445cb6d6f46e2f2/node_modules"
+
+[runner.reviewed_fixtures]
+"test/fixtures/certificate.pem" = ["7ddcc4f3243d4ad4ee48716cac2be11315e4988585141be8ca7c37212b555595"]
+"test/fixtures/key.pem" = ["f5c3a9624ec958192ba9c978bc9d5da77adc62d513d12dc95fa91e593a263c1a"]
+"test/fixtures/ca-certificate.pem" = ["20e7823aed9826819245325fe8a610f54e1788f03f315d245ae585a27d0e5c50"]
+"test/fixtures/client-certificate.pem" = ["21b9bc92b0d0f67fd4e468c3786edb04b43d2257a7e0665b87869bdef1a60d0c"]
+"test/fixtures/client-key.pem" = ["94e947c05bb601d9b9bbd7db89ec837d1c6bf78b0973f6c6e07db5e413d1f669"]

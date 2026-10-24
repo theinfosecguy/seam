@@ -1,0 +1,63 @@
+--- a/lib/util/cache.js
++++ b/lib/util/cache.js
+@@ -117,8 +117,27 @@
+ /**
+  * @see https://www.rfc-editor.org/rfc/rfc9111.html#name-cache-control
+  * @see https://www.iana.org/assignments/http-cache-directives/http-cache-directives.xhtml
+ 
+  * @param {string | string[]} header
+  * @returns {import('../../types/cache-interceptor.d.ts').default.CacheControlDirectives}
+  */
++function addFieldNameCacheControlDirective (output, key, fieldNames) {
++  const normalizedFieldNames = []
++
++  for (let i = 0; i < fieldNames.length; i++) {
++    const fieldName = fieldNames[i].trim()
++    if (fieldName.length !== 0) {
++      normalizedFieldNames.push(fieldName)
++    }
++  }
++
++  if (normalizedFieldNames.length === 0 || output[key] === true) {
++    output[key] = true
++  } else if (key in output) {
++    output[key] = output[key].concat(normalizedFieldNames)
++  } else {
++    output[key] = normalizedFieldNames
++  }
++}
++
+ function parseCacheControlHeader (header) {
+@@ -224,29 +243,15 @@
+             if (foundEndingQuote) {
+               let lastHeader = headers[headers.length - 1]
+               if (lastHeader[lastHeader.length - 1] === '"') {
+                 lastHeader = lastHeader.substring(0, lastHeader.length - 1)
+                 headers[headers.length - 1] = lastHeader
+               }
+ 
+-              for (let j = 0; j < headers.length; j++) {
+-                headers[j] = headers[j].trim()
+-              }
+-
+-              if (key in output) {
+-                output[key] = output[key].concat(headers)
+-              } else {
+-                output[key] = headers
+-              }
++              addFieldNameCacheControlDirective(output, key, headers)
+             }
+           } else {
+-            // Something like `no-cache="some-header"`
+-            const fieldName = value.trim()
+-
+-            if (key in output) {
+-              output[key] = output[key].concat(fieldName)
+-            } else {
+-              output[key] = [fieldName]
+-            }
++            // Something like `no-cache=some-header`
++            addFieldNameCacheControlDirective(output, key, [value])
+           }
+ 
+           break

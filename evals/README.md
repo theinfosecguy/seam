@@ -42,3 +42,11 @@ four recent backport comparisons across Django, PydanticAI and LiteLLM. It inclu
 normalized evidence for unsuccessful setup/model attempts and separates stored
 patch replays from fresh model adaptation. It is a historical evidence supplement,
 not an additional `seam eval` catalogue or a qualification of changed releases.
+
+## Expanded npm and Python study
+
+The [expanded backport study](expanded-backports/2026-10-24/README.md) includes 20
+initial npm cases, reviewed follow-ups, two new Python cases, fresh adaptation
+comparisons and an executed BackportBench crosscheck. It publishes unresolved
+attempts alongside successes. These standalone inputs do not change the default
+eight-case catalogue. See the [results guide](../docs/expanded-benchmarks.md).

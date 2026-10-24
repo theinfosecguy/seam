@@ -1,0 +1,49 @@
+{
+  "advisory_ids": [
+    "GHSA-w74x-v6f9-j3xg",
+    "CVE-2026-110306"
+  ],
+  "asset_sha256": {
+    "LICENSE.upstream": "b010b0dfdfdb23d7396e03b82cd4621fc9bb8f95d6b0aea70b9c24e12074c786",
+    "harness.toml": "cc700171007a1f194e2865f663ca7120550898fbd1d9886d3b497c566f0fad9f",
+    "oracle.mjs": "fd6946c66e9030686e617a2801a94eec29fd724b53d610dd8f0d057b65d56eab",
+    "reference.patch": "1619737cd3c2ae41807a1c0da29ba4f27a7b7603b3bc5695b1d8723863255560",
+    "upstream.patch": "b0516d06107ee9539d5fd2abbeb671acfe870de1330ea2bfea7a4956049a09c9"
+  },
+  "backport_implementation_paths": [
+    "index.js"
+  ],
+  "base_commit": "8e8e5c637fa732805ab0ea66f49e22559698837d",
+  "input_scope": "Experimental standalone inputs; no execution result is asserted.",
+  "instance_id": "fast-uri",
+  "license": "BSD-3-Clause",
+  "maintainer_backport_commit": "597f254c86d151568511eeb9a1df761fd12520b3",
+  "maintainer_backport_parent": "8e8e5c637fa732805ab0ea66f49e22559698837d",
+  "package": "fast-uri",
+  "patch_scope": "Implementation-only extracts of the maintainer commits; full commits can also change tests, metadata, or dependencies.",
+  "repository_url": "https://github.com/fastify/fast-uri.git",
+  "schema_version": 1,
+  "source_links": {
+    "base_commit": "https://github.com/fastify/fast-uri/commit/8e8e5c637fa732805ab0ea66f49e22559698837d",
+    "maintainer_backport_commit": "https://github.com/fastify/fast-uri/commit/597f254c86d151568511eeb9a1df761fd12520b3",
+    "upstream_fix_commit": "https://github.com/fastify/fast-uri/commit/39933a1f1422986f14e2d844f552238feb40f5d4",
+    "upstream_parent_commit": "https://github.com/fastify/fast-uri/commit/0f89a8ab641f251613e2c9a64285cb2a44f1c378"
+  },
+  "source_snapshot_sha256": {
+    "maintainer_backport": "e6f18ea749202d83e96b002f3d0cd04101e20928df6235198cd05a6dd92fc760",
+    "target_baseline": "9fa7bf70bdc8780ae6d44f1f67011de35fb50593f10fc2699a742b519e4f8cf4",
+    "upstream_fix": "4ae557df4df4ae88978a73f5e16a12f9bb55dc6664da8d8deb0380b570e512e8",
+    "upstream_parent": "9e68333d99b2850cdf20fd8f1c97f069976f90c2df82ee493cd6eb2713e8ea82"
+  },
+  "target_test_paths": [
+    "test/scheme-validation.test.js"
+  ],
+  "upstream_fix_commit": "39933a1f1422986f14e2d844f552238feb40f5d4",
+  "upstream_implementation_paths": [
+    "index.js"
+  ],
+  "upstream_parent_commit": "0f89a8ab641f251613e2c9a64285cb2a44f1c378",
+  "upstream_test_paths": [
+    "test/scheme-validation.test.js"
+  ]
+}

@@ -1,0 +1,96 @@
+{
+  "minimum_shared_python": "3.12",
+  "selected_direct_test_dependencies": [],
+  "common_runtime_dependency_constraints": [
+    "asgiref>=3.12.1",
+    "sqlparse>=0.5.0"
+  ],
+  "build_backend_dependency": "setuptools>=83",
+  "source_test_dependency_pins_file": null,
+  "full_project_test_requirements": "original/source-fix/tests/requirements/py3.txt",
+  "ordinary_test_function_count": 2,
+  "system_requirements": [
+    "Linux with the standard library SQLite module.",
+    "Preserve tracked django/conf/locale and tests/i18n fixture data, including compiled .mo catalogs.",
+    "GNU gettext tools are needed for broader translation suites, but selected methods do not invoke msgfmt."
+  ],
+  "schema_version": 1,
+  "declarations_by_ref": {
+    "source-parent": {
+      "requires_python": ">= 3.12",
+      "runtime_dependencies": [
+        "asgiref>=3.12.1",
+        "sqlparse>=0.5.0",
+        "tzdata; sys_platform == 'win32'"
+      ],
+      "build_system": {
+        "requires": [
+          "setuptools>=83"
+        ],
+        "build-backend": "setuptools.build_meta"
+      }
+    },
+    "source-fix": {
+      "requires_python": ">= 3.12",
+      "runtime_dependencies": [
+        "asgiref>=3.12.1",
+        "sqlparse>=0.5.0",
+        "tzdata; sys_platform == 'win32'"
+      ],
+      "build_system": {
+        "requires": [
+          "setuptools>=83"
+        ],
+        "build-backend": "setuptools.build_meta"
+      }
+    },
+    "target-baseline": {
+      "requires_python": ">= 3.10",
+      "runtime_dependencies": [
+        "asgiref>=3.8.1",
+        "sqlparse>=0.3.1",
+        "tzdata; sys_platform == 'win32'"
+      ],
+      "build_system": {
+        "requires": [
+          "setuptools>=83"
+        ],
+        "build-backend": "setuptools.build_meta"
+      }
+    },
+    "target-backport": {
+      "requires_python": ">= 3.10",
+      "runtime_dependencies": [
+        "asgiref>=3.8.1",
+        "sqlparse>=0.3.1",
+        "tzdata; sys_platform == 'win32'"
+      ],
+      "build_system": {
+        "requires": [
+          "setuptools>=83"
+        ],
+        "build-backend": "setuptools.build_meta"
+      }
+    }
+  },
+  "package_build_command": [
+    "python",
+    "-m",
+    "pip",
+    "install",
+    "--no-index",
+    "--no-deps",
+    "--no-build-isolation",
+    "."
+  ],
+  "ordinary_test_command": [
+    "python",
+    "tests/runtests.py",
+    "--settings=test_sqlite",
+    "--parallel=1",
+    "i18n.tests.MiscTests.test_get_supported_language_variant_real",
+    "i18n.tests.MiscTests.test_get_supported_language_variant_null"
+  ],
+  "dependency_environment_status": "declarations_reviewed; lock_and_container_pending",
+  "execution_status": "not_run"
+}

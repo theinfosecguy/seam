@@ -73,6 +73,7 @@ class PatchSession:
             context.workspace,
             context.upstream_parent_workspace,
             context.upstream_fix_workspace,
+            language=context.language,
         )
         conversation = initial_conversation(context)
         seen_ids: set[str] = set()

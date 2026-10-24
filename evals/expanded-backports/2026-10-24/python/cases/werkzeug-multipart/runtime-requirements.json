@@ -1,0 +1,91 @@
+{
+  "minimum_shared_python": "3.8",
+  "recommended_python_for_paired_python_batch": "3.12",
+  "selected_direct_test_dependencies": [
+    "pytest",
+    "pytest-xprocess",
+    "ephemeral-port-reserve"
+  ],
+  "imported_test_dependency_transitives": [
+    "psutil",
+    "py"
+  ],
+  "source_test_dependency_pins_file": "original/source-fix/requirements/tests.txt",
+  "ordinary_test_function_count": 4,
+  "estimated_parametrized_cases_from_static_review": 21,
+  "system_requirements": [
+    "Linux",
+    "No network service or credentials required for this selected unit suite."
+  ],
+  "schema_version": 1,
+  "declarations_by_ref": {
+    "source-parent": {
+      "requires_python": ">=3.8",
+      "runtime_dependencies": [
+        "MarkupSafe>=2.1.1"
+      ],
+      "build_system": {
+        "requires": [
+          "flit_core<4"
+        ],
+        "build-backend": "flit_core.buildapi"
+      }
+    },
+    "source-fix": {
+      "requires_python": ">=3.8",
+      "runtime_dependencies": [
+        "MarkupSafe>=2.1.1"
+      ],
+      "build_system": {
+        "requires": [
+          "flit_core<4"
+        ],
+        "build-backend": "flit_core.buildapi"
+      }
+    },
+    "target-baseline": {
+      "requires_python": ">=3.8",
+      "runtime_dependencies": [
+        "MarkupSafe>=2.1.1"
+      ],
+      "build_system": {
+        "requires": [
+          "flit_core<4"
+        ],
+        "build-backend": "flit_core.buildapi"
+      }
+    },
+    "target-backport": {
+      "requires_python": ">=3.8",
+      "runtime_dependencies": [
+        "MarkupSafe>=2.1.1"
+      ],
+      "build_system": {
+        "requires": [
+          "flit_core<4"
+        ],
+        "build-backend": "flit_core.buildapi"
+      }
+    }
+  },
+  "package_build_command": [
+    "python",
+    "-m",
+    "pip",
+    "install",
+    "--no-index",
+    "--no-deps",
+    "--no-build-isolation",
+    "."
+  ],
+  "ordinary_test_command": [
+    "python",
+    "-m",
+    "pytest",
+    "-q",
+    "--import-mode=importlib",
+    "tests/sansio/test_multipart.py"
+  ],
+  "dependency_environment_status": "declarations_reviewed; lock_and_container_pending",
+  "execution_status": "not_run"
+}

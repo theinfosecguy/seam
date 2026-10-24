@@ -1,0 +1,1600 @@
+{
+  "normalization_schema_version": 1,
+  "cohort": "initial-npm-20",
+  "case": "ws",
+  "role": "reference",
+  "interpretation": "Setup, application or evidence remained inconclusive; this alone is not a confirmed harness defect.",
+  "execution_context": {
+    "exit_code": 2,
+    "timed_out": false,
+    "log_truncated": false,
+    "wheel_sha256": "fb1afe7d89a0cfd5a50ae6094f1b1a356cb57e6d187beba597d542fe8903c35c",
+    "freeze_sha256": "f5fa5b227de18954e8c22fed4b881688a4e93d13428769fa01e21c19ade9c083",
+    "case_assets_unchanged": true,
+    "caller_unchanged": true
+  },
+  "report": {
+    "schema_version": 2,
+    "status": "inconclusive",
+    "reason": "Verification prerequisites were not established: upstream_fix suite: test execution timed out",
+    "fix_commit": "e55e5106f10fcbaac37cfa89759e4cc0d073a52c",
+    "parent_commit": "6a00029edd924499f892aed8003cef1fa724cfe5",
+    "target_commit": "8a78f8770618cc5a1ade485a7445cb6d6f46e2f2",
+    "image_id": "sha256:52f40f96867d88d68ced00067878ab5b917744d17f5649b82506f43e72d88cba",
+    "oracle_sha256": "867bea00c9aa0cc3fcbf8a209e5e1ba479c001b7ad3b469fe7ece64350985b56",
+    "config_sha256": "5f0799fa048c9ae5e16183663d5aac950658851daaeb961fb74a94417ff36ca9",
+    "patch_sha256": null,
+    "attempts": 0,
+    "adaptation": "none",
+    "model_usage": {},
+    "reviewed_tests": null,
+    "reviewed_fixtures": {
+      "test/fixtures/certificate.pem": [
+        "7ddcc4f3243d4ad4ee48716cac2be11315e4988585141be8ca7c37212b555595"
+      ],
+      "test/fixtures/key.pem": [
+        "f5c3a9624ec958192ba9c978bc9d5da77adc62d513d12dc95fa91e593a263c1a"
+      ],
+      "test/fixtures/ca-certificate.pem": [
+        "20e7823aed9826819245325fe8a610f54e1788f03f315d245ae585a27d0e5c50"
+      ],
+      "test/fixtures/client-certificate.pem": [
+        "21b9bc92b0d0f67fd4e468c3786edb04b43d2257a7e0665b87869bdef1a60d0c"
+      ],
+      "test/fixtures/client-key.pem": [
+        "94e947c05bb601d9b9bbd7db89ec837d1c6bf78b0973f6c6e07db5e413d1f669"
+      ]
+    },
+    "reviewed_submodules": {},
+    "phases": [
+      {
+        "name": "upstream_parent",
+        "revision": "6a00029edd924499f892aed8003cef1fa724cfe5",
+        "security": {
+          "returncode": 1,
+          "timed_out": false,
+          "truncated": false,
+          "duration_seconds": 0.7278,
+          "evidence_error": null,
+          "tests": [
+            {
+              "name": "test_security",
+              "classname": "/oracle/oracle.mjs::test",
+              "outcome": "failed",
+              "expected_failure": false,
+              "original_message_sha256": "aeed3fd75467609fad6dd1286ff1df90095516a2e3eafcb460c6c53dd153b144"
+            },
+            {
+              "name": "test_invalid_upgrade_rejected",
+              "classname": "/oracle/oracle.mjs::test",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_non_get_request_rejected",
+              "classname": "/oracle/oracle.mjs::test",
+              "outcome": "passed",
+              "expected_failure": false
+            }
+          ],
+          "command_sha256": "bc9826ad223c3c9dec168835ecc5d4738530e914835d7c7fd86aa27b29b87083",
+          "missing_modules": [],
+          "diagnostic_excerpts": [
+            "AssertionError [ERR_ASSERTION]: Got unwanted exception: WS_MISSING_UPGRADE_REJECTED",
+            "TypeError: Cannot read properties of undefined (reading 'toLowerCase')"
+          ],
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 0,
+          "stderr_sha256": "16a848ae3d2178f7ca82d7ca3eb2ecad840f8f3cd2b7d5f474aaef893e203106",
+          "stderr_bytes": 1648
+        },
+        "suite": {
+          "returncode": 0,
+          "timed_out": false,
+          "truncated": false,
+          "duration_seconds": 2.445,
+          "evidence_error": null,
+          "tests": [
+            {
+              "name": "throws an error if no option object is passed",
+              "classname": "/work/repo/test/websocket-server.test.js::WebSocketServer #ctor",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "emits an error if http server bind fails",
+              "classname": "/work/repo/test/websocket-server.test.js::WebSocketServer #ctor",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "starts a server on a given port",
+              "classname": "/work/repo/test/websocket-server.test.js::WebSocketServer #ctor",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "binds the server on any IPv6 address when available",
+              "classname": "/work/repo/test/websocket-server.test.js::WebSocketServer #ctor",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "uses a precreated http server",
+              "classname": "/work/repo/test/websocket-server.test.js::WebSocketServer #ctor",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "426s for non-Upgrade requests",
+              "classname": "/work/repo/test/websocket-server.test.js::WebSocketServer #ctor",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "uses a precreated http server listening on IPC",
+              "classname": "/work/repo/test/websocket-server.test.js::WebSocketServer #ctor",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "throws an error if required options are not specified",
+              "classname": "/work/repo/test/websocket-server.test.js::WebSocketServer #ctor options",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "throws an error if mutually exclusive options are specified",
+              "classname": "/work/repo/test/websocket-server.test.js::WebSocketServer #ctor options",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "exposes options passed to constructor",
+              "classname": "/work/repo/test/websocket-server.test.js::WebSocketServer #ctor options",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "accepts the `maxPayload` option",
+              "classname": "/work/repo/test/websocket-server.test.js::WebSocketServer #ctor options",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "honors the `WebSocket` option",
+              "classname": "/work/repo/test/websocket-server.test.js::WebSocketServer #ctor options",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "honors the `autoPong` option",
+              "classname": "/work/repo/test/websocket-server.test.js::WebSocketServer #ctor options",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "returns the address of the server",
+              "classname": "/work/repo/test/websocket-server.test.js::WebSocketServer #address",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "throws an error when operating in \"noServer\" mode",
+              "classname": "/work/repo/test/websocket-server.test.js::WebSocketServer #address",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "returns `null` if called after close",
+              "classname": "/work/repo/test/websocket-server.test.js::WebSocketServer #address",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "does not throw if called multiple times",
+              "classname": "/work/repo/test/websocket-server.test.js::WebSocketServer #close",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "doesn't close a precreated server",
+              "classname": "/work/repo/test/websocket-server.test.js::WebSocketServer #close",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "invokes the callback in noServer mode",
+              "classname": "/work/repo/test/websocket-server.test.js::WebSocketServer #close",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "cleans event handlers on precreated server",
+              "classname": "/work/repo/test/websocket-server.test.js::WebSocketServer #close",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "emits the 'close' event after the server closes",
+              "classname": "/work/repo/test/websocket-server.test.js::WebSocketServer #close",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "emits the 'close' event if client tracking is disabled",
+              "classname": "/work/repo/test/websocket-server.test.js::WebSocketServer #close",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "calls the callback if the server is already closed",
+              "classname": "/work/repo/test/websocket-server.test.js::WebSocketServer #close",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "emits the 'close' event if the server is already closed",
+              "classname": "/work/repo/test/websocket-server.test.js::WebSocketServer #close",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "returns a list of connected clients",
+              "classname": "/work/repo/test/websocket-server.test.js::WebSocketServer #clients",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "can be disabled",
+              "classname": "/work/repo/test/websocket-server.test.js::WebSocketServer #clients",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "is updated when client terminates the connection",
+              "classname": "/work/repo/test/websocket-server.test.js::WebSocketServer #clients",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "is updated when client closes the connection",
+              "classname": "/work/repo/test/websocket-server.test.js::WebSocketServer #clients",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "returns true when the path matches",
+              "classname": "/work/repo/test/websocket-server.test.js::WebSocketServer #shouldHandle",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "returns false when the path doesn't match",
+              "classname": "/work/repo/test/websocket-server.test.js::WebSocketServer #shouldHandle",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "can be used for a pre-existing server",
+              "classname": "/work/repo/test/websocket-server.test.js::WebSocketServer #handleUpgrade",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "closes the connection when path doesn't match",
+              "classname": "/work/repo/test/websocket-server.test.js::WebSocketServer #handleUpgrade",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "closes the connection when protocol version is Hixie-76",
+              "classname": "/work/repo/test/websocket-server.test.js::WebSocketServer #handleUpgrade",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "completes a WebSocket upgrade over any duplex stream",
+              "classname": "/work/repo/test/websocket-server.test.js::WebSocketServer #handleUpgrade",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "throws an error if called twice with the same socket",
+              "classname": "/work/repo/test/websocket-server.test.js::WebSocketServer #completeUpgrade",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "fails if the HTTP method is not GET",
+              "classname": "/work/repo/test/websocket-server.test.js::WebSocketServer Connection establishing",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "fails if the Upgrade header field value is not \"websocket\"",
+              "classname": "/work/repo/test/websocket-server.test.js::WebSocketServer Connection establishing",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "fails if the Sec-WebSocket-Key header is invalid (1/2)",
+              "classname": "/work/repo/test/websocket-server.test.js::WebSocketServer Connection establishing",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "fails if the Sec-WebSocket-Key header is invalid (2/2)",
+              "classname": "/work/repo/test/websocket-server.test.js::WebSocketServer Connection establishing",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "fails if the Sec-WebSocket-Version header is invalid (1/2)",
+              "classname": "/work/repo/test/websocket-server.test.js::WebSocketServer Connection establishing",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "fails if the Sec-WebSocket-Version header is invalid (2/2)",
+              "classname": "/work/repo/test/websocket-server.test.js::WebSocketServer Connection establishing",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "fails is the Sec-WebSocket-Protocol header is invalid",
+              "classname": "/work/repo/test/websocket-server.test.js::WebSocketServer Connection establishing",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "fails if the Sec-WebSocket-Extensions header is invalid",
+              "classname": "/work/repo/test/websocket-server.test.js::WebSocketServer Connection establishing",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "emits the 'wsClientError' event",
+              "classname": "/work/repo/test/websocket-server.test.js::WebSocketServer Connection establishing",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "fails if the WebSocket server is closing or closed",
+              "classname": "/work/repo/test/websocket-server.test.js::WebSocketServer Connection establishing",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "handles unsupported extensions",
+              "classname": "/work/repo/test/websocket-server.test.js::WebSocketServer Connection establishing",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "doesn't emit the 'connection' event if socket is closed prematurely",
+              "classname": "/work/repo/test/websocket-server.test.js::WebSocketServer Connection establishing",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "handles data passed along with the upgrade request",
+              "classname": "/work/repo/test/websocket-server.test.js::WebSocketServer Connection establishing",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "emits the 'headers' event",
+              "classname": "/work/repo/test/websocket-server.test.js::WebSocketServer Connection establishing",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "can reject client synchronously",
+              "classname": "/work/repo/test/websocket-server.test.js::WebSocketServer Connection establishing `verifyClient`",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "can accept client synchronously",
+              "classname": "/work/repo/test/websocket-server.test.js::WebSocketServer Connection establishing `verifyClient`",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "can accept client asynchronously",
+              "classname": "/work/repo/test/websocket-server.test.js::WebSocketServer Connection establishing `verifyClient`",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "can reject client asynchronously",
+              "classname": "/work/repo/test/websocket-server.test.js::WebSocketServer Connection establishing `verifyClient`",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "can reject client asynchronously w/ status code",
+              "classname": "/work/repo/test/websocket-server.test.js::WebSocketServer Connection establishing `verifyClient`",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "can reject client asynchronously w/ custom headers",
+              "classname": "/work/repo/test/websocket-server.test.js::WebSocketServer Connection establishing `verifyClient`",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "allows to select a subprotocol",
+              "classname": "/work/repo/test/websocket-server.test.js::WebSocketServer Connection establishing `handleProtocols`",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "is disabled by default",
+              "classname": "/work/repo/test/websocket-server.test.js::WebSocketServer permessage-deflate",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "uses configuration options",
+              "classname": "/work/repo/test/websocket-server.test.js::WebSocketServer permessage-deflate",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "throws an error when using an invalid url",
+              "classname": "/work/repo/test/websocket.test.js::WebSocket #ctor",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "throws an error if a subprotocol is invalid or duplicated",
+              "classname": "/work/repo/test/websocket.test.js::WebSocket #ctor",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "accepts `url.URL` objects as url",
+              "classname": "/work/repo/test/websocket.test.js::WebSocket #ctor",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "allows the http scheme",
+              "classname": "/work/repo/test/websocket.test.js::WebSocket #ctor",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "allows the https scheme",
+              "classname": "/work/repo/test/websocket.test.js::WebSocket #ctor",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "accepts the `options` object as 3rd argument",
+              "classname": "/work/repo/test/websocket.test.js::WebSocket #ctor options",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "accepts the `maxPayload` option",
+              "classname": "/work/repo/test/websocket.test.js::WebSocket #ctor options",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "throws an error when using an invalid `protocolVersion`",
+              "classname": "/work/repo/test/websocket.test.js::WebSocket #ctor options",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "honors the `generateMask` option",
+              "classname": "/work/repo/test/websocket.test.js::WebSocket #ctor options",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "honors the `autoPong` option",
+              "classname": "/work/repo/test/websocket.test.js::WebSocket #ctor options",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "is enumerable property of class",
+              "classname": "/work/repo/test/websocket.test.js::WebSocket Constants `CONNECTING`",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "is enumerable property of prototype",
+              "classname": "/work/repo/test/websocket.test.js::WebSocket Constants `CONNECTING`",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "is enumerable property of class",
+              "classname": "/work/repo/test/websocket.test.js::WebSocket Constants `OPEN`",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "is enumerable property of prototype",
+              "classname": "/work/repo/test/websocket.test.js::WebSocket Constants `OPEN`",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "is enumerable property of class",
+              "classname": "/work/repo/test/websocket.test.js::WebSocket Constants `CLOSING`",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "is enumerable property of prototype",
+              "classname": "/work/repo/test/websocket.test.js::WebSocket Constants `CLOSING`",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "is enumerable property of class",
+              "classname": "/work/repo/test/websocket.test.js::WebSocket Constants `CLOSED`",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "is enumerable property of prototype",
+              "classname": "/work/repo/test/websocket.test.js::WebSocket Constants `CLOSED`",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "is enumerable and configurable",
+              "classname": "/work/repo/test/websocket.test.js::WebSocket Attributes `binaryType`",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "defaults to 'nodebuffer'",
+              "classname": "/work/repo/test/websocket.test.js::WebSocket Attributes `binaryType`",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "can be changed to 'arraybuffer' or 'fragments'",
+              "classname": "/work/repo/test/websocket.test.js::WebSocket Attributes `binaryType`",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "is enumerable and configurable",
+              "classname": "/work/repo/test/websocket.test.js::WebSocket Attributes `bufferedAmount`",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "defaults to zero",
+              "classname": "/work/repo/test/websocket.test.js::WebSocket Attributes `bufferedAmount`",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "defaults to zero upon \"open\"",
+              "classname": "/work/repo/test/websocket.test.js::WebSocket Attributes `bufferedAmount`",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "takes into account the data in the sender queue",
+              "classname": "/work/repo/test/websocket.test.js::WebSocket Attributes `bufferedAmount`",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "takes into account the data in the socket queue",
+              "classname": "/work/repo/test/websocket.test.js::WebSocket Attributes `bufferedAmount`",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "is enumerable and configurable",
+              "classname": "/work/repo/test/websocket.test.js::WebSocket Attributes `extensions`",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "exposes the negotiated extensions names (1/2)",
+              "classname": "/work/repo/test/websocket.test.js::WebSocket Attributes `extensions`",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "exposes the negotiated extensions names (2/2)",
+              "classname": "/work/repo/test/websocket.test.js::WebSocket Attributes `extensions`",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "is enumerable and configurable",
+              "classname": "/work/repo/test/websocket.test.js::WebSocket Attributes `isPaused`",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "indicates whether the websocket is paused",
+              "classname": "/work/repo/test/websocket.test.js::WebSocket Attributes `isPaused`",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "is enumerable and configurable",
+              "classname": "/work/repo/test/websocket.test.js::WebSocket Attributes `protocol`",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "exposes the subprotocol selected by the server",
+              "classname": "/work/repo/test/websocket.test.js::WebSocket Attributes `protocol`",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "is enumerable and configurable",
+              "classname": "/work/repo/test/websocket.test.js::WebSocket Attributes `readyState`",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "defaults to `CONNECTING`",
+              "classname": "/work/repo/test/websocket.test.js::WebSocket Attributes `readyState`",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "is set to `OPEN` once connection is established",
+              "classname": "/work/repo/test/websocket.test.js::WebSocket Attributes `readyState`",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "is set to `CLOSED` once connection is closed",
+              "classname": "/work/repo/test/websocket.test.js::WebSocket Attributes `readyState`",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "is set to `CLOSED` once connection is terminated",
+              "classname": "/work/repo/test/websocket.test.js::WebSocket Attributes `readyState`",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "is enumerable and configurable",
+              "classname": "/work/repo/test/websocket.test.js::WebSocket Attributes `url`",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "exposes the server url",
+              "classname": "/work/repo/test/websocket.test.js::WebSocket Attributes `url`",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "emits an 'error' event if an error occurs",
+              "classname": "/work/repo/test/websocket.test.js::WebSocket Events",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "does not re-emit `net.Socket` errors",
+              "classname": "/work/repo/test/websocket.test.js::WebSocket Events",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "emits an 'upgrade' event",
+              "classname": "/work/repo/test/websocket.test.js::WebSocket Events",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "emits a 'ping' event",
+              "classname": "/work/repo/test/websocket.test.js::WebSocket Events",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "emits a 'pong' event",
+              "classname": "/work/repo/test/websocket.test.js::WebSocket Events",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "emits a 'redirect' event",
+              "classname": "/work/repo/test/websocket.test.js::WebSocket Events",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "fails if the Upgrade header field value is not \"websocket\"",
+              "classname": "/work/repo/test/websocket.test.js::WebSocket Connection establishing",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "fails if the Sec-WebSocket-Accept header is invalid",
+              "classname": "/work/repo/test/websocket.test.js::WebSocket Connection establishing",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "close event is raised when server closes connection",
+              "classname": "/work/repo/test/websocket.test.js::WebSocket Connection establishing",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "error is emitted if server aborts connection",
+              "classname": "/work/repo/test/websocket.test.js::WebSocket Connection establishing",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "unexpected response can be read when sent by server",
+              "classname": "/work/repo/test/websocket.test.js::WebSocket Connection establishing",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "request can be aborted when unexpected response is sent by server",
+              "classname": "/work/repo/test/websocket.test.js::WebSocket Connection establishing",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "fails if the opening handshake timeout expires",
+              "classname": "/work/repo/test/websocket.test.js::WebSocket Connection establishing",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "fails if an unexpected Sec-WebSocket-Extensions header is received",
+              "classname": "/work/repo/test/websocket.test.js::WebSocket Connection establishing",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "fails if the Sec-WebSocket-Extensions header is invalid (1/2)",
+              "classname": "/work/repo/test/websocket.test.js::WebSocket Connection establishing",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "fails if the Sec-WebSocket-Extensions header is invalid (2/2)",
+              "classname": "/work/repo/test/websocket.test.js::WebSocket Connection establishing",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "fails if an unexpected extension is received (1/2)",
+              "classname": "/work/repo/test/websocket.test.js::WebSocket Connection establishing",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "fails if an unexpected extension is received (2/2)",
+              "classname": "/work/repo/test/websocket.test.js::WebSocket Connection establishing",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "fails if server sends a subprotocol when none was requested",
+              "classname": "/work/repo/test/websocket.test.js::WebSocket Connection establishing",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "fails if server sends an invalid subprotocol (1/2)",
+              "classname": "/work/repo/test/websocket.test.js::WebSocket Connection establishing",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "fails if server sends an invalid subprotocol (2/2)",
+              "classname": "/work/repo/test/websocket.test.js::WebSocket Connection establishing",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "fails if server sends no subprotocol",
+              "classname": "/work/repo/test/websocket.test.js::WebSocket Connection establishing",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "honors the `createConnection` option",
+              "classname": "/work/repo/test/websocket.test.js::WebSocket Connection establishing",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "does not follow redirects by default",
+              "classname": "/work/repo/test/websocket.test.js::WebSocket Connection establishing",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "honors the `followRedirects` option",
+              "classname": "/work/repo/test/websocket.test.js::WebSocket Connection establishing",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "honors the `maxRedirects` option",
+              "classname": "/work/repo/test/websocket.test.js::WebSocket Connection establishing",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "emits an error if the redirect URL is invalid (1/2)",
+              "classname": "/work/repo/test/websocket.test.js::WebSocket Connection establishing",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "emits an error if the redirect URL is invalid (2/2)",
+              "classname": "/work/repo/test/websocket.test.js::WebSocket Connection establishing",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "uses the first url userinfo when following redirects",
+              "classname": "/work/repo/test/websocket.test.js::WebSocket Connection establishing",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "drops the `auth` option",
+              "classname": "/work/repo/test/websocket.test.js::WebSocket Connection establishing When moving away from a secure context If there is no 'redirect' event listener",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "drops the Authorization and Cookie headers",
+              "classname": "/work/repo/test/websocket.test.js::WebSocket Connection establishing When moving away from a secure context If there is no 'redirect' event listener",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "does not drop any headers by default",
+              "classname": "/work/repo/test/websocket.test.js::WebSocket Connection establishing When moving away from a secure context If there is at least one 'redirect' event listener",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "drops the `auth` option",
+              "classname": "/work/repo/test/websocket.test.js::WebSocket Connection establishing When the redirect host is different If there is no 'redirect' event listener",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "drops the Authorization, Cookie and Host headers (1/4)",
+              "classname": "/work/repo/test/websocket.test.js::WebSocket Connection establishing When the redirect host is different If there is no 'redirect' event listener",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "drops the Authorization, Cookie and Host headers (2/4)",
+              "classname": "/work/repo/test/websocket.test.js::WebSocket Connection establishing When the redirect host is different If there is no 'redirect' event listener",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "drops the Authorization, Cookie and Host headers (3/4)",
+              "classname": "/work/repo/test/websocket.test.js::WebSocket Connection establishing When the redirect host is different If there is no 'redirect' event listener",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "drops the Authorization, Cookie and Host headers (4/4)",
+              "classname": "/work/repo/test/websocket.test.js::WebSocket Connection establishing When the redirect host is different If there is no 'redirect' event listener",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "does not drop any headers by default",
+              "classname": "/work/repo/test/websocket.test.js::WebSocket Connection establishing When the redirect host is different If there is at least one 'redirect' event listener",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "allows to abort the request without swallowing errors",
+              "classname": "/work/repo/test/websocket.test.js::WebSocket Connection establishing In a listener of the 'redirect' event",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "allows to remove headers",
+              "classname": "/work/repo/test/websocket.test.js::WebSocket Connection establishing In a listener of the 'redirect' event",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "does nothing if `readyState` is `CONNECTING` or `CLOSED`",
+              "classname": "/work/repo/test/websocket.test.js::WebSocket #pause",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "pauses the socket",
+              "classname": "/work/repo/test/websocket.test.js::WebSocket #pause",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "throws an error if `readyState` is `CONNECTING`",
+              "classname": "/work/repo/test/websocket.test.js::WebSocket #ping",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "increases `bufferedAmount` if `readyState` is 2 or 3",
+              "classname": "/work/repo/test/websocket.test.js::WebSocket #ping",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "calls the callback w/ an error if `readyState` is 2 or 3",
+              "classname": "/work/repo/test/websocket.test.js::WebSocket #ping",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "can send a ping with no data",
+              "classname": "/work/repo/test/websocket.test.js::WebSocket #ping",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "can send a ping with data",
+              "classname": "/work/repo/test/websocket.test.js::WebSocket #ping",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "can send numbers as ping payload",
+              "classname": "/work/repo/test/websocket.test.js::WebSocket #ping",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "throws an error if the data size is greater than 125 bytes",
+              "classname": "/work/repo/test/websocket.test.js::WebSocket #ping",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "throws an error if `readyState` is `CONNECTING`",
+              "classname": "/work/repo/test/websocket.test.js::WebSocket #pong",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "increases `bufferedAmount` if `readyState` is 2 or 3",
+              "classname": "/work/repo/test/websocket.test.js::WebSocket #pong",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "calls the callback w/ an error if `readyState` is 2 or 3",
+              "classname": "/work/repo/test/websocket.test.js::WebSocket #pong",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "can send a pong with no data",
+              "classname": "/work/repo/test/websocket.test.js::WebSocket #pong",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "can send a pong with data",
+              "classname": "/work/repo/test/websocket.test.js::WebSocket #pong",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "can send numbers as pong payload",
+              "classname": "/work/repo/test/websocket.test.js::WebSocket #pong",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "throws an error if the data size is greater than 125 bytes",
+              "classname": "/work/repo/test/websocket.test.js::WebSocket #pong",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "is called automatically when a ping is received",
+              "classname": "/work/repo/test/websocket.test.js::WebSocket #pong",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "does nothing if `readyState` is `CONNECTING` or `CLOSED`",
+              "classname": "/work/repo/test/websocket.test.js::WebSocket #resume",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "resumes the socket",
+              "classname": "/work/repo/test/websocket.test.js::WebSocket #resume",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "throws an error if `readyState` is `CONNECTING`",
+              "classname": "/work/repo/test/websocket.test.js::WebSocket #send",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "increases `bufferedAmount` if `readyState` is 2 or 3",
+              "classname": "/work/repo/test/websocket.test.js::WebSocket #send",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "calls the callback w/ an error if `readyState` is 2 or 3",
+              "classname": "/work/repo/test/websocket.test.js::WebSocket #send",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "can send a big binary message",
+              "classname": "/work/repo/test/websocket.test.js::WebSocket #send",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "can send text data",
+              "classname": "/work/repo/test/websocket.test.js::WebSocket #send",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "does not override the `fin` option",
+              "classname": "/work/repo/test/websocket.test.js::WebSocket #send",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "sends numbers as strings",
+              "classname": "/work/repo/test/websocket.test.js::WebSocket #send",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "can send a `TypedArray`",
+              "classname": "/work/repo/test/websocket.test.js::WebSocket #send",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "can send an `ArrayBuffer`",
+              "classname": "/work/repo/test/websocket.test.js::WebSocket #send",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "can send a `Buffer`",
+              "classname": "/work/repo/test/websocket.test.js::WebSocket #send",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "calls the callback when data is written out",
+              "classname": "/work/repo/test/websocket.test.js::WebSocket #send",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "works when the `data` argument is falsy",
+              "classname": "/work/repo/test/websocket.test.js::WebSocket #send",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "honors the `mask` option",
+              "classname": "/work/repo/test/websocket.test.js::WebSocket #send",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "closes the connection if called while connecting (1/3)",
+              "classname": "/work/repo/test/websocket.test.js::WebSocket #close",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "closes the connection if called while connecting (2/3)",
+              "classname": "/work/repo/test/websocket.test.js::WebSocket #close",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "closes the connection if called while connecting (3/3)",
+              "classname": "/work/repo/test/websocket.test.js::WebSocket #close",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "can be called from an error listener while connecting",
+              "classname": "/work/repo/test/websocket.test.js::WebSocket #close",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "can be called from a listener of the 'redirect' event",
+              "classname": "/work/repo/test/websocket.test.js::WebSocket #close",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "can be called from a listener of the 'upgrade' event",
+              "classname": "/work/repo/test/websocket.test.js::WebSocket #close",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "sends the close status code only when necessary",
+              "classname": "/work/repo/test/websocket.test.js::WebSocket #close",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "works when close reason is not specified",
+              "classname": "/work/repo/test/websocket.test.js::WebSocket #close",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "works when close reason is specified",
+              "classname": "/work/repo/test/websocket.test.js::WebSocket #close",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "permits all buffered data to be delivered",
+              "classname": "/work/repo/test/websocket.test.js::WebSocket #close",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "allows close code 1013",
+              "classname": "/work/repo/test/websocket.test.js::WebSocket #close",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "allows close code 1014",
+              "classname": "/work/repo/test/websocket.test.js::WebSocket #close",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "does nothing if `readyState` is `CLOSED`",
+              "classname": "/work/repo/test/websocket.test.js::WebSocket #close",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "sets a timer for the closing handshake to complete",
+              "classname": "/work/repo/test/websocket.test.js::WebSocket #close",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "closes the connection if called while connecting (1/2)",
+              "classname": "/work/repo/test/websocket.test.js::WebSocket #terminate",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "closes the connection if called while connecting (2/2)",
+              "classname": "/work/repo/test/websocket.test.js::WebSocket #terminate",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "can be called from an error listener while connecting",
+              "classname": "/work/repo/test/websocket.test.js::WebSocket #terminate",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "can be called from a listener of the 'redirect' event",
+              "classname": "/work/repo/test/websocket.test.js::WebSocket #terminate",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "can be called from a listener of the 'upgrade' event",
+              "classname": "/work/repo/test/websocket.test.js::WebSocket #terminate",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "does nothing if `readyState` is `CLOSED`",
+              "classname": "/work/repo/test/websocket.test.js::WebSocket #terminate",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "supports the `on{close,error,message,open}` attributes",
+              "classname": "/work/repo/test/websocket.test.js::WebSocket WHATWG API emulation",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "works like the `EventEmitter` interface",
+              "classname": "/work/repo/test/websocket.test.js::WebSocket WHATWG API emulation",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "doesn't return listeners added with `on`",
+              "classname": "/work/repo/test/websocket.test.js::WebSocket WHATWG API emulation",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "doesn't remove listeners added with `on`",
+              "classname": "/work/repo/test/websocket.test.js::WebSocket WHATWG API emulation",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "supports the `addEventListener` method",
+              "classname": "/work/repo/test/websocket.test.js::WebSocket WHATWG API emulation",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "doesn't return listeners added with `addEventListener`",
+              "classname": "/work/repo/test/websocket.test.js::WebSocket WHATWG API emulation",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "doesn't remove listeners added with `addEventListener`",
+              "classname": "/work/repo/test/websocket.test.js::WebSocket WHATWG API emulation",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "supports the `removeEventListener` method",
+              "classname": "/work/repo/test/websocket.test.js::WebSocket WHATWG API emulation",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "wraps text data in a `MessageEvent`",
+              "classname": "/work/repo/test/websocket.test.js::WebSocket WHATWG API emulation",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "receives a `CloseEvent` when server closes (1000)",
+              "classname": "/work/repo/test/websocket.test.js::WebSocket WHATWG API emulation",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "receives a `CloseEvent` when server closes (4000)",
+              "classname": "/work/repo/test/websocket.test.js::WebSocket WHATWG API emulation",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "sets `target` and `type` on events",
+              "classname": "/work/repo/test/websocket.test.js::WebSocket WHATWG API emulation",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "passes binary data as a Node.js `Buffer` by default",
+              "classname": "/work/repo/test/websocket.test.js::WebSocket WHATWG API emulation",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "ignores `binaryType` for text messages",
+              "classname": "/work/repo/test/websocket.test.js::WebSocket WHATWG API emulation",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "allows to update `binaryType` on the fly",
+              "classname": "/work/repo/test/websocket.test.js::WebSocket WHATWG API emulation",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "connects to secure websocket server",
+              "classname": "/work/repo/test/websocket.test.js::WebSocket SSL",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "connects to secure websocket server with client side certificate",
+              "classname": "/work/repo/test/websocket.test.js::WebSocket SSL",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "cannot connect to secure websocket server via ws://",
+              "classname": "/work/repo/test/websocket.test.js::WebSocket SSL",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "can send and receive text data",
+              "classname": "/work/repo/test/websocket.test.js::WebSocket SSL",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "can send a big binary message",
+              "classname": "/work/repo/test/websocket.test.js::WebSocket SSL",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "allows to disable sending the SNI extension",
+              "classname": "/work/repo/test/websocket.test.js::WebSocket SSL",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "works around a double 'error' event bug in Node.js",
+              "classname": "/work/repo/test/websocket.test.js::WebSocket SSL",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "adds the authorization header if the url has userinfo",
+              "classname": "/work/repo/test/websocket.test.js::WebSocket Request headers",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "honors the `auth` option",
+              "classname": "/work/repo/test/websocket.test.js::WebSocket Request headers",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "favors the url userinfo over the `auth` option",
+              "classname": "/work/repo/test/websocket.test.js::WebSocket Request headers",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "adds custom headers",
+              "classname": "/work/repo/test/websocket.test.js::WebSocket Request headers",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "excludes default ports from host header",
+              "classname": "/work/repo/test/websocket.test.js::WebSocket Request headers",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "doesn't add the origin header by default",
+              "classname": "/work/repo/test/websocket.test.js::WebSocket Request headers",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "honors the `origin` option (1/2)",
+              "classname": "/work/repo/test/websocket.test.js::WebSocket Request headers",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "honors the `origin` option (2/2)",
+              "classname": "/work/repo/test/websocket.test.js::WebSocket Request headers",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "honors the `finishRequest` option",
+              "classname": "/work/repo/test/websocket.test.js::WebSocket Request headers",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "is enabled by default",
+              "classname": "/work/repo/test/websocket.test.js::WebSocket permessage-deflate",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "can be disabled",
+              "classname": "/work/repo/test/websocket.test.js::WebSocket permessage-deflate",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "can send extension parameters",
+              "classname": "/work/repo/test/websocket.test.js::WebSocket permessage-deflate",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "consumes all received data when connection is closed (1/2)",
+              "classname": "/work/repo/test/websocket.test.js::WebSocket permessage-deflate",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "consumes all received data when connection is closed (2/2)",
+              "classname": "/work/repo/test/websocket.test.js::WebSocket permessage-deflate",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "handles a close frame received while compressing data",
+              "classname": "/work/repo/test/websocket.test.js::WebSocket permessage-deflate",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "can be used while data is being decompressed",
+              "classname": "/work/repo/test/websocket.test.js::WebSocket permessage-deflate #close",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "can send text data",
+              "classname": "/work/repo/test/websocket.test.js::WebSocket permessage-deflate #send",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "can send a `TypedArray`",
+              "classname": "/work/repo/test/websocket.test.js::WebSocket permessage-deflate #send",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "can send an `ArrayBuffer`",
+              "classname": "/work/repo/test/websocket.test.js::WebSocket permessage-deflate #send",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "ignores the `compress` option if the extension is disabled",
+              "classname": "/work/repo/test/websocket.test.js::WebSocket permessage-deflate #send",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "calls the callback if the socket is closed prematurely",
+              "classname": "/work/repo/test/websocket.test.js::WebSocket permessage-deflate #send",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "can be used while data is being compressed",
+              "classname": "/work/repo/test/websocket.test.js::WebSocket permessage-deflate #terminate",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "can be used while data is being decompressed",
+              "classname": "/work/repo/test/websocket.test.js::WebSocket permessage-deflate #terminate",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "closes cleanly after simultaneous errors (1/2)",
+              "classname": "/work/repo/test/websocket.test.js::WebSocket Connection close",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "closes cleanly after simultaneous errors (2/2)",
+              "classname": "/work/repo/test/websocket.test.js::WebSocket Connection close",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "resumes the socket when an error occurs",
+              "classname": "/work/repo/test/websocket.test.js::WebSocket Connection close",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "resumes the socket when the close frame is received",
+              "classname": "/work/repo/test/websocket.test.js::WebSocket Connection close",
+              "outcome": "passed",
+              "expected_failure": false
+            }
+          ],
+          "command_sha256": "78e086275327f0f5c1785abdd1fbde6149ac4963e199127cbc8930371c0e8e9c",
+          "missing_modules": [],
+          "diagnostic_excerpts": [],
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr_bytes": 0
+        }
+      },
+      {
+        "name": "upstream_fix",
+        "revision": "e55e5106f10fcbaac37cfa89759e4cc0d073a52c",
+        "security": {
+          "returncode": 0,
+          "timed_out": false,
+          "truncated": false,
+          "duration_seconds": 0.6853,
+          "evidence_error": null,
+          "tests": [
+            {
+              "name": "test_security",
+              "classname": "/oracle/oracle.mjs::test",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_invalid_upgrade_rejected",
+              "classname": "/oracle/oracle.mjs::test",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_non_get_request_rejected",
+              "classname": "/oracle/oracle.mjs::test",
+              "outcome": "passed",
+              "expected_failure": false
+            }
+          ],
+          "command_sha256": "06271f83f7e650c90545aa9da2e72ea0590ab049aae268d9f0ec457b9ce5b03a",
+          "missing_modules": [],
+          "diagnostic_excerpts": [],
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 0,
+          "stderr_sha256": "5ae68220836f37544259d8955a71ebf4066c5fdd87e8e33b6be137c0d48c60a9",
+          "stderr_bytes": 239
+        },
+        "suite": {
+          "returncode": 137,
+          "timed_out": true,
+          "truncated": false,
+          "duration_seconds": 120.6477,
+          "evidence_error": "Test execution exceeded its time limit",
+          "tests": [],
+          "command_sha256": "dead53eea749ad17f917993b178bad81efc962ae1ebde6eb23781f12b6c0a49d",
+          "missing_modules": [],
+          "diagnostic_excerpts": [],
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr_bytes": 0
+        }
+      }
+    ]
+  },
+  "original_report_sha256": "c2f78f3f71cd630cdff92b52fb48ce8f7b98015387e041f0dd2a3b2537318110",
+  "original_command_record_sha256": "ec8397a018bc35b4a2a0aa77e625b9b2358b942faaa4c198afbb576f4f16d392",
+  "candidate_patch_inputs": []
+}

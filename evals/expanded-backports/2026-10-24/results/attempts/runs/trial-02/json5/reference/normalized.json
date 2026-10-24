@@ -1,0 +1,100 @@
+{
+  "normalization_schema_version": 1,
+  "cohort": "initial-npm-20",
+  "case": "json5",
+  "role": "reference",
+  "interpretation": "Setup, application or evidence remained inconclusive; this alone is not a confirmed harness defect.",
+  "execution_context": {
+    "exit_code": 2,
+    "timed_out": false,
+    "log_truncated": false,
+    "wheel_sha256": "fb1afe7d89a0cfd5a50ae6094f1b1a356cb57e6d187beba597d542fe8903c35c",
+    "driver_sha256": "44efbc782d4cbbebb7ecec44e491a9941e5dc2cdd1554eaf7616a307020ec306",
+    "freeze_sha256": "f5fa5b227de18954e8c22fed4b881688a4e93d13428769fa01e21c19ade9c083",
+    "case_assets_unchanged": true,
+    "caller_unchanged": true
+  },
+  "report": {
+    "schema_version": 2,
+    "status": "inconclusive",
+    "reason": "Verification prerequisites were not established: upstream_parent suite: JUnit report is empty or exceeds the evidence limit",
+    "fix_commit": "7774c1097993bc3ce9f0ac4b722a32bf7d6871c8",
+    "parent_commit": "edde30abd8b22facf2c06c72586b9f6edf12700d",
+    "target_commit": "072eb402fc107a2f568ba78962d3d99de95032a9",
+    "image_id": "sha256:52f40f96867d88d68ced00067878ab5b917744d17f5649b82506f43e72d88cba",
+    "oracle_sha256": "0267b2c871ae266875b6d4567f9465f6c7c8ca7292a1d9e07ff2d9aae692b349",
+    "config_sha256": "7e98c42afac1408ca3f1cb635669a16206278b5ae165eb3ef1af93fdbbb6067c",
+    "patch_sha256": null,
+    "attempts": 0,
+    "adaptation": "none",
+    "model_usage": {},
+    "reviewed_tests": null,
+    "reviewed_fixtures": {},
+    "reviewed_submodules": {},
+    "phases": [
+      {
+        "name": "upstream_parent",
+        "revision": "edde30abd8b22facf2c06c72586b9f6edf12700d",
+        "security": {
+          "returncode": 1,
+          "timed_out": false,
+          "truncated": false,
+          "duration_seconds": 1.4325,
+          "evidence_error": null,
+          "tests": [
+            {
+              "name": "test_security",
+              "classname": "/oracle/oracle.mjs::test",
+              "outcome": "failed",
+              "expected_failure": false,
+              "original_message_sha256": "c0a065fecaddc0ac5e4385c217ff003910d8ca36b88c7b2fc4d7c42cc1678340"
+            },
+            {
+              "name": "test_json5_syntax",
+              "classname": "/oracle/oracle.mjs::test",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_reviver",
+              "classname": "/oracle/oracle.mjs::test",
+              "outcome": "passed",
+              "expected_failure": false
+            }
+          ],
+          "command_sha256": "b0aef0d5bd75daf7808134565f5639427c54910d04e02b1dd1fb3a8ad7314a2c",
+          "missing_modules": [],
+          "diagnostic_excerpts": [
+            "AssertionError [ERR_ASSERTION]: JSON5_PROTO_KEY_IS_OWN_DATA"
+          ],
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 0,
+          "stderr_sha256": "adc777c315e7d2a2e325043eae55e00eddc8c6d23b8b6812f09749b98322373c",
+          "stderr_bytes": 855
+        },
+        "suite": {
+          "returncode": 1,
+          "timed_out": false,
+          "truncated": false,
+          "duration_seconds": 0.9034,
+          "evidence_error": "JUnit report is empty or exceeds the evidence limit",
+          "tests": [],
+          "command_sha256": "c6547cf9e24fa34678639748b8090defc1288ae26800c058b0acb6854dee9c5b",
+          "missing_modules": [
+            "sinon"
+          ],
+          "diagnostic_excerpts": [
+            "Error: Cannot find module 'sinon'"
+          ],
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 0,
+          "stderr_sha256": "0ecbf6213cff4f4f22c5260a1eb9cd0b40bfb53608342bd36128feab1e12cd59",
+          "stderr_bytes": 1849
+        }
+      }
+    ]
+  },
+  "original_report_sha256": "1f4daa1e04d2beb4a175a9fc5485d11d79f12e35e45bdedbf163c8e63e8761cb",
+  "original_command_record_sha256": "142ec26fe159f75ad903675446cc040e421941adcd71b36c3780c65a9c15d232",
+  "candidate_patch_inputs": []
+}

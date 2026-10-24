@@ -1,0 +1,25 @@
+{
+  "source_and_test_freeze_commit": "1732e460d873db2b5f9e205712a142a4a8349c2d",
+  "wheel_sha256": "fb1afe7d89a0cfd5a50ae6094f1b1a356cb57e6d187beba597d542fe8903c35c",
+  "harness_version": "0.5.0.dev1",
+  "wheel_build_base_commit": "cbd64020ae6247f65107d93d6e586f7e5d995af6",
+  "wheel_build_included_uncommitted_changes": true,
+  "equivalent_committed_source_and_tests_verified": true,
+  "verified_source_files": 74,
+  "verified_test_files": 35,
+  "initial_development_wheel": {
+    "harness_version": "0.5.0.dev0",
+    "wheel_sha256": "ab3ca1710d00bc0d488146e5116c18f59b1c766f3a59ef2fac0189e1658053ef",
+    "original_freeze_sha256": "404708eaf4f886bafe81fa730793d49477560d6ef9d6042d3a02bfc3514244f5",
+    "scope": "Distinct development-wheel cohort, preceding final source diagnostics."
+  },
+  "original_wheel_freeze_sha256": "f5fa5b227de18954e8c22fed4b881688a4e93d13428769fa01e21c19ade9c083",
+  "installed_tests": {
+    "passed": 1281,
+    "errors": 0,
+    "failures": 0,
+    "skipped": 0,
+    "original_junit_sha256": "4841c38345c48393f775071812090a6bafa62d4d81a902ad090a31adf0d50aa8"
+  },
+  "privacy": "Raw stdout/stderr, logs, conversations and controller paths omitted. Tests retain normalized names/classes/outcomes; bounded error excerpts and missing-module names aid diagnosis. Stream hashes cover UTF-8 text retained in the original report, not separate raw process-log bytes. Original report hashes map to normalized derivatives; derivatives are not native inspect inputs."
+}

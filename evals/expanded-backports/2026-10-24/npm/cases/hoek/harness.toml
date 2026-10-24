@@ -1,0 +1,12 @@
+[oracle]
+path = "oracle.mjs"
+security_test = "test_security"
+controls = ["test_nested_clone", "test_array_clone"]
+failure_marker = "HOEK_CLONE_PROTOTYPE_PRESERVED"
+
+[runner]
+kind = "node"
+image = "sha256:52f40f96867d88d68ced00067878ab5b917744d17f5649b82506f43e72d88cba"
+docker = ["sudo", "-n", "docker"]
+suite = ["test/index.js"]
+timeout_seconds = 120

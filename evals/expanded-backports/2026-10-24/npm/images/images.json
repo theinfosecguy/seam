@@ -1,0 +1,45 @@
+{
+  "base_node_reference": "node@sha256:06d7adf3e0ef61a13f1d28682726366f97a15aa1888c934d3ecec86c33918b53",
+  "images": [
+    {
+      "cases": [
+        "undici-private-cache"
+      ],
+      "image_id": "sha256:06d7adf3e0ef61a13f1d28682726366f97a15aa1888c934d3ecec86c33918b53"
+    },
+    {
+      "cases": [
+        "ansi-regex",
+        "axios",
+        "body-parser",
+        "debug",
+        "dot-prop",
+        "fast-uri",
+        "hoek",
+        "js-yaml",
+        "json5",
+        "path-to-regexp",
+        "qs",
+        "semver",
+        "serve-static",
+        "undici-tls",
+        "ws",
+        "yargs-parser",
+        "yargs-parser-5"
+      ],
+      "image_id": "sha256:52f40f96867d88d68ced00067878ab5b917744d17f5649b82506f43e72d88cba"
+    },
+    {
+      "cases": [
+        "ip",
+        "undici-cookie"
+      ],
+      "image_id": "sha256:7f5c9714117da799da5c0a107c52c999ccdf38f3b8b0d3a05cf50da7a08466d9"
+    }
+  ],
+  "node_mocha_image": "sha256:7f5c9714117da799da5c0a107c52c999ccdf38f3b8b0d3a05cf50da7a08466d9",
+  "platform": "linux/amd64",
+  "revision_dependency_image": "sha256:52f40f96867d88d68ced00067878ab5b917744d17f5649b82506f43e72d88cba",
+  "schema_version": 1,
+  "scope": "Exact configured execution image IDs. Image archives are not included; local IDs are not public registry locations."
+}

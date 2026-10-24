@@ -1,0 +1,13 @@
+[oracle]
+path = "oracle.mjs"
+security_test = "test_security"
+controls = ["test_private_dotted_decimal", "test_public_dotted_decimal"]
+failure_marker = "IP_PRIVATE_ALTERNATE_NOTATION"
+
+[runner]
+kind = "mocha"
+image = "sha256:7f5c9714117da799da5c0a107c52c999ccdf38f3b8b0d3a05cf50da7a08466d9"
+docker = ["sudo", "-n", "docker"]
+suite = ["test/api-test.js"]
+timeout_seconds = 120
+mocha_grep = "^(?!.*should know whether a subnet contains an address$)"

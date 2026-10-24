@@ -1,0 +1,102 @@
+{
+  "normalization_schema_version": 1,
+  "cohort": "initial-npm-20",
+  "case": "undici-cookie",
+  "role": "reference",
+  "interpretation": "Setup, application or evidence remained inconclusive; this alone is not a confirmed harness defect.",
+  "execution_context": {
+    "exit_code": 2,
+    "timed_out": false,
+    "log_truncated": false,
+    "wheel_sha256": "fb1afe7d89a0cfd5a50ae6094f1b1a356cb57e6d187beba597d542fe8903c35c",
+    "freeze_sha256": "f5fa5b227de18954e8c22fed4b881688a4e93d13428769fa01e21c19ade9c083",
+    "case_assets_unchanged": true,
+    "caller_unchanged": true
+  },
+  "report": {
+    "schema_version": 2,
+    "status": "inconclusive",
+    "reason": "Verification prerequisites were not established: upstream_parent suite: JUnit test case names must identify distinct tests",
+    "fix_commit": "5655ea43af4add559ee5f94b6cd72e08a55aa621",
+    "parent_commit": "27586ee92f7b2f78e813c97d9e7b493713eb9cdf",
+    "target_commit": "f4c31d60c42d0385bca6ad602c112706b0695212",
+    "image_id": "sha256:7f5c9714117da799da5c0a107c52c999ccdf38f3b8b0d3a05cf50da7a08466d9",
+    "oracle_sha256": "8957d712506425918d08db7b98eb079121cb43990d5dd9df9153977a14675184",
+    "config_sha256": "fdbe0776dd95717cac0d7876d63400b6b8b6d10f1abd3928c0b335f8fd8d2d9d",
+    "patch_sha256": null,
+    "attempts": 0,
+    "adaptation": "none",
+    "model_usage": {},
+    "reviewed_tests": null,
+    "reviewed_fixtures": {},
+    "reviewed_submodules": {
+      "test/fixtures/cache-tests": [
+        "1000acb7071ed401a654160f13d27c2a8a0139cc"
+      ],
+      "test/web-platform-tests/wpt": [
+        "d063bc956a9f24f874dfd7ce17e6d12149bc01d7"
+      ]
+    },
+    "phases": [
+      {
+        "name": "upstream_parent",
+        "revision": "27586ee92f7b2f78e813c97d9e7b493713eb9cdf",
+        "security": {
+          "returncode": 1,
+          "timed_out": false,
+          "truncated": false,
+          "duration_seconds": 0.6566,
+          "evidence_error": null,
+          "tests": [
+            {
+              "name": "test_security",
+              "classname": "/oracle/oracle.mjs::test",
+              "outcome": "failed",
+              "expected_failure": false,
+              "original_message_sha256": "b2054cb7915074153f9622fb7002297c9d5471862dd9a2d5eb90285860e38c9b"
+            },
+            {
+              "name": "test_plain_cookie",
+              "classname": "/oracle/oracle.mjs::test",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_samesite_strict",
+              "classname": "/oracle/oracle.mjs::test",
+              "outcome": "passed",
+              "expected_failure": false
+            }
+          ],
+          "command_sha256": "b0aef0d5bd75daf7808134565f5639427c54910d04e02b1dd1fb3a8ad7314a2c",
+          "missing_modules": [],
+          "diagnostic_excerpts": [
+            "AssertionError [ERR_ASSERTION]: COOKIE_ENCODED_VALUE_PRESERVED"
+          ],
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 0,
+          "stderr_sha256": "254c364336da63c4c641cc94a87b89297d6035a5ea138a0f27f9d9cf8b03b612",
+          "stderr_bytes": 935
+        },
+        "suite": {
+          "returncode": 0,
+          "timed_out": false,
+          "truncated": false,
+          "duration_seconds": 0.8968,
+          "evidence_error": "JUnit test case names must identify distinct tests",
+          "tests": [],
+          "command_sha256": "db1cefb4d0ca2950855edbd1395abc69383e85ada0f34d29b22956588e7bf379",
+          "missing_modules": [],
+          "diagnostic_excerpts": [],
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 0,
+          "stderr_sha256": "86e3466fb9ddada0a0f0dd3f6c2c9ef37b1ecd7a87483df0512f1caa3b9fea7d",
+          "stderr_bytes": 1546
+        }
+      }
+    ]
+  },
+  "original_report_sha256": "4880157b7b91c8467c1625b00a2aa6ed3aedd22ad6499af2888a5beb9e568400",
+  "original_command_record_sha256": "985959e8b134e47cb15bae3c86040397b0167dd3ee16a0515ede1f60dc9b5562",
+  "candidate_patch_inputs": []
+}

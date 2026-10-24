@@ -1,0 +1,35 @@
+diff --git a/lib/websocket-server.js b/lib/websocket-server.js
+index fe7fdf5..8ead7d4 100644
+--- a/lib/websocket-server.js
++++ b/lib/websocket-server.js
+@@ -210,12 +210,14 @@ class WebSocketServer extends EventEmitter {
+       req.headers['sec-websocket-key'] !== undefined
+         ? req.headers['sec-websocket-key'].trim()
+         : false;
++    const upgrade = req.headers.upgrade;
+     const version = +req.headers['sec-websocket-version'];
+     const extensions = {};
+ 
+     if (
+       req.method !== 'GET' ||
+-      req.headers.upgrade.toLowerCase() !== 'websocket' ||
++      upgrade === undefined ||
++      upgrade.toLowerCase() !== 'websocket' ||
+       !key ||
+       !keyRegex.test(key) ||
+       (version !== 8 && version !== 13) ||
+diff --git a/lib/websocket.js b/lib/websocket.js
+index 1df8967..14f82c8 100644
+--- a/lib/websocket.js
++++ b/lib/websocket.js
+@@ -799,7 +799,9 @@ function initAsClient(websocket, address, protocols, options) {
+ 
+     req = websocket._req = null;
+ 
+-    if (res.headers.upgrade.toLowerCase() !== 'websocket') {
++    const upgrade = res.headers.upgrade;
++
++    if (upgrade === undefined || upgrade.toLowerCase() !== 'websocket') {
+       abortHandshake(websocket, socket, 'Invalid Upgrade header');
+       return;
+     }

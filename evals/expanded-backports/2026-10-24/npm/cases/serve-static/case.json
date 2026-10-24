@@ -1,0 +1,49 @@
+{
+  "advisory_ids": [
+    "GHSA-cm22-4g7w-348p",
+    "CVE-2024-43800"
+  ],
+  "asset_sha256": {
+    "LICENSE.upstream": "63b9a188d7d43e64b0558b7115255045b9fe20a5fc3ff483421cb899e7f52bcb",
+    "harness.toml": "21e954ced3d8b38143e6a04493fa6d8e355c30e1b0e00b15c2ac2bac7bdc0ac8",
+    "oracle.mjs": "fca237c7cd9cd01d17f8451998f03eecd3b6b7f48efb3f9cd634a334d4407bbb",
+    "reference.patch": "f9a7a9f717fb659fc35b7e6db6381a83cc0f1005a7e92a107c98f5df5d64b311",
+    "upstream.patch": "25cb1e55a3a02d7dac7691e675e6cbbeb1f174dc57aa6a0858223218b8282c6d"
+  },
+  "backport_implementation_paths": [
+    "index.js"
+  ],
+  "base_commit": "9b5a12a76f4d70530d2d2a8c7742e9158ed3c0a4",
+  "input_scope": "Experimental standalone inputs; no execution result is asserted.",
+  "instance_id": "serve-static",
+  "license": "MIT",
+  "maintainer_backport_commit": "0c11fad159898cdc69fd9ab63269b72468ecaf6b",
+  "maintainer_backport_parent": "9b5a12a76f4d70530d2d2a8c7742e9158ed3c0a4",
+  "package": "serve-static",
+  "patch_scope": "Implementation-only extracts of the maintainer commits; full commits can also change tests, metadata, or dependencies.",
+  "repository_url": "https://github.com/expressjs/serve-static.git",
+  "schema_version": 1,
+  "source_links": {
+    "base_commit": "https://github.com/expressjs/serve-static/commit/9b5a12a76f4d70530d2d2a8c7742e9158ed3c0a4",
+    "maintainer_backport_commit": "https://github.com/expressjs/serve-static/commit/0c11fad159898cdc69fd9ab63269b72468ecaf6b",
+    "upstream_fix_commit": "https://github.com/expressjs/serve-static/commit/ce730896fddce1588111d9ef6fdf20896de5c6fa",
+    "upstream_parent_commit": "https://github.com/expressjs/serve-static/commit/d79edcecd7875329f7d0648412cf20ec7315977b"
+  },
+  "source_snapshot_sha256": {
+    "maintainer_backport": "f2529586a401c48e2baf4fc181cd10d290b7494bee530a29335b0ff68cdda166",
+    "target_baseline": "a73b39e591a0f62846fa47ad1799b37627c557e264a95c3d9eb23530af8ef83b",
+    "upstream_fix": "dc38d9c3ea6ecf06a1065ad58a5d2d0a684173ff0c7c1b00a89373c31b32ec2c",
+    "upstream_parent": "8d68a3d69dafe7b2bb8d47e9415fde3b36dad9ad382ac46a74f1db770a1005eb"
+  },
+  "target_test_paths": [
+    "test/test.js"
+  ],
+  "upstream_fix_commit": "ce730896fddce1588111d9ef6fdf20896de5c6fa",
+  "upstream_implementation_paths": [
+    "index.js"
+  ],
+  "upstream_parent_commit": "d79edcecd7875329f7d0648412cf20ec7315977b",
+  "upstream_test_paths": [
+    "test/test.js"
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "library": "Werkzeug",
+  "case_id": "werkzeug-multipart",
+  "repository_url": "https://github.com/pallets/werkzeug",
+  "advisory_ids": [
+    "CVE-2023-46136"
+  ],
+  "advertised_heads": {
+    "source-parent": "726eaa28593d859548da3477859c914732f012ef",
+    "source-fix": "b1916c0c083e0be1c9d887ee2f3d696922bfc5c1",
+    "target-baseline": "26f3e95168c5019d3dbf656c9042c19d621cb54f",
+    "target-backport": "f2300208d5e2a5076cbbb4c2aad71096fd040ef9"
+  },
+  "implementation_paths": [
+    "src/werkzeug/sansio/multipart.py"
+  ],
+  "input_sha256": {
+    "LICENSE.upstream": "3b49dcee4105eb37bac10faf1be260408fe85d252b8e9df2e0979fc1e094437b",
+    "reference.patch": "52529657a34f79201523fa8f0465804b8160a052b38a88e8e92d4c716dac202b",
+    "runtime-requirements.json": "1a9ac7726b8341bfc71727f194ec94ba5bcd243b40eceb878c117f16a5a74beb",
+    "upstream-implementation.patch": "52529657a34f79201523fa8f0465804b8160a052b38a88e8e92d4c716dac202b",
+    "harness.toml": "af9e256fb4c96167b84467a2787be04d71353dffb595f1b06a3814d1ab8fce22",
+    "oracle.py": "bad5e4b594f825e0c51aed10b995a6b93d58ff5bf6d9f07da7a1957444790737"
+  },
+  "runtime": "Staged source imports under Python 3.12.12; no target package build."
+}

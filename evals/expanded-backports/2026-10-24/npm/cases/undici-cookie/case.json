@@ -1,0 +1,47 @@
+{
+  "advisory_ids": [
+    "GHSA-p88m-4jfj-68fv"
+  ],
+  "asset_sha256": {
+    "LICENSE.upstream": "a6db8096b2707bc0102d256917d4d33f298ba36d8c3f25de067a2b5bb379db27",
+    "harness.toml": "e93ac99a52f6a5be59330f519bdbe181a9726bf39ca6d21fff145b441b8cf0f9",
+    "oracle.mjs": "8957d712506425918d08db7b98eb079121cb43990d5dd9df9153977a14675184",
+    "reference.patch": "d0cbe440cc59e09222607200ae994841079294e69c94f14e82033727f43aea3f",
+    "upstream.patch": "312c94b021964a640b62ce5e0758a1d96f27b0bd03aca19db75a9e0334f39a5d"
+  },
+  "backport_implementation_paths": [
+    "lib/web/cookies/parse.js"
+  ],
+  "base_commit": "f4c31d60c42d0385bca6ad602c112706b0695212",
+  "input_scope": "Experimental standalone inputs; no execution result is asserted.",
+  "instance_id": "undici-cookie",
+  "maintainer_backport_commit": "25efa447997f74d5881edd144525c3fd7db945a4",
+  "maintainer_backport_parent": "f4c31d60c42d0385bca6ad602c112706b0695212",
+  "package": "undici",
+  "patch_scope": "Implementation-only extracts of the maintainer commits; full commits can also change tests, metadata, or dependencies.",
+  "repository_url": "https://github.com/nodejs/undici.git",
+  "schema_version": 1,
+  "source_links": {
+    "base_commit": "https://github.com/nodejs/undici/commit/f4c31d60c42d0385bca6ad602c112706b0695212",
+    "maintainer_backport_commit": "https://github.com/nodejs/undici/commit/25efa447997f74d5881edd144525c3fd7db945a4",
+    "upstream_fix_commit": "https://github.com/nodejs/undici/commit/5655ea43af4add559ee5f94b6cd72e08a55aa621",
+    "upstream_parent_commit": "https://github.com/nodejs/undici/commit/27586ee92f7b2f78e813c97d9e7b493713eb9cdf"
+  },
+  "source_snapshot_sha256": {
+    "maintainer_backport": "adf2e7e583d6a08c9154aa1db3a975bc19f6a8b98b7457786159b5e2b17d64ef",
+    "target_baseline": "0ddf828dc1f69ebdb93abd6a390d36a48485a4ccb30cc4e7028941f6c355be87",
+    "upstream_fix": "d452ff6945a147998b2ec5ba3aa72d44a1b84b775006d8e23d0b384a789190b7",
+    "upstream_parent": "659fddc37b7373a0718db470023c482d203a281800c7160b75d11e9a1fef046f"
+  },
+  "target_test_paths": [
+    "test/cookie/cookies.js"
+  ],
+  "upstream_fix_commit": "5655ea43af4add559ee5f94b6cd72e08a55aa621",
+  "upstream_implementation_paths": [
+    "lib/web/cookies/parse.js"
+  ],
+  "upstream_parent_commit": "27586ee92f7b2f78e813c97d9e7b493713eb9cdf",
+  "upstream_test_paths": [
+    "test/cookie/cookies.js"
+  ]
+}

@@ -1,0 +1,679 @@
+{
+  "schema_version": 1,
+  "status": "built; ordinary tests and security qualification remain pending",
+  "base_image": "sha256:7f5c9714117da799da5c0a107c52c999ccdf38f3b8b0d3a05cf50da7a08466d9",
+  "scope": "Dependency-only manifests. No target library is installed; no repository scripts run. Lock resolution and npm ci execute only in isolated disposable build containers with ignore-scripts. Runtime tests remain network disabled.",
+  "revisions": [
+    {
+      "library": "serve-static",
+      "phase": "upstream_parent",
+      "commit": "d79edcecd7875329f7d0648412cf20ec7315977b",
+      "suite": [
+        "test/test.js"
+      ],
+      "production_dependencies": {
+        "encodeurl": "^2.0.0",
+        "escape-html": "^1.0.3",
+        "parseurl": "^1.3.3",
+        "send": "^1.0.0"
+      },
+      "test_dependencies": {
+        "safe-buffer": "^5.2.1",
+        "supertest": "^6.3.4"
+      },
+      "manifest": {
+        "name": "seam-evaluation-dependencies",
+        "version": "1.0.0",
+        "private": true,
+        "dependencies": {
+          "encodeurl": "^2.0.0",
+          "escape-html": "^1.0.3",
+          "parseurl": "^1.3.3",
+          "safe-buffer": "^5.2.1",
+          "send": "^1.0.0",
+          "supertest": "^6.3.4"
+        }
+      },
+      "manifest_sha256": "26dfcc183a34bf8e4959b3ae7a09a984d3457b9129e0cea1c8d196f53ac6c7a8",
+      "image_node_modules": "/opt/seam/dependencies/d79edcecd7875329f7d0648412cf20ec7315977b/node_modules",
+      "shared_mocha_symlink": "/opt/seam/node_modules/mocha",
+      "notes": [],
+      "lock_sha256": "4a273221463ddfcdc87db7f7f38a7cc0c5611bb11670153041a1d3f668090a7a"
+    },
+    {
+      "library": "serve-static",
+      "phase": "upstream_fix",
+      "commit": "ce730896fddce1588111d9ef6fdf20896de5c6fa",
+      "suite": [
+        "test/test.js"
+      ],
+      "production_dependencies": {
+        "encodeurl": "^2.0.0",
+        "escape-html": "^1.0.3",
+        "parseurl": "^1.3.3",
+        "send": "^1.0.0"
+      },
+      "test_dependencies": {
+        "safe-buffer": "^5.2.1",
+        "supertest": "^6.3.4"
+      },
+      "manifest": {
+        "name": "seam-evaluation-dependencies",
+        "version": "1.0.0",
+        "private": true,
+        "dependencies": {
+          "encodeurl": "^2.0.0",
+          "escape-html": "^1.0.3",
+          "parseurl": "^1.3.3",
+          "safe-buffer": "^5.2.1",
+          "send": "^1.0.0",
+          "supertest": "^6.3.4"
+        }
+      },
+      "manifest_sha256": "26dfcc183a34bf8e4959b3ae7a09a984d3457b9129e0cea1c8d196f53ac6c7a8",
+      "image_node_modules": "/opt/seam/dependencies/ce730896fddce1588111d9ef6fdf20896de5c6fa/node_modules",
+      "shared_mocha_symlink": "/opt/seam/node_modules/mocha",
+      "notes": [],
+      "lock_sha256": "4a273221463ddfcdc87db7f7f38a7cc0c5611bb11670153041a1d3f668090a7a"
+    },
+    {
+      "library": "serve-static",
+      "phase": "target_baseline",
+      "commit": "9b5a12a76f4d70530d2d2a8c7742e9158ed3c0a4",
+      "suite": [
+        "test/test.js"
+      ],
+      "production_dependencies": {
+        "encodeurl": "~1.0.2",
+        "escape-html": "~1.0.3",
+        "parseurl": "~1.3.3",
+        "send": "0.18.0"
+      },
+      "test_dependencies": {
+        "safe-buffer": "5.2.1",
+        "supertest": "6.2.2"
+      },
+      "manifest": {
+        "name": "seam-evaluation-dependencies",
+        "version": "1.0.0",
+        "private": true,
+        "dependencies": {
+          "encodeurl": "~1.0.2",
+          "escape-html": "~1.0.3",
+          "parseurl": "~1.3.3",
+          "safe-buffer": "5.2.1",
+          "send": "0.18.0",
+          "supertest": "6.2.2"
+        }
+      },
+      "manifest_sha256": "0d62da01c9167c07ed50c3d16f3d983e1f79e692ae24c619df8ef2f77d34a787",
+      "image_node_modules": "/opt/seam/dependencies/9b5a12a76f4d70530d2d2a8c7742e9158ed3c0a4/node_modules",
+      "shared_mocha_symlink": "/opt/seam/node_modules/mocha",
+      "notes": [],
+      "lock_sha256": "1199c288525082ea80260b5c2c564279d5929ae6ff958bc75f1b969e0614a4f1"
+    },
+    {
+      "library": "body-parser",
+      "phase": "upstream_parent",
+      "commit": "185ff1d55598a60acf7e182239cae6662e564407",
+      "suite": [
+        "test/json.js"
+      ],
+      "production_dependencies": {
+        "bytes": "^3.1.2",
+        "content-type": "^2.1.0",
+        "debug": "^4.4.3",
+        "http-errors": "^2.0.1",
+        "iconv-lite": "^0.7.3",
+        "on-finished": "^2.4.1",
+        "qs": "^6.16.1",
+        "raw-body": "^3.0.2",
+        "type-is": "^2.1.0"
+      },
+      "test_dependencies": {
+        "supertest": "7.3.0"
+      },
+      "manifest": {
+        "name": "seam-evaluation-dependencies",
+        "version": "1.0.0",
+        "private": true,
+        "dependencies": {
+          "bytes": "^3.1.2",
+          "content-type": "^2.1.0",
+          "debug": "^4.4.3",
+          "http-errors": "^2.0.1",
+          "iconv-lite": "^0.7.3",
+          "on-finished": "^2.4.1",
+          "qs": "^6.16.1",
+          "raw-body": "^3.0.2",
+          "supertest": "7.3.0",
+          "type-is": "^2.1.0"
+        }
+      },
+      "manifest_sha256": "ef396ed1bf6bc4f92ec614494c034fa26c305c6137f692e154b1c5438a877210",
+      "image_node_modules": "/opt/seam/dependencies/185ff1d55598a60acf7e182239cae6662e564407/node_modules",
+      "shared_mocha_symlink": "/opt/seam/node_modules/mocha",
+      "notes": [
+        "The modern original test requires mocha by package name; symlink the shared runner copy to avoid two Mocha instances. Native suite setup needs review: old npm script requires test/support/env."
+      ],
+      "lock_sha256": "57919aab7fe0eaaca8767161bb6e01139c674a2364120dadea1e7332e023149a"
+    },
+    {
+      "library": "body-parser",
+      "phase": "upstream_fix",
+      "commit": "f7075eae3a84c3473ab4bf0a777da28db208e916",
+      "suite": [
+        "test/json.js"
+      ],
+      "production_dependencies": {
+        "bytes": "^3.1.2",
+        "content-type": "^2.1.0",
+        "debug": "^4.4.3",
+        "http-errors": "^2.0.1",
+        "iconv-lite": "^0.7.3",
+        "on-finished": "^2.4.1",
+        "qs": "^6.16.1",
+        "raw-body": "^3.0.2",
+        "type-is": "^2.1.0"
+      },
+      "test_dependencies": {
+        "supertest": "7.3.0"
+      },
+      "manifest": {
+        "name": "seam-evaluation-dependencies",
+        "version": "1.0.0",
+        "private": true,
+        "dependencies": {
+          "bytes": "^3.1.2",
+          "content-type": "^2.1.0",
+          "debug": "^4.4.3",
+          "http-errors": "^2.0.1",
+          "iconv-lite": "^0.7.3",
+          "on-finished": "^2.4.1",
+          "qs": "^6.16.1",
+          "raw-body": "^3.0.2",
+          "supertest": "7.3.0",
+          "type-is": "^2.1.0"
+        }
+      },
+      "manifest_sha256": "ef396ed1bf6bc4f92ec614494c034fa26c305c6137f692e154b1c5438a877210",
+      "image_node_modules": "/opt/seam/dependencies/f7075eae3a84c3473ab4bf0a777da28db208e916/node_modules",
+      "shared_mocha_symlink": "/opt/seam/node_modules/mocha",
+      "notes": [
+        "The modern original test requires mocha by package name; symlink the shared runner copy to avoid two Mocha instances. Native suite setup needs review: old npm script requires test/support/env."
+      ],
+      "lock_sha256": "57919aab7fe0eaaca8767161bb6e01139c674a2364120dadea1e7332e023149a"
+    },
+    {
+      "library": "body-parser",
+      "phase": "target_baseline",
+      "commit": "b4c2112ff66163da4304188edda5690e90f7c8a7",
+      "suite": [
+        "test/json.js"
+      ],
+      "production_dependencies": {
+        "bytes": "~3.1.2",
+        "content-type": "~1.0.5",
+        "debug": "2.6.9",
+        "depd": "2.0.0",
+        "destroy": "~1.2.0",
+        "http-errors": "~2.0.1",
+        "iconv-lite": "~0.4.24",
+        "on-finished": "~2.4.1",
+        "qs": "~6.16.0",
+        "raw-body": "~2.5.3",
+        "type-is": "~1.6.18",
+        "unpipe": "~1.0.0"
+      },
+      "test_dependencies": {
+        "safe-buffer": "5.2.1",
+        "supertest": "6.3.3"
+      },
+      "manifest": {
+        "name": "seam-evaluation-dependencies",
+        "version": "1.0.0",
+        "private": true,
+        "dependencies": {
+          "bytes": "~3.1.2",
+          "content-type": "~1.0.5",
+          "debug": "2.6.9",
+          "depd": "2.0.0",
+          "destroy": "~1.2.0",
+          "http-errors": "~2.0.1",
+          "iconv-lite": "~0.4.24",
+          "on-finished": "~2.4.1",
+          "qs": "~6.16.0",
+          "raw-body": "~2.5.3",
+          "safe-buffer": "5.2.1",
+          "supertest": "6.3.3",
+          "type-is": "~1.6.18",
+          "unpipe": "~1.0.0"
+        }
+      },
+      "manifest_sha256": "29df3c3f5bda6b2f354076943202ba119611bb00386086dfc97bc56c8fd65db7",
+      "image_node_modules": "/opt/seam/dependencies/b4c2112ff66163da4304188edda5690e90f7c8a7/node_modules",
+      "shared_mocha_symlink": "/opt/seam/node_modules/mocha",
+      "notes": [
+        "The modern original test requires mocha by package name; symlink the shared runner copy to avoid two Mocha instances. Native suite setup needs review: old npm script requires test/support/env."
+      ],
+      "lock_sha256": "d5fce914b24b2ed6ea91cf7f486aa25a663c37326e86c2c70b68e7863a3078c8"
+    },
+    {
+      "library": "debug",
+      "phase": "upstream_parent",
+      "commit": "47747f329fe159e94262318b52b87a48f6c0acd4",
+      "suite": [
+        "test/debug_spec.js"
+      ],
+      "production_dependencies": {
+        "ms": "2.0.0"
+      },
+      "test_dependencies": {
+        "chai": "^3.5.0",
+        "sinon": "^1.17.6",
+        "sinon-chai": "^2.8.0"
+      },
+      "manifest": {
+        "name": "seam-evaluation-dependencies",
+        "version": "1.0.0",
+        "private": true,
+        "dependencies": {
+          "chai": "^3.5.0",
+          "ms": "2.0.0",
+          "sinon": "^1.17.6",
+          "sinon-chai": "^2.8.0"
+        }
+      },
+      "manifest_sha256": "e085b4bec05dfaef96235ad8178f4f2e678e46cf2461ad59ad742a8e552ef3cb",
+      "image_node_modules": "/opt/seam/dependencies/47747f329fe159e94262318b52b87a48f6c0acd4/node_modules",
+      "shared_mocha_symlink": "/opt/seam/node_modules/mocha",
+      "notes": [],
+      "lock_sha256": "abba5c8fa7f76a647106d5f1291903a0515c7621c920d802e66cbba58d29cd7a"
+    },
+    {
+      "library": "debug",
+      "phase": "upstream_fix",
+      "commit": "c38a0166c266a679c8de012d4eaccec3f944e685",
+      "suite": [
+        "test/debug_spec.js"
+      ],
+      "production_dependencies": {
+        "ms": "2.0.0"
+      },
+      "test_dependencies": {
+        "chai": "^3.5.0",
+        "sinon": "^1.17.6",
+        "sinon-chai": "^2.8.0"
+      },
+      "manifest": {
+        "name": "seam-evaluation-dependencies",
+        "version": "1.0.0",
+        "private": true,
+        "dependencies": {
+          "chai": "^3.5.0",
+          "ms": "2.0.0",
+          "sinon": "^1.17.6",
+          "sinon-chai": "^2.8.0"
+        }
+      },
+      "manifest_sha256": "e085b4bec05dfaef96235ad8178f4f2e678e46cf2461ad59ad742a8e552ef3cb",
+      "image_node_modules": "/opt/seam/dependencies/c38a0166c266a679c8de012d4eaccec3f944e685/node_modules",
+      "shared_mocha_symlink": "/opt/seam/node_modules/mocha",
+      "notes": [],
+      "lock_sha256": "abba5c8fa7f76a647106d5f1291903a0515c7621c920d802e66cbba58d29cd7a"
+    },
+    {
+      "library": "debug",
+      "phase": "target_baseline",
+      "commit": "52e1f21284322f167839e5d3a60f635c8b2dc842",
+      "suite": [
+        "test/debug_spec.js"
+      ],
+      "production_dependencies": {
+        "ms": "2.0.0"
+      },
+      "test_dependencies": {
+        "chai": "^3.5.0",
+        "sinon": "^1.17.6",
+        "sinon-chai": "^2.8.0"
+      },
+      "manifest": {
+        "name": "seam-evaluation-dependencies",
+        "version": "1.0.0",
+        "private": true,
+        "dependencies": {
+          "chai": "^3.5.0",
+          "ms": "2.0.0",
+          "sinon": "^1.17.6",
+          "sinon-chai": "^2.8.0"
+        }
+      },
+      "manifest_sha256": "e085b4bec05dfaef96235ad8178f4f2e678e46cf2461ad59ad742a8e552ef3cb",
+      "image_node_modules": "/opt/seam/dependencies/52e1f21284322f167839e5d3a60f635c8b2dc842/node_modules",
+      "shared_mocha_symlink": "/opt/seam/node_modules/mocha",
+      "notes": [],
+      "lock_sha256": "abba5c8fa7f76a647106d5f1291903a0515c7621c920d802e66cbba58d29cd7a"
+    },
+    {
+      "library": "yargs-parser",
+      "phase": "upstream_parent",
+      "commit": "48b6d9ccfa4bb3f74a7f374d8f400491127a8477",
+      "suite": [
+        "test/yargs-parser.js"
+      ],
+      "production_dependencies": {
+        "camelcase": "^5.0.0",
+        "decamelize": "^1.2.0"
+      },
+      "test_dependencies": {
+        "chai": "^4.2.0"
+      },
+      "manifest": {
+        "name": "seam-evaluation-dependencies",
+        "version": "1.0.0",
+        "private": true,
+        "dependencies": {
+          "camelcase": "^5.0.0",
+          "chai": "^4.2.0",
+          "decamelize": "^1.2.0"
+        }
+      },
+      "manifest_sha256": "01fb0ce418e52dac848a1f1cdec5b7ce9a6971377921fd66f5059e2b8d4a7936",
+      "image_node_modules": "/opt/seam/dependencies/48b6d9ccfa4bb3f74a7f374d8f400491127a8477/node_modules",
+      "shared_mocha_symlink": "/opt/seam/node_modules/mocha",
+      "notes": [],
+      "lock_sha256": "926a1e3d7e87bc07ddcc805a36a09bc7fdfa66e57e2caec7bf66c6ec296128d5"
+    },
+    {
+      "library": "yargs-parser",
+      "phase": "upstream_fix",
+      "commit": "63810ca1ae1a24b08293a4d971e70e058c7a41e2",
+      "suite": [
+        "test/yargs-parser.js"
+      ],
+      "production_dependencies": {
+        "camelcase": "^5.0.0",
+        "decamelize": "^1.2.0"
+      },
+      "test_dependencies": {
+        "chai": "^4.2.0"
+      },
+      "manifest": {
+        "name": "seam-evaluation-dependencies",
+        "version": "1.0.0",
+        "private": true,
+        "dependencies": {
+          "camelcase": "^5.0.0",
+          "chai": "^4.2.0",
+          "decamelize": "^1.2.0"
+        }
+      },
+      "manifest_sha256": "01fb0ce418e52dac848a1f1cdec5b7ce9a6971377921fd66f5059e2b8d4a7936",
+      "image_node_modules": "/opt/seam/dependencies/63810ca1ae1a24b08293a4d971e70e058c7a41e2/node_modules",
+      "shared_mocha_symlink": "/opt/seam/node_modules/mocha",
+      "notes": [],
+      "lock_sha256": "926a1e3d7e87bc07ddcc805a36a09bc7fdfa66e57e2caec7bf66c6ec296128d5"
+    },
+    {
+      "library": "yargs-parser",
+      "phase": "target_baseline",
+      "commit": "7e01a2c8d1ba75d9d5472e5839e2852bdf2af3db",
+      "suite": [
+        "test/yargs-parser.js"
+      ],
+      "production_dependencies": {
+        "camelcase": "^5.0.0",
+        "decamelize": "^1.2.0"
+      },
+      "test_dependencies": {
+        "chai": "^4.2.0"
+      },
+      "manifest": {
+        "name": "seam-evaluation-dependencies",
+        "version": "1.0.0",
+        "private": true,
+        "dependencies": {
+          "camelcase": "^5.0.0",
+          "chai": "^4.2.0",
+          "decamelize": "^1.2.0"
+        }
+      },
+      "manifest_sha256": "01fb0ce418e52dac848a1f1cdec5b7ce9a6971377921fd66f5059e2b8d4a7936",
+      "image_node_modules": "/opt/seam/dependencies/7e01a2c8d1ba75d9d5472e5839e2852bdf2af3db/node_modules",
+      "shared_mocha_symlink": "/opt/seam/node_modules/mocha",
+      "notes": [
+        "Primary target is the 13.1.1 line; dependencies match its source branch. The dependency-changing 5.x backport is preserved separately."
+      ],
+      "lock_sha256": "926a1e3d7e87bc07ddcc805a36a09bc7fdfa66e57e2caec7bf66c6ec296128d5"
+    },
+    {
+      "library": "js-yaml",
+      "phase": "upstream_parent",
+      "commit": "0d3ca7a27b03a6c974790a30a89e456007d62976",
+      "suite": [
+        "test/10-loader.js",
+        "test/11-load-errors.js"
+      ],
+      "production_dependencies": {
+        "argparse": "^2.0.1"
+      },
+      "test_dependencies": {},
+      "manifest": {
+        "name": "seam-evaluation-dependencies",
+        "version": "1.0.0",
+        "private": true,
+        "dependencies": {
+          "argparse": "^2.0.1"
+        }
+      },
+      "manifest_sha256": "30a825d5190af823396e3f2d041b38833ce77cd0c1d1f6adbd6e825ed5c2d02d",
+      "image_node_modules": "/opt/seam/dependencies/0d3ca7a27b03a6c974790a30a89e456007d62976/node_modules",
+      "shared_mocha_symlink": "/opt/seam/node_modules/mocha",
+      "notes": [
+        "Original 4.x suite uses BDD; original 3.x uses TDD. Frozen per-revision UI is required before evaluation."
+      ],
+      "lock_sha256": "c528c3f0bd64ed3a46977432b3ae9f2dac4a66b0668555652f36d1195b0c2b06"
+    },
+    {
+      "library": "js-yaml",
+      "phase": "upstream_fix",
+      "commit": "383665ff4248ec2192d1274e934462bb30426879",
+      "suite": [
+        "test/10-loader.js",
+        "test/11-load-errors.js"
+      ],
+      "production_dependencies": {
+        "argparse": "^2.0.1"
+      },
+      "test_dependencies": {},
+      "manifest": {
+        "name": "seam-evaluation-dependencies",
+        "version": "1.0.0",
+        "private": true,
+        "dependencies": {
+          "argparse": "^2.0.1"
+        }
+      },
+      "manifest_sha256": "30a825d5190af823396e3f2d041b38833ce77cd0c1d1f6adbd6e825ed5c2d02d",
+      "image_node_modules": "/opt/seam/dependencies/383665ff4248ec2192d1274e934462bb30426879/node_modules",
+      "shared_mocha_symlink": "/opt/seam/node_modules/mocha",
+      "notes": [
+        "Original 4.x suite uses BDD; original 3.x uses TDD. Frozen per-revision UI is required before evaluation."
+      ],
+      "lock_sha256": "c528c3f0bd64ed3a46977432b3ae9f2dac4a66b0668555652f36d1195b0c2b06"
+    },
+    {
+      "library": "js-yaml",
+      "phase": "target_baseline",
+      "commit": "37caaad57dc37d350d9a4577a5da53f482bb2983",
+      "suite": [
+        "test/10-loader.js",
+        "test/11-load-errors.js"
+      ],
+      "production_dependencies": {
+        "argparse": "^1.0.7",
+        "esprima": "^4.0.0"
+      },
+      "test_dependencies": {},
+      "manifest": {
+        "name": "seam-evaluation-dependencies",
+        "version": "1.0.0",
+        "private": true,
+        "dependencies": {
+          "argparse": "^1.0.7",
+          "esprima": "^4.0.0"
+        }
+      },
+      "manifest_sha256": "f5b110b84027e17a7675c45252dd6c4826e13b2b7a76143a563f787aef346543",
+      "image_node_modules": "/opt/seam/dependencies/37caaad57dc37d350d9a4577a5da53f482bb2983/node_modules",
+      "shared_mocha_symlink": "/opt/seam/node_modules/mocha",
+      "notes": [
+        "Original 4.x suite uses BDD; original 3.x uses TDD. Frozen per-revision UI is required before evaluation."
+      ],
+      "lock_sha256": "dc753f6f933c095ea7da6ddb20affed6888e84de098218558e2b51fcbbc03254"
+    },
+    {
+      "library": "ws",
+      "phase": "upstream_parent",
+      "commit": "6a00029edd924499f892aed8003cef1fa724cfe5",
+      "suite": [
+        "test/websocket-server.test.js"
+      ],
+      "production_dependencies": {},
+      "test_dependencies": {},
+      "manifest": {
+        "name": "seam-evaluation-dependencies",
+        "version": "1.0.0",
+        "private": true,
+        "dependencies": {}
+      },
+      "manifest_sha256": "dc46aa00905fef72566253f464beab32b2aed4b08c299c3cc9ef7992b086775a",
+      "image_node_modules": "/opt/seam/dependencies/6a00029edd924499f892aed8003cef1fa724cfe5/node_modules",
+      "shared_mocha_symlink": "/opt/seam/node_modules/mocha",
+      "notes": [],
+      "lock_sha256": "396f3c63b93f60c5f652e3b226d740a70fe08b13c65d029a1dda8ee04e05247a"
+    },
+    {
+      "library": "ws",
+      "phase": "upstream_fix",
+      "commit": "e55e5106f10fcbaac37cfa89759e4cc0d073a52c",
+      "suite": [
+        "test/websocket-server.test.js"
+      ],
+      "production_dependencies": {},
+      "test_dependencies": {},
+      "manifest": {
+        "name": "seam-evaluation-dependencies",
+        "version": "1.0.0",
+        "private": true,
+        "dependencies": {}
+      },
+      "manifest_sha256": "dc46aa00905fef72566253f464beab32b2aed4b08c299c3cc9ef7992b086775a",
+      "image_node_modules": "/opt/seam/dependencies/e55e5106f10fcbaac37cfa89759e4cc0d073a52c/node_modules",
+      "shared_mocha_symlink": "/opt/seam/node_modules/mocha",
+      "notes": [],
+      "lock_sha256": "396f3c63b93f60c5f652e3b226d740a70fe08b13c65d029a1dda8ee04e05247a"
+    },
+    {
+      "library": "ws",
+      "phase": "target_baseline",
+      "commit": "8a78f8770618cc5a1ade485a7445cb6d6f46e2f2",
+      "suite": [
+        "test/websocket-server.test.js"
+      ],
+      "production_dependencies": {},
+      "test_dependencies": {},
+      "manifest": {
+        "name": "seam-evaluation-dependencies",
+        "version": "1.0.0",
+        "private": true,
+        "dependencies": {}
+      },
+      "manifest_sha256": "dc46aa00905fef72566253f464beab32b2aed4b08c299c3cc9ef7992b086775a",
+      "image_node_modules": "/opt/seam/dependencies/8a78f8770618cc5a1ade485a7445cb6d6f46e2f2/node_modules",
+      "shared_mocha_symlink": "/opt/seam/node_modules/mocha",
+      "notes": [],
+      "lock_sha256": "396f3c63b93f60c5f652e3b226d740a70fe08b13c65d029a1dda8ee04e05247a"
+    },
+    {
+      "library": "undici-tls",
+      "phase": "upstream_parent",
+      "commit": "e257e9f8fb42eedd50727b9cf65e548c8925e4a8",
+      "suite": [
+        "test/node-test/agent.js"
+      ],
+      "production_dependencies": {},
+      "test_dependencies": {
+        "@matteo.collina/tspl": "^0.2.0"
+      },
+      "manifest": {
+        "name": "seam-evaluation-dependencies",
+        "version": "1.0.0",
+        "private": true,
+        "dependencies": {
+          "@matteo.collina/tspl": "^0.2.0"
+        }
+      },
+      "image_node_modules": "/opt/seam/dependencies/e257e9f8fb42eedd50727b9cf65e548c8925e4a8/node_modules",
+      "notes": [
+        "Only the original selected suite's tspl dependency is installed."
+      ],
+      "manifest_sha256": "74be4ae14f46f4cbb0c6373d349bd7c3102069ceff20d31d90ab510d474b5084",
+      "lock_sha256": "3794869c6d6be0b9601a6fafc6f572713dc2beeef9dfa40b79448bc714a257ea"
+    },
+    {
+      "library": "undici-tls",
+      "phase": "upstream_fix",
+      "commit": "f75eac00ac177f7b2e6c8bfbd52d4113164286e6",
+      "suite": [
+        "test/node-test/agent.js"
+      ],
+      "production_dependencies": {},
+      "test_dependencies": {
+        "@matteo.collina/tspl": "^0.2.0"
+      },
+      "manifest": {
+        "name": "seam-evaluation-dependencies",
+        "version": "1.0.0",
+        "private": true,
+        "dependencies": {
+          "@matteo.collina/tspl": "^0.2.0"
+        }
+      },
+      "image_node_modules": "/opt/seam/dependencies/f75eac00ac177f7b2e6c8bfbd52d4113164286e6/node_modules",
+      "notes": [
+        "Only the original selected suite's tspl dependency is installed."
+      ],
+      "manifest_sha256": "74be4ae14f46f4cbb0c6373d349bd7c3102069ceff20d31d90ab510d474b5084",
+      "lock_sha256": "3794869c6d6be0b9601a6fafc6f572713dc2beeef9dfa40b79448bc714a257ea"
+    },
+    {
+      "library": "undici-tls",
+      "phase": "target_baseline",
+      "commit": "b40fbfc0651703cf9fa9f6ced68b679f28d8bb28",
+      "suite": [
+        "test/node-test/agent.js"
+      ],
+      "production_dependencies": {},
+      "test_dependencies": {
+        "@matteo.collina/tspl": "^0.1.1"
+      },
+      "manifest": {
+        "name": "seam-evaluation-dependencies",
+        "version": "1.0.0",
+        "private": true,
+        "dependencies": {
+          "@matteo.collina/tspl": "^0.1.1"
+        }
+      },
+      "image_node_modules": "/opt/seam/dependencies/b40fbfc0651703cf9fa9f6ced68b679f28d8bb28/node_modules",
+      "notes": [
+        "Only the original selected suite's tspl dependency is installed."
+      ],
+      "manifest_sha256": "84574e6a57c29ff09f1fff0658da15aa5f481365bc3864a56a8740f0b5bae6a9",
+      "lock_sha256": "981fb99f1f1f0448f292c194afa0c620990331988291164de405894b9accf7d0"
+    }
+  ],
+  "unique_dependency_manifests": 11,
+  "image_id": "sha256:52f40f96867d88d68ced00067878ab5b917744d17f5649b82506f43e72d88cba"
+}

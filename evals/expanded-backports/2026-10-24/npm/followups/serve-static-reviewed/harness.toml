@@ -1,0 +1,18 @@
+[oracle]
+path = "oracle.mjs"
+security_test = "test_security"
+controls = ["test_redirect_location", "test_file_content"]
+failure_marker = "STATIC_REDIRECT_HAS_NO_LINK"
+
+[runner]
+kind = "mocha"
+image = "sha256:52f40f96867d88d68ced00067878ab5b917744d17f5649b82506f43e72d88cba"
+docker = ["sudo", "-n", "docker"]
+suite = ["test/test.js"]
+timeout_seconds = 120
+mocha_grep = "^(?!.*(?:should include HTML link|should ensure redirect URL is properly encoded)$)"
+
+[runner.node_dependencies]
+"d79edcecd7875329f7d0648412cf20ec7315977b" = "/opt/seam/dependencies/d79edcecd7875329f7d0648412cf20ec7315977b/node_modules"
+"ce730896fddce1588111d9ef6fdf20896de5c6fa" = "/opt/seam/dependencies/ce730896fddce1588111d9ef6fdf20896de5c6fa/node_modules"
+"9b5a12a76f4d70530d2d2a8c7742e9158ed3c0a4" = "/opt/seam/dependencies/9b5a12a76f4d70530d2d2a8c7742e9158ed3c0a4/node_modules"

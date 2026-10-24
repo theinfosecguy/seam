@@ -1,0 +1,4 @@
+asgiref==3.12.1
+MarkupSafe==3.0.3
+pytest-xprocess==0.23.0
+ephemeral-port-reserve==1.1.4

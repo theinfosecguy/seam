@@ -1,0 +1,53 @@
+{
+  "advisory_ids": [
+    "GHSA-3h5v-q93c-6h6q",
+    "CVE-2024-37890"
+  ],
+  "asset_sha256": {
+    "LICENSE.upstream": "2b29dcfe0d6471f7e8c92c5fb38c9f93edee10330937055440192f1832b1ecef",
+    "harness.toml": "95a4f1f3601668295e47b5d8a7615c27e228eb10426e3c4be33fed6e59ceed36",
+    "oracle.mjs": "867bea00c9aa0cc3fcbf8a209e5e1ba479c001b7ad3b469fe7ece64350985b56",
+    "reference.patch": "ffe3a0847c9a7c064ca43c3b99c73475ea6f7e6c92fbbea121aab2a5b21d1ae2",
+    "upstream.patch": "ffa8cc6394e8889cdfa959bfbede4a46caf9034c219175175561e8306b174b82"
+  },
+  "backport_implementation_paths": [
+    "lib/websocket-server.js",
+    "lib/websocket.js"
+  ],
+  "base_commit": "8a78f8770618cc5a1ade485a7445cb6d6f46e2f2",
+  "input_scope": "Experimental standalone inputs; no execution result is asserted.",
+  "instance_id": "ws",
+  "license": "MIT",
+  "maintainer_backport_commit": "22c28763234aa75a7e1b76f5c01c181260d7917f",
+  "maintainer_backport_parent": "8a78f8770618cc5a1ade485a7445cb6d6f46e2f2",
+  "package": "ws",
+  "patch_scope": "Implementation-only extracts of the maintainer commits; full commits can also change tests, metadata, or dependencies.",
+  "repository_url": "https://github.com/websockets/ws.git",
+  "schema_version": 1,
+  "source_links": {
+    "base_commit": "https://github.com/websockets/ws/commit/8a78f8770618cc5a1ade485a7445cb6d6f46e2f2",
+    "maintainer_backport_commit": "https://github.com/websockets/ws/commit/22c28763234aa75a7e1b76f5c01c181260d7917f",
+    "upstream_fix_commit": "https://github.com/websockets/ws/commit/e55e5106f10fcbaac37cfa89759e4cc0d073a52c",
+    "upstream_parent_commit": "https://github.com/websockets/ws/commit/6a00029edd924499f892aed8003cef1fa724cfe5"
+  },
+  "source_snapshot_sha256": {
+    "maintainer_backport": "b784fff757f3dfce17224cd5a47af7aa4f0e0d73ed54293f9e0eb39a29285792",
+    "target_baseline": "0d891638550398a14d0ae10e270d6c202b7f0deb198d66c9150744005898bf2a",
+    "upstream_fix": "a681a1dda12b3206fa4c839abaa62fc4875bccf855148076eaaa44c905a704db",
+    "upstream_parent": "09e6609f9a3b6dc29a7947240e076f28199c6cc3ffbb621181b7893f02ab8735"
+  },
+  "target_test_paths": [
+    "test/websocket-server.test.js",
+    "test/websocket.test.js"
+  ],
+  "upstream_fix_commit": "e55e5106f10fcbaac37cfa89759e4cc0d073a52c",
+  "upstream_implementation_paths": [
+    "lib/websocket-server.js",
+    "lib/websocket.js"
+  ],
+  "upstream_parent_commit": "6a00029edd924499f892aed8003cef1fa724cfe5",
+  "upstream_test_paths": [
+    "test/websocket-server.test.js",
+    "test/websocket.test.js"
+  ]
+}

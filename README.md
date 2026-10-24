@@ -7,7 +7,8 @@ Seam helps adapt it, checks that it fixes the vulnerability, and runs the releva
 existing tests to catch regressions. You get a patch and a report explaining what
 passed, failed, or could not be checked.
 
-Seam currently supports **Python libraries tested with pytest**. You can ask an
+Seam supports **Python libraries tested with pytest**, with an experimental
+[JavaScript runner](docs/javascript.md) for Node.js and Mocha tests. You can ask an
 AI model to adapt a fix, apply the upstream patch unchanged, or check a patch you
 have already written. It works in disposable copies of your repository and never
 pushes or merges changes.
@@ -51,7 +52,7 @@ the [API setup guide](docs/api.md) to choose a model, supply a key, and set a
 spending limit.
 
 Review `report.md` and `backport.patch` in the output directory before applying
-the change. Seam handles Python implementation changes; fixes to dependencies,
+the change. Seam handles implementation changes in the selected language; fixes to dependencies,
 build scripts, package data, or native code are outside its current scope.
 
 ## What does “verified” mean?

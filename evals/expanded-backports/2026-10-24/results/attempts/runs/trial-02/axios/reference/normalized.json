@@ -1,0 +1,90 @@
+{
+  "normalization_schema_version": 1,
+  "cohort": "initial-npm-20",
+  "case": "axios",
+  "role": "reference",
+  "interpretation": "Setup, application or evidence remained inconclusive; this alone is not a confirmed harness defect.",
+  "execution_context": {
+    "exit_code": 2,
+    "timed_out": false,
+    "log_truncated": false,
+    "wheel_sha256": "fb1afe7d89a0cfd5a50ae6094f1b1a356cb57e6d187beba597d542fe8903c35c",
+    "driver_sha256": "44efbc782d4cbbebb7ecec44e491a9941e5dc2cdd1554eaf7616a307020ec306",
+    "freeze_sha256": "f5fa5b227de18954e8c22fed4b881688a4e93d13428769fa01e21c19ade9c083",
+    "case_assets_unchanged": true,
+    "caller_unchanged": true
+  },
+  "report": {
+    "schema_version": 2,
+    "status": "inconclusive",
+    "reason": "Verification prerequisites were not established: upstream_parent security: test execution contained errors or skipped tests",
+    "fix_commit": "fb8eec214ce7744b5ca787f2c3b8339b2f54b00f",
+    "parent_commit": "98120457559e573024862e2925d56295a965ad7e",
+    "target_commit": "8603e677c09fb81bd106999c194308dd230bc596",
+    "image_id": "sha256:52f40f96867d88d68ced00067878ab5b917744d17f5649b82506f43e72d88cba",
+    "oracle_sha256": "71da898ccf742f0fde783064e2ea3e921cdd7b744527cec7695faea6ffdc5f1e",
+    "config_sha256": "d9a2942b57f64be02e9bde2c1878ea7e08d1b74eb3ad75de8b61143cdee4b837",
+    "patch_sha256": null,
+    "attempts": 0,
+    "adaptation": "none",
+    "model_usage": {},
+    "reviewed_tests": null,
+    "reviewed_fixtures": {},
+    "reviewed_submodules": {},
+    "phases": [
+      {
+        "name": "upstream_parent",
+        "revision": "98120457559e573024862e2925d56295a965ad7e",
+        "security": {
+          "returncode": 1,
+          "timed_out": false,
+          "truncated": false,
+          "duration_seconds": 0.843,
+          "evidence_error": null,
+          "tests": [
+            {
+              "name": "/oracle/oracle.mjs",
+              "classname": "/oracle/oracle.mjs::test",
+              "outcome": "error",
+              "expected_failure": false,
+              "original_message_sha256": "7f55e0223987df58d58dfe4f24145416b95cc6fc1b37a5929601fff8efc754ba"
+            }
+          ],
+          "command_sha256": "b0aef0d5bd75daf7808134565f5639427c54910d04e02b1dd1fb3a8ad7314a2c",
+          "missing_modules": [
+            "form-data"
+          ],
+          "diagnostic_excerpts": [
+            "Error [ERR_MODULE_NOT_FOUND]: Cannot find package 'form-data' imported from /work/repo/lib/platform/node/classes/FormData.js"
+          ],
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 0,
+          "stderr_sha256": "51c9875167ac4680b022c3fe372374cd310215b2aa742f1876f137762bc4d910",
+          "stderr_bytes": 1293
+        },
+        "suite": {
+          "returncode": 1,
+          "timed_out": false,
+          "truncated": false,
+          "duration_seconds": 0.8895,
+          "evidence_error": "JUnit report is empty or exceeds the evidence limit",
+          "tests": [],
+          "command_sha256": "b4ee13205cb94cf126ee5be2643cd5140afe011fddad5216fe69c1e784d9d0c8",
+          "missing_modules": [
+            "form-data"
+          ],
+          "diagnostic_excerpts": [
+            "Error [ERR_MODULE_NOT_FOUND]: Cannot find package 'form-data' imported from /work/repo/lib/platform/node/classes/FormData.js"
+          ],
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 0,
+          "stderr_sha256": "e94ad4ca316000132d92c21480e97117c95b880e966f8d05a507c2666ec487b3",
+          "stderr_bytes": 2466
+        }
+      }
+    ]
+  },
+  "original_report_sha256": "896a67d21baf481fa5f9e7f6af059b74fbc14081128e006acbe615f0b18ec70c",
+  "original_command_record_sha256": "3e54cbadc14daab7273b02ee25264e7c40cd19c7acadba5d89705253f0b1612e",
+  "candidate_patch_inputs": []
+}

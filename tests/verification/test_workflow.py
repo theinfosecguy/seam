@@ -150,8 +150,11 @@ def test_output_safety_rejection_writes_nothing(tmp_path: Path) -> None:
     assert (output / "keep.txt").read_text() == "existing evidence"
 
 
+@pytest.mark.parametrize("reviewed_submodules", [False, True])
 def test_backport_cannot_drop_previously_collected_suite_tests(
-    tmp_path: Path, monkeypatch
+    tmp_path: Path,
+    monkeypatch,
+    reviewed_submodules: bool,
 ) -> None:
     repo = tmp_path / "source"
     repo.mkdir()
@@ -168,6 +171,13 @@ failure_marker = "SECURITY_REGRESSION"
 image = "test-image"
 """
     )
+    modules = {"test/cache-fixtures": ("c" * 40,)} if reviewed_submodules else {}
+    if modules:
+        config.write_text(
+            config.read_text()
+            + "\n[runner.reviewed_submodules]\n"
+            + f'"test/cache-fixtures" = ["{"c" * 40}"]\n'
+        )
     revisions = {"fix": "f" * 40, "target": "b" * 40}
     monkeypatch.setattr(
         workflow.repository, "resolve", lambda _repo, ref: revisions[ref]
@@ -176,11 +186,16 @@ image = "test-image"
     monkeypatch.setattr(
         workflow.repository, "upstream_patch", lambda *_: "source patch"
     )
+    cloned = []
+
+    def clone(_repo, _revision, destination, *, reviewed_submodules=None):
+        assert reviewed_submodules == (modules or None)
+        cloned.append(destination.name)
+        destination.mkdir()
+
+    monkeypatch.setattr(workflow.repository, "clone_at", clone)
     monkeypatch.setattr(
-        workflow.repository, "clone_at", lambda _r, _c, dst: dst.mkdir()
-    )
-    monkeypatch.setattr(
-        workflow.repository, "apply_patch", lambda _workspace, patch: patch
+        workflow.repository, "apply_patch", lambda _workspace, patch, _language: patch
     )
 
     class Runner:
@@ -220,6 +235,13 @@ image = "test-image"
     )
     assert report.status == "inconclusive"
     assert "collect" in report.reason.lower() or "missing" in report.reason.lower()
+    assert cloned == [
+        "upstream_parent",
+        "upstream_fix",
+        "target_baseline",
+        "candidate-1",
+    ]
+    assert report.reviewed_submodules == modules
 
 
 @pytest.mark.parametrize("invalid_review", [None, "hash", "body"])

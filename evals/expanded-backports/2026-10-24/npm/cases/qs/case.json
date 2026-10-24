@@ -1,0 +1,49 @@
+{
+  "advisory_ids": [
+    "GHSA-hrpp-h998-j3pp",
+    "CVE-2022-24999"
+  ],
+  "asset_sha256": {
+    "LICENSE.upstream": "e7dc37bf662d7f786efcb46c545615e70c1daf458a38385521c63cf6607cdfe1",
+    "harness.toml": "06f095d64f664c9bd4ad20a7cf52d634c21fa22a977c4e0a0b455759a745f8cf",
+    "oracle.mjs": "7be0c63408b17c05eac2e5caa108beaafc177a384077904b728fcf4cf9eae93a",
+    "reference.patch": "321a180a2f17c87f9ac7d9d885d39c750f3e46f1acf3972bdffbefe7003c8d50",
+    "upstream.patch": "b512a4bb96d3939d404bee2b7fdc9ae7c59ad32fa9f776d98e8088a20d9e748b"
+  },
+  "backport_implementation_paths": [
+    "lib/parse.js"
+  ],
+  "base_commit": "02ca358155297dc68fcc4c2ac312c26e10524e47",
+  "input_scope": "Experimental standalone inputs; no execution result is asserted.",
+  "instance_id": "qs",
+  "license": "BSD-3-Clause",
+  "maintainer_backport_commit": "e799ba57e573a30c14b67c1889c7c04d508b9105",
+  "maintainer_backport_parent": "02ca358155297dc68fcc4c2ac312c26e10524e47",
+  "package": "qs",
+  "patch_scope": "Implementation-only extracts of the maintainer commits; full commits can also change tests, metadata, or dependencies.",
+  "repository_url": "https://github.com/ljharb/qs.git",
+  "schema_version": 1,
+  "source_links": {
+    "base_commit": "https://github.com/ljharb/qs/commit/02ca358155297dc68fcc4c2ac312c26e10524e47",
+    "maintainer_backport_commit": "https://github.com/ljharb/qs/commit/e799ba57e573a30c14b67c1889c7c04d508b9105",
+    "upstream_fix_commit": "https://github.com/ljharb/qs/commit/8b4cc14cda94a5c89341b77e5fe435ec6c41be2d",
+    "upstream_parent_commit": "https://github.com/ljharb/qs/commit/ad63d36ce18cd2c315899ac1e8193de22be08cd8"
+  },
+  "source_snapshot_sha256": {
+    "maintainer_backport": "7a56f797d6f3e96348ff466cb1a043997cba8e4c3f77cf6cd411c63435df7b85",
+    "target_baseline": "d634ef436a22d8ee667b9b1bb4a5ff3af7488dbb24af5ea581fc64e5ddd1e236",
+    "upstream_fix": "84c76c6571df26cc617092e805c9bcb7e4862f674edfdb06cd89de9e16d835fb",
+    "upstream_parent": "cb2f6658b23a030fb55386ef71438ffbcbc633c444cf08bc476d12d0e1ac8cc5"
+  },
+  "target_test_paths": [
+    "test/parse.js"
+  ],
+  "upstream_fix_commit": "8b4cc14cda94a5c89341b77e5fe435ec6c41be2d",
+  "upstream_implementation_paths": [
+    "lib/parse.js"
+  ],
+  "upstream_parent_commit": "ad63d36ce18cd2c315899ac1e8193de22be08cd8",
+  "upstream_test_paths": [
+    "test/parse.js"
+  ]
+}

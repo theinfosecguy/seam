@@ -1,0 +1,8 @@
+{
+  "name": "seam-evaluation-dependencies",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {
+    "@matteo.collina/tspl": "^0.1.1"
+  }
+}

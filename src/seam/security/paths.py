@@ -64,3 +64,29 @@ def validate_reviewed_fixtures(fixtures: Mapping[str, tuple[str, ...]]) -> None:
                 "Reviewed fixtures require exact key-file paths and unique "
                 "SHA-256 hashes outside credential stores"
             )
+
+
+def validate_reviewed_submodules(modules: Mapping[str, tuple[str, ...]]) -> None:
+    """Limit exceptions to exact, uninitialized Git links reviewed by an operator."""
+    if len(modules) > 16:
+        raise ValueError("at most 16 reviewed submodule paths are supported")
+    for path, objects in modules.items():
+        relative = PurePosixPath(path)
+        if (
+            not path
+            or not relative.parts
+            or relative.is_absolute()
+            or relative.as_posix() != path
+            or any(part.startswith(".") for part in relative.parts)
+            or "\\" in path
+            or any(ord(character) < 32 or ord(character) == 127 for character in path)
+            or not 1 <= len(objects) <= 16
+            or len(set(objects)) != len(objects)
+            or any(
+                re.fullmatch(r"[0-9a-f]{40}|[0-9a-f]{64}", oid) is None
+                for oid in objects
+            )
+        ):
+            raise ValueError(
+                "reviewed submodules require relative paths and exact object IDs"
+            )

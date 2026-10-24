@@ -40,6 +40,7 @@ def initial_conversation(context: AgentContext) -> list[ModelMessage]:
         raise AgentError("patch context diff exceeds the supported size limit")
     payload = json.dumps(
         {
+            "language": context.language,
             "upstream_diff": context.upstream_diff,
             "previous_patch": context.previous_patch,
             "feedback": context.feedback,
