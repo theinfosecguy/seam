@@ -119,11 +119,17 @@ class DockerRunner:
         kind: Literal["security", "suite"],
     ) -> ExecutionResult:
         node_modules = ""
-        if self.config.node_dependencies:
+        mocha_ui = self.config.mocha_ui
+        if self.config.node_dependencies or self.config.mocha_interfaces:
             revision = repository.resolve(workspace, "HEAD")
+        if self.config.node_dependencies:
             if revision not in self.config.node_dependencies:
                 raise ValueError(f"No Node dependencies are configured for {revision}")
             node_modules = self.config.node_dependencies[revision]
+        if self.config.mocha_interfaces:
+            if revision not in self.config.mocha_interfaces:
+                raise ValueError(f"No Mocha interface is configured for {revision}")
+            mocha_ui = self.config.mocha_interfaces[revision]
         with tempfile.TemporaryDirectory(prefix="backport-run-") as directory:
             root = Path(directory)
             snapshot = root / "source"
@@ -154,6 +160,7 @@ class DockerRunner:
                 oracle,
                 kind,
                 node_modules=node_modules,
+                mocha_ui=mocha_ui,
             )
             result = ProcessResult(returncode=125)
             created = False

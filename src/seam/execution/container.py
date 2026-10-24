@@ -36,6 +36,7 @@ def build_container_arguments(
     kind: Literal["security", "suite"],
     *,
     node_modules: str = "",
+    mocha_ui: Literal["bdd", "tdd"] | None = None,
 ) -> list[str]:
     """Build the fixed isolation policy and explicitly selected test command."""
     if config.kind != "pytest":
@@ -54,6 +55,7 @@ def build_container_arguments(
                     "/opt/seam/node_modules/mocha/bin/mocha.js",
                     "--no-config",
                     "--no-package",
+                    f"--ui={mocha_ui or config.mocha_ui}",
                     "--posix-exit-codes",
                     "--forbid-only",
                     "--timeout",

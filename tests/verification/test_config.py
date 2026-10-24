@@ -86,6 +86,65 @@ def test_mocha_grep_is_preserved_in_frozen_configuration() -> None:
     assert config.model_dump(mode="json")["mocha_grep"] == "^relevant "
 
 
+@pytest.mark.parametrize("value", ["qunit", "exports", "./custom-ui.cjs", "--help"])
+def test_mocha_ui_accepts_only_reviewed_builtin_interfaces(value: str) -> None:
+    with pytest.raises(ValueError, match="mocha_ui"):
+        RunnerConfig.model_validate(
+            {"kind": "mocha", "image": "image", "mocha_ui": value}
+        )
+
+
+@pytest.mark.parametrize("kind", ["pytest", "node"])
+def test_mocha_tdd_requires_the_mocha_runner(kind: str) -> None:
+    with pytest.raises(ValueError, match="Mocha runner"):
+        RunnerConfig.model_validate({"kind": kind, "image": "image", "mocha_ui": "tdd"})
+
+
+def test_mocha_ui_defaults_to_bdd_and_is_preserved_in_frozen_configuration() -> None:
+    assert RunnerConfig(kind="mocha", image="image").mocha_ui == "bdd"
+    config = RunnerConfig(kind="mocha", image="image", mocha_ui="tdd")
+    assert config.model_dump(mode="json")["mocha_ui"] == "tdd"
+
+
+@pytest.mark.parametrize(
+    "interfaces",
+    [
+        {"main": "tdd"},
+        {"A" * 40: "bdd"},
+        {"a" * 39: "bdd"},
+        {"a" * 40: "./custom-ui.cjs"},
+        {f"{number:040x}": "bdd" for number in range(17)},
+    ],
+)
+def test_mocha_interfaces_require_bounded_exact_commits_and_builtin_names(
+    interfaces: dict[str, str],
+) -> None:
+    with pytest.raises(ValueError, match="mocha_interfaces"):
+        RunnerConfig.model_validate(
+            {"kind": "mocha", "image": "image", "mocha_interfaces": interfaces}
+        )
+
+
+@pytest.mark.parametrize("kind", ["pytest", "node"])
+def test_mocha_interface_mapping_requires_mocha(kind: str) -> None:
+    with pytest.raises(ValueError, match="Mocha runner"):
+        RunnerConfig.model_validate(
+            {
+                "kind": kind,
+                "image": "image",
+                "mocha_interfaces": {"a" * 40: "bdd"},
+            }
+        )
+
+
+def test_mocha_interface_mapping_is_preserved_in_frozen_configuration() -> None:
+    interfaces = {"a" * 40: "bdd", "b" * 64: "tdd"}
+    config = RunnerConfig.model_validate(
+        {"kind": "mocha", "image": "image", "mocha_interfaces": interfaces}
+    )
+    assert config.model_dump(mode="json")["mocha_interfaces"] == interfaces
+
+
 @pytest.mark.parametrize(
     "modules",
     [

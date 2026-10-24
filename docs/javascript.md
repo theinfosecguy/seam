@@ -9,6 +9,9 @@ You need an independently reviewed regression test, normal-behavior controls,
 explicit existing test files, and a prepared Docker image. The current runner is
 tested with Node 24 and Mocha 12. It runs tests against disposable source copies
 without network access, host dependencies, npm credentials or a Docker socket.
+Node 20.18.1's native JUnit reporter omits source-file identities, so its reports
+remain inconclusive. Testing a library on Node 24 does not establish support for
+the library's older declared runtimes.
 
 ## Configure a case
 
@@ -35,6 +38,23 @@ Use `kind = "mocha"` for existing Mocha suites. The external oracle still uses
 `/opt/seam/node_modules/mocha/bin/mocha.js`; Seam uses its native XUnit reporter,
 disables project configuration discovery and rejects focused `.only` suites.
 Use explicit test file paths rather than globs, npm scripts or command strings.
+Mocha uses its BDD interface (`describe` and `it`) by default. For an existing
+TDD suite (`suite` and `test`), set `mocha_ui = "tdd"` under `[runner]`.
+Only these built-in interfaces are accepted; the external oracle still uses
+`node:test`.
+
+If release lines use different interfaces, pin each revision explicitly:
+
+```toml
+[runner.mocha_interfaces]
+"PARENT_COMMIT_SHA" = "bdd"
+"FIX_COMMIT_SHA" = "bdd"
+"TARGET_COMMIT_SHA" = "tdd"
+```
+
+Use full Git object IDs. A nonempty map must cover every selected revision;
+missing entries stop verification. Candidate edits retain the target's HEAD and
+interface. Seam never loads a project's custom interface or Mocha configuration.
 
 For a narrower reviewed group, set `mocha_grep = "^relevant group "` under
 `[runner]`. Mocha matches this regular expression against full test titles.
