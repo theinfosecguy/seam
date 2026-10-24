@@ -1,0 +1,49 @@
+{
+  "advisory_ids": [
+    "GHSA-c429-5p7v-vgjp",
+    "CVE-2020-36604"
+  ],
+  "asset_sha256": {
+    "LICENSE.upstream": "798002f736a7ad3e26518903eb0e9ace73d98d5418fe94547a4c1bdc90be54e2",
+    "harness.toml": "34785f71971a1222731a30aa39e39ab537e8e39bacfc1d4200673c337fdf1525",
+    "oracle.mjs": "e4bd4b15e46aa8fbdff86d7cfe298aaed4edfe564cef43d92033644ebc731c49",
+    "reference.patch": "c0340e2d9d493aaa37feb91d90aa3b3c99febd82a31397359de8ac8f276d2fc3",
+    "upstream.patch": "1f8ab28c27177b09aad757fc27a9ec52e15088bdabc861d3853ce06408f460ee"
+  },
+  "backport_implementation_paths": [
+    "lib/clone.js"
+  ],
+  "base_commit": "4ae5f5355f55f600e0969cb61369b7c41b0f50e1",
+  "input_scope": "Experimental standalone inputs; no execution result is asserted.",
+  "instance_id": "hoek",
+  "license": "BSD-3-Clause",
+  "maintainer_backport_commit": "4d0804bc6135ad72afdc5e1ec002b935b2f5216a",
+  "maintainer_backport_parent": "4ae5f5355f55f600e0969cb61369b7c41b0f50e1",
+  "package": "@hapi/hoek",
+  "patch_scope": "Implementation-only extracts of the maintainer commits; full commits can also change tests, metadata, or dependencies.",
+  "repository_url": "https://github.com/hapijs/hoek.git",
+  "schema_version": 1,
+  "source_links": {
+    "base_commit": "https://github.com/hapijs/hoek/commit/4ae5f5355f55f600e0969cb61369b7c41b0f50e1",
+    "maintainer_backport_commit": "https://github.com/hapijs/hoek/commit/4d0804bc6135ad72afdc5e1ec002b935b2f5216a",
+    "upstream_fix_commit": "https://github.com/hapijs/hoek/commit/948baf98634a5c206875b67d11368f133034fa90",
+    "upstream_parent_commit": "https://github.com/hapijs/hoek/commit/0ab1b4f6ff639a2478d4428c6f2986cd70115344"
+  },
+  "source_snapshot_sha256": {
+    "maintainer_backport": "9517b46225fc08ae9b78f739c54f3705bc6a036eead163b4db412bd87eed58df",
+    "target_baseline": "23994b4adb9f829b5060d1a01425e230339efded7aaecfdbac982785c8fd3832",
+    "upstream_fix": "defac2467e723adf8eb69af6ff2706f41d9ec0bfd9f76c5ea081fb2c9be19607",
+    "upstream_parent": "d81f76b668ebd2b0575bea3b44a164ddf1b050e63b7c70d979e9c969ff6a0557"
+  },
+  "target_test_paths": [
+    "test/index.js"
+  ],
+  "upstream_fix_commit": "948baf98634a5c206875b67d11368f133034fa90",
+  "upstream_implementation_paths": [
+    "lib/clone.js"
+  ],
+  "upstream_parent_commit": "0ab1b4f6ff639a2478d4428c6f2986cd70115344",
+  "upstream_test_paths": [
+    "test/clone.js"
+  ]
+}

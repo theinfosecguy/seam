@@ -1,0 +1,14 @@
+diff --git a/index.js b/index.js
+index 1c1bb46..1bee463 100644
+--- a/index.js
++++ b/index.js
+@@ -194,8 +194,7 @@ function createRedirectDirectoryListener () {
+ 
+     // reformat the URL
+     var loc = encodeUrl(url.format(originalUrl))
+-    var doc = createHtmlDocument('Redirecting', 'Redirecting to <a href="' + escapeHtml(loc) + '">' +
+-      escapeHtml(loc) + '</a>')
++    var doc = createHtmlDocument('Redirecting', 'Redirecting to ' + escapeHtml(loc))
+ 
+     // send redirect response
+     res.statusCode = 301

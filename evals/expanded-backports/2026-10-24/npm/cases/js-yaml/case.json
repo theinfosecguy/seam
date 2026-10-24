@@ -1,0 +1,51 @@
+{
+  "advisory_ids": [
+    "GHSA-mh29-5h37-fv8m",
+    "CVE-2025-64718"
+  ],
+  "asset_sha256": {
+    "LICENSE.upstream": "a07bc24468b9654ce76a547d47a2db282d07733b715db4c73a98bd63961f9550",
+    "harness.toml": "cc3211f8fb150087647f86753c6ce3317edd16f5d5e7961f0d3b6c0807884b99",
+    "oracle.mjs": "c14a3e487cbfee0cad2cb03ab24b756c51bfba4e4be402df8fe523bfa9a46a4e",
+    "reference.patch": "d6466d721051084b6cb3b95bc52862fb43a6a31f67208afe48baae2560406b95",
+    "upstream.patch": "5fc22071630a494d620186b341efa79d578b2646d73d2ea3bb3d77160d002fa1"
+  },
+  "backport_implementation_paths": [
+    "lib/js-yaml/loader.js"
+  ],
+  "base_commit": "37caaad57dc37d350d9a4577a5da53f482bb2983",
+  "input_scope": "Experimental standalone inputs; no execution result is asserted.",
+  "instance_id": "js-yaml",
+  "license": "MIT",
+  "maintainer_backport_commit": "5278870a17454fe8621dbd8c445c412529525266",
+  "maintainer_backport_parent": "37caaad57dc37d350d9a4577a5da53f482bb2983",
+  "package": "js-yaml",
+  "patch_scope": "Implementation-only extracts of the maintainer commits; full commits can also change tests, metadata, or dependencies.",
+  "repository_url": "https://github.com/nodeca/js-yaml.git",
+  "schema_version": 1,
+  "source_links": {
+    "base_commit": "https://github.com/nodeca/js-yaml/commit/37caaad57dc37d350d9a4577a5da53f482bb2983",
+    "maintainer_backport_commit": "https://github.com/nodeca/js-yaml/commit/5278870a17454fe8621dbd8c445c412529525266",
+    "upstream_fix_commit": "https://github.com/nodeca/js-yaml/commit/383665ff4248ec2192d1274e934462bb30426879",
+    "upstream_parent_commit": "https://github.com/nodeca/js-yaml/commit/0d3ca7a27b03a6c974790a30a89e456007d62976"
+  },
+  "source_snapshot_sha256": {
+    "maintainer_backport": "5470af64b871e758c3b520e84bfdb6bc0da2ac82466e8601abd834a543114807",
+    "target_baseline": "0228f5b2784f1a6e1ee594b01f990e7d3c08f4953a6bfcbf30f9f5df6214b132",
+    "upstream_fix": "b9fe6abda7a43fecf00286720628bb173a4c146fc34e36771a60bb147b7c4f38",
+    "upstream_parent": "e7650d0782952706245aa88689bd3e79a90b26af4311257a95e33221ddf754dd"
+  },
+  "target_test_paths": [
+    "test/10-loader.js",
+    "test/11-load-errors.js"
+  ],
+  "upstream_fix_commit": "383665ff4248ec2192d1274e934462bb30426879",
+  "upstream_implementation_paths": [
+    "lib/loader.js"
+  ],
+  "upstream_parent_commit": "0d3ca7a27b03a6c974790a30a89e456007d62976",
+  "upstream_test_paths": [
+    "test/10-loader.js",
+    "test/11-load-errors.js"
+  ]
+}

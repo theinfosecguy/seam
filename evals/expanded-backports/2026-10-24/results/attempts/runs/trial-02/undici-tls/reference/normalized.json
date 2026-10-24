@@ -1,0 +1,112 @@
+{
+  "normalization_schema_version": 1,
+  "cohort": "initial-npm-20",
+  "case": "undici-tls",
+  "role": "reference",
+  "interpretation": "Setup, application or evidence remained inconclusive; this alone is not a confirmed harness defect.",
+  "execution_context": {
+    "exit_code": 2,
+    "timed_out": false,
+    "log_truncated": false,
+    "wheel_sha256": "fb1afe7d89a0cfd5a50ae6094f1b1a356cb57e6d187beba597d542fe8903c35c",
+    "freeze_sha256": "f5fa5b227de18954e8c22fed4b881688a4e93d13428769fa01e21c19ade9c083",
+    "case_assets_unchanged": true,
+    "caller_unchanged": true
+  },
+  "report": {
+    "schema_version": 2,
+    "status": "inconclusive",
+    "reason": "Verification prerequisites were not established: upstream_parent suite: JUnit test case names must identify distinct tests",
+    "fix_commit": "f75eac00ac177f7b2e6c8bfbd52d4113164286e6",
+    "parent_commit": "e257e9f8fb42eedd50727b9cf65e548c8925e4a8",
+    "target_commit": "b40fbfc0651703cf9fa9f6ced68b679f28d8bb28",
+    "image_id": "sha256:52f40f96867d88d68ced00067878ab5b917744d17f5649b82506f43e72d88cba",
+    "oracle_sha256": "071edc900ad6892df357a866ed71fcf3b9518d6b5d3c2998ec58ca805d1db79a",
+    "config_sha256": "c501a64d4c033ae91881b6813d423a8caa07d433924f715dee804c084cd70ef1",
+    "patch_sha256": null,
+    "attempts": 0,
+    "adaptation": "none",
+    "model_usage": {},
+    "reviewed_tests": null,
+    "reviewed_fixtures": {
+      "test/fixtures/key.pem": [
+        "7ecbd7457c9ad342190bb2b4d189554529d95057202152826d8737f94e3796ff"
+      ],
+      "test/fixtures/cert.pem": [
+        "6a6402bfed7ec41d9d8fd393f218685f9af306cf1b33ca57658e166c7f28c54b"
+      ],
+      "test/fixtures/ca.pem": [
+        "d6fd2bed3afbdf4765a7cb16cabc7ab29614260a5f69ade842aad9d37e6c4f4f"
+      ]
+    },
+    "reviewed_submodules": {
+      "test/fixtures/cache-tests": [
+        "1000acb7071ed401a654160f13d27c2a8a0139cc"
+      ],
+      "test/web-platform-tests/wpt": [
+        "250a471e25c3d6f977f6117d65f1852216118e63"
+      ]
+    },
+    "phases": [
+      {
+        "name": "upstream_parent",
+        "revision": "e257e9f8fb42eedd50727b9cf65e548c8925e4a8",
+        "security": {
+          "returncode": 1,
+          "timed_out": false,
+          "truncated": false,
+          "duration_seconds": 0.9599,
+          "evidence_error": null,
+          "tests": [
+            {
+              "name": "test_security",
+              "classname": "/oracle/oracle.mjs::test",
+              "outcome": "failed",
+              "expected_failure": false,
+              "original_message_sha256": "ab7df516456d1116c6ad16ee2c2381a986798527325a079621ff749d28ad1ecf"
+            },
+            {
+              "name": "test_connect_callback",
+              "classname": "/oracle/oracle.mjs::test",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_trusted_tls_request",
+              "classname": "/oracle/oracle.mjs::test",
+              "outcome": "passed",
+              "expected_failure": false
+            }
+          ],
+          "command_sha256": "7318d48d312430ceb1ad2024db032ddb5510d7ada33ccf0743e2c90960001848",
+          "missing_modules": [],
+          "diagnostic_excerpts": [
+            "AssertionError [ERR_ASSERTION]: Missing expected rejection: TLS_VALIDATION_CALLBACK_PRESERVED"
+          ],
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 0,
+          "stderr_sha256": "08488ff8a8f7b9a6d27a36a07af45c6adf0cb94bfa4f51628a603f211901d911",
+          "stderr_bytes": 897
+        },
+        "suite": {
+          "returncode": 0,
+          "timed_out": false,
+          "truncated": false,
+          "duration_seconds": 9.2008,
+          "evidence_error": "JUnit test case names must identify distinct tests",
+          "tests": [],
+          "command_sha256": "0e89e4e455ed20fe8ba381edcb9aa29609bef4fb276585373236fae679eb4f2a",
+          "missing_modules": [],
+          "diagnostic_excerpts": [],
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 0,
+          "stderr_sha256": "17e60aa7b1481158746eb0e26184fa617cd724ad17ae83216ff46a05ba00e83e",
+          "stderr_bytes": 1795
+        }
+      }
+    ]
+  },
+  "original_report_sha256": "95000afada6c2014e2144199a6e299087a8276dd58f66989d1808116f3b589da",
+  "original_command_record_sha256": "cedcccaef890203a868677b54800835cd91fe400edf894708065629b979b1330",
+  "candidate_patch_inputs": []
+}

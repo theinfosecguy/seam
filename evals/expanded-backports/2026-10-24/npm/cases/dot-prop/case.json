@@ -1,0 +1,49 @@
+{
+  "advisory_ids": [
+    "GHSA-ff7x-qrg7-qggm",
+    "CVE-2020-8116"
+  ],
+  "asset_sha256": {
+    "LICENSE.upstream": "48da2f39e100d4085767e94966b43f4fa95ff6a0698fba57ed460914e35f94a0",
+    "harness.toml": "936f5cb4ff3c5507091fc3c2cbd7cac05e51ea445e8014a3bf7b8ba08965d39b",
+    "oracle.mjs": "0cd3e564b3fe2d67f2e6407e930b24ddad90cc549f7fdda365180ce54585094a",
+    "reference.patch": "1d1e8b07153d09142afa9cb765ea3eb2f0a7aeff2e640a7c118c2897c25b3521",
+    "upstream.patch": "205aef3df736dad63c3f669af0f757f2133f53043ae0e4acffb3f8d8355b4b28"
+  },
+  "backport_implementation_paths": [
+    "index.js"
+  ],
+  "base_commit": "70f7ed8e5dfe72c726bebe9cef5c85c1fb3cd767",
+  "input_scope": "Experimental standalone inputs; no execution result is asserted.",
+  "instance_id": "dot-prop",
+  "license": "MIT",
+  "maintainer_backport_commit": "c914124f418f55edea27928e89c94d931babe587",
+  "maintainer_backport_parent": "70f7ed8e5dfe72c726bebe9cef5c85c1fb3cd767",
+  "package": "dot-prop",
+  "patch_scope": "Implementation-only extracts of the maintainer commits; full commits can also change tests, metadata, or dependencies.",
+  "repository_url": "https://github.com/sindresorhus/dot-prop.git",
+  "schema_version": 1,
+  "source_links": {
+    "base_commit": "https://github.com/sindresorhus/dot-prop/commit/70f7ed8e5dfe72c726bebe9cef5c85c1fb3cd767",
+    "maintainer_backport_commit": "https://github.com/sindresorhus/dot-prop/commit/c914124f418f55edea27928e89c94d931babe587",
+    "upstream_fix_commit": "https://github.com/sindresorhus/dot-prop/commit/3039c8c07f6fdaa8b595ec869ae0895686a7a0f2",
+    "upstream_parent_commit": "https://github.com/sindresorhus/dot-prop/commit/e0f8abf71164321caf1b20109000b08be506f227"
+  },
+  "source_snapshot_sha256": {
+    "maintainer_backport": "c3dd8a19e171e19cb7ef2f788a2697d1735e45bb47ec21f404ba3a152df0d720",
+    "target_baseline": "bc857f4ec81f9d1c9e57519bcdcc1278ea29e0d192e5da22315e096afb21629b",
+    "upstream_fix": "7fdcda9d25b12340d191ea8e99be6d724a4ff14db11c3b5672309c5de1987780",
+    "upstream_parent": "4daff887862cf89bede0220fd747ee6d03d8e1315c35520817bbd7552699598b"
+  },
+  "target_test_paths": [
+    "test.js"
+  ],
+  "upstream_fix_commit": "3039c8c07f6fdaa8b595ec869ae0895686a7a0f2",
+  "upstream_implementation_paths": [
+    "index.js"
+  ],
+  "upstream_parent_commit": "e0f8abf71164321caf1b20109000b08be506f227",
+  "upstream_test_paths": [
+    "test.js"
+  ]
+}

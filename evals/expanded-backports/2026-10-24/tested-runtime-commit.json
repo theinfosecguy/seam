@@ -1,0 +1,7 @@
+{
+  "runtime_commit": "1732e460d873db2b5f9e205712a142a4a8349c2d",
+  "wheel_sha256": "fb1afe7d89a0cfd5a50ae6094f1b1a356cb57e6d187beba597d542fe8903c35c",
+  "freeze_sha256": "f5fa5b227de18954e8c22fed4b881688a4e93d13428769fa01e21c19ade9c083",
+  "source_and_test_hashes_match": true,
+  "installed_tests_passed": 1281
+}

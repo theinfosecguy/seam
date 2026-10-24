@@ -1,0 +1,1037 @@
+{
+  "schema_version": 1,
+  "researched_on": "2026-10-24",
+  "scope": "Official maintainer and distributor security fixes for Python libraries; research is separate from executed Seam evaluations.",
+  "libraries": [
+    {
+      "library": "Django",
+      "ecosystem": "PyPI",
+      "repository": "https://github.com/django/django",
+      "advisory_ids": [
+        "CVE-2026-77050"
+      ],
+      "published_at": "2026-10-06",
+      "issue_summary": "Fixed CVE-2026-77050 -- Prevented memory exhaustion in get_supported_language_variant().",
+      "backport_kind": "upstream-maintainer",
+      "status": "commit_pair_pinned",
+      "source_branch": "main",
+      "upstream_fix_commit": "c88b304cc2d90fc37d3bd1f5f3829706fa6c13bc",
+      "upstream_parent_commit": "08e4c0d8e7db6343567e7b02e25da8ea2226a7e0",
+      "target_branch": "stable/5.2.x",
+      "backport_commit": "02a69e3791e3df23d45ea4ea7e7fc489f0eef2be",
+      "target_baseline_commit": "f59aef2ee9b5c988fd4179d8f2835030bd76297c",
+      "source_fixed_release": null,
+      "target_fixed_release": "5.2.18",
+      "license": "BSD-3-Clause",
+      "sources": [
+        "https://www.djangoproject.com/weblog/2026/oct/06/security-releases/",
+        "https://github.com/django/django/commit/c88b304cc2d90fc37d3bd1f5f3829706fa6c13bc",
+        "https://github.com/django/django/commit/02a69e3791e3df23d45ea4ea7e7fc489f0eef2be"
+      ],
+      "release_inclusion_verification": "The official release notice explicitly links the selected main and 5.2 backport changesets and identifies 5.2.18 as a fixed release. The equivalent 6.1 patch is a distinct commit; main ancestry is not inferred from that release.",
+      "eval_status": "not_run",
+      "notes": [],
+      "equivalent_maintained_release": "6.1.2",
+      "test_framework": "Django unittest runner; pytest adaptation required",
+      "native_dependencies_required": false,
+      "baseline_original_dataset_overlap": false,
+      "benchmark_ready": false,
+      "preparation_remaining": [
+        "Freeze a dependency environment, trusted tests and configuration, then execute the source/target revision matrix."
+      ],
+      "license_metadata_status": "Project license identifier; exact per-revision license notices still required before source/patch redistribution."
+    },
+    {
+      "library": "Werkzeug",
+      "ecosystem": "PyPI",
+      "repository": "https://github.com/pallets/werkzeug",
+      "advisory_ids": [
+        "CVE-2023-46136"
+      ],
+      "published_at": "2023-10-24",
+      "issue_summary": "Fix: slow multipart parsing for huge files with few CR/LF characters",
+      "backport_kind": "upstream-maintainer",
+      "status": "commit_pair_pinned",
+      "source_branch": "3.0.x",
+      "upstream_fix_commit": "b1916c0c083e0be1c9d887ee2f3d696922bfc5c1",
+      "upstream_parent_commit": "726eaa28593d859548da3477859c914732f012ef",
+      "target_branch": "2.3.x",
+      "backport_commit": "f2300208d5e2a5076cbbb4c2aad71096fd040ef9",
+      "target_baseline_commit": "26f3e95168c5019d3dbf656c9042c19d621cb54f",
+      "source_fixed_release": "3.0.1",
+      "target_fixed_release": "2.3.8",
+      "license": "BSD-3-Clause",
+      "sources": [
+        "https://github.com/pallets/werkzeug/security/advisories/GHSA-hrfv-mqp8-q5rw",
+        "https://github.com/pallets/werkzeug/commit/b1916c0c083e0be1c9d887ee2f3d696922bfc5c1",
+        "https://github.com/pallets/werkzeug/commit/f2300208d5e2a5076cbbb4c2aad71096fd040ef9"
+      ],
+      "release_inclusion_verification": "Both selected commits are returned by the official repository commit-history API at the named released tag; Django release notes explicitly link source and backport changesets.",
+      "eval_status": "not_run",
+      "notes": [],
+      "test_framework": "pytest",
+      "native_dependencies_required": false,
+      "baseline_original_dataset_overlap": false,
+      "benchmark_ready": false,
+      "preparation_remaining": [
+        "Freeze a dependency environment, trusted tests and configuration, then execute the source/target revision matrix."
+      ],
+      "license_metadata_status": "Project license identifier; exact per-revision license notices still required before source/patch redistribution."
+    },
+    {
+      "library": "marshmallow",
+      "ecosystem": "PyPI",
+      "repository": "https://github.com/marshmallow-code/marshmallow",
+      "advisory_ids": [
+        "CVE-2025-68480"
+      ],
+      "published_at": "2025-12-22",
+      "issue_summary": "Merge error store messages without rebuilding collections",
+      "backport_kind": "upstream-maintainer",
+      "status": "commit_pair_pinned",
+      "source_branch": "4.x",
+      "upstream_fix_commit": "218d98a785d3bd25dad8880bb07e9cce70340f31",
+      "upstream_parent_commit": "80f1110746a202e59ceedcbc78399feb1f48c257",
+      "target_branch": "3.x",
+      "backport_commit": "0356a3f1c307830f8ded56d823abca5611c594c9",
+      "target_baseline_commit": "4ab61bfb93a67113762b186eceaab9a9d473f92a",
+      "source_fixed_release": "4.1.2",
+      "target_fixed_release": "3.26.2",
+      "license": "MIT",
+      "sources": [
+        "https://github.com/marshmallow-code/marshmallow/security/advisories/GHSA-428g-f7cq-pgp5",
+        "https://github.com/marshmallow-code/marshmallow/commit/218d98a785d3bd25dad8880bb07e9cce70340f31",
+        "https://github.com/marshmallow-code/marshmallow/commit/0356a3f1c307830f8ded56d823abca5611c594c9"
+      ],
+      "release_inclusion_verification": "Both selected commits are returned by the official repository commit-history API at the named released tag; Django release notes explicitly link source and backport changesets.",
+      "eval_status": "not_run",
+      "notes": [
+        "The release also includes follow-up deepcopy behavior hardening; this pair identifies the ordinary performance fix and does not represent the entire release security patch series."
+      ],
+      "test_framework": "pytest",
+      "native_dependencies_required": false,
+      "baseline_original_dataset_overlap": false,
+      "benchmark_ready": false,
+      "preparation_remaining": [
+        "Freeze a dependency environment, trusted tests and configuration, then execute the source/target revision matrix."
+      ],
+      "license_metadata_status": "Project license identifier; exact per-revision license notices still required before source/patch redistribution."
+    },
+    {
+      "library": "pydantic",
+      "ecosystem": "PyPI",
+      "repository": "https://github.com/pydantic/pydantic",
+      "advisory_ids": [
+        "CVE-2021-29510"
+      ],
+      "published_at": "2021-05-11",
+      "issue_summary": "Input validation denial of service",
+      "backport_kind": "upstream-maintainer",
+      "status": "commit_pair_pinned",
+      "upstream_fix_commit": "1c24f1d74ba95ea985b50bdc001ce96c813229aa",
+      "upstream_parent_commit": "79c6c9ee33da4afb2d793d312b186ba6ebd941c9",
+      "target_baseline_commit": "00a128a3609dac82dfe0cdb4200bbf2011aa5f83",
+      "backport_commit": "80e0dd3f752bef145dce12f160d262bb40ec8d47",
+      "source_fixed_release": "1.8.2",
+      "target_fixed_release": "1.7.4",
+      "license": "MIT",
+      "sources": [
+        "https://github.com/pydantic/pydantic/security/advisories/GHSA-5jqp-qgf6-3pvh",
+        "https://github.com/pydantic/pydantic/commit/1c24f1d74ba95ea985b50bdc001ce96c813229aa",
+        "https://github.com/pydantic/pydantic/commit/80e0dd3f752bef145dce12f160d262bb40ec8d47"
+      ],
+      "release_inclusion_verification": "Official advisory names both fixed maintenance-line releases. Selected commits are returned by repository history at those released tags.",
+      "test_framework": "pytest",
+      "native_dependencies_required": false,
+      "baseline_original_dataset_overlap": false,
+      "benchmark_ready": false,
+      "preparation_remaining": [
+        "Review the complete source/backport change scope and dependencies, then freeze tests and execute all four revisions."
+      ],
+      "eval_status": "not_run",
+      "notes": [
+        "Historical 2021 maintenance-line case; not a recent incident. Target interpreter compatibility needs review before execution."
+      ],
+      "license_metadata_status": "Project license identifier; exact per-revision license notices still required before source/patch redistribution."
+    },
+    {
+      "library": "Scrapy",
+      "ecosystem": "PyPI",
+      "repository": "https://github.com/scrapy/scrapy",
+      "advisory_ids": [
+        "GHSA-cc65-xxvf-f7r9"
+      ],
+      "published_at": "2024-02-14",
+      "issue_summary": "XML iterator regular-expression complexity",
+      "backport_kind": "upstream-maintainer",
+      "status": "commit_pair_pinned",
+      "upstream_fix_commit": "150d96764b5a455c75315596ca8ba5ded0f416dd",
+      "upstream_parent_commit": "2538c0e8629b46bd34bb0555aeca6714a6f9e571",
+      "target_baseline_commit": "684d4effd426089321068ff1497145e4e4a60687",
+      "backport_commit": "73e7c0ed011a0565a1584b8052ec757b54e5270b",
+      "source_fixed_release": "2.11.1",
+      "target_fixed_release": "1.8.4",
+      "license": "BSD-3-Clause",
+      "sources": [
+        "https://github.com/scrapy/scrapy/security/advisories/GHSA-cc65-xxvf-f7r9",
+        "https://github.com/scrapy/scrapy/commit/150d96764b5a455c75315596ca8ba5ded0f416dd",
+        "https://github.com/scrapy/scrapy/commit/73e7c0ed011a0565a1584b8052ec757b54e5270b"
+      ],
+      "release_inclusion_verification": "Official advisory names both fixed maintenance-line releases. Selected commits are returned by repository history at those released tags.",
+      "test_framework": "pytest",
+      "native_dependencies_required": true,
+      "baseline_original_dataset_overlap": false,
+      "benchmark_ready": false,
+      "preparation_remaining": [
+        "Review the complete source/backport change scope and dependencies, then freeze tests and execute all four revisions."
+      ],
+      "eval_status": "not_run",
+      "notes": [
+        "The older-line backport replaces the iterator implementation; patch scope is larger than a one-line regex change. Requires lxml and Twisted dependencies."
+      ],
+      "license_metadata_status": "Project license identifier; exact per-revision license notices still required before source/patch redistribution."
+    },
+    {
+      "library": "Paramiko",
+      "ecosystem": "PyPI",
+      "repository": "https://github.com/paramiko/paramiko",
+      "advisory_ids": [
+        "CVE-2023-48795"
+      ],
+      "backport_published_at": "2024-01-25",
+      "issue_summary": "SSH protocol hardening",
+      "backport_kind": "distribution-maintainer",
+      "status": "published_version_backport_confirmed",
+      "source_fixed_release": "3.4.0",
+      "target_fixed_release": "2.9.3-0ubuntu1.2",
+      "target_distribution": "Ubuntu 22.04 LTS",
+      "source_package": "paramiko",
+      "license": "LGPL-2.1-or-later",
+      "test_framework": "pytest",
+      "native_dependencies_required": true,
+      "baseline_original_dataset_overlap": false,
+      "benchmark_ready": false,
+      "upstream_fix_commit": null,
+      "upstream_parent_commit": null,
+      "upstream_commit_parents": [],
+      "backport_commit": null,
+      "target_baseline_commit": null,
+      "sources": [
+        "https://ubuntu.com/security/notices/USN-6598-1",
+        "https://ubuntu.com/security/CVE-2023-48795"
+      ],
+      "release_inclusion_verification": "The official security notice explicitly lists the older package version as fixed for the selected issue. Git baseline and distributor patch identities are not yet pinned.",
+      "preparation_remaining": [
+        "Pin the pristine target baseline and exact distributor patch series, preserve source notices, freeze dependencies and tests, and execute all four revisions."
+      ],
+      "eval_status": "not_run",
+      "notes": [
+        "The published distributor fix contains a patch series; it must not be represented as one ordinary upstream fix commit."
+      ],
+      "notice_snapshot_sha256": "71d5aca337364a97ecc5d980771bcae7c39acec0a4e7f8ce84b7428c068a6a3b",
+      "source_package_access": {
+        "url": "https://launchpad.net/ubuntu/+archive/primary/+sourcefiles/paramiko/2.9.3-0ubuntu1.2/paramiko_2.9.3-0ubuntu1.2.dsc",
+        "resolved_url": "https://launchpadlibrarian.net/710944091/paramiko_2.9.3-0ubuntu1.2.dsc",
+        "status": "public_metadata_retrieved",
+        "sha256": "103c6e1f5acf0b6641277d1309302f35bd9674bb922e789f8c0071606150121a",
+        "bytes": 2488,
+        "scope": "Signed source-package descriptor retrieved without credentials; source archive checksums are listed but source archives were not downloaded or executed.",
+        "signature_verified": false
+      },
+      "license_metadata_status": "Project license identifier; exact per-revision license notices still required before source/patch redistribution."
+    },
+    {
+      "library": "aiohttp",
+      "ecosystem": "PyPI",
+      "repository": "https://github.com/aio-libs/aiohttp",
+      "advisory_ids": [
+        "CVE-2024-23334"
+      ],
+      "backport_published_at": "2024-09-05",
+      "issue_summary": "Static-file path containment",
+      "backport_kind": "distribution-maintainer",
+      "status": "published_version_backport_confirmed",
+      "source_fixed_release": "3.9.2",
+      "target_fixed_release": "3.9.1-1ubuntu0.1",
+      "target_distribution": "Ubuntu 24.04 LTS",
+      "source_package": "python-aiohttp",
+      "license": "Apache-2.0",
+      "test_framework": "pytest",
+      "native_dependencies_required": true,
+      "baseline_original_dataset_overlap": false,
+      "benchmark_ready": false,
+      "upstream_fix_commit": null,
+      "upstream_parent_commit": null,
+      "upstream_commit_parents": [],
+      "backport_commit": null,
+      "target_baseline_commit": null,
+      "sources": [
+        "https://ubuntu.com/security/notices/USN-6991-1",
+        "https://ubuntu.com/security/CVE-2024-23334"
+      ],
+      "release_inclusion_verification": "The official security notice explicitly lists the older package version as fixed for the selected issue. Git baseline and distributor patch identities are not yet pinned.",
+      "preparation_remaining": [
+        "Pin the pristine target baseline and exact distributor patch series, preserve source notices, freeze dependencies and tests, and execute all four revisions."
+      ],
+      "eval_status": "not_run",
+      "notes": [
+        "A public 2024 backport is selected. Newer 2026 distributor notices advertise subscription-only builds on current Ubuntu releases; those have not been retrieved and are not benchmark inputs."
+      ],
+      "notice_snapshot_sha256": "669653fc3239ce0d81c0bf48d9e44e88cc37a7a183a9e3c4ec1e7f7ed1250f31",
+      "source_package_access": {
+        "url": "https://launchpad.net/ubuntu/+archive/primary/+sourcefiles/python-aiohttp/3.9.1-1ubuntu0.1/python-aiohttp_3.9.1-1ubuntu0.1.dsc",
+        "resolved_url": "https://launchpadlibrarian.net/745711920/python-aiohttp_3.9.1-1ubuntu0.1.dsc",
+        "status": "public_metadata_retrieved",
+        "sha256": "f68af19e438d1125b11884d544240a6f8664f1debf7ea72126d17d1db4b4ac10",
+        "bytes": 2681,
+        "scope": "Signed source-package descriptor retrieved without credentials; source archive checksums are listed but source archives were not downloaded or executed.",
+        "signature_verified": false
+      },
+      "license_metadata_status": "Project license identifier; exact per-revision license notices still required before source/patch redistribution."
+    },
+    {
+      "library": "cryptography",
+      "ecosystem": "PyPI",
+      "repository": "https://github.com/pyca/cryptography",
+      "advisory_ids": [
+        "CVE-2026-69248"
+      ],
+      "backport_published_at": "2026-09-16",
+      "issue_summary": "X.509 DNS constraint validation",
+      "backport_kind": "distribution-maintainer",
+      "status": "published_version_backport_confirmed",
+      "source_fixed_release": "49.0.0",
+      "target_fixed_release": "46.0.5-1ubuntu2.2",
+      "target_distribution": "Ubuntu 26.04 LTS",
+      "source_package": "python-cryptography",
+      "license": "Apache-2.0 OR BSD-3-Clause",
+      "test_framework": "pytest",
+      "native_dependencies_required": true,
+      "baseline_original_dataset_overlap": false,
+      "benchmark_ready": false,
+      "upstream_fix_commit": "4d035a4225965edeffd312079a510ef25fcfdcb2",
+      "upstream_parent_commit": "b3f077f7bef906383be2bd92c49de10a68ec9659",
+      "upstream_commit_parents": [
+        "b3f077f7bef906383be2bd92c49de10a68ec9659"
+      ],
+      "backport_commit": null,
+      "target_baseline_commit": null,
+      "sources": [
+        "https://ubuntu.com/security/notices/USN-8776-1",
+        "https://ubuntu.com/security/CVE-2026-69248",
+        "https://github.com/pyca/cryptography/commit/4d035a4225965edeffd312079a510ef25fcfdcb2"
+      ],
+      "release_inclusion_verification": "The official security notice explicitly lists the older package version as fixed for the selected issue. Git baseline and distributor patch identities are not yet pinned.",
+      "preparation_remaining": [
+        "Pin the pristine target baseline and exact distributor patch series, preserve source notices, freeze dependencies and tests, and execute all four revisions."
+      ],
+      "eval_status": "not_run",
+      "notes": [
+        "The implementation change is Rust. Python wrapper tests alone do not establish native implementation coverage."
+      ],
+      "notice_snapshot_sha256": "7ae4e254b18ceb1974e7e5b9ea42185405d45d3e484aa4b85474d2f4216f5262",
+      "source_package_access": {
+        "url": "https://launchpad.net/ubuntu/+archive/primary/+sourcefiles/python-cryptography/46.0.5-1ubuntu2.2/python-cryptography_46.0.5-1ubuntu2.2.dsc",
+        "resolved_url": "https://launchpadlibrarian.net/877076187/python-cryptography_46.0.5-1ubuntu2.2.dsc",
+        "status": "public_metadata_retrieved",
+        "sha256": "4d2332d57a9931b06d0380a5b02c0800848fdea623a7c5af24faadd79feeb2d5",
+        "bytes": 3976,
+        "scope": "Signed source-package descriptor retrieved without credentials; source archive checksums are listed but source archives were not downloaded or executed.",
+        "signature_verified": false
+      },
+      "license_metadata_status": "Project license identifier; exact per-revision license notices still required before source/patch redistribution."
+    },
+    {
+      "library": "lxml",
+      "ecosystem": "PyPI",
+      "repository": "https://github.com/lxml/lxml",
+      "advisory_ids": [
+        "CVE-2026-41066"
+      ],
+      "backport_published_at": "2026-10-07",
+      "issue_summary": "XML parser entity defaults",
+      "backport_kind": "distribution-maintainer",
+      "status": "published_version_backport_confirmed",
+      "source_fixed_release": "6.1.0",
+      "target_fixed_release": "5.2.1-1ubuntu0.2",
+      "target_distribution": "Ubuntu 24.04 LTS",
+      "source_package": "lxml",
+      "license": "BSD-3-Clause",
+      "test_framework": "unittest/pytest integration must be reviewed",
+      "native_dependencies_required": true,
+      "baseline_original_dataset_overlap": false,
+      "benchmark_ready": false,
+      "upstream_fix_commit": "ab431ea0b9a7357d968f1d1c5c614649e9aaf358",
+      "upstream_parent_commit": "1fd1d6bc300bcd9a41def810c5fc3223811b579e",
+      "upstream_commit_parents": [
+        "1fd1d6bc300bcd9a41def810c5fc3223811b579e"
+      ],
+      "backport_commit": null,
+      "target_baseline_commit": null,
+      "sources": [
+        "https://ubuntu.com/security/notices/USN-8897-1",
+        "https://ubuntu.com/security/CVE-2026-41066",
+        "https://github.com/lxml/lxml/commit/ab431ea0b9a7357d968f1d1c5c614649e9aaf358"
+      ],
+      "release_inclusion_verification": "The official security notice explicitly lists the older package version as fixed for the selected issue. Git baseline and distributor patch identities are not yet pinned.",
+      "preparation_remaining": [
+        "Pin the pristine target baseline and exact distributor patch series, preserve source notices, freeze dependencies and tests, and execute all four revisions."
+      ],
+      "eval_status": "not_run",
+      "notes": [
+        "Requires rebuilding Cython/native extension against declared libxml2/libxslt. The CVE does not apply uniformly to every release listed for other issues in the notice."
+      ],
+      "notice_snapshot_sha256": "f5e272a6d38b915c3c07c194f690836dffd7b3e61b699ad6bfed91e91a48988e",
+      "source_package_access": {
+        "url": "https://launchpad.net/ubuntu/+archive/primary/+sourcefiles/lxml/5.2.1-1ubuntu0.2/lxml_5.2.1-1ubuntu0.2.dsc",
+        "resolved_url": "https://launchpadlibrarian.net/879534221/lxml_5.2.1-1ubuntu0.2.dsc",
+        "status": "public_metadata_retrieved",
+        "sha256": "9ffd2a29ac6b1654aef7af6ad02b67766eb58f7be4eb0e04c4066eb0d56e11e3",
+        "bytes": 2084,
+        "scope": "Signed source-package descriptor retrieved without credentials; source archive checksums are listed but source archives were not downloaded or executed.",
+        "signature_verified": false
+      },
+      "license_metadata_status": "Project license identifier; exact per-revision license notices still required before source/patch redistribution."
+    },
+    {
+      "library": "Tornado",
+      "ecosystem": "PyPI",
+      "repository": "https://github.com/tornadoweb/tornado",
+      "advisory_ids": [
+        "CVE-2026-35536"
+      ],
+      "backport_published_at": "2026-04-28",
+      "issue_summary": "Cookie attribute validation",
+      "backport_kind": "distribution-maintainer",
+      "status": "published_version_backport_confirmed",
+      "source_fixed_release": "6.5.5",
+      "target_fixed_release": "6.5.4-0.1ubuntu0.1",
+      "target_distribution": "Ubuntu 26.04 LTS",
+      "source_package": "python-tornado",
+      "license": "Apache-2.0",
+      "test_framework": "unittest/pytest integration must be reviewed",
+      "native_dependencies_required": false,
+      "baseline_original_dataset_overlap": false,
+      "benchmark_ready": false,
+      "upstream_fix_commit": "24a2d96ea115f663b223887deb0060f13974c104",
+      "upstream_parent_commit": "119a195e290c43ad2d63a2cf012c29d43d6ed839",
+      "upstream_commit_parents": [
+        "119a195e290c43ad2d63a2cf012c29d43d6ed839"
+      ],
+      "backport_commit": null,
+      "target_baseline_commit": null,
+      "sources": [
+        "https://ubuntu.com/security/notices/USN-8198-2",
+        "https://ubuntu.com/security/CVE-2026-35536",
+        "https://github.com/tornadoweb/tornado/commit/24a2d96ea115f663b223887deb0060f13974c104"
+      ],
+      "release_inclusion_verification": "The official security notice explicitly lists the older package version as fixed for the selected issue. Git baseline and distributor patch identities are not yet pinned.",
+      "preparation_remaining": [
+        "Pin the pristine target baseline and exact distributor patch series, preserve source notices, freeze dependencies and tests, and execute all four revisions."
+      ],
+      "eval_status": "not_run",
+      "notes": [
+        "Prefer ordinary compatibility checks before introducing broader asynchronous runner changes."
+      ],
+      "notice_snapshot_sha256": "ed43132b91a81f0ccacf371fbbe27c9c06760838e2e96c52d32d8e91d761f81a",
+      "source_package_access": {
+        "url": "https://launchpad.net/ubuntu/+archive/primary/+sourcefiles/python-tornado/6.5.4-0.1ubuntu0.1/python-tornado_6.5.4-0.1ubuntu0.1.dsc",
+        "resolved_url": "https://launchpadlibrarian.net/859313646/python-tornado_6.5.4-0.1ubuntu0.1.dsc",
+        "status": "public_metadata_retrieved",
+        "sha256": "82f1916a57cbcd33654a6eef92523d0ae91a1e9b8b53b1f70a0280881fcfb180",
+        "bytes": 2608,
+        "scope": "Signed source-package descriptor retrieved without credentials; source archive checksums are listed but source archives were not downloaded or executed.",
+        "signature_verified": false
+      },
+      "license_metadata_status": "Project license identifier; exact per-revision license notices still required before source/patch redistribution."
+    },
+    {
+      "library": "Requests",
+      "ecosystem": "PyPI",
+      "repository": "https://github.com/psf/requests",
+      "advisory_ids": [
+        "CVE-2026-25645"
+      ],
+      "backport_published_at": "2026-09-28",
+      "issue_summary": "Temporary-file handling",
+      "backport_kind": "distribution-maintainer",
+      "status": "published_version_backport_confirmed",
+      "source_fixed_release": "2.33.0",
+      "target_fixed_release": "2.31.0+dfsg-1ubuntu1.2",
+      "target_distribution": "Ubuntu 24.04 LTS",
+      "source_package": "requests",
+      "license": "Apache-2.0",
+      "test_framework": "pytest",
+      "native_dependencies_required": false,
+      "baseline_original_dataset_overlap": false,
+      "benchmark_ready": false,
+      "upstream_fix_commit": "66d21cb07bd6255b1280291c4fafb71803cdb3b7",
+      "upstream_parent_commit": "8b9bc8fc0f63be84602387913c4b689f19efd028",
+      "upstream_commit_parents": [
+        "8b9bc8fc0f63be84602387913c4b689f19efd028"
+      ],
+      "backport_commit": null,
+      "target_baseline_commit": null,
+      "sources": [
+        "https://ubuntu.com/security/notices/USN-8825-1",
+        "https://ubuntu.com/security/CVE-2026-25645",
+        "https://github.com/psf/requests/commit/66d21cb07bd6255b1280291c4fafb71803cdb3b7"
+      ],
+      "release_inclusion_verification": "The official security notice explicitly lists the older package version as fixed for the selected issue. Git baseline and distributor patch identities are not yet pinned.",
+      "preparation_remaining": [
+        "Pin the pristine target baseline and exact distributor patch series, preserve source notices, freeze dependencies and tests, and execute all four revisions."
+      ],
+      "eval_status": "not_run",
+      "notes": [
+        "Different issue from the existing Proxy-Authorization dataset case."
+      ],
+      "notice_snapshot_sha256": "6de476091cd30360f0aed81fb32a153c55ee6200f947f5bcd1f14e8e91b1042a",
+      "source_package_access": {
+        "url": "https://launchpad.net/ubuntu/+archive/primary/+sourcefiles/requests/2.31.0%2Bdfsg-1ubuntu1.2/requests_2.31.0%2Bdfsg-1ubuntu1.2.dsc",
+        "resolved_url": "https://launchpadlibrarian.net/877939023/requests_2.31.0+dfsg-1ubuntu1.2.dsc",
+        "status": "public_metadata_retrieved",
+        "sha256": "6e7dc0bf4a5c218acd9e4cc4afd7abf428eaf650342d8b1a9bbc8092637e8a7a",
+        "bytes": 2454,
+        "scope": "Signed source-package descriptor retrieved without credentials; source archive checksums are listed but source archives were not downloaded or executed.",
+        "signature_verified": false
+      },
+      "license_metadata_status": "Project license identifier; exact per-revision license notices still required before source/patch redistribution."
+    },
+    {
+      "library": "urllib3",
+      "ecosystem": "PyPI",
+      "repository": "https://github.com/urllib3/urllib3",
+      "advisory_ids": [
+        "CVE-2026-44431"
+      ],
+      "backport_published_at": "2026-06-03",
+      "issue_summary": "Proxy redirect sensitive-header handling",
+      "backport_kind": "distribution-maintainer",
+      "status": "published_version_backport_confirmed",
+      "source_fixed_release": "2.7.0",
+      "target_fixed_release": "1.26.5-1~exp1ubuntu0.7",
+      "target_distribution": "Ubuntu 22.04 LTS",
+      "source_package": "python-urllib3",
+      "license": "MIT",
+      "test_framework": "pytest",
+      "native_dependencies_required": false,
+      "baseline_original_dataset_overlap": false,
+      "benchmark_ready": false,
+      "upstream_fix_commit": "5ec0de499b9166ca71c65ab04f2a7e4eb0d66fcc",
+      "upstream_parent_commit": "2bdcc44d1e163fb5cc48a8662425e35e15adfe6a",
+      "upstream_commit_parents": [
+        "2bdcc44d1e163fb5cc48a8662425e35e15adfe6a"
+      ],
+      "backport_commit": null,
+      "target_baseline_commit": null,
+      "sources": [
+        "https://ubuntu.com/security/notices/USN-8379-1",
+        "https://ubuntu.com/security/CVE-2026-44431",
+        "https://github.com/urllib3/urllib3/commit/5ec0de499b9166ca71c65ab04f2a7e4eb0d66fcc"
+      ],
+      "release_inclusion_verification": "The official security notice explicitly lists the older package version as fixed for the selected issue. Git baseline and distributor patch identities are not yet pinned.",
+      "preparation_remaining": [
+        "Pin the pristine target baseline and exact distributor patch series, preserve source notices, freeze dependencies and tests, and execute all four revisions."
+      ],
+      "eval_status": "not_run",
+      "notes": [
+        "Different issue from the existing Cookie redirect case. The notice limits its separate decompression issue to Ubuntu 26.04; do not attach that issue to this 1.26 target."
+      ],
+      "notice_snapshot_sha256": "f0045b4fe2bac3ac78ac99ab6743f596f7a108233f590fef3a43ff736845f0c1",
+      "source_package_access": {
+        "url": "https://launchpad.net/ubuntu/+archive/primary/+sourcefiles/python-urllib3/1.26.5-1~exp1ubuntu0.7/python-urllib3_1.26.5-1~exp1ubuntu0.7.dsc",
+        "resolved_url": "https://launchpadlibrarian.net/862153163/python-urllib3_1.26.5-1~exp1ubuntu0.7.dsc",
+        "status": "public_metadata_retrieved",
+        "sha256": "fd0c3ca650e8286099f04ef8e3139f32539e749388b6c75830b1960477c6aada",
+        "bytes": 2333,
+        "scope": "Signed source-package descriptor retrieved without credentials; source archive checksums are listed but source archives were not downloaded or executed.",
+        "signature_verified": false
+      },
+      "license_metadata_status": "Project license identifier; exact per-revision license notices still required before source/patch redistribution."
+    },
+    {
+      "library": "Jinja2",
+      "ecosystem": "PyPI",
+      "repository": "https://github.com/pallets/jinja",
+      "advisory_ids": [
+        "CVE-2025-27516"
+      ],
+      "backport_published_at": "2025-03-11",
+      "issue_summary": "Sandbox attribute lookup",
+      "backport_kind": "distribution-maintainer",
+      "status": "published_version_backport_confirmed",
+      "source_fixed_release": "3.1.6",
+      "target_fixed_release": "3.0.3-1ubuntu0.4",
+      "target_distribution": "Ubuntu 22.04 LTS",
+      "source_package": "jinja2",
+      "license": "BSD-3-Clause",
+      "test_framework": "pytest",
+      "native_dependencies_required": false,
+      "baseline_original_dataset_overlap": false,
+      "benchmark_ready": false,
+      "upstream_fix_commit": "90457bbf33b8662926ae65cdde4c4c32e756e403",
+      "upstream_parent_commit": null,
+      "upstream_commit_parents": [
+        "033c20015c7ca899ab52eb921bb0f08e6d3dd145",
+        "065334d1ee5b7210e1a0a93c37238c86858f2af7"
+      ],
+      "backport_commit": null,
+      "target_baseline_commit": null,
+      "sources": [
+        "https://ubuntu.com/security/notices/USN-7343-1",
+        "https://ubuntu.com/security/CVE-2025-27516",
+        "https://github.com/pallets/jinja/commit/90457bbf33b8662926ae65cdde4c4c32e756e403"
+      ],
+      "release_inclusion_verification": "The official security notice explicitly lists the older package version as fixed for the selected issue. Git baseline and distributor patch identities are not yet pinned.",
+      "preparation_remaining": [
+        "Pin the pristine target baseline and exact distributor patch series, preserve source notices, freeze dependencies and tests, and execute all four revisions."
+      ],
+      "eval_status": "not_run",
+      "notes": [
+        "Different issue from the existing xmlattr dataset case."
+      ],
+      "notice_snapshot_sha256": "ca7ed60c4d226adb03f20e5da8d3d4d9b3a3ea0e00f0b406261ce4236a0be7d0",
+      "source_package_access": {
+        "url": "https://launchpad.net/ubuntu/+archive/primary/+sourcefiles/jinja2/3.0.3-1ubuntu0.4/jinja2_3.0.3-1ubuntu0.4.dsc",
+        "resolved_url": "https://launchpadlibrarian.net/781173009/jinja2_3.0.3-1ubuntu0.4.dsc",
+        "status": "public_metadata_retrieved",
+        "sha256": "68aa1d5487097fcf59e1024d2028304be315a577b37c7e8d4169592697c54c49",
+        "bytes": 2259,
+        "scope": "Signed source-package descriptor retrieved without credentials; source archive checksums are listed but source archives were not downloaded or executed.",
+        "signature_verified": false
+      },
+      "license_metadata_status": "Project license identifier; exact per-revision license notices still required before source/patch redistribution."
+    },
+    {
+      "library": "Flask",
+      "ecosystem": "PyPI",
+      "repository": "https://github.com/pallets/flask",
+      "advisory_ids": [
+        "CVE-2026-27205"
+      ],
+      "backport_published_at": "2026-03-18",
+      "issue_summary": "Session-access Vary header handling",
+      "backport_kind": "distribution-maintainer",
+      "status": "published_version_backport_confirmed",
+      "source_fixed_release": "3.1.3",
+      "target_fixed_release": "3.0.2-1ubuntu1.1",
+      "target_distribution": "Ubuntu 24.04 LTS",
+      "source_package": "flask",
+      "license": "BSD-3-Clause",
+      "test_framework": "pytest",
+      "native_dependencies_required": false,
+      "baseline_original_dataset_overlap": false,
+      "benchmark_ready": false,
+      "upstream_fix_commit": "089cb86dd22bff589a4eafb7ab8e42dc357623b4",
+      "upstream_parent_commit": null,
+      "upstream_commit_parents": [
+        "27be9338405382445a7cb01151e084559b98d602",
+        "c17f379390731543eea33a570a47bd4ef76a54fa"
+      ],
+      "backport_commit": null,
+      "target_baseline_commit": null,
+      "sources": [
+        "https://ubuntu.com/security/notices/USN-8104-1",
+        "https://ubuntu.com/security/CVE-2026-27205",
+        "https://github.com/pallets/flask/commit/089cb86dd22bff589a4eafb7ab8e42dc357623b4"
+      ],
+      "release_inclusion_verification": "The official security notice explicitly lists the older package version as fixed for the selected issue. Git baseline and distributor patch identities are not yet pinned.",
+      "preparation_remaining": [
+        "Pin the pristine target baseline and exact distributor patch series, preserve source notices, freeze dependencies and tests, and execute all four revisions."
+      ],
+      "eval_status": "not_run",
+      "notes": [
+        "Different issue from the existing 2023 session-cookie case. The advisory-linked publication commit is a merge; its ordinary implementation commit must be selected before using the current single-commit input."
+      ],
+      "notice_snapshot_sha256": "da977bcb5c4766115ab81c3ba6f7706cb28c78c3dc44b995127fc05830374141",
+      "source_package_access": {
+        "url": "https://launchpad.net/ubuntu/+archive/primary/+sourcefiles/flask/3.0.2-1ubuntu1.1/flask_3.0.2-1ubuntu1.1.dsc",
+        "resolved_url": "https://launchpadlibrarian.net/851965227/flask_3.0.2-1ubuntu1.1.dsc",
+        "status": "public_metadata_retrieved",
+        "sha256": "eaa87015f175dfa5b442a0ac7e47f0b594b908dd44b2605e501f69069ad87348",
+        "bytes": 2332,
+        "scope": "Signed source-package descriptor retrieved without credentials; source archive checksums are listed but source archives were not downloaded or executed.",
+        "signature_verified": false
+      },
+      "license_metadata_status": "Project license identifier; exact per-revision license notices still required before source/patch redistribution."
+    },
+    {
+      "library": "sqlparse",
+      "ecosystem": "PyPI",
+      "repository": "https://github.com/andialbrecht/sqlparse",
+      "advisory_ids": [
+        "CVE-2026-54284"
+      ],
+      "backport_published_at": "2026-09-23",
+      "issue_summary": "Nested-token algorithmic complexity",
+      "backport_kind": "distribution-maintainer",
+      "status": "published_version_backport_confirmed",
+      "source_fixed_release": "0.6.0",
+      "target_fixed_release": "0.4.4-1ubuntu0.2",
+      "target_distribution": "Ubuntu 24.04 LTS",
+      "source_package": "sqlparse",
+      "license": "BSD-3-Clause",
+      "test_framework": "pytest",
+      "native_dependencies_required": false,
+      "baseline_original_dataset_overlap": false,
+      "benchmark_ready": false,
+      "upstream_fix_commit": null,
+      "upstream_parent_commit": null,
+      "upstream_commit_parents": [],
+      "backport_commit": null,
+      "target_baseline_commit": null,
+      "sources": [
+        "https://ubuntu.com/security/notices/USN-8808-1",
+        "https://ubuntu.com/security/CVE-2026-54284"
+      ],
+      "release_inclusion_verification": "The official security notice explicitly lists the older package version as fixed for the selected issue. Git baseline and distributor patch identities are not yet pinned.",
+      "preparation_remaining": [
+        "Pin the pristine target baseline and exact distributor patch series, preserve source notices, freeze dependencies and tests, and execute all four revisions."
+      ],
+      "eval_status": "not_run",
+      "notes": [
+        "Different issue from the existing 2024 recursion case. Timing and resource checks need separate qualification from correctness checks."
+      ],
+      "notice_snapshot_sha256": "484f7aba1b50832e0c2d8c80a35839a49b643d55aaaad276b88dcea9059b9475",
+      "source_package_access": {
+        "url": "https://launchpad.net/ubuntu/+archive/primary/+sourcefiles/sqlparse/0.4.4-1ubuntu0.2/sqlparse_0.4.4-1ubuntu0.2.dsc",
+        "resolved_url": "https://launchpadlibrarian.net/877963243/sqlparse_0.4.4-1ubuntu0.2.dsc",
+        "status": "public_metadata_retrieved",
+        "sha256": "159d0cefa3b2fb99945b6ebc9c66ce25b772e3e09e6e13a63616c80096712f5d",
+        "bytes": 2187,
+        "scope": "Signed source-package descriptor retrieved without credentials; source archive checksums are listed but source archives were not downloaded or executed.",
+        "signature_verified": false
+      },
+      "license_metadata_status": "Project license identifier; exact per-revision license notices still required before source/patch redistribution."
+    },
+    {
+      "library": "PyJWT",
+      "ecosystem": "PyPI",
+      "repository": "https://github.com/jpadilla/pyjwt",
+      "advisory_ids": [
+        "CVE-2026-48523"
+      ],
+      "backport_published_at": "2026-09-25",
+      "issue_summary": "JWK algorithm allow-list handling",
+      "backport_kind": "distribution-maintainer",
+      "status": "published_version_backport_confirmed",
+      "source_fixed_release": "2.13.0",
+      "target_fixed_release": "2.10.1-4ubuntu1.1",
+      "target_distribution": "Ubuntu 26.04 LTS",
+      "source_package": "pyjwt",
+      "license": "MIT",
+      "test_framework": "pytest",
+      "native_dependencies_required": true,
+      "baseline_original_dataset_overlap": false,
+      "benchmark_ready": false,
+      "upstream_fix_commit": "95791b1759b8aa4f2203575d344d5c78564cdc81",
+      "upstream_parent_commit": "dcc27a9d3182a2349c30b160758785c6ce7a6508",
+      "upstream_commit_parents": [
+        "dcc27a9d3182a2349c30b160758785c6ce7a6508"
+      ],
+      "backport_commit": null,
+      "target_baseline_commit": null,
+      "sources": [
+        "https://ubuntu.com/security/notices/USN-8823-1",
+        "https://ubuntu.com/security/CVE-2026-48523",
+        "https://github.com/jpadilla/pyjwt/commit/95791b1759b8aa4f2203575d344d5c78564cdc81"
+      ],
+      "release_inclusion_verification": "The official security notice explicitly lists the older package version as fixed for the selected issue. Git baseline and distributor patch identities are not yet pinned.",
+      "preparation_remaining": [
+        "Pin the pristine target baseline and exact distributor patch series, preserve source notices, freeze dependencies and tests, and execute all four revisions."
+      ],
+      "eval_status": "not_run",
+      "notes": [
+        "The upstream security release bundles several security fixes. Isolate the relevant implementation scope before benchmarking adaptation."
+      ],
+      "notice_snapshot_sha256": "a558345d887ef684aeacf29d41938a2e857c756d494b341ef19f840c24b76e4c",
+      "source_package_access": {
+        "url": "https://launchpad.net/ubuntu/+archive/primary/+sourcefiles/pyjwt/2.10.1-4ubuntu1.1/pyjwt_2.10.1-4ubuntu1.1.dsc",
+        "resolved_url": "https://launchpadlibrarian.net/878184128/pyjwt_2.10.1-4ubuntu1.1.dsc",
+        "status": "public_metadata_retrieved",
+        "sha256": "b109f21a8faab71a61ab529d153af05f3073b999dc04ea9233f19124e4ea27aa",
+        "bytes": 1885,
+        "scope": "Signed source-package descriptor retrieved without credentials; source archive checksums are listed but source archives were not downloaded or executed.",
+        "signature_verified": false
+      },
+      "license_metadata_status": "Project license identifier; exact per-revision license notices still required before source/patch redistribution."
+    },
+    {
+      "library": "Pillow",
+      "ecosystem": "PyPI",
+      "repository": "https://github.com/python-pillow/Pillow",
+      "advisory_ids": [
+        "CVE-2026-59198"
+      ],
+      "backport_published_at": "2026-09-01",
+      "issue_summary": "TGA image-save validation",
+      "backport_kind": "distribution-maintainer",
+      "status": "published_version_backport_confirmed",
+      "source_fixed_release": "12.3.0",
+      "target_fixed_release": "9.0.1-1ubuntu0.5",
+      "target_distribution": "Ubuntu 22.04 LTS",
+      "source_package": "pillow",
+      "license": "HPND",
+      "test_framework": "pytest",
+      "native_dependencies_required": true,
+      "baseline_original_dataset_overlap": false,
+      "benchmark_ready": false,
+      "upstream_fix_commit": "eada3cbd7fb9963ee90673fb7b5270124a0d5f4b",
+      "upstream_parent_commit": "03992618118b4a76b6163cd72ab5ecd684133b83",
+      "upstream_commit_parents": [
+        "03992618118b4a76b6163cd72ab5ecd684133b83"
+      ],
+      "backport_commit": null,
+      "target_baseline_commit": null,
+      "sources": [
+        "https://ubuntu.com/security/notices/USN-8690-1",
+        "https://ubuntu.com/security/CVE-2026-59198",
+        "https://github.com/python-pillow/Pillow/commit/eada3cbd7fb9963ee90673fb7b5270124a0d5f4b"
+      ],
+      "release_inclusion_verification": "The official security notice explicitly lists the older package version as fixed for the selected issue. Git baseline and distributor patch identities are not yet pinned.",
+      "preparation_remaining": [
+        "Pin the pristine target baseline and exact distributor patch series, preserve source notices, freeze dependencies and tests, and execute all four revisions."
+      ],
+      "eval_status": "not_run",
+      "notes": [
+        "The selected implementation change is Python, but the library requires native extensions. Do not substitute a prebuilt target implementation for each revision."
+      ],
+      "notice_snapshot_sha256": "aa548cc54c12bfe06b60d8ce32730c8337708dec5f8cd08a85233cda11cee33d",
+      "source_package_access": {
+        "url": "https://launchpad.net/ubuntu/+archive/primary/+sourcefiles/pillow/9.0.1-1ubuntu0.5/pillow_9.0.1-1ubuntu0.5.dsc",
+        "resolved_url": "https://launchpadlibrarian.net/875032426/pillow_9.0.1-1ubuntu0.5.dsc",
+        "status": "public_metadata_retrieved",
+        "sha256": "23eec434393b25e8b7be9e76ce5f39dbd4c7a61b9b6369327761b6b06036aded",
+        "bytes": 2404,
+        "scope": "Signed source-package descriptor retrieved without credentials; source archive checksums are listed but source archives were not downloaded or executed.",
+        "signature_verified": false
+      },
+      "license_metadata_status": "Project license identifier; exact per-revision license notices still required before source/patch redistribution."
+    },
+    {
+      "library": "setuptools",
+      "ecosystem": "PyPI",
+      "repository": "https://github.com/pypa/setuptools",
+      "advisory_ids": [
+        "CVE-2025-47273"
+      ],
+      "backport_published_at": "2025-05-28",
+      "issue_summary": "Package-index destination containment",
+      "backport_kind": "distribution-maintainer",
+      "status": "published_version_backport_confirmed",
+      "source_fixed_release": "78.1.1",
+      "target_fixed_release": "68.1.2-2ubuntu1.2",
+      "target_distribution": "Ubuntu 24.04 LTS",
+      "source_package": "setuptools",
+      "license": "MIT",
+      "test_framework": "pytest",
+      "native_dependencies_required": false,
+      "baseline_original_dataset_overlap": false,
+      "benchmark_ready": false,
+      "upstream_fix_commit": "250a6d17978f9f6ac3ac887091f2d32886fbbb0b",
+      "upstream_parent_commit": "d8390feaa99091d1ba9626bec0e4ba7072fc507a",
+      "upstream_commit_parents": [
+        "d8390feaa99091d1ba9626bec0e4ba7072fc507a"
+      ],
+      "backport_commit": null,
+      "target_baseline_commit": null,
+      "sources": [
+        "https://ubuntu.com/security/notices/USN-7544-1",
+        "https://ubuntu.com/security/CVE-2025-47273",
+        "https://github.com/pypa/setuptools/commit/250a6d17978f9f6ac3ac887091f2d32886fbbb0b"
+      ],
+      "release_inclusion_verification": "The official security notice explicitly lists the older package version as fixed for the selected issue. Git baseline and distributor patch identities are not yet pinned.",
+      "preparation_remaining": [
+        "Pin the pristine target baseline and exact distributor patch series, preserve source notices, freeze dependencies and tests, and execute all four revisions."
+      ],
+      "eval_status": "not_run",
+      "notes": [
+        "Historical 2025 case. Vendored copies in pip are a distinct packaging surface and are not counted as a second independent library result."
+      ],
+      "notice_snapshot_sha256": "9d9f0403b05adf5b33dd5e0291143497fc7005ed598d7b9fb6b8f81159f94163",
+      "source_package_access": {
+        "url": "https://launchpad.net/ubuntu/+archive/primary/+sourcefiles/setuptools/68.1.2-2ubuntu1.2/setuptools_68.1.2-2ubuntu1.2.dsc",
+        "resolved_url": "https://launchpadlibrarian.net/795919100/setuptools_68.1.2-2ubuntu1.2.dsc",
+        "status": "public_metadata_retrieved",
+        "sha256": "b3bdc1cbae0009f96916286d76877bbb53bb92414be9d10845b84ebb6bf99184",
+        "bytes": 2296,
+        "scope": "Signed source-package descriptor retrieved without credentials; source archive checksums are listed but source archives were not downloaded or executed.",
+        "signature_verified": false
+      },
+      "license_metadata_status": "Project license identifier; exact per-revision license notices still required before source/patch redistribution."
+    },
+    {
+      "library": "PyYAML",
+      "ecosystem": "PyPI",
+      "repository": "https://github.com/yaml/pyyaml",
+      "advisory_ids": [
+        "CVE-2020-14343"
+      ],
+      "backport_published_at": "2021-05-10",
+      "issue_summary": "FullLoader constructor validation",
+      "backport_kind": "distribution-maintainer",
+      "status": "published_version_backport_confirmed",
+      "source_fixed_release": "5.4",
+      "target_fixed_release": "5.3.1-1ubuntu0.1",
+      "target_distribution": "Ubuntu 20.04 LTS",
+      "source_package": "pyyaml",
+      "license": "MIT",
+      "test_framework": "project unittest/pytest integration must be reviewed",
+      "native_dependencies_required": false,
+      "baseline_original_dataset_overlap": false,
+      "benchmark_ready": false,
+      "upstream_fix_commit": "7adc0db3f613a82669f2b168edd98379b83adb3c",
+      "upstream_parent_commit": "f41c7229e7b462e7a5637a7c574eab52aec8dfed",
+      "upstream_commit_parents": [
+        "f41c7229e7b462e7a5637a7c574eab52aec8dfed"
+      ],
+      "backport_commit": null,
+      "target_baseline_commit": null,
+      "sources": [
+        "https://ubuntu.com/security/notices/USN-4940-1",
+        "https://ubuntu.com/security/CVE-2020-14343",
+        "https://github.com/yaml/pyyaml/commit/7adc0db3f613a82669f2b168edd98379b83adb3c"
+      ],
+      "release_inclusion_verification": "The official security notice explicitly lists the older package version as fixed for the selected issue. Git baseline and distributor patch identities are not yet pinned.",
+      "preparation_remaining": [
+        "Pin the pristine target baseline and exact distributor patch series, preserve source notices, freeze dependencies and tests, and execute all four revisions."
+      ],
+      "eval_status": "not_run",
+      "notes": [
+        "Historical 2020/2021 case. The source tree has separate lib and lib3 layouts; optional C-loader coverage must be reported separately."
+      ],
+      "notice_snapshot_sha256": "3e834defa9450eed35dd7e0f0976d0148049b3752191e5266e087deb78c7915f",
+      "source_package_access": {
+        "url": "https://launchpad.net/ubuntu/+archive/primary/+sourcefiles/pyyaml/5.3.1-1ubuntu0.1/pyyaml_5.3.1-1ubuntu0.1.dsc",
+        "resolved_url": "https://launchpadlibrarian.net/533169164/pyyaml_5.3.1-1ubuntu0.1.dsc",
+        "status": "public_metadata_retrieved",
+        "sha256": "39145ae498f5922553af09757dbc680d10dbe67ff3d7772245ab28f440d46fcf",
+        "bytes": 2418,
+        "scope": "Signed source-package descriptor retrieved without credentials; source archive checksums are listed but source archives were not downloaded or executed.",
+        "signature_verified": false
+      },
+      "license_metadata_status": "Project license identifier; exact per-revision license notices still required before source/patch redistribution."
+    },
+    {
+      "library": "Twisted",
+      "ecosystem": "PyPI",
+      "repository": "https://github.com/twisted/twisted",
+      "advisory_ids": [
+        "CVE-2026-42304"
+      ],
+      "backport_published_at": "2026-06-03",
+      "issue_summary": "DNS decompression resource bounds",
+      "backport_kind": "distribution-maintainer",
+      "status": "published_version_backport_confirmed",
+      "source_fixed_release": "26.4.0rc2",
+      "target_fixed_release": "24.3.0-1ubuntu0.2",
+      "target_distribution": "Ubuntu 24.04 LTS",
+      "source_package": "twisted",
+      "license": "MIT",
+      "test_framework": "Trial; runner compatibility must be reviewed",
+      "native_dependencies_required": false,
+      "baseline_original_dataset_overlap": false,
+      "benchmark_ready": false,
+      "upstream_fix_commit": "2d196123264efb0027eecfe1b430be4a9babdbd8",
+      "upstream_parent_commit": null,
+      "upstream_commit_parents": [
+        "46f0e5c656f5af5f90e7762e3729ae3a37becd42",
+        "44c11c744887b623d6e02f92a341287727ea0ead"
+      ],
+      "backport_commit": null,
+      "target_baseline_commit": null,
+      "sources": [
+        "https://ubuntu.com/security/notices/USN-8380-1",
+        "https://ubuntu.com/security/CVE-2026-42304",
+        "https://github.com/twisted/twisted/commit/2d196123264efb0027eecfe1b430be4a9babdbd8"
+      ],
+      "release_inclusion_verification": "The official security notice explicitly lists the older package version as fixed for the selected issue. Git baseline and distributor patch identities are not yet pinned.",
+      "preparation_remaining": [
+        "Pin the pristine target baseline and exact distributor patch series, preserve source notices, freeze dependencies and tests, and execute all four revisions."
+      ],
+      "eval_status": "not_run",
+      "notes": [
+        "Distributor changelog lists six patches for this CVE. Do not treat an initial mitigation commit as the complete fix. Trial-specific asynchronous test semantics need explicit support or a reviewed selected suite."
+      ],
+      "notice_snapshot_sha256": "5ed4f9162ef910effa53899127e79530d0ee07736b866c830e0765bfb61fc0ab",
+      "source_package_access": {
+        "url": "https://launchpad.net/ubuntu/+archive/primary/+sourcefiles/twisted/24.3.0-1ubuntu0.2/twisted_24.3.0-1ubuntu0.2.dsc",
+        "resolved_url": "https://launchpadlibrarian.net/862101984/twisted_24.3.0-1ubuntu0.2.dsc",
+        "status": "public_metadata_retrieved",
+        "sha256": "4938652da5bcd82e6f5d9755c97590647df637fbd9ba8b3ac9ba1caa48ab4dd7",
+        "bytes": 2619,
+        "scope": "Signed source-package descriptor retrieved without credentials; source archive checksums are listed but source archives were not downloaded or executed.",
+        "signature_verified": false
+      },
+      "license_metadata_status": "Project license identifier; exact per-revision license notices still required before source/patch redistribution."
+    },
+    {
+      "library": "UltraJSON",
+      "ecosystem": "PyPI",
+      "repository": "https://github.com/ultrajson/ultrajson",
+      "advisory_ids": [
+        "CVE-2026-32875"
+      ],
+      "backport_published_at": "2026-04-28",
+      "issue_summary": "Encoder indentation bounds",
+      "backport_kind": "distribution-maintainer",
+      "status": "published_version_backport_confirmed",
+      "source_fixed_release": null,
+      "target_fixed_release": "5.11.0-3ubuntu0.1",
+      "target_distribution": "Ubuntu 26.04 LTS",
+      "source_package": "ujson",
+      "license": "BSD-3-Clause",
+      "test_framework": "pytest",
+      "native_dependencies_required": true,
+      "baseline_original_dataset_overlap": false,
+      "benchmark_ready": false,
+      "upstream_fix_commit": "486bd4553dc471a1de11613bc7347a6b318e37ea",
+      "upstream_parent_commit": "a465ed7654bb13fd283681e0e7928e4c11ee2cf4",
+      "upstream_commit_parents": [
+        "a465ed7654bb13fd283681e0e7928e4c11ee2cf4"
+      ],
+      "backport_commit": null,
+      "target_baseline_commit": null,
+      "sources": [
+        "https://ubuntu.com/security/notices/USN-8219-1",
+        "https://ubuntu.com/security/CVE-2026-32875",
+        "https://github.com/ultrajson/ultrajson/commit/486bd4553dc471a1de11613bc7347a6b318e37ea"
+      ],
+      "release_inclusion_verification": "The official security notice explicitly lists the older package version as fixed for the selected issue. Git baseline and distributor patch identities are not yet pinned.",
+      "preparation_remaining": [
+        "Pin the pristine target baseline and exact distributor patch series, preserve source notices, freeze dependencies and tests, and execute all four revisions."
+      ],
+      "eval_status": "not_run",
+      "notes": [
+        "Native C implementation. Fixed source release has not been pinned in this research; the official ordinary fix commit is recorded."
+      ],
+      "notice_snapshot_sha256": "6ec915552e3744aea814b45fbe47dd900f9827dd64a97e59a8077ecabca0d4f5",
+      "source_package_access": {
+        "url": "https://launchpad.net/ubuntu/+archive/primary/+sourcefiles/ujson/5.11.0-3ubuntu0.1/ujson_5.11.0-3ubuntu0.1.dsc",
+        "resolved_url": "https://launchpadlibrarian.net/859271886/ujson_5.11.0-3ubuntu0.1.dsc",
+        "status": "public_metadata_retrieved",
+        "sha256": "322c59cff5749d1a1cde9302dc894d89c9c2b6fc664434c59dade3d1745b1db5",
+        "bytes": 2230,
+        "scope": "Signed source-package descriptor retrieved without credentials; source archive checksums are listed but source archives were not downloaded or executed.",
+        "signature_verified": false
+      },
+      "license_metadata_status": "Project license identifier; exact per-revision license notices still required before source/patch redistribution."
+    }
+  ],
+  "counts": {
+    "libraries": 21,
+    "commit_pairs_pinned": 5,
+    "published_version_backports_confirmed": 16,
+    "executed_evals": 0,
+    "backport_publications_last_six_months": 11,
+    "backport_publications_last_twelve_months": 13,
+    "public_source_descriptors_retrieved": 16
+  },
+  "cautions": [
+    "Five commit-pinned candidates still require independent runtime qualification. Sixteen distributor candidates prove publication, not benchmark readiness.",
+    "An older package version retaining its upstream number is not evidence that it remains vulnerable; distribution revision suffixes carry backported fixes.",
+    "No supply-chain malware release or malicious package publication is included. No vulnerability payloads or attack procedures are included.",
+    "Some related Ubuntu releases require a subscription; selected version rows use public entries. Public source retrieval is recorded separately where checked.",
+    "Downloaded PGP-signed source descriptors have not had their signatures validated; no source archives were downloaded or executed during metadata research."
+  ]
+}

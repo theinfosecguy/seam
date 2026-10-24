@@ -1,0 +1,47 @@
+{
+  "advisory_ids": [
+    "GHSA-4cwx-7wf7-3272"
+  ],
+  "asset_sha256": {
+    "LICENSE.upstream": "a6db8096b2707bc0102d256917d4d33f298ba36d8c3f25de067a2b5bb379db27",
+    "harness.toml": "5d14fab8a04108588e1ed660a903d0d961b7805babe5a8acfb3fc725911d2860",
+    "oracle.mjs": "3af631f0a3496ac0f2baf6998fb8462b4bd4c197fd42f1bf6c79d2db32ee12ff",
+    "reference.patch": "22f00192c4fecac3b3ed1c3267abf82a3a702ffe875b15fed67d622623a30d47",
+    "upstream.patch": "95a07ea97fbf9fa667970f9b02ea35a717b288a9cdfb5eebed63538cc0a18144"
+  },
+  "backport_implementation_paths": [
+    "lib/util/cache.js"
+  ],
+  "base_commit": "f9eba0ad9134e1c0977848476bba9d49734696e4",
+  "input_scope": "Experimental standalone inputs; no execution result is asserted.",
+  "instance_id": "undici-private-cache",
+  "maintainer_backport_commit": "9f10f1e9bfcc68b5c8b53d0459cb6d9562008fcd",
+  "maintainer_backport_parent": "3bf91ddb493e853957f3a58e155326a668ab8aef",
+  "package": "undici",
+  "patch_scope": "Implementation-only extracts of the maintainer commits; full commits can also change tests, metadata, or dependencies.",
+  "repository_url": "https://github.com/nodejs/undici.git",
+  "schema_version": 1,
+  "source_links": {
+    "base_commit": "https://github.com/nodejs/undici/commit/f9eba0ad9134e1c0977848476bba9d49734696e4",
+    "maintainer_backport_commit": "https://github.com/nodejs/undici/commit/9f10f1e9bfcc68b5c8b53d0459cb6d9562008fcd",
+    "upstream_fix_commit": "https://github.com/nodejs/undici/commit/4fe5bc5fefe5ac81a200fc8e1cf84b8bf8464451",
+    "upstream_parent_commit": "https://github.com/nodejs/undici/commit/10d93fc332f2c8c161982dec3833201de29891b5"
+  },
+  "source_snapshot_sha256": {
+    "maintainer_backport": "dbb4d20e8de632d233665a4078c2c85ee44eade34a55471bf3a72bff49f08bac",
+    "target_baseline": "d8f5941e0bf96b9c917c72605a9665c81f0dfb1daf798e76814f439bd6a829d0",
+    "upstream_fix": "4436d54b80747b8b0621237017fa05bc2e2865d828e29aa43fa9bca67fcc2711",
+    "upstream_parent": "de735866281d12a16d816faf1d5fad4e58d85496d8e03162c446ab26f55d1124"
+  },
+  "target_test_paths": [
+    "test/cache-interceptor/utils.js"
+  ],
+  "upstream_fix_commit": "4fe5bc5fefe5ac81a200fc8e1cf84b8bf8464451",
+  "upstream_implementation_paths": [
+    "lib/util/cache.js"
+  ],
+  "upstream_parent_commit": "10d93fc332f2c8c161982dec3833201de29891b5",
+  "upstream_test_paths": [
+    "test/cache-interceptor/utils.js"
+  ]
+}

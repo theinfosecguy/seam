@@ -1,0 +1,316 @@
+{
+  "normalization_schema_version": 1,
+  "cohort": "python-initial",
+  "case": "django-language-cache",
+  "role": "reference",
+  "interpretation": "Selected checks passed; broader coverage and maintainer equivalence are not established.",
+  "execution_context": {
+    "exit_code": 0,
+    "timed_out": false,
+    "log_truncated": false,
+    "wheel_sha256": "fb1afe7d89a0cfd5a50ae6094f1b1a356cb57e6d187beba597d542fe8903c35c",
+    "freeze_sha256": "f5fa5b227de18954e8c22fed4b881688a4e93d13428769fa01e21c19ade9c083",
+    "case_assets_unchanged": true,
+    "caller_unchanged": true
+  },
+  "report": {
+    "schema_version": 2,
+    "status": "verified",
+    "reason": "All four revisions met the frozen security and compatibility checks.",
+    "fix_commit": "c88b304cc2d90fc37d3bd1f5f3829706fa6c13bc",
+    "parent_commit": "08e4c0d8e7db6343567e7b02e25da8ea2226a7e0",
+    "target_commit": "f59aef2ee9b5c988fd4179d8f2835030bd76297c",
+    "image_id": "sha256:5c994eb5c630681a2141849869f60e16d5b69f55617067b910702c1795b9b0d2",
+    "oracle_sha256": "32e4af5b3a12e0fb1da25210f5588a5b34e508ed945ff5312446e2a5a4148cd5",
+    "config_sha256": "b9b1b6ab002ede782b66577eeae73392bdcd9966f81c6ed78faca2d5435b8159",
+    "patch_sha256": "48b5333fc990a9d3af337d8824431fe749f5f2fe13d3229f863c75ad7b14dc5e",
+    "attempts": 1,
+    "adaptation": "provided_patch",
+    "model_usage": {},
+    "reviewed_tests": null,
+    "reviewed_fixtures": {},
+    "reviewed_submodules": {},
+    "phases": [
+      {
+        "name": "upstream_parent",
+        "revision": "08e4c0d8e7db6343567e7b02e25da8ea2226a7e0",
+        "security": {
+          "returncode": 1,
+          "timed_out": false,
+          "truncated": false,
+          "duration_seconds": 2.5817,
+          "evidence_error": null,
+          "tests": [
+            {
+              "name": "test_security",
+              "classname": "oracle",
+              "outcome": "failed",
+              "expected_failure": false,
+              "original_message_sha256": "6672430db798e892291255adce67437ba8a65263384c6c734ecae63c67d169d6"
+            },
+            {
+              "name": "test_supported_language",
+              "classname": "oracle",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_unsupported_language",
+              "classname": "oracle",
+              "outcome": "passed",
+              "expected_failure": false
+            }
+          ],
+          "command_sha256": "d1f3fad909141ea07ec4228dfdcc10b17dbb3af37008f9c716d866df56011b8a",
+          "missing_modules": [],
+          "diagnostic_excerpts": [
+            "AssertionError: LANGUAGE_CACHE_KEYS_TRUNCATED",
+            "AssertionError: LANGUAGE_CACHE..."
+          ],
+          "stdout_sha256": "2a0e6c1464c166f942bade7681d73bdd1d1092f813877451e6debf11ce412897",
+          "stdout_bytes": 1030,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr_bytes": 0
+        },
+        "suite": {
+          "returncode": 0,
+          "timed_out": false,
+          "truncated": false,
+          "duration_seconds": 2.3434,
+          "evidence_error": null,
+          "tests": [
+            {
+              "name": "test_get_supported_language_variant_real",
+              "classname": "tests.i18n.tests.MiscTests",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_get_supported_language_variant_null",
+              "classname": "tests.i18n.tests.MiscTests",
+              "outcome": "passed",
+              "expected_failure": false
+            }
+          ],
+          "command_sha256": "18bb2dba904fc1061c1c569793719c77baad5e14a6396dddb4b72fa9f7b6ef95",
+          "missing_modules": [],
+          "diagnostic_excerpts": [],
+          "stdout_sha256": "68fb1d1b825a7069f126336d006d1dd78e5e0ac952904651631cd13f7c812100",
+          "stdout_bytes": 98,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr_bytes": 0
+        }
+      },
+      {
+        "name": "upstream_fix",
+        "revision": "c88b304cc2d90fc37d3bd1f5f3829706fa6c13bc",
+        "security": {
+          "returncode": 0,
+          "timed_out": false,
+          "truncated": false,
+          "duration_seconds": 2.5504,
+          "evidence_error": null,
+          "tests": [
+            {
+              "name": "test_security",
+              "classname": "oracle",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_supported_language",
+              "classname": "oracle",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_unsupported_language",
+              "classname": "oracle",
+              "outcome": "passed",
+              "expected_failure": false
+            }
+          ],
+          "command_sha256": "d1f3fad909141ea07ec4228dfdcc10b17dbb3af37008f9c716d866df56011b8a",
+          "missing_modules": [],
+          "diagnostic_excerpts": [],
+          "stdout_sha256": "704d54d2279476b018517267a8ebc5993f930e5bbc21c5a90a2ece64846fe69f",
+          "stdout_bytes": 98,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr_bytes": 0
+        },
+        "suite": {
+          "returncode": 0,
+          "timed_out": false,
+          "truncated": false,
+          "duration_seconds": 2.8536,
+          "evidence_error": null,
+          "tests": [
+            {
+              "name": "test_get_supported_language_variant_real",
+              "classname": "tests.i18n.tests.MiscTests",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_get_supported_language_variant_null",
+              "classname": "tests.i18n.tests.MiscTests",
+              "outcome": "passed",
+              "expected_failure": false
+            }
+          ],
+          "command_sha256": "18bb2dba904fc1061c1c569793719c77baad5e14a6396dddb4b72fa9f7b6ef95",
+          "missing_modules": [],
+          "diagnostic_excerpts": [],
+          "stdout_sha256": "68fb1d1b825a7069f126336d006d1dd78e5e0ac952904651631cd13f7c812100",
+          "stdout_bytes": 98,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr_bytes": 0
+        }
+      },
+      {
+        "name": "target_baseline",
+        "revision": "f59aef2ee9b5c988fd4179d8f2835030bd76297c",
+        "security": {
+          "returncode": 1,
+          "timed_out": false,
+          "truncated": false,
+          "duration_seconds": 2.4393,
+          "evidence_error": null,
+          "tests": [
+            {
+              "name": "test_security",
+              "classname": "oracle",
+              "outcome": "failed",
+              "expected_failure": false,
+              "original_message_sha256": "4e02a7fa2aae1f31d1148c9a27a1ebc3b76a192e6d70394705c22c9a78c249ab"
+            },
+            {
+              "name": "test_supported_language",
+              "classname": "oracle",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_unsupported_language",
+              "classname": "oracle",
+              "outcome": "passed",
+              "expected_failure": false
+            }
+          ],
+          "command_sha256": "d1f3fad909141ea07ec4228dfdcc10b17dbb3af37008f9c716d866df56011b8a",
+          "missing_modules": [],
+          "diagnostic_excerpts": [
+            "AssertionError: LANGUAGE_CACHE_KEYS_TRUNCATED",
+            "AssertionError: LANGUAGE_CACHE..."
+          ],
+          "stdout_sha256": "9962d9d3be7571b6dd294d09176ab0b50f3f3697b4f502adb84a0cdcb3da3a79",
+          "stdout_bytes": 1030,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr_bytes": 0
+        },
+        "suite": {
+          "returncode": 0,
+          "timed_out": false,
+          "truncated": false,
+          "duration_seconds": 3.2367,
+          "evidence_error": null,
+          "tests": [
+            {
+              "name": "test_get_supported_language_variant_real",
+              "classname": "tests.i18n.tests.MiscTests",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_get_supported_language_variant_null",
+              "classname": "tests.i18n.tests.MiscTests",
+              "outcome": "passed",
+              "expected_failure": false
+            }
+          ],
+          "command_sha256": "18bb2dba904fc1061c1c569793719c77baad5e14a6396dddb4b72fa9f7b6ef95",
+          "missing_modules": [],
+          "diagnostic_excerpts": [],
+          "stdout_sha256": "7cd0def610c08948d8972feff72a2d42b89ae25f95d5f6460f558867f48ee6b9",
+          "stdout_bytes": 98,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr_bytes": 0
+        }
+      },
+      {
+        "name": "backport",
+        "revision": "f59aef2ee9b5c988fd4179d8f2835030bd76297c",
+        "security": {
+          "returncode": 0,
+          "timed_out": false,
+          "truncated": false,
+          "duration_seconds": 2.8311,
+          "evidence_error": null,
+          "tests": [
+            {
+              "name": "test_security",
+              "classname": "oracle",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_supported_language",
+              "classname": "oracle",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_unsupported_language",
+              "classname": "oracle",
+              "outcome": "passed",
+              "expected_failure": false
+            }
+          ],
+          "command_sha256": "d1f3fad909141ea07ec4228dfdcc10b17dbb3af37008f9c716d866df56011b8a",
+          "missing_modules": [],
+          "diagnostic_excerpts": [],
+          "stdout_sha256": "6cea88752b3e58ae5cee56ff3b1b13eab34117918d6bad9661194c031e2dc157",
+          "stdout_bytes": 98,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr_bytes": 0
+        },
+        "suite": {
+          "returncode": 0,
+          "timed_out": false,
+          "truncated": false,
+          "duration_seconds": 2.8998,
+          "evidence_error": null,
+          "tests": [
+            {
+              "name": "test_get_supported_language_variant_real",
+              "classname": "tests.i18n.tests.MiscTests",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_get_supported_language_variant_null",
+              "classname": "tests.i18n.tests.MiscTests",
+              "outcome": "passed",
+              "expected_failure": false
+            }
+          ],
+          "command_sha256": "18bb2dba904fc1061c1c569793719c77baad5e14a6396dddb4b72fa9f7b6ef95",
+          "missing_modules": [],
+          "diagnostic_excerpts": [],
+          "stdout_sha256": "ed4e09caf2c123cc998a4a054db510aefa9991486486560067423d72e1530bca",
+          "stdout_bytes": 98,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr_bytes": 0
+        }
+      }
+    ]
+  },
+  "original_report_sha256": "751e72a96144a9caa9355ef7dcd08a025152b39f78186a1da35c2a8ba6720814",
+  "original_command_record_sha256": "ce7b2bbe78c02d89c3471d7a57d9e669a49c361eef8968135f5baa682dba8cd8",
+  "candidate_patch_inputs": [
+    {
+      "original_filename": "attempt-1.patch",
+      "sha256": "af514b4988ab5b51911b8414f1b0e24f6832e99a4c9c199a57756c0188b6ca10"
+    }
+  ]
+}

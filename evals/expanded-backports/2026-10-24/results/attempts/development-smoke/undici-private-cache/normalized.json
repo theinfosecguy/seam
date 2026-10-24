@@ -1,0 +1,30 @@
+{
+  "normalization_schema_version": 1,
+  "cohort": "development-smoke",
+  "case": "undici-private-cache",
+  "role": "probe",
+  "interpretation": "Setup, application or evidence remained inconclusive; this alone is not a confirmed harness defect.",
+  "execution_context": {},
+  "report": {
+    "schema_version": 2,
+    "status": "inconclusive",
+    "reason": "Run could not complete: Git checkout failed (exit status 128): fatal: reference is not a tree: 10d93fc332f2c8c161982dec3833201de29891b5\n",
+    "fix_commit": "4fe5bc5fefe5ac81a200fc8e1cf84b8bf8464451",
+    "parent_commit": "10d93fc332f2c8c161982dec3833201de29891b5",
+    "target_commit": "f9eba0ad9134e1c0977848476bba9d49734696e4",
+    "image_id": null,
+    "oracle_sha256": "4100be6d6dbaed04cb191cff3f869ce0139e8626f50aca3fbb434b305574a1c6",
+    "config_sha256": "6445c594eae6aebcaa8d564d2def7ad320bf0fbfbd22bd2b291b09f0a3d6013d",
+    "patch_sha256": null,
+    "attempts": 0,
+    "adaptation": "none",
+    "model_usage": {},
+    "reviewed_tests": null,
+    "reviewed_fixtures": {},
+    "reviewed_submodules": null,
+    "phases": []
+  },
+  "original_report_sha256": "162d1eceb706ffb78ddc6bcd8c760c49ca5b262f5d528395903a683f3d2ec2df",
+  "original_command_record_sha256": null,
+  "candidate_patch_inputs": []
+}

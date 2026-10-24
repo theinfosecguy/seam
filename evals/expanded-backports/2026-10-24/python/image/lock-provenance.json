@@ -1,0 +1,6 @@
+{
+  "original_execution_lock_sha256": "73f0c79f8623d5c25300fbe6921ee6e51d33687171177a293b1bf5f73389a1a7",
+  "public_lock_sha256": "f514f095466c23623a37dce165c2ef32e9ae0937cecbbcf2c2c24fb974368a90",
+  "transformation": "Remove comments only, including host-local generator command. Dependency pins and hashes unchanged.",
+  "rebuild_recipe_qualified": false
+}

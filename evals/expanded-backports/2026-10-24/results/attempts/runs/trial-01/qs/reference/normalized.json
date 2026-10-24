@@ -1,0 +1,88 @@
+{
+  "normalization_schema_version": 1,
+  "cohort": "development-wheel-initial",
+  "case": "qs",
+  "role": "reference",
+  "interpretation": "Setup, application or evidence remained inconclusive; this alone is not a confirmed harness defect.",
+  "execution_context": {
+    "exit_code": 2,
+    "timed_out": false,
+    "log_truncated": false,
+    "wheel_sha256": "ab3ca1710d00bc0d488146e5116c18f59b1c766f3a59ef2fac0189e1658053ef",
+    "case_assets_unchanged": true,
+    "caller_unchanged": true
+  },
+  "report": {
+    "schema_version": 2,
+    "status": "inconclusive",
+    "reason": "Verification prerequisites were not established: upstream_parent security: test execution contained errors or skipped tests",
+    "fix_commit": "8b4cc14cda94a5c89341b77e5fe435ec6c41be2d",
+    "parent_commit": "ad63d36ce18cd2c315899ac1e8193de22be08cd8",
+    "target_commit": "02ca358155297dc68fcc4c2ac312c26e10524e47",
+    "image_id": "sha256:52f40f96867d88d68ced00067878ab5b917744d17f5649b82506f43e72d88cba",
+    "oracle_sha256": "7be0c63408b17c05eac2e5caa108beaafc177a384077904b728fcf4cf9eae93a",
+    "config_sha256": "f86198725656fb45e4a7435dec8003b1f8c64374a006dda129b0a5352d93affa",
+    "patch_sha256": null,
+    "attempts": 0,
+    "adaptation": "none",
+    "model_usage": {},
+    "reviewed_tests": null,
+    "reviewed_fixtures": {},
+    "reviewed_submodules": {},
+    "phases": [
+      {
+        "name": "upstream_parent",
+        "revision": "ad63d36ce18cd2c315899ac1e8193de22be08cd8",
+        "security": {
+          "returncode": 1,
+          "timed_out": false,
+          "truncated": false,
+          "duration_seconds": 0.5936,
+          "evidence_error": null,
+          "tests": [
+            {
+              "name": "/oracle/oracle.mjs",
+              "classname": "/oracle/oracle.mjs::test",
+              "outcome": "error",
+              "expected_failure": false,
+              "original_message_sha256": "7f55e0223987df58d58dfe4f24145416b95cc6fc1b37a5929601fff8efc754ba"
+            }
+          ],
+          "command_sha256": "e3c5dc62167de3d1683b6bbce3ba4ae0b4a15495b26c1c9ccdb8ad81eb5d239e",
+          "missing_modules": [],
+          "diagnostic_excerpts": [],
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr_bytes": 0
+        },
+        "suite": {
+          "returncode": 1,
+          "timed_out": false,
+          "truncated": false,
+          "duration_seconds": 0.5727,
+          "evidence_error": null,
+          "tests": [
+            {
+              "name": "/work/repo/test/parse.js",
+              "classname": "/work/repo/test/parse.js::test",
+              "outcome": "error",
+              "expected_failure": false,
+              "original_message_sha256": "7f55e0223987df58d58dfe4f24145416b95cc6fc1b37a5929601fff8efc754ba"
+            }
+          ],
+          "command_sha256": "0f6cddf127f529937f158871356b1cd21a44430fc580267ac433d13fd1ca95b6",
+          "missing_modules": [],
+          "diagnostic_excerpts": [],
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr_bytes": 0
+        }
+      }
+    ]
+  },
+  "original_report_sha256": "87a846820846190c3395c0b3bcc8840ca1cba54be5bbb1605a45c6a96dd44e47",
+  "original_command_record_sha256": "5068b144f064cb0c39a23a8d2bcfa89ac3a8db612f14e557ffdfc3c71e14b73d",
+  "candidate_patch_inputs": []
+}

@@ -1,0 +1,2210 @@
+[
+  {
+    "attempt": "reference-attempt-01",
+    "mode": "reference_setup_failure",
+    "cases": [],
+    "reason": "Container root could not write the image source tree after all capabilities were dropped; no target tests executed."
+  },
+  {
+    "attempt": "reference-attempt-02",
+    "mode": "maintainer_reference",
+    "cases": [
+      {
+        "id": "1 parses a single nested string",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "10 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "100 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "101 should be strictly equal",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "102 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "103 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "104 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "105 with arrayLimit 20 + array indices: null then empty string works",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "106 with arrayLimit 0 + array brackets: null then empty string works",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "107 with arrayLimit 20 + array indices: empty string then null works",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "108 with arrayLimit 0 + array brackets: empty string then null works",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "109 array brackets: empty strings work",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "11 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "110 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "111 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "112 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "113 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "114 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "115 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "116 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "117 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "118 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "119 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "12 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "120 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "121 should not throw",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "122 should not throw",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "123 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "124 should not throw",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "125 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "126 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "127 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "128 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "129 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "13 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "130 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "131 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "132 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "133 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "134 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "135 parseArrays:false, indices case is not an array",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "136 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "137 parseArrays:false, empty brackets case is not an array",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "138 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "139 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "14 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "140 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "141 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "142 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "143 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "144 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "145 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "146 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "147 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "148 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "149 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "15 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "150 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "151 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "152 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "153 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "154 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "155 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "156 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "157 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "158 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "159 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "16 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "160 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "161 should not throw",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "162 parsed has \"foo\" property",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "163 should be strictly equal",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "164 should be strictly equal",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "165 should be strictly equal",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "166 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "167 should not throw",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "168 parsed has \"foo\" property",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "169 parsed is 5000 properties deep",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "17 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "170 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "171 result has \"a\" property",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "172 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "173 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "174 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "175 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "176 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "177 bare \"toString\" results in {}",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "178 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "179 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "18 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "180 bare \"toString\" results in { toString: \"\" }",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "181 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "182 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "183 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "184 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "185 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "186 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "187 can add keys to objects",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "188 can not overwrite prototype",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "189 can overwrite prototype with allowPrototypes true",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "19 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "190 can overwrite prototype with plainObjects true",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "191 silent [[Prototype]] payload",
+        "before": "fail",
+        "after": "pass"
+      },
+      {
+        "id": "192 silent [[Prototype]] payload: plain objects",
+        "before": "fail",
+        "after": "pass"
+      },
+      {
+        "id": "193 is not an array",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "194 is not instanceof an array",
+        "before": "fail",
+        "after": "pass"
+      },
+      {
+        "id": "195 should be deeply equivalent",
+        "before": "fail",
+        "after": "pass"
+      },
+      {
+        "id": "196 stringifies as a non-array",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "197 hidden values",
+        "before": "fail",
+        "after": "pass"
+      },
+      {
+        "id": "198 hidden values: plain objects",
+        "before": "fail",
+        "after": "pass"
+      },
+      {
+        "id": "199 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "2 parses a double nested string",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "20 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "200 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "201 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "202 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "203 should be strictly equal",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "204 should throw",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "205 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "206 should throw",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "207 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "208 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "209 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "21 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "210 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "211 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "212 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "213 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "214 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "215 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "216 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "217 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "218 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "219 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "22 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "23 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "24 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "25 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "26 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "27 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "28 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "29 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "3 defaults to a depth of 5",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "30 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "31 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "32 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "33 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "34 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "35 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "36 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "37 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "38 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "39 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "4 parses a simple array",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "40 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "41 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "42 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "43 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "44 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "45 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "46 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "47 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "48 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "49 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "5 supports keys that begin with a number",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "50 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "51 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "52 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "53 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "54 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "55 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "56 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "57 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "58 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "59 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "6 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "60 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "61 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "62 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "63 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "64 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "65 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "66 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "67 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "68 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "69 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "7 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "70 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "71 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "72 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "73 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "74 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "75 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "76 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "77 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "78 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "79 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "8 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "80 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "81 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "82 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "83 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "84 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "85 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "86 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "87 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "88 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "89 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "9 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "90 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "91 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "92 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "93 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "94 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "95 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "96 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "97 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "98 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "99 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      }
+    ]
+  },
+  {
+    "attempt": "negative-attempt-01",
+    "mode": "unfixed_negative",
+    "cases": [
+      {
+        "id": "1 parses a single nested string",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "10 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "100 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "101 should be strictly equal",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "102 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "103 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "104 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "105 with arrayLimit 20 + array indices: null then empty string works",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "106 with arrayLimit 0 + array brackets: null then empty string works",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "107 with arrayLimit 20 + array indices: empty string then null works",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "108 with arrayLimit 0 + array brackets: empty string then null works",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "109 array brackets: empty strings work",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "11 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "110 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "111 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "112 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "113 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "114 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "115 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "116 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "117 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "118 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "119 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "12 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "120 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "121 should not throw",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "122 should not throw",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "123 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "124 should not throw",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "125 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "126 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "127 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "128 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "129 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "13 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "130 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "131 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "132 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "133 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "134 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "135 parseArrays:false, indices case is not an array",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "136 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "137 parseArrays:false, empty brackets case is not an array",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "138 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "139 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "14 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "140 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "141 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "142 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "143 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "144 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "145 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "146 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "147 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "148 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "149 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "15 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "150 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "151 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "152 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "153 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "154 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "155 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "156 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "157 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "158 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "159 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "16 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "160 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "161 should not throw",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "162 parsed has \"foo\" property",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "163 should be strictly equal",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "164 should be strictly equal",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "165 should be strictly equal",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "166 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "167 should not throw",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "168 parsed has \"foo\" property",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "169 parsed is 5000 properties deep",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "17 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "170 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "171 result has \"a\" property",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "172 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "173 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "174 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "175 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "176 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "177 bare \"toString\" results in {}",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "178 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "179 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "18 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "180 bare \"toString\" results in { toString: \"\" }",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "181 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "182 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "183 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "184 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "185 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "186 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "187 can add keys to objects",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "188 can not overwrite prototype",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "189 can overwrite prototype with allowPrototypes true",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "19 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "190 can overwrite prototype with plainObjects true",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "191 silent [[Prototype]] payload",
+        "before": "fail",
+        "after": "fail"
+      },
+      {
+        "id": "192 silent [[Prototype]] payload: plain objects",
+        "before": "fail",
+        "after": "fail"
+      },
+      {
+        "id": "193 is not an array",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "194 is not instanceof an array",
+        "before": "fail",
+        "after": "fail"
+      },
+      {
+        "id": "195 should be deeply equivalent",
+        "before": "fail",
+        "after": "fail"
+      },
+      {
+        "id": "196 stringifies as a non-array",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "197 hidden values",
+        "before": "fail",
+        "after": "fail"
+      },
+      {
+        "id": "198 hidden values: plain objects",
+        "before": "fail",
+        "after": "fail"
+      },
+      {
+        "id": "199 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "2 parses a double nested string",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "20 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "200 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "201 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "202 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "203 should be strictly equal",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "204 should throw",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "205 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "206 should throw",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "207 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "208 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "209 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "21 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "210 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "211 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "212 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "213 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "214 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "215 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "216 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "217 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "218 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "219 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "22 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "23 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "24 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "25 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "26 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "27 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "28 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "29 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "3 defaults to a depth of 5",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "30 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "31 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "32 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "33 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "34 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "35 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "36 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "37 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "38 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "39 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "4 parses a simple array",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "40 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "41 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "42 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "43 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "44 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "45 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "46 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "47 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "48 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "49 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "5 supports keys that begin with a number",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "50 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "51 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "52 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "53 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "54 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "55 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "56 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "57 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "58 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "59 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "6 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "60 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "61 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "62 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "63 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "64 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "65 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "66 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "67 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "68 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "69 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "7 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "70 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "71 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "72 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "73 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "74 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "75 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "76 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "77 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "78 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "79 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "8 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "80 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "81 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "82 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "83 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "84 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "85 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "86 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "87 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "88 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "89 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "9 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "90 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "91 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "92 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "93 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "94 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "95 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "96 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "97 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "98 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      },
+      {
+        "id": "99 should be deeply equivalent",
+        "before": "pass",
+        "after": "pass"
+      }
+    ]
+  }
+]

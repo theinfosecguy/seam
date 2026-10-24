@@ -1,0 +1,2477 @@
+{
+  "normalization_schema_version": 1,
+  "cohort": "initial-npm-20",
+  "case": "serve-static",
+  "role": "reference",
+  "interpretation": "A selected check failed; inspect the phase evidence and oracle scope.",
+  "execution_context": {
+    "exit_code": 1,
+    "timed_out": false,
+    "log_truncated": false,
+    "wheel_sha256": "fb1afe7d89a0cfd5a50ae6094f1b1a356cb57e6d187beba597d542fe8903c35c",
+    "driver_sha256": "44efbc782d4cbbebb7ecec44e491a9941e5dc2cdd1554eaf7616a307020ec306",
+    "freeze_sha256": "f5fa5b227de18954e8c22fed4b881688a4e93d13428769fa01e21c19ade9c083",
+    "case_assets_unchanged": true,
+    "caller_unchanged": true
+  },
+  "report": {
+    "schema_version": 2,
+    "status": "failed",
+    "reason": "backport: existing project suite failed",
+    "fix_commit": "ce730896fddce1588111d9ef6fdf20896de5c6fa",
+    "parent_commit": "d79edcecd7875329f7d0648412cf20ec7315977b",
+    "target_commit": "9b5a12a76f4d70530d2d2a8c7742e9158ed3c0a4",
+    "image_id": "sha256:52f40f96867d88d68ced00067878ab5b917744d17f5649b82506f43e72d88cba",
+    "oracle_sha256": "fca237c7cd9cd01d17f8451998f03eecd3b6b7f48efb3f9cd634a334d4407bbb",
+    "config_sha256": "c7711caf3a44adfc53c6432c1fb61b5974bb4420444868b09f142f9316ffc658",
+    "patch_sha256": null,
+    "attempts": 1,
+    "adaptation": "provided_patch",
+    "model_usage": {},
+    "reviewed_tests": null,
+    "reviewed_fixtures": {},
+    "reviewed_submodules": {},
+    "phases": [
+      {
+        "name": "upstream_parent",
+        "revision": "d79edcecd7875329f7d0648412cf20ec7315977b",
+        "security": {
+          "returncode": 1,
+          "timed_out": false,
+          "truncated": false,
+          "duration_seconds": 1.3434,
+          "evidence_error": null,
+          "tests": [
+            {
+              "name": "test_security",
+              "classname": "/oracle/oracle.mjs::test",
+              "outcome": "failed",
+              "expected_failure": false,
+              "original_message_sha256": "4f1ec26e1e260d5346bcc486191fa0ef32ec72efcf8a088a74c3bce5b9c1651b"
+            },
+            {
+              "name": "test_redirect_location",
+              "classname": "/oracle/oracle.mjs::test",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_file_content",
+              "classname": "/oracle/oracle.mjs::test",
+              "outcome": "passed",
+              "expected_failure": false
+            }
+          ],
+          "command_sha256": "664f6c31a9f7ae654124b3b1946f91597b3e760d6f40fb13c87f35a1c359b58b",
+          "missing_modules": [],
+          "diagnostic_excerpts": [
+            "AssertionError [ERR_ASSERTION]: STATIC_REDIRECT_HAS_NO_LINK"
+          ],
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 0,
+          "stderr_sha256": "5ba3468b4adc84244d7acd9353bc439931f9ed7737012cd16cee05ea95efd7dd",
+          "stderr_bytes": 848
+        },
+        "suite": {
+          "returncode": 0,
+          "timed_out": false,
+          "truncated": false,
+          "duration_seconds": 1.5048,
+          "evidence_error": null,
+          "tests": [
+            {
+              "name": "should require root path",
+              "classname": "/work/repo/test/test.js::serveStatic() basic operations",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should require root path to be string",
+              "classname": "/work/repo/test/test.js::serveStatic() basic operations",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should serve static files",
+              "classname": "/work/repo/test/test.js::serveStatic() basic operations",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should support nesting",
+              "classname": "/work/repo/test/test.js::serveStatic() basic operations",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should set Content-Type",
+              "classname": "/work/repo/test/test.js::serveStatic() basic operations",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should set Last-Modified",
+              "classname": "/work/repo/test/test.js::serveStatic() basic operations",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should default max-age=0",
+              "classname": "/work/repo/test/test.js::serveStatic() basic operations",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should support urlencoded pathnames",
+              "classname": "/work/repo/test/test.js::serveStatic() basic operations",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should not choke on auth-looking URL",
+              "classname": "/work/repo/test/test.js::serveStatic() basic operations",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should support index.html",
+              "classname": "/work/repo/test/test.js::serveStatic() basic operations",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should support ../",
+              "classname": "/work/repo/test/test.js::serveStatic() basic operations",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should support HEAD",
+              "classname": "/work/repo/test/test.js::serveStatic() basic operations",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should skip POST requests",
+              "classname": "/work/repo/test/test.js::serveStatic() basic operations",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should support conditional requests",
+              "classname": "/work/repo/test/test.js::serveStatic() basic operations",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should support precondition checks",
+              "classname": "/work/repo/test/test.js::serveStatic() basic operations",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should serve zero-length files",
+              "classname": "/work/repo/test/test.js::serveStatic() basic operations",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should ignore hidden files",
+              "classname": "/work/repo/test/test.js::serveStatic() basic operations",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should be served with \".\"",
+              "classname": "/work/repo/test/test.js::serveStatic() current dir",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should not include Accept-Ranges",
+              "classname": "/work/repo/test/test.js::serveStatic() acceptRanges when false",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should ignore Rage request header",
+              "classname": "/work/repo/test/test.js::serveStatic() acceptRanges when false",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should include Accept-Ranges",
+              "classname": "/work/repo/test/test.js::serveStatic() acceptRanges when true",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should obey Rage request header",
+              "classname": "/work/repo/test/test.js::serveStatic() acceptRanges when true",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should not include Cache-Control",
+              "classname": "/work/repo/test/test.js::serveStatic() cacheControl when false",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should ignore maxAge",
+              "classname": "/work/repo/test/test.js::serveStatic() cacheControl when false",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should include Cache-Control",
+              "classname": "/work/repo/test/test.js::serveStatic() cacheControl when true",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should be not be enabled by default",
+              "classname": "/work/repo/test/test.js::serveStatic() extensions",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should be configurable",
+              "classname": "/work/repo/test/test.js::serveStatic() extensions",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should support disabling extensions",
+              "classname": "/work/repo/test/test.js::serveStatic() extensions",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should support fallbacks",
+              "classname": "/work/repo/test/test.js::serveStatic() extensions",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should 404 if nothing found",
+              "classname": "/work/repo/test/test.js::serveStatic() extensions",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should default to true",
+              "classname": "/work/repo/test/test.js::serveStatic() fallthrough",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should fall-through when OPTIONS request",
+              "classname": "/work/repo/test/test.js::serveStatic() fallthrough when true",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should fall-through when URL malformed",
+              "classname": "/work/repo/test/test.js::serveStatic() fallthrough when true",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should fall-through when traversing past root",
+              "classname": "/work/repo/test/test.js::serveStatic() fallthrough when true",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should fall-through when URL too long",
+              "classname": "/work/repo/test/test.js::serveStatic() fallthrough when true",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should fall-through when directory",
+              "classname": "/work/repo/test/test.js::serveStatic() fallthrough when true with redirect: true",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should redirect when directory without slash",
+              "classname": "/work/repo/test/test.js::serveStatic() fallthrough when true with redirect: true",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should fall-through when directory",
+              "classname": "/work/repo/test/test.js::serveStatic() fallthrough when true with redirect: false",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should fall-through when directory without slash",
+              "classname": "/work/repo/test/test.js::serveStatic() fallthrough when true with redirect: false",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should 405 when OPTIONS request",
+              "classname": "/work/repo/test/test.js::serveStatic() fallthrough when false",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should 400 when URL malformed",
+              "classname": "/work/repo/test/test.js::serveStatic() fallthrough when false",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should 403 when traversing past root",
+              "classname": "/work/repo/test/test.js::serveStatic() fallthrough when false",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should 404 when URL too long",
+              "classname": "/work/repo/test/test.js::serveStatic() fallthrough when false",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should 404 when directory",
+              "classname": "/work/repo/test/test.js::serveStatic() fallthrough when false with redirect: true",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should redirect when directory without slash",
+              "classname": "/work/repo/test/test.js::serveStatic() fallthrough when false with redirect: true",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should 404 when directory",
+              "classname": "/work/repo/test/test.js::serveStatic() fallthrough when false with redirect: false",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should 404 when directory without slash",
+              "classname": "/work/repo/test/test.js::serveStatic() fallthrough when false with redirect: false",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should be served when dotfiles: \"allow\" is given",
+              "classname": "/work/repo/test/test.js::serveStatic() hidden files",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should default to false",
+              "classname": "/work/repo/test/test.js::serveStatic() immutable",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should set immutable directive in Cache-Control",
+              "classname": "/work/repo/test/test.js::serveStatic() immutable",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should not include Last-Modifed",
+              "classname": "/work/repo/test/test.js::serveStatic() lastModified when false",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should include Last-Modifed",
+              "classname": "/work/repo/test/test.js::serveStatic() lastModified when true",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should accept string",
+              "classname": "/work/repo/test/test.js::serveStatic() maxAge",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should be reasonable when infinite",
+              "classname": "/work/repo/test/test.js::serveStatic() maxAge",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should redirect directories",
+              "classname": "/work/repo/test/test.js::serveStatic() redirect",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should include HTML link",
+              "classname": "/work/repo/test/test.js::serveStatic() redirect",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should redirect directories with query string",
+              "classname": "/work/repo/test/test.js::serveStatic() redirect",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should not redirect to protocol-relative locations",
+              "classname": "/work/repo/test/test.js::serveStatic() redirect",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should ensure redirect URL is properly encoded",
+              "classname": "/work/repo/test/test.js::serveStatic() redirect",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should respond with default Content-Security-Policy",
+              "classname": "/work/repo/test/test.js::serveStatic() redirect",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should not redirect incorrectly",
+              "classname": "/work/repo/test/test.js::serveStatic() redirect",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should disable redirect",
+              "classname": "/work/repo/test/test.js::serveStatic() redirect when false",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should reject non-functions",
+              "classname": "/work/repo/test/test.js::serveStatic() setHeaders",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should get called when sending file",
+              "classname": "/work/repo/test/test.js::serveStatic() setHeaders",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should not get called on 404",
+              "classname": "/work/repo/test/test.js::serveStatic() setHeaders",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should not get called on redirect",
+              "classname": "/work/repo/test/test.js::serveStatic() setHeaders",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should 404 for any file",
+              "classname": "/work/repo/test/test.js::serveStatic() when non-existent root path",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should not allow traversal",
+              "classname": "/work/repo/test/test.js::serveStatic() when non-existent root path",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should catch urlencoded ../",
+              "classname": "/work/repo/test/test.js::serveStatic() when traversing past root",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should not allow root path disclosure",
+              "classname": "/work/repo/test/test.js::serveStatic() when traversing past root",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should support byte ranges",
+              "classname": "/work/repo/test/test.js::serveStatic() when request has \"Range\" header",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should be inclusive",
+              "classname": "/work/repo/test/test.js::serveStatic() when request has \"Range\" header",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should set Content-Range",
+              "classname": "/work/repo/test/test.js::serveStatic() when request has \"Range\" header",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should support -n",
+              "classname": "/work/repo/test/test.js::serveStatic() when request has \"Range\" header",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should support n-",
+              "classname": "/work/repo/test/test.js::serveStatic() when request has \"Range\" header",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should respond with 206 \"Partial Content\"",
+              "classname": "/work/repo/test/test.js::serveStatic() when request has \"Range\" header",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should set Content-Length to the # of octets transferred",
+              "classname": "/work/repo/test/test.js::serveStatic() when request has \"Range\" header",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "is taken to be equal to one less than the current length",
+              "classname": "/work/repo/test/test.js::serveStatic() when request has \"Range\" header when last-byte-pos of the range is greater than current length",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should adapt the Content-Length accordingly",
+              "classname": "/work/repo/test/test.js::serveStatic() when request has \"Range\" header when last-byte-pos of the range is greater than current length",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should respond with 416",
+              "classname": "/work/repo/test/test.js::serveStatic() when request has \"Range\" header when the first- byte-pos of the range is greater than the current length",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should include a Content-Range header of complete length",
+              "classname": "/work/repo/test/test.js::serveStatic() when request has \"Range\" header when the first- byte-pos of the range is greater than the current length",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should respond with 200 and the entire contents",
+              "classname": "/work/repo/test/test.js::serveStatic() when request has \"Range\" header when syntactically invalid",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should redirect correctly",
+              "classname": "/work/repo/test/test.js::serveStatic() when index at mount point",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should redirect relative to the originalUrl",
+              "classname": "/work/repo/test/test.js::serveStatic() when mounted",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should not choke on auth-looking URL",
+              "classname": "/work/repo/test/test.js::serveStatic() when mounted",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should load the file when on trailing slash",
+              "classname": "/work/repo/test/test.js::serveStatic() when mounted \"root\" as a file",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should 404 when trailing slash",
+              "classname": "/work/repo/test/test.js::serveStatic() when mounted \"root\" as a file",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should respond as-is",
+              "classname": "/work/repo/test/test.js::serveStatic() when responding non-2xx or 304",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should next() on directory",
+              "classname": "/work/repo/test/test.js::serveStatic() when index file serving disabled",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should redirect to trailing slash",
+              "classname": "/work/repo/test/test.js::serveStatic() when index file serving disabled",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should next() on mount point",
+              "classname": "/work/repo/test/test.js::serveStatic() when index file serving disabled",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should redirect to trailing slash mount point",
+              "classname": "/work/repo/test/test.js::serveStatic() when index file serving disabled",
+              "outcome": "passed",
+              "expected_failure": false
+            }
+          ],
+          "command_sha256": "aa14d3df405ead79fd0c8bb736e17609efcbef9949e88a0c301f644a3cbe8bb8",
+          "missing_modules": [],
+          "diagnostic_excerpts": [],
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr_bytes": 0
+        }
+      },
+      {
+        "name": "upstream_fix",
+        "revision": "ce730896fddce1588111d9ef6fdf20896de5c6fa",
+        "security": {
+          "returncode": 0,
+          "timed_out": false,
+          "truncated": false,
+          "duration_seconds": 1.0373,
+          "evidence_error": null,
+          "tests": [
+            {
+              "name": "test_security",
+              "classname": "/oracle/oracle.mjs::test",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_redirect_location",
+              "classname": "/oracle/oracle.mjs::test",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_file_content",
+              "classname": "/oracle/oracle.mjs::test",
+              "outcome": "passed",
+              "expected_failure": false
+            }
+          ],
+          "command_sha256": "5bad6c407b9c4a0889c73f6ed2fbd9e2984813d1875ea089a04df66ae1dcaaed",
+          "missing_modules": [],
+          "diagnostic_excerpts": [],
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 0,
+          "stderr_sha256": "20aa6b59494dd3dbead5b644c38deb558308b942147aeda5ed673017fe0ba795",
+          "stderr_bytes": 224
+        },
+        "suite": {
+          "returncode": 0,
+          "timed_out": false,
+          "truncated": false,
+          "duration_seconds": 6.6505,
+          "evidence_error": null,
+          "tests": [
+            {
+              "name": "should require root path",
+              "classname": "/work/repo/test/test.js::serveStatic() basic operations",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should require root path to be string",
+              "classname": "/work/repo/test/test.js::serveStatic() basic operations",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should serve static files",
+              "classname": "/work/repo/test/test.js::serveStatic() basic operations",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should support nesting",
+              "classname": "/work/repo/test/test.js::serveStatic() basic operations",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should set Content-Type",
+              "classname": "/work/repo/test/test.js::serveStatic() basic operations",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should set Last-Modified",
+              "classname": "/work/repo/test/test.js::serveStatic() basic operations",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should default max-age=0",
+              "classname": "/work/repo/test/test.js::serveStatic() basic operations",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should support urlencoded pathnames",
+              "classname": "/work/repo/test/test.js::serveStatic() basic operations",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should not choke on auth-looking URL",
+              "classname": "/work/repo/test/test.js::serveStatic() basic operations",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should support index.html",
+              "classname": "/work/repo/test/test.js::serveStatic() basic operations",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should support ../",
+              "classname": "/work/repo/test/test.js::serveStatic() basic operations",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should support HEAD",
+              "classname": "/work/repo/test/test.js::serveStatic() basic operations",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should skip POST requests",
+              "classname": "/work/repo/test/test.js::serveStatic() basic operations",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should support conditional requests",
+              "classname": "/work/repo/test/test.js::serveStatic() basic operations",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should support precondition checks",
+              "classname": "/work/repo/test/test.js::serveStatic() basic operations",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should serve zero-length files",
+              "classname": "/work/repo/test/test.js::serveStatic() basic operations",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should ignore hidden files",
+              "classname": "/work/repo/test/test.js::serveStatic() basic operations",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should be served with \".\"",
+              "classname": "/work/repo/test/test.js::serveStatic() current dir",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should not include Accept-Ranges",
+              "classname": "/work/repo/test/test.js::serveStatic() acceptRanges when false",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should ignore Rage request header",
+              "classname": "/work/repo/test/test.js::serveStatic() acceptRanges when false",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should include Accept-Ranges",
+              "classname": "/work/repo/test/test.js::serveStatic() acceptRanges when true",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should obey Rage request header",
+              "classname": "/work/repo/test/test.js::serveStatic() acceptRanges when true",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should not include Cache-Control",
+              "classname": "/work/repo/test/test.js::serveStatic() cacheControl when false",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should ignore maxAge",
+              "classname": "/work/repo/test/test.js::serveStatic() cacheControl when false",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should include Cache-Control",
+              "classname": "/work/repo/test/test.js::serveStatic() cacheControl when true",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should be not be enabled by default",
+              "classname": "/work/repo/test/test.js::serveStatic() extensions",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should be configurable",
+              "classname": "/work/repo/test/test.js::serveStatic() extensions",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should support disabling extensions",
+              "classname": "/work/repo/test/test.js::serveStatic() extensions",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should support fallbacks",
+              "classname": "/work/repo/test/test.js::serveStatic() extensions",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should 404 if nothing found",
+              "classname": "/work/repo/test/test.js::serveStatic() extensions",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should default to true",
+              "classname": "/work/repo/test/test.js::serveStatic() fallthrough",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should fall-through when OPTIONS request",
+              "classname": "/work/repo/test/test.js::serveStatic() fallthrough when true",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should fall-through when URL malformed",
+              "classname": "/work/repo/test/test.js::serveStatic() fallthrough when true",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should fall-through when traversing past root",
+              "classname": "/work/repo/test/test.js::serveStatic() fallthrough when true",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should fall-through when URL too long",
+              "classname": "/work/repo/test/test.js::serveStatic() fallthrough when true",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should fall-through when directory",
+              "classname": "/work/repo/test/test.js::serveStatic() fallthrough when true with redirect: true",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should redirect when directory without slash",
+              "classname": "/work/repo/test/test.js::serveStatic() fallthrough when true with redirect: true",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should fall-through when directory",
+              "classname": "/work/repo/test/test.js::serveStatic() fallthrough when true with redirect: false",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should fall-through when directory without slash",
+              "classname": "/work/repo/test/test.js::serveStatic() fallthrough when true with redirect: false",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should 405 when OPTIONS request",
+              "classname": "/work/repo/test/test.js::serveStatic() fallthrough when false",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should 400 when URL malformed",
+              "classname": "/work/repo/test/test.js::serveStatic() fallthrough when false",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should 403 when traversing past root",
+              "classname": "/work/repo/test/test.js::serveStatic() fallthrough when false",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should 404 when URL too long",
+              "classname": "/work/repo/test/test.js::serveStatic() fallthrough when false",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should 404 when directory",
+              "classname": "/work/repo/test/test.js::serveStatic() fallthrough when false with redirect: true",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should redirect when directory without slash",
+              "classname": "/work/repo/test/test.js::serveStatic() fallthrough when false with redirect: true",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should 404 when directory",
+              "classname": "/work/repo/test/test.js::serveStatic() fallthrough when false with redirect: false",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should 404 when directory without slash",
+              "classname": "/work/repo/test/test.js::serveStatic() fallthrough when false with redirect: false",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should be served when dotfiles: \"allow\" is given",
+              "classname": "/work/repo/test/test.js::serveStatic() hidden files",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should default to false",
+              "classname": "/work/repo/test/test.js::serveStatic() immutable",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should set immutable directive in Cache-Control",
+              "classname": "/work/repo/test/test.js::serveStatic() immutable",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should not include Last-Modifed",
+              "classname": "/work/repo/test/test.js::serveStatic() lastModified when false",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should include Last-Modifed",
+              "classname": "/work/repo/test/test.js::serveStatic() lastModified when true",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should accept string",
+              "classname": "/work/repo/test/test.js::serveStatic() maxAge",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should be reasonable when infinite",
+              "classname": "/work/repo/test/test.js::serveStatic() maxAge",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should redirect directories",
+              "classname": "/work/repo/test/test.js::serveStatic() redirect",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should include HTML link",
+              "classname": "/work/repo/test/test.js::serveStatic() redirect",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should redirect directories with query string",
+              "classname": "/work/repo/test/test.js::serveStatic() redirect",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should not redirect to protocol-relative locations",
+              "classname": "/work/repo/test/test.js::serveStatic() redirect",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should ensure redirect URL is properly encoded",
+              "classname": "/work/repo/test/test.js::serveStatic() redirect",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should respond with default Content-Security-Policy",
+              "classname": "/work/repo/test/test.js::serveStatic() redirect",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should not redirect incorrectly",
+              "classname": "/work/repo/test/test.js::serveStatic() redirect",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should disable redirect",
+              "classname": "/work/repo/test/test.js::serveStatic() redirect when false",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should reject non-functions",
+              "classname": "/work/repo/test/test.js::serveStatic() setHeaders",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should get called when sending file",
+              "classname": "/work/repo/test/test.js::serveStatic() setHeaders",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should not get called on 404",
+              "classname": "/work/repo/test/test.js::serveStatic() setHeaders",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should not get called on redirect",
+              "classname": "/work/repo/test/test.js::serveStatic() setHeaders",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should 404 for any file",
+              "classname": "/work/repo/test/test.js::serveStatic() when non-existent root path",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should not allow traversal",
+              "classname": "/work/repo/test/test.js::serveStatic() when non-existent root path",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should catch urlencoded ../",
+              "classname": "/work/repo/test/test.js::serveStatic() when traversing past root",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should not allow root path disclosure",
+              "classname": "/work/repo/test/test.js::serveStatic() when traversing past root",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should support byte ranges",
+              "classname": "/work/repo/test/test.js::serveStatic() when request has \"Range\" header",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should be inclusive",
+              "classname": "/work/repo/test/test.js::serveStatic() when request has \"Range\" header",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should set Content-Range",
+              "classname": "/work/repo/test/test.js::serveStatic() when request has \"Range\" header",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should support -n",
+              "classname": "/work/repo/test/test.js::serveStatic() when request has \"Range\" header",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should support n-",
+              "classname": "/work/repo/test/test.js::serveStatic() when request has \"Range\" header",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should respond with 206 \"Partial Content\"",
+              "classname": "/work/repo/test/test.js::serveStatic() when request has \"Range\" header",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should set Content-Length to the # of octets transferred",
+              "classname": "/work/repo/test/test.js::serveStatic() when request has \"Range\" header",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "is taken to be equal to one less than the current length",
+              "classname": "/work/repo/test/test.js::serveStatic() when request has \"Range\" header when last-byte-pos of the range is greater than current length",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should adapt the Content-Length accordingly",
+              "classname": "/work/repo/test/test.js::serveStatic() when request has \"Range\" header when last-byte-pos of the range is greater than current length",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should respond with 416",
+              "classname": "/work/repo/test/test.js::serveStatic() when request has \"Range\" header when the first- byte-pos of the range is greater than the current length",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should include a Content-Range header of complete length",
+              "classname": "/work/repo/test/test.js::serveStatic() when request has \"Range\" header when the first- byte-pos of the range is greater than the current length",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should respond with 200 and the entire contents",
+              "classname": "/work/repo/test/test.js::serveStatic() when request has \"Range\" header when syntactically invalid",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should redirect correctly",
+              "classname": "/work/repo/test/test.js::serveStatic() when index at mount point",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should redirect relative to the originalUrl",
+              "classname": "/work/repo/test/test.js::serveStatic() when mounted",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should not choke on auth-looking URL",
+              "classname": "/work/repo/test/test.js::serveStatic() when mounted",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should load the file when on trailing slash",
+              "classname": "/work/repo/test/test.js::serveStatic() when mounted \"root\" as a file",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should 404 when trailing slash",
+              "classname": "/work/repo/test/test.js::serveStatic() when mounted \"root\" as a file",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should respond as-is",
+              "classname": "/work/repo/test/test.js::serveStatic() when responding non-2xx or 304",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should next() on directory",
+              "classname": "/work/repo/test/test.js::serveStatic() when index file serving disabled",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should redirect to trailing slash",
+              "classname": "/work/repo/test/test.js::serveStatic() when index file serving disabled",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should next() on mount point",
+              "classname": "/work/repo/test/test.js::serveStatic() when index file serving disabled",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should redirect to trailing slash mount point",
+              "classname": "/work/repo/test/test.js::serveStatic() when index file serving disabled",
+              "outcome": "passed",
+              "expected_failure": false
+            }
+          ],
+          "command_sha256": "149ae875b33014abf3ca5202b78814d7a9283ac383594d0a7adf5dab26c88a15",
+          "missing_modules": [],
+          "diagnostic_excerpts": [],
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr_bytes": 0
+        }
+      },
+      {
+        "name": "target_baseline",
+        "revision": "9b5a12a76f4d70530d2d2a8c7742e9158ed3c0a4",
+        "security": {
+          "returncode": 1,
+          "timed_out": false,
+          "truncated": false,
+          "duration_seconds": 1.1515,
+          "evidence_error": null,
+          "tests": [
+            {
+              "name": "test_security",
+              "classname": "/oracle/oracle.mjs::test",
+              "outcome": "failed",
+              "expected_failure": false,
+              "original_message_sha256": "4f1ec26e1e260d5346bcc486191fa0ef32ec72efcf8a088a74c3bce5b9c1651b"
+            },
+            {
+              "name": "test_redirect_location",
+              "classname": "/oracle/oracle.mjs::test",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_file_content",
+              "classname": "/oracle/oracle.mjs::test",
+              "outcome": "passed",
+              "expected_failure": false
+            }
+          ],
+          "command_sha256": "2c2d5df57f1ed7cc68f83e06a3711b747b764dc7cb6bfa094e501ffb079a2b8f",
+          "missing_modules": [],
+          "diagnostic_excerpts": [
+            "AssertionError [ERR_ASSERTION]: STATIC_REDIRECT_HAS_NO_LINK"
+          ],
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 0,
+          "stderr_sha256": "b272ac57549a02fa6e8c3bda142e91f8129346ead473da5501dcac3201d6f38e",
+          "stderr_bytes": 848
+        },
+        "suite": {
+          "returncode": 0,
+          "timed_out": false,
+          "truncated": false,
+          "duration_seconds": 1.638,
+          "evidence_error": null,
+          "tests": [
+            {
+              "name": "should require root path",
+              "classname": "/work/repo/test/test.js::serveStatic() basic operations",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should require root path to be string",
+              "classname": "/work/repo/test/test.js::serveStatic() basic operations",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should serve static files",
+              "classname": "/work/repo/test/test.js::serveStatic() basic operations",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should support nesting",
+              "classname": "/work/repo/test/test.js::serveStatic() basic operations",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should set Content-Type",
+              "classname": "/work/repo/test/test.js::serveStatic() basic operations",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should set Last-Modified",
+              "classname": "/work/repo/test/test.js::serveStatic() basic operations",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should default max-age=0",
+              "classname": "/work/repo/test/test.js::serveStatic() basic operations",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should support urlencoded pathnames",
+              "classname": "/work/repo/test/test.js::serveStatic() basic operations",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should not choke on auth-looking URL",
+              "classname": "/work/repo/test/test.js::serveStatic() basic operations",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should support index.html",
+              "classname": "/work/repo/test/test.js::serveStatic() basic operations",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should support ../",
+              "classname": "/work/repo/test/test.js::serveStatic() basic operations",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should support HEAD",
+              "classname": "/work/repo/test/test.js::serveStatic() basic operations",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should skip POST requests",
+              "classname": "/work/repo/test/test.js::serveStatic() basic operations",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should support conditional requests",
+              "classname": "/work/repo/test/test.js::serveStatic() basic operations",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should support precondition checks",
+              "classname": "/work/repo/test/test.js::serveStatic() basic operations",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should serve zero-length files",
+              "classname": "/work/repo/test/test.js::serveStatic() basic operations",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should ignore hidden files",
+              "classname": "/work/repo/test/test.js::serveStatic() basic operations",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should be served with \".\"",
+              "classname": "/work/repo/test/test.js::serveStatic() current dir",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should not include Accept-Ranges",
+              "classname": "/work/repo/test/test.js::serveStatic() acceptRanges when false",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should ignore Rage request header",
+              "classname": "/work/repo/test/test.js::serveStatic() acceptRanges when false",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should include Accept-Ranges",
+              "classname": "/work/repo/test/test.js::serveStatic() acceptRanges when true",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should obey Rage request header",
+              "classname": "/work/repo/test/test.js::serveStatic() acceptRanges when true",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should not include Cache-Control",
+              "classname": "/work/repo/test/test.js::serveStatic() cacheControl when false",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should ignore maxAge",
+              "classname": "/work/repo/test/test.js::serveStatic() cacheControl when false",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should include Cache-Control",
+              "classname": "/work/repo/test/test.js::serveStatic() cacheControl when true",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should be not be enabled by default",
+              "classname": "/work/repo/test/test.js::serveStatic() extensions",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should be configurable",
+              "classname": "/work/repo/test/test.js::serveStatic() extensions",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should support disabling extensions",
+              "classname": "/work/repo/test/test.js::serveStatic() extensions",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should support fallbacks",
+              "classname": "/work/repo/test/test.js::serveStatic() extensions",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should 404 if nothing found",
+              "classname": "/work/repo/test/test.js::serveStatic() extensions",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should default to true",
+              "classname": "/work/repo/test/test.js::serveStatic() fallthrough",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should fall-through when OPTIONS request",
+              "classname": "/work/repo/test/test.js::serveStatic() fallthrough when true",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should fall-through when URL malformed",
+              "classname": "/work/repo/test/test.js::serveStatic() fallthrough when true",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should fall-through when traversing past root",
+              "classname": "/work/repo/test/test.js::serveStatic() fallthrough when true",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should fall-through when URL too long",
+              "classname": "/work/repo/test/test.js::serveStatic() fallthrough when true",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should fall-through when directory",
+              "classname": "/work/repo/test/test.js::serveStatic() fallthrough when true with redirect: true",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should redirect when directory without slash",
+              "classname": "/work/repo/test/test.js::serveStatic() fallthrough when true with redirect: true",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should fall-through when directory",
+              "classname": "/work/repo/test/test.js::serveStatic() fallthrough when true with redirect: false",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should fall-through when directory without slash",
+              "classname": "/work/repo/test/test.js::serveStatic() fallthrough when true with redirect: false",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should 405 when OPTIONS request",
+              "classname": "/work/repo/test/test.js::serveStatic() fallthrough when false",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should 400 when URL malformed",
+              "classname": "/work/repo/test/test.js::serveStatic() fallthrough when false",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should 403 when traversing past root",
+              "classname": "/work/repo/test/test.js::serveStatic() fallthrough when false",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should 404 when URL too long",
+              "classname": "/work/repo/test/test.js::serveStatic() fallthrough when false",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should 404 when directory",
+              "classname": "/work/repo/test/test.js::serveStatic() fallthrough when false with redirect: true",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should redirect when directory without slash",
+              "classname": "/work/repo/test/test.js::serveStatic() fallthrough when false with redirect: true",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should 404 when directory",
+              "classname": "/work/repo/test/test.js::serveStatic() fallthrough when false with redirect: false",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should 404 when directory without slash",
+              "classname": "/work/repo/test/test.js::serveStatic() fallthrough when false with redirect: false",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should be served when dotfiles: \"allow\" is given",
+              "classname": "/work/repo/test/test.js::serveStatic() hidden files",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should default to false",
+              "classname": "/work/repo/test/test.js::serveStatic() immutable",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should set immutable directive in Cache-Control",
+              "classname": "/work/repo/test/test.js::serveStatic() immutable",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should not include Last-Modifed",
+              "classname": "/work/repo/test/test.js::serveStatic() lastModified when false",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should include Last-Modifed",
+              "classname": "/work/repo/test/test.js::serveStatic() lastModified when true",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should accept string",
+              "classname": "/work/repo/test/test.js::serveStatic() maxAge",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should be reasonable when infinite",
+              "classname": "/work/repo/test/test.js::serveStatic() maxAge",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should redirect directories",
+              "classname": "/work/repo/test/test.js::serveStatic() redirect",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should include HTML link",
+              "classname": "/work/repo/test/test.js::serveStatic() redirect",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should redirect directories with query string",
+              "classname": "/work/repo/test/test.js::serveStatic() redirect",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should not redirect to protocol-relative locations",
+              "classname": "/work/repo/test/test.js::serveStatic() redirect",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should ensure redirect URL is properly encoded",
+              "classname": "/work/repo/test/test.js::serveStatic() redirect",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should respond with default Content-Security-Policy",
+              "classname": "/work/repo/test/test.js::serveStatic() redirect",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should not redirect incorrectly",
+              "classname": "/work/repo/test/test.js::serveStatic() redirect",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should disable redirect",
+              "classname": "/work/repo/test/test.js::serveStatic() redirect when false",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should reject non-functions",
+              "classname": "/work/repo/test/test.js::serveStatic() setHeaders",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should get called when sending file",
+              "classname": "/work/repo/test/test.js::serveStatic() setHeaders",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should not get called on 404",
+              "classname": "/work/repo/test/test.js::serveStatic() setHeaders",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should not get called on redirect",
+              "classname": "/work/repo/test/test.js::serveStatic() setHeaders",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should 404 for any file",
+              "classname": "/work/repo/test/test.js::serveStatic() when non-existent root path",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should not allow traversal",
+              "classname": "/work/repo/test/test.js::serveStatic() when non-existent root path",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should catch urlencoded ../",
+              "classname": "/work/repo/test/test.js::serveStatic() when traversing past root",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should not allow root path disclosure",
+              "classname": "/work/repo/test/test.js::serveStatic() when traversing past root",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should support byte ranges",
+              "classname": "/work/repo/test/test.js::serveStatic() when request has \"Range\" header",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should be inclusive",
+              "classname": "/work/repo/test/test.js::serveStatic() when request has \"Range\" header",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should set Content-Range",
+              "classname": "/work/repo/test/test.js::serveStatic() when request has \"Range\" header",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should support -n",
+              "classname": "/work/repo/test/test.js::serveStatic() when request has \"Range\" header",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should support n-",
+              "classname": "/work/repo/test/test.js::serveStatic() when request has \"Range\" header",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should respond with 206 \"Partial Content\"",
+              "classname": "/work/repo/test/test.js::serveStatic() when request has \"Range\" header",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should set Content-Length to the # of octets transferred",
+              "classname": "/work/repo/test/test.js::serveStatic() when request has \"Range\" header",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "is taken to be equal to one less than the current length",
+              "classname": "/work/repo/test/test.js::serveStatic() when request has \"Range\" header when last-byte-pos of the range is greater than current length",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should adapt the Content-Length accordingly",
+              "classname": "/work/repo/test/test.js::serveStatic() when request has \"Range\" header when last-byte-pos of the range is greater than current length",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should respond with 416",
+              "classname": "/work/repo/test/test.js::serveStatic() when request has \"Range\" header when the first- byte-pos of the range is greater than the current length",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should include a Content-Range header of complete length",
+              "classname": "/work/repo/test/test.js::serveStatic() when request has \"Range\" header when the first- byte-pos of the range is greater than the current length",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should respond with 200 and the entire contents",
+              "classname": "/work/repo/test/test.js::serveStatic() when request has \"Range\" header when syntactically invalid",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should redirect correctly",
+              "classname": "/work/repo/test/test.js::serveStatic() when index at mount point",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should redirect relative to the originalUrl",
+              "classname": "/work/repo/test/test.js::serveStatic() when mounted",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should not choke on auth-looking URL",
+              "classname": "/work/repo/test/test.js::serveStatic() when mounted",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should load the file when on trailing slash",
+              "classname": "/work/repo/test/test.js::serveStatic() when mounted \"root\" as a file",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should 404 when trailing slash",
+              "classname": "/work/repo/test/test.js::serveStatic() when mounted \"root\" as a file",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should respond as-is",
+              "classname": "/work/repo/test/test.js::serveStatic() when responding non-2xx or 304",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should next() on directory",
+              "classname": "/work/repo/test/test.js::serveStatic() when index file serving disabled",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should redirect to trailing slash",
+              "classname": "/work/repo/test/test.js::serveStatic() when index file serving disabled",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should next() on mount point",
+              "classname": "/work/repo/test/test.js::serveStatic() when index file serving disabled",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should redirect to trailing slash mount point",
+              "classname": "/work/repo/test/test.js::serveStatic() when index file serving disabled",
+              "outcome": "passed",
+              "expected_failure": false
+            }
+          ],
+          "command_sha256": "20416a7b2b5383bda9a33d8b2962b05553b69e18adacb2752848dc9a34c89b11",
+          "missing_modules": [],
+          "diagnostic_excerpts": [],
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr_bytes": 0
+        }
+      },
+      {
+        "name": "backport",
+        "revision": "9b5a12a76f4d70530d2d2a8c7742e9158ed3c0a4",
+        "security": {
+          "returncode": 0,
+          "timed_out": false,
+          "truncated": false,
+          "duration_seconds": 6.1905,
+          "evidence_error": null,
+          "tests": [
+            {
+              "name": "test_security",
+              "classname": "/oracle/oracle.mjs::test",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_redirect_location",
+              "classname": "/oracle/oracle.mjs::test",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_file_content",
+              "classname": "/oracle/oracle.mjs::test",
+              "outcome": "passed",
+              "expected_failure": false
+            }
+          ],
+          "command_sha256": "2c2d5df57f1ed7cc68f83e06a3711b747b764dc7cb6bfa094e501ffb079a2b8f",
+          "missing_modules": [],
+          "diagnostic_excerpts": [],
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 0,
+          "stderr_sha256": "dfe62f989f0be3841f70fb7f2ffe8ebf8509af34452408540e8f341ebd3867b2",
+          "stderr_bytes": 224
+        },
+        "suite": {
+          "returncode": 1,
+          "timed_out": false,
+          "truncated": false,
+          "duration_seconds": 1.4018,
+          "evidence_error": null,
+          "tests": [
+            {
+              "name": "should require root path",
+              "classname": "/work/repo/test/test.js::serveStatic() basic operations",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should require root path to be string",
+              "classname": "/work/repo/test/test.js::serveStatic() basic operations",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should serve static files",
+              "classname": "/work/repo/test/test.js::serveStatic() basic operations",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should support nesting",
+              "classname": "/work/repo/test/test.js::serveStatic() basic operations",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should set Content-Type",
+              "classname": "/work/repo/test/test.js::serveStatic() basic operations",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should set Last-Modified",
+              "classname": "/work/repo/test/test.js::serveStatic() basic operations",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should default max-age=0",
+              "classname": "/work/repo/test/test.js::serveStatic() basic operations",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should support urlencoded pathnames",
+              "classname": "/work/repo/test/test.js::serveStatic() basic operations",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should not choke on auth-looking URL",
+              "classname": "/work/repo/test/test.js::serveStatic() basic operations",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should support index.html",
+              "classname": "/work/repo/test/test.js::serveStatic() basic operations",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should support ../",
+              "classname": "/work/repo/test/test.js::serveStatic() basic operations",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should support HEAD",
+              "classname": "/work/repo/test/test.js::serveStatic() basic operations",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should skip POST requests",
+              "classname": "/work/repo/test/test.js::serveStatic() basic operations",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should support conditional requests",
+              "classname": "/work/repo/test/test.js::serveStatic() basic operations",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should support precondition checks",
+              "classname": "/work/repo/test/test.js::serveStatic() basic operations",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should serve zero-length files",
+              "classname": "/work/repo/test/test.js::serveStatic() basic operations",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should ignore hidden files",
+              "classname": "/work/repo/test/test.js::serveStatic() basic operations",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should be served with \".\"",
+              "classname": "/work/repo/test/test.js::serveStatic() current dir",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should not include Accept-Ranges",
+              "classname": "/work/repo/test/test.js::serveStatic() acceptRanges when false",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should ignore Rage request header",
+              "classname": "/work/repo/test/test.js::serveStatic() acceptRanges when false",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should include Accept-Ranges",
+              "classname": "/work/repo/test/test.js::serveStatic() acceptRanges when true",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should obey Rage request header",
+              "classname": "/work/repo/test/test.js::serveStatic() acceptRanges when true",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should not include Cache-Control",
+              "classname": "/work/repo/test/test.js::serveStatic() cacheControl when false",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should ignore maxAge",
+              "classname": "/work/repo/test/test.js::serveStatic() cacheControl when false",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should include Cache-Control",
+              "classname": "/work/repo/test/test.js::serveStatic() cacheControl when true",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should be not be enabled by default",
+              "classname": "/work/repo/test/test.js::serveStatic() extensions",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should be configurable",
+              "classname": "/work/repo/test/test.js::serveStatic() extensions",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should support disabling extensions",
+              "classname": "/work/repo/test/test.js::serveStatic() extensions",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should support fallbacks",
+              "classname": "/work/repo/test/test.js::serveStatic() extensions",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should 404 if nothing found",
+              "classname": "/work/repo/test/test.js::serveStatic() extensions",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should default to true",
+              "classname": "/work/repo/test/test.js::serveStatic() fallthrough",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should fall-through when OPTIONS request",
+              "classname": "/work/repo/test/test.js::serveStatic() fallthrough when true",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should fall-through when URL malformed",
+              "classname": "/work/repo/test/test.js::serveStatic() fallthrough when true",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should fall-through when traversing past root",
+              "classname": "/work/repo/test/test.js::serveStatic() fallthrough when true",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should fall-through when URL too long",
+              "classname": "/work/repo/test/test.js::serveStatic() fallthrough when true",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should fall-through when directory",
+              "classname": "/work/repo/test/test.js::serveStatic() fallthrough when true with redirect: true",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should redirect when directory without slash",
+              "classname": "/work/repo/test/test.js::serveStatic() fallthrough when true with redirect: true",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should fall-through when directory",
+              "classname": "/work/repo/test/test.js::serveStatic() fallthrough when true with redirect: false",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should fall-through when directory without slash",
+              "classname": "/work/repo/test/test.js::serveStatic() fallthrough when true with redirect: false",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should 405 when OPTIONS request",
+              "classname": "/work/repo/test/test.js::serveStatic() fallthrough when false",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should 400 when URL malformed",
+              "classname": "/work/repo/test/test.js::serveStatic() fallthrough when false",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should 403 when traversing past root",
+              "classname": "/work/repo/test/test.js::serveStatic() fallthrough when false",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should 404 when URL too long",
+              "classname": "/work/repo/test/test.js::serveStatic() fallthrough when false",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should 404 when directory",
+              "classname": "/work/repo/test/test.js::serveStatic() fallthrough when false with redirect: true",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should redirect when directory without slash",
+              "classname": "/work/repo/test/test.js::serveStatic() fallthrough when false with redirect: true",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should 404 when directory",
+              "classname": "/work/repo/test/test.js::serveStatic() fallthrough when false with redirect: false",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should 404 when directory without slash",
+              "classname": "/work/repo/test/test.js::serveStatic() fallthrough when false with redirect: false",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should be served when dotfiles: \"allow\" is given",
+              "classname": "/work/repo/test/test.js::serveStatic() hidden files",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should default to false",
+              "classname": "/work/repo/test/test.js::serveStatic() immutable",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should set immutable directive in Cache-Control",
+              "classname": "/work/repo/test/test.js::serveStatic() immutable",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should not include Last-Modifed",
+              "classname": "/work/repo/test/test.js::serveStatic() lastModified when false",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should include Last-Modifed",
+              "classname": "/work/repo/test/test.js::serveStatic() lastModified when true",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should accept string",
+              "classname": "/work/repo/test/test.js::serveStatic() maxAge",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should be reasonable when infinite",
+              "classname": "/work/repo/test/test.js::serveStatic() maxAge",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should redirect directories",
+              "classname": "/work/repo/test/test.js::serveStatic() redirect",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should include HTML link",
+              "classname": "/work/repo/test/test.js::serveStatic() redirect",
+              "outcome": "failed",
+              "expected_failure": false,
+              "original_message_sha256": "8dbf35c61ac9fc53f32dd2d93179554438b0b144e5230329bd1d14fc1191671f"
+            },
+            {
+              "name": "should redirect directories with query string",
+              "classname": "/work/repo/test/test.js::serveStatic() redirect",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should not redirect to protocol-relative locations",
+              "classname": "/work/repo/test/test.js::serveStatic() redirect",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should ensure redirect URL is properly encoded",
+              "classname": "/work/repo/test/test.js::serveStatic() redirect",
+              "outcome": "failed",
+              "expected_failure": false,
+              "original_message_sha256": "408ef93625ca8b20a3843bc4beface820b41e05fc3dce95c2c51604119c890f5"
+            },
+            {
+              "name": "should respond with default Content-Security-Policy",
+              "classname": "/work/repo/test/test.js::serveStatic() redirect",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should not redirect incorrectly",
+              "classname": "/work/repo/test/test.js::serveStatic() redirect",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should disable redirect",
+              "classname": "/work/repo/test/test.js::serveStatic() redirect when false",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should reject non-functions",
+              "classname": "/work/repo/test/test.js::serveStatic() setHeaders",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should get called when sending file",
+              "classname": "/work/repo/test/test.js::serveStatic() setHeaders",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should not get called on 404",
+              "classname": "/work/repo/test/test.js::serveStatic() setHeaders",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should not get called on redirect",
+              "classname": "/work/repo/test/test.js::serveStatic() setHeaders",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should 404 for any file",
+              "classname": "/work/repo/test/test.js::serveStatic() when non-existent root path",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should not allow traversal",
+              "classname": "/work/repo/test/test.js::serveStatic() when non-existent root path",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should catch urlencoded ../",
+              "classname": "/work/repo/test/test.js::serveStatic() when traversing past root",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should not allow root path disclosure",
+              "classname": "/work/repo/test/test.js::serveStatic() when traversing past root",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should support byte ranges",
+              "classname": "/work/repo/test/test.js::serveStatic() when request has \"Range\" header",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should be inclusive",
+              "classname": "/work/repo/test/test.js::serveStatic() when request has \"Range\" header",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should set Content-Range",
+              "classname": "/work/repo/test/test.js::serveStatic() when request has \"Range\" header",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should support -n",
+              "classname": "/work/repo/test/test.js::serveStatic() when request has \"Range\" header",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should support n-",
+              "classname": "/work/repo/test/test.js::serveStatic() when request has \"Range\" header",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should respond with 206 \"Partial Content\"",
+              "classname": "/work/repo/test/test.js::serveStatic() when request has \"Range\" header",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should set Content-Length to the # of octets transferred",
+              "classname": "/work/repo/test/test.js::serveStatic() when request has \"Range\" header",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "is taken to be equal to one less than the current length",
+              "classname": "/work/repo/test/test.js::serveStatic() when request has \"Range\" header when last-byte-pos of the range is greater than current length",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should adapt the Content-Length accordingly",
+              "classname": "/work/repo/test/test.js::serveStatic() when request has \"Range\" header when last-byte-pos of the range is greater than current length",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should respond with 416",
+              "classname": "/work/repo/test/test.js::serveStatic() when request has \"Range\" header when the first- byte-pos of the range is greater than the current length",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should include a Content-Range header of complete length",
+              "classname": "/work/repo/test/test.js::serveStatic() when request has \"Range\" header when the first- byte-pos of the range is greater than the current length",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should respond with 200 and the entire contents",
+              "classname": "/work/repo/test/test.js::serveStatic() when request has \"Range\" header when syntactically invalid",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should redirect correctly",
+              "classname": "/work/repo/test/test.js::serveStatic() when index at mount point",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should redirect relative to the originalUrl",
+              "classname": "/work/repo/test/test.js::serveStatic() when mounted",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should not choke on auth-looking URL",
+              "classname": "/work/repo/test/test.js::serveStatic() when mounted",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should load the file when on trailing slash",
+              "classname": "/work/repo/test/test.js::serveStatic() when mounted \"root\" as a file",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should 404 when trailing slash",
+              "classname": "/work/repo/test/test.js::serveStatic() when mounted \"root\" as a file",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should respond as-is",
+              "classname": "/work/repo/test/test.js::serveStatic() when responding non-2xx or 304",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should next() on directory",
+              "classname": "/work/repo/test/test.js::serveStatic() when index file serving disabled",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should redirect to trailing slash",
+              "classname": "/work/repo/test/test.js::serveStatic() when index file serving disabled",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should next() on mount point",
+              "classname": "/work/repo/test/test.js::serveStatic() when index file serving disabled",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should redirect to trailing slash mount point",
+              "classname": "/work/repo/test/test.js::serveStatic() when index file serving disabled",
+              "outcome": "passed",
+              "expected_failure": false
+            }
+          ],
+          "command_sha256": "20416a7b2b5383bda9a33d8b2962b05553b69e18adacb2752848dc9a34c89b11",
+          "missing_modules": [],
+          "diagnostic_excerpts": [],
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr_bytes": 0
+        }
+      }
+    ]
+  },
+  "original_report_sha256": "ffba479e0fe9565b46e420b88be116df18737f03f99c7e858638616ed15793a9",
+  "original_command_record_sha256": "d782218cf8e351f5420c8a90fde4c54eb6ea9d94b0fad4a8a790b2d769407076",
+  "candidate_patch_inputs": [
+    {
+      "original_filename": "attempt-1.patch",
+      "sha256": "f9a7a9f717fb659fc35b7e6db6381a83cc0f1005a7e92a107c98f5df5d64b311"
+    }
+  ]
+}

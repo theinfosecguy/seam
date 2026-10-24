@@ -1,0 +1,47 @@
+{
+  "advisory_ids": [
+    "GHSA-2m5v-pch6-74hx"
+  ],
+  "asset_sha256": {
+    "LICENSE.upstream": "a6db8096b2707bc0102d256917d4d33f298ba36d8c3f25de067a2b5bb379db27",
+    "harness.toml": "868c0f63bd982210d1db2143a9ef945bb7fe08018396fc0d0ec8de7fabba9957",
+    "oracle.mjs": "071edc900ad6892df357a866ed71fcf3b9518d6b5d3c2998ec58ca805d1db79a",
+    "reference.patch": "68c073a91e36b0d848ee0c7c92803643c27ebf4b4a056c0e617f54acb4ebfc65",
+    "upstream.patch": "eca4f0aed8076dc927fc05c0b1a420bf67b170282572dd9695a63b432a796cb9"
+  },
+  "backport_implementation_paths": [
+    "lib/dispatcher/agent.js"
+  ],
+  "base_commit": "b40fbfc0651703cf9fa9f6ced68b679f28d8bb28",
+  "input_scope": "Experimental standalone inputs; no execution result is asserted.",
+  "instance_id": "undici-tls",
+  "maintainer_backport_commit": "8c59f6b302898cb2e9b0f7962cd7212b6e597c9f",
+  "maintainer_backport_parent": "b40fbfc0651703cf9fa9f6ced68b679f28d8bb28",
+  "package": "undici",
+  "patch_scope": "Implementation-only extracts of the maintainer commits; full commits can also change tests, metadata, or dependencies.",
+  "repository_url": "https://github.com/nodejs/undici.git",
+  "schema_version": 1,
+  "source_links": {
+    "base_commit": "https://github.com/nodejs/undici/commit/b40fbfc0651703cf9fa9f6ced68b679f28d8bb28",
+    "maintainer_backport_commit": "https://github.com/nodejs/undici/commit/8c59f6b302898cb2e9b0f7962cd7212b6e597c9f",
+    "upstream_fix_commit": "https://github.com/nodejs/undici/commit/f75eac00ac177f7b2e6c8bfbd52d4113164286e6",
+    "upstream_parent_commit": "https://github.com/nodejs/undici/commit/e257e9f8fb42eedd50727b9cf65e548c8925e4a8"
+  },
+  "source_snapshot_sha256": {
+    "maintainer_backport": "fb2e2d538b6bc05ad01618741829ae354ecb2dcf8d65aeb6197e6f9fb1ad6590",
+    "target_baseline": "1341ed44888ea8ec2aeb26abab8ad5cb57799f5ff4cc38de801fd14da36660a9",
+    "upstream_fix": "3c2919354884d1d50c5b4b27f2b4088557ae48885fb2557c6a2e0b46e6c7ddee",
+    "upstream_parent": "28701e9b2cf392a949cd52799a8dc92546855857f5d6823d80b00c5aae1baa58"
+  },
+  "target_test_paths": [
+    "test/node-test/agent.js"
+  ],
+  "upstream_fix_commit": "f75eac00ac177f7b2e6c8bfbd52d4113164286e6",
+  "upstream_implementation_paths": [
+    "lib/dispatcher/agent.js"
+  ],
+  "upstream_parent_commit": "e257e9f8fb42eedd50727b9cf65e548c8925e4a8",
+  "upstream_test_paths": [
+    "test/node-test/agent.js"
+  ]
+}

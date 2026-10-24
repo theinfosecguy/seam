@@ -1,0 +1,49 @@
+{
+  "advisory_ids": [
+    "GHSA-27r3-jxmh-p828",
+    "CVE-2026-111181"
+  ],
+  "asset_sha256": {
+    "LICENSE.upstream": "23d466b1b134b415b66fa50c6526b4cf3e7b9258554da88d3abb371721e7ce68",
+    "harness.toml": "fff4ca78ef084ec51b5ed94099e517e2d40fcbc3d2b08b163a30d33c6e8f0214",
+    "oracle.mjs": "e742166348a9258d2deadd2355fd6cadb274cfa713aebc1c3cd4a9e64b85b270",
+    "reference.patch": "2f8907bc16e704225c8eeb62e778e57ec17677e8a5025890826418e17534e995",
+    "upstream.patch": "5cf1931c7912e6206ddbfbe0fea774bc132d8db0133e2bd2763700c51fbd66a8"
+  },
+  "backport_implementation_paths": [
+    "lib/read.js"
+  ],
+  "base_commit": "b4c2112ff66163da4304188edda5690e90f7c8a7",
+  "input_scope": "Experimental standalone inputs; no execution result is asserted.",
+  "instance_id": "body-parser",
+  "license": "MIT",
+  "maintainer_backport_commit": "1260c3845f54502a05a87594f09a334786bb34d7",
+  "maintainer_backport_parent": "b4c2112ff66163da4304188edda5690e90f7c8a7",
+  "package": "body-parser",
+  "patch_scope": "Implementation-only extracts of the maintainer commits; full commits can also change tests, metadata, or dependencies.",
+  "repository_url": "https://github.com/expressjs/body-parser.git",
+  "schema_version": 1,
+  "source_links": {
+    "base_commit": "https://github.com/expressjs/body-parser/commit/b4c2112ff66163da4304188edda5690e90f7c8a7",
+    "maintainer_backport_commit": "https://github.com/expressjs/body-parser/commit/1260c3845f54502a05a87594f09a334786bb34d7",
+    "upstream_fix_commit": "https://github.com/expressjs/body-parser/commit/f7075eae3a84c3473ab4bf0a777da28db208e916",
+    "upstream_parent_commit": "https://github.com/expressjs/body-parser/commit/185ff1d55598a60acf7e182239cae6662e564407"
+  },
+  "source_snapshot_sha256": {
+    "maintainer_backport": "fb51569d0e5e673449185a06f206ae012b6c2c1e99bfb8d71bc1e452be3f166a",
+    "target_baseline": "b8ef4b1a15433fc733e4f84465b90ab9a1d812bf729bcc46d9ce7d07b6695368",
+    "upstream_fix": "718c790e4bfac2629f203b298b6a21097b59bd1e86933d276157498ba358ebb3",
+    "upstream_parent": "d0863cb589a87009d98c10b33e45adffcd7ac2e6f4fda7218f906918fa2bc73b"
+  },
+  "target_test_paths": [
+    "test/json.js"
+  ],
+  "upstream_fix_commit": "f7075eae3a84c3473ab4bf0a777da28db208e916",
+  "upstream_implementation_paths": [
+    "lib/read.js"
+  ],
+  "upstream_parent_commit": "185ff1d55598a60acf7e182239cae6662e564407",
+  "upstream_test_paths": [
+    "test/json.js"
+  ]
+}

@@ -1,0 +1,889 @@
+{
+  "normalization_schema_version": 1,
+  "cohort": "initial-npm-20",
+  "case": "undici-private-cache",
+  "role": "negative",
+  "interpretation": "Deliberately ineffective control was rejected.",
+  "execution_context": {
+    "exit_code": 1,
+    "timed_out": false,
+    "log_truncated": false,
+    "wheel_sha256": "fb1afe7d89a0cfd5a50ae6094f1b1a356cb57e6d187beba597d542fe8903c35c",
+    "freeze_sha256": "f5fa5b227de18954e8c22fed4b881688a4e93d13428769fa01e21c19ade9c083",
+    "case_assets_unchanged": true,
+    "caller_unchanged": true
+  },
+  "report": {
+    "schema_version": 2,
+    "status": "failed",
+    "reason": "backport: security regression still fails",
+    "fix_commit": "4fe5bc5fefe5ac81a200fc8e1cf84b8bf8464451",
+    "parent_commit": "10d93fc332f2c8c161982dec3833201de29891b5",
+    "target_commit": "f9eba0ad9134e1c0977848476bba9d49734696e4",
+    "image_id": "sha256:06d7adf3e0ef61a13f1d28682726366f97a15aa1888c934d3ecec86c33918b53",
+    "oracle_sha256": "3af631f0a3496ac0f2baf6998fb8462b4bd4c197fd42f1bf6c79d2db32ee12ff",
+    "config_sha256": "e21ef104d0908294aea2d5b4fcc3732cdb97fcf145b49595d87b5b0549f29955",
+    "patch_sha256": null,
+    "attempts": 1,
+    "adaptation": "provided_patch",
+    "model_usage": {},
+    "reviewed_tests": null,
+    "reviewed_fixtures": {},
+    "reviewed_submodules": {
+      "test/fixtures/cache-tests": [
+        "1000acb7071ed401a654160f13d27c2a8a0139cc"
+      ],
+      "test/web-platform-tests/wpt": [
+        "203f5335c8f9a36f9dd1d87c95fc920866edcd47",
+        "d063bc956a9f24f874dfd7ce17e6d12149bc01d7"
+      ]
+    },
+    "phases": [
+      {
+        "name": "upstream_parent",
+        "revision": "10d93fc332f2c8c161982dec3833201de29891b5",
+        "security": {
+          "returncode": 1,
+          "timed_out": false,
+          "truncated": false,
+          "duration_seconds": 0.7376,
+          "evidence_error": null,
+          "tests": [
+            {
+              "name": "test_security",
+              "classname": "/oracle/oracle.mjs::test",
+              "outcome": "failed",
+              "expected_failure": false,
+              "original_message_sha256": "ced9901ec6640a557f32fd6aa16b68afed7743d9f5443a7802f71af9ac176a0b"
+            },
+            {
+              "name": "test_public_max_age",
+              "classname": "/oracle/oracle.mjs::test",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_private_unqualified",
+              "classname": "/oracle/oracle.mjs::test",
+              "outcome": "passed",
+              "expected_failure": false
+            }
+          ],
+          "command_sha256": "b0aef0d5bd75daf7808134565f5639427c54910d04e02b1dd1fb3a8ad7314a2c",
+          "missing_modules": [],
+          "diagnostic_excerpts": [
+            "AssertionError [ERR_ASSERTION]: CACHE_PRIVATE_EMPTY_FIELD"
+          ],
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 0,
+          "stderr_sha256": "0d1f8661a593bbdaae9a8f074892e509e0db8d23c234ec7a761763db5223d2b0",
+          "stderr_bytes": 968
+        },
+        "suite": {
+          "returncode": 0,
+          "timed_out": false,
+          "truncated": false,
+          "duration_seconds": 0.9448,
+          "evidence_error": null,
+          "tests": [
+            {
+              "name": "all directives are parsed properly when in their correct format",
+              "classname": "/work/repo/test/cache-interceptor/utils.js::parseCacheControlHeader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "handles weird spacings",
+              "classname": "/work/repo/test/cache-interceptor/utils.js::parseCacheControlHeader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "unknown directives are ignored",
+              "classname": "/work/repo/test/cache-interceptor/utils.js::parseCacheControlHeader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "directives with incorrect types are ignored",
+              "classname": "/work/repo/test/cache-interceptor/utils.js::parseCacheControlHeader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "the last instance of a directive takes precedence",
+              "classname": "/work/repo/test/cache-interceptor/utils.js::parseCacheControlHeader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "case insensitive",
+              "classname": "/work/repo/test/cache-interceptor/utils.js::parseCacheControlHeader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "no-cache with headers",
+              "classname": "/work/repo/test/cache-interceptor/utils.js::parseCacheControlHeader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "trims qualified no-cache and private field names",
+              "classname": "/work/repo/test/cache-interceptor/utils.js::parseCacheControlHeader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "private with headers",
+              "classname": "/work/repo/test/cache-interceptor/utils.js::parseCacheControlHeader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "handles multiple headers correctly",
+              "classname": "/work/repo/test/cache-interceptor/utils.js::parseCacheControlHeader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "basic usage",
+              "classname": "/work/repo/test/cache-interceptor/utils.js::parseVaryHeader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "handles weird spacings",
+              "classname": "/work/repo/test/cache-interceptor/utils.js::parseVaryHeader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "handles multiple headers correctly",
+              "classname": "/work/repo/test/cache-interceptor/utils.js::parseVaryHeader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "handles missing headers with null",
+              "classname": "/work/repo/test/cache-interceptor/utils.js::parseVaryHeader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "handles mix of present and missing headers",
+              "classname": "/work/repo/test/cache-interceptor/utils.js::parseVaryHeader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "handles array input",
+              "classname": "/work/repo/test/cache-interceptor/utils.js::parseVaryHeader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "preserves existing * behavior",
+              "classname": "/work/repo/test/cache-interceptor/utils.js::parseVaryHeader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "`` = false",
+              "classname": "/work/repo/test/cache-interceptor/utils.js::isEtagUsable",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "`asd` = false",
+              "classname": "/work/repo/test/cache-interceptor/utils.js::isEtagUsable",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "`\"W/\"asd\"\"` = false",
+              "classname": "/work/repo/test/cache-interceptor/utils.js::isEtagUsable",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "`\"\"asd\"\"` = false",
+              "classname": "/work/repo/test/cache-interceptor/utils.js::isEtagUsable",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "`\"asd\"` = true",
+              "classname": "/work/repo/test/cache-interceptor/utils.js::isEtagUsable",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "`W/\"ads\"` = true",
+              "classname": "/work/repo/test/cache-interceptor/utils.js::isEtagUsable",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "`\"\"` = false",
+              "classname": "/work/repo/test/cache-interceptor/utils.js::isEtagUsable",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "`W/\"\"` = false",
+              "classname": "/work/repo/test/cache-interceptor/utils.js::isEtagUsable",
+              "outcome": "passed",
+              "expected_failure": false
+            }
+          ],
+          "command_sha256": "77fd4eac89f1a3db4a930938a3b31c6ca766f1b31484962658245999b7d0249a",
+          "missing_modules": [],
+          "diagnostic_excerpts": [],
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 0,
+          "stderr_sha256": "21fde238c4f647d61ae460c21f3dd7794b09237588b016afc1b1625e90b894d3",
+          "stderr_bytes": 1437
+        }
+      },
+      {
+        "name": "upstream_fix",
+        "revision": "4fe5bc5fefe5ac81a200fc8e1cf84b8bf8464451",
+        "security": {
+          "returncode": 0,
+          "timed_out": false,
+          "truncated": false,
+          "duration_seconds": 0.7014,
+          "evidence_error": null,
+          "tests": [
+            {
+              "name": "test_security",
+              "classname": "/oracle/oracle.mjs::test",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_public_max_age",
+              "classname": "/oracle/oracle.mjs::test",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_private_unqualified",
+              "classname": "/oracle/oracle.mjs::test",
+              "outcome": "passed",
+              "expected_failure": false
+            }
+          ],
+          "command_sha256": "b0aef0d5bd75daf7808134565f5639427c54910d04e02b1dd1fb3a8ad7314a2c",
+          "missing_modules": [],
+          "diagnostic_excerpts": [],
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 0,
+          "stderr_sha256": "2c0e85688043c791a7951771013e4750f8fcb9ebeaf01e24e6e032e490cc4565",
+          "stderr_bytes": 223
+        },
+        "suite": {
+          "returncode": 0,
+          "timed_out": false,
+          "truncated": false,
+          "duration_seconds": 0.787,
+          "evidence_error": null,
+          "tests": [
+            {
+              "name": "all directives are parsed properly when in their correct format",
+              "classname": "/work/repo/test/cache-interceptor/utils.js::parseCacheControlHeader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "handles weird spacings",
+              "classname": "/work/repo/test/cache-interceptor/utils.js::parseCacheControlHeader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "unknown directives are ignored",
+              "classname": "/work/repo/test/cache-interceptor/utils.js::parseCacheControlHeader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "directives with incorrect types are ignored",
+              "classname": "/work/repo/test/cache-interceptor/utils.js::parseCacheControlHeader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "the last instance of a directive takes precedence",
+              "classname": "/work/repo/test/cache-interceptor/utils.js::parseCacheControlHeader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "case insensitive",
+              "classname": "/work/repo/test/cache-interceptor/utils.js::parseCacheControlHeader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "no-cache with headers",
+              "classname": "/work/repo/test/cache-interceptor/utils.js::parseCacheControlHeader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "trims qualified no-cache and private field names",
+              "classname": "/work/repo/test/cache-interceptor/utils.js::parseCacheControlHeader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "normalizes empty qualified no-cache and private as unqualified",
+              "classname": "/work/repo/test/cache-interceptor/utils.js::parseCacheControlHeader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "keeps unqualified no-cache and private when repeated with qualified field names",
+              "classname": "/work/repo/test/cache-interceptor/utils.js::parseCacheControlHeader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "private with headers",
+              "classname": "/work/repo/test/cache-interceptor/utils.js::parseCacheControlHeader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "handles multiple headers correctly",
+              "classname": "/work/repo/test/cache-interceptor/utils.js::parseCacheControlHeader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "basic usage",
+              "classname": "/work/repo/test/cache-interceptor/utils.js::parseVaryHeader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "handles weird spacings",
+              "classname": "/work/repo/test/cache-interceptor/utils.js::parseVaryHeader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "handles multiple headers correctly",
+              "classname": "/work/repo/test/cache-interceptor/utils.js::parseVaryHeader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "handles missing headers with null",
+              "classname": "/work/repo/test/cache-interceptor/utils.js::parseVaryHeader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "handles mix of present and missing headers",
+              "classname": "/work/repo/test/cache-interceptor/utils.js::parseVaryHeader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "handles array input",
+              "classname": "/work/repo/test/cache-interceptor/utils.js::parseVaryHeader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "preserves existing * behavior",
+              "classname": "/work/repo/test/cache-interceptor/utils.js::parseVaryHeader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "`` = false",
+              "classname": "/work/repo/test/cache-interceptor/utils.js::isEtagUsable",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "`asd` = false",
+              "classname": "/work/repo/test/cache-interceptor/utils.js::isEtagUsable",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "`\"W/\"asd\"\"` = false",
+              "classname": "/work/repo/test/cache-interceptor/utils.js::isEtagUsable",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "`\"\"asd\"\"` = false",
+              "classname": "/work/repo/test/cache-interceptor/utils.js::isEtagUsable",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "`\"asd\"` = true",
+              "classname": "/work/repo/test/cache-interceptor/utils.js::isEtagUsable",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "`W/\"ads\"` = true",
+              "classname": "/work/repo/test/cache-interceptor/utils.js::isEtagUsable",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "`\"\"` = false",
+              "classname": "/work/repo/test/cache-interceptor/utils.js::isEtagUsable",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "`W/\"\"` = false",
+              "classname": "/work/repo/test/cache-interceptor/utils.js::isEtagUsable",
+              "outcome": "passed",
+              "expected_failure": false
+            }
+          ],
+          "command_sha256": "77fd4eac89f1a3db4a930938a3b31c6ca766f1b31484962658245999b7d0249a",
+          "missing_modules": [],
+          "diagnostic_excerpts": [],
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 0,
+          "stderr_sha256": "281e6bfd95c556607187eddb34547da5240863f1c5775c918c51034d9760c9ec",
+          "stderr_bytes": 1613
+        }
+      },
+      {
+        "name": "target_baseline",
+        "revision": "f9eba0ad9134e1c0977848476bba9d49734696e4",
+        "security": {
+          "returncode": 1,
+          "timed_out": false,
+          "truncated": false,
+          "duration_seconds": 0.7081,
+          "evidence_error": null,
+          "tests": [
+            {
+              "name": "test_security",
+              "classname": "/oracle/oracle.mjs::test",
+              "outcome": "failed",
+              "expected_failure": false,
+              "original_message_sha256": "ced9901ec6640a557f32fd6aa16b68afed7743d9f5443a7802f71af9ac176a0b"
+            },
+            {
+              "name": "test_public_max_age",
+              "classname": "/oracle/oracle.mjs::test",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_private_unqualified",
+              "classname": "/oracle/oracle.mjs::test",
+              "outcome": "passed",
+              "expected_failure": false
+            }
+          ],
+          "command_sha256": "b0aef0d5bd75daf7808134565f5639427c54910d04e02b1dd1fb3a8ad7314a2c",
+          "missing_modules": [],
+          "diagnostic_excerpts": [
+            "AssertionError [ERR_ASSERTION]: CACHE_PRIVATE_EMPTY_FIELD"
+          ],
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 0,
+          "stderr_sha256": "0dc8ce626091c8600a96a328cb5c9d3a9c8d48700f93b6bb273465d0a7d24c57",
+          "stderr_bytes": 972
+        },
+        "suite": {
+          "returncode": 0,
+          "timed_out": false,
+          "truncated": false,
+          "duration_seconds": 0.8015,
+          "evidence_error": null,
+          "tests": [
+            {
+              "name": "all directives are parsed properly when in their correct format",
+              "classname": "/work/repo/test/cache-interceptor/utils.js::parseCacheControlHeader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "handles weird spacings",
+              "classname": "/work/repo/test/cache-interceptor/utils.js::parseCacheControlHeader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "unknown directives are ignored",
+              "classname": "/work/repo/test/cache-interceptor/utils.js::parseCacheControlHeader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "directives with incorrect types are ignored",
+              "classname": "/work/repo/test/cache-interceptor/utils.js::parseCacheControlHeader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "the last instance of a directive takes precedence",
+              "classname": "/work/repo/test/cache-interceptor/utils.js::parseCacheControlHeader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "case insensitive",
+              "classname": "/work/repo/test/cache-interceptor/utils.js::parseCacheControlHeader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "no-cache with headers",
+              "classname": "/work/repo/test/cache-interceptor/utils.js::parseCacheControlHeader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "trims qualified no-cache and private field names",
+              "classname": "/work/repo/test/cache-interceptor/utils.js::parseCacheControlHeader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "private with headers",
+              "classname": "/work/repo/test/cache-interceptor/utils.js::parseCacheControlHeader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "handles multiple headers correctly",
+              "classname": "/work/repo/test/cache-interceptor/utils.js::parseCacheControlHeader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "basic usage",
+              "classname": "/work/repo/test/cache-interceptor/utils.js::parseVaryHeader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "handles weird spacings",
+              "classname": "/work/repo/test/cache-interceptor/utils.js::parseVaryHeader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "handles multiple headers correctly",
+              "classname": "/work/repo/test/cache-interceptor/utils.js::parseVaryHeader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "handles missing headers with null",
+              "classname": "/work/repo/test/cache-interceptor/utils.js::parseVaryHeader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "handles mix of present and missing headers",
+              "classname": "/work/repo/test/cache-interceptor/utils.js::parseVaryHeader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "handles array input",
+              "classname": "/work/repo/test/cache-interceptor/utils.js::parseVaryHeader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "preserves existing * behavior",
+              "classname": "/work/repo/test/cache-interceptor/utils.js::parseVaryHeader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "`` = false",
+              "classname": "/work/repo/test/cache-interceptor/utils.js::isEtagUsable",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "`asd` = false",
+              "classname": "/work/repo/test/cache-interceptor/utils.js::isEtagUsable",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "`\"W/\"asd\"\"` = false",
+              "classname": "/work/repo/test/cache-interceptor/utils.js::isEtagUsable",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "`\"\"asd\"\"` = false",
+              "classname": "/work/repo/test/cache-interceptor/utils.js::isEtagUsable",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "`\"asd\"` = true",
+              "classname": "/work/repo/test/cache-interceptor/utils.js::isEtagUsable",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "`W/\"ads\"` = true",
+              "classname": "/work/repo/test/cache-interceptor/utils.js::isEtagUsable",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "`\"\"` = false",
+              "classname": "/work/repo/test/cache-interceptor/utils.js::isEtagUsable",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "`W/\"\"` = false",
+              "classname": "/work/repo/test/cache-interceptor/utils.js::isEtagUsable",
+              "outcome": "passed",
+              "expected_failure": false
+            }
+          ],
+          "command_sha256": "77fd4eac89f1a3db4a930938a3b31c6ca766f1b31484962658245999b7d0249a",
+          "missing_modules": [],
+          "diagnostic_excerpts": [],
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 0,
+          "stderr_sha256": "f09c37c34c89179096549a32e2778a185e8e2ebcee22cae5e855f82161835c8e",
+          "stderr_bytes": 1437
+        }
+      },
+      {
+        "name": "backport",
+        "revision": "f9eba0ad9134e1c0977848476bba9d49734696e4",
+        "security": {
+          "returncode": 1,
+          "timed_out": false,
+          "truncated": false,
+          "duration_seconds": 0.706,
+          "evidence_error": null,
+          "tests": [
+            {
+              "name": "test_security",
+              "classname": "/oracle/oracle.mjs::test",
+              "outcome": "failed",
+              "expected_failure": false,
+              "original_message_sha256": "ced9901ec6640a557f32fd6aa16b68afed7743d9f5443a7802f71af9ac176a0b"
+            },
+            {
+              "name": "test_public_max_age",
+              "classname": "/oracle/oracle.mjs::test",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_private_unqualified",
+              "classname": "/oracle/oracle.mjs::test",
+              "outcome": "passed",
+              "expected_failure": false
+            }
+          ],
+          "command_sha256": "b0aef0d5bd75daf7808134565f5639427c54910d04e02b1dd1fb3a8ad7314a2c",
+          "missing_modules": [],
+          "diagnostic_excerpts": [
+            "AssertionError [ERR_ASSERTION]: CACHE_PRIVATE_EMPTY_FIELD"
+          ],
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 0,
+          "stderr_sha256": "8e8df9cefea8da012147c7336b00d17bda5a3ea5c38eb89ed7503c09518c3ebb",
+          "stderr_bytes": 970
+        },
+        "suite": {
+          "returncode": 0,
+          "timed_out": false,
+          "truncated": false,
+          "duration_seconds": 0.7849,
+          "evidence_error": null,
+          "tests": [
+            {
+              "name": "all directives are parsed properly when in their correct format",
+              "classname": "/work/repo/test/cache-interceptor/utils.js::parseCacheControlHeader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "handles weird spacings",
+              "classname": "/work/repo/test/cache-interceptor/utils.js::parseCacheControlHeader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "unknown directives are ignored",
+              "classname": "/work/repo/test/cache-interceptor/utils.js::parseCacheControlHeader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "directives with incorrect types are ignored",
+              "classname": "/work/repo/test/cache-interceptor/utils.js::parseCacheControlHeader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "the last instance of a directive takes precedence",
+              "classname": "/work/repo/test/cache-interceptor/utils.js::parseCacheControlHeader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "case insensitive",
+              "classname": "/work/repo/test/cache-interceptor/utils.js::parseCacheControlHeader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "no-cache with headers",
+              "classname": "/work/repo/test/cache-interceptor/utils.js::parseCacheControlHeader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "trims qualified no-cache and private field names",
+              "classname": "/work/repo/test/cache-interceptor/utils.js::parseCacheControlHeader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "private with headers",
+              "classname": "/work/repo/test/cache-interceptor/utils.js::parseCacheControlHeader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "handles multiple headers correctly",
+              "classname": "/work/repo/test/cache-interceptor/utils.js::parseCacheControlHeader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "basic usage",
+              "classname": "/work/repo/test/cache-interceptor/utils.js::parseVaryHeader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "handles weird spacings",
+              "classname": "/work/repo/test/cache-interceptor/utils.js::parseVaryHeader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "handles multiple headers correctly",
+              "classname": "/work/repo/test/cache-interceptor/utils.js::parseVaryHeader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "handles missing headers with null",
+              "classname": "/work/repo/test/cache-interceptor/utils.js::parseVaryHeader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "handles mix of present and missing headers",
+              "classname": "/work/repo/test/cache-interceptor/utils.js::parseVaryHeader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "handles array input",
+              "classname": "/work/repo/test/cache-interceptor/utils.js::parseVaryHeader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "preserves existing * behavior",
+              "classname": "/work/repo/test/cache-interceptor/utils.js::parseVaryHeader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "`` = false",
+              "classname": "/work/repo/test/cache-interceptor/utils.js::isEtagUsable",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "`asd` = false",
+              "classname": "/work/repo/test/cache-interceptor/utils.js::isEtagUsable",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "`\"W/\"asd\"\"` = false",
+              "classname": "/work/repo/test/cache-interceptor/utils.js::isEtagUsable",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "`\"\"asd\"\"` = false",
+              "classname": "/work/repo/test/cache-interceptor/utils.js::isEtagUsable",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "`\"asd\"` = true",
+              "classname": "/work/repo/test/cache-interceptor/utils.js::isEtagUsable",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "`W/\"ads\"` = true",
+              "classname": "/work/repo/test/cache-interceptor/utils.js::isEtagUsable",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "`\"\"` = false",
+              "classname": "/work/repo/test/cache-interceptor/utils.js::isEtagUsable",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "`W/\"\"` = false",
+              "classname": "/work/repo/test/cache-interceptor/utils.js::isEtagUsable",
+              "outcome": "passed",
+              "expected_failure": false
+            }
+          ],
+          "command_sha256": "77fd4eac89f1a3db4a930938a3b31c6ca766f1b31484962658245999b7d0249a",
+          "missing_modules": [],
+          "diagnostic_excerpts": [],
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 0,
+          "stderr_sha256": "0a3aa3ec33415eba430f20bc58ec47715181467bdad030296de9a0ac0c4d8a13",
+          "stderr_bytes": 1437
+        }
+      }
+    ]
+  },
+  "original_report_sha256": "719e599db50449124771b4b159047f3ef9245a8a64ead6c4cbc3ea91535eb61f",
+  "original_command_record_sha256": "f43247f7e1eea6b95fa5e5e791b1d4a4eceaad43eeea9a0a90a6754ebe30055a",
+  "candidate_patch_inputs": [
+    {
+      "original_filename": "attempt-1.patch",
+      "sha256": "e3766f007f584be2710f880216c7e2375a284cf3466adefd97fa73e14cbd6071"
+    }
+  ]
+}

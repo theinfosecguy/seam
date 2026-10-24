@@ -1,0 +1,18 @@
+[oracle]
+path = "oracle.mjs"
+security_test = "test_security"
+controls = ["test_plain_text", "test_compressed_text", "test_other_consumer_preserved"]
+failure_marker = "CHARSET_CHECK_BEFORE_DECOMPRESSION"
+
+[runner]
+kind = "mocha"
+image = "sha256:52f40f96867d88d68ced00067878ab5b917744d17f5649b82506f43e72d88cba"
+docker = ["sudo", "-n", "docker"]
+suite = ["test/json.js"]
+timeout_seconds = 120
+mocha_grep = "^bodyParser.json\\(\\) (?:should parse JSON|should handle Content-Length: 0|should handle duplicated middleware)$"
+
+[runner.node_dependencies]
+"185ff1d55598a60acf7e182239cae6662e564407" = "/opt/seam/dependencies/185ff1d55598a60acf7e182239cae6662e564407/node_modules"
+"f7075eae3a84c3473ab4bf0a777da28db208e916" = "/opt/seam/dependencies/f7075eae3a84c3473ab4bf0a777da28db208e916/node_modules"
+"b4c2112ff66163da4304188edda5690e90f7c8a7" = "/opt/seam/dependencies/b4c2112ff66163da4304188edda5690e90f7c8a7/node_modules"

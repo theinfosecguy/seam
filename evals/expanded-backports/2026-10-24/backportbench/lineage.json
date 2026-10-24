@@ -1,0 +1,16 @@
+{
+  "instance_id": "qs_98",
+  "advisory_url": "https://osv.dev/vulnerability/GHSA-hrpp-h998-j3pp",
+  "source_commit": "8b4cc14cda94a5c89341b77e5fe435ec6c41be2d",
+  "source_parents": [
+    "ad63d36ce18cd2c315899ac1e8193de22be08cd8"
+  ],
+  "source_url": "https://github.com/ljharb/qs/commit/8b4cc14cda94a5c89341b77e5fe435ec6c41be2d",
+  "source_record_sha256": "662989eacebffbe602a863aef51e03e4c725359b15512381f1a65bafae2ae87b",
+  "target_commit": "e799ba57e573a30c14b67c1889c7c04d508b9105",
+  "target_parents": [
+    "02ca358155297dc68fcc4c2ac312c26e10524e47"
+  ],
+  "target_url": "https://github.com/ljharb/qs/commit/e799ba57e573a30c14b67c1889c7c04d508b9105",
+  "target_record_sha256": "53a3f0838ad9586e1a29856c5c61b9e990b592b4fdc6c0a993e54d2633f1a1de"
+}

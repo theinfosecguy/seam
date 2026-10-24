@@ -1,0 +1,26 @@
+[oracle]
+path = "oracle.mjs"
+security_test = "test_security"
+controls = ["test_connect_callback", "test_trusted_tls_request"]
+failure_marker = "TLS_VALIDATION_CALLBACK_PRESERVED"
+
+[runner]
+kind = "node"
+image = "sha256:52f40f96867d88d68ced00067878ab5b917744d17f5649b82506f43e72d88cba"
+docker = ["sudo", "-n", "docker"]
+suite = ["test/node-test/agent.js"]
+timeout_seconds = 120
+
+[runner.node_dependencies]
+"e257e9f8fb42eedd50727b9cf65e548c8925e4a8" = "/opt/seam/dependencies/e257e9f8fb42eedd50727b9cf65e548c8925e4a8/node_modules"
+"f75eac00ac177f7b2e6c8bfbd52d4113164286e6" = "/opt/seam/dependencies/f75eac00ac177f7b2e6c8bfbd52d4113164286e6/node_modules"
+"b40fbfc0651703cf9fa9f6ced68b679f28d8bb28" = "/opt/seam/dependencies/b40fbfc0651703cf9fa9f6ced68b679f28d8bb28/node_modules"
+
+[runner.reviewed_submodules]
+"test/fixtures/cache-tests" = ["1000acb7071ed401a654160f13d27c2a8a0139cc"]
+"test/web-platform-tests/wpt" = ["250a471e25c3d6f977f6117d65f1852216118e63"]
+
+[runner.reviewed_fixtures]
+"test/fixtures/key.pem" = ["7ecbd7457c9ad342190bb2b4d189554529d95057202152826d8737f94e3796ff"]
+"test/fixtures/cert.pem" = ["6a6402bfed7ec41d9d8fd393f218685f9af306cf1b33ca57658e166c7f28c54b"]
+"test/fixtures/ca.pem" = ["d6fd2bed3afbdf4765a7cb16cabc7ab29614260a5f69ade842aad9d37e6c4f4f"]

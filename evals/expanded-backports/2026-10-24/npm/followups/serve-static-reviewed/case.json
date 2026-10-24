@@ -1,0 +1,25 @@
+{
+  "instance_id": "serve-static-reviewed",
+  "package": "serve-static",
+  "repository_url": "https://github.com/expressjs/serve-static.git",
+  "upstream_parent_commit": "d79edcecd7875329f7d0648412cf20ec7315977b",
+  "upstream_fix_commit": "ce730896fddce1588111d9ef6fdf20896de5c6fa",
+  "base_commit": "9b5a12a76f4d70530d2d2a8c7742e9158ed3c0a4",
+  "maintainer_backport_commit": "0c11fad159898cdc69fd9ab63269b72468ecaf6b",
+  "selection_review": {
+    "prior_attempt": "trial-02/serve-static/reference",
+    "reason": "Two old expectations require HTML anchors removed intentionally by the maintainer security fix. Exclude these titles from the compatibility selection on all revisions; independent redirect-body regression and Location/file controls remain unchanged.",
+    "excluded_titles": [
+      "should include HTML link",
+      "should ensure redirect URL is properly encoded"
+    ],
+    "original_config_sha256": "21e954ced3d8b38143e6a04493fa6d8e355c30e1b0e00b15c2ac2bac7bdc0ac8"
+  },
+  "input_sha256": {
+    "LICENSE.upstream": "63b9a188d7d43e64b0558b7115255045b9fe20a5fc3ff483421cb899e7f52bcb",
+    "upstream.patch": "25cb1e55a3a02d7dac7691e675e6cbbeb1f174dc57aa6a0858223218b8282c6d",
+    "reference.patch": "f9a7a9f717fb659fc35b7e6db6381a83cc0f1005a7e92a107c98f5df5d64b311",
+    "oracle.mjs": "fca237c7cd9cd01d17f8451998f03eecd3b6b7f48efb3f9cd634a334d4407bbb",
+    "harness.toml": "151fab9f37a305c78abbf57dd1b65c62f4dcdff506183a5313ac079d18c34d60"
+  }
+}

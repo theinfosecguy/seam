@@ -1,0 +1,15 @@
+diff --git a/lib/clone.js b/lib/clone.js
+index 73580d2..e64defb 100755
+--- a/lib/clone.js
++++ b/lib/clone.js
+@@ -77,6 +77,10 @@ module.exports = internals.clone = function (obj, options = {}, _seen = null) {
+ 
+     const keys = Utils.keys(obj, options);
+     for (const key of keys) {
++        if (key === '__proto__') {
++            continue;
++        }
++
+         if (baseProto === Types.array &&
+             key === 'length') {
+ 

@@ -1,0 +1,12 @@
+[oracle]
+path = "oracle.py"
+security_test = "test_security"
+controls = ["test_supported_language", "test_unsupported_language"]
+failure_marker = "LANGUAGE_CACHE_KEYS_TRUNCATED"
+
+[runner]
+image = "sha256:5c994eb5c630681a2141849869f60e16d5b69f55617067b910702c1795b9b0d2"
+docker = ["sudo", "-n", "docker"]
+suite = ["tests/i18n/tests.py::MiscTests::test_get_supported_language_variant_real", "tests/i18n/tests.py::MiscTests::test_get_supported_language_variant_null"]
+plugins = ["pytest_django.plugin"]
+timeout_seconds = 120

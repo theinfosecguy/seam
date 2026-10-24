@@ -1,0 +1,795 @@
+{
+  "copied_inputs": {
+    "LICENSE": {
+      "byte_identical": true,
+      "sha256": "efa55b5616b85a8773e8fddeeab9ce212e74b43c8d7e25ceb2d610854240b8ef",
+      "source_input": "seam/LICENSE"
+    },
+    "cases/ansi-regex/LICENSE.upstream": {
+      "byte_identical": true,
+      "sha256": "5c932d88256b4ab958f64a856fa48e8bd1f55bc1d96b8149c65689e0c61789d3",
+      "source_input": "cases/ansi-regex/LICENSE.upstream"
+    },
+    "cases/ansi-regex/harness.toml": {
+      "byte_identical": true,
+      "sha256": "61e0aa231608959954b5706cab7a7c60bd9f35d2d2ebb95155d034bc7b54a540",
+      "source_input": "cases/ansi-regex/harness.toml"
+    },
+    "cases/ansi-regex/oracle.mjs": {
+      "byte_identical": true,
+      "sha256": "fd3a33a4a2ba92d48d1d9cbeead7d5e3e2091d43b4fe3053ab794db8587e45ea",
+      "source_input": "cases/ansi-regex/oracle.mjs"
+    },
+    "cases/ansi-regex/reference.patch": {
+      "byte_identical": true,
+      "sha256": "46de3f3dd7de229a7d07e45f5b66da914a2cae32ce18488b41374a98517eecfd",
+      "source_input": "cases/ansi-regex/reference.patch"
+    },
+    "cases/ansi-regex/upstream.patch": {
+      "byte_identical": true,
+      "sha256": "fc88704f69a000692e78064486a79be0a0920aae0281195eda0323fb02a7e416",
+      "source_input": "cases/ansi-regex/upstream.patch"
+    },
+    "cases/axios/LICENSE.upstream": {
+      "byte_identical": true,
+      "sha256": "82761059eaedacb3356803aea8a170d8298609f91b14fc32ee1bfb40d690183c",
+      "source_input": "cases/axios/LICENSE.upstream"
+    },
+    "cases/axios/harness.toml": {
+      "byte_identical": true,
+      "sha256": "46e1f5725e18c7ee70b1b75c2af4c0b068ba09d5219e21d289c1ce89f8233c2f",
+      "source_input": "cases/axios/harness.toml"
+    },
+    "cases/axios/oracle.mjs": {
+      "byte_identical": true,
+      "sha256": "71da898ccf742f0fde783064e2ea3e921cdd7b744527cec7695faea6ffdc5f1e",
+      "source_input": "cases/axios/oracle.mjs"
+    },
+    "cases/axios/reference.patch": {
+      "byte_identical": true,
+      "sha256": "f3ea68e4fb50059fdfdca6d9bb4c4d784e39b476ab11367af9c7fb6def025bfe",
+      "source_input": "cases/axios/reference.patch"
+    },
+    "cases/axios/upstream.patch": {
+      "byte_identical": true,
+      "sha256": "0c38bc0616239a311022624b0af1b2070a61a93224a7dfa86956f42d662225e7",
+      "source_input": "cases/axios/upstream.patch"
+    },
+    "cases/body-parser/LICENSE.upstream": {
+      "byte_identical": true,
+      "sha256": "23d466b1b134b415b66fa50c6526b4cf3e7b9258554da88d3abb371721e7ce68",
+      "source_input": "cases/body-parser/LICENSE.upstream"
+    },
+    "cases/body-parser/harness.toml": {
+      "byte_identical": true,
+      "sha256": "fff4ca78ef084ec51b5ed94099e517e2d40fcbc3d2b08b163a30d33c6e8f0214",
+      "source_input": "cases/body-parser/harness.toml"
+    },
+    "cases/body-parser/oracle.mjs": {
+      "byte_identical": true,
+      "sha256": "e742166348a9258d2deadd2355fd6cadb274cfa713aebc1c3cd4a9e64b85b270",
+      "source_input": "cases/body-parser/oracle.mjs"
+    },
+    "cases/body-parser/reference.patch": {
+      "byte_identical": true,
+      "sha256": "2f8907bc16e704225c8eeb62e778e57ec17677e8a5025890826418e17534e995",
+      "source_input": "cases/body-parser/reference.patch"
+    },
+    "cases/body-parser/upstream.patch": {
+      "byte_identical": true,
+      "sha256": "5cf1931c7912e6206ddbfbe0fea774bc132d8db0133e2bd2763700c51fbd66a8",
+      "source_input": "cases/body-parser/upstream.patch"
+    },
+    "cases/debug/LICENSE.upstream": {
+      "byte_identical": true,
+      "sha256": "98c970de440dcfc77471610aec2377c9d9b0db2b3be6d1add524a586e1d7f422",
+      "source_input": "cases/debug/LICENSE.upstream"
+    },
+    "cases/debug/harness.toml": {
+      "byte_identical": true,
+      "sha256": "521c4883a16397d310081c8981b91b43cc433b05cf629b7e4766679d03712ba6",
+      "source_input": "cases/debug/harness.toml"
+    },
+    "cases/debug/oracle.mjs": {
+      "byte_identical": true,
+      "sha256": "6e7360926df633b497c945d784e04e4157fdb69e4c68bf93a97fb33c46544455",
+      "source_input": "cases/debug/oracle.mjs"
+    },
+    "cases/debug/reference.patch": {
+      "byte_identical": true,
+      "sha256": "1eb7b2a904d85adfb4c50813e22b45185d0e51bab980d0668a40741c74942e7c",
+      "source_input": "cases/debug/reference.patch"
+    },
+    "cases/debug/upstream.patch": {
+      "byte_identical": true,
+      "sha256": "8cd5d23438359f499139eb3fe7c92c5d6f62229d3e2c12b07b1be6c1c340abc6",
+      "source_input": "cases/debug/upstream.patch"
+    },
+    "cases/dot-prop/LICENSE.upstream": {
+      "byte_identical": true,
+      "sha256": "48da2f39e100d4085767e94966b43f4fa95ff6a0698fba57ed460914e35f94a0",
+      "source_input": "cases/dot-prop/LICENSE.upstream"
+    },
+    "cases/dot-prop/harness.toml": {
+      "byte_identical": true,
+      "sha256": "936f5cb4ff3c5507091fc3c2cbd7cac05e51ea445e8014a3bf7b8ba08965d39b",
+      "source_input": "cases/dot-prop/harness.toml"
+    },
+    "cases/dot-prop/oracle.mjs": {
+      "byte_identical": true,
+      "sha256": "0cd3e564b3fe2d67f2e6407e930b24ddad90cc549f7fdda365180ce54585094a",
+      "source_input": "cases/dot-prop/oracle.mjs"
+    },
+    "cases/dot-prop/reference.patch": {
+      "byte_identical": true,
+      "sha256": "1d1e8b07153d09142afa9cb765ea3eb2f0a7aeff2e640a7c118c2897c25b3521",
+      "source_input": "cases/dot-prop/reference.patch"
+    },
+    "cases/dot-prop/upstream.patch": {
+      "byte_identical": true,
+      "sha256": "205aef3df736dad63c3f669af0f757f2133f53043ae0e4acffb3f8d8355b4b28",
+      "source_input": "cases/dot-prop/upstream.patch"
+    },
+    "cases/fast-uri/LICENSE.upstream": {
+      "byte_identical": true,
+      "sha256": "b010b0dfdfdb23d7396e03b82cd4621fc9bb8f95d6b0aea70b9c24e12074c786",
+      "source_input": "cases/fast-uri/LICENSE.upstream"
+    },
+    "cases/fast-uri/harness.toml": {
+      "byte_identical": true,
+      "sha256": "cc700171007a1f194e2865f663ca7120550898fbd1d9886d3b497c566f0fad9f",
+      "source_input": "cases/fast-uri/harness.toml"
+    },
+    "cases/fast-uri/oracle.mjs": {
+      "byte_identical": true,
+      "sha256": "fd6946c66e9030686e617a2801a94eec29fd724b53d610dd8f0d057b65d56eab",
+      "source_input": "cases/fast-uri/oracle.mjs"
+    },
+    "cases/fast-uri/reference.patch": {
+      "byte_identical": true,
+      "sha256": "1619737cd3c2ae41807a1c0da29ba4f27a7b7603b3bc5695b1d8723863255560",
+      "source_input": "cases/fast-uri/reference.patch"
+    },
+    "cases/fast-uri/upstream.patch": {
+      "byte_identical": true,
+      "sha256": "b0516d06107ee9539d5fd2abbeb671acfe870de1330ea2bfea7a4956049a09c9",
+      "source_input": "cases/fast-uri/upstream.patch"
+    },
+    "cases/hoek/LICENSE.upstream": {
+      "byte_identical": true,
+      "sha256": "798002f736a7ad3e26518903eb0e9ace73d98d5418fe94547a4c1bdc90be54e2",
+      "source_input": "cases/hoek/LICENSE.upstream"
+    },
+    "cases/hoek/harness.toml": {
+      "byte_identical": true,
+      "sha256": "34785f71971a1222731a30aa39e39ab537e8e39bacfc1d4200673c337fdf1525",
+      "source_input": "cases/hoek/harness.toml"
+    },
+    "cases/hoek/oracle.mjs": {
+      "byte_identical": true,
+      "sha256": "e4bd4b15e46aa8fbdff86d7cfe298aaed4edfe564cef43d92033644ebc731c49",
+      "source_input": "cases/hoek/oracle.mjs"
+    },
+    "cases/hoek/reference.patch": {
+      "byte_identical": true,
+      "sha256": "c0340e2d9d493aaa37feb91d90aa3b3c99febd82a31397359de8ac8f276d2fc3",
+      "source_input": "cases/hoek/reference.patch"
+    },
+    "cases/hoek/upstream.patch": {
+      "byte_identical": true,
+      "sha256": "1f8ab28c27177b09aad757fc27a9ec52e15088bdabc861d3853ce06408f460ee",
+      "source_input": "cases/hoek/upstream.patch"
+    },
+    "cases/ip/LICENSE.upstream": {
+      "byte_identical": true,
+      "sha256": "059fcdeafb68ab683a956378f222e85f71554ebe456f328f01632db760c266fd",
+      "source_input": "cases/ip/LICENSE.upstream"
+    },
+    "cases/ip/harness.toml": {
+      "byte_identical": true,
+      "sha256": "11cc4fd10bb5552549e2cc8cbc737faee9f7c5e264591c69b11fed4c57d4c93d",
+      "source_input": "cases/ip/harness.toml"
+    },
+    "cases/ip/oracle.mjs": {
+      "byte_identical": true,
+      "sha256": "ea16155ef515d6cd72f489c020fc9561e46fa5f7ab4bef216d529260cf6d1aaf",
+      "source_input": "cases/ip/oracle.mjs"
+    },
+    "cases/ip/reference.patch": {
+      "byte_identical": true,
+      "sha256": "da1d246becc181a93f164cb2507f37d89781aa940009826cb15b65f33b3d4f5a",
+      "source_input": "cases/ip/reference.patch"
+    },
+    "cases/ip/upstream.patch": {
+      "byte_identical": true,
+      "sha256": "3aab48cfc8545ac2339929ff0dfd17a6317380511105d5a384dd0493e739959d",
+      "source_input": "cases/ip/upstream.patch"
+    },
+    "cases/js-yaml/LICENSE.upstream": {
+      "byte_identical": true,
+      "sha256": "a07bc24468b9654ce76a547d47a2db282d07733b715db4c73a98bd63961f9550",
+      "source_input": "cases/js-yaml/LICENSE.upstream"
+    },
+    "cases/js-yaml/harness.toml": {
+      "byte_identical": true,
+      "sha256": "cc3211f8fb150087647f86753c6ce3317edd16f5d5e7961f0d3b6c0807884b99",
+      "source_input": "cases/js-yaml/harness.toml"
+    },
+    "cases/js-yaml/oracle.mjs": {
+      "byte_identical": true,
+      "sha256": "c14a3e487cbfee0cad2cb03ab24b756c51bfba4e4be402df8fe523bfa9a46a4e",
+      "source_input": "cases/js-yaml/oracle.mjs"
+    },
+    "cases/js-yaml/reference.patch": {
+      "byte_identical": true,
+      "sha256": "d6466d721051084b6cb3b95bc52862fb43a6a31f67208afe48baae2560406b95",
+      "source_input": "cases/js-yaml/reference.patch"
+    },
+    "cases/js-yaml/upstream.patch": {
+      "byte_identical": true,
+      "sha256": "5fc22071630a494d620186b341efa79d578b2646d73d2ea3bb3d77160d002fa1",
+      "source_input": "cases/js-yaml/upstream.patch"
+    },
+    "cases/json5/LICENSE.upstream": {
+      "byte_identical": true,
+      "sha256": "53e59feb13058722d977c699eb0407c7bce2f93c949b681bbd2ff31698535927",
+      "source_input": "cases/json5/LICENSE.upstream"
+    },
+    "cases/json5/harness.toml": {
+      "byte_identical": true,
+      "sha256": "5ffa40234082c34bed9f65b699677d599f34695e5c8a1f041929589b116f07b8",
+      "source_input": "cases/json5/harness.toml"
+    },
+    "cases/json5/oracle.mjs": {
+      "byte_identical": true,
+      "sha256": "0267b2c871ae266875b6d4567f9465f6c7c8ca7292a1d9e07ff2d9aae692b349",
+      "source_input": "cases/json5/oracle.mjs"
+    },
+    "cases/json5/reference.patch": {
+      "byte_identical": true,
+      "sha256": "7ec0814c8c00380542bf22ac45f8b26187f51e4f0b9e80ceb8993efdf0682c0e",
+      "source_input": "cases/json5/reference.patch"
+    },
+    "cases/json5/upstream.patch": {
+      "byte_identical": true,
+      "sha256": "13c91324ee02377f1c81572ff0a616ef36aae152757229dccd62754c17704585",
+      "source_input": "cases/json5/upstream.patch"
+    },
+    "cases/path-to-regexp/LICENSE.upstream": {
+      "byte_identical": true,
+      "sha256": "4eeb3271453a891df609e5a9f4ee79a68307f730c13417a3bfeffa604ac8cf25",
+      "source_input": "cases/path-to-regexp/LICENSE.upstream"
+    },
+    "cases/path-to-regexp/harness.toml": {
+      "byte_identical": true,
+      "sha256": "02513901edadfdc2d5b577596004fe3b91c2b75d61dda7a5560dd5ddb2baa157",
+      "source_input": "cases/path-to-regexp/harness.toml"
+    },
+    "cases/path-to-regexp/oracle.mjs": {
+      "byte_identical": true,
+      "sha256": "291a4037bdb1bd1ed2b34c7b72900ebb4c8f4ecbc70ed06e7aaa0372f96883fc",
+      "source_input": "cases/path-to-regexp/oracle.mjs"
+    },
+    "cases/path-to-regexp/reference.patch": {
+      "byte_identical": true,
+      "sha256": "a4857cb3ed87b6ff8a3ab3e6ad1259745bb0c52fc129675a589dd177cd84ba1e",
+      "source_input": "cases/path-to-regexp/reference.patch"
+    },
+    "cases/path-to-regexp/upstream.patch": {
+      "byte_identical": true,
+      "sha256": "98c9fbe5ef8413b66cefa5f1fb5a1bcacc97bc48c6d97e5ca33e4ae6016e97bb",
+      "source_input": "cases/path-to-regexp/upstream.patch"
+    },
+    "cases/qs/LICENSE.upstream": {
+      "byte_identical": true,
+      "sha256": "e7dc37bf662d7f786efcb46c545615e70c1daf458a38385521c63cf6607cdfe1",
+      "source_input": "cases/qs/LICENSE.upstream"
+    },
+    "cases/qs/harness.toml": {
+      "byte_identical": true,
+      "sha256": "06f095d64f664c9bd4ad20a7cf52d634c21fa22a977c4e0a0b455759a745f8cf",
+      "source_input": "cases/qs/harness.toml"
+    },
+    "cases/qs/oracle.mjs": {
+      "byte_identical": true,
+      "sha256": "7be0c63408b17c05eac2e5caa108beaafc177a384077904b728fcf4cf9eae93a",
+      "source_input": "cases/qs/oracle.mjs"
+    },
+    "cases/qs/reference.patch": {
+      "byte_identical": true,
+      "sha256": "321a180a2f17c87f9ac7d9d885d39c750f3e46f1acf3972bdffbefe7003c8d50",
+      "source_input": "cases/qs/reference.patch"
+    },
+    "cases/qs/upstream.patch": {
+      "byte_identical": true,
+      "sha256": "b512a4bb96d3939d404bee2b7fdc9ae7c59ad32fa9f776d98e8088a20d9e748b",
+      "source_input": "cases/qs/upstream.patch"
+    },
+    "cases/semver/LICENSE.upstream": {
+      "byte_identical": true,
+      "sha256": "4ec3d4c66cd87f5c8d8ad911b10f99bf27cb00cdfcff82621956e379186b016b",
+      "source_input": "cases/semver/LICENSE.upstream"
+    },
+    "cases/semver/harness.toml": {
+      "byte_identical": true,
+      "sha256": "da6d008af4b2de4ad189a219dfd2ca4df9f6b9acd5dbc63139d418de2ca87b30",
+      "source_input": "cases/semver/harness.toml"
+    },
+    "cases/semver/oracle.mjs": {
+      "byte_identical": true,
+      "sha256": "bf59ba7fb942f05deb5d603bccc93364f15f1365b9616c73995575e81bce6b04",
+      "source_input": "cases/semver/oracle.mjs"
+    },
+    "cases/semver/reference.patch": {
+      "byte_identical": true,
+      "sha256": "421e8c7b385e945a80e7625ae744778738140202d9a4390cd115aa6d95b52417",
+      "source_input": "cases/semver/reference.patch"
+    },
+    "cases/semver/upstream.patch": {
+      "byte_identical": true,
+      "sha256": "49db0037cb025ab4483ad7fd514f8838e488c8b7c0909ba9ffe60996600894e6",
+      "source_input": "cases/semver/upstream.patch"
+    },
+    "cases/serve-static/LICENSE.upstream": {
+      "byte_identical": true,
+      "sha256": "63b9a188d7d43e64b0558b7115255045b9fe20a5fc3ff483421cb899e7f52bcb",
+      "source_input": "cases/serve-static/LICENSE.upstream"
+    },
+    "cases/serve-static/harness.toml": {
+      "byte_identical": true,
+      "sha256": "21e954ced3d8b38143e6a04493fa6d8e355c30e1b0e00b15c2ac2bac7bdc0ac8",
+      "source_input": "cases/serve-static/harness.toml"
+    },
+    "cases/serve-static/oracle.mjs": {
+      "byte_identical": true,
+      "sha256": "fca237c7cd9cd01d17f8451998f03eecd3b6b7f48efb3f9cd634a334d4407bbb",
+      "source_input": "cases/serve-static/oracle.mjs"
+    },
+    "cases/serve-static/reference.patch": {
+      "byte_identical": true,
+      "sha256": "f9a7a9f717fb659fc35b7e6db6381a83cc0f1005a7e92a107c98f5df5d64b311",
+      "source_input": "cases/serve-static/reference.patch"
+    },
+    "cases/serve-static/upstream.patch": {
+      "byte_identical": true,
+      "sha256": "25cb1e55a3a02d7dac7691e675e6cbbeb1f174dc57aa6a0858223218b8282c6d",
+      "source_input": "cases/serve-static/upstream.patch"
+    },
+    "cases/undici-cookie/LICENSE.upstream": {
+      "byte_identical": true,
+      "sha256": "a6db8096b2707bc0102d256917d4d33f298ba36d8c3f25de067a2b5bb379db27",
+      "source_input": "cases/undici-cookie/LICENSE.upstream"
+    },
+    "cases/undici-cookie/harness.toml": {
+      "byte_identical": true,
+      "sha256": "e93ac99a52f6a5be59330f519bdbe181a9726bf39ca6d21fff145b441b8cf0f9",
+      "source_input": "cases/undici-cookie/harness.toml"
+    },
+    "cases/undici-cookie/oracle.mjs": {
+      "byte_identical": true,
+      "sha256": "8957d712506425918d08db7b98eb079121cb43990d5dd9df9153977a14675184",
+      "source_input": "cases/undici-cookie/oracle.mjs"
+    },
+    "cases/undici-cookie/reference.patch": {
+      "byte_identical": true,
+      "sha256": "d0cbe440cc59e09222607200ae994841079294e69c94f14e82033727f43aea3f",
+      "source_input": "cases/undici-cookie/reference.patch"
+    },
+    "cases/undici-cookie/upstream.patch": {
+      "byte_identical": true,
+      "sha256": "312c94b021964a640b62ce5e0758a1d96f27b0bd03aca19db75a9e0334f39a5d",
+      "source_input": "cases/undici-cookie/upstream.patch"
+    },
+    "cases/undici-private-cache/LICENSE.upstream": {
+      "byte_identical": true,
+      "sha256": "a6db8096b2707bc0102d256917d4d33f298ba36d8c3f25de067a2b5bb379db27",
+      "source_input": "cases/undici-private-cache/LICENSE.upstream"
+    },
+    "cases/undici-private-cache/harness.toml": {
+      "byte_identical": true,
+      "sha256": "5d14fab8a04108588e1ed660a903d0d961b7805babe5a8acfb3fc725911d2860",
+      "source_input": "cases/undici-private-cache/harness.toml"
+    },
+    "cases/undici-private-cache/oracle.mjs": {
+      "byte_identical": true,
+      "sha256": "3af631f0a3496ac0f2baf6998fb8462b4bd4c197fd42f1bf6c79d2db32ee12ff",
+      "source_input": "cases/undici-private-cache/oracle.mjs"
+    },
+    "cases/undici-private-cache/reference.patch": {
+      "byte_identical": true,
+      "sha256": "22f00192c4fecac3b3ed1c3267abf82a3a702ffe875b15fed67d622623a30d47",
+      "source_input": "cases/undici-private-cache/reference.patch"
+    },
+    "cases/undici-private-cache/upstream.patch": {
+      "byte_identical": true,
+      "sha256": "95a07ea97fbf9fa667970f9b02ea35a717b288a9cdfb5eebed63538cc0a18144",
+      "source_input": "cases/undici-private-cache/upstream.patch"
+    },
+    "cases/undici-tls/LICENSE.upstream": {
+      "byte_identical": true,
+      "sha256": "a6db8096b2707bc0102d256917d4d33f298ba36d8c3f25de067a2b5bb379db27",
+      "source_input": "cases/undici-tls/LICENSE.upstream"
+    },
+    "cases/undici-tls/harness.toml": {
+      "byte_identical": true,
+      "sha256": "868c0f63bd982210d1db2143a9ef945bb7fe08018396fc0d0ec8de7fabba9957",
+      "source_input": "cases/undici-tls/harness.toml"
+    },
+    "cases/undici-tls/oracle.mjs": {
+      "byte_identical": true,
+      "sha256": "071edc900ad6892df357a866ed71fcf3b9518d6b5d3c2998ec58ca805d1db79a",
+      "source_input": "cases/undici-tls/oracle.mjs"
+    },
+    "cases/undici-tls/reference.patch": {
+      "byte_identical": true,
+      "sha256": "68c073a91e36b0d848ee0c7c92803643c27ebf4b4a056c0e617f54acb4ebfc65",
+      "source_input": "cases/undici-tls/reference.patch"
+    },
+    "cases/undici-tls/upstream.patch": {
+      "byte_identical": true,
+      "sha256": "eca4f0aed8076dc927fc05c0b1a420bf67b170282572dd9695a63b432a796cb9",
+      "source_input": "cases/undici-tls/upstream.patch"
+    },
+    "cases/ws/LICENSE.upstream": {
+      "byte_identical": true,
+      "sha256": "2b29dcfe0d6471f7e8c92c5fb38c9f93edee10330937055440192f1832b1ecef",
+      "source_input": "cases/ws/LICENSE.upstream"
+    },
+    "cases/ws/harness.toml": {
+      "byte_identical": true,
+      "sha256": "95a4f1f3601668295e47b5d8a7615c27e228eb10426e3c4be33fed6e59ceed36",
+      "source_input": "cases/ws/harness.toml"
+    },
+    "cases/ws/oracle.mjs": {
+      "byte_identical": true,
+      "sha256": "867bea00c9aa0cc3fcbf8a209e5e1ba479c001b7ad3b469fe7ece64350985b56",
+      "source_input": "cases/ws/oracle.mjs"
+    },
+    "cases/ws/reference.patch": {
+      "byte_identical": true,
+      "sha256": "ffe3a0847c9a7c064ca43c3b99c73475ea6f7e6c92fbbea121aab2a5b21d1ae2",
+      "source_input": "cases/ws/reference.patch"
+    },
+    "cases/ws/upstream.patch": {
+      "byte_identical": true,
+      "sha256": "ffa8cc6394e8889cdfa959bfbede4a46caf9034c219175175561e8306b174b82",
+      "source_input": "cases/ws/upstream.patch"
+    },
+    "cases/yargs-parser-5/LICENSE.upstream": {
+      "byte_identical": true,
+      "sha256": "365496ca1f56da40b23c9815fc40fa9005847b2f8f8fd1c1a4929ef25ec8cd1d",
+      "source_input": "cases/yargs-parser-5/LICENSE.upstream"
+    },
+    "cases/yargs-parser-5/harness.toml": {
+      "byte_identical": true,
+      "sha256": "bccadb2c3f1c75ee0462671a9aee3d5ef1ee2c1b798592e67e8816abb2454d61",
+      "source_input": "cases/yargs-parser-5/harness.toml"
+    },
+    "cases/yargs-parser-5/oracle.mjs": {
+      "byte_identical": true,
+      "sha256": "3b99e32cce10059c7d368efd753f74ec51a3fc7a83ab69e9f0b53717937ac988",
+      "source_input": "cases/yargs-parser-5/oracle.mjs"
+    },
+    "cases/yargs-parser-5/reference.patch": {
+      "byte_identical": true,
+      "sha256": "b2bad1dc76ad64e7f667ae5def0469adf933f5bfb003514bb3cd824588364545",
+      "source_input": "cases/yargs-parser-5/reference.patch"
+    },
+    "cases/yargs-parser-5/upstream.patch": {
+      "byte_identical": true,
+      "sha256": "0453344cbd1062cc1ba7d8469f395f9d2e728809a6be2bad36b0c7e9a7a6ef2f",
+      "source_input": "cases/yargs-parser-5/upstream.patch"
+    },
+    "cases/yargs-parser/LICENSE.upstream": {
+      "byte_identical": true,
+      "sha256": "365496ca1f56da40b23c9815fc40fa9005847b2f8f8fd1c1a4929ef25ec8cd1d",
+      "source_input": "cases/yargs-parser/LICENSE.upstream"
+    },
+    "cases/yargs-parser/harness.toml": {
+      "byte_identical": true,
+      "sha256": "4784e0019cf87333e90a90ae01e70f4007eec1b197da2f534dd7f9dbea101d31",
+      "source_input": "cases/yargs-parser/harness.toml"
+    },
+    "cases/yargs-parser/oracle.mjs": {
+      "byte_identical": true,
+      "sha256": "3ddcd6623469cd69326b74880c41724f870914cb8eea8c310153348b3b90535e",
+      "source_input": "cases/yargs-parser/oracle.mjs"
+    },
+    "cases/yargs-parser/reference.patch": {
+      "byte_identical": true,
+      "sha256": "b5e3df81359ec44a77567d350a92d3520ed6ea165641d90569d579ea77df1024",
+      "source_input": "cases/yargs-parser/reference.patch"
+    },
+    "cases/yargs-parser/upstream.patch": {
+      "byte_identical": true,
+      "sha256": "0453344cbd1062cc1ba7d8469f395f9d2e728809a6be2bad36b0c7e9a7a6ef2f",
+      "source_input": "cases/yargs-parser/upstream.patch"
+    },
+    "images/dependency-plan.json": {
+      "byte_identical": true,
+      "sha256": "7dd31b551b7b3e58175c02adb3a7a4021891591064cef8a75b6fd88abb563198",
+      "source_input": "dependency-plan.json"
+    },
+    "images/frozen-dependency-maps.json": {
+      "byte_identical": true,
+      "sha256": "282aef3796847d45abb91c71ba9a7fb945a75c72dbcbb0a40cafb618b46dc083",
+      "source_input": "frozen-dependency-maps.json"
+    },
+    "images/node-mocha/Dockerfile": {
+      "byte_identical": true,
+      "sha256": "011895d74f35a1878ede8e9783b381729be1f8847ec27d36d31647369a97cfad",
+      "source_input": "node-runner-image/Dockerfile"
+    },
+    "images/node-mocha/package-lock.json": {
+      "byte_identical": true,
+      "sha256": "9ffa28d654bf9845191a84e67a49c7b37b0d4c24752a30aa05e7077d66c45860",
+      "source_input": "node-runner-image/package-lock.json"
+    },
+    "images/node-mocha/package.json": {
+      "byte_identical": true,
+      "sha256": "7df38aaca5fe35e7009c18b8e338cf94974c504c81ecbcc985e6f0c59d34df06",
+      "source_input": "node-runner-image/package.json"
+    },
+    "images/revision-dependencies/.dockerignore": {
+      "byte_identical": true,
+      "sha256": "f5991c7e249af94eead98c3105b853a90b9567fedda25fbb32d16a7825c7c5bd",
+      "source_input": "dependency-image/.dockerignore"
+    },
+    "images/revision-dependencies/Dockerfile.executed": {
+      "byte_identical": true,
+      "sha256": "876ca2c1066a54a72c03e4919c7fb266642ca8668abadfa374b730fd67b8c3ae",
+      "source_input": "dependency-image/Dockerfile"
+    },
+    "images/revision-dependencies/groups/01fb0ce418e52dac848a1f1cdec5b7ce9a6971377921fd66f5059e2b8d4a7936/package-lock.json": {
+      "byte_identical": true,
+      "sha256": "926a1e3d7e87bc07ddcc805a36a09bc7fdfa66e57e2caec7bf66c6ec296128d5",
+      "source_input": "dependency-image/groups/01fb0ce418e52dac848a1f1cdec5b7ce9a6971377921fd66f5059e2b8d4a7936/package-lock.json"
+    },
+    "images/revision-dependencies/groups/01fb0ce418e52dac848a1f1cdec5b7ce9a6971377921fd66f5059e2b8d4a7936/package.json": {
+      "byte_identical": true,
+      "sha256": "01fb0ce418e52dac848a1f1cdec5b7ce9a6971377921fd66f5059e2b8d4a7936",
+      "source_input": "dependency-image/groups/01fb0ce418e52dac848a1f1cdec5b7ce9a6971377921fd66f5059e2b8d4a7936/package.json"
+    },
+    "images/revision-dependencies/groups/0d62da01c9167c07ed50c3d16f3d983e1f79e692ae24c619df8ef2f77d34a787/package-lock.json": {
+      "byte_identical": true,
+      "sha256": "1199c288525082ea80260b5c2c564279d5929ae6ff958bc75f1b969e0614a4f1",
+      "source_input": "dependency-image/groups/0d62da01c9167c07ed50c3d16f3d983e1f79e692ae24c619df8ef2f77d34a787/package-lock.json"
+    },
+    "images/revision-dependencies/groups/0d62da01c9167c07ed50c3d16f3d983e1f79e692ae24c619df8ef2f77d34a787/package.json": {
+      "byte_identical": true,
+      "sha256": "0d62da01c9167c07ed50c3d16f3d983e1f79e692ae24c619df8ef2f77d34a787",
+      "source_input": "dependency-image/groups/0d62da01c9167c07ed50c3d16f3d983e1f79e692ae24c619df8ef2f77d34a787/package.json"
+    },
+    "images/revision-dependencies/groups/26dfcc183a34bf8e4959b3ae7a09a984d3457b9129e0cea1c8d196f53ac6c7a8/package-lock.json": {
+      "byte_identical": true,
+      "sha256": "4a273221463ddfcdc87db7f7f38a7cc0c5611bb11670153041a1d3f668090a7a",
+      "source_input": "dependency-image/groups/26dfcc183a34bf8e4959b3ae7a09a984d3457b9129e0cea1c8d196f53ac6c7a8/package-lock.json"
+    },
+    "images/revision-dependencies/groups/26dfcc183a34bf8e4959b3ae7a09a984d3457b9129e0cea1c8d196f53ac6c7a8/package.json": {
+      "byte_identical": true,
+      "sha256": "26dfcc183a34bf8e4959b3ae7a09a984d3457b9129e0cea1c8d196f53ac6c7a8",
+      "source_input": "dependency-image/groups/26dfcc183a34bf8e4959b3ae7a09a984d3457b9129e0cea1c8d196f53ac6c7a8/package.json"
+    },
+    "images/revision-dependencies/groups/29df3c3f5bda6b2f354076943202ba119611bb00386086dfc97bc56c8fd65db7/package-lock.json": {
+      "byte_identical": true,
+      "sha256": "d5fce914b24b2ed6ea91cf7f486aa25a663c37326e86c2c70b68e7863a3078c8",
+      "source_input": "dependency-image/groups/29df3c3f5bda6b2f354076943202ba119611bb00386086dfc97bc56c8fd65db7/package-lock.json"
+    },
+    "images/revision-dependencies/groups/29df3c3f5bda6b2f354076943202ba119611bb00386086dfc97bc56c8fd65db7/package.json": {
+      "byte_identical": true,
+      "sha256": "29df3c3f5bda6b2f354076943202ba119611bb00386086dfc97bc56c8fd65db7",
+      "source_input": "dependency-image/groups/29df3c3f5bda6b2f354076943202ba119611bb00386086dfc97bc56c8fd65db7/package.json"
+    },
+    "images/revision-dependencies/groups/30a825d5190af823396e3f2d041b38833ce77cd0c1d1f6adbd6e825ed5c2d02d/package-lock.json": {
+      "byte_identical": true,
+      "sha256": "c528c3f0bd64ed3a46977432b3ae9f2dac4a66b0668555652f36d1195b0c2b06",
+      "source_input": "dependency-image/groups/30a825d5190af823396e3f2d041b38833ce77cd0c1d1f6adbd6e825ed5c2d02d/package-lock.json"
+    },
+    "images/revision-dependencies/groups/30a825d5190af823396e3f2d041b38833ce77cd0c1d1f6adbd6e825ed5c2d02d/package.json": {
+      "byte_identical": true,
+      "sha256": "30a825d5190af823396e3f2d041b38833ce77cd0c1d1f6adbd6e825ed5c2d02d",
+      "source_input": "dependency-image/groups/30a825d5190af823396e3f2d041b38833ce77cd0c1d1f6adbd6e825ed5c2d02d/package.json"
+    },
+    "images/revision-dependencies/groups/74be4ae14f46f4cbb0c6373d349bd7c3102069ceff20d31d90ab510d474b5084/package-lock.json": {
+      "byte_identical": true,
+      "sha256": "3794869c6d6be0b9601a6fafc6f572713dc2beeef9dfa40b79448bc714a257ea",
+      "source_input": "dependency-image/groups/74be4ae14f46f4cbb0c6373d349bd7c3102069ceff20d31d90ab510d474b5084/package-lock.json"
+    },
+    "images/revision-dependencies/groups/74be4ae14f46f4cbb0c6373d349bd7c3102069ceff20d31d90ab510d474b5084/package.json": {
+      "byte_identical": true,
+      "sha256": "74be4ae14f46f4cbb0c6373d349bd7c3102069ceff20d31d90ab510d474b5084",
+      "source_input": "dependency-image/groups/74be4ae14f46f4cbb0c6373d349bd7c3102069ceff20d31d90ab510d474b5084/package.json"
+    },
+    "images/revision-dependencies/groups/84574e6a57c29ff09f1fff0658da15aa5f481365bc3864a56a8740f0b5bae6a9/package-lock.json": {
+      "byte_identical": true,
+      "sha256": "981fb99f1f1f0448f292c194afa0c620990331988291164de405894b9accf7d0",
+      "source_input": "dependency-image/groups/84574e6a57c29ff09f1fff0658da15aa5f481365bc3864a56a8740f0b5bae6a9/package-lock.json"
+    },
+    "images/revision-dependencies/groups/84574e6a57c29ff09f1fff0658da15aa5f481365bc3864a56a8740f0b5bae6a9/package.json": {
+      "byte_identical": true,
+      "sha256": "84574e6a57c29ff09f1fff0658da15aa5f481365bc3864a56a8740f0b5bae6a9",
+      "source_input": "dependency-image/groups/84574e6a57c29ff09f1fff0658da15aa5f481365bc3864a56a8740f0b5bae6a9/package.json"
+    },
+    "images/revision-dependencies/groups/dc46aa00905fef72566253f464beab32b2aed4b08c299c3cc9ef7992b086775a/package-lock.json": {
+      "byte_identical": true,
+      "sha256": "396f3c63b93f60c5f652e3b226d740a70fe08b13c65d029a1dda8ee04e05247a",
+      "source_input": "dependency-image/groups/dc46aa00905fef72566253f464beab32b2aed4b08c299c3cc9ef7992b086775a/package-lock.json"
+    },
+    "images/revision-dependencies/groups/dc46aa00905fef72566253f464beab32b2aed4b08c299c3cc9ef7992b086775a/package.json": {
+      "byte_identical": true,
+      "sha256": "dc46aa00905fef72566253f464beab32b2aed4b08c299c3cc9ef7992b086775a",
+      "source_input": "dependency-image/groups/dc46aa00905fef72566253f464beab32b2aed4b08c299c3cc9ef7992b086775a/package.json"
+    },
+    "images/revision-dependencies/groups/e085b4bec05dfaef96235ad8178f4f2e678e46cf2461ad59ad742a8e552ef3cb/package-lock.json": {
+      "byte_identical": true,
+      "sha256": "abba5c8fa7f76a647106d5f1291903a0515c7621c920d802e66cbba58d29cd7a",
+      "source_input": "dependency-image/groups/e085b4bec05dfaef96235ad8178f4f2e678e46cf2461ad59ad742a8e552ef3cb/package-lock.json"
+    },
+    "images/revision-dependencies/groups/e085b4bec05dfaef96235ad8178f4f2e678e46cf2461ad59ad742a8e552ef3cb/package.json": {
+      "byte_identical": true,
+      "sha256": "e085b4bec05dfaef96235ad8178f4f2e678e46cf2461ad59ad742a8e552ef3cb",
+      "source_input": "dependency-image/groups/e085b4bec05dfaef96235ad8178f4f2e678e46cf2461ad59ad742a8e552ef3cb/package.json"
+    },
+    "images/revision-dependencies/groups/ef396ed1bf6bc4f92ec614494c034fa26c305c6137f692e154b1c5438a877210/package-lock.json": {
+      "byte_identical": true,
+      "sha256": "57919aab7fe0eaaca8767161bb6e01139c674a2364120dadea1e7332e023149a",
+      "source_input": "dependency-image/groups/ef396ed1bf6bc4f92ec614494c034fa26c305c6137f692e154b1c5438a877210/package-lock.json"
+    },
+    "images/revision-dependencies/groups/ef396ed1bf6bc4f92ec614494c034fa26c305c6137f692e154b1c5438a877210/package.json": {
+      "byte_identical": true,
+      "sha256": "ef396ed1bf6bc4f92ec614494c034fa26c305c6137f692e154b1c5438a877210",
+      "source_input": "dependency-image/groups/ef396ed1bf6bc4f92ec614494c034fa26c305c6137f692e154b1c5438a877210/package.json"
+    },
+    "images/revision-dependencies/groups/f5b110b84027e17a7675c45252dd6c4826e13b2b7a76143a563f787aef346543/package-lock.json": {
+      "byte_identical": true,
+      "sha256": "dc753f6f933c095ea7da6ddb20affed6888e84de098218558e2b51fcbbc03254",
+      "source_input": "dependency-image/groups/f5b110b84027e17a7675c45252dd6c4826e13b2b7a76143a563f787aef346543/package-lock.json"
+    },
+    "images/revision-dependencies/groups/f5b110b84027e17a7675c45252dd6c4826e13b2b7a76143a563f787aef346543/package.json": {
+      "byte_identical": true,
+      "sha256": "f5b110b84027e17a7675c45252dd6c4826e13b2b7a76143a563f787aef346543",
+      "source_input": "dependency-image/groups/f5b110b84027e17a7675c45252dd6c4826e13b2b7a76143a563f787aef346543/package.json"
+    }
+  },
+  "metadata_derivatives": {
+    "cases/ansi-regex/case.json": {
+      "original_sha256": "1b9726ee3360a934cd26ffc1405115d4cd29b8f7a041633ca2a733e06f3fe62a",
+      "published_sha256": "3ff6f2e45ba44bba0a98a5ec10dd4187ce31907842696a32217fbde164f72a8f",
+      "source_input": "cases/ansi-regex/case.json",
+      "transformation": "Retain immutable refs, paths, advisories and license; omit host checkout paths and omitted test/archive locations; hash the exact published inputs."
+    },
+    "cases/axios/case.json": {
+      "original_sha256": "fc7f7181de13591a8c0673aa69376a2a3f676d793386a9132fade55a37ba920b",
+      "published_sha256": "f793089582e942771211cb4cdd7aeed06964383bddf22ccda9640d9ecf5126b7",
+      "source_input": "cases/axios/case.json",
+      "transformation": "Retain immutable refs, paths, advisories and license; omit host checkout paths and omitted test/archive locations; hash the exact published inputs."
+    },
+    "cases/body-parser/case.json": {
+      "original_sha256": "7f32f12cc26cbc38751d5df3a545daf97fae075edc127f85f8eec7c1f0d4537c",
+      "published_sha256": "2f5574a1c2fc286d3d3ce0dbbf6d3502d7c8ebe417bbdc3645021f6eb712d278",
+      "source_input": "cases/body-parser/case.json",
+      "transformation": "Retain immutable refs, paths, advisories and license; omit host checkout paths and omitted test/archive locations; hash the exact published inputs."
+    },
+    "cases/debug/case.json": {
+      "original_sha256": "df4727c34949d085ed438b02c9f71390cd894775496b5e14d87669796f60e7ad",
+      "published_sha256": "7abe24002cf55d7bfe3dff1a4f928d9e741c39fa030add105772a4cccf6cba2c",
+      "source_input": "cases/debug/case.json",
+      "transformation": "Retain immutable refs, paths, advisories and license; omit host checkout paths and omitted test/archive locations; hash the exact published inputs."
+    },
+    "cases/dot-prop/case.json": {
+      "original_sha256": "67e089eb77e1c95375f3386a3489a1ea086cbdd3db0ed02c66e274aabb180934",
+      "published_sha256": "3053772930f24de01808efe16ac8e3087cfab973bdb846464061550851c31040",
+      "source_input": "cases/dot-prop/case.json",
+      "transformation": "Retain immutable refs, paths, advisories and license; omit host checkout paths and omitted test/archive locations; hash the exact published inputs."
+    },
+    "cases/fast-uri/case.json": {
+      "original_sha256": "1d94f8c8365076231b07770f31b6078fda0c133bc7c51f3878f42ae1a1853140",
+      "published_sha256": "b100a0c70384e8319433ac018628e76f17e9ef30a47366eafbf77e21493a0bab",
+      "source_input": "cases/fast-uri/case.json",
+      "transformation": "Retain immutable refs, paths, advisories and license; omit host checkout paths and omitted test/archive locations; hash the exact published inputs."
+    },
+    "cases/hoek/case.json": {
+      "original_sha256": "1b51640ab4f9ef3ff56e7ef73ff41bb6d87a54e52a93dac2a207c6c353ca8d51",
+      "published_sha256": "c69ddb85dd4532a148a48ba892ec874e89140fb3d4c25a8dd0b7a36a6731edb0",
+      "source_input": "cases/hoek/case.json",
+      "transformation": "Retain immutable refs, paths, advisories and license; omit host checkout paths and omitted test/archive locations; hash the exact published inputs."
+    },
+    "cases/ip/case.json": {
+      "original_sha256": "da3a5087672ee903c1c54203a47f8dbd583a7e3c88ae1f61c9a6f2f3b1a604cd",
+      "published_sha256": "1c96ddcb89edda296a854bed902f6b737d8bfd9b49db7ef2453635525317494c",
+      "source_input": "cases/ip/case.json",
+      "transformation": "Retain immutable refs, paths, advisories and license; omit host checkout paths and omitted test/archive locations; hash the exact published inputs."
+    },
+    "cases/js-yaml/case.json": {
+      "original_sha256": "f9b863b43c439931eb93728314a113d4367e08c52a8ae482007b2b338efa094f",
+      "published_sha256": "0e8e8b4aa180e8ba5a4a96ae419adc3a01837041846e00ea297a5720fdfbe407",
+      "source_input": "cases/js-yaml/case.json",
+      "transformation": "Retain immutable refs, paths, advisories and license; omit host checkout paths and omitted test/archive locations; hash the exact published inputs."
+    },
+    "cases/json5/case.json": {
+      "original_sha256": "7068a55034fa0159610f6c7f6f24b6c61bb3444389ddd08d768e5cd757748101",
+      "published_sha256": "9b53a6b26ea9ae063af53b28b37d716e778e15fd7cbb636bb2a2453711915771",
+      "source_input": "cases/json5/case.json",
+      "transformation": "Retain immutable refs, paths, advisories and license; omit host checkout paths and omitted test/archive locations; hash the exact published inputs."
+    },
+    "cases/path-to-regexp/case.json": {
+      "original_sha256": "57ceae8752721d7434debbe8ab6b0a9eae526c416a5f11b5af9bdf54e5aee561",
+      "published_sha256": "36222a6ed812a54b4bec474345b6b4a1958d56e0cb89ac8bd08a9ea59bae1c87",
+      "source_input": "cases/path-to-regexp/case.json",
+      "transformation": "Retain immutable refs, paths, advisories and license; omit host checkout paths and omitted test/archive locations; hash the exact published inputs."
+    },
+    "cases/qs/case.json": {
+      "original_sha256": "315958664993f0ea851dca0abfe1cfad36e5fe219bcb5a2fb771f3fafb5110a3",
+      "published_sha256": "fd37d6a2c5f165835e22f77c8b63ece4f60df73ffeff3aebe34484065f198332",
+      "source_input": "cases/qs/case.json",
+      "transformation": "Retain immutable refs, paths, advisories and license; omit host checkout paths and omitted test/archive locations; hash the exact published inputs."
+    },
+    "cases/semver/case.json": {
+      "original_sha256": "2b203305b1daac76abfc07732d3cba8299c628b268adabbdfe0ea5ece25678be",
+      "published_sha256": "29b7357c2993b1662c238ec65a69f9894f4eb905d85f83cadbaf522fd525f688",
+      "source_input": "cases/semver/case.json",
+      "transformation": "Retain immutable refs, paths, advisories and license; omit host checkout paths and omitted test/archive locations; hash the exact published inputs."
+    },
+    "cases/serve-static/case.json": {
+      "original_sha256": "503eff73c1ac52bc17da196db9583e8c27059f6825e72f968d23ebad99180c8d",
+      "published_sha256": "cb0ed021fd37d7ac584e36914680b2fe0a1ee228214b8fe12356023bc9313a87",
+      "source_input": "cases/serve-static/case.json",
+      "transformation": "Retain immutable refs, paths, advisories and license; omit host checkout paths and omitted test/archive locations; hash the exact published inputs."
+    },
+    "cases/undici-cookie/case.json": {
+      "original_sha256": "cf32051857fee465d23bf95ae54acd83811d2fb4509e9f904f1fb37815c50cbc",
+      "published_sha256": "f1be6b72958b85833a9afae9a3b867d51030c752bb2de2247f1dbdc17ff67c59",
+      "source_input": "cases/undici-cookie/case.json",
+      "transformation": "Retain immutable refs, paths, advisories and license; omit host checkout paths and omitted test/archive locations; hash the exact published inputs."
+    },
+    "cases/undici-private-cache/case.json": {
+      "original_sha256": "69054c61db9577be9e101f6d68e8a02ac07593ab8b058d64364a6288cff476d1",
+      "published_sha256": "27945bd4f082b8aa1f7be8842b4281491fb7c740d57de418857a1713494082c8",
+      "source_input": "cases/undici-private-cache/case.json",
+      "transformation": "Retain immutable refs, paths, advisories and license; omit host checkout paths and omitted test/archive locations; hash the exact published inputs."
+    },
+    "cases/undici-tls/case.json": {
+      "original_sha256": "14257a7df052163a99b620b7a9d20777bb3c96ecd9c2a5c67ec2fe774be746ac",
+      "published_sha256": "e244d92939a002fb9323755a48488ac60719e23c802f3fbb7d5495c74a4b3f12",
+      "source_input": "cases/undici-tls/case.json",
+      "transformation": "Retain immutable refs, paths, advisories and license; omit host checkout paths and omitted test/archive locations; hash the exact published inputs."
+    },
+    "cases/ws/case.json": {
+      "original_sha256": "7ac47e45a526e9b7bdb25d3836d7506b471c33ef6185ef57db173f841c8a8711",
+      "published_sha256": "53360fa989dc1d4122763bc5e6e7954692703bb5944e6f0aa27b67ab39586450",
+      "source_input": "cases/ws/case.json",
+      "transformation": "Retain immutable refs, paths, advisories and license; omit host checkout paths and omitted test/archive locations; hash the exact published inputs."
+    },
+    "cases/yargs-parser-5/case.json": {
+      "original_sha256": "6e2684b6be753bb0df62fc1a7a0d0ce0d06fce0adcda308f47a5184098588645",
+      "published_sha256": "3dcfd04920727e8d6e6c41feea8c567cd052105b66dbb74c131270d73adac182",
+      "source_input": "cases/yargs-parser-5/case.json",
+      "transformation": "Retain immutable refs, paths, advisories and license; omit host checkout paths and omitted test/archive locations; hash the exact published inputs."
+    },
+    "cases/yargs-parser/case.json": {
+      "original_sha256": "6c2ea645b90758e70df6c6904c965fa43fbeb07907a17ba9a771f27a41a3de98",
+      "published_sha256": "75dec8742074fb3637e2b46fc74cb943af0a1ed5d60f6b8f52fd1c35abe514db",
+      "source_input": "cases/yargs-parser/case.json",
+      "transformation": "Retain immutable refs, paths, advisories and license; omit host checkout paths and omitted test/archive locations; hash the exact published inputs."
+    },
+    "images/revision-dependencies/Dockerfile": {
+      "original_sha256": "876ca2c1066a54a72c03e4919c7fb266642ca8668abadfa374b730fd67b8c3ae",
+      "published_sha256": "0e911535e33fc7ce54e1261e13108bef749cbf08d0e6c4aecc9b2456ee1dfe4d",
+      "source_input": "dependency-image/Dockerfile",
+      "transformation": "Replace the local-only base-image FROM ID with one explicit build argument; preserve every remaining COPY/RUN instruction. This rebuild does not claim the historical image ID."
+    },
+    "research/catalogue.json": {
+      "original_sha256": "c434d00ccf89eae7ffbde76fb743f22589eab572d20f1fe229b01afd26d306e0",
+      "published_sha256": "1d6904a5b6e5f05ead494d2cace7808ab8d2ebd5a88b74d11dcc81c7754aba9e",
+      "source_input": "research/catalogue.json",
+      "transformation": "Omit inline source/test patch excerpts and full development dependency lists; preserve all25 library pairs, exact commits, metadata and release proofs."
+    },
+    "research/report.md": {
+      "original_sha256": "54847a10394b926f02a59997f5faac1add49e95ec51d9f8c4fcf8bdbc9c8af79",
+      "published_sha256": "557f39ec1830368d032f48bb6b98531dd76f07edb177e34fafbcaaed3c567c78",
+      "source_input": "research/research.md",
+      "transformation": "Replace references to omitted raw API/cache/shortlist files with the public catalogue scope; retain research findings and source links."
+    }
+  },
+  "schema_version": 1
+}

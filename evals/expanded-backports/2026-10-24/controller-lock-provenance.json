@@ -1,0 +1,5 @@
+{
+  "original_sha256": "952fdb9b114fe2b0fd1ec7ad99f8410f234c32f8e57daa481043f3303e586ce5",
+  "public_sha256": "779a333cc940f3d1cc5490829a48f70f740bbcc4363556b76356150214329a9f",
+  "transformation": "Remove comments only; pins and integrity hashes unchanged."
+}

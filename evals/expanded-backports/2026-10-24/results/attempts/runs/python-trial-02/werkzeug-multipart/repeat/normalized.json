@@ -1,0 +1,772 @@
+{
+  "normalization_schema_version": 1,
+  "cohort": "python-corrected-probe",
+  "case": "werkzeug-multipart",
+  "role": "repeat",
+  "interpretation": "Selected checks passed; broader coverage and maintainer equivalence are not established.",
+  "execution_context": {
+    "exit_code": 0,
+    "timed_out": false,
+    "log_truncated": false,
+    "wheel_sha256": "fb1afe7d89a0cfd5a50ae6094f1b1a356cb57e6d187beba597d542fe8903c35c",
+    "freeze_sha256": "f5fa5b227de18954e8c22fed4b881688a4e93d13428769fa01e21c19ade9c083",
+    "case_assets_unchanged": true,
+    "caller_unchanged": true
+  },
+  "report": {
+    "schema_version": 2,
+    "status": "verified",
+    "reason": "All four revisions met the frozen security and compatibility checks.",
+    "fix_commit": "b1916c0c083e0be1c9d887ee2f3d696922bfc5c1",
+    "parent_commit": "726eaa28593d859548da3477859c914732f012ef",
+    "target_commit": "26f3e95168c5019d3dbf656c9042c19d621cb54f",
+    "image_id": "sha256:5c994eb5c630681a2141849869f60e16d5b69f55617067b910702c1795b9b0d2",
+    "oracle_sha256": "bad5e4b594f825e0c51aed10b995a6b93d58ff5bf6d9f07da7a1957444790737",
+    "config_sha256": "ab1aa35354cdb7c66cfed98f3fbdfdb038b6140c74ffe4e5f70a9d64b1ede13d",
+    "patch_sha256": "07e58d3bef936d247dfa062f7e4f7e73dfdd8a3ead346cb052153ee51521fbb1",
+    "attempts": 1,
+    "adaptation": "provided_patch",
+    "model_usage": {},
+    "reviewed_tests": null,
+    "reviewed_fixtures": {},
+    "reviewed_submodules": {},
+    "phases": [
+      {
+        "name": "upstream_parent",
+        "revision": "726eaa28593d859548da3477859c914732f012ef",
+        "security": {
+          "returncode": 1,
+          "timed_out": false,
+          "truncated": false,
+          "duration_seconds": 0.9416,
+          "evidence_error": null,
+          "tests": [
+            {
+              "name": "test_security",
+              "classname": "oracle",
+              "outcome": "failed",
+              "expected_failure": false,
+              "original_message_sha256": "db8b45f97fe6694115bcb6c148cfe69d0935dea0407726e832447d0c6467c658"
+            },
+            {
+              "name": "test_complete_field",
+              "classname": "oracle",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_partial_boundary_waits",
+              "classname": "oracle",
+              "outcome": "passed",
+              "expected_failure": false
+            }
+          ],
+          "command_sha256": "7b05877d84d0e572751dd4dc0ba98d1e9789e0672b58ef07c33fd81b5f1798c0",
+          "missing_modules": [],
+          "diagnostic_excerpts": [
+            "AssertionError: MULTIPART_PENDING_DATA_RELEASED",
+            "AssertionError: MULTIPART_PEND..."
+          ],
+          "stdout_sha256": "ac18f19c9f4979bce0d7b6593a38107924d89f2670c23deb1df9825220a867c5",
+          "stdout_bytes": 677,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr_bytes": 0
+        },
+        "suite": {
+          "returncode": 0,
+          "timed_out": false,
+          "truncated": false,
+          "duration_seconds": 1.3448,
+          "evidence_error": null,
+          "tests": [
+            {
+              "name": "test_decoder_simple",
+              "classname": "tests.sansio.test_multipart",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_decoder_data_start_with_different_newline_positions[-A]",
+              "classname": "tests.sansio.test_multipart",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_decoder_data_start_with_different_newline_positions[-\\n]",
+              "classname": "tests.sansio.test_multipart",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_decoder_data_start_with_different_newline_positions[-\\r]",
+              "classname": "tests.sansio.test_multipart",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_decoder_data_start_with_different_newline_positions[-\\r\\n]",
+              "classname": "tests.sansio.test_multipart",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_decoder_data_start_with_different_newline_positions[-\\n\\r]",
+              "classname": "tests.sansio.test_multipart",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_decoder_data_start_with_different_newline_positions[-A\\n]",
+              "classname": "tests.sansio.test_multipart",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_decoder_data_start_with_different_newline_positions[-A\\r]",
+              "classname": "tests.sansio.test_multipart",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_decoder_data_start_with_different_newline_positions[-A\\r\\n]",
+              "classname": "tests.sansio.test_multipart",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_decoder_data_start_with_different_newline_positions[-A\\n\\r]",
+              "classname": "tests.sansio.test_multipart",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_decoder_data_start_with_different_newline_positions[\\r\\n--foo-A]",
+              "classname": "tests.sansio.test_multipart",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_decoder_data_start_with_different_newline_positions[\\r\\n--foo-\\n]",
+              "classname": "tests.sansio.test_multipart",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_decoder_data_start_with_different_newline_positions[\\r\\n--foo-\\r]",
+              "classname": "tests.sansio.test_multipart",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_decoder_data_start_with_different_newline_positions[\\r\\n--foo-\\r\\n]",
+              "classname": "tests.sansio.test_multipart",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_decoder_data_start_with_different_newline_positions[\\r\\n--foo-\\n\\r]",
+              "classname": "tests.sansio.test_multipart",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_decoder_data_start_with_different_newline_positions[\\r\\n--foo-A\\n]",
+              "classname": "tests.sansio.test_multipart",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_decoder_data_start_with_different_newline_positions[\\r\\n--foo-A\\r]",
+              "classname": "tests.sansio.test_multipart",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_decoder_data_start_with_different_newline_positions[\\r\\n--foo-A\\r\\n]",
+              "classname": "tests.sansio.test_multipart",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_decoder_data_start_with_different_newline_positions[\\r\\n--foo-A\\n\\r]",
+              "classname": "tests.sansio.test_multipart",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_chunked_boundaries",
+              "classname": "tests.sansio.test_multipart",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_empty_field",
+              "classname": "tests.sansio.test_multipart",
+              "outcome": "passed",
+              "expected_failure": false
+            }
+          ],
+          "command_sha256": "07ff895efffa7b2a85cbb21209ed64feefe3ec860b750cb352b358c4a1e82428",
+          "missing_modules": [],
+          "diagnostic_excerpts": [],
+          "stdout_sha256": "eb561b1d92ca4ac7b279d021bbdd6918af940fa565928750901067ee10fc948c",
+          "stdout_bytes": 99,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr_bytes": 0
+        }
+      },
+      {
+        "name": "upstream_fix",
+        "revision": "b1916c0c083e0be1c9d887ee2f3d696922bfc5c1",
+        "security": {
+          "returncode": 0,
+          "timed_out": false,
+          "truncated": false,
+          "duration_seconds": 1.1452,
+          "evidence_error": null,
+          "tests": [
+            {
+              "name": "test_security",
+              "classname": "oracle",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_complete_field",
+              "classname": "oracle",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_partial_boundary_waits",
+              "classname": "oracle",
+              "outcome": "passed",
+              "expected_failure": false
+            }
+          ],
+          "command_sha256": "7b05877d84d0e572751dd4dc0ba98d1e9789e0672b58ef07c33fd81b5f1798c0",
+          "missing_modules": [],
+          "diagnostic_excerpts": [],
+          "stdout_sha256": "ed0d6c079627b8413ba6fa1e9b0419bf2bb3f2c7f1917b91d9f908f1f9a678d2",
+          "stdout_bytes": 98,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr_bytes": 0
+        },
+        "suite": {
+          "returncode": 0,
+          "timed_out": false,
+          "truncated": false,
+          "duration_seconds": 1.1398,
+          "evidence_error": null,
+          "tests": [
+            {
+              "name": "test_decoder_simple",
+              "classname": "tests.sansio.test_multipart",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_decoder_data_start_with_different_newline_positions[-A]",
+              "classname": "tests.sansio.test_multipart",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_decoder_data_start_with_different_newline_positions[-\\n]",
+              "classname": "tests.sansio.test_multipart",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_decoder_data_start_with_different_newline_positions[-\\r]",
+              "classname": "tests.sansio.test_multipart",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_decoder_data_start_with_different_newline_positions[-\\r\\n]",
+              "classname": "tests.sansio.test_multipart",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_decoder_data_start_with_different_newline_positions[-\\n\\r]",
+              "classname": "tests.sansio.test_multipart",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_decoder_data_start_with_different_newline_positions[-A\\n]",
+              "classname": "tests.sansio.test_multipart",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_decoder_data_start_with_different_newline_positions[-A\\r]",
+              "classname": "tests.sansio.test_multipart",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_decoder_data_start_with_different_newline_positions[-A\\r\\n]",
+              "classname": "tests.sansio.test_multipart",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_decoder_data_start_with_different_newline_positions[-A\\n\\r]",
+              "classname": "tests.sansio.test_multipart",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_decoder_data_start_with_different_newline_positions[\\r\\n--foo-A]",
+              "classname": "tests.sansio.test_multipart",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_decoder_data_start_with_different_newline_positions[\\r\\n--foo-\\n]",
+              "classname": "tests.sansio.test_multipart",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_decoder_data_start_with_different_newline_positions[\\r\\n--foo-\\r]",
+              "classname": "tests.sansio.test_multipart",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_decoder_data_start_with_different_newline_positions[\\r\\n--foo-\\r\\n]",
+              "classname": "tests.sansio.test_multipart",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_decoder_data_start_with_different_newline_positions[\\r\\n--foo-\\n\\r]",
+              "classname": "tests.sansio.test_multipart",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_decoder_data_start_with_different_newline_positions[\\r\\n--foo-A\\n]",
+              "classname": "tests.sansio.test_multipart",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_decoder_data_start_with_different_newline_positions[\\r\\n--foo-A\\r]",
+              "classname": "tests.sansio.test_multipart",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_decoder_data_start_with_different_newline_positions[\\r\\n--foo-A\\r\\n]",
+              "classname": "tests.sansio.test_multipart",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_decoder_data_start_with_different_newline_positions[\\r\\n--foo-A\\n\\r]",
+              "classname": "tests.sansio.test_multipart",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_chunked_boundaries",
+              "classname": "tests.sansio.test_multipart",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_empty_field",
+              "classname": "tests.sansio.test_multipart",
+              "outcome": "passed",
+              "expected_failure": false
+            }
+          ],
+          "command_sha256": "07ff895efffa7b2a85cbb21209ed64feefe3ec860b750cb352b358c4a1e82428",
+          "missing_modules": [],
+          "diagnostic_excerpts": [],
+          "stdout_sha256": "eb561b1d92ca4ac7b279d021bbdd6918af940fa565928750901067ee10fc948c",
+          "stdout_bytes": 99,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr_bytes": 0
+        }
+      },
+      {
+        "name": "target_baseline",
+        "revision": "26f3e95168c5019d3dbf656c9042c19d621cb54f",
+        "security": {
+          "returncode": 1,
+          "timed_out": false,
+          "truncated": false,
+          "duration_seconds": 1.2213,
+          "evidence_error": null,
+          "tests": [
+            {
+              "name": "test_security",
+              "classname": "oracle",
+              "outcome": "failed",
+              "expected_failure": false,
+              "original_message_sha256": "db8b45f97fe6694115bcb6c148cfe69d0935dea0407726e832447d0c6467c658"
+            },
+            {
+              "name": "test_complete_field",
+              "classname": "oracle",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_partial_boundary_waits",
+              "classname": "oracle",
+              "outcome": "passed",
+              "expected_failure": false
+            }
+          ],
+          "command_sha256": "7b05877d84d0e572751dd4dc0ba98d1e9789e0672b58ef07c33fd81b5f1798c0",
+          "missing_modules": [],
+          "diagnostic_excerpts": [
+            "AssertionError: MULTIPART_PENDING_DATA_RELEASED",
+            "AssertionError: MULTIPART_PEND..."
+          ],
+          "stdout_sha256": "c52ba72c7aedc03925eab9e55f9fc7d7ce5179469988d64d9f48649de6c5c310",
+          "stdout_bytes": 677,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr_bytes": 0
+        },
+        "suite": {
+          "returncode": 0,
+          "timed_out": false,
+          "truncated": false,
+          "duration_seconds": 0.9889,
+          "evidence_error": null,
+          "tests": [
+            {
+              "name": "test_decoder_simple",
+              "classname": "tests.sansio.test_multipart",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_decoder_data_start_with_different_newline_positions[-A]",
+              "classname": "tests.sansio.test_multipart",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_decoder_data_start_with_different_newline_positions[-\\n]",
+              "classname": "tests.sansio.test_multipart",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_decoder_data_start_with_different_newline_positions[-\\r]",
+              "classname": "tests.sansio.test_multipart",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_decoder_data_start_with_different_newline_positions[-\\r\\n]",
+              "classname": "tests.sansio.test_multipart",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_decoder_data_start_with_different_newline_positions[-\\n\\r]",
+              "classname": "tests.sansio.test_multipart",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_decoder_data_start_with_different_newline_positions[-A\\n]",
+              "classname": "tests.sansio.test_multipart",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_decoder_data_start_with_different_newline_positions[-A\\r]",
+              "classname": "tests.sansio.test_multipart",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_decoder_data_start_with_different_newline_positions[-A\\r\\n]",
+              "classname": "tests.sansio.test_multipart",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_decoder_data_start_with_different_newline_positions[-A\\n\\r]",
+              "classname": "tests.sansio.test_multipart",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_decoder_data_start_with_different_newline_positions[\\r\\n--foo-A]",
+              "classname": "tests.sansio.test_multipart",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_decoder_data_start_with_different_newline_positions[\\r\\n--foo-\\n]",
+              "classname": "tests.sansio.test_multipart",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_decoder_data_start_with_different_newline_positions[\\r\\n--foo-\\r]",
+              "classname": "tests.sansio.test_multipart",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_decoder_data_start_with_different_newline_positions[\\r\\n--foo-\\r\\n]",
+              "classname": "tests.sansio.test_multipart",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_decoder_data_start_with_different_newline_positions[\\r\\n--foo-\\n\\r]",
+              "classname": "tests.sansio.test_multipart",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_decoder_data_start_with_different_newline_positions[\\r\\n--foo-A\\n]",
+              "classname": "tests.sansio.test_multipart",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_decoder_data_start_with_different_newline_positions[\\r\\n--foo-A\\r]",
+              "classname": "tests.sansio.test_multipart",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_decoder_data_start_with_different_newline_positions[\\r\\n--foo-A\\r\\n]",
+              "classname": "tests.sansio.test_multipart",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_decoder_data_start_with_different_newline_positions[\\r\\n--foo-A\\n\\r]",
+              "classname": "tests.sansio.test_multipart",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_chunked_boundaries",
+              "classname": "tests.sansio.test_multipart",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_empty_field",
+              "classname": "tests.sansio.test_multipart",
+              "outcome": "passed",
+              "expected_failure": false
+            }
+          ],
+          "command_sha256": "07ff895efffa7b2a85cbb21209ed64feefe3ec860b750cb352b358c4a1e82428",
+          "missing_modules": [],
+          "diagnostic_excerpts": [],
+          "stdout_sha256": "9729cbf5ff9b8215c6da3bfd167b1f616740907a292008d80ed1d6dd6f8ac8c2",
+          "stdout_bytes": 99,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr_bytes": 0
+        }
+      },
+      {
+        "name": "backport",
+        "revision": "26f3e95168c5019d3dbf656c9042c19d621cb54f",
+        "security": {
+          "returncode": 0,
+          "timed_out": false,
+          "truncated": false,
+          "duration_seconds": 1.3572,
+          "evidence_error": null,
+          "tests": [
+            {
+              "name": "test_security",
+              "classname": "oracle",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_complete_field",
+              "classname": "oracle",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_partial_boundary_waits",
+              "classname": "oracle",
+              "outcome": "passed",
+              "expected_failure": false
+            }
+          ],
+          "command_sha256": "7b05877d84d0e572751dd4dc0ba98d1e9789e0672b58ef07c33fd81b5f1798c0",
+          "missing_modules": [],
+          "diagnostic_excerpts": [],
+          "stdout_sha256": "4a6070b078e8713685bb7d423b62e85d6415f822c5c557fbcd20f48e88981629",
+          "stdout_bytes": 98,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr_bytes": 0
+        },
+        "suite": {
+          "returncode": 0,
+          "timed_out": false,
+          "truncated": false,
+          "duration_seconds": 1.6596,
+          "evidence_error": null,
+          "tests": [
+            {
+              "name": "test_decoder_simple",
+              "classname": "tests.sansio.test_multipart",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_decoder_data_start_with_different_newline_positions[-A]",
+              "classname": "tests.sansio.test_multipart",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_decoder_data_start_with_different_newline_positions[-\\n]",
+              "classname": "tests.sansio.test_multipart",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_decoder_data_start_with_different_newline_positions[-\\r]",
+              "classname": "tests.sansio.test_multipart",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_decoder_data_start_with_different_newline_positions[-\\r\\n]",
+              "classname": "tests.sansio.test_multipart",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_decoder_data_start_with_different_newline_positions[-\\n\\r]",
+              "classname": "tests.sansio.test_multipart",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_decoder_data_start_with_different_newline_positions[-A\\n]",
+              "classname": "tests.sansio.test_multipart",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_decoder_data_start_with_different_newline_positions[-A\\r]",
+              "classname": "tests.sansio.test_multipart",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_decoder_data_start_with_different_newline_positions[-A\\r\\n]",
+              "classname": "tests.sansio.test_multipart",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_decoder_data_start_with_different_newline_positions[-A\\n\\r]",
+              "classname": "tests.sansio.test_multipart",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_decoder_data_start_with_different_newline_positions[\\r\\n--foo-A]",
+              "classname": "tests.sansio.test_multipart",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_decoder_data_start_with_different_newline_positions[\\r\\n--foo-\\n]",
+              "classname": "tests.sansio.test_multipart",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_decoder_data_start_with_different_newline_positions[\\r\\n--foo-\\r]",
+              "classname": "tests.sansio.test_multipart",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_decoder_data_start_with_different_newline_positions[\\r\\n--foo-\\r\\n]",
+              "classname": "tests.sansio.test_multipart",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_decoder_data_start_with_different_newline_positions[\\r\\n--foo-\\n\\r]",
+              "classname": "tests.sansio.test_multipart",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_decoder_data_start_with_different_newline_positions[\\r\\n--foo-A\\n]",
+              "classname": "tests.sansio.test_multipart",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_decoder_data_start_with_different_newline_positions[\\r\\n--foo-A\\r]",
+              "classname": "tests.sansio.test_multipart",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_decoder_data_start_with_different_newline_positions[\\r\\n--foo-A\\r\\n]",
+              "classname": "tests.sansio.test_multipart",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_decoder_data_start_with_different_newline_positions[\\r\\n--foo-A\\n\\r]",
+              "classname": "tests.sansio.test_multipart",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_chunked_boundaries",
+              "classname": "tests.sansio.test_multipart",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_empty_field",
+              "classname": "tests.sansio.test_multipart",
+              "outcome": "passed",
+              "expected_failure": false
+            }
+          ],
+          "command_sha256": "07ff895efffa7b2a85cbb21209ed64feefe3ec860b750cb352b358c4a1e82428",
+          "missing_modules": [],
+          "diagnostic_excerpts": [],
+          "stdout_sha256": "9729cbf5ff9b8215c6da3bfd167b1f616740907a292008d80ed1d6dd6f8ac8c2",
+          "stdout_bytes": 99,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr_bytes": 0
+        }
+      }
+    ]
+  },
+  "original_report_sha256": "0c727239eb9535ef85082bc5d6894037693a26089f50edbe54ffecd91c4ebf8d",
+  "original_command_record_sha256": "bf667e8f2c8664e76102244d334fb994c550a5c29fe52a56cd2feff79516f2ef",
+  "candidate_patch_inputs": [
+    {
+      "original_filename": "attempt-1.patch",
+      "sha256": "52529657a34f79201523fa8f0465804b8160a052b38a88e8e92d4c716dac202b"
+    }
+  ]
+}

@@ -1,0 +1,49 @@
+{
+  "advisory_ids": [
+    "GHSA-9c47-m6qq-7p4h",
+    "CVE-2022-46175"
+  ],
+  "asset_sha256": {
+    "LICENSE.upstream": "53e59feb13058722d977c699eb0407c7bce2f93c949b681bbd2ff31698535927",
+    "harness.toml": "5ffa40234082c34bed9f65b699677d599f34695e5c8a1f041929589b116f07b8",
+    "oracle.mjs": "0267b2c871ae266875b6d4567f9465f6c7c8ca7292a1d9e07ff2d9aae692b349",
+    "reference.patch": "7ec0814c8c00380542bf22ac45f8b26187f51e4f0b9e80ceb8993efdf0682c0e",
+    "upstream.patch": "13c91324ee02377f1c81572ff0a616ef36aae152757229dccd62754c17704585"
+  },
+  "backport_implementation_paths": [
+    "src/parse.js"
+  ],
+  "base_commit": "072eb402fc107a2f568ba78962d3d99de95032a9",
+  "input_scope": "Experimental standalone inputs; no execution result is asserted.",
+  "instance_id": "json5",
+  "license": "MIT",
+  "maintainer_backport_commit": "62a65408408d40aeea14c7869ed327acead12972",
+  "maintainer_backport_parent": "072eb402fc107a2f568ba78962d3d99de95032a9",
+  "package": "json5",
+  "patch_scope": "Implementation-only extracts of the maintainer commits; full commits can also change tests, metadata, or dependencies.",
+  "repository_url": "https://github.com/json5/json5.git",
+  "schema_version": 1,
+  "source_links": {
+    "base_commit": "https://github.com/json5/json5/commit/072eb402fc107a2f568ba78962d3d99de95032a9",
+    "maintainer_backport_commit": "https://github.com/json5/json5/commit/62a65408408d40aeea14c7869ed327acead12972",
+    "upstream_fix_commit": "https://github.com/json5/json5/commit/7774c1097993bc3ce9f0ac4b722a32bf7d6871c8",
+    "upstream_parent_commit": "https://github.com/json5/json5/commit/edde30abd8b22facf2c06c72586b9f6edf12700d"
+  },
+  "source_snapshot_sha256": {
+    "maintainer_backport": "3fd8f49d2cf734a58cea86a9fa61663a81bc74f22a607a12020fbb85a14524d8",
+    "target_baseline": "08b454b2b3da9aeede7e0ccc2fada919d284d273890323afa033ea23862126fb",
+    "upstream_fix": "99996fa785adbeeedbb5180837803a0aaf0f1ec931a1fda6cbd3cf72811cb391",
+    "upstream_parent": "6b18ab7199ad86535380823b04a3068d612ca56c1265fdd49488c9c57be6314d"
+  },
+  "target_test_paths": [
+    "test/parse.js"
+  ],
+  "upstream_fix_commit": "7774c1097993bc3ce9f0ac4b722a32bf7d6871c8",
+  "upstream_implementation_paths": [
+    "lib/parse.js"
+  ],
+  "upstream_parent_commit": "edde30abd8b22facf2c06c72586b9f6edf12700d",
+  "upstream_test_paths": [
+    "test/parse.js"
+  ]
+}

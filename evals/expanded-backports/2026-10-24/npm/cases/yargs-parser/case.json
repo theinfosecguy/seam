@@ -1,0 +1,49 @@
+{
+  "advisory_ids": [
+    "GHSA-p9pc-299p-vxgp",
+    "CVE-2020-7608"
+  ],
+  "asset_sha256": {
+    "LICENSE.upstream": "365496ca1f56da40b23c9815fc40fa9005847b2f8f8fd1c1a4929ef25ec8cd1d",
+    "harness.toml": "4784e0019cf87333e90a90ae01e70f4007eec1b197da2f534dd7f9dbea101d31",
+    "oracle.mjs": "3ddcd6623469cd69326b74880c41724f870914cb8eea8c310153348b3b90535e",
+    "reference.patch": "b5e3df81359ec44a77567d350a92d3520ed6ea165641d90569d579ea77df1024",
+    "upstream.patch": "0453344cbd1062cc1ba7d8469f395f9d2e728809a6be2bad36b0c7e9a7a6ef2f"
+  },
+  "backport_implementation_paths": [
+    "index.js"
+  ],
+  "base_commit": "7e01a2c8d1ba75d9d5472e5839e2852bdf2af3db",
+  "input_scope": "Experimental standalone inputs; no execution result is asserted.",
+  "instance_id": "yargs-parser",
+  "license": "ISC",
+  "maintainer_backport_commit": "6e36df108cd8ed6443c4d4a4536b55b6e9552b3d",
+  "maintainer_backport_parent": "7e01a2c8d1ba75d9d5472e5839e2852bdf2af3db",
+  "package": "yargs-parser",
+  "patch_scope": "Implementation-only extracts of the maintainer commits; full commits can also change tests, metadata, or dependencies.",
+  "repository_url": "https://github.com/yargs/yargs-parser.git",
+  "schema_version": 1,
+  "source_links": {
+    "base_commit": "https://github.com/yargs/yargs-parser/commit/7e01a2c8d1ba75d9d5472e5839e2852bdf2af3db",
+    "maintainer_backport_commit": "https://github.com/yargs/yargs-parser/commit/6e36df108cd8ed6443c4d4a4536b55b6e9552b3d",
+    "upstream_fix_commit": "https://github.com/yargs/yargs-parser/commit/63810ca1ae1a24b08293a4d971e70e058c7a41e2",
+    "upstream_parent_commit": "https://github.com/yargs/yargs-parser/commit/48b6d9ccfa4bb3f74a7f374d8f400491127a8477"
+  },
+  "source_snapshot_sha256": {
+    "maintainer_backport": "f1a27368ef06dcbe94c72015a2189711941215a3e9122693a4715bdd44042cdb",
+    "target_baseline": "5f7b994f3b255d58f0a27fcd4a040535f81a9175cb52878eacc278dc1225bbd7",
+    "upstream_fix": "8c9da8f32f76b5e50ce856d90735d5aa9605105ddb80cb9a3605b09dab962823",
+    "upstream_parent": "c282700c7d6a5ea474feee6c36f93524f3142c90d13642218f692e0f4ba6bf58"
+  },
+  "target_test_paths": [
+    "test/yargs-parser.js"
+  ],
+  "upstream_fix_commit": "63810ca1ae1a24b08293a4d971e70e058c7a41e2",
+  "upstream_implementation_paths": [
+    "index.js"
+  ],
+  "upstream_parent_commit": "48b6d9ccfa4bb3f74a7f374d8f400491127a8477",
+  "upstream_test_paths": [
+    "test/yargs-parser.js"
+  ]
+}

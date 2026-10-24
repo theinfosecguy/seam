@@ -1,0 +1,30 @@
+{
+  "normalization_schema_version": 1,
+  "cohort": "baseline",
+  "case": "undici-private-cache-legacy",
+  "role": "probe",
+  "interpretation": "Setup, application or evidence remained inconclusive; this alone is not a confirmed harness defect.",
+  "execution_context": {},
+  "report": {
+    "schema_version": 2,
+    "status": "inconclusive",
+    "reason": "Run could not complete: oracle must be a regular Python file",
+    "fix_commit": null,
+    "parent_commit": null,
+    "target_commit": null,
+    "image_id": null,
+    "oracle_sha256": null,
+    "config_sha256": null,
+    "patch_sha256": null,
+    "attempts": 0,
+    "adaptation": "none",
+    "model_usage": {},
+    "reviewed_tests": null,
+    "reviewed_fixtures": {},
+    "reviewed_submodules": null,
+    "phases": []
+  },
+  "original_report_sha256": "a772c2dce727cc2e798133f27115e04cc189b99f1fac6accc54a31a60e005c59",
+  "original_command_record_sha256": null,
+  "candidate_patch_inputs": []
+}

@@ -1,0 +1,7 @@
+{
+  "reason": "First probe used no newline, so unfixed decoder already released data. Corrected bounded field data includes one early newline, matching the fixed retention path.",
+  "old_oracle_sha256": "7aa69e52752a090b22c72b78be8ab384e934d31308c04cfbe4ad6611d3f71a8b",
+  "new_oracle_sha256": "bad5e4b594f825e0c51aed10b995a6b93d58ff5bf6d9f07da7a1957444790737",
+  "original_attempt": "python-trial-01/werkzeug-multipart/reference",
+  "new_attempt": "python-trial-02/werkzeug-multipart"
+}

@@ -1,0 +1,17 @@
+[oracle]
+path = "oracle.mjs"
+security_test = "test_security"
+controls = ["test_normal_formatter", "test_multiline_formatter"]
+failure_marker = "DEBUG_FORMATTER_BOUNDED_WORK"
+
+[runner]
+kind = "mocha"
+image = "sha256:52f40f96867d88d68ced00067878ab5b917744d17f5649b82506f43e72d88cba"
+docker = ["sudo", "-n", "docker"]
+suite = ["test/debug_spec.js"]
+timeout_seconds = 120
+
+[runner.node_dependencies]
+"47747f329fe159e94262318b52b87a48f6c0acd4" = "/opt/seam/dependencies/47747f329fe159e94262318b52b87a48f6c0acd4/node_modules"
+"c38a0166c266a679c8de012d4eaccec3f944e685" = "/opt/seam/dependencies/c38a0166c266a679c8de012d4eaccec3f944e685/node_modules"
+"52e1f21284322f167839e5d3a60f635c8b2dc842" = "/opt/seam/dependencies/52e1f21284322f167839e5d3a60f635c8b2dc842/node_modules"

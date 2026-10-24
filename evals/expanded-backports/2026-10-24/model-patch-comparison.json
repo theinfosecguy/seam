@@ -1,0 +1,97 @@
+[
+  {
+    "case": "ip",
+    "byte_identical_to_maintainer": false,
+    "reference_patch_sha256": "da1d246becc181a93f164cb2507f37d89781aa940009826cb15b65f33b3d4f5a",
+    "model_patch_sha256": "9369f28dd7f92eebc0e022a493a34f44beb54f3ced5348cfe974b4798139fa55",
+    "model_usage": {
+      "provider": "deepseek",
+      "model": "deepseek-flash",
+      "returned_model": "deepseek-flash",
+      "calls": 8,
+      "input_tokens": 120548,
+      "output_tokens": 24616,
+      "estimated_cost_usd": 0.0657036,
+      "reserved_cost_usd": 0.0,
+      "budget_usd": 1.0,
+      "pricing": "conservative text upper bounds; operator rates, checked schedules, or bundled genai-prices 0.1.13; no network updates"
+    },
+    "patch_attempts": 1
+  },
+  {
+    "case": "undici-private-cache",
+    "byte_identical_to_maintainer": true,
+    "reference_patch_sha256": "22f00192c4fecac3b3ed1c3267abf82a3a702ffe875b15fed67d622623a30d47",
+    "model_patch_sha256": "22f00192c4fecac3b3ed1c3267abf82a3a702ffe875b15fed67d622623a30d47",
+    "model_usage": {
+      "provider": "deepseek",
+      "model": "deepseek-flash",
+      "returned_model": "deepseek-flash",
+      "calls": 5,
+      "input_tokens": 26296,
+      "output_tokens": 6640,
+      "estimated_cost_usd": 0.0158568,
+      "reserved_cost_usd": 0.0,
+      "budget_usd": 1.0,
+      "pricing": "conservative text upper bounds; operator rates, checked schedules, or bundled genai-prices 0.1.13; no network updates"
+    },
+    "patch_attempts": 1
+  },
+  {
+    "case": "body-parser",
+    "byte_identical_to_maintainer": false,
+    "reference_patch_sha256": "2f8907bc16e704225c8eeb62e778e57ec17677e8a5025890826418e17534e995",
+    "model_patch_sha256": "74edd8d057ec36bf447f4358fbaeff954991d609ec1301aedffd65aae02a1423",
+    "model_usage": {
+      "provider": "deepseek",
+      "model": "deepseek-flash",
+      "returned_model": "deepseek-flash",
+      "calls": 11,
+      "input_tokens": 133136,
+      "output_tokens": 18623,
+      "estimated_cost_usd": 0.0622884,
+      "reserved_cost_usd": 0.0,
+      "budget_usd": 1.0,
+      "pricing": "conservative text upper bounds; operator rates, checked schedules, or bundled genai-prices 0.1.13; no network updates"
+    },
+    "patch_attempts": 1
+  },
+  {
+    "case": "debug",
+    "byte_identical_to_maintainer": true,
+    "reference_patch_sha256": "1eb7b2a904d85adfb4c50813e22b45185d0e51bab980d0668a40741c74942e7c",
+    "model_patch_sha256": "1eb7b2a904d85adfb4c50813e22b45185d0e51bab980d0668a40741c74942e7c",
+    "model_usage": {
+      "provider": "deepseek",
+      "model": "deepseek-flash",
+      "returned_model": "deepseek-flash",
+      "calls": 2,
+      "input_tokens": 6955,
+      "output_tokens": 2281,
+      "estimated_cost_usd": 0.0048237,
+      "reserved_cost_usd": 0.0,
+      "budget_usd": 1.0,
+      "pricing": "conservative text upper bounds; operator rates, checked schedules, or bundled genai-prices 0.1.13; no network updates"
+    },
+    "patch_attempts": 1
+  },
+  {
+    "case": "body-parser-reviewed",
+    "byte_identical_to_maintainer": false,
+    "reference_patch_sha256": "2f8907bc16e704225c8eeb62e778e57ec17677e8a5025890826418e17534e995",
+    "model_patch_sha256": "39ff3854ddad02916c3dab875d39fb1c4f39f863100d78b2cc4d7dfab31d0888",
+    "model_usage": {
+      "provider": "deepseek",
+      "model": "deepseek-flash",
+      "returned_model": "deepseek-flash",
+      "calls": 5,
+      "input_tokens": 25688,
+      "output_tokens": 6183,
+      "estimated_cost_usd": 0.015126,
+      "reserved_cost_usd": 0.0,
+      "budget_usd": 1.0,
+      "pricing": "conservative text upper bounds; operator rates, checked schedules, or bundled genai-prices 0.1.13; no network updates"
+    },
+    "patch_attempts": 1
+  }
+]

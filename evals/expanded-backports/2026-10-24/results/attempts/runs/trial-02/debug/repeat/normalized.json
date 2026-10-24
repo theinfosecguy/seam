@@ -1,0 +1,363 @@
+{
+  "normalization_schema_version": 1,
+  "cohort": "initial-npm-20",
+  "case": "debug",
+  "role": "repeat",
+  "interpretation": "Selected checks passed; broader coverage and maintainer equivalence are not established.",
+  "execution_context": {
+    "exit_code": 0,
+    "timed_out": false,
+    "log_truncated": false,
+    "wheel_sha256": "fb1afe7d89a0cfd5a50ae6094f1b1a356cb57e6d187beba597d542fe8903c35c",
+    "driver_sha256": "44efbc782d4cbbebb7ecec44e491a9941e5dc2cdd1554eaf7616a307020ec306",
+    "freeze_sha256": "f5fa5b227de18954e8c22fed4b881688a4e93d13428769fa01e21c19ade9c083",
+    "case_assets_unchanged": true,
+    "caller_unchanged": true
+  },
+  "report": {
+    "schema_version": 2,
+    "status": "verified",
+    "reason": "All four revisions met the frozen security and compatibility checks.",
+    "fix_commit": "c38a0166c266a679c8de012d4eaccec3f944e685",
+    "parent_commit": "47747f329fe159e94262318b52b87a48f6c0acd4",
+    "target_commit": "52e1f21284322f167839e5d3a60f635c8b2dc842",
+    "image_id": "sha256:52f40f96867d88d68ced00067878ab5b917744d17f5649b82506f43e72d88cba",
+    "oracle_sha256": "6e7360926df633b497c945d784e04e4157fdb69e4c68bf93a97fb33c46544455",
+    "config_sha256": "ffc9b169635dbac6cf924cd33cbabec0832ee65d1f92feed0ffdf99105d8d48b",
+    "patch_sha256": "1eb7b2a904d85adfb4c50813e22b45185d0e51bab980d0668a40741c74942e7c",
+    "attempts": 1,
+    "adaptation": "provided_patch",
+    "model_usage": {},
+    "reviewed_tests": null,
+    "reviewed_fixtures": {},
+    "reviewed_submodules": {},
+    "phases": [
+      {
+        "name": "upstream_parent",
+        "revision": "47747f329fe159e94262318b52b87a48f6c0acd4",
+        "security": {
+          "returncode": 1,
+          "timed_out": false,
+          "truncated": false,
+          "duration_seconds": 2.1429,
+          "evidence_error": null,
+          "tests": [
+            {
+              "name": "test_security",
+              "classname": "/oracle/oracle.mjs::test",
+              "outcome": "failed",
+              "expected_failure": false,
+              "original_message_sha256": "4adaeb65727e29b6217cee5c6b7630b89c18d232e19fdb70be36340609d834cc"
+            },
+            {
+              "name": "test_normal_formatter",
+              "classname": "/oracle/oracle.mjs::test",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_multiline_formatter",
+              "classname": "/oracle/oracle.mjs::test",
+              "outcome": "passed",
+              "expected_failure": false
+            }
+          ],
+          "command_sha256": "6134c6f16632f94b1eab5509421e4299e955be60bae24a3def5d0c263891d79f",
+          "missing_modules": [],
+          "diagnostic_excerpts": [
+            "AssertionError [ERR_ASSERTION]: DEBUG_FORMATTER_BOUNDED_WORK"
+          ],
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 0,
+          "stderr_sha256": "2400cc5bdc7f25f93519ed48982141f2ff2be11bc44994ff3dbbb69afde963e2",
+          "stderr_bytes": 773
+        },
+        "suite": {
+          "returncode": 0,
+          "timed_out": false,
+          "truncated": false,
+          "duration_seconds": 0.6433,
+          "evidence_error": null,
+          "tests": [
+            {
+              "name": "passes a basic sanity check",
+              "classname": "/work/repo/test/debug_spec.js::debug",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "allows namespaces to be a non-string value",
+              "classname": "/work/repo/test/debug_spec.js::debug",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "uses it",
+              "classname": "/work/repo/test/debug_spec.js::debug with log function",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "uses it",
+              "classname": "/work/repo/test/debug_spec.js::debug custom functions with log function",
+              "outcome": "passed",
+              "expected_failure": false
+            }
+          ],
+          "command_sha256": "49e655ed164d02bc075f79a355821ef08dc43faf5133f17f8d79519dd9f036f6",
+          "missing_modules": [],
+          "diagnostic_excerpts": [],
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr_bytes": 0
+        }
+      },
+      {
+        "name": "upstream_fix",
+        "revision": "c38a0166c266a679c8de012d4eaccec3f944e685",
+        "security": {
+          "returncode": 0,
+          "timed_out": false,
+          "truncated": false,
+          "duration_seconds": 0.6435,
+          "evidence_error": null,
+          "tests": [
+            {
+              "name": "test_security",
+              "classname": "/oracle/oracle.mjs::test",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_normal_formatter",
+              "classname": "/oracle/oracle.mjs::test",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_multiline_formatter",
+              "classname": "/oracle/oracle.mjs::test",
+              "outcome": "passed",
+              "expected_failure": false
+            }
+          ],
+          "command_sha256": "62e058f2185b61122ac071d69ef658c603893a37e7671179e7e1691e8ed6ae23",
+          "missing_modules": [],
+          "diagnostic_excerpts": [],
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 0,
+          "stderr_sha256": "4e03a28db98182927086c816701ff713ef38d1447ff323669e77a18178213fee",
+          "stderr_bytes": 227
+        },
+        "suite": {
+          "returncode": 0,
+          "timed_out": false,
+          "truncated": false,
+          "duration_seconds": 0.8976,
+          "evidence_error": null,
+          "tests": [
+            {
+              "name": "passes a basic sanity check",
+              "classname": "/work/repo/test/debug_spec.js::debug",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "allows namespaces to be a non-string value",
+              "classname": "/work/repo/test/debug_spec.js::debug",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "uses it",
+              "classname": "/work/repo/test/debug_spec.js::debug with log function",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "uses it",
+              "classname": "/work/repo/test/debug_spec.js::debug custom functions with log function",
+              "outcome": "passed",
+              "expected_failure": false
+            }
+          ],
+          "command_sha256": "18013db0ed957cad9d8b69d7440b97190f8c94517f85681c4d3d97530b8bbf7a",
+          "missing_modules": [],
+          "diagnostic_excerpts": [],
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr_bytes": 0
+        }
+      },
+      {
+        "name": "target_baseline",
+        "revision": "52e1f21284322f167839e5d3a60f635c8b2dc842",
+        "security": {
+          "returncode": 1,
+          "timed_out": false,
+          "truncated": false,
+          "duration_seconds": 2.4537,
+          "evidence_error": null,
+          "tests": [
+            {
+              "name": "test_security",
+              "classname": "/oracle/oracle.mjs::test",
+              "outcome": "failed",
+              "expected_failure": false,
+              "original_message_sha256": "4adaeb65727e29b6217cee5c6b7630b89c18d232e19fdb70be36340609d834cc"
+            },
+            {
+              "name": "test_normal_formatter",
+              "classname": "/oracle/oracle.mjs::test",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_multiline_formatter",
+              "classname": "/oracle/oracle.mjs::test",
+              "outcome": "passed",
+              "expected_failure": false
+            }
+          ],
+          "command_sha256": "575f211d1bc601ece2011c2f02ddfcd8826e9fbf0b941df50f724fa915ab3e4c",
+          "missing_modules": [],
+          "diagnostic_excerpts": [
+            "AssertionError [ERR_ASSERTION]: DEBUG_FORMATTER_BOUNDED_WORK"
+          ],
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 0,
+          "stderr_sha256": "3e4be7828a9d8ba75477b220d2372cda2d02149f179b05c30d673d4096aa9dcd",
+          "stderr_bytes": 773
+        },
+        "suite": {
+          "returncode": 0,
+          "timed_out": false,
+          "truncated": false,
+          "duration_seconds": 0.8366,
+          "evidence_error": null,
+          "tests": [
+            {
+              "name": "passes a basic sanity check",
+              "classname": "/work/repo/test/debug_spec.js::debug",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "allows namespaces to be a non-string value",
+              "classname": "/work/repo/test/debug_spec.js::debug",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "uses it",
+              "classname": "/work/repo/test/debug_spec.js::debug with log function",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "uses it",
+              "classname": "/work/repo/test/debug_spec.js::debug custom functions with log function",
+              "outcome": "passed",
+              "expected_failure": false
+            }
+          ],
+          "command_sha256": "c93d0daf9d9b58c413b55e0c4532c6dab64410625f70c3d3cbd18af17ed705d9",
+          "missing_modules": [],
+          "diagnostic_excerpts": [],
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr_bytes": 0
+        }
+      },
+      {
+        "name": "backport",
+        "revision": "52e1f21284322f167839e5d3a60f635c8b2dc842",
+        "security": {
+          "returncode": 0,
+          "timed_out": false,
+          "truncated": false,
+          "duration_seconds": 0.8412,
+          "evidence_error": null,
+          "tests": [
+            {
+              "name": "test_security",
+              "classname": "/oracle/oracle.mjs::test",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_normal_formatter",
+              "classname": "/oracle/oracle.mjs::test",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_multiline_formatter",
+              "classname": "/oracle/oracle.mjs::test",
+              "outcome": "passed",
+              "expected_failure": false
+            }
+          ],
+          "command_sha256": "575f211d1bc601ece2011c2f02ddfcd8826e9fbf0b941df50f724fa915ab3e4c",
+          "missing_modules": [],
+          "diagnostic_excerpts": [],
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 0,
+          "stderr_sha256": "14b5efaf4f57fdb84a9e888549e399ef408e0cf946ee8347253e783c881ea589",
+          "stderr_bytes": 228
+        },
+        "suite": {
+          "returncode": 0,
+          "timed_out": false,
+          "truncated": false,
+          "duration_seconds": 1.056,
+          "evidence_error": null,
+          "tests": [
+            {
+              "name": "passes a basic sanity check",
+              "classname": "/work/repo/test/debug_spec.js::debug",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "allows namespaces to be a non-string value",
+              "classname": "/work/repo/test/debug_spec.js::debug",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "uses it",
+              "classname": "/work/repo/test/debug_spec.js::debug with log function",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "uses it",
+              "classname": "/work/repo/test/debug_spec.js::debug custom functions with log function",
+              "outcome": "passed",
+              "expected_failure": false
+            }
+          ],
+          "command_sha256": "c93d0daf9d9b58c413b55e0c4532c6dab64410625f70c3d3cbd18af17ed705d9",
+          "missing_modules": [],
+          "diagnostic_excerpts": [],
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr_bytes": 0
+        }
+      }
+    ]
+  },
+  "original_report_sha256": "fbae7d6333fe699ead99ae6042f5115b190fe4d4f8bcb9f6d55f9e2f0ecd49d2",
+  "original_command_record_sha256": "12374c95647affbb4a41f60ed141b92a48155df117aa2245001ea150d61ea1dd",
+  "candidate_patch_inputs": [
+    {
+      "original_filename": "attempt-1.patch",
+      "sha256": "1eb7b2a904d85adfb4c50813e22b45185d0e51bab980d0668a40741c74942e7c"
+    }
+  ]
+}

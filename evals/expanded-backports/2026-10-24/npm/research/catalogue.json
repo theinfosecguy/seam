@@ -1,0 +1,3460 @@
+{
+  "cases": [
+    {
+      "advisory_url": "https://github.com/advisories/GHSA-hrpp-h998-j3pp",
+      "backport_fix": {
+        "changed_files": [
+          {
+            "additions": 1,
+            "deletions": 1,
+            "path": "lib/parse.js",
+            "status": "modified"
+          },
+          {
+            "additions": 60,
+            "deletions": 0,
+            "path": "test/parse.js",
+            "status": "modified"
+          }
+        ],
+        "date": "2021-12-28T03:15:57Z",
+        "dependencies": {},
+        "license": "BSD-3-Clause",
+        "package_name_at_commit": "qs",
+        "parents": [
+          "02ca358155297dc68fcc4c2ac312c26e10524e47"
+        ],
+        "repository": "https://github.com/ljharb/qs",
+        "sha": "e799ba57e573a30c14b67c1889c7c04d508b9105",
+        "subject": "[Fix] `parse`: ignore `__proto__` keys (#428)",
+        "test_scripts": {
+          "posttest": "aud --production",
+          "pretest": "npm run --silent readme && npm run --silent lint",
+          "test": "npm run tests-only",
+          "tests-only": "nyc tape 'test/**/*.js'"
+        },
+        "url": "https://github.com/ljharb/qs/commit/e799ba57e573a30c14b67c1889c7c04d508b9105",
+        "version_at_commit": "6.9.6"
+      },
+      "backport_release_proof": {
+        "ahead_by": 1,
+        "behind_by": 0,
+        "compare_url": "https://github.com/ljharb/qs/compare/e799ba57e573a30c14b67c1889c7c04d508b9105...v6.9.7",
+        "status": "ahead",
+        "tag": "v6.9.7",
+        "tag_commit": "4cd003291fe3b347884f797e548b58a12150a0e3"
+      },
+      "changed_source_files": {
+        "newer": [
+          "lib/parse.js"
+        ],
+        "older": [
+          "lib/parse.js"
+        ]
+      },
+      "cve_id": "CVE-2022-24999",
+      "evaluation_notes": "Prototype rejection in one CommonJS parser; no timing oracle needed.",
+      "existing_test_runner": "tape",
+      "ghsa_id": "GHSA-hrpp-h998-j3pp",
+      "newer_fixed_version": "6.10.3",
+      "older_fixed_version": "6.9.7",
+      "package": "qs",
+      "patched_versions": [
+        "6.10.3",
+        "6.2.4",
+        "6.3.3",
+        "6.4.1",
+        "6.5.3",
+        "6.6.1",
+        "6.7.3",
+        "6.8.3",
+        "6.9.7"
+      ],
+      "published_at": "2022-11-27T00:30:50Z",
+      "references": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2022-24999",
+        "https://github.com/ljharb/qs/pull/428",
+        "https://github.com/n8tz/CVE-2022-24999",
+        "https://github.com/ljharb/qs/commit/4310742efbd8c03f6495f07906b45213da0a32ec",
+        "https://github.com/ljharb/qs/commit/727ef5d34605108acb3513f72d5435972ed15b68",
+        "https://github.com/ljharb/qs/commit/73205259936317b40f447c5cdb71c5b341848e1b",
+        "https://github.com/ljharb/qs/commit/8b4cc14cda94a5c89341b77e5fe435ec6c41be2d",
+        "https://github.com/ljharb/qs/commit/ba24e74dd17931f825adb52f5633e48293b584e1",
+        "https://github.com/ljharb/qs/commit/e799ba57e573a30c14b67c1889c7c04d508b9105",
+        "https://github.com/ljharb/qs/commit/ed0f5dcbef4b168a8ae299d78b1e4a2e9b1baf1f",
+        "https://github.com/ljharb/qs/commit/f945393cfe442fe8c6e62b4156fd35452c0686ee",
+        "https://github.com/ljharb/qs/commit/fc3682776670524a42e19709ec4a8138d0d7afda",
+        "https://github.com/expressjs/express/releases/tag/4.17.3",
+        "https://lists.debian.org/debian-lts-announce/2023/01/msg00039.html",
+        "https://security.netapp.com/advisory/ntap-20230908-0005",
+        "https://github.com/advisories/GHSA-hrpp-h998-j3pp"
+      ],
+      "source_base": "ad63d36ce18cd2c315899ac1e8193de22be08cd8",
+      "source_fix": {
+        "changed_files": [
+          {
+            "additions": 1,
+            "deletions": 1,
+            "path": "lib/parse.js",
+            "status": "modified"
+          },
+          {
+            "additions": 60,
+            "deletions": 0,
+            "path": "test/parse.js",
+            "status": "modified"
+          }
+        ],
+        "date": "2021-12-28T03:15:57Z",
+        "dependencies": {
+          "side-channel": "^1.0.4"
+        },
+        "license": "BSD-3-Clause",
+        "package_name_at_commit": "qs",
+        "parents": [
+          "ad63d36ce18cd2c315899ac1e8193de22be08cd8"
+        ],
+        "repository": "https://github.com/ljharb/qs",
+        "sha": "8b4cc14cda94a5c89341b77e5fe435ec6c41be2d",
+        "subject": "[Fix] `parse`: ignore `__proto__` keys",
+        "test_scripts": {
+          "posttest": "aud --production",
+          "pretest": "npm run --silent readme && npm run --silent lint",
+          "test": "npm run tests-only",
+          "tests-only": "nyc tape 'test/**/*.js'"
+        },
+        "url": "https://github.com/ljharb/qs/commit/8b4cc14cda94a5c89341b77e5fe435ec6c41be2d",
+        "version_at_commit": "6.10.2"
+      },
+      "source_release_proof": {
+        "ahead_by": 2,
+        "behind_by": 0,
+        "compare_url": "https://github.com/ljharb/qs/compare/8b4cc14cda94a5c89341b77e5fe435ec6c41be2d...v6.10.3",
+        "status": "ahead",
+        "tag": "v6.10.3",
+        "tag_commit": "f92ddb56089ae2c74f5ca7b0447fef3a97e8c9bc"
+      },
+      "suitability": "simple",
+      "summary": "qs vulnerable to Prototype Pollution",
+      "target_base": "02ca358155297dc68fcc4c2ac312c26e10524e47",
+      "vendor_advisory_url": null
+    },
+    {
+      "advisory_url": "https://github.com/advisories/GHSA-c2qf-rxjj-qqgw",
+      "backport_fix": {
+        "changed_files": [
+          {
+            "additions": 71,
+            "deletions": 24,
+            "path": "semver.js",
+            "status": "modified"
+          },
+          {
+            "additions": 10,
+            "deletions": 0,
+            "path": "test/index.js",
+            "status": "modified"
+          },
+          {
+            "additions": 14,
+            "deletions": 0,
+            "path": "test/re.js",
+            "status": "added"
+          },
+          {
+            "additions": 63,
+            "deletions": 0,
+            "path": "test/whitespace.js",
+            "status": "added"
+          }
+        ],
+        "date": "2023-07-10T19:07:34Z",
+        "dependencies": {},
+        "license": "ISC",
+        "package_name_at_commit": "semver",
+        "parents": [
+          "39f632690ea5b1b0d64fa913aa0f96f42b9bde32"
+        ],
+        "repository": "https://github.com/npm/node-semver",
+        "sha": "928e56d21150da0413a3333a3148b20e741a920c",
+        "subject": "fix: better handling of whitespace (#591)",
+        "test_scripts": {
+          "posttest": "npm run lint",
+          "test": "tap test/ --100 --timeout=30"
+        },
+        "url": "https://github.com/npm/node-semver/commit/928e56d21150da0413a3333a3148b20e741a920c",
+        "version_at_commit": "6.3.0"
+      },
+      "backport_release_proof": {
+        "ahead_by": 1,
+        "behind_by": 0,
+        "compare_url": "https://github.com/npm/node-semver/compare/928e56d21150da0413a3333a3148b20e741a920c...v6.3.1",
+        "status": "ahead",
+        "tag": "v6.3.1",
+        "tag_commit": "44d27bc007e4827e9b797d6145f1076c127005f2"
+      },
+      "changed_source_files": {
+        "newer": [
+          "classes/comparator.js",
+          "classes/range.js",
+          "classes/semver.js",
+          "functions/coerce.js",
+          "internal/re.js"
+        ],
+        "older": [
+          "semver.js"
+        ]
+      },
+      "cve_id": "CVE-2022-25883",
+      "evaluation_notes": "Modern split modules versus older single module; bound hostile inputs without timing-only assertions.",
+      "existing_test_runner": "tap",
+      "ghsa_id": "GHSA-c2qf-rxjj-qqgw",
+      "newer_fixed_version": "7.5.2",
+      "older_fixed_version": "6.3.1",
+      "package": "semver",
+      "patched_versions": [
+        "5.7.2",
+        "6.3.1",
+        "7.5.2"
+      ],
+      "published_at": "2023-06-21T06:30:28Z",
+      "references": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2022-25883",
+        "https://github.com/npm/node-semver/pull/564",
+        "https://github.com/npm/node-semver/commit/717534ee353682f3bcf33e60a8af4292626d4441",
+        "https://security.snyk.io/vuln/SNYK-JS-SEMVER-3247795",
+        "https://github.com/npm/node-semver/blob/main/classes/range.js#L97-L104",
+        "https://github.com/npm/node-semver/blob/main/internal/re.js#L138",
+        "https://github.com/npm/node-semver/blob/main/internal/re.js#L160",
+        "https://github.com/npm/node-semver/pull/585",
+        "https://github.com/npm/node-semver/commit/928e56d21150da0413a3333a3148b20e741a920c",
+        "https://github.com/npm/node-semver/pull/593",
+        "https://github.com/npm/node-semver/commit/2f8fd41487acf380194579ecb6f8b1bbfe116be0",
+        "https://github.com/npm/node-semver/blob/main/classes/range.js%23L97-L104",
+        "https://github.com/npm/node-semver/blob/main/internal/re.js%23L138",
+        "https://github.com/npm/node-semver/blob/main/internal/re.js%23L160",
+        "https://security.netapp.com/advisory/ntap-20241025-0004",
+        "https://github.com/advisories/GHSA-c2qf-rxjj-qqgw"
+      ],
+      "source_base": "2f738e9a70d9b9468b7b69e9ed3e12418725c650",
+      "source_fix": {
+        "changed_files": [
+          {
+            "additions": 2,
+            "deletions": 1,
+            "path": "classes/comparator.js",
+            "status": "modified"
+          },
+          {
+            "additions": 37,
+            "deletions": 27,
+            "path": "classes/range.js",
+            "status": "modified"
+          },
+          {
+            "additions": 1,
+            "deletions": 1,
+            "path": "classes/semver.js",
+            "status": "modified"
+          },
+          {
+            "additions": 1,
+            "deletions": 1,
+            "path": "functions/coerce.js",
+            "status": "modified"
+          },
+          {
+            "additions": 11,
+            "deletions": 0,
+            "path": "internal/re.js",
+            "status": "modified"
+          },
+          {
+            "additions": 1,
+            "deletions": 1,
+            "path": "package.json",
+            "status": "modified"
+          },
+          {
+            "additions": 39,
+            "deletions": 0,
+            "path": "test/integration/whitespace.js",
+            "status": "added"
+          },
+          {
+            "additions": 7,
+            "deletions": 1,
+            "path": "test/internal/re.js",
+            "status": "modified"
+          },
+          {
+            "additions": 37,
+            "deletions": 40,
+            "path": "test/map.js",
+            "status": "modified"
+          }
+        ],
+        "date": "2023-06-15T19:21:14Z",
+        "dependencies": {
+          "lru-cache": "^6.0.0"
+        },
+        "license": "ISC",
+        "package_name_at_commit": "semver",
+        "parents": [
+          "2f738e9a70d9b9468b7b69e9ed3e12418725c650"
+        ],
+        "repository": "https://github.com/npm/node-semver",
+        "sha": "717534ee353682f3bcf33e60a8af4292626d4441",
+        "subject": "fix: better handling of whitespace (#564)",
+        "test_scripts": {
+          "posttest": "npm run lint",
+          "test": "tap"
+        },
+        "url": "https://github.com/npm/node-semver/commit/717534ee353682f3bcf33e60a8af4292626d4441",
+        "version_at_commit": "7.5.1"
+      },
+      "source_release_proof": {
+        "ahead_by": 3,
+        "behind_by": 0,
+        "compare_url": "https://github.com/npm/node-semver/compare/717534ee353682f3bcf33e60a8af4292626d4441...v7.5.2",
+        "status": "ahead",
+        "tag": "v7.5.2",
+        "tag_commit": "e7b78de06eb14a7fa2075cedf9f167040d8d31af"
+      },
+      "suitability": "moderate",
+      "summary": "semver vulnerable to Regular Expression Denial of Service",
+      "target_base": "39f632690ea5b1b0d64fa913aa0f96f42b9bde32",
+      "vendor_advisory_url": null
+    },
+    {
+      "advisory_url": "https://github.com/advisories/GHSA-w74x-v6f9-j3xg",
+      "backport_fix": {
+        "changed_files": [
+          {
+            "additions": 2,
+            "deletions": 0,
+            "path": "README.md",
+            "status": "modified"
+          },
+          {
+            "additions": 12,
+            "deletions": 9,
+            "path": "index.js",
+            "status": "modified"
+          },
+          {
+            "additions": 53,
+            "deletions": 14,
+            "path": "test/scheme-validation.test.js",
+            "status": "modified"
+          }
+        ],
+        "date": "2026-10-19T11:01:01Z",
+        "dependencies": {},
+        "license": "BSD-3-Clause",
+        "package_name_at_commit": "fast-uri",
+        "parents": [
+          "8e8e5c637fa732805ab0ea66f49e22559698837d"
+        ],
+        "repository": "https://github.com/fastify/fast-uri",
+        "sha": "597f254c86d151568511eeb9a1df761fd12520b3",
+        "subject": "fix(SEC-01): reject percent-encoded URI schemes instead of decoding them",
+        "test_scripts": {
+          "test": "npm run test:unit && npm run test:typescript",
+          "test:browser": "npm run test:browser:chromium && npm run test:browser:firefox && npm run test:browser:webkit",
+          "test:browser:chromium": "playwright-test ./test/* --runner tape --browser=chromium",
+          "test:browser:firefox": "playwright-test ./test/* --runner tape --browser=firefox",
+          "test:browser:webkit": "playwright-test ./test/* --runner tape --browser=webkit",
+          "test:typescript": "tsd",
+          "test:unit": "tape test/**/*.js",
+          "test:unit:dev": "npm run test:unit -- --coverage-report=html"
+        },
+        "url": "https://github.com/fastify/fast-uri/commit/597f254c86d151568511eeb9a1df761fd12520b3",
+        "version_at_commit": "3.1.8"
+      },
+      "backport_release_proof": {
+        "ahead_by": 10,
+        "behind_by": 0,
+        "compare_url": "https://github.com/fastify/fast-uri/compare/597f254c86d151568511eeb9a1df761fd12520b3...v3.1.9",
+        "status": "ahead",
+        "tag": "v3.1.9",
+        "tag_commit": "0def70338a0fa2f12a10c83ae8eafc2139ae9a07"
+      },
+      "changed_source_files": {
+        "newer": [
+          "index.js"
+        ],
+        "older": [
+          "index.js"
+        ]
+      },
+      "cve_id": "CVE-2026-110306",
+      "evaluation_notes": "Pure CommonJS URI parser with explicit scheme rejection tests.",
+      "existing_test_runner": "tape",
+      "ghsa_id": "GHSA-w74x-v6f9-j3xg",
+      "newer_fixed_version": "4.2.3",
+      "older_fixed_version": "3.1.9",
+      "package": "fast-uri",
+      "patched_versions": [
+        "2.4.8",
+        "3.1.9",
+        "4.2.3"
+      ],
+      "published_at": "2026-10-23T21:41:36Z",
+      "references": [
+        "https://github.com/fastify/fast-uri/security/advisories/GHSA-w74x-v6f9-j3xg",
+        "https://nvd.nist.gov/vuln/detail/CVE-2026-110306",
+        "https://github.com/fastify/fast-uri/commit/39933a1f1422986f14e2d844f552238feb40f5d4",
+        "https://github.com/fastify/fast-uri/commit/597f254c86d151568511eeb9a1df761fd12520b3",
+        "https://github.com/fastify/fast-uri/commit/e60e716f41d1d73717e2d803d20b68d2c6d20a0f",
+        "https://cna.openjsf.org/security-advisories.html",
+        "https://github.com/fastify/fast-uri/releases/tag/v2.4.8",
+        "https://github.com/fastify/fast-uri/releases/tag/v3.1.9",
+        "https://github.com/fastify/fast-uri/releases/tag/v4.2.3",
+        "https://github.com/advisories/GHSA-w74x-v6f9-j3xg"
+      ],
+      "source_base": "0f89a8ab641f251613e2c9a64285cb2a44f1c378",
+      "source_fix": {
+        "changed_files": [
+          {
+            "additions": 2,
+            "deletions": 0,
+            "path": "README.md",
+            "status": "modified"
+          },
+          {
+            "additions": 12,
+            "deletions": 9,
+            "path": "index.js",
+            "status": "modified"
+          },
+          {
+            "additions": 51,
+            "deletions": 12,
+            "path": "test/scheme-validation.test.js",
+            "status": "modified"
+          }
+        ],
+        "date": "2026-10-19T10:57:51Z",
+        "dependencies": {},
+        "license": "BSD-3-Clause",
+        "package_name_at_commit": "fast-uri",
+        "parents": [
+          "0f89a8ab641f251613e2c9a64285cb2a44f1c378"
+        ],
+        "repository": "https://github.com/fastify/fast-uri",
+        "sha": "39933a1f1422986f14e2d844f552238feb40f5d4",
+        "subject": "fix(SEC-01): reject percent-encoded URI schemes instead of decoding them",
+        "test_scripts": {
+          "test": "npm run test:unit",
+          "test:browser": "npm run test:browser:chromium && npm run test:browser:firefox && npm run test:browser:webkit",
+          "test:browser:chromium": "playwright-test ./test/* --runner tape --browser=chromium",
+          "test:browser:firefox": "playwright-test ./test/* --runner tape --browser=firefox",
+          "test:browser:webkit": "playwright-test ./test/* --runner tape --browser=webkit",
+          "test:typescript": "tstyche",
+          "test:unit": "tape test/**/*.js",
+          "test:unit:dev": "npm run test:unit -- --coverage-report=html"
+        },
+        "url": "https://github.com/fastify/fast-uri/commit/39933a1f1422986f14e2d844f552238feb40f5d4",
+        "version_at_commit": "4.2.2"
+      },
+      "source_release_proof": {
+        "ahead_by": 10,
+        "behind_by": 0,
+        "compare_url": "https://github.com/fastify/fast-uri/compare/39933a1f1422986f14e2d844f552238feb40f5d4...v4.2.3",
+        "status": "ahead",
+        "tag": "v4.2.3",
+        "tag_commit": "00f41407ef64b4944060ca3e7fd2d637916a71ea"
+      },
+      "suitability": "simple",
+      "summary": "fast-uri vulnerable to URI scheme spoofing via percent-encoded scheme decoding",
+      "target_base": "8e8e5c637fa732805ab0ea66f49e22559698837d",
+      "vendor_advisory_url": "https://api.github.com/repos/fastify/fast-uri/security-advisories/GHSA-w74x-v6f9-j3xg"
+    },
+    {
+      "advisory_url": "https://github.com/advisories/GHSA-9wv6-86v2-598j",
+      "backport_fix": {
+        "changed_files": [
+          {
+            "additions": 51,
+            "deletions": 39,
+            "path": "index.js",
+            "status": "modified"
+          },
+          {
+            "additions": 39,
+            "deletions": 1,
+            "path": "test.js",
+            "status": "modified"
+          }
+        ],
+        "date": "2024-09-01T22:01:33Z",
+        "dependencies": {},
+        "license": "MIT",
+        "package_name_at_commit": "path-to-regexp",
+        "parents": [
+          "ac4c2345622a10a09c7ec229e3c29740935d67d7"
+        ],
+        "repository": "https://github.com/pillarjs/path-to-regexp",
+        "sha": "29b96b4a1de52824e1ca0f49a701183cc4ed476f",
+        "subject": "Add backtrack protection to parameters",
+        "test_scripts": {
+          "test": "istanbul cover _mocha -- -R spec"
+        },
+        "url": "https://github.com/pillarjs/path-to-regexp/commit/29b96b4a1de52824e1ca0f49a701183cc4ed476f",
+        "version_at_commit": "0.1.9"
+      },
+      "backport_release_proof": {
+        "ahead_by": 1,
+        "behind_by": 0,
+        "compare_url": "https://github.com/pillarjs/path-to-regexp/compare/29b96b4a1de52824e1ca0f49a701183cc4ed476f...v0.1.10",
+        "status": "ahead",
+        "tag": "v0.1.10",
+        "tag_commit": "c827fcea751b2e9ec6ca68a1b95a82e438728868"
+      },
+      "changed_source_files": {
+        "newer": [
+          "index.js",
+          "test.js"
+        ],
+        "older": [
+          "index.js",
+          "test.js"
+        ]
+      },
+      "cve_id": "CVE-2024-45296",
+      "evaluation_notes": "Both historical lines are plain JavaScript. Use explicit regex behavior and a bounded process for ReDoS. Follow-up CVE-2024-52798 means this pair is scoped historical evidence, not a complete current fix.",
+      "existing_test_runner": "mocha",
+      "ghsa_id": "GHSA-9wv6-86v2-598j",
+      "newer_fixed_version": "1.9.0",
+      "older_fixed_version": "0.1.10",
+      "package": "path-to-regexp",
+      "patched_versions": [
+        "0.1.10",
+        "1.9.0",
+        "3.3.0",
+        "6.3.0",
+        "8.0.0"
+      ],
+      "published_at": "2024-09-09T20:19:15Z",
+      "references": [
+        "https://github.com/pillarjs/path-to-regexp/security/advisories/GHSA-9wv6-86v2-598j",
+        "https://github.com/pillarjs/path-to-regexp/commit/29b96b4a1de52824e1ca0f49a701183cc4ed476f",
+        "https://github.com/pillarjs/path-to-regexp/commit/60f2121e9b66b7b622cc01080df0aabda9eedee6",
+        "https://nvd.nist.gov/vuln/detail/CVE-2024-45296",
+        "https://github.com/pillarjs/path-to-regexp/commit/925ac8e3c5780b02f58cbd4e52f95da8ad2ac485",
+        "https://github.com/pillarjs/path-to-regexp/commit/d31670ae8f6e69cbfd56e835742195b7d10942ef",
+        "https://github.com/pillarjs/path-to-regexp/commit/f1253b47b347dcb909e3e80b0eb2649109e59894",
+        "https://github.com/pillarjs/path-to-regexp/releases/tag/v6.3.0",
+        "https://security.netapp.com/advisory/ntap-20250124-0001",
+        "https://github.com/advisories/GHSA-9wv6-86v2-598j"
+      ],
+      "source_base": "32a14b0185ab23c1afae6dd7b624a01ce68fd470",
+      "source_fix": {
+        "changed_files": [
+          {
+            "additions": 11,
+            "deletions": 2,
+            "path": "index.js",
+            "status": "modified"
+          },
+          {
+            "additions": 4226,
+            "deletions": 0,
+            "path": "package-lock.json",
+            "status": "added"
+          },
+          {
+            "additions": 4,
+            "deletions": 6,
+            "path": "package.json",
+            "status": "modified"
+          },
+          {
+            "additions": 9,
+            "deletions": 19,
+            "path": "test.js",
+            "status": "renamed"
+          },
+          {
+            "additions": 0,
+            "deletions": 9,
+            "path": "typings.json",
+            "status": "removed"
+          }
+        ],
+        "date": "2024-09-10T21:21:55Z",
+        "dependencies": {
+          "isarray": "0.0.1"
+        },
+        "license": "MIT",
+        "package_name_at_commit": "path-to-regexp",
+        "parents": [
+          "32a14b0185ab23c1afae6dd7b624a01ce68fd470"
+        ],
+        "repository": "https://github.com/pillarjs/path-to-regexp",
+        "sha": "925ac8e3c5780b02f58cbd4e52f95da8ad2ac485",
+        "subject": "Add backtrack protection to 1.x release (#320)",
+        "test_scripts": {
+          "test": "npm run test-cov",
+          "test-cov": "istanbul cover node_modules/mocha/bin/_mocha -- -R spec test.js",
+          "test-spec": "mocha -R spec --bail test.js"
+        },
+        "url": "https://github.com/pillarjs/path-to-regexp/commit/925ac8e3c5780b02f58cbd4e52f95da8ad2ac485",
+        "version_at_commit": "1.8.0"
+      },
+      "source_release_proof": {
+        "ahead_by": 1,
+        "behind_by": 0,
+        "compare_url": "https://github.com/pillarjs/path-to-regexp/compare/925ac8e3c5780b02f58cbd4e52f95da8ad2ac485...v1.9.0",
+        "status": "ahead",
+        "tag": "v1.9.0",
+        "tag_commit": "c75eb105b2a177822c1dfd58e0e032320cd868ff"
+      },
+      "suitability": "moderate",
+      "summary": "path-to-regexp outputs backtracking regular expressions",
+      "target_base": "ac4c2345622a10a09c7ec229e3c29740935d67d7",
+      "vendor_advisory_url": "https://api.github.com/repos/pillarjs/path-to-regexp/security-advisories/GHSA-9wv6-86v2-598j"
+    },
+    {
+      "advisory_url": "https://github.com/advisories/GHSA-cm22-4g7w-348p",
+      "backport_fix": {
+        "changed_files": [
+          {
+            "additions": 1,
+            "deletions": 2,
+            "path": "index.js",
+            "status": "modified"
+          },
+          {
+            "additions": 2,
+            "deletions": 2,
+            "path": "test/test.js",
+            "status": "modified"
+          }
+        ],
+        "date": "2024-09-10T01:12:39Z",
+        "dependencies": {
+          "encodeurl": "~1.0.2",
+          "escape-html": "~1.0.3",
+          "parseurl": "~1.3.3",
+          "send": "0.18.0"
+        },
+        "license": "MIT",
+        "package_name_at_commit": "serve-static",
+        "parents": [
+          "9b5a12a76f4d70530d2d2a8c7742e9158ed3c0a4"
+        ],
+        "repository": "https://github.com/expressjs/serve-static",
+        "sha": "0c11fad159898cdc69fd9ab63269b72468ecaf6b",
+        "subject": "Merge commit from fork",
+        "test_scripts": {
+          "test": "mocha --reporter spec --bail --check-leaks test/",
+          "test-ci": "nyc --reporter=lcov --reporter=text npm test",
+          "test-cov": "nyc --reporter=html --reporter=text npm test"
+        },
+        "url": "https://github.com/expressjs/serve-static/commit/0c11fad159898cdc69fd9ab63269b72468ecaf6b",
+        "version_at_commit": "1.15.0"
+      },
+      "backport_release_proof": {
+        "ahead_by": 1,
+        "behind_by": 0,
+        "compare_url": "https://github.com/expressjs/serve-static/compare/0c11fad159898cdc69fd9ab63269b72468ecaf6b...1.16.0",
+        "status": "ahead",
+        "tag": "1.16.0",
+        "tag_commit": "48c73970b129b96cba448e792576ad89b1f9fbed"
+      },
+      "changed_source_files": {
+        "newer": [
+          "index.js"
+        ],
+        "older": [
+          "index.js"
+        ]
+      },
+      "cve_id": "CVE-2024-43800",
+      "evaluation_notes": "HTTP redirect body escaping; requires frozen send dependency and loopback-only server.",
+      "existing_test_runner": "mocha",
+      "ghsa_id": "GHSA-cm22-4g7w-348p",
+      "newer_fixed_version": "2.1.0",
+      "older_fixed_version": "1.16.0",
+      "package": "serve-static",
+      "patched_versions": [
+        "1.16.0",
+        "2.1.0"
+      ],
+      "published_at": "2024-09-10T19:42:33Z",
+      "references": [
+        "https://github.com/expressjs/serve-static/security/advisories/GHSA-cm22-4g7w-348p",
+        "https://nvd.nist.gov/vuln/detail/CVE-2024-43800",
+        "https://github.com/expressjs/serve-static/commit/0c11fad159898cdc69fd9ab63269b72468ecaf6b",
+        "https://github.com/expressjs/serve-static/commit/ce730896fddce1588111d9ef6fdf20896de5c6fa",
+        "https://github.com/advisories/GHSA-cm22-4g7w-348p"
+      ],
+      "source_base": "d79edcecd7875329f7d0648412cf20ec7315977b",
+      "source_fix": {
+        "changed_files": [
+          {
+            "additions": 1,
+            "deletions": 2,
+            "path": "index.js",
+            "status": "modified"
+          },
+          {
+            "additions": 2,
+            "deletions": 2,
+            "path": "test/test.js",
+            "status": "modified"
+          }
+        ],
+        "date": "2024-09-10T00:58:54Z",
+        "dependencies": {
+          "encodeurl": "^2.0.0",
+          "escape-html": "^1.0.3",
+          "parseurl": "^1.3.3",
+          "send": "^1.0.0"
+        },
+        "license": "MIT",
+        "package_name_at_commit": "serve-static",
+        "parents": [
+          "d79edcecd7875329f7d0648412cf20ec7315977b"
+        ],
+        "repository": "https://github.com/expressjs/serve-static",
+        "sha": "ce730896fddce1588111d9ef6fdf20896de5c6fa",
+        "subject": "Merge commit from fork",
+        "test_scripts": {
+          "test": "mocha --reporter spec --bail --check-leaks test/",
+          "test-ci": "nyc --reporter=lcov --reporter=text npm test",
+          "test-cov": "nyc --reporter=html --reporter=text npm test"
+        },
+        "url": "https://github.com/expressjs/serve-static/commit/ce730896fddce1588111d9ef6fdf20896de5c6fa",
+        "version_at_commit": "2.0.0"
+      },
+      "source_release_proof": {
+        "ahead_by": 1,
+        "behind_by": 0,
+        "compare_url": "https://github.com/expressjs/serve-static/compare/ce730896fddce1588111d9ef6fdf20896de5c6fa...v2.1.0",
+        "status": "ahead",
+        "tag": "v2.1.0",
+        "tag_commit": "87c5f092ed7cd23202f699b08c7f407c2b536df0"
+      },
+      "suitability": "moderate",
+      "summary": "serve-static vulnerable to template injection that can lead to XSS",
+      "target_base": "9b5a12a76f4d70530d2d2a8c7742e9158ed3c0a4",
+      "vendor_advisory_url": "https://api.github.com/repos/expressjs/serve-static/security-advisories/GHSA-cm22-4g7w-348p"
+    },
+    {
+      "advisory_url": "https://github.com/advisories/GHSA-27r3-jxmh-p828",
+      "backport_fix": {
+        "changed_files": [
+          {
+            "additions": 26,
+            "deletions": 8,
+            "path": "lib/read.js",
+            "status": "modified"
+          },
+          {
+            "additions": 201,
+            "deletions": 0,
+            "path": "test/json.js",
+            "status": "modified"
+          }
+        ],
+        "date": "2026-10-22T11:29:16Z",
+        "dependencies": {
+          "bytes": "~3.1.2",
+          "content-type": "~1.0.5",
+          "debug": "2.6.9",
+          "depd": "2.0.0",
+          "destroy": "~1.2.0",
+          "http-errors": "~2.0.1",
+          "iconv-lite": "~0.4.24",
+          "on-finished": "~2.4.1",
+          "qs": "~6.16.0",
+          "raw-body": "~2.5.3",
+          "type-is": "~1.6.18",
+          "unpipe": "~1.0.0"
+        },
+        "license": "MIT",
+        "package_name_at_commit": "body-parser",
+        "parents": [
+          "b4c2112ff66163da4304188edda5690e90f7c8a7"
+        ],
+        "repository": "https://github.com/expressjs/body-parser",
+        "sha": "1260c3845f54502a05a87594f09a334786bb34d7",
+        "subject": "fix: prevent process crash from trailing bytes after a compressed body",
+        "test_scripts": {
+          "test": "mocha --require test/support/env --reporter spec --check-leaks --bail test/",
+          "test-ci": "nyc --reporter=lcov --reporter=text npm test",
+          "test-cov": "nyc --reporter=html --reporter=text npm test"
+        },
+        "url": "https://github.com/expressjs/body-parser/commit/1260c3845f54502a05a87594f09a334786bb34d7",
+        "version_at_commit": "1.20.8"
+      },
+      "backport_release_proof": {
+        "ahead_by": 1,
+        "behind_by": 0,
+        "compare_url": "https://github.com/expressjs/body-parser/compare/1260c3845f54502a05a87594f09a334786bb34d7...1.20.9",
+        "status": "ahead",
+        "tag": "1.20.9",
+        "tag_commit": "a64f1404e256b3f0e3ce633e081a7593fe482203"
+      },
+      "changed_source_files": {
+        "newer": [
+          "lib/read.js"
+        ],
+        "older": [
+          "lib/read.js"
+        ]
+      },
+      "cve_id": "CVE-2026-111181",
+      "evaluation_notes": "Compressed request error handling; native zlib and loopback HTTP regression.",
+      "existing_test_runner": "mocha",
+      "ghsa_id": "GHSA-27r3-jxmh-p828",
+      "newer_fixed_version": "2.4.0",
+      "older_fixed_version": "1.20.9",
+      "package": "body-parser",
+      "patched_versions": [
+        "1.20.9",
+        "2.4.0"
+      ],
+      "published_at": "2026-10-23T20:53:11Z",
+      "references": [
+        "https://github.com/expressjs/body-parser/security/advisories/GHSA-27r3-jxmh-p828",
+        "https://nvd.nist.gov/vuln/detail/CVE-2026-111181",
+        "https://github.com/expressjs/body-parser/commit/1260c3845f54502a05a87594f09a334786bb34d7",
+        "https://github.com/expressjs/body-parser/commit/f7075eae3a84c3473ab4bf0a777da28db208e916",
+        "https://cna.openjsf.org/security-advisories.html",
+        "https://github.com/expressjs/body-parser/releases/tag/1.20.9",
+        "https://github.com/expressjs/body-parser/releases/tag/v2.4.0",
+        "https://github.com/advisories/GHSA-27r3-jxmh-p828"
+      ],
+      "source_base": "185ff1d55598a60acf7e182239cae6662e564407",
+      "source_fix": {
+        "changed_files": [
+          {
+            "additions": 20,
+            "deletions": 8,
+            "path": "lib/read.js",
+            "status": "modified"
+          },
+          {
+            "additions": 201,
+            "deletions": 0,
+            "path": "test/json.js",
+            "status": "modified"
+          }
+        ],
+        "date": "2026-10-22T11:20:33Z",
+        "dependencies": {
+          "bytes": "^3.1.2",
+          "content-type": "^2.1.0",
+          "debug": "^4.4.3",
+          "http-errors": "^2.0.1",
+          "iconv-lite": "^0.7.3",
+          "on-finished": "^2.4.1",
+          "qs": "^6.16.1",
+          "raw-body": "^3.0.2",
+          "type-is": "^2.1.0"
+        },
+        "license": "MIT",
+        "package_name_at_commit": "body-parser",
+        "parents": [
+          "185ff1d55598a60acf7e182239cae6662e564407"
+        ],
+        "repository": "https://github.com/expressjs/body-parser",
+        "sha": "f7075eae3a84c3473ab4bf0a777da28db208e916",
+        "subject": "fix: prevent process crash from trailing bytes after a compressed body",
+        "test_scripts": {
+          "test": "mocha --reporter spec --check-leaks test/",
+          "test-ci": "nyc --reporter=lcovonly --reporter=text npm test",
+          "test-cov": "nyc --reporter=html --reporter=text npm test"
+        },
+        "url": "https://github.com/expressjs/body-parser/commit/f7075eae3a84c3473ab4bf0a777da28db208e916",
+        "version_at_commit": "2.3.0"
+      },
+      "source_release_proof": {
+        "ahead_by": 1,
+        "behind_by": 0,
+        "compare_url": "https://github.com/expressjs/body-parser/compare/f7075eae3a84c3473ab4bf0a777da28db208e916...v2.4.0",
+        "status": "ahead",
+        "tag": "v2.4.0",
+        "tag_commit": "b4744d739e1e2e5257f2ddac31eed191aa5152a4"
+      },
+      "suitability": "moderate",
+      "summary": "body-parser vulnerable to Denial of Service via trailing bytes after a compressed request body",
+      "target_base": "b4c2112ff66163da4304188edda5690e90f7c8a7",
+      "vendor_advisory_url": "https://api.github.com/repos/expressjs/body-parser/security-advisories/GHSA-27r3-jxmh-p828"
+    },
+    {
+      "advisory_url": "https://github.com/advisories/GHSA-jp2q-39xq-3w4g",
+      "backport_fix": {
+        "changed_files": [
+          {
+            "additions": 24,
+            "deletions": 0,
+            "path": "src/fxp.d.ts",
+            "status": "modified"
+          },
+          {
+            "additions": 26,
+            "deletions": 9,
+            "path": "src/util.js",
+            "status": "modified"
+          },
+          {
+            "additions": 12,
+            "deletions": 2,
+            "path": "src/xmlparser/DocTypeReader.js",
+            "status": "modified"
+          },
+          {
+            "additions": 59,
+            "deletions": 5,
+            "path": "src/xmlparser/OptionsBuilder.js",
+            "status": "modified"
+          },
+          {
+            "additions": 36,
+            "deletions": 3,
+            "path": "src/xmlparser/OrderedObjParser.js",
+            "status": "modified"
+          }
+        ],
+        "date": "2026-03-22T01:35:19Z",
+        "dependencies": {
+          "strnum": "^1.0.5"
+        },
+        "license": "MIT",
+        "package_name_at_commit": "fast-xml-parser",
+        "parents": [
+          "d4eb6b4713a8d11e6730943392419040898ecbc0"
+        ],
+        "repository": "https://github.com/NaturalIntelligence/fast-xml-parser",
+        "sha": "88d0936a23dabe51bfbf42255e2ce912dfee2221",
+        "subject": "apply all fixes from v5",
+        "test_scripts": {
+          "test": "c8 --reporter=lcov --reporter=text jasmine spec/*spec.js",
+          "test-types": "tsc --noEmit spec/typings/typings-test.ts"
+        },
+        "url": "https://github.com/NaturalIntelligence/fast-xml-parser/commit/88d0936a23dabe51bfbf42255e2ce912dfee2221",
+        "version_at_commit": "4.5.4"
+      },
+      "backport_release_proof": {
+        "ahead_by": 0,
+        "behind_by": 0,
+        "compare_url": "https://github.com/NaturalIntelligence/fast-xml-parser/compare/88d0936a23dabe51bfbf42255e2ce912dfee2221...v4.5.5",
+        "status": "identical",
+        "tag": "v4.5.5",
+        "tag_commit": "88d0936a23dabe51bfbf42255e2ce912dfee2221"
+      },
+      "changed_source_files": {
+        "newer": [
+          "src/xmlparser/DocTypeReader.js",
+          "src/xmlparser/OptionsBuilder.js"
+        ],
+        "older": [
+          "src/fxp.d.ts",
+          "src/util.js",
+          "src/xmlparser/DocTypeReader.js",
+          "src/xmlparser/OptionsBuilder.js",
+          "src/xmlparser/OrderedObjParser.js"
+        ]
+      },
+      "cve_id": "CVE-2026-33349",
+      "evaluation_notes": "Older backport bundles several security fixes; isolate the zero-limit regression explicitly.",
+      "existing_test_runner": "jasmine",
+      "ghsa_id": "GHSA-jp2q-39xq-3w4g",
+      "newer_fixed_version": "5.5.7",
+      "older_fixed_version": "4.5.5",
+      "package": "fast-xml-parser",
+      "patched_versions": [
+        "4.5.5",
+        "5.5.7"
+      ],
+      "published_at": "2026-03-19T19:13:13Z",
+      "references": [
+        "https://github.com/NaturalIntelligence/fast-xml-parser/security/advisories/GHSA-jp2q-39xq-3w4g",
+        "https://nvd.nist.gov/vuln/detail/CVE-2026-33349",
+        "https://github.com/NaturalIntelligence/fast-xml-parser/commit/239b64aa1fc5c5455ddebbbb54a187eb68c9fdb7",
+        "https://github.com/NaturalIntelligence/fast-xml-parser/commit/88d0936a23dabe51bfbf42255e2ce912dfee2221",
+        "https://github.com/advisories/GHSA-jp2q-39xq-3w4g"
+      ],
+      "source_base": "61cb666d13044b483aa495a6c020789f22e670b4",
+      "source_fix": {
+        "changed_files": [
+          {
+            "additions": 2,
+            "deletions": 2,
+            "path": "src/xmlparser/DocTypeReader.js",
+            "status": "modified"
+          },
+          {
+            "additions": 6,
+            "deletions": 6,
+            "path": "src/xmlparser/OptionsBuilder.js",
+            "status": "modified"
+          }
+        ],
+        "date": "2026-03-19T13:24:36Z",
+        "dependencies": {
+          "fast-xml-builder": "^1.1.4",
+          "path-expression-matcher": "^1.1.3",
+          "strnum": "^2.1.2"
+        },
+        "license": "MIT",
+        "package_name_at_commit": "fast-xml-parser",
+        "parents": [
+          "61cb666d13044b483aa495a6c020789f22e670b4"
+        ],
+        "repository": "https://github.com/NaturalIntelligence/fast-xml-parser",
+        "sha": "239b64aa1fc5c5455ddebbbb54a187eb68c9fdb7",
+        "subject": "check for min value for entity exapantion options",
+        "test_scripts": {
+          "test": "c8 --reporter=lcov --reporter=text jasmine spec/*spec.js",
+          "test-types": "tsc --noEmit spec/typings/typings-test.ts"
+        },
+        "url": "https://github.com/NaturalIntelligence/fast-xml-parser/commit/239b64aa1fc5c5455ddebbbb54a187eb68c9fdb7",
+        "version_at_commit": "5.5.6"
+      },
+      "source_release_proof": {
+        "ahead_by": 1,
+        "behind_by": 0,
+        "compare_url": "https://github.com/NaturalIntelligence/fast-xml-parser/compare/239b64aa1fc5c5455ddebbbb54a187eb68c9fdb7...v5.5.7",
+        "status": "ahead",
+        "tag": "v5.5.7",
+        "tag_commit": "a21c44123cdf0f8fb5b56d33386ed3be4e180953"
+      },
+      "suitability": "moderate",
+      "summary": "Entity Expansion Limits Bypassed When Set to Zero Due to JavaScript Falsy Evaluation in fast-xml-parser",
+      "target_base": "d4eb6b4713a8d11e6730943392419040898ecbc0",
+      "vendor_advisory_url": "https://api.github.com/repos/NaturalIntelligence/fast-xml-parser/security-advisories/GHSA-jp2q-39xq-3w4g"
+    },
+    {
+      "advisory_url": "https://github.com/advisories/GHSA-gfr2-rv44-r23c",
+      "backport_fix": {
+        "changed_files": [
+          {
+            "additions": 123,
+            "deletions": 99,
+            "path": "lib/rules_block/reference.mjs",
+            "status": "modified"
+          },
+          {
+            "additions": 49,
+            "deletions": 10,
+            "path": "lib/rules_inline/html_inline.mjs",
+            "status": "modified"
+          },
+          {
+            "additions": 4,
+            "deletions": 0,
+            "path": "lib/rules_inline/state_inline.mjs",
+            "status": "modified"
+          },
+          {
+            "additions": 17,
+            "deletions": 0,
+            "path": "test/markdown-it/misc.test.mjs",
+            "status": "modified"
+          },
+          {
+            "additions": 24,
+            "deletions": 3,
+            "path": "test/markdown-it/pathological.test.mjs",
+            "status": "modified"
+          }
+        ],
+        "date": "2026-10-16T01:39:31Z",
+        "dependencies": {
+          "argparse": "^2.0.1",
+          "entities": "^4.5.0",
+          "linkify-it": "^5.0.2",
+          "mdurl": "^2.0.0",
+          "punycode.js": "^2.3.1",
+          "uc.micro": "^2.1.0"
+        },
+        "license": "MIT",
+        "package_name_at_commit": "markdown-it",
+        "parents": [
+          "efb9993124c3eb229eea24dd659c91dcee7f6d60"
+        ],
+        "repository": "https://github.com/markdown-it/markdown-it",
+        "sha": "d99f48839d37af6fd8a2617516c43dab90755503",
+        "subject": "Backported 15.0.3 fixes",
+        "test_scripts": {
+          "test": "npm run lint && npm run test:cmspec && npm run test:markdown-it && npm run test:build",
+          "test:build": "npm run build && node --test test/build/**/*.test.mjs",
+          "test:cmspec": "node --test --test-reporter=dot test/cmspec/**/*.test.mjs",
+          "test:markdown-it": "node --test test/markdown-it/**/*.test.mjs"
+        },
+        "url": "https://github.com/markdown-it/markdown-it/commit/d99f48839d37af6fd8a2617516c43dab90755503",
+        "version_at_commit": "14.3.2"
+      },
+      "backport_release_proof": {
+        "ahead_by": 1,
+        "behind_by": 0,
+        "compare_url": "https://github.com/markdown-it/markdown-it/compare/d99f48839d37af6fd8a2617516c43dab90755503...14.3.3",
+        "status": "ahead",
+        "tag": "14.3.3",
+        "tag_commit": "d372f0d8a68bef0b0acaa68868ce8ae8ba85b384"
+      },
+      "changed_source_files": {
+        "newer": [
+          "src/rules_block/reference.ts"
+        ],
+        "older": [
+          "lib/rules_block/reference.mjs",
+          "lib/rules_inline/html_inline.mjs",
+          "lib/rules_inline/state_inline.mjs"
+        ]
+      },
+      "cve_id": "CVE-2026-111758",
+      "evaluation_notes": "Newer line uses TypeScript source and a build; older line is direct ESM JavaScript. Older commit bundles multiple fixes.",
+      "existing_test_runner": "node:test",
+      "ghsa_id": "GHSA-gfr2-rv44-r23c",
+      "newer_fixed_version": "15.0.3",
+      "older_fixed_version": "14.3.3",
+      "package": "markdown-it",
+      "patched_versions": [
+        "14.3.3",
+        "15.0.3"
+      ],
+      "published_at": "2026-10-20T20:28:44Z",
+      "references": [
+        "https://github.com/markdown-it/markdown-it/security/advisories/GHSA-gfr2-rv44-r23c",
+        "https://github.com/markdown-it/markdown-it/commit/48fbc465812c440020c663f040ab22deaf8f1eca",
+        "https://github.com/markdown-it/markdown-it/commit/d99f48839d37af6fd8a2617516c43dab90755503",
+        "https://github.com/markdown-it/markdown-it/releases/tag/14.3.3",
+        "https://github.com/markdown-it/markdown-it/releases/tag/15.0.3",
+        "https://github.com/advisories/GHSA-gfr2-rv44-r23c"
+      ],
+      "source_base": "3c51991c32aaa2b002a52c009334ebe5752c84b3",
+      "source_fix": {
+        "changed_files": [
+          {
+            "additions": 123,
+            "deletions": 99,
+            "path": "src/rules_block/reference.ts",
+            "status": "modified"
+          },
+          {
+            "additions": 17,
+            "deletions": 0,
+            "path": "test/markdown-it/misc.test.mjs",
+            "status": "modified"
+          },
+          {
+            "additions": 9,
+            "deletions": 0,
+            "path": "test/markdown-it/pathological.test.mjs",
+            "status": "modified"
+          }
+        ],
+        "date": "2026-10-14T11:59:20Z",
+        "dependencies": {
+          "argparse": "^3.0.0",
+          "entities": "^8.0.0",
+          "linkify-it": "^6.0.0",
+          "mdurl": "^2.1.0",
+          "punycode.js": "^2.3.1",
+          "uc.micro": "^3.0.0"
+        },
+        "license": "MIT",
+        "package_name_at_commit": "markdown-it",
+        "parents": [
+          "3c51991c32aaa2b002a52c009334ebe5752c84b3"
+        ],
+        "repository": "https://github.com/markdown-it/markdown-it",
+        "sha": "48fbc465812c440020c663f040ab22deaf8f1eca",
+        "subject": "Fix quadratic reference parsing and partially address #1213",
+        "test_scripts": {
+          "test": "npm run lint && npm run build && npm run type-check && npm run test:cmspec && npm run test:markdown-it && npm run test:build",
+          "test:build": "node --test test/build/**/*.test.mjs",
+          "test:cmspec": "node --test --test-reporter=dot test/cmspec/**/*.test.mjs",
+          "test:markdown-it": "node --test test/markdown-it/**/*.test.mjs"
+        },
+        "url": "https://github.com/markdown-it/markdown-it/commit/48fbc465812c440020c663f040ab22deaf8f1eca",
+        "version_at_commit": "15.0.2"
+      },
+      "source_release_proof": {
+        "ahead_by": 4,
+        "behind_by": 0,
+        "compare_url": "https://github.com/markdown-it/markdown-it/compare/48fbc465812c440020c663f040ab22deaf8f1eca...15.0.3",
+        "status": "ahead",
+        "tag": "15.0.3",
+        "tag_commit": "a8c00d474ec9b304fad9b71c16d6fa8b4909279e"
+      },
+      "suitability": "complex",
+      "summary": "markdown-it: Quadratic-time rendering of a single multi-line link reference definition with default options (regression since 14.0)",
+      "target_base": "efb9993124c3eb229eea24dd659c91dcee7f6d60",
+      "vendor_advisory_url": "https://api.github.com/repos/markdown-it/markdown-it/security-advisories/GHSA-gfr2-rv44-r23c"
+    },
+    {
+      "advisory_url": "https://github.com/advisories/GHSA-r683-j2x4-v87g",
+      "backport_fix": {
+        "changed_files": [
+          {
+            "additions": 1,
+            "deletions": 1,
+            "path": "package.json",
+            "status": "modified"
+          },
+          {
+            "additions": 40,
+            "deletions": 9,
+            "path": "src/index.js",
+            "status": "modified"
+          },
+          {
+            "additions": 6,
+            "deletions": 1,
+            "path": "test/server.js",
+            "status": "modified"
+          },
+          {
+            "additions": 47,
+            "deletions": 0,
+            "path": "test/test.js",
+            "status": "modified"
+          }
+        ],
+        "date": "2022-01-16T11:45:33Z",
+        "dependencies": {
+          "whatwg-url": "^5.0.0"
+        },
+        "license": "MIT",
+        "package_name_at_commit": "node-fetch",
+        "parents": [
+          "8fe5c4ea66b9b8187600e6d5ec9b1b6781f44009"
+        ],
+        "repository": "https://github.com/node-fetch/node-fetch",
+        "sha": "1ef4b560a17e644a02a3bfdea7631ffeee578b35",
+        "subject": "backport of #1449 (#1453)",
+        "test_scripts": {
+          "test": "cross-env BABEL_ENV=test mocha --require babel-register --throw-deprecation test/test.js"
+        },
+        "url": "https://github.com/node-fetch/node-fetch/commit/1ef4b560a17e644a02a3bfdea7631ffeee578b35",
+        "version_at_commit": "2.6.7"
+      },
+      "backport_release_proof": {
+        "ahead_by": 0,
+        "behind_by": 0,
+        "compare_url": "https://github.com/node-fetch/node-fetch/compare/1ef4b560a17e644a02a3bfdea7631ffeee578b35...v2.6.7",
+        "status": "identical",
+        "tag": "v2.6.7",
+        "tag_commit": "1ef4b560a17e644a02a3bfdea7631ffeee578b35"
+      },
+      "changed_source_files": {
+        "newer": [
+          "src/index.js",
+          "src/utils/is.js"
+        ],
+        "older": [
+          "src/index.js"
+        ]
+      },
+      "cve_id": "CVE-2022-0235",
+      "evaluation_notes": "ESM modern line versus CommonJS older line; cross-origin redirect test on loopback.",
+      "existing_test_runner": "mocha",
+      "ghsa_id": "GHSA-r683-j2x4-v87g",
+      "newer_fixed_version": "3.1.1",
+      "older_fixed_version": "2.6.7",
+      "package": "node-fetch",
+      "patched_versions": [
+        "2.6.7",
+        "3.1.1"
+      ],
+      "published_at": "2022-01-21T23:55:52Z",
+      "references": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2022-0235",
+        "https://github.com/node-fetch/node-fetch/commit/36e47e8a6406185921e4985dcbeff140d73eaa10",
+        "https://huntr.dev/bounties/d26ab655-38d6-48b3-be15-f9ad6b6ae6f7",
+        "https://github.com/node-fetch/node-fetch/pull/1453",
+        "https://github.com/node-fetch/node-fetch/commit/5c32f002fdd65b1c6a8f1e3620210813d45c7e60",
+        "https://cert-portal.siemens.com/productcert/pdf/ssa-637483.pdf",
+        "https://lists.debian.org/debian-lts-announce/2022/12/msg00007.html",
+        "https://github.com/node-fetch/node-fetch/pull/1449/commits/5c32f002fdd65b1c6a8f1e3620210813d45c7e60",
+        "https://github.com/node-fetch/node-fetch/commit/1ef4b560a17e644a02a3bfdea7631ffeee578b35",
+        "https://github.com/advisories/GHSA-r683-j2x4-v87g",
+        "https://github.com/node-fetch/node-fetch/commit/f5d3cf5e2579cb8f4c76c291871e69696aef8f80"
+      ],
+      "source_base": "f2c3d563755d4d357df987fe871607e296463cef",
+      "source_fix": {
+        "changed_files": [
+          {
+            "additions": 13,
+            "deletions": 0,
+            "path": "src/index.js",
+            "status": "modified"
+          },
+          {
+            "additions": 17,
+            "deletions": 0,
+            "path": "src/utils/is.js",
+            "status": "modified"
+          },
+          {
+            "additions": 61,
+            "deletions": 0,
+            "path": "test/main.js",
+            "status": "modified"
+          },
+          {
+            "additions": 6,
+            "deletions": 0,
+            "path": "test/utils/server.js",
+            "status": "modified"
+          }
+        ],
+        "date": "2022-01-14T14:55:41Z",
+        "dependencies": {
+          "data-uri-to-buffer": "^4.0.0",
+          "fetch-blob": "^3.1.3",
+          "formdata-polyfill": "^4.0.10"
+        },
+        "license": "MIT",
+        "package_name_at_commit": "node-fetch",
+        "parents": [
+          "f2c3d563755d4d357df987fe871607e296463cef"
+        ],
+        "repository": "https://github.com/node-fetch/node-fetch",
+        "sha": "f5d3cf5e2579cb8f4c76c291871e69696aef8f80",
+        "subject": "fix(Headers): don't forward secure headers to 3th party (#1449)",
+        "test_scripts": {
+          "test": "mocha",
+          "test-types": "tsd"
+        },
+        "url": "https://github.com/node-fetch/node-fetch/commit/f5d3cf5e2579cb8f4c76c291871e69696aef8f80",
+        "version_at_commit": "3.1.0"
+      },
+      "source_release_proof": {
+        "ahead_by": 2,
+        "behind_by": 0,
+        "compare_url": "https://github.com/node-fetch/node-fetch/compare/f5d3cf5e2579cb8f4c76c291871e69696aef8f80...v3.1.1",
+        "status": "ahead",
+        "tag": "v3.1.1",
+        "tag_commit": "36e47e8a6406185921e4985dcbeff140d73eaa10"
+      },
+      "suitability": "moderate",
+      "summary": "node-fetch forwards secure headers to untrusted sites",
+      "target_base": "8fe5c4ea66b9b8187600e6d5ec9b1b6781f44009",
+      "vendor_advisory_url": null
+    },
+    {
+      "advisory_url": "https://github.com/advisories/GHSA-3h5v-q93c-6h6q",
+      "backport_fix": {
+        "changed_files": [
+          {
+            "additions": 3,
+            "deletions": 1,
+            "path": "lib/websocket-server.js",
+            "status": "modified"
+          },
+          {
+            "additions": 3,
+            "deletions": 1,
+            "path": "lib/websocket.js",
+            "status": "modified"
+          },
+          {
+            "additions": 41,
+            "deletions": 0,
+            "path": "test/websocket-server.test.js",
+            "status": "modified"
+          },
+          {
+            "additions": 26,
+            "deletions": 0,
+            "path": "test/websocket.test.js",
+            "status": "modified"
+          }
+        ],
+        "date": "2024-06-16T11:00:51Z",
+        "dependencies": {},
+        "license": "MIT",
+        "package_name_at_commit": "ws",
+        "parents": [
+          "8a78f8770618cc5a1ade485a7445cb6d6f46e2f2"
+        ],
+        "repository": "https://github.com/websockets/ws",
+        "sha": "22c28763234aa75a7e1b76f5c01c181260d7917f",
+        "subject": "[security] Fix crash when the Upgrade header cannot be read (#2231)",
+        "test_scripts": {
+          "test": "nyc --reporter=lcov --reporter=text mocha --throw-deprecation test/*.test.js"
+        },
+        "url": "https://github.com/websockets/ws/commit/22c28763234aa75a7e1b76f5c01c181260d7917f",
+        "version_at_commit": "7.5.9"
+      },
+      "backport_release_proof": {
+        "ahead_by": 1,
+        "behind_by": 0,
+        "compare_url": "https://github.com/websockets/ws/compare/22c28763234aa75a7e1b76f5c01c181260d7917f...7.5.10",
+        "status": "ahead",
+        "tag": "7.5.10",
+        "tag_commit": "d962d70649e393841ee1ed726a8f7ffbe90d0c06"
+      },
+      "changed_source_files": {
+        "newer": [
+          "lib/websocket-server.js",
+          "lib/websocket.js"
+        ],
+        "older": [
+          "lib/websocket-server.js",
+          "lib/websocket.js"
+        ]
+      },
+      "cve_id": "CVE-2024-37890",
+      "evaluation_notes": "JavaScript on both lines; malformed HTTP Upgrade handling has deterministic error assertions.",
+      "existing_test_runner": "mocha",
+      "ghsa_id": "GHSA-3h5v-q93c-6h6q",
+      "newer_fixed_version": "8.17.1",
+      "older_fixed_version": "7.5.10",
+      "package": "ws",
+      "patched_versions": [
+        "5.2.4",
+        "6.2.3",
+        "7.5.10",
+        "8.17.1"
+      ],
+      "published_at": "2024-06-17T19:09:10Z",
+      "references": [
+        "https://github.com/websockets/ws/security/advisories/GHSA-3h5v-q93c-6h6q",
+        "https://github.com/websockets/ws/issues/2230",
+        "https://github.com/websockets/ws/pull/2231",
+        "https://github.com/websockets/ws/commit/22c28763234aa75a7e1b76f5c01c181260d7917f",
+        "https://github.com/websockets/ws/commit/4abd8f6de4b0b65ef80b3ff081989479ed93377e",
+        "https://github.com/websockets/ws/commit/e55e5106f10fcbaac37cfa89759e4cc0d073a52c",
+        "https://github.com/websockets/ws/commit/eeb76d313e2a00dd5247ca3597bba7877d064a63",
+        "https://github.com/advisories/GHSA-3h5v-q93c-6h6q"
+      ],
+      "source_base": "6a00029edd924499f892aed8003cef1fa724cfe5",
+      "source_fix": {
+        "changed_files": [
+          {
+            "additions": 3,
+            "deletions": 2,
+            "path": "lib/websocket-server.js",
+            "status": "modified"
+          },
+          {
+            "additions": 3,
+            "deletions": 1,
+            "path": "lib/websocket.js",
+            "status": "modified"
+          },
+          {
+            "additions": 44,
+            "deletions": 0,
+            "path": "test/websocket-server.test.js",
+            "status": "modified"
+          },
+          {
+            "additions": 26,
+            "deletions": 0,
+            "path": "test/websocket.test.js",
+            "status": "modified"
+          }
+        ],
+        "date": "2024-06-16T09:42:59Z",
+        "dependencies": {},
+        "license": "MIT",
+        "package_name_at_commit": "ws",
+        "parents": [
+          "6a00029edd924499f892aed8003cef1fa724cfe5"
+        ],
+        "repository": "https://github.com/websockets/ws",
+        "sha": "e55e5106f10fcbaac37cfa89759e4cc0d073a52c",
+        "subject": "[security] Fix crash when the Upgrade header cannot be read (#2231)",
+        "test_scripts": {
+          "test": "nyc --reporter=lcov --reporter=text mocha --throw-deprecation test/*.test.js"
+        },
+        "url": "https://github.com/websockets/ws/commit/e55e5106f10fcbaac37cfa89759e4cc0d073a52c",
+        "version_at_commit": "8.17.0"
+      },
+      "source_release_proof": {
+        "ahead_by": 1,
+        "behind_by": 0,
+        "compare_url": "https://github.com/websockets/ws/compare/e55e5106f10fcbaac37cfa89759e4cc0d073a52c...8.17.1",
+        "status": "ahead",
+        "tag": "8.17.1",
+        "tag_commit": "3c56601092872f7d7566989f0e379271afd0e4a1"
+      },
+      "suitability": "simple",
+      "summary": "ws affected by a DoS when handling a request with many HTTP headers",
+      "target_base": "8a78f8770618cc5a1ade485a7445cb6d6f46e2f2",
+      "vendor_advisory_url": "https://api.github.com/repos/websockets/ws/security-advisories/GHSA-3h5v-q93c-6h6q"
+    },
+    {
+      "advisory_url": "https://github.com/advisories/GHSA-r7qp-cfhv-p84w",
+      "backport_fix": {
+        "changed_files": [
+          {
+            "additions": 3,
+            "deletions": 0,
+            "path": "lib/server.js",
+            "status": "modified"
+          }
+        ],
+        "date": "2022-11-20T01:23:53Z",
+        "dependencies": {
+          "accepts": "~1.3.4",
+          "base64id": "2.0.0",
+          "cookie": "~0.4.1",
+          "debug": "~4.1.0",
+          "engine.io-parser": "~2.2.0",
+          "ws": "~7.4.2"
+        },
+        "license": "MIT",
+        "package_name_at_commit": "engine.io",
+        "parents": [
+          "f62f26530cdb9c7bbfd295f3110cc2d911561fda"
+        ],
+        "repository": "https://github.com/socketio/engine.io",
+        "sha": "83c4071af871fc188298d7d591e95670bf9f9085",
+        "subject": "fix: catch errors when destroying invalid upgrades",
+        "test_scripts": {
+          "test": "npm run lint && mocha && EIO_WS_ENGINE=uws mocha"
+        },
+        "url": "https://github.com/socketio/engine.io/commit/83c4071af871fc188298d7d591e95670bf9f9085",
+        "version_at_commit": "3.6.0"
+      },
+      "backport_release_proof": {
+        "ahead_by": 1,
+        "behind_by": 0,
+        "compare_url": "https://github.com/socketio/engine.io/compare/83c4071af871fc188298d7d591e95670bf9f9085...3.6.1",
+        "status": "ahead",
+        "tag": "3.6.1",
+        "tag_commit": "67a3a8785900f77d8ad40c3c1eea8ee188c42d95"
+      },
+      "changed_source_files": {
+        "newer": [
+          "lib/server.ts"
+        ],
+        "older": [
+          "lib/server.js"
+        ]
+      },
+      "cve_id": "CVE-2022-41940",
+      "evaluation_notes": "Modern TypeScript server versus JavaScript older line; native WebSocket extras can be omitted only with explicit scope.",
+      "existing_test_runner": "mocha",
+      "ghsa_id": "GHSA-r7qp-cfhv-p84w",
+      "newer_fixed_version": "6.2.1",
+      "older_fixed_version": "3.6.1",
+      "package": "engine.io",
+      "patched_versions": [
+        "3.6.1",
+        "6.2.1"
+      ],
+      "published_at": "2022-11-21T23:55:41Z",
+      "references": [
+        "https://github.com/socketio/engine.io/security/advisories/GHSA-r7qp-cfhv-p84w",
+        "https://nvd.nist.gov/vuln/detail/CVE-2022-41940",
+        "https://github.com/socketio/engine.io/commit/425e833ab13373edf1dd5a0706f07100db14e3c6",
+        "https://github.com/socketio/engine.io/commit/83c4071af871fc188298d7d591e95670bf9f9085",
+        "https://github.com/advisories/GHSA-r7qp-cfhv-p84w"
+      ],
+      "source_base": "99adb00ba11d80ab27a4a2f4afd0eebd8aa406c5",
+      "source_fix": {
+        "changed_files": [
+          {
+            "additions": 3,
+            "deletions": 0,
+            "path": "lib/server.ts",
+            "status": "modified"
+          }
+        ],
+        "date": "2022-11-20T00:55:11Z",
+        "dependencies": {
+          "@types/cookie": "^0.4.1",
+          "@types/cors": "^2.8.12",
+          "@types/node": ">=10.0.0",
+          "accepts": "~1.3.4",
+          "base64id": "2.0.0",
+          "cookie": "~0.4.1",
+          "cors": "~2.8.5",
+          "debug": "~4.3.1",
+          "engine.io-parser": "~5.0.3",
+          "ws": "~8.2.3"
+        },
+        "license": "MIT",
+        "package_name_at_commit": "engine.io",
+        "parents": [
+          "99adb00ba11d80ab27a4a2f4afd0eebd8aa406c5"
+        ],
+        "repository": "https://github.com/socketio/engine.io",
+        "sha": "425e833ab13373edf1dd5a0706f07100db14e3c6",
+        "subject": "fix: catch errors when destroying invalid upgrades (#658)",
+        "test_scripts": {
+          "test": "npm run compile && npm run format:check && npm run test:default && npm run test:compat-v3",
+          "test:compat-v3": "EIO_CLIENT=3 mocha --exit",
+          "test:default": "mocha --bail --exit",
+          "test:eiows": "EIO_WS_ENGINE=eiows mocha --exit",
+          "test:uws": "EIO_WS_ENGINE=uws mocha --exit"
+        },
+        "url": "https://github.com/socketio/engine.io/commit/425e833ab13373edf1dd5a0706f07100db14e3c6",
+        "version_at_commit": "6.2.0"
+      },
+      "source_release_proof": {
+        "ahead_by": 1,
+        "behind_by": 0,
+        "compare_url": "https://github.com/socketio/engine.io/compare/425e833ab13373edf1dd5a0706f07100db14e3c6...6.2.1",
+        "status": "ahead",
+        "tag": "6.2.1",
+        "tag_commit": "24b847be6a61b64efc8c8c4d058a69259ad67693"
+      },
+      "suitability": "moderate",
+      "summary": "Uncaught exception in engine.io",
+      "target_base": "f62f26530cdb9c7bbfd295f3110cc2d911561fda",
+      "vendor_advisory_url": "https://api.github.com/repos/socketio/engine.io/security-advisories/GHSA-r7qp-cfhv-p84w"
+    },
+    {
+      "advisory_url": "https://github.com/advisories/GHSA-3cqr-58rm-57f8",
+      "backport_fix": {
+        "changed_files": [
+          {
+            "additions": 1,
+            "deletions": 1,
+            "path": "lib/handlebars/base.js",
+            "status": "modified"
+          },
+          {
+            "additions": 12,
+            "deletions": 7,
+            "path": "lib/handlebars/compiler/javascript-compiler.js",
+            "status": "modified"
+          },
+          {
+            "additions": 2,
+            "deletions": 0,
+            "path": "lib/handlebars/utils.js",
+            "status": "modified"
+          },
+          {
+            "additions": 16,
+            "deletions": 0,
+            "path": "spec/security.js",
+            "status": "modified"
+          }
+        ],
+        "date": "2020-02-23T09:31:25Z",
+        "dependencies": {
+          "optimist": "^0.6.1",
+          "source-map": "^0.1.40"
+        },
+        "license": "MIT",
+        "package_name_at_commit": "handlebars",
+        "parents": [
+          "8ba91592aa28e1360c4d5099c46521c50d237ac1"
+        ],
+        "repository": "https://github.com/handlebars-lang/handlebars.js",
+        "sha": "156061eb7707575293613d7fdf90e2bdaac029ee",
+        "subject": "backport fixes from 4.x",
+        "test_scripts": {
+          "test": "grunt"
+        },
+        "url": "https://github.com/handlebars-lang/handlebars.js/commit/156061eb7707575293613d7fdf90e2bdaac029ee",
+        "version_at_commit": "3.0.7"
+      },
+      "backport_release_proof": {
+        "ahead_by": 2,
+        "behind_by": 0,
+        "compare_url": "https://github.com/handlebars-lang/handlebars.js/compare/156061eb7707575293613d7fdf90e2bdaac029ee...v3.0.8",
+        "status": "ahead",
+        "tag": "v3.0.8",
+        "tag_commit": "16bd606fec0ada4c811eb7afe6bfd619d88f3d37"
+      },
+      "changed_source_files": {
+        "newer": [
+          "lib/handlebars/helpers/lookup.js"
+        ],
+        "older": [
+          "lib/handlebars/base.js",
+          "lib/handlebars/compiler/javascript-compiler.js",
+          "lib/handlebars/utils.js"
+        ]
+      },
+      "cve_id": "CVE-2019-20920",
+      "evaluation_notes": "Older backport bundles fixes; generated parser/build artifacts and helper API difference need careful isolation.",
+      "existing_test_runner": "Grunt",
+      "ghsa_id": "GHSA-3cqr-58rm-57f8",
+      "newer_fixed_version": "4.5.3",
+      "older_fixed_version": "3.0.8",
+      "package": "handlebars",
+      "patched_versions": [
+        "3.0.8",
+        "4.5.3"
+      ],
+      "published_at": "2022-02-10T20:38:19Z",
+      "references": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2019-20920",
+        "https://github.com/handlebars-lang/handlebars.js/commit/d54137810a49939fd2ad01a91a34e182ece4528e",
+        "https://snyk.io/vuln/SNYK-JS-HANDLEBARS-534478",
+        "https://www.npmjs.com/advisories/1316",
+        "https://www.npmjs.com/advisories/1324",
+        "https://www.npmjs.com/package/handlebars",
+        "https://github.com/handlebars-lang/handlebars.js/commit/156061eb7707575293613d7fdf90e2bdaac029ee",
+        "https://github.com/advisories/GHSA-3cqr-58rm-57f8"
+      ],
+      "source_base": "c2ac79c9705443d5fcabf87cda14392058b9ac56",
+      "source_fix": {
+        "changed_files": [
+          {
+            "additions": 1,
+            "deletions": 1,
+            "path": "lib/handlebars/helpers/lookup.js",
+            "status": "modified"
+          },
+          {
+            "additions": 25,
+            "deletions": 3,
+            "path": "spec/security.js",
+            "status": "modified"
+          }
+        ],
+        "date": "2019-11-13T21:02:05Z",
+        "dependencies": {
+          "neo-async": "^2.6.0",
+          "optimist": "^0.6.1",
+          "source-map": "^0.6.1"
+        },
+        "license": "MIT",
+        "package_name_at_commit": "handlebars",
+        "parents": [
+          "c2ac79c9705443d5fcabf87cda14392058b9ac56"
+        ],
+        "repository": "https://github.com/handlebars-lang/handlebars.js",
+        "sha": "d54137810a49939fd2ad01a91a34e182ece4528e",
+        "subject": "fix: use String(field) in lookup when checking for \"constructor\"",
+        "test_scripts": {
+          "test": "grunt"
+        },
+        "url": "https://github.com/handlebars-lang/handlebars.js/commit/d54137810a49939fd2ad01a91a34e182ece4528e",
+        "version_at_commit": "4.5.1"
+      },
+      "source_release_proof": {
+        "ahead_by": 11,
+        "behind_by": 0,
+        "compare_url": "https://github.com/handlebars-lang/handlebars.js/compare/d54137810a49939fd2ad01a91a34e182ece4528e...v4.5.3",
+        "status": "ahead",
+        "tag": "v4.5.3",
+        "tag_commit": "c819c8b533934d2ac18001d7eb27a3205b00c2f3"
+      },
+      "suitability": "complex",
+      "summary": "Arbitrary Code Execution in Handlebars",
+      "target_base": "8ba91592aa28e1360c4d5099c46521c50d237ac1",
+      "vendor_advisory_url": null
+    },
+    {
+      "advisory_url": "https://github.com/advisories/GHSA-xjj6-f33q-929c",
+      "backport_fix": {
+        "changed_files": [
+          {
+            "additions": 3,
+            "deletions": 3,
+            "path": "lib/web/fetch/index.js",
+            "status": "modified"
+          },
+          {
+            "additions": 35,
+            "deletions": 0,
+            "path": "test/fetch/encoding.js",
+            "status": "modified"
+          }
+        ],
+        "date": "2026-10-15T07:04:45Z",
+        "dependencies": {},
+        "license": "MIT",
+        "package_name_at_commit": "undici",
+        "parents": [
+          "b20b82ad80a405a12b6ce1f341bcd418de390aa0"
+        ],
+        "repository": "https://github.com/nodejs/undici",
+        "sha": "07ded4941b1e72afec862958c3b8ddf468f3b429",
+        "subject": "fix(fetch): abort excessive content encoding responses",
+        "test_scripts": {
+          "test": "npm run test:javascript && cross-env NODE_V8_COVERAGE= npm run test:typescript",
+          "test:busboy": "borp --timeout 180000 -p \"test/busboy/*.js\"",
+          "test:cache": "borp --timeout 180000 -p \"test/cache/*.js\"",
+          "test:cache-interceptor": "borp --timeout 180000 -p \"test/cache-interceptor/*.js\"",
+          "test:cache-interceptor:sqlite": "cross-env NODE_OPTIONS=--experimental-sqlite npm run test:cache-interceptor",
+          "test:cache-tests": "node test/cache-interceptor/cache-tests.mjs --ci",
+          "test:cookies": "borp --timeout 180000 -p \"test/cookie/*.js\"",
+          "test:eventsource": "npm run build:node && borp --timeout 180000 --expose-gc -p \"test/eventsource/*.js\"",
+          "test:fetch": "npm run build:node && borp --timeout 180000 --expose-gc --concurrency 1 -p \"test/fetch/*.js\" && npm run test:webidl && npm run test:busboy",
+          "test:fuzzing": "node test/fuzzing/fuzzing.test.js",
+          "test:h2": "npm run test:h2:core && npm run test:h2:fetch",
+          "test:h2:core": "borp --timeout 180000 -p \"test/+(http2|h2)*.js\"",
+          "test:h2:fetch": "npm run build:node && borp --timeout 180000 -p \"test/fetch/http2*.js\"",
+          "test:infra": "borp --timeout 180000 -p \"test/infra/*.js\"",
+          "test:interceptors": "borp --timeout 180000 -p \"test/interceptors/*.js\"",
+          "test:javascript": "npm run test:javascript:no-jest && npm run test:jest",
+          "test:javascript:no-jest": "npm run generate-pem && npm run test:unit && npm run test:fetch && npm run test:node-fetch && npm run test:infra && npm run test:cache && npm run test:cache-interceptor && npm run test:interceptors && npm run test:cookies && npm run test:eventsource && npm run test:subresource-integrity && npm run test:wpt && npm run test:websocket && npm run test:node-test && npm run test:cache-tests",
+          "test:javascript:without-intl": "npm run test:javascript:no-jest",
+          "test:jest": "cross-env NODE_V8_COVERAGE= jest",
+          "test:node-fetch": "borp --timeout 180000 -p \"test/node-fetch/**/*.js\"",
+          "test:node-test": "borp --timeout 180000 -p \"test/node-test/**/*.js\"",
+          "test:subresource-integrity": "borp --timeout 180000 -p \"test/subresource-integrity/*.js\"",
+          "test:tdd": "borp --timeout 180000 --expose-gc -p \"test/*.js\"",
+          "test:tdd:node-test": "borp --timeout 180000 -p \"test/node-test/**/*.js\" -w",
+          "test:typescript": "tsd && tsc test/imports/undici-import.ts --typeRoots ./types --noEmit && tsc ./types/*.d.ts --noEmit --typeRoots ./types",
+          "test:unit": "borp --timeout 180000 --expose-gc -p \"test/*.js\"",
+          "test:webidl": "borp --timeout 180000 -p \"test/webidl/*.js\"",
+          "test:websocket": "borp --timeout 180000 -p \"test/websocket/**/*.js\"",
+          "test:websocket:autobahn": "node test/autobahn/client.js",
+          "test:websocket:autobahn:report": "node test/autobahn/report.js",
+          "test:wpt": "npm run test:wpt:setup && node test/web-platform-tests/wpt-runner.mjs run /fetch /mimesniff /xhr /websockets /serviceWorkers /eventsource",
+          "test:wpt:setup": "node test/web-platform-tests/wpt-runner.mjs setup"
+        },
+        "url": "https://github.com/nodejs/undici/commit/07ded4941b1e72afec862958c3b8ddf468f3b429",
+        "version_at_commit": "7.30.0"
+      },
+      "backport_release_proof": {
+        "ahead_by": 7,
+        "behind_by": 0,
+        "compare_url": "https://github.com/nodejs/undici/compare/07ded4941b1e72afec862958c3b8ddf468f3b429...v7.30.1",
+        "status": "ahead",
+        "tag": "v7.30.1",
+        "tag_commit": "7507102a675b082a71437f0a00681e537875556c"
+      },
+      "changed_source_files": {
+        "newer": [
+          "lib/web/fetch/index.js"
+        ],
+        "older": [
+          "lib/web/fetch/index.js"
+        ]
+      },
+      "cve_id": "CVE-2026-109869",
+      "evaluation_notes": "Excessive content-encoding regression; select compatible Node runtime and freeze llhttp assets.",
+      "existing_test_runner": "node:test",
+      "ghsa_id": "GHSA-xjj6-f33q-929c",
+      "newer_fixed_version": "8.12.2",
+      "older_fixed_version": "7.30.1",
+      "package": "undici",
+      "patched_versions": [
+        "6.29.1",
+        "7.30.1",
+        "8.12.2"
+      ],
+      "published_at": "2026-10-23T22:14:31Z",
+      "references": [
+        "https://github.com/nodejs/undici/security/advisories/GHSA-xjj6-f33q-929c",
+        "https://nvd.nist.gov/vuln/detail/CVE-2026-109869",
+        "https://github.com/nodejs/undici/commit/07ded4941b1e72afec862958c3b8ddf468f3b429",
+        "https://github.com/nodejs/undici/commit/1325a87dfb3492f8e87e6b0a84b3bda4e82e3436",
+        "https://github.com/nodejs/undici/commit/b5084c7dc239172d75c336b1cd51ddac023938a5",
+        "https://cna.openjsf.org/security-advisories.html",
+        "https://github.com/nodejs/undici/releases/tag/v6.29.1",
+        "https://github.com/nodejs/undici/releases/tag/v7.30.1",
+        "https://github.com/nodejs/undici/releases/tag/v8.12.2",
+        "https://github.com/advisories/GHSA-xjj6-f33q-929c"
+      ],
+      "source_base": "26c2bfb3def0b67241ce878e80657ed5d6c3efa8",
+      "source_fix": {
+        "changed_files": [
+          {
+            "additions": 3,
+            "deletions": 3,
+            "path": "lib/web/fetch/index.js",
+            "status": "modified"
+          },
+          {
+            "additions": 35,
+            "deletions": 0,
+            "path": "test/fetch/encoding.js",
+            "status": "modified"
+          }
+        ],
+        "date": "2026-10-14T16:04:24Z",
+        "dependencies": {},
+        "license": "MIT",
+        "package_name_at_commit": "undici",
+        "parents": [
+          "26c2bfb3def0b67241ce878e80657ed5d6c3efa8"
+        ],
+        "repository": "https://github.com/nodejs/undici",
+        "sha": "b5084c7dc239172d75c336b1cd51ddac023938a5",
+        "subject": "fix(fetch): abort excessive content encoding responses",
+        "test_scripts": {
+          "test": "npm run test:javascript && cross-env NODE_V8_COVERAGE= npm run test:typescript",
+          "test:busboy": "borp --timeout 180000 -p \"test/busboy/*.js\"",
+          "test:cache": "borp --timeout 180000 -p \"test/cache/*.js\"",
+          "test:cache-interceptor": "borp --timeout 180000 -p \"test/cache-interceptor/*.js\"",
+          "test:cache-interceptor:sqlite": "cross-env NODE_OPTIONS=--experimental-sqlite npm run test:cache-interceptor",
+          "test:cache-tests": "node test/cache-interceptor/cache-tests.mjs --ci",
+          "test:cookies": "borp --timeout 180000 -p \"test/cookie/*.js\"",
+          "test:eventsource": "npm run build:node && borp --timeout 180000 --expose-gc -p \"test/eventsource/*.js\"",
+          "test:fetch": "npm run build:node && borp --timeout 180000 --expose-gc --concurrency 1 -p \"test/fetch/*.js\" && npm run test:webidl && npm run test:busboy",
+          "test:fuzzing": "node test/fuzzing/fuzzing.test.js",
+          "test:h2": "npm run test:h2:core && npm run test:h2:fetch",
+          "test:h2:core": "borp --timeout 180000 -p \"test/+(http2|h2)*.js\"",
+          "test:h2:fetch": "npm run build:node && borp --timeout 180000 -p \"test/fetch/http2*.js\"",
+          "test:infra": "borp --timeout 180000 -p \"test/infra/*.js\"",
+          "test:interceptors": "borp --timeout 180000 -p \"test/interceptors/*.js\"",
+          "test:javascript": "npm run test:javascript:no-jest && npm run test:jest",
+          "test:javascript:no-jest": "npm run generate-pem && npm run test:unit && npm run test:fetch && npm run test:node-fetch && npm run test:infra && npm run test:cache && npm run test:cache-interceptor && npm run test:interceptors && npm run test:cookies && npm run test:eventsource && npm run test:subresource-integrity && npm run test:websocket && npm run test:node-test && npm run test:cache-tests",
+          "test:javascript:without-intl": "npm run test:javascript:no-jest",
+          "test:jest": "cross-env NODE_V8_COVERAGE= jest",
+          "test:node-fetch": "borp --timeout 180000 -p \"test/node-fetch/**/*.js\"",
+          "test:node-test": "borp --timeout 180000 -p \"test/node-test/**/*.js\"",
+          "test:subresource-integrity": "borp --timeout 180000 -p \"test/subresource-integrity/*.js\"",
+          "test:tdd": "borp --timeout 180000 --expose-gc -p \"test/*.js\"",
+          "test:tdd:node-test": "borp --timeout 180000 -p \"test/node-test/**/*.js\" -w",
+          "test:typescript": "tsd && tsc test/imports/undici-import.ts --typeRoots ./types --noEmit && tsc ./types/*.d.ts --noEmit --typeRoots ./types",
+          "test:unit": "borp --timeout 180000 --expose-gc -p \"test/*.js\"",
+          "test:webidl": "borp --timeout 180000 -p \"test/webidl/*.js\"",
+          "test:websocket": "borp --timeout 180000 -p \"test/websocket/**/*.js\"",
+          "test:websocket:autobahn": "node test/autobahn/client.js",
+          "test:websocket:autobahn:report": "node test/autobahn/report.js",
+          "test:wpt": "npm run test:wpt:setup && node test/web-platform-tests/wpt-runner.mjs run /fetch /mimesniff /xhr /websockets /eventsource /service-workers",
+          "test:wpt:setup": "node test/web-platform-tests/wpt-runner.mjs setup"
+        },
+        "url": "https://github.com/nodejs/undici/commit/b5084c7dc239172d75c336b1cd51ddac023938a5",
+        "version_at_commit": "8.12.1"
+      },
+      "source_release_proof": {
+        "ahead_by": 5,
+        "behind_by": 0,
+        "compare_url": "https://github.com/nodejs/undici/compare/b5084c7dc239172d75c336b1cd51ddac023938a5...v8.12.2",
+        "status": "ahead",
+        "tag": "v8.12.2",
+        "tag_commit": "bb6cc0ae9b6827ed273ed5ba344148273629638f"
+      },
+      "suitability": "moderate",
+      "summary": "undici vulnerable to Denial of Service via unhandled error on excessive content-encodings",
+      "target_base": "b20b82ad80a405a12b6ce1f341bcd418de390aa0",
+      "vendor_advisory_url": "https://api.github.com/repos/nodejs/undici/security-advisories/GHSA-xjj6-f33q-929c"
+    },
+    {
+      "advisory_url": "https://github.com/advisories/GHSA-ff7x-qrg7-qggm",
+      "backport_fix": {
+        "changed_files": [
+          {
+            "additions": 1,
+            "deletions": 1,
+            "path": "bench.js",
+            "status": "modified"
+          },
+          {
+            "additions": 18,
+            "deletions": 0,
+            "path": "index.js",
+            "status": "modified"
+          },
+          {
+            "additions": 3,
+            "deletions": 3,
+            "path": "package.json",
+            "status": "modified"
+          },
+          {
+            "additions": 2,
+            "deletions": 0,
+            "path": "readme.md",
+            "status": "modified"
+          },
+          {
+            "additions": 8,
+            "deletions": 1,
+            "path": "test.js",
+            "status": "modified"
+          }
+        ],
+        "date": "2020-08-03T22:16:07Z",
+        "dependencies": {
+          "is-obj": "^1.0.0"
+        },
+        "license": "MIT",
+        "package_name_at_commit": "dot-prop",
+        "parents": [
+          "70f7ed8e5dfe72c726bebe9cef5c85c1fb3cd767"
+        ],
+        "repository": "https://github.com/sindresorhus/dot-prop",
+        "sha": "c914124f418f55edea27928e89c94d931babe587",
+        "subject": "feat: patch 4.2.0 with fixes for CVE-2020-8116",
+        "test_scripts": {
+          "test": "xo && ava"
+        },
+        "url": "https://github.com/sindresorhus/dot-prop/commit/c914124f418f55edea27928e89c94d931babe587",
+        "version_at_commit": "4.2.1"
+      },
+      "backport_release_proof": {
+        "ahead_by": 0,
+        "behind_by": 0,
+        "compare_url": "https://github.com/sindresorhus/dot-prop/compare/c914124f418f55edea27928e89c94d931babe587...v4.2.1",
+        "status": "identical",
+        "tag": "v4.2.1",
+        "tag_commit": "c914124f418f55edea27928e89c94d931babe587"
+      },
+      "changed_source_files": {
+        "newer": [
+          "index.js",
+          "test.js"
+        ],
+        "older": [
+          "bench.js",
+          "index.js",
+          "test.js"
+        ]
+      },
+      "cve_id": "CVE-2020-8116",
+      "evaluation_notes": "Pure CommonJS object-path access; deterministic prototype access rejection.",
+      "existing_test_runner": "ava",
+      "ghsa_id": "GHSA-ff7x-qrg7-qggm",
+      "newer_fixed_version": "5.1.1",
+      "older_fixed_version": "4.2.1",
+      "package": "dot-prop",
+      "patched_versions": [
+        "4.2.1",
+        "5.1.1"
+      ],
+      "published_at": "2020-07-29T20:56:59Z",
+      "references": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2020-8116",
+        "https://hackerone.com/reports/719856",
+        "https://github.com/sindresorhus/dot-prop/issues/63",
+        "https://github.com/advisories/GHSA-ff7x-qrg7-qggm",
+        "https://github.com/sindresorhus/dot-prop/tree/v4",
+        "https://github.com/sindresorhus/dot-prop/commit/3039c8c07f6fdaa8b595ec869ae0895686a7a0f2",
+        "https://github.com/sindresorhus/dot-prop/commit/c914124f418f55edea27928e89c94d931babe587"
+      ],
+      "source_base": "e0f8abf71164321caf1b20109000b08be506f227",
+      "source_fix": {
+        "changed_files": [
+          {
+            "additions": 18,
+            "deletions": 0,
+            "path": "index.js",
+            "status": "modified"
+          },
+          {
+            "additions": 2,
+            "deletions": 0,
+            "path": "readme.md",
+            "status": "modified"
+          },
+          {
+            "additions": 7,
+            "deletions": 0,
+            "path": "test.js",
+            "status": "modified"
+          }
+        ],
+        "date": "2019-10-23T09:02:01Z",
+        "dependencies": {
+          "is-obj": "^2.0.0"
+        },
+        "license": "MIT",
+        "package_name_at_commit": "dot-prop",
+        "parents": [
+          "e0f8abf71164321caf1b20109000b08be506f227"
+        ],
+        "repository": "https://github.com/sindresorhus/dot-prop",
+        "sha": "3039c8c07f6fdaa8b595ec869ae0895686a7a0f2",
+        "subject": "Prevent setting/getting some problematic path components",
+        "test_scripts": {
+          "test": "xo && ava && tsd"
+        },
+        "url": "https://github.com/sindresorhus/dot-prop/commit/3039c8c07f6fdaa8b595ec869ae0895686a7a0f2",
+        "version_at_commit": "5.1.0"
+      },
+      "source_release_proof": {
+        "ahead_by": 1,
+        "behind_by": 0,
+        "compare_url": "https://github.com/sindresorhus/dot-prop/compare/3039c8c07f6fdaa8b595ec869ae0895686a7a0f2...v5.1.1",
+        "status": "ahead",
+        "tag": "v5.1.1",
+        "tag_commit": "0efd03e2bffa6da4ebd69a3e5d43d6656b9b518e"
+      },
+      "suitability": "simple",
+      "summary": "dot-prop Prototype Pollution vulnerability",
+      "target_base": "70f7ed8e5dfe72c726bebe9cef5c85c1fb3cd767",
+      "vendor_advisory_url": null
+    },
+    {
+      "advisory_url": "https://github.com/advisories/GHSA-93q8-gq69-wqmw",
+      "backport_fix": {
+        "changed_files": [
+          {
+            "additions": 1,
+            "deletions": 1,
+            "path": "index.js",
+            "status": "modified"
+          }
+        ],
+        "date": "2021-09-14T15:50:44Z",
+        "dependencies": {},
+        "license": "MIT",
+        "package_name_at_commit": "ansi-regex",
+        "parents": [
+          "178363b3a297b712a0054e702d8ddde3879913e5"
+        ],
+        "repository": "https://github.com/chalk/ansi-regex",
+        "sha": "c3c0b3f2736b9c01feec0fef33980c43720dcde8",
+        "subject": "Fix potential ReDoS (#37)",
+        "test_scripts": {
+          "test": "xo && ava && tsd"
+        },
+        "url": "https://github.com/chalk/ansi-regex/commit/c3c0b3f2736b9c01feec0fef33980c43720dcde8",
+        "version_at_commit": "5.0.0"
+      },
+      "backport_release_proof": {
+        "ahead_by": 2,
+        "behind_by": 0,
+        "compare_url": "https://github.com/chalk/ansi-regex/compare/c3c0b3f2736b9c01feec0fef33980c43720dcde8...v5.0.1",
+        "status": "ahead",
+        "tag": "v5.0.1",
+        "tag_commit": "a9babce885cf19c363cf1d1c645f834592c3f7a4"
+      },
+      "changed_source_files": {
+        "newer": [
+          "index.js"
+        ],
+        "older": [
+          "index.js"
+        ]
+      },
+      "cve_id": "CVE-2021-3807",
+      "evaluation_notes": "Two-line regex change; modern ESM versus older CommonJS, require robust bounded ReDoS oracle.",
+      "existing_test_runner": "ava",
+      "ghsa_id": "GHSA-93q8-gq69-wqmw",
+      "newer_fixed_version": "6.0.1",
+      "older_fixed_version": "5.0.1",
+      "package": "ansi-regex",
+      "patched_versions": [
+        "3.0.1",
+        "4.1.1",
+        "5.0.1",
+        "6.0.1"
+      ],
+      "published_at": "2021-09-20T20:20:09Z",
+      "references": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2021-3807",
+        "https://github.com/chalk/ansi-regex/commit/8d1d7cdb586269882c4bdc1b7325d0c58c8f76f9",
+        "https://huntr.dev/bounties/5b3cf33b-ede0-4398-9974-800876dfd994",
+        "https://github.com/chalk/ansi-regex/issues/38#issuecomment-924086311",
+        "https://app.snyk.io/vuln/SNYK-JS-ANSIREGEX-1583908",
+        "https://github.com/chalk/ansi-regex/issues/38#issuecomment-925924774",
+        "https://github.com/chalk/ansi-regex/releases/tag/v6.0.1",
+        "https://www.oracle.com/security-alerts/cpuapr2022.html",
+        "https://security.netapp.com/advisory/ntap-20221014-0002/",
+        "https://github.com/chalk/ansi-regex/commit/419250fa510bf31b4cc672e76537a64f9332e1f1",
+        "https://github.com/chalk/ansi-regex/commit/75a657da7af875b2e2724fd6331bf0a4b23d3c9a",
+        "https://github.com/chalk/ansi-regex/commit/c3c0b3f2736b9c01feec0fef33980c43720dcde8",
+        "https://github.com/advisories/GHSA-93q8-gq69-wqmw"
+      ],
+      "source_base": "c1b5e45f7c65a332ffb03ac8e5804ad37c579cdc",
+      "source_fix": {
+        "changed_files": [
+          {
+            "additions": 1,
+            "deletions": 1,
+            "path": "index.js",
+            "status": "modified"
+          }
+        ],
+        "date": "2021-09-10T20:23:24Z",
+        "dependencies": {},
+        "license": "MIT",
+        "package_name_at_commit": "ansi-regex",
+        "parents": [
+          "c1b5e45f7c65a332ffb03ac8e5804ad37c579cdc"
+        ],
+        "repository": "https://github.com/chalk/ansi-regex",
+        "sha": "8d1d7cdb586269882c4bdc1b7325d0c58c8f76f9",
+        "subject": "Fix potential ReDoS (#37)",
+        "test_scripts": {
+          "test": "xo && ava && tsd"
+        },
+        "url": "https://github.com/chalk/ansi-regex/commit/8d1d7cdb586269882c4bdc1b7325d0c58c8f76f9",
+        "version_at_commit": "6.0.0"
+      },
+      "source_release_proof": {
+        "ahead_by": 1,
+        "behind_by": 0,
+        "compare_url": "https://github.com/chalk/ansi-regex/compare/8d1d7cdb586269882c4bdc1b7325d0c58c8f76f9...v6.0.1",
+        "status": "ahead",
+        "tag": "v6.0.1",
+        "tag_commit": "d908492e0070f26552fad1b25e339aff9011ae8b"
+      },
+      "suitability": "simple",
+      "summary": "Inefficient Regular Expression Complexity in chalk/ansi-regex",
+      "target_base": "178363b3a297b712a0054e702d8ddde3879913e5",
+      "vendor_advisory_url": null
+    },
+    {
+      "advisory_url": "https://github.com/advisories/GHSA-9c47-m6qq-7p4h",
+      "backport_fix": {
+        "changed_files": [
+          {
+            "additions": 10,
+            "deletions": 0,
+            "path": "CHANGELOG.md",
+            "status": "modified"
+          },
+          {
+            "additions": 34,
+            "deletions": 7,
+            "path": "src/parse.js",
+            "status": "modified"
+          },
+          {
+            "additions": 5,
+            "deletions": 0,
+            "path": "test/parse.js",
+            "status": "modified"
+          }
+        ],
+        "date": "2022-12-29T06:16:30Z",
+        "dependencies": {
+          "minimist": "^1.2.0"
+        },
+        "license": "MIT",
+        "package_name_at_commit": "json5",
+        "parents": [
+          "072eb402fc107a2f568ba78962d3d99de95032a9"
+        ],
+        "repository": "https://github.com/json5/json5",
+        "sha": "62a65408408d40aeea14c7869ed327acead12972",
+        "subject": "fix: add __proto__ to objects and arrays",
+        "test_scripts": {
+          "pretest": "cross-env NODE_ENV=test npm run build",
+          "test": "nyc --reporter=html --reporter=text mocha"
+        },
+        "url": "https://github.com/json5/json5/commit/62a65408408d40aeea14c7869ed327acead12972",
+        "version_at_commit": "1.0.1"
+      },
+      "backport_release_proof": {
+        "ahead_by": 2,
+        "behind_by": 0,
+        "compare_url": "https://github.com/json5/json5/compare/62a65408408d40aeea14c7869ed327acead12972...v1.0.2",
+        "status": "ahead",
+        "tag": "v1.0.2",
+        "tag_commit": "a62db1e51e1031d92ac260f5bb38bbed1fdbc754"
+      },
+      "changed_source_files": {
+        "newer": [
+          "lib/parse.js"
+        ],
+        "older": [
+          "src/parse.js"
+        ]
+      },
+      "cve_id": "CVE-2022-46175",
+      "evaluation_notes": "Modern native suite is tap; older native suite is Mocha with a required build. Do not count it as a no-build Mocha pair.",
+      "existing_test_runner": "tap / Mocha",
+      "ghsa_id": "GHSA-9c47-m6qq-7p4h",
+      "newer_fixed_version": "2.2.2",
+      "older_fixed_version": "1.0.2",
+      "package": "json5",
+      "patched_versions": [
+        "1.0.2",
+        "2.2.2"
+      ],
+      "published_at": "2022-12-29T01:51:03Z",
+      "references": [
+        "https://github.com/json5/json5/security/advisories/GHSA-9c47-m6qq-7p4h",
+        "https://nvd.nist.gov/vuln/detail/CVE-2022-46175",
+        "https://github.com/json5/json5/issues/199",
+        "https://github.com/json5/json5/issues/295",
+        "https://github.com/json5/json5/pull/298",
+        "https://github.com/json5/json5/commit/62a65408408d40aeea14c7869ed327acead12972",
+        "https://github.com/json5/json5/commit/7774c1097993bc3ce9f0ac4b722a32bf7d6871c8",
+        "https://lists.debian.org/debian-lts-announce/2023/11/msg00021.html",
+        "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/3S26TLPLVFAJTUN3VIXFDEBEXDYO22CE",
+        "https://github.com/advisories/GHSA-9c47-m6qq-7p4h"
+      ],
+      "source_base": "edde30abd8b22facf2c06c72586b9f6edf12700d",
+      "source_fix": {
+        "changed_files": [
+          {
+            "additions": 4,
+            "deletions": 0,
+            "path": "CHANGELOG.md",
+            "status": "modified"
+          },
+          {
+            "additions": 34,
+            "deletions": 7,
+            "path": "lib/parse.js",
+            "status": "modified"
+          },
+          {
+            "additions": 7,
+            "deletions": 0,
+            "path": "test/parse.js",
+            "status": "modified"
+          }
+        ],
+        "date": "2022-12-16T05:51:53Z",
+        "dependencies": {},
+        "license": "MIT",
+        "package_name_at_commit": "json5",
+        "parents": [
+          "edde30abd8b22facf2c06c72586b9f6edf12700d"
+        ],
+        "repository": "https://github.com/json5/json5",
+        "sha": "7774c1097993bc3ce9f0ac4b722a32bf7d6871c8",
+        "subject": "fix: add __proto__ to objects and arrays",
+        "test_scripts": {
+          "test": "run-s lint-report tap"
+        },
+        "url": "https://github.com/json5/json5/commit/7774c1097993bc3ce9f0ac4b722a32bf7d6871c8",
+        "version_at_commit": "2.2.1"
+      },
+      "source_release_proof": {
+        "ahead_by": 2,
+        "behind_by": 0,
+        "compare_url": "https://github.com/json5/json5/compare/7774c1097993bc3ce9f0ac4b722a32bf7d6871c8...v2.2.2",
+        "status": "ahead",
+        "tag": "v2.2.2",
+        "tag_commit": "14f8cb186e8abdfaccf6527171da7b1224374650"
+      },
+      "suitability": "moderate",
+      "summary": "Prototype Pollution in JSON5 via Parse Method",
+      "target_base": "072eb402fc107a2f568ba78962d3d99de95032a9",
+      "vendor_advisory_url": "https://api.github.com/repos/json5/json5/security-advisories/GHSA-9c47-m6qq-7p4h"
+    },
+    {
+      "advisory_url": "https://github.com/advisories/GHSA-78xj-cgh5-2h22",
+      "backport_fix": {
+        "changed_files": [
+          {
+            "additions": 73,
+            "deletions": 4,
+            "path": "lib/ip.js",
+            "status": "modified"
+          },
+          {
+            "additions": 93,
+            "deletions": 0,
+            "path": "test/api-test.js",
+            "status": "modified"
+          }
+        ],
+        "date": "2024-02-19T04:28:50Z",
+        "dependencies": {},
+        "license": "MIT",
+        "package_name_at_commit": "ip",
+        "parents": [
+          "5dc3b2f3f4b4690fa9a918fa5085b6fca9979fca"
+        ],
+        "repository": "https://github.com/indutny/node-ip",
+        "sha": "6a3ada9b471b09d5f0f5be264911ab564bf67894",
+        "subject": "lib: fixed CVE-2023-42282 and added unit test",
+        "test_scripts": {
+          "test": "npm run lint && mocha --reporter spec test/*-test.js"
+        },
+        "url": "https://github.com/indutny/node-ip/commit/6a3ada9b471b09d5f0f5be264911ab564bf67894",
+        "version_at_commit": "1.1.8"
+      },
+      "backport_release_proof": {
+        "ahead_by": 1,
+        "behind_by": 0,
+        "compare_url": "https://github.com/indutny/node-ip/compare/6a3ada9b471b09d5f0f5be264911ab564bf67894...v1.1.9",
+        "status": "ahead",
+        "tag": "v1.1.9",
+        "tag_commit": "1ecbf2fd8c0cc85e44c3b587d2de641f50dc0217"
+      },
+      "changed_source_files": {
+        "newer": [
+          "lib/ip.js"
+        ],
+        "older": [
+          "lib/ip.js"
+        ]
+      },
+      "cve_id": "CVE-2023-42282",
+      "evaluation_notes": "Historical IPv4 private classification regression; later advisories mean these old fixes are not a current safe-version recommendation.",
+      "existing_test_runner": "mocha",
+      "ghsa_id": "GHSA-78xj-cgh5-2h22",
+      "newer_fixed_version": "2.0.1",
+      "older_fixed_version": "1.1.9",
+      "package": "ip",
+      "patched_versions": [
+        "1.1.9",
+        "2.0.1"
+      ],
+      "published_at": "2024-02-08T18:30:39Z",
+      "references": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2023-42282",
+        "https://cosmosofcyberspace.github.io/npm_ip_cve/npm_ip_cve.html",
+        "https://github.com/JoshGlazebrook/socks/issues/93#issue-2128357447",
+        "https://github.com/github/advisory-database/pull/3504#issuecomment-1937179999",
+        "https://github.com/indutny/node-ip/pull/138",
+        "https://github.com/indutny/node-ip/commit/32f468f1245574785ec080705737a579be1223aa",
+        "https://github.com/indutny/node-ip/commit/6a3ada9b471b09d5f0f5be264911ab564bf67894",
+        "https://github.com/advisories/GHSA-78xj-cgh5-2h22"
+      ],
+      "source_base": "4b2f4e7cb52a723fd286611385487afe85f01579",
+      "source_fix": {
+        "changed_files": [
+          {
+            "additions": 73,
+            "deletions": 4,
+            "path": "lib/ip.js",
+            "status": "modified"
+          },
+          {
+            "additions": 93,
+            "deletions": 0,
+            "path": "test/api-test.js",
+            "status": "modified"
+          }
+        ],
+        "date": "2024-02-19T05:12:32Z",
+        "dependencies": {},
+        "license": "MIT",
+        "package_name_at_commit": "ip",
+        "parents": [
+          "4b2f4e7cb52a723fd286611385487afe85f01579"
+        ],
+        "repository": "https://github.com/indutny/node-ip",
+        "sha": "32f468f1245574785ec080705737a579be1223aa",
+        "subject": "lib: fixed CVE-2023-42282 and added unit test",
+        "test_scripts": {
+          "test": "npm run lint && mocha --reporter spec test/*-test.js"
+        },
+        "url": "https://github.com/indutny/node-ip/commit/32f468f1245574785ec080705737a579be1223aa",
+        "version_at_commit": "2.0.0"
+      },
+      "source_release_proof": {
+        "ahead_by": 1,
+        "behind_by": 0,
+        "compare_url": "https://github.com/indutny/node-ip/compare/32f468f1245574785ec080705737a579be1223aa...v2.0.1",
+        "status": "ahead",
+        "tag": "v2.0.1",
+        "tag_commit": "3b0994a74eca51df01f08c40d6a65ba0e1845d04"
+      },
+      "suitability": "simple",
+      "summary": "NPM IP package incorrectly identifies some private IP addresses as public",
+      "target_base": "5dc3b2f3f4b4690fa9a918fa5085b6fca9979fca",
+      "vendor_advisory_url": null
+    },
+    {
+      "advisory_url": "https://github.com/advisories/GHSA-c429-5p7v-vgjp",
+      "backport_fix": {
+        "changed_files": [
+          {
+            "additions": 4,
+            "deletions": 0,
+            "path": "lib/clone.js",
+            "status": "modified"
+          },
+          {
+            "additions": 9,
+            "deletions": 0,
+            "path": "test/index.js",
+            "status": "modified"
+          }
+        ],
+        "date": "2020-02-08T06:44:45Z",
+        "dependencies": {},
+        "license": "BSD-3-Clause",
+        "package_name_at_commit": "@hapi/hoek",
+        "parents": [
+          "4ae5f5355f55f600e0969cb61369b7c41b0f50e1"
+        ],
+        "repository": "https://github.com/hapijs/hoek",
+        "sha": "4d0804bc6135ad72afdc5e1ec002b935b2f5216a",
+        "subject": "Backport #352. Closes #353",
+        "test_scripts": {
+          "test": "lab -a @hapi/code -t 100 -L -Y",
+          "test-cov-html": "lab -a @hapi/code -t 100 -L -r html -o coverage.html"
+        },
+        "url": "https://github.com/hapijs/hoek/commit/4d0804bc6135ad72afdc5e1ec002b935b2f5216a",
+        "version_at_commit": "8.5.0"
+      },
+      "backport_release_proof": {
+        "ahead_by": 1,
+        "behind_by": 0,
+        "compare_url": "https://github.com/hapijs/hoek/compare/4d0804bc6135ad72afdc5e1ec002b935b2f5216a...v8.5.1",
+        "status": "ahead",
+        "tag": "v8.5.1",
+        "tag_commit": "5bd73f642b0e21a92fc582ad2b489301753d1e01"
+      },
+      "changed_source_files": {
+        "newer": [
+          "lib/clone.js"
+        ],
+        "older": [
+          "lib/clone.js"
+        ]
+      },
+      "cve_id": "CVE-2020-36604",
+      "evaluation_notes": "Four-line clone prototype poisoning fix with direct deterministic object assertions.",
+      "existing_test_runner": "lab",
+      "ghsa_id": "GHSA-c429-5p7v-vgjp",
+      "newer_fixed_version": "9.0.3",
+      "older_fixed_version": "8.5.1",
+      "package": "@hapi/hoek",
+      "patched_versions": [
+        "8.5.1",
+        "9.0.3"
+      ],
+      "published_at": "2022-09-25T00:00:27Z",
+      "references": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2020-36604",
+        "https://github.com/hapijs/hoek/issues/352",
+        "https://github.com/hapijs/hoek/commit/4d0804bc6135ad72afdc5e1ec002b935b2f5216a",
+        "https://github.com/hapijs/hoek/commit/948baf98634a5c206875b67d11368f133034fa90",
+        "https://github.com/advisories/GHSA-c429-5p7v-vgjp"
+      ],
+      "source_base": "0ab1b4f6ff639a2478d4428c6f2986cd70115344",
+      "source_fix": {
+        "changed_files": [
+          {
+            "additions": 4,
+            "deletions": 0,
+            "path": "lib/clone.js",
+            "status": "modified"
+          },
+          {
+            "additions": 1,
+            "deletions": 1,
+            "path": "test/clone.js",
+            "status": "modified"
+          }
+        ],
+        "date": "2020-02-08T06:29:21Z",
+        "dependencies": {},
+        "license": "BSD-3-Clause",
+        "package_name_at_commit": "@hapi/hoek",
+        "parents": [
+          "0ab1b4f6ff639a2478d4428c6f2986cd70115344"
+        ],
+        "repository": "https://github.com/hapijs/hoek",
+        "sha": "948baf98634a5c206875b67d11368f133034fa90",
+        "subject": "Prevent prototype poisoning in clone(). Closes #352",
+        "test_scripts": {
+          "test": "lab -a @hapi/code -t 100 -L -Y",
+          "test-cov-html": "lab -a @hapi/code -t 100 -L -r html -o coverage.html"
+        },
+        "url": "https://github.com/hapijs/hoek/commit/948baf98634a5c206875b67d11368f133034fa90",
+        "version_at_commit": "9.0.2"
+      },
+      "source_release_proof": {
+        "ahead_by": 1,
+        "behind_by": 0,
+        "compare_url": "https://github.com/hapijs/hoek/compare/948baf98634a5c206875b67d11368f133034fa90...v9.0.3",
+        "status": "ahead",
+        "tag": "v9.0.3",
+        "tag_commit": "8bf7635550d35ff01966601c19078df8da9b96a6"
+      },
+      "suitability": "simple",
+      "summary": "hoek subject to prototype pollution via the clone function.",
+      "target_base": "4ae5f5355f55f600e0969cb61369b7c41b0f50e1",
+      "vendor_advisory_url": null
+    },
+    {
+      "advisory_url": "https://github.com/advisories/GHSA-c7qv-q95q-8v27",
+      "backport_fix": {
+        "changed_files": [
+          {
+            "additions": 1,
+            "deletions": 0,
+            "path": "CHANGELOG.md",
+            "status": "modified"
+          },
+          {
+            "additions": 1,
+            "deletions": 1,
+            "path": "package.json",
+            "status": "modified"
+          },
+          {
+            "additions": 7,
+            "deletions": 2,
+            "path": "src/http-proxy-middleware.ts",
+            "status": "modified"
+          },
+          {
+            "additions": 28,
+            "deletions": 0,
+            "path": "test/e2e/http-proxy-middleware.spec.ts",
+            "status": "modified"
+          }
+        ],
+        "date": "2024-10-06T16:58:31Z",
+        "dependencies": {
+          "@types/http-proxy": "^1.17.8",
+          "http-proxy": "^1.18.1",
+          "is-glob": "^4.0.1",
+          "is-plain-obj": "^3.0.0",
+          "micromatch": "^4.0.2"
+        },
+        "license": "MIT",
+        "package_name_at_commit": "http-proxy-middleware",
+        "parents": [
+          "1bd6dd578b1326ed7979c301e3f8eb0f228f5b6f"
+        ],
+        "repository": "https://github.com/chimurai/http-proxy-middleware",
+        "sha": "0b4274e8cc9e9a2c5a06f35fbf456ccfcebc55a5",
+        "subject": "fix(filter): handle errors",
+        "test_scripts": {
+          "pretest": "yarn build",
+          "test": "jest"
+        },
+        "url": "https://github.com/chimurai/http-proxy-middleware/commit/0b4274e8cc9e9a2c5a06f35fbf456ccfcebc55a5",
+        "version_at_commit": "2.0.7-beta.1"
+      },
+      "backport_release_proof": {
+        "ahead_by": 2,
+        "behind_by": 0,
+        "compare_url": "https://github.com/chimurai/http-proxy-middleware/compare/0b4274e8cc9e9a2c5a06f35fbf456ccfcebc55a5...v2.0.7",
+        "status": "ahead",
+        "tag": "v2.0.7",
+        "tag_commit": "1e9233909839962bb3c1980848ad499b4757a71d"
+      },
+      "changed_source_files": {
+        "newer": [
+          "src/http-proxy-middleware.ts"
+        ],
+        "older": [
+          "src/http-proxy-middleware.ts"
+        ]
+      },
+      "cve_id": "CVE-2024-21536",
+      "evaluation_notes": "TypeScript filter error handling; older branch release candidate package version differs from published stable fix.",
+      "existing_test_runner": "jest",
+      "ghsa_id": "GHSA-c7qv-q95q-8v27",
+      "newer_fixed_version": "3.0.3",
+      "older_fixed_version": "2.0.7",
+      "package": "http-proxy-middleware",
+      "patched_versions": [
+        "2.0.7",
+        "3.0.3"
+      ],
+      "published_at": "2024-10-19T06:30:30Z",
+      "references": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2024-21536",
+        "https://github.com/chimurai/http-proxy-middleware/commit/0b4274e8cc9e9a2c5a06f35fbf456ccfcebc55a5",
+        "https://github.com/chimurai/http-proxy-middleware/commit/788b21e4aff38332d6319557d4a5b1b13b1f9a22",
+        "https://gist.github.com/mhassan1/28be67266d82a53708ed59ce5dc3c94a",
+        "https://security.snyk.io/vuln/SNYK-JS-HTTPPROXYMIDDLEWARE-8229906",
+        "https://github.com/advisories/GHSA-c7qv-q95q-8v27"
+      ],
+      "source_base": "6fae40dd77214f1ed961b7b0b56450a22d5c290f",
+      "source_fix": {
+        "changed_files": [
+          {
+            "additions": 4,
+            "deletions": 0,
+            "path": "CHANGELOG.md",
+            "status": "modified"
+          },
+          {
+            "additions": 11,
+            "deletions": 2,
+            "path": "src/http-proxy-middleware.ts",
+            "status": "modified"
+          },
+          {
+            "additions": 28,
+            "deletions": 0,
+            "path": "test/e2e/http-proxy-middleware.spec.ts",
+            "status": "modified"
+          }
+        ],
+        "date": "2024-10-06T17:13:18Z",
+        "dependencies": {
+          "@types/http-proxy": "^1.17.15",
+          "debug": "^4.3.6",
+          "http-proxy": "^1.18.1",
+          "is-glob": "^4.0.3",
+          "is-plain-object": "^5.0.0",
+          "micromatch": "^4.0.8"
+        },
+        "license": "MIT",
+        "package_name_at_commit": "http-proxy-middleware",
+        "parents": [
+          "6fae40dd77214f1ed961b7b0b56450a22d5c290f"
+        ],
+        "repository": "https://github.com/chimurai/http-proxy-middleware",
+        "sha": "788b21e4aff38332d6319557d4a5b1b13b1f9a22",
+        "subject": "fix(pathFilter): handle errors (#1043)",
+        "test_scripts": {
+          "test": "jest"
+        },
+        "url": "https://github.com/chimurai/http-proxy-middleware/commit/788b21e4aff38332d6319557d4a5b1b13b1f9a22",
+        "version_at_commit": "3.0.2"
+      },
+      "source_release_proof": {
+        "ahead_by": 1,
+        "behind_by": 0,
+        "compare_url": "https://github.com/chimurai/http-proxy-middleware/compare/788b21e4aff38332d6319557d4a5b1b13b1f9a22...v3.0.3",
+        "status": "ahead",
+        "tag": "v3.0.3",
+        "tag_commit": "43f38836b5ff00a6e46ae357dfd071361fa93ca1"
+      },
+      "suitability": "moderate",
+      "summary": "Denial of service in http-proxy-middleware",
+      "target_base": "1bd6dd578b1326ed7979c301e3f8eb0f228f5b6f",
+      "vendor_advisory_url": null
+    },
+    {
+      "advisory_url": "https://github.com/advisories/GHSA-9vvw-cc9w-f27h",
+      "backport_fix": {
+        "changed_files": [
+          {
+            "additions": 3,
+            "deletions": 1,
+            "path": "src/node.js",
+            "status": "modified"
+          }
+        ],
+        "date": "2017-09-22T13:31:40Z",
+        "dependencies": {
+          "ms": "2.0.0"
+        },
+        "license": "MIT",
+        "package_name_at_commit": "debug",
+        "parents": [
+          "52e1f21284322f167839e5d3a60f635c8b2dc842"
+        ],
+        "repository": "https://github.com/debug-js/debug",
+        "sha": "f53962e944a87e6ca9bb622a2a12dffc22a9bb5a",
+        "subject": "remove ReDoS regexp in %o formatter (#504)",
+        "test_scripts": {},
+        "url": "https://github.com/debug-js/debug/commit/f53962e944a87e6ca9bb622a2a12dffc22a9bb5a",
+        "version_at_commit": "2.6.8"
+      },
+      "backport_release_proof": {
+        "ahead_by": 1,
+        "behind_by": 0,
+        "compare_url": "https://github.com/debug-js/debug/compare/f53962e944a87e6ca9bb622a2a12dffc22a9bb5a...2.6.9",
+        "status": "ahead",
+        "tag": "2.6.9",
+        "tag_commit": "13abeae468fea297d0dccc50bc55590809241083"
+      },
+      "changed_source_files": {
+        "newer": [
+          "src/node.js"
+        ],
+        "older": [
+          "src/node.js"
+        ]
+      },
+      "cve_id": "CVE-2017-20165",
+      "evaluation_notes": "Both Makefiles invoke Mocha test/debug_spec.js directly; JavaScript percent-o formatter fix without a build.",
+      "existing_test_runner": "mocha",
+      "ghsa_id": "GHSA-9vvw-cc9w-f27h",
+      "newer_fixed_version": "3.1.0",
+      "older_fixed_version": "2.6.9",
+      "package": "debug",
+      "patched_versions": [
+        "2.6.9",
+        "3.1.0"
+      ],
+      "published_at": "2023-01-09T12:30:19Z",
+      "references": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2017-20165",
+        "https://github.com/debug-js/debug/pull/504",
+        "https://github.com/debug-js/debug/commit/c38a0166c266a679c8de012d4eaccec3f944e685",
+        "https://github.com/debug-js/debug/releases/tag/3.1.0",
+        "https://vuldb.com/?id.217665",
+        "https://github.com/debug-js/debug/releases/tag/2.6.9",
+        "https://vuldb.com/?ctiid.217665",
+        "https://github.com/debug-js/debug/commit/f53962e944a87e6ca9bb622a2a12dffc22a9bb5a",
+        "https://github.com/advisories/GHSA-9vvw-cc9w-f27h"
+      ],
+      "source_base": "47747f329fe159e94262318b52b87a48f6c0acd4",
+      "source_fix": {
+        "changed_files": [
+          {
+            "additions": 3,
+            "deletions": 1,
+            "path": "src/node.js",
+            "status": "modified"
+          }
+        ],
+        "date": "2017-09-21T22:26:33Z",
+        "dependencies": {
+          "ms": "2.0.0"
+        },
+        "license": "MIT",
+        "package_name_at_commit": "debug",
+        "parents": [
+          "47747f329fe159e94262318b52b87a48f6c0acd4"
+        ],
+        "repository": "https://github.com/debug-js/debug",
+        "sha": "c38a0166c266a679c8de012d4eaccec3f944e685",
+        "subject": "remove ReDoS regexp in %o formatter (#504)",
+        "test_scripts": {},
+        "url": "https://github.com/debug-js/debug/commit/c38a0166c266a679c8de012d4eaccec3f944e685",
+        "version_at_commit": "3.0.1"
+      },
+      "source_release_proof": {
+        "ahead_by": 7,
+        "behind_by": 0,
+        "compare_url": "https://github.com/debug-js/debug/compare/c38a0166c266a679c8de012d4eaccec3f944e685...3.1.0",
+        "status": "ahead",
+        "tag": "3.1.0",
+        "tag_commit": "f073e056f33efdd5b311381eb6bca2bc850745bf"
+      },
+      "suitability": "simple",
+      "summary": "debug Inefficient Regular Expression Complexity vulnerability",
+      "target_base": "52e1f21284322f167839e5d3a60f635c8b2dc842",
+      "vendor_advisory_url": null
+    },
+    {
+      "advisory_url": "https://github.com/advisories/GHSA-wrvr-8mpx-r7pp",
+      "backport_fix": {
+        "changed_files": [
+          {
+            "additions": 1,
+            "deletions": 1,
+            "path": "build/test.js",
+            "status": "modified"
+          },
+          {
+            "additions": 1,
+            "deletions": 1,
+            "path": "mime.js",
+            "status": "modified"
+          }
+        ],
+        "date": "2017-09-25T18:35:35Z",
+        "dependencies": {},
+        "license": "MIT",
+        "package_name_at_commit": "mime",
+        "parents": [
+          "1f0af634b97fa47e6e3f603a303e49b40b4c511c"
+        ],
+        "repository": "https://github.com/broofa/mime",
+        "sha": "855d0c4b8b22e4a80b9401a81f2872058eae274d",
+        "subject": "Fix #167",
+        "test_scripts": {
+          "test": "node build/test.js"
+        },
+        "url": "https://github.com/broofa/mime/commit/855d0c4b8b22e4a80b9401a81f2872058eae274d",
+        "version_at_commit": "1.4.0"
+      },
+      "backport_release_proof": {
+        "ahead_by": 1,
+        "behind_by": 0,
+        "compare_url": "https://github.com/broofa/mime/compare/855d0c4b8b22e4a80b9401a81f2872058eae274d...v1.4.1",
+        "status": "ahead",
+        "tag": "v1.4.1",
+        "tag_commit": "eb24bae372a76acd2c95fd05f8837814c33a9e3d"
+      },
+      "changed_source_files": {
+        "newer": [
+          "Mime.js"
+        ],
+        "older": [
+          "build/test.js",
+          "mime.js"
+        ]
+      },
+      "cve_id": "CVE-2017-16138",
+      "evaluation_notes": "Pure JavaScript source on both lines; older suite is a custom node runner, so preserve the runner boundary.",
+      "existing_test_runner": "Mocha / plain node",
+      "ghsa_id": "GHSA-wrvr-8mpx-r7pp",
+      "newer_fixed_version": "2.0.3",
+      "older_fixed_version": "1.4.1",
+      "package": "mime",
+      "patched_versions": [
+        "1.4.1",
+        "2.0.3"
+      ],
+      "published_at": "2018-07-20T16:20:52Z",
+      "references": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2017-16138",
+        "https://github.com/broofa/node-mime/issues/167",
+        "https://github.com/broofa/mime/commit/1df903fdeb9ae7eaa048795b8d580ce2c98f40b0",
+        "https://github.com/broofa/mime/commit/855d0c4b8b22e4a80b9401a81f2872058eae274d",
+        "https://github.com/advisories/GHSA-wrvr-8mpx-r7pp"
+      ],
+      "source_base": "4a375abebfa3900921217daa270302e01a1c67ae",
+      "source_fix": {
+        "changed_files": [
+          {
+            "additions": 2,
+            "deletions": 2,
+            "path": "Mime.js",
+            "status": "modified"
+          }
+        ],
+        "date": "2017-09-25T18:38:09Z",
+        "dependencies": {},
+        "license": "MIT",
+        "package_name_at_commit": "mime",
+        "parents": [
+          "4a375abebfa3900921217daa270302e01a1c67ae"
+        ],
+        "repository": "https://github.com/broofa/mime",
+        "sha": "1df903fdeb9ae7eaa048795b8d580ce2c98f40b0",
+        "subject": "Fix #167",
+        "test_scripts": {
+          "test": "mocha src/test.js"
+        },
+        "url": "https://github.com/broofa/mime/commit/1df903fdeb9ae7eaa048795b8d580ce2c98f40b0",
+        "version_at_commit": "2.0.2"
+      },
+      "source_release_proof": {
+        "ahead_by": 1,
+        "behind_by": 0,
+        "compare_url": "https://github.com/broofa/mime/compare/1df903fdeb9ae7eaa048795b8d580ce2c98f40b0...v2.0.3",
+        "status": "ahead",
+        "tag": "v2.0.3",
+        "tag_commit": "f2d859eb53607b909cca03858429035bb025b21a"
+      },
+      "suitability": "moderate",
+      "summary": "mime Regular Expression Denial of Service when MIME lookup performed on untrusted user input",
+      "target_base": "1f0af634b97fa47e6e3f603a303e49b40b4c511c",
+      "vendor_advisory_url": null
+    },
+    {
+      "advisory_url": "https://github.com/advisories/GHSA-43f8-2h32-f4cj",
+      "backport_fix": {
+        "changed_files": [
+          {
+            "additions": 2,
+            "deletions": 2,
+            "path": "index.js",
+            "status": "modified"
+          }
+        ],
+        "date": "2021-04-07T20:03:56Z",
+        "dependencies": {},
+        "license": "ISC",
+        "package_name_at_commit": "hosted-git-info",
+        "parents": [
+          "afeaefdd86ba9bb5044be3c1554a666d007cf19a"
+        ],
+        "repository": "https://github.com/npm/hosted-git-info",
+        "sha": "29adfe5ef789784c861b2cdeb15051ec2ba651a7",
+        "subject": "fix: backport regex fix from #76",
+        "test_scripts": {
+          "posttest": "standard",
+          "test": "tap -J --coverage=90 --no-esm test/*.js",
+          "test:coverage": "tap --coverage-report=html -J --coverage=90 --no-esm test/*.js"
+        },
+        "url": "https://github.com/npm/hosted-git-info/commit/29adfe5ef789784c861b2cdeb15051ec2ba651a7",
+        "version_at_commit": "2.8.8"
+      },
+      "backport_release_proof": {
+        "ahead_by": 1,
+        "behind_by": 0,
+        "compare_url": "https://github.com/npm/hosted-git-info/compare/29adfe5ef789784c861b2cdeb15051ec2ba651a7...v2.8.9",
+        "status": "ahead",
+        "tag": "v2.8.9",
+        "tag_commit": "8d4b3697d79bcd89cdb36d1db165e3696c783a01"
+      },
+      "changed_source_files": {
+        "newer": [
+          "index.js"
+        ],
+        "older": [
+          "index.js"
+        ]
+      },
+      "cve_id": "CVE-2021-23362",
+      "evaluation_notes": "Pure JavaScript URL shortcut parser, deterministic rejection plus bounded ReDoS controls; native suite is TAP.",
+      "existing_test_runner": "tap",
+      "ghsa_id": "GHSA-43f8-2h32-f4cj",
+      "newer_fixed_version": "3.0.8",
+      "older_fixed_version": "2.8.9",
+      "package": "hosted-git-info",
+      "patched_versions": [
+        "2.8.9",
+        "3.0.8"
+      ],
+      "published_at": "2021-05-06T16:10:39Z",
+      "references": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2021-23362",
+        "https://github.com/npm/hosted-git-info/commit/bede0dc38e1785e732bf0a48ba6f81a4a908eba3",
+        "https://snyk.io/vuln/SNYK-JAVA-ORGWEBJARSNPM-1088356",
+        "https://snyk.io/vuln/SNYK-JS-HOSTEDGITINFO-1088355",
+        "https://github.com/npm/hosted-git-info/pull/76",
+        "https://github.com/npm/hosted-git-info/commit/29adfe5ef789784c861b2cdeb15051ec2ba651a7",
+        "https://github.com/npm/hosted-git-info/commit/8d4b3697d79bcd89cdb36d1db165e3696c783a01",
+        "https://github.com/npm/hosted-git-info/commits/v2",
+        "https://cert-portal.siemens.com/productcert/pdf/ssa-389290.pdf",
+        "https://github.com/advisories/GHSA-43f8-2h32-f4cj"
+      ],
+      "source_base": "afe280820d6c5f76fba40a2dfd7e899d3be526f3",
+      "source_fix": {
+        "changed_files": [
+          {
+            "additions": 2,
+            "deletions": 2,
+            "path": "index.js",
+            "status": "modified"
+          }
+        ],
+        "date": "2021-01-28T18:19:22Z",
+        "dependencies": {
+          "lru-cache": "^6.0.0"
+        },
+        "license": "ISC",
+        "package_name_at_commit": "hosted-git-info",
+        "parents": [
+          "afe280820d6c5f76fba40a2dfd7e899d3be526f3"
+        ],
+        "repository": "https://github.com/npm/hosted-git-info",
+        "sha": "bede0dc38e1785e732bf0a48ba6f81a4a908eba3",
+        "subject": "fix: simplify the regular expression for shortcut matching",
+        "test_scripts": {
+          "posttest": "standard",
+          "test": "tap -J --100 --no-esm test/*.js",
+          "test:coverage": "tap --coverage-report=html -J --100 --no-esm test/*.js"
+        },
+        "url": "https://github.com/npm/hosted-git-info/commit/bede0dc38e1785e732bf0a48ba6f81a4a908eba3",
+        "version_at_commit": "3.0.7"
+      },
+      "source_release_proof": {
+        "ahead_by": 1,
+        "behind_by": 0,
+        "compare_url": "https://github.com/npm/hosted-git-info/compare/bede0dc38e1785e732bf0a48ba6f81a4a908eba3...v3.0.8",
+        "status": "ahead",
+        "tag": "v3.0.8",
+        "tag_commit": "a810463604a54af041223a1f69c80622b85fac90"
+      },
+      "suitability": "simple",
+      "summary": "Regular Expression Denial of Service in hosted-git-info",
+      "target_base": "afeaefdd86ba9bb5044be3c1554a666d007cf19a",
+      "vendor_advisory_url": null
+    },
+    {
+      "advisory_url": "https://github.com/advisories/GHSA-jr5f-v2jv-69x6",
+      "backport_fix": {
+        "changed_files": [
+          {
+            "additions": 1,
+            "deletions": 1,
+            "path": "lib/adapters/http.js",
+            "status": "modified"
+          },
+          {
+            "additions": 1,
+            "deletions": 1,
+            "path": "lib/adapters/xhr.js",
+            "status": "modified"
+          },
+          {
+            "additions": 1,
+            "deletions": 1,
+            "path": "lib/core/Axios.js",
+            "status": "modified"
+          },
+          {
+            "additions": 5,
+            "deletions": 2,
+            "path": "lib/core/buildFullPath.js",
+            "status": "modified"
+          },
+          {
+            "additions": 3,
+            "deletions": 1,
+            "path": "test/specs/core/buildFullPath.spec.js",
+            "status": "modified"
+          }
+        ],
+        "date": "2025-03-19T10:24:25Z",
+        "dependencies": {
+          "follow-redirects": "^1.15.4",
+          "form-data": "^4.0.0",
+          "proxy-from-env": "^1.1.0"
+        },
+        "license": "MIT",
+        "package_name_at_commit": "axios",
+        "parents": [
+          "8603e677c09fb81bd106999c194308dd230bc596"
+        ],
+        "repository": "https://github.com/axios/axios",
+        "sha": "02c3c69ced0f8fd86407c23203835892313d7fde",
+        "subject": "fix: backport allowAbsoluteUrls vuln fix to v0.x (#6829)",
+        "test_scripts": {
+          "test": "node bin/ssl_hotfix.js grunt test && node bin/ssl_hotfix.js dtslint --localTs node_modules/typescript/lib"
+        },
+        "url": "https://github.com/axios/axios/commit/02c3c69ced0f8fd86407c23203835892313d7fde",
+        "version_at_commit": "0.29.0"
+      },
+      "backport_release_proof": {
+        "ahead_by": 3,
+        "behind_by": 0,
+        "compare_url": "https://github.com/axios/axios/compare/02c3c69ced0f8fd86407c23203835892313d7fde...v0.30.0",
+        "status": "ahead",
+        "tag": "v0.30.0",
+        "tag_commit": "6e922e497616d8908616a9da0380f81d0244ef4b"
+      },
+      "changed_source_files": {
+        "newer": [
+          "lib/adapters/http.js"
+        ],
+        "older": [
+          "lib/adapters/http.js",
+          "lib/adapters/xhr.js",
+          "lib/core/Axios.js",
+          "lib/core/buildFullPath.js"
+        ]
+      },
+      "cve_id": "CVE-2025-27152",
+      "evaluation_notes": "Historical SSRF allowAbsoluteUrls fix. Both source lines are JavaScript; modern Node unit suite and older Grunt mocha_test use original Mocha files, with browser suites separately scoped.",
+      "existing_test_runner": "Mocha / Grunt (Mocha)",
+      "ghsa_id": "GHSA-jr5f-v2jv-69x6",
+      "newer_fixed_version": "1.8.2",
+      "older_fixed_version": "0.30.0",
+      "package": "axios",
+      "patched_versions": [
+        "0.30.0",
+        "1.8.2"
+      ],
+      "published_at": "2025-03-07T15:16:00Z",
+      "references": [
+        "https://github.com/axios/axios/security/advisories/GHSA-jr5f-v2jv-69x6",
+        "https://github.com/axios/axios/issues/6463",
+        "https://github.com/axios/axios/commit/fb8eec214ce7744b5ca787f2c3b8339b2f54b00f",
+        "https://github.com/axios/axios/releases/tag/v1.8.2",
+        "https://nvd.nist.gov/vuln/detail/CVE-2025-27152",
+        "https://github.com/axios/axios/pull/6829",
+        "https://github.com/axios/axios/commit/02c3c69ced0f8fd86407c23203835892313d7fde",
+        "https://github.com/advisories/GHSA-jr5f-v2jv-69x6"
+      ],
+      "source_base": "98120457559e573024862e2925d56295a965ad7e",
+      "source_fix": {
+        "changed_files": [
+          {
+            "additions": 1,
+            "deletions": 1,
+            "path": "lib/adapters/http.js",
+            "status": "modified"
+          }
+        ],
+        "date": "2025-03-07T07:30:30Z",
+        "dependencies": {
+          "follow-redirects": "^1.15.6",
+          "form-data": "^4.0.0",
+          "proxy-from-env": "^1.1.0"
+        },
+        "license": "MIT",
+        "package_name_at_commit": "axios",
+        "parents": [
+          "98120457559e573024862e2925d56295a965ad7e"
+        ],
+        "repository": "https://github.com/axios/axios",
+        "sha": "fb8eec214ce7744b5ca787f2c3b8339b2f54b00f",
+        "subject": "fix(http-adapter): add allowAbsoluteUrls to path building (#6810)",
+        "test_scripts": {
+          "test": "npm run test:eslint && npm run test:mocha && npm run test:karma && npm run test:dtslint && npm run test:exports",
+          "test:build:version": "node ./bin/check-build-version.js",
+          "test:dtslint": "dtslint --localTs node_modules/typescript/lib",
+          "test:eslint": "node bin/ssl_hotfix.js eslint lib/**/*.js",
+          "test:exports": "node bin/ssl_hotfix.js mocha test/module/test.js --timeout 30000 --exit",
+          "test:karma": "node bin/ssl_hotfix.js cross-env LISTEN_ADDR=:: karma start karma.conf.cjs --single-run",
+          "test:karma:firefox": "node bin/ssl_hotfix.js cross-env LISTEN_ADDR=:: Browsers=Firefox karma start karma.conf.cjs --single-run",
+          "test:karma:server": "node bin/ssl_hotfix.js cross-env karma start karma.conf.cjs",
+          "test:mocha": "node bin/ssl_hotfix.js mocha test/unit/**/*.js --timeout 30000 --exit"
+        },
+        "url": "https://github.com/axios/axios/commit/fb8eec214ce7744b5ca787f2c3b8339b2f54b00f",
+        "version_at_commit": "1.8.1"
+      },
+      "source_release_proof": {
+        "ahead_by": 1,
+        "behind_by": 0,
+        "compare_url": "https://github.com/axios/axios/compare/fb8eec214ce7744b5ca787f2c3b8339b2f54b00f...v1.8.2",
+        "status": "ahead",
+        "tag": "v1.8.2",
+        "tag_commit": "a9f7689b0c4b6d68c7f587c3aa376860da509d94"
+      },
+      "suitability": "moderate",
+      "summary": "axios Requests Vulnerable To Possible SSRF and Credential Leakage via Absolute URL",
+      "target_base": "8603e677c09fb81bd106999c194308dd230bc596",
+      "vendor_advisory_url": "https://api.github.com/repos/axios/axios/security-advisories/GHSA-jr5f-v2jv-69x6"
+    },
+    {
+      "advisory_url": "https://github.com/advisories/GHSA-mh29-5h37-fv8m",
+      "backport_fix": {
+        "changed_files": [
+          {
+            "additions": 18,
+            "deletions": 2,
+            "path": "lib/js-yaml/loader.js",
+            "status": "modified"
+          },
+          {
+            "additions": 23,
+            "deletions": 0,
+            "path": "test/issues/0164.js",
+            "status": "added"
+          }
+        ],
+        "date": "2025-11-14T22:19:29Z",
+        "dependencies": {
+          "argparse": "^1.0.7",
+          "esprima": "^4.0.0"
+        },
+        "license": "MIT",
+        "package_name_at_commit": "js-yaml",
+        "parents": [
+          "37caaad57dc37d350d9a4577a5da53f482bb2983"
+        ],
+        "repository": "https://github.com/nodeca/js-yaml",
+        "sha": "5278870a17454fe8621dbd8c445c412529525266",
+        "subject": "fix prototype pollution in merge (<<) (#731)",
+        "test_scripts": {
+          "test": "make test"
+        },
+        "url": "https://github.com/nodeca/js-yaml/commit/5278870a17454fe8621dbd8c445c412529525266",
+        "version_at_commit": "3.14.1"
+      },
+      "backport_release_proof": {
+        "ahead_by": 2,
+        "behind_by": 0,
+        "compare_url": "https://github.com/nodeca/js-yaml/compare/5278870a17454fe8621dbd8c445c412529525266...3.14.2",
+        "status": "ahead",
+        "tag": "3.14.2",
+        "tag_commit": "9963d366dfbde0c69722452bcd40b41e7e4160a0"
+      },
+      "changed_source_files": {
+        "newer": [
+          "lib/loader.js"
+        ],
+        "older": [
+          "lib/js-yaml/loader.js"
+        ]
+      },
+      "cve_id": "CVE-2025-64718",
+      "evaluation_notes": "Historical merge-key prototype pollution. Both source lines are JavaScript and both original suites use Mocha; older Makefile runs it directly.",
+      "existing_test_runner": "mocha",
+      "ghsa_id": "GHSA-mh29-5h37-fv8m",
+      "newer_fixed_version": "4.1.1",
+      "older_fixed_version": "3.14.2",
+      "package": "js-yaml",
+      "patched_versions": [
+        "3.14.2",
+        "4.1.1"
+      ],
+      "published_at": "2025-11-14T14:29:48Z",
+      "references": [
+        "https://github.com/nodeca/js-yaml/security/advisories/GHSA-mh29-5h37-fv8m",
+        "https://nvd.nist.gov/vuln/detail/CVE-2025-64718",
+        "https://github.com/nodeca/js-yaml/commit/383665ff4248ec2192d1274e934462bb30426879",
+        "https://github.com/nodeca/js-yaml/commit/5278870a17454fe8621dbd8c445c412529525266",
+        "https://github.com/nodeca/js-yaml/issues/730#issuecomment-3549635876",
+        "https://github.com/advisories/GHSA-mh29-5h37-fv8m"
+      ],
+      "source_base": "0d3ca7a27b03a6c974790a30a89e456007d62976",
+      "source_fix": {
+        "changed_files": [
+          {
+            "additions": 5,
+            "deletions": 0,
+            "path": "CHANGELOG.md",
+            "status": "modified"
+          },
+          {
+            "additions": 18,
+            "deletions": 12,
+            "path": "lib/loader.js",
+            "status": "modified"
+          },
+          {
+            "additions": 18,
+            "deletions": 2,
+            "path": "test/issues/0164.js",
+            "status": "modified"
+          }
+        ],
+        "date": "2025-11-12T03:16:33Z",
+        "dependencies": {
+          "argparse": "^2.0.1"
+        },
+        "license": "MIT",
+        "package_name_at_commit": "js-yaml",
+        "parents": [
+          "0d3ca7a27b03a6c974790a30a89e456007d62976"
+        ],
+        "repository": "https://github.com/nodeca/js-yaml",
+        "sha": "383665ff4248ec2192d1274e934462bb30426879",
+        "subject": "fix prototype pollution in merge (<<)",
+        "test_scripts": {
+          "test": "npm run lint && mocha"
+        },
+        "url": "https://github.com/nodeca/js-yaml/commit/383665ff4248ec2192d1274e934462bb30426879",
+        "version_at_commit": "4.1.0"
+      },
+      "source_release_proof": {
+        "ahead_by": 3,
+        "behind_by": 0,
+        "compare_url": "https://github.com/nodeca/js-yaml/compare/383665ff4248ec2192d1274e934462bb30426879...4.1.1",
+        "status": "ahead",
+        "tag": "4.1.1",
+        "tag_commit": "cc482e775913e6625137572a3712d2826170e53a"
+      },
+      "suitability": "simple",
+      "summary": "js-yaml has prototype pollution in merge (<<)",
+      "target_base": "37caaad57dc37d350d9a4577a5da53f482bb2983",
+      "vendor_advisory_url": "https://api.github.com/repos/nodeca/js-yaml/security-advisories/GHSA-mh29-5h37-fv8m"
+    },
+    {
+      "advisory_url": "https://github.com/advisories/GHSA-p9pc-299p-vxgp",
+      "backport_fix": {
+        "changed_files": [
+          {
+            "additions": 18,
+            "deletions": 5,
+            "path": "index.js",
+            "status": "modified"
+          },
+          {
+            "additions": 10,
+            "deletions": 1,
+            "path": "test/fixtures/config.json",
+            "status": "modified"
+          },
+          {
+            "additions": 26,
+            "deletions": 0,
+            "path": "test/yargs-parser.js",
+            "status": "modified"
+          }
+        ],
+        "date": "2020-03-13T21:15:55Z",
+        "dependencies": {
+          "camelcase": "^5.0.0",
+          "decamelize": "^1.2.0"
+        },
+        "license": "ISC",
+        "package_name_at_commit": "yargs-parser",
+        "parents": [
+          "7e01a2c8d1ba75d9d5472e5839e2852bdf2af3db"
+        ],
+        "repository": "https://github.com/yargs/yargs-parser",
+        "sha": "6e36df108cd8ed6443c4d4a4536b55b6e9552b3d",
+        "subject": "fix: backport __proto__ fixes",
+        "test_scripts": {
+          "posttest": "standard",
+          "test": "nyc mocha test/*.js"
+        },
+        "url": "https://github.com/yargs/yargs-parser/commit/6e36df108cd8ed6443c4d4a4536b55b6e9552b3d",
+        "version_at_commit": "13.1.1"
+      },
+      "backport_release_proof": {
+        "ahead_by": 1,
+        "behind_by": 0,
+        "compare_url": "https://github.com/yargs/yargs-parser/compare/6e36df108cd8ed6443c4d4a4536b55b6e9552b3d...034e7c0ebf1047a866eb84b529aeea9216669d4a",
+        "distribution_integrity": "sha512-3lbsNRf/j+A4QuSZfDRA7HRSfWrzO0YjqTJd5kjAq37Zep1CEgaYmrH9Q3GwPiB9cHyd1Y1UwggGhJGoxipbzg==",
+        "git_head": "034e7c0ebf1047a866eb84b529aeea9216669d4a",
+        "registry_url": "https://registry.npmjs.org/yargs-parser/13.1.2",
+        "registry_version": "13.1.2",
+        "status": "ahead"
+      },
+      "changed_source_files": {
+        "newer": [
+          "index.js"
+        ],
+        "older": [
+          "index.js"
+        ]
+      },
+      "cve_id": "CVE-2020-7608",
+      "evaluation_notes": "Plain JavaScript index.js on both lines, native Mocha tests, no dependency delta. Older published version has no Git tag, so its official npm gitHead and maintainer ancestry prove the fix instead. The 5.x backport adds object.assign and is excluded from this clean batch.",
+      "existing_test_runner": "mocha",
+      "ghsa_id": "GHSA-p9pc-299p-vxgp",
+      "newer_fixed_version": "18.1.1",
+      "older_fixed_version": "13.1.2",
+      "package": "yargs-parser",
+      "patched_versions": [
+        "13.1.2",
+        "15.0.1",
+        "18.1.1",
+        "5.0.1"
+      ],
+      "published_at": "2020-09-04T18:00:54Z",
+      "references": [
+        "https://github.com/advisories/GHSA-p9pc-299p-vxgp",
+        "https://github.com/yargs/yargs-parser/commit/1c417bd0b42b09c475ee881e36d292af4fa2cc36",
+        "https://github.com/yargs/yargs-parser/commit/47742078426f0e4e02aa988062b5fb0fa61182b9",
+        "https://github.com/yargs/yargs-parser/commit/63810ca1ae1a24b08293a4d971e70e058c7a41e2",
+        "https://nvd.nist.gov/vuln/detail/CVE-2020-7608",
+        "https://snyk.io/vuln/SNYK-JS-YARGSPARSER-560381",
+        "https://www.npmjs.com/advisories/1500",
+        "https://registry.npmjs.org/yargs-parser/13.1.2",
+        "https://github.com/yargs/yargs-parser/commit/6e36df108cd8ed6443c4d4a4536b55b6e9552b3d"
+      ],
+      "source_base": "48b6d9ccfa4bb3f74a7f374d8f400491127a8477",
+      "source_fix": {
+        "changed_files": [
+          {
+            "additions": 15,
+            "deletions": 1,
+            "path": "index.js",
+            "status": "modified"
+          },
+          {
+            "additions": 9,
+            "deletions": 1,
+            "path": "test/fixtures/config.json",
+            "status": "modified"
+          },
+          {
+            "additions": 46,
+            "deletions": 0,
+            "path": "test/yargs-parser.js",
+            "status": "modified"
+          }
+        ],
+        "date": "2020-03-16T07:08:00Z",
+        "dependencies": {
+          "camelcase": "^5.0.0",
+          "decamelize": "^1.2.0"
+        },
+        "license": "ISC",
+        "package_name_at_commit": "yargs-parser",
+        "parents": [
+          "48b6d9ccfa4bb3f74a7f374d8f400491127a8477"
+        ],
+        "repository": "https://github.com/yargs/yargs-parser",
+        "sha": "63810ca1ae1a24b08293a4d971e70e058c7a41e2",
+        "subject": "fix: __proto__ will now be replaced with ___proto___ in parse (#258)",
+        "test_scripts": {
+          "posttest": "standard",
+          "test": "c8 --reporter=text --reporter=html  mocha test/*.js"
+        },
+        "url": "https://github.com/yargs/yargs-parser/commit/63810ca1ae1a24b08293a4d971e70e058c7a41e2",
+        "version_at_commit": "18.1.0"
+      },
+      "source_release_proof": {
+        "ahead_by": 1,
+        "behind_by": 0,
+        "compare_url": "https://github.com/yargs/yargs-parser/compare/63810ca1ae1a24b08293a4d971e70e058c7a41e2...v18.1.1",
+        "status": "ahead",
+        "tag": "v18.1.1",
+        "tag_commit": "b96b989680be8259ed530876c1e6cb69608e19ef"
+      },
+      "suitability": "simple",
+      "summary": "yargs-parser Vulnerable to Prototype Pollution",
+      "target_base": "7e01a2c8d1ba75d9d5472e5839e2852bdf2af3db",
+      "vendor_advisory_url": null
+    }
+  ],
+  "counts": {
+    "proven_npm_registry_releases": 1,
+    "proven_patched_release_tags": 49,
+    "proven_patched_releases": 50,
+    "verified_issues": 25,
+    "verified_libraries": 25
+  },
+  "meaning_of_verified": "Maintainer source commits and distinct published release lines are proven. This is research readiness, not an executed harness qualification or a recommendation to install these historical versions.",
+  "method": "Public official GitHub advisory API, maintainer source commits, package manifests and patched release ancestry. No target code executed on host. Distinct maintained-line source commits are required; a version list alone is not sufficient.",
+  "researched_at": "2026-10-24",
+  "schema_version": 1,
+  "supply_chain_exclusions": [
+    {
+      "advisory": "https://github.com/advisories/GHSA-2v46-p5h4-248w",
+      "affected_version": "5.6.1",
+      "incident": "September 2025 chalk/debug account takeover",
+      "package": "chalk",
+      "reason": "Official malware advisory has no patched version and no source backport. Package removal and clean-version recovery are different evaluation tasks."
+    },
+    {
+      "incident": "Shai-Hulud malicious post-install campaigns",
+      "reason": "Compromised releases and maintainer credentials; not a normal older-maintained-line source fix. No malware was downloaded or executed.",
+      "source": "https://github.blog/security/supply-chain-security/our-plan-for-a-more-secure-npm-supply-chain/"
+    }
+  ]
+}

@@ -1,0 +1,57 @@
+{
+  "advisory_ids": [
+    "GHSA-c2qf-rxjj-qqgw",
+    "CVE-2022-25883"
+  ],
+  "asset_sha256": {
+    "LICENSE.upstream": "4ec3d4c66cd87f5c8d8ad911b10f99bf27cb00cdfcff82621956e379186b016b",
+    "harness.toml": "da6d008af4b2de4ad189a219dfd2ca4df9f6b9acd5dbc63139d418de2ca87b30",
+    "oracle.mjs": "bf59ba7fb942f05deb5d603bccc93364f15f1365b9616c73995575e81bce6b04",
+    "reference.patch": "421e8c7b385e945a80e7625ae744778738140202d9a4390cd115aa6d95b52417",
+    "upstream.patch": "49db0037cb025ab4483ad7fd514f8838e488c8b7c0909ba9ffe60996600894e6"
+  },
+  "backport_implementation_paths": [
+    "semver.js"
+  ],
+  "base_commit": "39f632690ea5b1b0d64fa913aa0f96f42b9bde32",
+  "input_scope": "Experimental standalone inputs; no execution result is asserted.",
+  "instance_id": "semver",
+  "license": "ISC",
+  "maintainer_backport_commit": "928e56d21150da0413a3333a3148b20e741a920c",
+  "maintainer_backport_parent": "39f632690ea5b1b0d64fa913aa0f96f42b9bde32",
+  "package": "semver",
+  "patch_scope": "Implementation-only extracts of the maintainer commits; full commits can also change tests, metadata, or dependencies.",
+  "repository_url": "https://github.com/npm/node-semver.git",
+  "schema_version": 1,
+  "source_links": {
+    "base_commit": "https://github.com/npm/node-semver/commit/39f632690ea5b1b0d64fa913aa0f96f42b9bde32",
+    "maintainer_backport_commit": "https://github.com/npm/node-semver/commit/928e56d21150da0413a3333a3148b20e741a920c",
+    "upstream_fix_commit": "https://github.com/npm/node-semver/commit/717534ee353682f3bcf33e60a8af4292626d4441",
+    "upstream_parent_commit": "https://github.com/npm/node-semver/commit/2f738e9a70d9b9468b7b69e9ed3e12418725c650"
+  },
+  "source_snapshot_sha256": {
+    "maintainer_backport": "9e1673ab0188da628ab1a59a5db7be55df1b810947eb67209425c4946094de59",
+    "target_baseline": "fe4203ae25715d4e152536dd403c71cb1b5cca822f8726fc2696a87d746b5fda",
+    "upstream_fix": "2654492fd76f3308d85d4bd847119ba40b1c01645aa91852ea58bffb5c7018af",
+    "upstream_parent": "339dc60e55584eba36c50dfb44f736ac63762a8569f63e2ed09337c7ac3fe38c"
+  },
+  "target_test_paths": [
+    "test/index.js",
+    "test/re.js",
+    "test/whitespace.js"
+  ],
+  "upstream_fix_commit": "717534ee353682f3bcf33e60a8af4292626d4441",
+  "upstream_implementation_paths": [
+    "classes/comparator.js",
+    "classes/range.js",
+    "classes/semver.js",
+    "functions/coerce.js",
+    "internal/re.js"
+  ],
+  "upstream_parent_commit": "2f738e9a70d9b9468b7b69e9ed3e12418725c650",
+  "upstream_test_paths": [
+    "test/integration/whitespace.js",
+    "test/internal/re.js",
+    "test/map.js"
+  ]
+}

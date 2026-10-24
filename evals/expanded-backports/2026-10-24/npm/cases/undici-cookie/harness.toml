@@ -1,0 +1,16 @@
+[oracle]
+path = "oracle.mjs"
+security_test = "test_security"
+controls = ["test_plain_cookie", "test_samesite_strict"]
+failure_marker = "COOKIE_ENCODED_VALUE_PRESERVED"
+
+[runner]
+kind = "node"
+image = "sha256:7f5c9714117da799da5c0a107c52c999ccdf38f3b8b0d3a05cf50da7a08466d9"
+docker = ["sudo", "-n", "docker"]
+suite = ["test/cookie/cookies.js"]
+timeout_seconds = 120
+
+[runner.reviewed_submodules]
+"test/fixtures/cache-tests" = ["1000acb7071ed401a654160f13d27c2a8a0139cc"]
+"test/web-platform-tests/wpt" = ["d063bc956a9f24f874dfd7ce17e6d12149bc01d7"]

@@ -1,0 +1,98 @@
+{
+  "normalization_schema_version": 1,
+  "cohort": "initial-npm-20",
+  "case": "dot-prop",
+  "role": "reference",
+  "interpretation": "Setup, application or evidence remained inconclusive; this alone is not a confirmed harness defect.",
+  "execution_context": {
+    "exit_code": 2,
+    "timed_out": false,
+    "log_truncated": false,
+    "wheel_sha256": "fb1afe7d89a0cfd5a50ae6094f1b1a356cb57e6d187beba597d542fe8903c35c",
+    "driver_sha256": "44efbc782d4cbbebb7ecec44e491a9941e5dc2cdd1554eaf7616a307020ec306",
+    "freeze_sha256": "f5fa5b227de18954e8c22fed4b881688a4e93d13428769fa01e21c19ade9c083",
+    "case_assets_unchanged": true,
+    "caller_unchanged": true
+  },
+  "report": {
+    "schema_version": 2,
+    "status": "inconclusive",
+    "reason": "Verification prerequisites were not established: upstream_parent security: test execution contained errors or skipped tests",
+    "fix_commit": "3039c8c07f6fdaa8b595ec869ae0895686a7a0f2",
+    "parent_commit": "e0f8abf71164321caf1b20109000b08be506f227",
+    "target_commit": "70f7ed8e5dfe72c726bebe9cef5c85c1fb3cd767",
+    "image_id": "sha256:52f40f96867d88d68ced00067878ab5b917744d17f5649b82506f43e72d88cba",
+    "oracle_sha256": "0cd3e564b3fe2d67f2e6407e930b24ddad90cc549f7fdda365180ce54585094a",
+    "config_sha256": "45ce3253b30725acd8137c0c60ed2dc5b54c685647b0706dd4c05aed6008f39c",
+    "patch_sha256": null,
+    "attempts": 0,
+    "adaptation": "none",
+    "model_usage": {},
+    "reviewed_tests": null,
+    "reviewed_fixtures": {},
+    "reviewed_submodules": {},
+    "phases": [
+      {
+        "name": "upstream_parent",
+        "revision": "e0f8abf71164321caf1b20109000b08be506f227",
+        "security": {
+          "returncode": 1,
+          "timed_out": false,
+          "truncated": false,
+          "duration_seconds": 0.9688,
+          "evidence_error": null,
+          "tests": [
+            {
+              "name": "/oracle/oracle.mjs",
+              "classname": "/oracle/oracle.mjs::test",
+              "outcome": "error",
+              "expected_failure": false,
+              "original_message_sha256": "7f55e0223987df58d58dfe4f24145416b95cc6fc1b37a5929601fff8efc754ba"
+            }
+          ],
+          "command_sha256": "b0aef0d5bd75daf7808134565f5639427c54910d04e02b1dd1fb3a8ad7314a2c",
+          "missing_modules": [
+            "is-obj"
+          ],
+          "diagnostic_excerpts": [
+            "Error: Cannot find module 'is-obj'"
+          ],
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 0,
+          "stderr_sha256": "b1ff2a2c8886bc8f59a1f5ebf53028c7c0b9e430ca4339990996977a8d91a19b",
+          "stderr_bytes": 1222
+        },
+        "suite": {
+          "returncode": 1,
+          "timed_out": false,
+          "truncated": false,
+          "duration_seconds": 0.9416,
+          "evidence_error": null,
+          "tests": [
+            {
+              "name": "/work/repo/test.js",
+              "classname": "/work/repo/test.js::test",
+              "outcome": "error",
+              "expected_failure": false,
+              "original_message_sha256": "7f55e0223987df58d58dfe4f24145416b95cc6fc1b37a5929601fff8efc754ba"
+            }
+          ],
+          "command_sha256": "08cbe14897f8132df23742aa5c9c32278e645578847a002866c2a1672d38019a",
+          "missing_modules": [
+            "ava"
+          ],
+          "diagnostic_excerpts": [
+            "Error [ERR_MODULE_NOT_FOUND]: Cannot find package 'ava' imported from /work/repo/test.js"
+          ],
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 0,
+          "stderr_sha256": "a44a9a982a1a0141e8f1d54ca1596ec14f68ea41b66bfe8457e4717713ee050b",
+          "stderr_bytes": 1623
+        }
+      }
+    ]
+  },
+  "original_report_sha256": "20e543e55ffb5d63e38eba1a990d183234b1f17556a46a1b98cbde0ec42a60e2",
+  "original_command_record_sha256": "a178c27548e2525d31af444031ecd8c867b59361b9367c5608c14d4a350a1fa8",
+  "candidate_patch_inputs": []
+}

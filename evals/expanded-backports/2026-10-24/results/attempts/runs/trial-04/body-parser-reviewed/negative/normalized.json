@@ -1,0 +1,366 @@
+{
+  "normalization_schema_version": 1,
+  "cohort": "strengthened-oracle-controls",
+  "case": "body-parser-reviewed",
+  "role": "negative",
+  "interpretation": "Deliberately ineffective control was rejected.",
+  "execution_context": {
+    "exit_code": 1,
+    "timed_out": false,
+    "log_truncated": false,
+    "wheel_sha256": "fb1afe7d89a0cfd5a50ae6094f1b1a356cb57e6d187beba597d542fe8903c35c",
+    "driver_sha256": "44efbc782d4cbbebb7ecec44e491a9941e5dc2cdd1554eaf7616a307020ec306",
+    "freeze_sha256": "f5fa5b227de18954e8c22fed4b881688a4e93d13428769fa01e21c19ade9c083",
+    "case_assets_unchanged": true,
+    "caller_unchanged": true
+  },
+  "report": {
+    "schema_version": 2,
+    "status": "failed",
+    "reason": "backport: security regression still fails",
+    "fix_commit": "f7075eae3a84c3473ab4bf0a777da28db208e916",
+    "parent_commit": "185ff1d55598a60acf7e182239cae6662e564407",
+    "target_commit": "b4c2112ff66163da4304188edda5690e90f7c8a7",
+    "image_id": "sha256:52f40f96867d88d68ced00067878ab5b917744d17f5649b82506f43e72d88cba",
+    "oracle_sha256": "50ab040195625fe10a348659b382920809e8a666a684b2d9babdd31ea0b679ee",
+    "config_sha256": "d5c091aba5ad1372eb605f560d104a22fdd03d6cc09697bb83c6c4cc0f53eabc",
+    "patch_sha256": null,
+    "attempts": 1,
+    "adaptation": "provided_patch",
+    "model_usage": {},
+    "reviewed_tests": null,
+    "reviewed_fixtures": {},
+    "reviewed_submodules": {},
+    "phases": [
+      {
+        "name": "upstream_parent",
+        "revision": "185ff1d55598a60acf7e182239cae6662e564407",
+        "security": {
+          "returncode": 1,
+          "timed_out": false,
+          "truncated": false,
+          "duration_seconds": 0.9345,
+          "evidence_error": null,
+          "tests": [
+            {
+              "name": "test_security",
+              "classname": "/oracle/oracle.mjs::test",
+              "outcome": "failed",
+              "expected_failure": false,
+              "original_message_sha256": "79e56457524c3c0008d358731bc9eed52d15873c9ccc3085ab1e42d0d18d4a99"
+            },
+            {
+              "name": "test_plain_text",
+              "classname": "/oracle/oracle.mjs::test",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_compressed_text",
+              "classname": "/oracle/oracle.mjs::test",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_other_consumer_preserved",
+              "classname": "/oracle/oracle.mjs::test",
+              "outcome": "passed",
+              "expected_failure": false
+            }
+          ],
+          "command_sha256": "998bdcda3fc1220e3ac7242a514c8007df8716c58d94b5c1b62c60d8b350d1dd",
+          "missing_modules": [],
+          "diagnostic_excerpts": [
+            "AssertionError [ERR_ASSERTION]: CHARSET_CHECK_BEFORE_DECOMPRESSION"
+          ],
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 0,
+          "stderr_sha256": "7bdc73d832c12901017a3b4ee2e51f1658eca9f4190cfbae456bfe2b4f1397ba",
+          "stderr_bytes": 883
+        },
+        "suite": {
+          "returncode": 0,
+          "timed_out": false,
+          "truncated": false,
+          "duration_seconds": 0.8954,
+          "evidence_error": null,
+          "tests": [
+            {
+              "name": "should parse JSON",
+              "classname": "/work/repo/test/json.js::bodyParser.json()",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should handle Content-Length: 0",
+              "classname": "/work/repo/test/json.js::bodyParser.json()",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should handle duplicated middleware",
+              "classname": "/work/repo/test/json.js::bodyParser.json()",
+              "outcome": "passed",
+              "expected_failure": false
+            }
+          ],
+          "command_sha256": "8ed7f21f249322c68850703fd228c4e164482dca2595c0773b6c759527abd060",
+          "missing_modules": [],
+          "diagnostic_excerpts": [],
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr_bytes": 0
+        }
+      },
+      {
+        "name": "upstream_fix",
+        "revision": "f7075eae3a84c3473ab4bf0a777da28db208e916",
+        "security": {
+          "returncode": 0,
+          "timed_out": false,
+          "truncated": false,
+          "duration_seconds": 0.8912,
+          "evidence_error": null,
+          "tests": [
+            {
+              "name": "test_security",
+              "classname": "/oracle/oracle.mjs::test",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_plain_text",
+              "classname": "/oracle/oracle.mjs::test",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_compressed_text",
+              "classname": "/oracle/oracle.mjs::test",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_other_consumer_preserved",
+              "classname": "/oracle/oracle.mjs::test",
+              "outcome": "passed",
+              "expected_failure": false
+            }
+          ],
+          "command_sha256": "cc57681d94aac18639ab4483b21da28f5e2bb78a98242576234401d18739b228",
+          "missing_modules": [],
+          "diagnostic_excerpts": [],
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 0,
+          "stderr_sha256": "16ce219a1c969561e983eafaef06b284c548f2718425108b186869bb3a99ec0d",
+          "stderr_bytes": 264
+        },
+        "suite": {
+          "returncode": 0,
+          "timed_out": false,
+          "truncated": false,
+          "duration_seconds": 0.8928,
+          "evidence_error": null,
+          "tests": [
+            {
+              "name": "should parse JSON",
+              "classname": "/work/repo/test/json.js::bodyParser.json()",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should handle Content-Length: 0",
+              "classname": "/work/repo/test/json.js::bodyParser.json()",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should handle duplicated middleware",
+              "classname": "/work/repo/test/json.js::bodyParser.json()",
+              "outcome": "passed",
+              "expected_failure": false
+            }
+          ],
+          "command_sha256": "73239f3f9aae9c615b4226b186c0a7bc09f538796689f284f1c7a890eff16271",
+          "missing_modules": [],
+          "diagnostic_excerpts": [],
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr_bytes": 0
+        }
+      },
+      {
+        "name": "target_baseline",
+        "revision": "b4c2112ff66163da4304188edda5690e90f7c8a7",
+        "security": {
+          "returncode": 1,
+          "timed_out": false,
+          "truncated": false,
+          "duration_seconds": 0.9356,
+          "evidence_error": null,
+          "tests": [
+            {
+              "name": "test_security",
+              "classname": "/oracle/oracle.mjs::test",
+              "outcome": "failed",
+              "expected_failure": false,
+              "original_message_sha256": "79e56457524c3c0008d358731bc9eed52d15873c9ccc3085ab1e42d0d18d4a99"
+            },
+            {
+              "name": "test_plain_text",
+              "classname": "/oracle/oracle.mjs::test",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_compressed_text",
+              "classname": "/oracle/oracle.mjs::test",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_other_consumer_preserved",
+              "classname": "/oracle/oracle.mjs::test",
+              "outcome": "passed",
+              "expected_failure": false
+            }
+          ],
+          "command_sha256": "770ba5d6f09168b4d6655d7c5fa7ff83cc180fa1dc3680828184942030c34c1a",
+          "missing_modules": [],
+          "diagnostic_excerpts": [
+            "AssertionError [ERR_ASSERTION]: CHARSET_CHECK_BEFORE_DECOMPRESSION"
+          ],
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 0,
+          "stderr_sha256": "003d94efe660a35ec93989a0f4612a9be44c7f6617a7c6d2c2a21a30ad0d3da1",
+          "stderr_bytes": 884
+        },
+        "suite": {
+          "returncode": 0,
+          "timed_out": false,
+          "truncated": false,
+          "duration_seconds": 0.9418,
+          "evidence_error": null,
+          "tests": [
+            {
+              "name": "should parse JSON",
+              "classname": "/work/repo/test/json.js::bodyParser.json()",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should handle Content-Length: 0",
+              "classname": "/work/repo/test/json.js::bodyParser.json()",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should handle duplicated middleware",
+              "classname": "/work/repo/test/json.js::bodyParser.json()",
+              "outcome": "passed",
+              "expected_failure": false
+            }
+          ],
+          "command_sha256": "15bb4b036773d6820fd8662144ee909adc7b23ede94ed9d3cbce55d6fab0c762",
+          "missing_modules": [],
+          "diagnostic_excerpts": [],
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr_bytes": 0
+        }
+      },
+      {
+        "name": "backport",
+        "revision": "b4c2112ff66163da4304188edda5690e90f7c8a7",
+        "security": {
+          "returncode": 1,
+          "timed_out": false,
+          "truncated": false,
+          "duration_seconds": 0.885,
+          "evidence_error": null,
+          "tests": [
+            {
+              "name": "test_security",
+              "classname": "/oracle/oracle.mjs::test",
+              "outcome": "failed",
+              "expected_failure": false,
+              "original_message_sha256": "79e56457524c3c0008d358731bc9eed52d15873c9ccc3085ab1e42d0d18d4a99"
+            },
+            {
+              "name": "test_plain_text",
+              "classname": "/oracle/oracle.mjs::test",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_compressed_text",
+              "classname": "/oracle/oracle.mjs::test",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_other_consumer_preserved",
+              "classname": "/oracle/oracle.mjs::test",
+              "outcome": "passed",
+              "expected_failure": false
+            }
+          ],
+          "command_sha256": "770ba5d6f09168b4d6655d7c5fa7ff83cc180fa1dc3680828184942030c34c1a",
+          "missing_modules": [],
+          "diagnostic_excerpts": [
+            "AssertionError [ERR_ASSERTION]: CHARSET_CHECK_BEFORE_DECOMPRESSION"
+          ],
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 0,
+          "stderr_sha256": "f265ce61bc5c8c60a8813cf7ff1b1d85661c3a36efd2bbf77659b241c6a1c88e",
+          "stderr_bytes": 883
+        },
+        "suite": {
+          "returncode": 0,
+          "timed_out": false,
+          "truncated": false,
+          "duration_seconds": 0.8991,
+          "evidence_error": null,
+          "tests": [
+            {
+              "name": "should parse JSON",
+              "classname": "/work/repo/test/json.js::bodyParser.json()",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should handle Content-Length: 0",
+              "classname": "/work/repo/test/json.js::bodyParser.json()",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should handle duplicated middleware",
+              "classname": "/work/repo/test/json.js::bodyParser.json()",
+              "outcome": "passed",
+              "expected_failure": false
+            }
+          ],
+          "command_sha256": "15bb4b036773d6820fd8662144ee909adc7b23ede94ed9d3cbce55d6fab0c762",
+          "missing_modules": [],
+          "diagnostic_excerpts": [],
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr_bytes": 0
+        }
+      }
+    ]
+  },
+  "original_report_sha256": "0c3416dd9985971d8eed7b2e03740279b878554b13432e7d33cdff4d1447ffcc",
+  "original_command_record_sha256": "86f722ed977cb8460486c08e8a95fe212d01b32ae658ce9614be146af18643bc",
+  "candidate_patch_inputs": [
+    {
+      "original_filename": "attempt-1.patch",
+      "sha256": "c6f9e19ddb22b42804ba26f2fdd45f32bd616f9edaf509d4ae32d0a84cac37fe"
+    }
+  ]
+}

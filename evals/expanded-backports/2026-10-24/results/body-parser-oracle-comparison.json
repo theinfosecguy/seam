@@ -1,0 +1,192 @@
+{
+  "finding": "Confirmed oracle coverage gap; the oracle was strengthened without changing the execution runtime.",
+  "explanation": "The original model patch passed the charset security check and selected body-parsing controls, but disconnected another legitimate stream consumer. The original oracle did not cover that behavior. A new control rejects the same patch while the maintainer reference passes.",
+  "identical_patch_replayed": true,
+  "identical_source_revisions_and_image": true,
+  "runtime_source_commit": "1732e46",
+  "scope": "Original results remain preserved. The fresh strengthened attempt is a separate followup on the same public case, not an extra unseen task.",
+  "compatibility_limit": "The strengthened control and fresh patch were validated on Node 24. Compatibility with the package's historical declared Node >=0.8 range and complete maintainer cleanup semantics were not established.",
+  "comparisons": [
+    {
+      "role": "original_model",
+      "source_report": "model-runs/body-parser/model/report.json",
+      "status": "verified",
+      "reason": "All four revisions met the frozen security and compatibility checks.",
+      "patch_sha256": "74edd8d057ec36bf447f4358fbaeff954991d609ec1301aedffd65aae02a1423",
+      "candidate_patch_sha256": "6767e731209f674fa6a8354f9f31ed532eb8c4c95b4934c1185737bcce5d1d13",
+      "oracle_sha256": "e742166348a9258d2deadd2355fd6cadb274cfa713aebc1c3cd4a9e64b85b270",
+      "backport_tests": [
+        {
+          "name": "test_security",
+          "outcome": "passed",
+          "failure_marker": null
+        },
+        {
+          "name": "test_plain_text",
+          "outcome": "passed",
+          "failure_marker": null
+        },
+        {
+          "name": "test_compressed_text",
+          "outcome": "passed",
+          "failure_marker": null
+        }
+      ]
+    },
+    {
+      "role": "same_model_patch_replayed",
+      "source_report": "runs/trial-04/body-parser-model-replay/reference/report.json",
+      "status": "failed",
+      "reason": "backport: normal-behavior controls failed",
+      "patch_sha256": null,
+      "candidate_patch_sha256": "74edd8d057ec36bf447f4358fbaeff954991d609ec1301aedffd65aae02a1423",
+      "oracle_sha256": "50ab040195625fe10a348659b382920809e8a666a684b2d9babdd31ea0b679ee",
+      "backport_tests": [
+        {
+          "name": "test_security",
+          "outcome": "passed",
+          "failure_marker": null
+        },
+        {
+          "name": "test_plain_text",
+          "outcome": "passed",
+          "failure_marker": null
+        },
+        {
+          "name": "test_compressed_text",
+          "outcome": "passed",
+          "failure_marker": null
+        },
+        {
+          "name": "test_other_consumer_preserved",
+          "outcome": "failed",
+          "failure_marker": "UNRELATED_CONSUMER_PRESERVED"
+        }
+      ]
+    },
+    {
+      "role": "maintainer_reference",
+      "source_report": "runs/trial-04/body-parser-reviewed/reference/report.json",
+      "status": "verified",
+      "reason": "All four revisions met the frozen security and compatibility checks.",
+      "patch_sha256": "2f8907bc16e704225c8eeb62e778e57ec17677e8a5025890826418e17534e995",
+      "candidate_patch_sha256": "2f8907bc16e704225c8eeb62e778e57ec17677e8a5025890826418e17534e995",
+      "oracle_sha256": "50ab040195625fe10a348659b382920809e8a666a684b2d9babdd31ea0b679ee",
+      "backport_tests": [
+        {
+          "name": "test_security",
+          "outcome": "passed",
+          "failure_marker": null
+        },
+        {
+          "name": "test_plain_text",
+          "outcome": "passed",
+          "failure_marker": null
+        },
+        {
+          "name": "test_compressed_text",
+          "outcome": "passed",
+          "failure_marker": null
+        },
+        {
+          "name": "test_other_consumer_preserved",
+          "outcome": "passed",
+          "failure_marker": null
+        }
+      ]
+    },
+    {
+      "role": "maintainer_reference_repeat",
+      "source_report": "runs/trial-04/body-parser-reviewed/repeat/report.json",
+      "status": "verified",
+      "reason": "All four revisions met the frozen security and compatibility checks.",
+      "patch_sha256": "2f8907bc16e704225c8eeb62e778e57ec17677e8a5025890826418e17534e995",
+      "candidate_patch_sha256": "2f8907bc16e704225c8eeb62e778e57ec17677e8a5025890826418e17534e995",
+      "oracle_sha256": "50ab040195625fe10a348659b382920809e8a666a684b2d9babdd31ea0b679ee",
+      "backport_tests": [
+        {
+          "name": "test_security",
+          "outcome": "passed",
+          "failure_marker": null
+        },
+        {
+          "name": "test_plain_text",
+          "outcome": "passed",
+          "failure_marker": null
+        },
+        {
+          "name": "test_compressed_text",
+          "outcome": "passed",
+          "failure_marker": null
+        },
+        {
+          "name": "test_other_consumer_preserved",
+          "outcome": "passed",
+          "failure_marker": null
+        }
+      ]
+    },
+    {
+      "role": "ineffective_control",
+      "source_report": "runs/trial-04/body-parser-reviewed/negative/report.json",
+      "status": "failed",
+      "reason": "backport: security regression still fails",
+      "patch_sha256": null,
+      "candidate_patch_sha256": "c6f9e19ddb22b42804ba26f2fdd45f32bd616f9edaf509d4ae32d0a84cac37fe",
+      "oracle_sha256": "50ab040195625fe10a348659b382920809e8a666a684b2d9babdd31ea0b679ee",
+      "backport_tests": [
+        {
+          "name": "test_security",
+          "outcome": "failed",
+          "failure_marker": "CHARSET_CHECK_BEFORE_DECOMPRESSION"
+        },
+        {
+          "name": "test_plain_text",
+          "outcome": "passed",
+          "failure_marker": null
+        },
+        {
+          "name": "test_compressed_text",
+          "outcome": "passed",
+          "failure_marker": null
+        },
+        {
+          "name": "test_other_consumer_preserved",
+          "outcome": "passed",
+          "failure_marker": null
+        }
+      ]
+    },
+    {
+      "role": "fresh_model_with_strengthened_oracle",
+      "source_report": "model-runs/body-parser-reviewed/model/report.json",
+      "status": "verified",
+      "reason": "All four revisions met the frozen security and compatibility checks.",
+      "patch_sha256": "39ff3854ddad02916c3dab875d39fb1c4f39f863100d78b2cc4d7dfab31d0888",
+      "candidate_patch_sha256": "fec8cce2f3c89b92238ef027ab5917d1b1652fd98aeea0ab3f0fec280ec6a041",
+      "oracle_sha256": "50ab040195625fe10a348659b382920809e8a666a684b2d9babdd31ea0b679ee",
+      "backport_tests": [
+        {
+          "name": "test_security",
+          "outcome": "passed",
+          "failure_marker": null
+        },
+        {
+          "name": "test_plain_text",
+          "outcome": "passed",
+          "failure_marker": null
+        },
+        {
+          "name": "test_compressed_text",
+          "outcome": "passed",
+          "failure_marker": null
+        },
+        {
+          "name": "test_other_consumer_preserved",
+          "outcome": "passed",
+          "failure_marker": null
+        }
+      ]
+    }
+  ]
+}

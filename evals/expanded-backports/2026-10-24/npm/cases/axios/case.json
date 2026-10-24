@@ -1,0 +1,52 @@
+{
+  "advisory_ids": [
+    "GHSA-jr5f-v2jv-69x6",
+    "CVE-2025-27152"
+  ],
+  "asset_sha256": {
+    "LICENSE.upstream": "82761059eaedacb3356803aea8a170d8298609f91b14fc32ee1bfb40d690183c",
+    "harness.toml": "46e1f5725e18c7ee70b1b75c2af4c0b068ba09d5219e21d289c1ce89f8233c2f",
+    "oracle.mjs": "71da898ccf742f0fde783064e2ea3e921cdd7b744527cec7695faea6ffdc5f1e",
+    "reference.patch": "f3ea68e4fb50059fdfdca6d9bb4c4d784e39b476ab11367af9c7fb6def025bfe",
+    "upstream.patch": "0c38bc0616239a311022624b0af1b2070a61a93224a7dfa86956f42d662225e7"
+  },
+  "backport_implementation_paths": [
+    "lib/adapters/http.js",
+    "lib/adapters/xhr.js",
+    "lib/core/Axios.js",
+    "lib/core/buildFullPath.js"
+  ],
+  "base_commit": "8603e677c09fb81bd106999c194308dd230bc596",
+  "input_scope": "Experimental standalone inputs; no execution result is asserted.",
+  "instance_id": "axios",
+  "license": "MIT",
+  "maintainer_backport_commit": "02c3c69ced0f8fd86407c23203835892313d7fde",
+  "maintainer_backport_parent": "8603e677c09fb81bd106999c194308dd230bc596",
+  "package": "axios",
+  "patch_scope": "Implementation-only extracts of the maintainer commits; full commits can also change tests, metadata, or dependencies.",
+  "repository_url": "https://github.com/axios/axios.git",
+  "schema_version": 1,
+  "source_links": {
+    "base_commit": "https://github.com/axios/axios/commit/8603e677c09fb81bd106999c194308dd230bc596",
+    "maintainer_backport_commit": "https://github.com/axios/axios/commit/02c3c69ced0f8fd86407c23203835892313d7fde",
+    "upstream_fix_commit": "https://github.com/axios/axios/commit/fb8eec214ce7744b5ca787f2c3b8339b2f54b00f",
+    "upstream_parent_commit": "https://github.com/axios/axios/commit/98120457559e573024862e2925d56295a965ad7e"
+  },
+  "source_snapshot_sha256": {
+    "maintainer_backport": "d5e0b1d7a3d2248275b10b0d33d97bcd7821edb6d0404c6849362dad135a4e98",
+    "target_baseline": "699fe5d300d36fe29883de6de83731dc1224fc3beda3804e96904e5037eecb56",
+    "upstream_fix": "24cdd9183a74a0ec8d71b105f8d95756a8e25d8f31778cce1676a84f92d28404",
+    "upstream_parent": "a84fd0d56ce5aba557b209771246234006edb8db4c49241e8a46af12a56de58b"
+  },
+  "target_test_paths": [
+    "test/unit/adapters/http.js"
+  ],
+  "upstream_fix_commit": "fb8eec214ce7744b5ca787f2c3b8339b2f54b00f",
+  "upstream_implementation_paths": [
+    "lib/adapters/http.js"
+  ],
+  "upstream_parent_commit": "98120457559e573024862e2925d56295a965ad7e",
+  "upstream_test_paths": [
+    "test/unit/adapters/http.js"
+  ]
+}

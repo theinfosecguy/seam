@@ -1,0 +1,44 @@
+{
+  "source_repository": "https://github.com/coxhin/BackportBench",
+  "source_commit": "a7bb4ed2632305f1c7ef0bc81cf6b751e5d4c292",
+  "label_file_sha256": "df3ad4fccba9c4ab4eb1fef6933afd71c9d7a6f60ba632be8109ca65599d28ee",
+  "confirmed_pair_file_sha256": "9bec5bde5f6289c6f70f88191adc17473d2eecae7d5421edc415bf169381f01a",
+  "baseline_catalogue_sha256": "c434d00ccf89eae7ffbde76fb743f22589eab572d20f1fe229b01afd26d306e0",
+  "baseline_catalogue_libraries": 25,
+  "npm": {
+    "pairs": 71,
+    "distinct_advisories": 42,
+    "exact_pair_overlaps": 6,
+    "additional_pairs": 65,
+    "additional_advisories": 36,
+    "additional_repositories": [
+      "ag-grid",
+      "angular",
+      "apollo-server",
+      "async",
+      "bl",
+      "express-restify-mongoose",
+      "fastify-bearer-auth",
+      "fastify-websocket",
+      "feathers",
+      "file-type",
+      "ftp-srv",
+      "jose",
+      "jquery",
+      "minimist",
+      "node-tar",
+      "npm",
+      "socket.io-parser",
+      "ssri",
+      "terser",
+      "tinymce",
+      "vite",
+      "xmldom"
+    ]
+  },
+  "python": {
+    "pairs": 264,
+    "repositories": 27
+  },
+  "evidence_status": "Author-labeled candidates with exact public advisory/commit links; metadata discovery, not additional independently qualified evaluations."
+}

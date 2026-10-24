@@ -1,0 +1,26 @@
+{
+  "library": "Django",
+  "case_id": "django-language-cache",
+  "repository_url": "https://github.com/django/django",
+  "advisory_ids": [
+    "CVE-2026-77050"
+  ],
+  "advertised_heads": {
+    "source-parent": "08e4c0d8e7db6343567e7b02e25da8ea2226a7e0",
+    "source-fix": "c88b304cc2d90fc37d3bd1f5f3829706fa6c13bc",
+    "target-baseline": "f59aef2ee9b5c988fd4179d8f2835030bd76297c",
+    "target-backport": "02a69e3791e3df23d45ea4ea7e7fc489f0eef2be"
+  },
+  "implementation_paths": [
+    "django/utils/translation/trans_real.py"
+  ],
+  "input_sha256": {
+    "LICENSE.upstream": "b846415d1b514e9c1dff14a22deb906d794bc546ca6129f950a18cd091e2a669",
+    "reference.patch": "af514b4988ab5b51911b8414f1b0e24f6832e99a4c9c199a57756c0188b6ca10",
+    "runtime-requirements.json": "733526196139e65fef105e8f37b790cdf559ae029c4e8621c14862cde9ef218a",
+    "upstream-implementation.patch": "0b2a03739083fb42c0d87a44f82b98662d5816280ccf4f54087f3699d330d6f1",
+    "harness.toml": "a81e585251ce3458e8fb51e64d91450d18527b654e2cf28d9b123c66586f1b7a",
+    "oracle.py": "32e4af5b3a12e0fb1da25210f5588a5b34e508ed945ff5312446e2a5a4148cd5"
+  },
+  "runtime": "Staged source imports under Python 3.12.12; no target package build."
+}

@@ -1,0 +1,39 @@
+{
+  "normalization_schema_version": 1,
+  "cohort": "initial-npm-20",
+  "case": "path-to-regexp",
+  "role": "reference",
+  "interpretation": "Setup, application or evidence remained inconclusive; this alone is not a confirmed harness defect.",
+  "execution_context": {
+    "exit_code": 2,
+    "timed_out": false,
+    "log_truncated": false,
+    "wheel_sha256": "fb1afe7d89a0cfd5a50ae6094f1b1a356cb57e6d187beba597d542fe8903c35c",
+    "driver_sha256": "44efbc782d4cbbebb7ecec44e491a9941e5dc2cdd1554eaf7616a307020ec306",
+    "freeze_sha256": "f5fa5b227de18954e8c22fed4b881688a4e93d13428769fa01e21c19ade9c083",
+    "case_assets_unchanged": true,
+    "caller_unchanged": true
+  },
+  "report": {
+    "schema_version": 2,
+    "status": "inconclusive",
+    "reason": "Run could not complete: fix includes unsupported changed file: package-lock.json; only ordinary javascript implementation changes can be backported",
+    "fix_commit": "925ac8e3c5780b02f58cbd4e52f95da8ad2ac485",
+    "parent_commit": "32a14b0185ab23c1afae6dd7b624a01ce68fd470",
+    "target_commit": "ac4c2345622a10a09c7ec229e3c29740935d67d7",
+    "image_id": null,
+    "oracle_sha256": "291a4037bdb1bd1ed2b34c7b72900ebb4c8f4ecbc70ed06e7aaa0372f96883fc",
+    "config_sha256": "3020ecf118b8653648b6cf309966e6ca103be2abafa08b8840f6776ffadfd180",
+    "patch_sha256": null,
+    "attempts": 0,
+    "adaptation": "none",
+    "model_usage": {},
+    "reviewed_tests": null,
+    "reviewed_fixtures": {},
+    "reviewed_submodules": {},
+    "phases": []
+  },
+  "original_report_sha256": "1dfc0049640e41400fea5772a3eb8462ff33f088901ec33394f990b289940a2a",
+  "original_command_record_sha256": "7c021418ca38d96416a05d9222451f458574832199f2c79180253a25bcd87449",
+  "candidate_patch_inputs": []
+}

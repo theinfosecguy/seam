@@ -1,0 +1,108 @@
+{
+  "normalization_schema_version": 1,
+  "cohort": "initial-npm-20",
+  "case": "ansi-regex",
+  "role": "reference",
+  "interpretation": "Setup, application or evidence remained inconclusive; this alone is not a confirmed harness defect.",
+  "execution_context": {
+    "exit_code": 2,
+    "timed_out": false,
+    "log_truncated": false,
+    "wheel_sha256": "fb1afe7d89a0cfd5a50ae6094f1b1a356cb57e6d187beba597d542fe8903c35c",
+    "driver_sha256": "44efbc782d4cbbebb7ecec44e491a9941e5dc2cdd1554eaf7616a307020ec306",
+    "freeze_sha256": "f5fa5b227de18954e8c22fed4b881688a4e93d13428769fa01e21c19ade9c083",
+    "case_assets_unchanged": true,
+    "caller_unchanged": true
+  },
+  "report": {
+    "schema_version": 2,
+    "status": "inconclusive",
+    "reason": "Verification prerequisites were not established: upstream_parent suite: test execution contained errors or skipped tests",
+    "fix_commit": "8d1d7cdb586269882c4bdc1b7325d0c58c8f76f9",
+    "parent_commit": "c1b5e45f7c65a332ffb03ac8e5804ad37c579cdc",
+    "target_commit": "178363b3a297b712a0054e702d8ddde3879913e5",
+    "image_id": "sha256:52f40f96867d88d68ced00067878ab5b917744d17f5649b82506f43e72d88cba",
+    "oracle_sha256": "fd3a33a4a2ba92d48d1d9cbeead7d5e3e2091d43b4fe3053ab794db8587e45ea",
+    "config_sha256": "d3c57914d38d71fb67aa8b56b52fa7d09ae532d7b5de06c8853ac681e3e57803",
+    "patch_sha256": null,
+    "attempts": 0,
+    "adaptation": "none",
+    "model_usage": {},
+    "reviewed_tests": null,
+    "reviewed_fixtures": {},
+    "reviewed_submodules": {},
+    "phases": [
+      {
+        "name": "upstream_parent",
+        "revision": "c1b5e45f7c65a332ffb03ac8e5804ad37c579cdc",
+        "security": {
+          "returncode": 1,
+          "timed_out": false,
+          "truncated": false,
+          "duration_seconds": 2.1823,
+          "evidence_error": null,
+          "tests": [
+            {
+              "name": "test_security",
+              "classname": "/oracle/oracle.mjs::test",
+              "outcome": "failed",
+              "expected_failure": false,
+              "original_message_sha256": "d17a2b3fae8008b9f7f1170a5dc479aeafcb7aca594a7a49d1f2ea6ba40f50db"
+            },
+            {
+              "name": "test_ordinary_escape",
+              "classname": "/oracle/oracle.mjs::test",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_ordinary_text",
+              "classname": "/oracle/oracle.mjs::test",
+              "outcome": "passed",
+              "expected_failure": false
+            }
+          ],
+          "command_sha256": "b0aef0d5bd75daf7808134565f5639427c54910d04e02b1dd1fb3a8ad7314a2c",
+          "missing_modules": [],
+          "diagnostic_excerpts": [
+            "AssertionError [ERR_ASSERTION]: ANSI_REGEX_BOUNDED_WORK"
+          ],
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 0,
+          "stderr_sha256": "8eb846b1c34165af2b4ac04b723eb2e39d3887b2e6d0f7b90584c17db100b3d1",
+          "stderr_bytes": 846
+        },
+        "suite": {
+          "returncode": 1,
+          "timed_out": false,
+          "truncated": false,
+          "duration_seconds": 0.5865,
+          "evidence_error": null,
+          "tests": [
+            {
+              "name": "/work/repo/test.js",
+              "classname": "/work/repo/test.js::test",
+              "outcome": "error",
+              "expected_failure": false,
+              "original_message_sha256": "7f55e0223987df58d58dfe4f24145416b95cc6fc1b37a5929601fff8efc754ba"
+            }
+          ],
+          "command_sha256": "08cbe14897f8132df23742aa5c9c32278e645578847a002866c2a1672d38019a",
+          "missing_modules": [
+            "ava"
+          ],
+          "diagnostic_excerpts": [
+            "Error [ERR_MODULE_NOT_FOUND]: Cannot find package 'ava' imported from /work/repo/test.js"
+          ],
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 0,
+          "stderr_sha256": "6d8aa534097356be88c3b5cd60f03f790cd6ccbf1a903936619b00299b867557",
+          "stderr_bytes": 1238
+        }
+      }
+    ]
+  },
+  "original_report_sha256": "3a5239ef895fba090f8a9cbf9190c6560ae2b7ca3f34de32b8cd1b3b40b2ce8a",
+  "original_command_record_sha256": "b0d6f24c25d9d9e4b543a560a976d9ac5587d4bd8b30adfd1207cb22aa3a01a4",
+  "candidate_patch_inputs": []
+}

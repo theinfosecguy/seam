@@ -1,0 +1,49 @@
+{
+  "advisory_ids": [
+    "GHSA-93q8-gq69-wqmw",
+    "CVE-2021-3807"
+  ],
+  "asset_sha256": {
+    "LICENSE.upstream": "5c932d88256b4ab958f64a856fa48e8bd1f55bc1d96b8149c65689e0c61789d3",
+    "harness.toml": "61e0aa231608959954b5706cab7a7c60bd9f35d2d2ebb95155d034bc7b54a540",
+    "oracle.mjs": "fd3a33a4a2ba92d48d1d9cbeead7d5e3e2091d43b4fe3053ab794db8587e45ea",
+    "reference.patch": "46de3f3dd7de229a7d07e45f5b66da914a2cae32ce18488b41374a98517eecfd",
+    "upstream.patch": "fc88704f69a000692e78064486a79be0a0920aae0281195eda0323fb02a7e416"
+  },
+  "backport_implementation_paths": [
+    "index.js"
+  ],
+  "base_commit": "178363b3a297b712a0054e702d8ddde3879913e5",
+  "input_scope": "Experimental standalone inputs; no execution result is asserted.",
+  "instance_id": "ansi-regex",
+  "license": "MIT",
+  "maintainer_backport_commit": "c3c0b3f2736b9c01feec0fef33980c43720dcde8",
+  "maintainer_backport_parent": "178363b3a297b712a0054e702d8ddde3879913e5",
+  "package": "ansi-regex",
+  "patch_scope": "Implementation-only extracts of the maintainer commits; full commits can also change tests, metadata, or dependencies.",
+  "repository_url": "https://github.com/chalk/ansi-regex.git",
+  "schema_version": 1,
+  "source_links": {
+    "base_commit": "https://github.com/chalk/ansi-regex/commit/178363b3a297b712a0054e702d8ddde3879913e5",
+    "maintainer_backport_commit": "https://github.com/chalk/ansi-regex/commit/c3c0b3f2736b9c01feec0fef33980c43720dcde8",
+    "upstream_fix_commit": "https://github.com/chalk/ansi-regex/commit/8d1d7cdb586269882c4bdc1b7325d0c58c8f76f9",
+    "upstream_parent_commit": "https://github.com/chalk/ansi-regex/commit/c1b5e45f7c65a332ffb03ac8e5804ad37c579cdc"
+  },
+  "source_snapshot_sha256": {
+    "maintainer_backport": "c45457543abc62a2af82437c51daf11485c485a477e7b245fab362d4cda9e5ce",
+    "target_baseline": "ee0643d894d8a66e4319b471e378fd263135fa992f01cfe8f5149f6b291eda0a",
+    "upstream_fix": "e19fd7b10087435fb80adfe0a6a8ac3276607647c200ec9b3fe03276c33d3a8e",
+    "upstream_parent": "a1beb252a29a4917e59647ba83f303e5406f1ebe0a0d7790f6e93e2700a2d36e"
+  },
+  "target_test_paths": [
+    "test.js"
+  ],
+  "upstream_fix_commit": "8d1d7cdb586269882c4bdc1b7325d0c58c8f76f9",
+  "upstream_implementation_paths": [
+    "index.js"
+  ],
+  "upstream_parent_commit": "c1b5e45f7c65a332ffb03ac8e5804ad37c579cdc",
+  "upstream_test_paths": [
+    "test.js"
+  ]
+}

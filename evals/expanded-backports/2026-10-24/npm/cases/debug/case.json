@@ -1,0 +1,49 @@
+{
+  "advisory_ids": [
+    "GHSA-9vvw-cc9w-f27h",
+    "CVE-2017-20165"
+  ],
+  "asset_sha256": {
+    "LICENSE.upstream": "98c970de440dcfc77471610aec2377c9d9b0db2b3be6d1add524a586e1d7f422",
+    "harness.toml": "521c4883a16397d310081c8981b91b43cc433b05cf629b7e4766679d03712ba6",
+    "oracle.mjs": "6e7360926df633b497c945d784e04e4157fdb69e4c68bf93a97fb33c46544455",
+    "reference.patch": "1eb7b2a904d85adfb4c50813e22b45185d0e51bab980d0668a40741c74942e7c",
+    "upstream.patch": "8cd5d23438359f499139eb3fe7c92c5d6f62229d3e2c12b07b1be6c1c340abc6"
+  },
+  "backport_implementation_paths": [
+    "src/node.js"
+  ],
+  "base_commit": "52e1f21284322f167839e5d3a60f635c8b2dc842",
+  "input_scope": "Experimental standalone inputs; no execution result is asserted.",
+  "instance_id": "debug",
+  "license": "MIT",
+  "maintainer_backport_commit": "f53962e944a87e6ca9bb622a2a12dffc22a9bb5a",
+  "maintainer_backport_parent": "52e1f21284322f167839e5d3a60f635c8b2dc842",
+  "package": "debug",
+  "patch_scope": "Implementation-only extracts of the maintainer commits; full commits can also change tests, metadata, or dependencies.",
+  "repository_url": "https://github.com/debug-js/debug.git",
+  "schema_version": 1,
+  "source_links": {
+    "base_commit": "https://github.com/debug-js/debug/commit/52e1f21284322f167839e5d3a60f635c8b2dc842",
+    "maintainer_backport_commit": "https://github.com/debug-js/debug/commit/f53962e944a87e6ca9bb622a2a12dffc22a9bb5a",
+    "upstream_fix_commit": "https://github.com/debug-js/debug/commit/c38a0166c266a679c8de012d4eaccec3f944e685",
+    "upstream_parent_commit": "https://github.com/debug-js/debug/commit/47747f329fe159e94262318b52b87a48f6c0acd4"
+  },
+  "source_snapshot_sha256": {
+    "maintainer_backport": "843156792241418e23eede55f309378a870d37bf3be7231cdf5ff0fecaf84aba",
+    "target_baseline": "d72900c752a40f893ddd17b8e9fa9151da3b543765e46b93610de1faef5d3201",
+    "upstream_fix": "3d9d19c3f1497e5d81c43b0fd945c9fac6205a4cd9a9ade30e41d511cbb824ee",
+    "upstream_parent": "09d306973f74203f409e0bfecf22228b3091f98a133349414ecb56eed90f318a"
+  },
+  "target_test_paths": [
+    "test/debug_spec.js"
+  ],
+  "upstream_fix_commit": "c38a0166c266a679c8de012d4eaccec3f944e685",
+  "upstream_implementation_paths": [
+    "src/node.js"
+  ],
+  "upstream_parent_commit": "47747f329fe159e94262318b52b87a48f6c0acd4",
+  "upstream_test_paths": [
+    "test/debug_spec.js"
+  ]
+}

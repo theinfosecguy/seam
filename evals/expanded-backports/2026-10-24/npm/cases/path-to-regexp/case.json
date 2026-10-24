@@ -1,0 +1,50 @@
+{
+  "advisory_ids": [
+    "GHSA-9wv6-86v2-598j",
+    "CVE-2024-45296"
+  ],
+  "asset_sha256": {
+    "LICENSE.upstream": "4eeb3271453a891df609e5a9f4ee79a68307f730c13417a3bfeffa604ac8cf25",
+    "harness.toml": "02513901edadfdc2d5b577596004fe3b91c2b75d61dda7a5560dd5ddb2baa157",
+    "oracle.mjs": "291a4037bdb1bd1ed2b34c7b72900ebb4c8f4ecbc70ed06e7aaa0372f96883fc",
+    "reference.patch": "a4857cb3ed87b6ff8a3ab3e6ad1259745bb0c52fc129675a589dd177cd84ba1e",
+    "upstream.patch": "98c9fbe5ef8413b66cefa5f1fb5a1bcacc97bc48c6d97e5ca33e4ae6016e97bb"
+  },
+  "backport_implementation_paths": [
+    "index.js"
+  ],
+  "base_commit": "ac4c2345622a10a09c7ec229e3c29740935d67d7",
+  "input_scope": "Experimental standalone inputs; no execution result is asserted.",
+  "instance_id": "path-to-regexp",
+  "license": "MIT",
+  "maintainer_backport_commit": "29b96b4a1de52824e1ca0f49a701183cc4ed476f",
+  "maintainer_backport_parent": "ac4c2345622a10a09c7ec229e3c29740935d67d7",
+  "package": "path-to-regexp",
+  "patch_scope": "Implementation-only extracts of the maintainer commits; full commits can also change tests, metadata, or dependencies.",
+  "repository_url": "https://github.com/pillarjs/path-to-regexp.git",
+  "schema_version": 1,
+  "source_links": {
+    "base_commit": "https://github.com/pillarjs/path-to-regexp/commit/ac4c2345622a10a09c7ec229e3c29740935d67d7",
+    "maintainer_backport_commit": "https://github.com/pillarjs/path-to-regexp/commit/29b96b4a1de52824e1ca0f49a701183cc4ed476f",
+    "upstream_fix_commit": "https://github.com/pillarjs/path-to-regexp/commit/925ac8e3c5780b02f58cbd4e52f95da8ad2ac485",
+    "upstream_parent_commit": "https://github.com/pillarjs/path-to-regexp/commit/32a14b0185ab23c1afae6dd7b624a01ce68fd470"
+  },
+  "source_snapshot_sha256": {
+    "maintainer_backport": "ceaa0c9fcd22d2fdeab979cd4e7eb5dbe0260afdf72b3f355d74acdd99a96d5f",
+    "target_baseline": "34b447b9fff2583c22580104752984003481033ec2a2b73d0f9a8b306ce1d683",
+    "upstream_fix": "e711c5235e1ee3677e2ea0e8deb0017b9724450365c6387e4164d48f183273c3",
+    "upstream_parent": "759cad0990853274bc1f0781e0a69b4d6f9f5d9ad3af96c44105b6dc1bd08b95"
+  },
+  "target_test_paths": [
+    "test.js"
+  ],
+  "upstream_fix_commit": "925ac8e3c5780b02f58cbd4e52f95da8ad2ac485",
+  "upstream_implementation_paths": [
+    "index.js"
+  ],
+  "upstream_parent_commit": "32a14b0185ab23c1afae6dd7b624a01ce68fd470",
+  "upstream_test_paths": [
+    "test.ts",
+    "test.js"
+  ]
+}

@@ -1,0 +1,130 @@
+{
+  "Paramiko": {
+    "url": "https://launchpad.net/ubuntu/+archive/primary/+sourcefiles/paramiko/2.9.3-0ubuntu1.2/paramiko_2.9.3-0ubuntu1.2.dsc",
+    "resolved_url": "https://launchpadlibrarian.net/710944091/paramiko_2.9.3-0ubuntu1.2.dsc",
+    "status": "public_metadata_retrieved",
+    "sha256": "103c6e1f5acf0b6641277d1309302f35bd9674bb922e789f8c0071606150121a",
+    "bytes": 2488,
+    "scope": "Signed source-package descriptor retrieved without credentials; source archive checksums are listed but source archives were not downloaded or executed."
+  },
+  "aiohttp": {
+    "url": "https://launchpad.net/ubuntu/+archive/primary/+sourcefiles/python-aiohttp/3.9.1-1ubuntu0.1/python-aiohttp_3.9.1-1ubuntu0.1.dsc",
+    "resolved_url": "https://launchpadlibrarian.net/745711920/python-aiohttp_3.9.1-1ubuntu0.1.dsc",
+    "status": "public_metadata_retrieved",
+    "sha256": "f68af19e438d1125b11884d544240a6f8664f1debf7ea72126d17d1db4b4ac10",
+    "bytes": 2681,
+    "scope": "Signed source-package descriptor retrieved without credentials; source archive checksums are listed but source archives were not downloaded or executed."
+  },
+  "cryptography": {
+    "url": "https://launchpad.net/ubuntu/+archive/primary/+sourcefiles/python-cryptography/46.0.5-1ubuntu2.2/python-cryptography_46.0.5-1ubuntu2.2.dsc",
+    "resolved_url": "https://launchpadlibrarian.net/877076187/python-cryptography_46.0.5-1ubuntu2.2.dsc",
+    "status": "public_metadata_retrieved",
+    "sha256": "4d2332d57a9931b06d0380a5b02c0800848fdea623a7c5af24faadd79feeb2d5",
+    "bytes": 3976,
+    "scope": "Signed source-package descriptor retrieved without credentials; source archive checksums are listed but source archives were not downloaded or executed."
+  },
+  "lxml": {
+    "url": "https://launchpad.net/ubuntu/+archive/primary/+sourcefiles/lxml/5.2.1-1ubuntu0.2/lxml_5.2.1-1ubuntu0.2.dsc",
+    "resolved_url": "https://launchpadlibrarian.net/879534221/lxml_5.2.1-1ubuntu0.2.dsc",
+    "status": "public_metadata_retrieved",
+    "sha256": "9ffd2a29ac6b1654aef7af6ad02b67766eb58f7be4eb0e04c4066eb0d56e11e3",
+    "bytes": 2084,
+    "scope": "Signed source-package descriptor retrieved without credentials; source archive checksums are listed but source archives were not downloaded or executed."
+  },
+  "Tornado": {
+    "url": "https://launchpad.net/ubuntu/+archive/primary/+sourcefiles/python-tornado/6.5.4-0.1ubuntu0.1/python-tornado_6.5.4-0.1ubuntu0.1.dsc",
+    "resolved_url": "https://launchpadlibrarian.net/859313646/python-tornado_6.5.4-0.1ubuntu0.1.dsc",
+    "status": "public_metadata_retrieved",
+    "sha256": "82f1916a57cbcd33654a6eef92523d0ae91a1e9b8b53b1f70a0280881fcfb180",
+    "bytes": 2608,
+    "scope": "Signed source-package descriptor retrieved without credentials; source archive checksums are listed but source archives were not downloaded or executed."
+  },
+  "Requests": {
+    "url": "https://launchpad.net/ubuntu/+archive/primary/+sourcefiles/requests/2.31.0%2Bdfsg-1ubuntu1.2/requests_2.31.0%2Bdfsg-1ubuntu1.2.dsc",
+    "resolved_url": "https://launchpadlibrarian.net/877939023/requests_2.31.0+dfsg-1ubuntu1.2.dsc",
+    "status": "public_metadata_retrieved",
+    "sha256": "6e7dc0bf4a5c218acd9e4cc4afd7abf428eaf650342d8b1a9bbc8092637e8a7a",
+    "bytes": 2454,
+    "scope": "Signed source-package descriptor retrieved without credentials; source archive checksums are listed but source archives were not downloaded or executed."
+  },
+  "urllib3": {
+    "url": "https://launchpad.net/ubuntu/+archive/primary/+sourcefiles/python-urllib3/1.26.5-1~exp1ubuntu0.7/python-urllib3_1.26.5-1~exp1ubuntu0.7.dsc",
+    "resolved_url": "https://launchpadlibrarian.net/862153163/python-urllib3_1.26.5-1~exp1ubuntu0.7.dsc",
+    "status": "public_metadata_retrieved",
+    "sha256": "fd0c3ca650e8286099f04ef8e3139f32539e749388b6c75830b1960477c6aada",
+    "bytes": 2333,
+    "scope": "Signed source-package descriptor retrieved without credentials; source archive checksums are listed but source archives were not downloaded or executed."
+  },
+  "Jinja2": {
+    "url": "https://launchpad.net/ubuntu/+archive/primary/+sourcefiles/jinja2/3.0.3-1ubuntu0.4/jinja2_3.0.3-1ubuntu0.4.dsc",
+    "resolved_url": "https://launchpadlibrarian.net/781173009/jinja2_3.0.3-1ubuntu0.4.dsc",
+    "status": "public_metadata_retrieved",
+    "sha256": "68aa1d5487097fcf59e1024d2028304be315a577b37c7e8d4169592697c54c49",
+    "bytes": 2259,
+    "scope": "Signed source-package descriptor retrieved without credentials; source archive checksums are listed but source archives were not downloaded or executed."
+  },
+  "Flask": {
+    "url": "https://launchpad.net/ubuntu/+archive/primary/+sourcefiles/flask/3.0.2-1ubuntu1.1/flask_3.0.2-1ubuntu1.1.dsc",
+    "resolved_url": "https://launchpadlibrarian.net/851965227/flask_3.0.2-1ubuntu1.1.dsc",
+    "status": "public_metadata_retrieved",
+    "sha256": "eaa87015f175dfa5b442a0ac7e47f0b594b908dd44b2605e501f69069ad87348",
+    "bytes": 2332,
+    "scope": "Signed source-package descriptor retrieved without credentials; source archive checksums are listed but source archives were not downloaded or executed."
+  },
+  "sqlparse": {
+    "url": "https://launchpad.net/ubuntu/+archive/primary/+sourcefiles/sqlparse/0.4.4-1ubuntu0.2/sqlparse_0.4.4-1ubuntu0.2.dsc",
+    "resolved_url": "https://launchpadlibrarian.net/877963243/sqlparse_0.4.4-1ubuntu0.2.dsc",
+    "status": "public_metadata_retrieved",
+    "sha256": "159d0cefa3b2fb99945b6ebc9c66ce25b772e3e09e6e13a63616c80096712f5d",
+    "bytes": 2187,
+    "scope": "Signed source-package descriptor retrieved without credentials; source archive checksums are listed but source archives were not downloaded or executed."
+  },
+  "PyJWT": {
+    "url": "https://launchpad.net/ubuntu/+archive/primary/+sourcefiles/pyjwt/2.10.1-4ubuntu1.1/pyjwt_2.10.1-4ubuntu1.1.dsc",
+    "resolved_url": "https://launchpadlibrarian.net/878184128/pyjwt_2.10.1-4ubuntu1.1.dsc",
+    "status": "public_metadata_retrieved",
+    "sha256": "b109f21a8faab71a61ab529d153af05f3073b999dc04ea9233f19124e4ea27aa",
+    "bytes": 1885,
+    "scope": "Signed source-package descriptor retrieved without credentials; source archive checksums are listed but source archives were not downloaded or executed."
+  },
+  "Pillow": {
+    "url": "https://launchpad.net/ubuntu/+archive/primary/+sourcefiles/pillow/9.0.1-1ubuntu0.5/pillow_9.0.1-1ubuntu0.5.dsc",
+    "resolved_url": "https://launchpadlibrarian.net/875032426/pillow_9.0.1-1ubuntu0.5.dsc",
+    "status": "public_metadata_retrieved",
+    "sha256": "23eec434393b25e8b7be9e76ce5f39dbd4c7a61b9b6369327761b6b06036aded",
+    "bytes": 2404,
+    "scope": "Signed source-package descriptor retrieved without credentials; source archive checksums are listed but source archives were not downloaded or executed."
+  },
+  "setuptools": {
+    "url": "https://launchpad.net/ubuntu/+archive/primary/+sourcefiles/setuptools/68.1.2-2ubuntu1.2/setuptools_68.1.2-2ubuntu1.2.dsc",
+    "resolved_url": "https://launchpadlibrarian.net/795919100/setuptools_68.1.2-2ubuntu1.2.dsc",
+    "status": "public_metadata_retrieved",
+    "sha256": "b3bdc1cbae0009f96916286d76877bbb53bb92414be9d10845b84ebb6bf99184",
+    "bytes": 2296,
+    "scope": "Signed source-package descriptor retrieved without credentials; source archive checksums are listed but source archives were not downloaded or executed."
+  },
+  "PyYAML": {
+    "url": "https://launchpad.net/ubuntu/+archive/primary/+sourcefiles/pyyaml/5.3.1-1ubuntu0.1/pyyaml_5.3.1-1ubuntu0.1.dsc",
+    "resolved_url": "https://launchpadlibrarian.net/533169164/pyyaml_5.3.1-1ubuntu0.1.dsc",
+    "status": "public_metadata_retrieved",
+    "sha256": "39145ae498f5922553af09757dbc680d10dbe67ff3d7772245ab28f440d46fcf",
+    "bytes": 2418,
+    "scope": "Signed source-package descriptor retrieved without credentials; source archive checksums are listed but source archives were not downloaded or executed."
+  },
+  "Twisted": {
+    "url": "https://launchpad.net/ubuntu/+archive/primary/+sourcefiles/twisted/24.3.0-1ubuntu0.2/twisted_24.3.0-1ubuntu0.2.dsc",
+    "resolved_url": "https://launchpadlibrarian.net/862101984/twisted_24.3.0-1ubuntu0.2.dsc",
+    "status": "public_metadata_retrieved",
+    "sha256": "4938652da5bcd82e6f5d9755c97590647df637fbd9ba8b3ac9ba1caa48ab4dd7",
+    "bytes": 2619,
+    "scope": "Signed source-package descriptor retrieved without credentials; source archive checksums are listed but source archives were not downloaded or executed."
+  },
+  "UltraJSON": {
+    "url": "https://launchpad.net/ubuntu/+archive/primary/+sourcefiles/ujson/5.11.0-3ubuntu0.1/ujson_5.11.0-3ubuntu0.1.dsc",
+    "resolved_url": "https://launchpadlibrarian.net/859271886/ujson_5.11.0-3ubuntu0.1.dsc",
+    "status": "public_metadata_retrieved",
+    "sha256": "322c59cff5749d1a1cde9302dc894d89c9c2b6fc664434c59dade3d1745b1db5",
+    "bytes": 2230,
+    "scope": "Signed source-package descriptor retrieved without credentials; source archive checksums are listed but source archives were not downloaded or executed."
+  }
+}

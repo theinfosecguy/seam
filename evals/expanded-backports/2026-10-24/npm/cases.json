@@ -1,0 +1,108 @@
+{
+  "case_count": 20,
+  "cases": [
+    {
+      "instance_id": "ansi-regex",
+      "metadata": "cases/ansi-regex/case.json",
+      "package": "ansi-regex"
+    },
+    {
+      "instance_id": "axios",
+      "metadata": "cases/axios/case.json",
+      "package": "axios"
+    },
+    {
+      "instance_id": "body-parser",
+      "metadata": "cases/body-parser/case.json",
+      "package": "body-parser"
+    },
+    {
+      "instance_id": "debug",
+      "metadata": "cases/debug/case.json",
+      "package": "debug"
+    },
+    {
+      "instance_id": "dot-prop",
+      "metadata": "cases/dot-prop/case.json",
+      "package": "dot-prop"
+    },
+    {
+      "instance_id": "fast-uri",
+      "metadata": "cases/fast-uri/case.json",
+      "package": "fast-uri"
+    },
+    {
+      "instance_id": "hoek",
+      "metadata": "cases/hoek/case.json",
+      "package": "@hapi/hoek"
+    },
+    {
+      "instance_id": "ip",
+      "metadata": "cases/ip/case.json",
+      "package": "ip"
+    },
+    {
+      "instance_id": "js-yaml",
+      "metadata": "cases/js-yaml/case.json",
+      "package": "js-yaml"
+    },
+    {
+      "instance_id": "json5",
+      "metadata": "cases/json5/case.json",
+      "package": "json5"
+    },
+    {
+      "instance_id": "path-to-regexp",
+      "metadata": "cases/path-to-regexp/case.json",
+      "package": "path-to-regexp"
+    },
+    {
+      "instance_id": "qs",
+      "metadata": "cases/qs/case.json",
+      "package": "qs"
+    },
+    {
+      "instance_id": "semver",
+      "metadata": "cases/semver/case.json",
+      "package": "semver"
+    },
+    {
+      "instance_id": "serve-static",
+      "metadata": "cases/serve-static/case.json",
+      "package": "serve-static"
+    },
+    {
+      "instance_id": "undici-cookie",
+      "metadata": "cases/undici-cookie/case.json",
+      "package": "undici"
+    },
+    {
+      "instance_id": "undici-private-cache",
+      "metadata": "cases/undici-private-cache/case.json",
+      "package": "undici"
+    },
+    {
+      "instance_id": "undici-tls",
+      "metadata": "cases/undici-tls/case.json",
+      "package": "undici"
+    },
+    {
+      "instance_id": "ws",
+      "metadata": "cases/ws/case.json",
+      "package": "ws"
+    },
+    {
+      "instance_id": "yargs-parser",
+      "metadata": "cases/yargs-parser/case.json",
+      "package": "yargs-parser"
+    },
+    {
+      "instance_id": "yargs-parser-5",
+      "metadata": "cases/yargs-parser-5/case.json",
+      "package": "yargs-parser"
+    }
+  ],
+  "package_count": 17,
+  "schema_version": 1,
+  "scope": "Experimental standalone npm inputs, not an integrated Seam eval catalogue."
+}

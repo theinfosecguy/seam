@@ -1,0 +1,96 @@
+{
+  "normalization_schema_version": 1,
+  "cohort": "initial-npm-20",
+  "case": "yargs-parser-5",
+  "role": "reference",
+  "interpretation": "Setup, application or evidence remained inconclusive; this alone is not a confirmed harness defect.",
+  "execution_context": {
+    "exit_code": 2,
+    "timed_out": false,
+    "log_truncated": false,
+    "wheel_sha256": "fb1afe7d89a0cfd5a50ae6094f1b1a356cb57e6d187beba597d542fe8903c35c",
+    "driver_sha256": "44efbc782d4cbbebb7ecec44e491a9941e5dc2cdd1554eaf7616a307020ec306",
+    "freeze_sha256": "f5fa5b227de18954e8c22fed4b881688a4e93d13428769fa01e21c19ade9c083",
+    "case_assets_unchanged": true,
+    "caller_unchanged": true
+  },
+  "report": {
+    "schema_version": 2,
+    "status": "inconclusive",
+    "reason": "Verification prerequisites were not established: upstream_parent suite: JUnit test case names must identify distinct tests",
+    "fix_commit": "63810ca1ae1a24b08293a4d971e70e058c7a41e2",
+    "parent_commit": "48b6d9ccfa4bb3f74a7f374d8f400491127a8477",
+    "target_commit": "2c95ba9e5ad3b8bb6248bf41f013d9bd3700d56f",
+    "image_id": "sha256:52f40f96867d88d68ced00067878ab5b917744d17f5649b82506f43e72d88cba",
+    "oracle_sha256": "3b99e32cce10059c7d368efd753f74ec51a3fc7a83ab69e9f0b53717937ac988",
+    "config_sha256": "6e6057801506f6e53e4f6e1a2376ef0b3dd66d82cf86123f02a97ffb2ed0bf9a",
+    "patch_sha256": null,
+    "attempts": 0,
+    "adaptation": "none",
+    "model_usage": {},
+    "reviewed_tests": null,
+    "reviewed_fixtures": {},
+    "reviewed_submodules": {},
+    "phases": [
+      {
+        "name": "upstream_parent",
+        "revision": "48b6d9ccfa4bb3f74a7f374d8f400491127a8477",
+        "security": {
+          "returncode": 1,
+          "timed_out": false,
+          "truncated": false,
+          "duration_seconds": 0.5527,
+          "evidence_error": null,
+          "tests": [
+            {
+              "name": "test_security",
+              "classname": "/oracle/oracle.mjs::test",
+              "outcome": "failed",
+              "expected_failure": false,
+              "original_message_sha256": "12e8ffa391096b83a648086150a1e80128287988dc06e81a424159839064363c"
+            },
+            {
+              "name": "test_positional_and_number",
+              "classname": "/oracle/oracle.mjs::test",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_boolean_alias",
+              "classname": "/oracle/oracle.mjs::test",
+              "outcome": "passed",
+              "expected_failure": false
+            }
+          ],
+          "command_sha256": "c2ba8b1ddccdcc3d1c719a8695ef2393ba4692f02e8894514c273bf3212f5a25",
+          "missing_modules": [],
+          "diagnostic_excerpts": [
+            "AssertionError [ERR_ASSERTION]: YARGS5_RESERVED_KEY_SANITIZED"
+          ],
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 0,
+          "stderr_sha256": "bba7205f90a09fb199929059785abd4eb15f6939099457faee01f612f567062d",
+          "stderr_bytes": 872
+        },
+        "suite": {
+          "returncode": 0,
+          "timed_out": false,
+          "truncated": false,
+          "duration_seconds": 0.8015,
+          "evidence_error": "JUnit test case names must identify distinct tests",
+          "tests": [],
+          "command_sha256": "b91ad81920377617f64ea56f18f9bc6629ec4df8de50d8cf8f86913b22c576ad",
+          "missing_modules": [],
+          "diagnostic_excerpts": [],
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr_bytes": 0
+        }
+      }
+    ]
+  },
+  "original_report_sha256": "b38cd9b75b3c4ab17f1a481b2dc89203cfcd46a21599d1950245ed8138aada8f",
+  "original_command_record_sha256": "689e7f4fa80df5b3e61ee7f43c2fff9332d06a2d43844ad010cd614c5ba2b1a7",
+  "candidate_patch_inputs": []
+}
