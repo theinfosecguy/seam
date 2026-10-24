@@ -1,0 +1,47 @@
+{
+  "common_packages": 123,
+  "common_deviations_from_target_lock": [
+    {
+      "name": "httpcore2",
+      "installed": "2.13.0",
+      "target_lock": null,
+      "reason": "bootstrap installer, test support or upstream proxy dependency union; no first-party implementation installed"
+    },
+    {
+      "name": "httpx2",
+      "installed": "2.13.0",
+      "target_lock": null,
+      "reason": "bootstrap installer, test support or upstream proxy dependency union; no first-party implementation installed"
+    },
+    {
+      "name": "idna",
+      "installed": "3.19",
+      "target_lock": "3.15",
+      "reason": "bootstrap installer, test support or upstream proxy dependency union; no first-party implementation installed"
+    },
+    {
+      "name": "pip",
+      "installed": "25.0.1",
+      "target_lock": null,
+      "reason": "bootstrap installer, test support or upstream proxy dependency union; no first-party implementation installed"
+    },
+    {
+      "name": "truststore",
+      "installed": "0.10.4",
+      "target_lock": null,
+      "reason": "bootstrap installer, test support or upstream proxy dependency union; no first-party implementation installed"
+    }
+  ],
+  "source_only_overlay": [
+    {
+      "name": "mcp",
+      "version": "2.2.0"
+    },
+    {
+      "name": "mcp-types",
+      "version": "2.2.0"
+    }
+  ],
+  "revision_selection": "upstream parent/fix use MCP2.2.0; target/backport use MCP1.28.1; declared mutually exclusive ranges respected; common idna3.19 satisfies both branch constraints",
+  "not_lock_identical": true
+}

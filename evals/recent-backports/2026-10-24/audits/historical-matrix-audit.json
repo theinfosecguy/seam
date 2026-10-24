@@ -1,0 +1,95 @@
+{
+  "verified_runs": [
+    {
+      "report": "django-domain/reference-run/report.json",
+      "status": "verified",
+      "adaptation": "provided_patch",
+      "target_suite_cases": 15,
+      "oracle_cases": 4,
+      "all_four_phases_valid": true,
+      "hashes_match": true,
+      "target_case_identities_preserved": true,
+      "model_usage": {}
+    },
+    {
+      "report": "django-domain/model-run/report.json",
+      "status": "verified",
+      "adaptation": "agent",
+      "target_suite_cases": 15,
+      "oracle_cases": 4,
+      "all_four_phases_valid": true,
+      "hashes_match": true,
+      "target_case_identities_preserved": true,
+      "model_usage": {
+        "provider": "deepseek",
+        "model": "deepseek-flash",
+        "returned_model": "deepseek-flash",
+        "calls": 9,
+        "input_tokens": 122583,
+        "output_tokens": 10327,
+        "estimated_cost_usd": 0.0491673,
+        "reserved_cost_usd": 0.0,
+        "budget_usd": 1.0,
+        "pricing": "conservative text upper bounds; operator rates, checked schedules, or bundled genai-prices 0.1.13; no network updates"
+      }
+    },
+    {
+      "report": "django-vary/reference-run-02/report.json",
+      "status": "verified",
+      "adaptation": "provided_patch",
+      "target_suite_cases": 6,
+      "oracle_cases": 5,
+      "all_four_phases_valid": true,
+      "hashes_match": true,
+      "target_case_identities_preserved": true,
+      "model_usage": {}
+    },
+    {
+      "report": "django-vary/model-run/report.json",
+      "status": "verified",
+      "adaptation": "agent",
+      "target_suite_cases": 6,
+      "oracle_cases": 5,
+      "all_four_phases_valid": true,
+      "hashes_match": true,
+      "target_case_identities_preserved": true,
+      "model_usage": {
+        "provider": "deepseek",
+        "model": "deepseek-flash",
+        "returned_model": "deepseek-flash",
+        "calls": 4,
+        "input_tokens": 23945,
+        "output_tokens": 3427,
+        "estimated_cost_usd": 0.0112959,
+        "reserved_cost_usd": 0.0,
+        "budget_usd": 1.0,
+        "pricing": "conservative text upper bounds; operator rates, checked schedules, or bundled genai-prices 0.1.13; no network updates"
+      }
+    }
+  ],
+  "reference_model_comparisons": [
+    {
+      "case": "django-domain",
+      "reference_report": "django-domain/reference-run/report.json",
+      "model_report": "django-domain/model-run/report.json",
+      "same_frozen_inputs": true,
+      "same_target_cases": true,
+      "exported_patches_byte_identical": true
+    },
+    {
+      "case": "django-vary",
+      "reference_report": "django-vary/reference-run-02/report.json",
+      "model_report": "django-vary/model-run/report.json",
+      "same_frozen_inputs": true,
+      "same_target_cases": true,
+      "exported_patches_byte_identical": true
+    }
+  ],
+  "negative_control": {
+    "report": "django-domain/negative-run/report.json",
+    "ineffective_patch_rejected_at_runtime": true,
+    "normal_controls_and_existing_cases_preserved": true,
+    "no_success_patch_exported": true
+  },
+  "passed": true
+}

@@ -1,0 +1,159 @@
+{
+  "verified_runs": [
+    {
+      "report": "django-replays/domain/run/report.json",
+      "status": "verified",
+      "adaptation": "provided_patch",
+      "matrix_outcomes_correct": true,
+      "target_case_identities_preserved": true,
+      "artifact_hashes_match": true,
+      "target_suite_cases": 15,
+      "oracle_controls": 3,
+      "backport_phases_including_rejected_attempts": 1,
+      "model_usage": {}
+    },
+    {
+      "report": "django-replays/vary/run/report.json",
+      "status": "verified",
+      "adaptation": "provided_patch",
+      "matrix_outcomes_correct": true,
+      "target_case_identities_preserved": true,
+      "artifact_hashes_match": true,
+      "target_suite_cases": 6,
+      "oracle_controls": 4,
+      "backport_phases_including_rejected_attempts": 1,
+      "model_usage": {}
+    },
+    {
+      "report": "pydanticai-host/reference-04/report.json",
+      "status": "verified",
+      "adaptation": "provided_patch",
+      "matrix_outcomes_correct": true,
+      "target_case_identities_preserved": true,
+      "artifact_hashes_match": true,
+      "target_suite_cases": 4,
+      "oracle_controls": 3,
+      "backport_phases_including_rejected_attempts": 1,
+      "model_usage": {}
+    },
+    {
+      "report": "litellm-context/reference-02/report.json",
+      "status": "verified",
+      "adaptation": "provided_patch",
+      "matrix_outcomes_correct": true,
+      "target_case_identities_preserved": true,
+      "artifact_hashes_match": true,
+      "target_suite_cases": 10,
+      "oracle_controls": 3,
+      "backport_phases_including_rejected_attempts": 1,
+      "model_usage": {}
+    },
+    {
+      "report": "litellm-context/ai-01/report.json",
+      "status": "verified",
+      "adaptation": "agent",
+      "matrix_outcomes_correct": true,
+      "target_case_identities_preserved": true,
+      "artifact_hashes_match": true,
+      "target_suite_cases": 10,
+      "oracle_controls": 3,
+      "backport_phases_including_rejected_attempts": 1,
+      "model_usage": {
+        "provider": "deepseek",
+        "model": "deepseek-flash",
+        "returned_model": "deepseek-flash",
+        "calls": 8,
+        "input_tokens": 194731,
+        "output_tokens": 18153,
+        "estimated_cost_usd": 0.0802029,
+        "reserved_cost_usd": 0.0,
+        "budget_usd": 1.0,
+        "pricing": "conservative text upper bounds; operator rates, checked schedules, or bundled genai-prices 0.1.13; no network updates"
+      }
+    }
+  ],
+  "unverified_model_runs": [
+    {
+      "report": "pydanticai-host/ai-01/report.json",
+      "status": "inconclusive",
+      "reason": "Run could not complete: deepseek request failed or returned invalid token usage; no automatic retry was made; session stopped",
+      "baseline_matrix_qualified": true,
+      "backport_phases": 0,
+      "no_success_patch_exported": true,
+      "model_usage": {
+        "provider": "deepseek",
+        "model": "deepseek-flash",
+        "returned_model": "deepseek-flash",
+        "calls": 25,
+        "input_tokens": 637272,
+        "output_tokens": 32565,
+        "estimated_cost_usd": 0.2302596,
+        "reserved_cost_usd": 0.3342336,
+        "budget_usd": 1.0,
+        "pricing": "conservative text upper bounds; operator rates, checked schedules, or bundled genai-prices 0.1.13; no network updates"
+      },
+      "scope": "Safe unsuccessful adaptation; no successful backport claimed."
+    },
+    {
+      "report": "pydanticai-host/ai-02/report.json",
+      "status": "inconclusive",
+      "reason": "Run could not complete: model call limit reached",
+      "baseline_matrix_qualified": true,
+      "backport_phases": 0,
+      "no_success_patch_exported": true,
+      "model_usage": {
+        "provider": "deepseek",
+        "model": "deepseek-flash",
+        "returned_model": "deepseek-flash",
+        "calls": 32,
+        "input_tokens": 1399649,
+        "output_tokens": 35533,
+        "estimated_cost_usd": 0.4625343,
+        "reserved_cost_usd": 0.0,
+        "budget_usd": 1.0,
+        "pricing": "conservative text upper bounds; operator rates, checked schedules, or bundled genai-prices 0.1.13; no network updates"
+      },
+      "scope": "Safe unsuccessful adaptation; no successful backport claimed."
+    }
+  ],
+  "negative_control": {
+    "report": "django-replays/domain-negative/run/report.json",
+    "status": "failed",
+    "adaptation": "provided_patch",
+    "matrix_outcomes_correct": true,
+    "target_case_identities_preserved": true,
+    "artifact_hashes_match": true,
+    "target_suite_cases": 15,
+    "oracle_controls": 3,
+    "backport_phases_including_rejected_attempts": 1,
+    "model_usage": {}
+  },
+  "reference_model_comparisons": [
+    {
+      "case": "pydanticai-host",
+      "reference": "pydanticai-host/reference-04/report.json",
+      "model": "pydanticai-host/ai-01/report.json",
+      "model_status": "inconclusive",
+      "same_frozen_inputs_and_target_cases": true,
+      "exported_patches_byte_identical": null
+    },
+    {
+      "case": "pydanticai-host",
+      "reference": "pydanticai-host/reference-04/report.json",
+      "model": "pydanticai-host/ai-02/report.json",
+      "model_status": "inconclusive",
+      "same_frozen_inputs_and_target_cases": true,
+      "exported_patches_byte_identical": null
+    },
+    {
+      "case": "litellm-context",
+      "reference": "litellm-context/reference-02/report.json",
+      "model": "litellm-context/ai-01/report.json",
+      "model_status": "verified",
+      "same_frozen_inputs_and_target_cases": true,
+      "exported_patches_byte_identical": false
+    }
+  ],
+  "passed": true,
+  "scope": "Audit passes if recorded outcomes are sound; an audit pass does not turn an inconclusive model attempt into a verified backport."
+}

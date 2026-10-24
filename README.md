@@ -1,28 +1,22 @@
 # Seam
 
-A security backport harness for Python libraries tested with pytest.
+Backport security fixes to older releases, with test evidence you can review.
 
-Maintainers often need an upstream security fix on an older release where APIs
-or files have changed. Seam prepares the backport in disposable clones, then
-checks the vulnerability and existing behavior before calling the patch verified.
-It can apply a fix directly, check your patch, or ask an AI model to adapt it.
-Fixes must change Python implementation files; package data, dependency updates,
-build scripts, and native-code changes are outside the current scope.
+An upstream security patch does not always apply cleanly to a maintained release.
+Seam helps adapt it, checks that it fixes the vulnerability, and runs the relevant
+existing tests to catch regressions. You get a patch and a report explaining what
+passed, failed, or could not be checked.
 
-## Contents
-
-- [Try it without an API key](#try-it-without-an-api-key)
-- [Public Python evaluations](#public-python-evaluations)
-- [Use your own repository](#use-your-own-repository)
-- [Optional AI adaptation](#optional-ai-adaptation)
-- [What verification means](#what-verification-means)
-- [Development](#development)
-- [Documentation](#documentation)
+Seam currently supports **Python libraries tested with pytest**. You can ask an
+AI model to adapt a fix, apply the upstream patch unchanged, or check a patch you
+have already written. It works in disposable copies of your repository and never
+pushes or merges changes.
 
 ## Try it without an API key
 
-You need Linux, Python 3.12+, Git, Docker, and
+You need Linux, Python 3.12+, Git 2.38+, Docker, and
 [uv](https://docs.astral.sh/uv/getting-started/installation/).
+From a checkout of this repository:
 
 ```bash
 uv sync --frozen
@@ -31,124 +25,75 @@ uv run seam demo --output /tmp/seam-demo
 uv run seam inspect --report /tmp/seam-demo/verification/report.json
 ```
 
-The demo verifies a supplied reference patch for a synthetic archive traversal
-bug; it does not generate a patch with AI or reproduce a published CVE.
-The image build needs network access; test execution has networking disabled.
-For Docker command prefixes or an existing image, see [usage](docs/usage.md#demo).
-If you prefer pip, use the [virtualenv installation](docs/usage.md#installation).
-`doctor` prints the installed version and package path so you can identify the
-environment used for a run or report inspection.
+The demo checks a supplied patch for a small synthetic vulnerability. It builds
+a test image, then runs the tests without network access or model API calls.
+Use a fresh output directory each time. For pip installation or Docker setup,
+see the [setup guide](docs/usage.md#installation).
 
-## Public Python evaluations
+## Backport a fix
 
-The [evaluation collection](evals/README.md) includes Jinja2, Requests, Flask,
-h11, sqlparse, python-multipart, urllib3, and Authlib. Each case pins its source
-revisions, external security test, selected project tests, and reference patch.
+Start with an upstream fix commit, the older release you maintain, and a test
+that reproduces the security issue. The [setup guide](docs/usage.md#prepare-a-repository)
+walks through preparing that test, the test environment, and `harness.toml`.
+
+To try the upstream patch unchanged:
+
+```bash
+uv run seam run \
+  --repo /path/to/library --fix FIX_COMMIT --target release/1.x \
+  --config /path/to/harness.toml --output /tmp/seam-result \
+  --direct
+```
+
+To check your own adaptation, replace `--direct` with
+`--candidate-patch /path/to/adapted.patch`. For AI-assisted adaptation, follow
+the [API setup guide](docs/api.md) to choose a model, supply a key, and set a
+spending limit.
+
+Review `report.md` and `backport.patch` in the output directory before applying
+the change. Seam handles Python implementation changes; fixes to dependencies,
+build scripts, package data, or native code are outside its current scope.
+
+## What does “verified” mean?
+
+Seam checks the same security test before and after the upstream fix, then
+before and after the proposed backport. The test must expose the vulnerability
+on both unfixed revisions and pass on both fixed revisions. Normal-behavior
+checks and the selected existing project tests must also pass.
+
+- **Verified:** the patch passed these recorded checks.
+- **Failed:** the checks rejected the proposed patch.
+- **Inconclusive:** setup problems, skipped tests, timeouts, or missing evidence
+  prevented a decision.
+
+A verified result covers the tests you chose, not every possible security issue.
+Use reviewed source, a trusted test environment, and an independently reviewed
+security test. See the [security boundaries](docs/security.md) before running
+unfamiliar code.
+
+## Evaluations
+
+The [public evaluation collection](evals/README.md) contains reproducible cases
+with pinned revisions, security tests, selected project tests, and reference
+patches. Try one without an API key:
 
 ```bash
 uv run seam eval qualify jinja2 --build-image --output /tmp/seam-jinja2-eval
 ```
 
-Use a new output directory. Reference qualification checks the supplied patch
-and requires an executed negative check; it makes no model API calls. A passing
-reference run does not rank AI models. AI adaptation results need separate runs
-and reporting. See the [dataset card](evals/python/README.md) for case details and
-the [publication guide](docs/eval-publication.md) for release checks.
+This checks the supplied reference patch and a deliberately ineffective patch;
+it does not measure an AI model. See the [case catalogue](evals/python/README.md),
+[recent backport comparison](docs/recent-backports.md), and
+[earlier evaluations](docs/evaluations.md) for results and their limits.
 
-## Use your own repository
+## More information
 
-Prepare a trusted test image and an external pytest regression test, then write a
-small configuration file. The [setup guide](docs/usage.md#prepare-a-repository)
-shows the complete configuration and requirements.
-
-```bash
-uv run seam run \
-  --repo /path/to/library --fix FIX_COMMIT --target release/1.x \
-  --config /path/to/harness.toml --output /tmp/seam-result
-```
-
-Use a new output directory for each run. Review its `report.md` and
-`backport.patch` before applying it. Seam preserves your checkout and never
-pushes or merges.
-To check an existing adaptation, add `--candidate-patch /path/to/adapted.patch`.
-When a security change requires a new existing-test expectation, an operator can
-separately review and freeze an
-[assertion-only patch](docs/usage.md#review-existing-test-expectations).
-Published disposable cryptographic test keys can use an
-[exact-path, hash-pinned fixture allowance](docs/usage.md#review-public-cryptographic-fixtures).
-
-## Optional AI adaptation
-
-Store `DEEPSEEK_API_KEY=your-value` in an ignored local `.env.deepseek` file, then:
-
-```bash
-chmod 600 .env.deepseek
-uv run seam run \
-  --repo /path/to/library --fix FIX_COMMIT --target release/1.x \
-  --config /path/to/harness.toml --output /tmp/seam-ai \
-  --provider deepseek --model deepseek-flash \
-  --api-budget-usd 1 --env-file .env.deepseek
-```
-
-A paid client is created only when you supply `--model`. Native adapters cover
-OpenAI, Anthropic, Gemini, DeepSeek, and other major APIs; keys stay in the
-controller, outside test containers. See
-[API setup](docs/api.md) for models, credentials, and spending limits.
-The CLI defaults to 16 model requests across all adaptation attempts; set
-`--max-model-calls` to an integer from 1 to 32 to change that limit. The dollar
-budget still applies.
-
-## What verification means
-
-The same external security test runs against four revisions:
-
-| Revision | Security regression | Normal behavior and project suite |
-| --- | --- | --- |
-| Upstream fix's parent | Expected failure | Pass |
-| Upstream fix | Pass | Pass |
-| Maintained branch | Expected failure | Pass |
-| Maintained branch with backport | Pass | Pass |
-
-`verified` means these checks passed, with the target's existing suite cases
-preserved. Separately reviewed assertion changes are recorded in the evidence
-and included in the exported patch. `failed` means the checks rejected the
-candidate. `inconclusive` means usable evidence is missing, such as a setup
-failure, timeout, or skipped test. `inspect` rejects a stored verified verdict
-that contradicts its recorded final checks; it does not rerun or authenticate
-the report.
-
-Use reviewed Python code, a trusted oracle, and a trusted image. Target code runs
-inside pytest and can forge test output; this is not a tamper-proof verifier.
-Passing checks cover the recorded behavior, not every possible vulnerability.
-Read the [security boundaries](docs/security.md) before testing unfamiliar code.
-
-A [recorded live Flash run](docs/live-testing.md) backported Jinja's
-CVE-2024-22195 fix while preserving all 120 target filter tests. That record also
-includes unsuccessful Pro runs and the limits of the evidence.
-
-## Development
-
-```bash
-uv run ruff check .
-uv run ruff format --check .
-uv run mypy
-uv run pytest
-uv build
-```
-
-See [coding conventions](AGENTS.md), the [package map](docs/architecture.md), and
-[Docker integration checks](docs/usage.md#development-checks).
-
-## Documentation
-
+- [Next: JavaScript and npm](docs/roadmap.md)
 - [Usage and configuration](docs/usage.md)
-- [Writing the security test and controls](docs/oracles.md)
-- [API-backed adaptation](docs/api.md)
+- [Writing security tests and controls](docs/oracles.md)
+- [Models, API keys, and spending limits](docs/api.md)
 - [Real Jinja backport example](examples/jinja-xmlattr/README.md)
-- [Live validation results](docs/live-testing.md)
-- [Multi-library evaluation and gaps](docs/evaluations.md)
-- [Fixes and repeat evaluations](docs/reevaluation.md)
-- [Provider and credential-screening validation](docs/provider-validation.md)
-- [Reviewed workflow validation](docs/reviewed-workflow-validation.md)
+- [Development checks](docs/usage.md#development-checks) and
+  [project architecture](docs/architecture.md)
 
 Licensed under [MIT](LICENSE).

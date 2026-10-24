@@ -1,0 +1,9 @@
+{
+  "upstream_conftest_identical_parent_fix": true,
+  "new_unconditional_autouse_dependency": "blockbuster1.5.26 with forbiddenfruit0.1.4, exact upstream uv.lock",
+  "optional_autouse_imports": "google-genai/huggingface imports are guarded by ImportError; no missing optional SDK installed solely for unused providers.",
+  "remaining_selected_fixture_imports": "VCR/pytest-mock/stdlib/pydantic workspace code present; reference03 already collected all four selected tests.",
+  "behavioral_inputs_changed": false,
+  "source_test_changes": false,
+  "dependency_smoke": "Container imports real blockbuster successfully; no target code executed by this dependency smoke."
+}

@@ -1,0 +1,567 @@
+{
+  "completed_utc": "2026-10-24T15:45:42.839884+00:00",
+  "scope": "Four recent published source-backport cases across three Python libraries after Seam fixes.",
+  "implementation": {
+    "base_commit": "baac3a06a99cb697ef1d9d2c98844074db222025",
+    "uncommitted_fix_patch": "source:gap-fixes/fix.patch",
+    "fix_patch_sha256": "b1a65a18f6d2103c1fb6fb3c32e646c656100079b61e8fde123c3aab89caedbf",
+    "wheel_sha256": "5469855e22fecaecea05bb3b1bc316d9a7c4c7da7ca9a18b0c9e6771ae9451d9",
+    "sdist_sha256": "b1bf6900aa762511167307c90ad0e5873b01ab371c9072cd6cf210c979aefee4",
+    "wheel_installed_outside_source_checkout": true,
+    "package_files_byte_matched_to_source": 139,
+    "changed_files": {
+      "README.md": "4f36eb76884e312e464bd8db8c511042bfcab22b62db99e0e97f8310c87cdba2",
+      "docs/api.md": "f0efdb37af611e595f5b85ce768b9a6058e5259cf4610686db63767d800ae664",
+      "docs/reviewed-workflow-validation.md": "0c4930aba2b79a9da816922c8096c80daabaecc94f3c4eff3e25d6c9bd30ce99",
+      "docs/security.md": "fb22628462944881be5c0f304d1130bf6c62ae6a68d4e93e173fcac48875c26a",
+      "docs/usage.md": "4b0bfbf90f42664a252f6e6cae7b1fa5b151b164d7b2fcd9ba90ab554359dead",
+      "src/seam/cli/application.py": "794ce14ede6a734ff1dedc344d4b44799feae26343b02251630bd7a477fd270f",
+      "src/seam/constants/repository.py": "81ea8ca5af77a84f8ec6fde0ec5a7622a35d53e3a38cbc5284d812e2beec17d2",
+      "src/seam/execution/resources/bootstrap.py.txt": "9e998596533214cbe0bad366e6058c665669548be29e9d3ca17f60d2c31caaa5",
+      "src/seam/execution/snapshot.py": "d73288f45e0cfee73eefbdec38107afe3d29f9b3f66b8eace2ced2e00737dc48",
+      "src/seam/repository.py": "3ae2aec274623df77082cc756594d87c393bbe82934cfa467657a09fddb34801",
+      "tests/cli/test_application.py": "0f533e9618603ea425d7c47d694e2d7918810edb9919c3f6736f9a2a850306f4",
+      "tests/execution/test_bootstrap.py": "d46590b6ca35212db62e591f57bacc191d46862f7132fa5487005e0d1d5342de",
+      "tests/execution/test_docker.py": "4502a0e5882e986d9bc512e6d23dd938ba2d5a4b4a5c6d1bbd4e5b11de337326",
+      "tests/execution/test_reviewed_fixtures.py": "97e39fb3c462574144ec503b735e62fb67fc515da29f2c3599a4ab1a810c7ae5",
+      "tests/execution/test_snapshot.py": "db54a651d01b9d150596111f128883be8e878e853db9e09300581695fd8d5b2c",
+      "tests/test_repository.py": "6abecc074a2bd53b60fea38b95083608cd2c7335aabf8179725f4123021bf9e8"
+    },
+    "user_authorization": "Fix the gap, re-run the evals. This supersedes earlier black-box-only limitation for these fixes.",
+    "git_submissions": false,
+    "note": "The tested wheel and initial sdist remain immutable. Final usage.md setup guidance changed after wheel freeze; all139 packaged implementation/resource bytes remain identical. final-dist/sdist was rebuilt to include current docs and all16 changed/new files and byte-checked against current source.",
+    "patch_includes_untracked_tests": true,
+    "final_sdist": "source:gap-fixes/final-dist/seam-0.4.0.dev0.tar.gz",
+    "final_sdist_sha256": "0b2bbda0bde244d8d4e53fedbaed71d1052c495b99c7603e79a8faa4d3b89e5f",
+    "final_sdist_all16_changed_files_match_current_source": true,
+    "final_sdist_package_files_match_current_source": 73,
+    "final_sdist_runtime_and_forced_eval_files_match_tested_wheel_and_source": 139,
+    "development_cli": "source:seam/.venv/bin/seam",
+    "development_install_is_editable": true,
+    "development_package_module": "source:seam/src/seam/__init__.py",
+    "independently_tested_wheel_cli": "source:gap-fixes/installed-env/bin/seam"
+  },
+  "checks": {
+    "source_suite": {
+      "passed": 1131,
+      "skipped_opt_in": 9,
+      "seconds": 27.99
+    },
+    "installed_wheel_suite": {
+      "tests": 1140,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "seconds": 137.75,
+      "all_docker_and_sudo_opt_ins": true,
+      "junit": "source:gap-fixes/installed-tests.xml"
+    },
+    "ruff_check": "passed",
+    "ruff_format": "passed",
+    "strict_mypy": "passed;57 source files",
+    "independent_code_review": "passed; no actionable findings",
+    "package_source_files_matched": 139,
+    "inventory_boundary_probes": "all3 pass inventory, deliberately stop at /bin/false image preparation; no security-test success claimed",
+    "installed_testcase_identities_unique": 1140,
+    "independent_inventory_measurement": {
+      "files_per_fixture": 1087,
+      "original_stage_output_bytes": [
+        1048575,
+        1048576,
+        1048577
+      ],
+      "new_mode_only_output_bytes_per_fixture": 7609
+    },
+    "artifact_scanner_mock_selfchecks": {
+      "passed": 9,
+      "actual_credentials_read": false,
+      "evidence": "validation/artifact-scanner-selfcheck.json"
+    },
+    "final_source_integrity": {
+      "diff_whitespace": "passed",
+      "complete_fix_patch_reverse_apply_check": "passed",
+      "all16_changed_file_hashes_match_provenance": true,
+      "base_commit_unchanged": true,
+      "source_edits_after_installed_test_gate": "usage.md guidance only; runtime and regression-test bytes unchanged"
+    },
+    "independent_final_audit": {
+      "status": "passed",
+      "sha256": "f38706e1dc013ea890089f7a1398678335adf0837be4ab4a2055454e3678e52d"
+    }
+  },
+  "cases": [
+    {
+      "library": "Django",
+      "issue": "CVE-2026-53878",
+      "status": "verified",
+      "kind": "Provided-patch replay of prior model output, byte-identical to official implementation patch.",
+      "report": "source:gap-fixes/django-replays/domain/run/report.json",
+      "official_reference": "source:original-evaluation/django-domain/reference-run/report.json",
+      "oracle_controls": 3,
+      "existing_suite_cases": 15,
+      "fresh_model_calls": 0,
+      "model_generation_repeated": false
+    },
+    {
+      "library": "Django",
+      "issue": "CVE-2026-6907",
+      "status": "verified",
+      "kind": "Provided-patch replay of prior model output, byte-identical to official implementation patch.",
+      "report": "source:gap-fixes/django-replays/vary/run/report.json",
+      "official_reference": "source:original-evaluation/django-vary/reference-run-02/report.json",
+      "oracle_controls": 4,
+      "existing_suite_cases": 6,
+      "fresh_model_calls": 0,
+      "model_generation_repeated": false
+    },
+    {
+      "library": "PydanticAI",
+      "advisory": "https://github.com/pydantic/pydantic-ai/security/advisories/GHSA-q2xc-rrxj-58x9",
+      "official_reference_reports": [
+        "source:gap-fixes/pydanticai-host/reference-04/report.json"
+      ],
+      "fresh_model_runs": [
+        {
+          "id": "ai-01",
+          "report": "source:gap-fixes/pydanticai-host/ai-01/report.json",
+          "report_sha256": "1843d321c8f6f3e43522712c01f4346fc6833c5f1d31e3fe1ddc97d1dda95724",
+          "completed": true,
+          "exit_code": 2,
+          "status": "inconclusive",
+          "reason": "Run could not complete: deepseek request failed or returned invalid token usage; no automatic retry was made; session stopped",
+          "adaptation": "agent",
+          "attempts": 2,
+          "model_usage": {
+            "provider": "deepseek",
+            "model": "deepseek-flash",
+            "returned_model": "deepseek-flash",
+            "calls": 25,
+            "input_tokens": 637272,
+            "output_tokens": 32565,
+            "estimated_cost_usd": 0.2302596,
+            "reserved_cost_usd": 0.3342336,
+            "budget_usd": 1.0,
+            "pricing": "conservative text upper bounds; operator rates, checked schedules, or bundled genai-prices 0.1.13; no network updates"
+          },
+          "phases": [
+            {
+              "phase": "upstream_parent",
+              "revision": "da29bfa38d5fd4f89f98d2e668027505449ddaae",
+              "oracle_counts": {
+                "failed": 1,
+                "passed": 3
+              },
+              "suite_counts": {
+                "passed": 4
+              },
+              "suite_cases": 4
+            },
+            {
+              "phase": "upstream_fix",
+              "revision": "871c7aeec5dfed2138655ccbccbf15c6d763bae7",
+              "oracle_counts": {
+                "passed": 4
+              },
+              "suite_counts": {
+                "passed": 4
+              },
+              "suite_cases": 4
+            },
+            {
+              "phase": "target_baseline",
+              "revision": "f275d5c4c75d9cc96131800099619c5027b62873",
+              "oracle_counts": {
+                "failed": 1,
+                "passed": 3
+              },
+              "suite_counts": {
+                "passed": 4
+              },
+              "suite_cases": 4
+            }
+          ],
+          "successful_patch": null,
+          "raw_candidate_patch_artifacts": [
+            {
+              "path": "source:gap-fixes/pydanticai-host/ai-01/attempt-1.patch",
+              "sha256": "c7441bbab03b81fdab70c0c98cd50f839e9944d43eb96ce25e60997a1cd0ad21"
+            }
+          ],
+          "report_identity": {
+            "fix_commit": "871c7aeec5dfed2138655ccbccbf15c6d763bae7",
+            "parent_commit": "da29bfa38d5fd4f89f98d2e668027505449ddaae",
+            "target_commit": "f275d5c4c75d9cc96131800099619c5027b62873",
+            "image_id": "sha256:9ea642989e8a8bafe922fa305c27688124de46b2edf126f7005c9c590de2a7d0",
+            "oracle_sha256": "1bf1ba75af3bda575433c824c39444eae1e65a057673b486d9e62b807645686a",
+            "config_sha256": "f2ad42381684fa25b2930172c3ccf6ce370bba7abee42c6b7e8046ba0ae1d7aa",
+            "patch_sha256": null
+          }
+        },
+        {
+          "id": "ai-02",
+          "report": "source:gap-fixes/pydanticai-host/ai-02/report.json",
+          "report_sha256": "5ea9999bb53b1ac5254039453793bf693f734720f5946c5b7c102e3c4066d748",
+          "completed": true,
+          "exit_code": 2,
+          "status": "inconclusive",
+          "reason": "Run could not complete: model call limit reached",
+          "adaptation": "agent",
+          "attempts": 2,
+          "model_usage": {
+            "provider": "deepseek",
+            "model": "deepseek-flash",
+            "returned_model": "deepseek-flash",
+            "calls": 32,
+            "input_tokens": 1399649,
+            "output_tokens": 35533,
+            "estimated_cost_usd": 0.4625343,
+            "reserved_cost_usd": 0.0,
+            "budget_usd": 1.0,
+            "pricing": "conservative text upper bounds; operator rates, checked schedules, or bundled genai-prices 0.1.13; no network updates"
+          },
+          "phases": [
+            {
+              "phase": "upstream_parent",
+              "revision": "da29bfa38d5fd4f89f98d2e668027505449ddaae",
+              "oracle_counts": {
+                "failed": 1,
+                "passed": 3
+              },
+              "suite_counts": {
+                "passed": 4
+              },
+              "suite_cases": 4
+            },
+            {
+              "phase": "upstream_fix",
+              "revision": "871c7aeec5dfed2138655ccbccbf15c6d763bae7",
+              "oracle_counts": {
+                "passed": 4
+              },
+              "suite_counts": {
+                "passed": 4
+              },
+              "suite_cases": 4
+            },
+            {
+              "phase": "target_baseline",
+              "revision": "f275d5c4c75d9cc96131800099619c5027b62873",
+              "oracle_counts": {
+                "failed": 1,
+                "passed": 3
+              },
+              "suite_counts": {
+                "passed": 4
+              },
+              "suite_cases": 4
+            }
+          ],
+          "successful_patch": null,
+          "raw_candidate_patch_artifacts": [
+            {
+              "path": "source:gap-fixes/pydanticai-host/ai-02/attempt-1.patch",
+              "sha256": "3437942704eeb06b4d5535d8b7b4f82e00f6517dcdc100cff9c81ff141c4b7d6"
+            }
+          ],
+          "report_identity": {
+            "fix_commit": "871c7aeec5dfed2138655ccbccbf15c6d763bae7",
+            "parent_commit": "da29bfa38d5fd4f89f98d2e668027505449ddaae",
+            "target_commit": "f275d5c4c75d9cc96131800099619c5027b62873",
+            "image_id": "sha256:9ea642989e8a8bafe922fa305c27688124de46b2edf126f7005c9c590de2a7d0",
+            "oracle_sha256": "1bf1ba75af3bda575433c824c39444eae1e65a057673b486d9e62b807645686a",
+            "config_sha256": "f2ad42381684fa25b2930172c3ccf6ce370bba7abee42c6b7e8046ba0ae1d7aa",
+            "patch_sha256": null
+          }
+        }
+      ],
+      "history_scope": "Complete hydrated non-shallow history; selected reachable-object checks passed.",
+      "limitations": [
+        "Only foreign-Host health regression, three normal Host controls, and four existing app-construction tests are covered.",
+        "Explicit frozen trusted image plugin supplies staged monorepo paths and authentic metadata-only records; not a full packaging/install or server deployment test.",
+        "Initial host metadata-build/shared-clone setup mistake was preserved and superseded by container-only independent-clone regeneration before qualifying reference."
+      ],
+      "detail": "source:gap-fixes/pydanticai-host/result.json",
+      "vendor_file_comparison": "source:gap-fixes/pydanticai-host/vendor-file-comparison.json",
+      "oracle_controls": 3,
+      "existing_suite_cases": 4
+    },
+    {
+      "library": "LiteLLM",
+      "advisory": "https://github.com/BerriAI/litellm/security/advisories/GHSA-7hp6-4w63-5g45",
+      "official_reference_reports": [
+        "source:gap-fixes/litellm-context/reference-02/report.json"
+      ],
+      "fresh_model_runs": [
+        {
+          "id": "ai-01",
+          "report": "source:gap-fixes/litellm-context/ai-01/report.json",
+          "report_sha256": "77051f2215f2a734dcf4d429e7f3c23b2f11fe34da47a2ada6aff957ad507076",
+          "completed": true,
+          "exit_code": 0,
+          "status": "verified",
+          "reason": "All four revisions met the frozen security and compatibility checks.",
+          "adaptation": "agent",
+          "attempts": 1,
+          "model_usage": {
+            "provider": "deepseek",
+            "model": "deepseek-flash",
+            "returned_model": "deepseek-flash",
+            "calls": 8,
+            "input_tokens": 194731,
+            "output_tokens": 18153,
+            "estimated_cost_usd": 0.0802029,
+            "reserved_cost_usd": 0.0,
+            "budget_usd": 1.0,
+            "pricing": "conservative text upper bounds; operator rates, checked schedules, or bundled genai-prices 0.1.13; no network updates"
+          },
+          "phases": [
+            {
+              "phase": "upstream_parent",
+              "revision": "e7d8bbc5deb36c960162d4ce3922985fe56db835",
+              "oracle_counts": {
+                "failed": 1,
+                "passed": 3
+              },
+              "suite_counts": {
+                "passed": 10
+              },
+              "suite_cases": 10
+            },
+            {
+              "phase": "upstream_fix",
+              "revision": "a80eacacee118fbed54e3d98f239d17a63fac818",
+              "oracle_counts": {
+                "passed": 4
+              },
+              "suite_counts": {
+                "passed": 19
+              },
+              "suite_cases": 19
+            },
+            {
+              "phase": "target_baseline",
+              "revision": "385266c14d6a4cb069751fd3525692e0a760ec57",
+              "oracle_counts": {
+                "failed": 1,
+                "passed": 3
+              },
+              "suite_counts": {
+                "passed": 10
+              },
+              "suite_cases": 10
+            },
+            {
+              "phase": "backport",
+              "revision": "385266c14d6a4cb069751fd3525692e0a760ec57",
+              "oracle_counts": {
+                "passed": 4
+              },
+              "suite_counts": {
+                "passed": 10
+              },
+              "suite_cases": 10
+            }
+          ],
+          "successful_patch": "source:gap-fixes/litellm-context/ai-01/backport.patch",
+          "raw_candidate_patch_artifacts": [
+            {
+              "path": "source:gap-fixes/litellm-context/ai-01/attempt-1.patch",
+              "sha256": "63a4bcfa18753ee1b44c676b5b63fd4f92f9c9338935b2b660191ab4e2e8d50f"
+            }
+          ],
+          "report_identity": {
+            "fix_commit": "a80eacacee118fbed54e3d98f239d17a63fac818",
+            "parent_commit": "e7d8bbc5deb36c960162d4ce3922985fe56db835",
+            "target_commit": "385266c14d6a4cb069751fd3525692e0a760ec57",
+            "image_id": "sha256:2c794d912bb68230bb0c149a1525481428e2ed341fbe76a5883d803773724315",
+            "oracle_sha256": "82ef6899914a3808c3608d07763f3b759a6fcc35db9517dde915a6363a903aa1",
+            "config_sha256": "15afebedef9a0cb8525ef3dd116d1b3adc5c9db3297110983d53b04c3c079838",
+            "patch_sha256": "bb194606e0699f98724643699f877cf54d88902c9c6fa4592cc5e8a2a939a2d8"
+          }
+        }
+      ],
+      "history_scope": "Complete exact selected snapshots in original depth-2 histories; not a full-history benchmark. Original commit IDs/parent links were not rewritten.",
+      "limitations": [
+        "Selected depth-2 history is a deliberate disclosed resource limitation; no complete ancestry claim.",
+        "Helper-level inert encryption/session-context regression and three legitimate round-trip controls; no authentication service, model, tool, or real server execution.",
+        "Real proxy imports and existing helper test module plus ancestor fixtures; no operator module stubs.",
+        "Frozen oracle does not invoke ExperimentalUIJWTToken callers; both auth_checks.py and crypto implementation comparison is required before an advisory-scope conclusion.",
+        "Frozen common union dependencies and per-revision actual MCP SDK overlay satisfy declared ranges; final environment is not target-lock-identical. Exact deviations are recorded."
+      ],
+      "detail": "source:gap-fixes/litellm-context/result.json",
+      "vendor_file_comparison": "source:gap-fixes/litellm-context/vendor-file-comparison.json",
+      "oracle_controls": 3,
+      "existing_suite_cases": 10
+    }
+  ],
+  "runs": [
+    {
+      "run": "django-replays/domain/run/report.json",
+      "status": "verified",
+      "adaptation": "provided_patch",
+      "attempts": 1,
+      "phases": 4,
+      "model_calls": 0,
+      "estimated_settled_cost_usd": 0,
+      "unresolved_reserved_cost_usd": 0,
+      "report_sha256": "a575ee0e52faa7289444ca59f52d1c2e0fb4df34ce9a1c21b97c33c6aea76bb4",
+      "reason": "All four revisions met the frozen security and compatibility checks."
+    },
+    {
+      "run": "django-replays/domain-negative/run/report.json",
+      "status": "failed",
+      "adaptation": "provided_patch",
+      "attempts": 1,
+      "phases": 4,
+      "model_calls": 0,
+      "estimated_settled_cost_usd": 0,
+      "unresolved_reserved_cost_usd": 0,
+      "report_sha256": "1700b458d3bda3690f36078943a759d850b629a55ff149da8347fa14196abe51",
+      "reason": "backport: security regression still fails"
+    },
+    {
+      "run": "django-replays/vary/run/report.json",
+      "status": "verified",
+      "adaptation": "provided_patch",
+      "attempts": 1,
+      "phases": 4,
+      "model_calls": 0,
+      "estimated_settled_cost_usd": 0,
+      "unresolved_reserved_cost_usd": 0,
+      "report_sha256": "3673267954a656392db1e2272b43d774d3b469a4b068252683b36a5e995f75ab",
+      "reason": "All four revisions met the frozen security and compatibility checks."
+    },
+    {
+      "run": "pydanticai-host/ai-01/report.json",
+      "status": "inconclusive",
+      "adaptation": "agent",
+      "attempts": 2,
+      "phases": 3,
+      "model_calls": 25,
+      "estimated_settled_cost_usd": 0.2302596,
+      "unresolved_reserved_cost_usd": 0.3342336,
+      "report_sha256": "1843d321c8f6f3e43522712c01f4346fc6833c5f1d31e3fe1ddc97d1dda95724",
+      "reason": "Run could not complete: deepseek request failed or returned invalid token usage; no automatic retry was made; session stopped"
+    },
+    {
+      "run": "pydanticai-host/ai-02/report.json",
+      "status": "inconclusive",
+      "adaptation": "agent",
+      "attempts": 2,
+      "phases": 3,
+      "model_calls": 32,
+      "estimated_settled_cost_usd": 0.4625343,
+      "unresolved_reserved_cost_usd": 0.0,
+      "report_sha256": "5ea9999bb53b1ac5254039453793bf693f734720f5946c5b7c102e3c4066d748",
+      "reason": "Run could not complete: model call limit reached"
+    },
+    {
+      "run": "pydanticai-host/reference-01/report.json",
+      "status": "inconclusive",
+      "adaptation": "none",
+      "attempts": 0,
+      "phases": 1,
+      "model_calls": 0,
+      "estimated_settled_cost_usd": 0,
+      "unresolved_reserved_cost_usd": 0,
+      "report_sha256": "044c7f803e9bbc5de5cfc8b788aaee1b7b10387c9d840670e3b770d842f83c4c",
+      "reason": "Verification prerequisites were not established: upstream_parent security: pytest did not complete a normal test run"
+    },
+    {
+      "run": "pydanticai-host/reference-02/report.json",
+      "status": "inconclusive",
+      "adaptation": "none",
+      "attempts": 0,
+      "phases": 1,
+      "model_calls": 0,
+      "estimated_settled_cost_usd": 0,
+      "unresolved_reserved_cost_usd": 0,
+      "report_sha256": "a580c0fcbed416ac17243a4992b03b8dd65b4312ecf998b939d0a26bae0b7443",
+      "reason": "Verification prerequisites were not established: upstream_parent security: pytest did not complete a normal test run"
+    },
+    {
+      "run": "pydanticai-host/reference-03/report.json",
+      "status": "inconclusive",
+      "adaptation": "none",
+      "attempts": 0,
+      "phases": 1,
+      "model_calls": 0,
+      "estimated_settled_cost_usd": 0,
+      "unresolved_reserved_cost_usd": 0,
+      "report_sha256": "7a0fde31b45a751c4c3523664bf9867949668f0ae13e892eff987bfdddc93ae2",
+      "reason": "Verification prerequisites were not established: upstream_parent suite: test execution contained errors or skipped tests"
+    },
+    {
+      "run": "pydanticai-host/reference-04/report.json",
+      "status": "verified",
+      "adaptation": "provided_patch",
+      "attempts": 1,
+      "phases": 4,
+      "model_calls": 0,
+      "estimated_settled_cost_usd": 0,
+      "unresolved_reserved_cost_usd": 0,
+      "report_sha256": "939cf188402f4cea6ec70225b3bb724c9c1d65621f69fbd9e33034ecb85e1889",
+      "reason": "All four revisions met the frozen security and compatibility checks."
+    },
+    {
+      "run": "litellm-context/ai-01/report.json",
+      "status": "verified",
+      "adaptation": "agent",
+      "attempts": 1,
+      "phases": 4,
+      "model_calls": 8,
+      "estimated_settled_cost_usd": 0.0802029,
+      "unresolved_reserved_cost_usd": 0.0,
+      "report_sha256": "77051f2215f2a734dcf4d429e7f3c23b2f11fe34da47a2ada6aff957ad507076",
+      "reason": "All four revisions met the frozen security and compatibility checks."
+    },
+    {
+      "run": "litellm-context/reference-01/report.json",
+      "status": "inconclusive",
+      "adaptation": "none",
+      "attempts": 0,
+      "phases": 1,
+      "model_calls": 0,
+      "estimated_settled_cost_usd": 0,
+      "unresolved_reserved_cost_usd": 0,
+      "report_sha256": "37984b7e0178e40376c5fc7e187e07ad1bf5932eab379c2b081094538fa4a730",
+      "reason": "Verification prerequisites were not established: upstream_parent security: pytest did not complete a normal test run"
+    },
+    {
+      "run": "litellm-context/reference-02/report.json",
+      "status": "verified",
+      "adaptation": "provided_patch",
+      "attempts": 1,
+      "phases": 4,
+      "model_calls": 0,
+      "estimated_settled_cost_usd": 0,
+      "unresolved_reserved_cost_usd": 0,
+      "report_sha256": "8f72974ebea837aa8f0fdb7894ab88f68b3df37a0a5512175a5ab97bd98db907",
+      "reason": "All four revisions met the frozen security and compatibility checks."
+    }
+  ],
+  "totals": {
+    "real_case_runs_including_setup_failures": 12,
+    "statuses": {
+      "verified": 5,
+      "failed": 1,
+      "inconclusive": 6
+    },
+    "fresh_model_calls": 65,
+    "selected_target_suite_cases_across_four_cases": 35,
+    "oracle_controls_across_four_cases": 13,
+    "estimated_settled_api_cost_usd": 0.7729968,
+    "unresolved_reserved_cost_usd": 0.3342336,
+    "cost_scope": "New completed runs only; excludes prior Django generations. Estimates and pending reservations are not provider invoices."
+  },
+  "negative_control": "source:gap-fixes/django-replays/domain-negative/result.json",
+  "findings": "source:gap-fixes/findings-status.json",
+  "audit": "source:gap-fixes/audit.json",
+  "independent_audit": "source:gap-fixes/independent-audit.json",
+  "limits": [
+    "Selected bounded target suites, not complete project suites or universal security proof.",
+    "Django uses stored prior AI patches; PydanticAI/LiteLLM model runs are new and separately qualified against official references.",
+    "LiteLLM uses exact selected depth-2 snapshots, not a complete-history scale benchmark.",
+    "Original black-box evidence remains unchanged; source edits were authorized only by the latest fix request."
+  ]
+}

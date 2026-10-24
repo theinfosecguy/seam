@@ -1,0 +1,134 @@
+diff --git a/litellm/proxy/common_utils/encrypt_decrypt_utils.py b/litellm/proxy/common_utils/encrypt_decrypt_utils.py
+--- a/litellm/proxy/common_utils/encrypt_decrypt_utils.py
++++ b/litellm/proxy/common_utils/encrypt_decrypt_utils.py
+@@ -69,26 +69,55 @@ def _derive_key(signing_key: str) -> bytes:
+     return hashlib.sha256(signing_key.encode()).digest()
+ 
+ 
+-def _encrypt_aes_gcm(value: str, signing_key: str) -> str:
+-    """Encrypt under AES-256-GCM and return the versioned ``v2:gcm:`` string."""
++def _seal_aes_gcm(value: str, signing_key: str, aad: bytes | None) -> bytes:
+     from cryptography.hazmat.primitives.ciphers.aead import AESGCM
+ 
+     nonce: Final = os.urandom(12)
+     # AESGCM.encrypt returns ciphertext || tag(16); wire format is nonce || that.
+-    blob: Final = AESGCM(_derive_key(signing_key)).encrypt(nonce, value.encode("utf-8"), None)
+-    return _V2_GCM_PREFIX + base64.urlsafe_b64encode(nonce + blob).decode("utf-8")
++    return nonce + AESGCM(_derive_key(signing_key)).encrypt(nonce, value.encode("utf-8"), aad)
+ 
+ 
+-def _decrypt_aes_gcm(value: str, signing_key: str) -> str:
+-    """Decrypt a versioned ``v2:gcm:`` string produced by :func:`_encrypt_aes_gcm`."""
++def _open_aes_gcm(sealed: bytes, signing_key: str, aad: bytes | None) -> str:
+     from cryptography.hazmat.primitives.ciphers.aead import AESGCM
+ 
+-    raw: Final = base64.urlsafe_b64decode(value[len(_V2_GCM_PREFIX) :])
+     # An empty plaintext still serializes to nonce(12) || tag(16) = 28 bytes, so a
+     # short/empty buffer here is a corrupt value: let AESGCM.decrypt raise and be
+-    # swallowed by decrypt_value_helper (returns None/original), same as legacy.
+-    nonce, blob = raw[:12], raw[12:]
+-    return AESGCM(_derive_key(signing_key)).decrypt(nonce, blob, None).decode("utf-8")
++    # swallowed by the caller (returns None/original), same as legacy.
++    return AESGCM(_derive_key(signing_key)).decrypt(sealed[:12], sealed[12:], aad).decode("utf-8")
++
++
++def _encrypt_aes_gcm(value: str, signing_key: str) -> str:
++    """Encrypt under AES-256-GCM and return the versioned ``v2:gcm:`` string."""
++    sealed: Final = _seal_aes_gcm(value=value, signing_key=signing_key, aad=None)
++    return _V2_GCM_PREFIX + base64.urlsafe_b64encode(sealed).decode("utf-8")
++
++
++def _decrypt_aes_gcm(value: str, signing_key: str) -> str:
++    """Decrypt a versioned ``v2:gcm:`` string produced by :func:`_encrypt_aes_gcm`."""
++    sealed: Final = base64.urlsafe_b64decode(value[len(_V2_GCM_PREFIX) :])
++    return _open_aes_gcm(sealed=sealed, signing_key=signing_key, aad=None)
++
++
++def encrypt_bearer_token(value: str, prefix: str) -> str:
++    """AES-256-GCM as unpadded base64url behind ``prefix``, which is also the AAD so a token can't change kind."""
++    salt_key: Final = _get_salt_key()
++    if not isinstance(salt_key, str):
++        raise ValueError("Set LITELLM_SALT_KEY or a master key to mint bearer tokens")
++    sealed: Final = _seal_aes_gcm(value=value, signing_key=salt_key, aad=prefix.encode("utf-8"))
++    return prefix + base64.urlsafe_b64encode(sealed).decode("ascii").rstrip("=")
++
++
++def decrypt_bearer_token(token: str, prefix: str) -> str | None:
++    """None unless ``token`` came from :func:`encrypt_bearer_token` with the same ``prefix``."""
++    salt_key: Final = _get_salt_key()
++    if not isinstance(salt_key, str) or not token.startswith(prefix):
++        return None
++    encoded: Final = token[len(prefix) :]
++    try:
++        sealed: Final = base64.b64decode(encoded + "=" * (-len(encoded) % 4), altchars=b"-_", validate=True)
++        return _open_aes_gcm(sealed=sealed, signing_key=salt_key, aad=prefix.encode("utf-8"))
++    except Exception:  # noqa: BLE001  # base64 and AES-GCM each raise their own "not a token" type
++        return None
+ 
+ 
+ def encrypt_value_helper(value: str, new_encryption_key: str | None = None):
+diff --git a/litellm/proxy/auth/auth_checks.py b/litellm/proxy/auth/auth_checks.py
+--- a/litellm/proxy/auth/auth_checks.py
++++ b/litellm/proxy/auth/auth_checks.py
+@@ -3300,8 +3300,11 @@ async def get_org_object_by_alias(
+             status_code=500,
+             detail={"error": f"Error looking up organization by alias '{org_alias}': {e}"},
+         )
+ 
+ 
++LITELLM_SESSION_TOKEN_PREFIX: Final = "litellm_login_"
++
++
+ class ExperimentalUIJWTToken:
+     @staticmethod
+     def get_experimental_ui_login_jwt_auth_token(user_info: LiteLLM_UserTable) -> str:
+@@ -3310,5 +3313,5 @@ class ExperimentalUIJWTToken:
+         from litellm.proxy.common_utils.encrypt_decrypt_utils import (
+-            encrypt_value_helper,
++            encrypt_bearer_token,
+         )
+ 
+         if user_info.user_role is None:
+@@ -3334,7 +3337,7 @@ class ExperimentalUIJWTToken:
+             user_role=LitellmUserRoles(user_info.user_role),
+         )
+ 
+-        return encrypt_value_helper(valid_token.model_dump_json(exclude_none=True))
++        return encrypt_bearer_token(valid_token.model_dump_json(exclude_none=True), prefix=LITELLM_SESSION_TOKEN_PREFIX)
+ 
+     @staticmethod
+     def get_cli_jwt_auth_token(
+@@ -3364,9 +3367,9 @@ class ExperimentalUIJWTToken:
+         import secrets
+         from datetime import timedelta
+ 
+         from litellm.proxy.common_utils.encrypt_decrypt_utils import (
+-            encrypt_value_helper,
++            encrypt_bearer_token,
+         )
+ 
+         if user_info.user_role is None:
+@@ -3400,10 +3403,10 @@ class ExperimentalUIJWTToken:
+             models=[] if _team_id is not None else user_info.models,
+             max_parallel_requests=None,
+             user_role=LitellmUserRoles(user_info.user_role),
+             is_session_token=True,
+         )
+ 
+-        return encrypt_value_helper(valid_token.model_dump_json(exclude_none=True))
++        return encrypt_bearer_token(valid_token.model_dump_json(exclude_none=True), prefix=LITELLM_SESSION_TOKEN_PREFIX)
+ 
+     @staticmethod
+     def get_key_object_from_ui_hash_key(
+@@ -3414,11 +3417,11 @@ class ExperimentalUIJWTToken:
+         from litellm.proxy.auth.user_api_key_auth import UserAPIKeyAuth
+         from litellm.proxy.common_utils.encrypt_decrypt_utils import (
+-            decrypt_value_helper,
++            decrypt_bearer_token,
+         )
+ 
+-        decrypted_token: Final = decrypt_value_helper(hashed_token, key="ui_hash_key", exception_type="debug")
++        decrypted_token: Final = decrypt_bearer_token(hashed_token, prefix=LITELLM_SESSION_TOKEN_PREFIX)
+         if decrypted_token is None:
+             return None
+         try:

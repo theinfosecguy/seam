@@ -1,0 +1,16 @@
+{
+  "type": "Explicit trusted image operator bridge; no target Python implementation installed in image",
+  "metadata_method": "Standard hatchling/uv-dynamic-versioning prepare_metadata_for_build_wheel on clean original revisions inside restricted disposable containers",
+  "container_manifest": "source:gap-fixes/pydanticai-host/build-metadata-container/manifest.json",
+  "command_manifest": "source:gap-fixes/pydanticai-host/container-metadata-commands.json",
+  "source_isolation": "source:gap-fixes/pydanticai-host/metadata-source-isolation.json",
+  "target_version": "1.107.4",
+  "upstream_parent_version": "2.29.1.dev13+da29bfa38",
+  "upstream_fix_version": "2.29.1.dev14+871c7aeec",
+  "backport_convention": "Patched target retains target-base distribution metadata, 1.107.4; this verifies code behavior and does not claim a published backport wheel/version.",
+  "behavior_scope": "Health oracle and four selected app-construction tests do not reference __version__; host policy code likewise does not read version.",
+  "source_assertion": "Frozen oracle asserts pydantic_ai.__file__ resolves inside /work/repo/pydantic_ai_slim.",
+  "first_party_code_or_module_stubs": false,
+  "host_generated_metadata_consumed": false,
+  "disposable_metadata_clone_removed": true
+}

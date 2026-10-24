@@ -1,0 +1,11 @@
+--- official/litellm/proxy/common_utils/encrypt_decrypt_utils.py
++++ model/litellm/proxy/common_utils/encrypt_decrypt_utils.py
+@@ -112,7 +112,7 @@
+     salt_key: Final = _get_salt_key()
+     if not isinstance(salt_key, str) or not token.startswith(prefix):
+         return None
+-    encoded: Final = token.removeprefix(prefix)
++    encoded: Final = token[len(prefix) :]
+     try:
+         sealed: Final = base64.b64decode(encoded + "=" * (-len(encoded) % 4), altchars=b"-_", validate=True)
+         return _open_aes_gcm(sealed=sealed, signing_key=salt_key, aad=prefix.encode("utf-8"))

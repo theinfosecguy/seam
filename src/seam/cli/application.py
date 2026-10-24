@@ -1,6 +1,7 @@
 """Expose preparation, verification, and report inspection commands."""
 
 import math
+import re
 from importlib.metadata import version
 from importlib.resources import files
 from pathlib import Path
@@ -14,6 +15,7 @@ from seam.cli.presentation import exit_for_report, render_report
 from seam.cli.providers import make_proposer
 from seam.constants.agent import CLI_MODEL_CALLS, MAX_API_CALLS
 from seam.constants.demo import DEFAULT_IMAGE
+from seam.constants.repository import MIN_GIT_VERSION
 from seam.demo import (
     build_demo_image,
     create_demo,
@@ -210,10 +212,20 @@ def doctor(
     for name, command in checks:
         try:
             result = run_process(command, timeout=15, max_output=8192)
-            passed = result.returncode == 0 and not result.timed_out
+            passed = (
+                result.returncode == 0 and not result.timed_out and not result.truncated
+            )
             detail = (
                 result.stdout.strip() if passed else "unavailable or not accessible"
             )
+            if name == "Git" and passed:
+                parsed = re.match(r"git version (\d+)\.(\d+)", result.stdout)
+                passed = (
+                    parsed is not None
+                    and (int(parsed[1]), int(parsed[2])) >= MIN_GIT_VERSION
+                )
+                if not passed:
+                    detail = "Git 2.38+ is required for mode-only repository inventory"
         except OSError:
             passed, detail = False, "executable not found"
         ready = ready and passed

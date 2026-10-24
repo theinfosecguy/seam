@@ -1,0 +1,198 @@
+{
+  "date": "2026-10-24",
+  "window": [
+    "2026-04-24",
+    "2026-10-24"
+  ],
+  "scope": "Black-box evaluation; no Seam implementation/unit-test reads or edits; recommendations only",
+  "harness_commit": "baac3a06a99cb697ef1d9d2c98844074db222025",
+  "cases": [
+    {
+      "case": "django-domain",
+      "library": "Django",
+      "advisory": "CVE-2026-53878",
+      "published": "2026-07-07",
+      "reference_status": "verified",
+      "model_status": "verified",
+      "verdict": "verified",
+      "official_implementation_patch_byte_identical": true,
+      "selected_target_cases": 15,
+      "oracle_controls": 3,
+      "model_calls": 9,
+      "estimated_api_cost_usd": 0.0491673,
+      "qualification": "complete four-revision matrix",
+      "reference_report": "django-domain/reference-run/report.json",
+      "model_report": "django-domain/model-run/report.json",
+      "publication_url": "https://www.djangoproject.com/weblog/2026/jul/07/security-releases/"
+    },
+    {
+      "case": "django-vary",
+      "library": "Django",
+      "advisory": "CVE-2026-6907",
+      "published": "2026-05-05",
+      "reference_status": "verified",
+      "model_status": "verified",
+      "verdict": "verified",
+      "official_implementation_patch_byte_identical": true,
+      "selected_target_cases": 6,
+      "oracle_controls": 4,
+      "model_calls": 4,
+      "estimated_api_cost_usd": 0.0112959,
+      "qualification": "complete four-revision matrix",
+      "reference_report": "django-vary/reference-run-02/report.json",
+      "model_report": "django-vary/model-run/report.json",
+      "publication_url": "https://www.djangoproject.com/weblog/2026/may/05/security-releases/"
+    },
+    {
+      "case": "pydanticai-host",
+      "library": "PydanticAI",
+      "advisory": "GHSA-q2xc-rrxj-58x9 / CVE-2026-107292",
+      "published": "2026-08-14",
+      "reference_status": "inconclusive",
+      "model_status": "not attempted",
+      "verdict": "blocked before runtime",
+      "official_implementation_patch_byte_identical": null,
+      "selected_target_cases": 0,
+      "oracle_controls": 0,
+      "model_calls": 0,
+      "estimated_api_cost_usd": 0,
+      "qualification": "complete history, documented symlink rejection",
+      "reference_report": "pydanticai-host/reference-02/report.json",
+      "model_report": null,
+      "publication_url": "https://github.com/pydantic/pydantic-ai/security/advisories/GHSA-q2xc-rrxj-58x9"
+    },
+    {
+      "case": "litellm-context",
+      "library": "LiteLLM",
+      "advisory": "GHSA-7hp6-4w63-5g45 / CVE-2026-114612",
+      "published": "2026-09-30",
+      "reference_status": "inconclusive",
+      "model_status": "not attempted",
+      "verdict": "blocked before runtime",
+      "official_implementation_patch_byte_identical": null,
+      "selected_target_cases": 0,
+      "oracle_controls": 0,
+      "model_calls": 0,
+      "estimated_api_cost_usd": 0,
+      "qualification": "shallow eligibility probe only; inventory boundary independently reproduced with full-history fixtures",
+      "reference_report": "litellm-context/shallow-eligibility-probe-02/report.json",
+      "model_report": null,
+      "publication_url": "https://github.com/BerriAI/litellm/security/advisories/GHSA-7hp6-4w63-5g45"
+    }
+  ],
+  "totals": {
+    "cases": 4,
+    "libraries": 3,
+    "completed_reference_ai_comparisons": 2,
+    "blocked_cases": 2,
+    "real_repository_cli_run_attempts_including_setup_and_eligibility": 10,
+    "real_repository_report_statuses": {
+      "verified": 4,
+      "failed": 1,
+      "inconclusive": 5
+    },
+    "completed_four_revision_matrices_including_negative": 5,
+    "selected_existing_target_cases_across_verified_cases": 21,
+    "oracle_controls_across_verified_cases": 7,
+    "model_calls": 13,
+    "estimated_api_cost_usd": 0.0604632,
+    "synthetic_inventory_preflight_probes": 3
+  },
+  "attempts": [
+    {
+      "case": "django-domain",
+      "report": "django-domain/model-run/report.json",
+      "status": "verified",
+      "reason": "All four revisions met the frozen security and compatibility checks.",
+      "matrix_phases": 4,
+      "model_calls": 9,
+      "estimated_api_cost_usd": 0.0491673
+    },
+    {
+      "case": "django-domain",
+      "report": "django-domain/negative-run/report.json",
+      "status": "failed",
+      "reason": "backport: security regression still fails",
+      "matrix_phases": 4,
+      "model_calls": 0,
+      "estimated_api_cost_usd": 0
+    },
+    {
+      "case": "django-domain",
+      "report": "django-domain/reference-run/report.json",
+      "status": "verified",
+      "reason": "All four revisions met the frozen security and compatibility checks.",
+      "matrix_phases": 4,
+      "model_calls": 0,
+      "estimated_api_cost_usd": 0
+    },
+    {
+      "case": "django-vary",
+      "report": "django-vary/model-run/report.json",
+      "status": "verified",
+      "reason": "All four revisions met the frozen security and compatibility checks.",
+      "matrix_phases": 4,
+      "model_calls": 4,
+      "estimated_api_cost_usd": 0.0112959
+    },
+    {
+      "case": "django-vary",
+      "report": "django-vary/reference-run/report.json",
+      "status": "inconclusive",
+      "reason": "Verification prerequisites were not established: upstream_parent suite: pytest did not complete a normal test run",
+      "matrix_phases": 1,
+      "model_calls": 0,
+      "estimated_api_cost_usd": 0
+    },
+    {
+      "case": "django-vary",
+      "report": "django-vary/reference-run-02/report.json",
+      "status": "verified",
+      "reason": "All four revisions met the frozen security and compatibility checks.",
+      "matrix_phases": 4,
+      "model_calls": 0,
+      "estimated_api_cost_usd": 0
+    },
+    {
+      "case": "pydanticai-host",
+      "report": "pydanticai-host/reference-01/report.json",
+      "status": "inconclusive",
+      "reason": "Run could not complete: Git clone failed or exceeded limits: Cloning into '<temporary-evaluation>/upstream_parent'...\nremote: warning: lazy fetching disabled; some objects may not be available        \nremote: fatal: could not fetch 8a721f3931fc23ff4e4a446cfc535ee9b4b5c89f from promisor remote        \nerror: git upload-pack: git-pack-objects died with error.\nremote: aborting due to possible repository corruption on the remote side.<NUL>\nfatal: early EOF\nfatal: fetch-pack: invalid index-pack output\nfatal: git upload-pack: aborting due to possible repository corruption on the remote side.\n",
+      "matrix_phases": 0,
+      "model_calls": 0,
+      "estimated_api_cost_usd": 0
+    },
+    {
+      "case": "pydanticai-host",
+      "report": "pydanticai-host/reference-02/report.json",
+      "status": "inconclusive",
+      "reason": "Run could not complete: upstream_parent snapshot: Snapshot path '.claude/skills/complete-partial-pr': Directory symbolic links are unsupported",
+      "matrix_phases": 0,
+      "model_calls": 0,
+      "estimated_api_cost_usd": 0
+    },
+    {
+      "case": "litellm-context",
+      "report": "litellm-context/shallow-eligibility-probe/report.json",
+      "status": "inconclusive",
+      "reason": "Run could not complete: Git checkout failed or exceeded limits: fatal: reference is not a tree: e7d8bbc5deb36c960162d4ce3922985fe56db835\n",
+      "matrix_phases": 0,
+      "model_calls": 0,
+      "estimated_api_cost_usd": 0
+    },
+    {
+      "case": "litellm-context",
+      "report": "litellm-context/shallow-eligibility-probe-02/report.json",
+      "status": "inconclusive",
+      "reason": "Run could not complete: Git ls-files failed or exceeded limits: ",
+      "matrix_phases": 0,
+      "model_calls": 0,
+      "estimated_api_cost_usd": 0
+    }
+  ],
+  "negative_control": "django-domain/negative-run/report.json",
+  "independent_audit": "audit.json",
+  "findings": "findings.json",
+  "publication_qualifications": "source-qualifications.json",
+  "cost_scope": "Harness estimates for completed model runs, not provider invoices; preparation and compute are excluded."
+}

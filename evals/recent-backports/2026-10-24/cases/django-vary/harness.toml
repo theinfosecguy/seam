@@ -1,0 +1,17 @@
+schema_version = 1
+max_attempts = 3
+[oracle]
+path = "oracle.py"
+security_test = "test_security_regression"
+controls = ["test_ordinary_response_cached", "test_non_wildcard_vary_preserved", "test_private_not_cached", "test_never_cache_preserved"]
+failure_marker = "DJANGO_VARY_WILDCARD_REGRESSION"
+[runner]
+image = "sha256:5d03a4a7baff03c96693404274e6e1f0226f19609f2545c3c0df0a5f2fd00bf3"
+docker = ["sudo", "-n", "docker"]
+suite = ["tests/cache/tests.py::CacheMiddlewareTest::test_middleware", "tests/cache/tests.py::CacheMiddlewareTest::test_view_decorator", "tests/cache/tests.py::CacheMiddlewareTest::test_cache_page_timeout", "tests/cache/tests.py::CacheMiddlewareTest::test_sensitive_cookie_not_cached", "tests/cache/tests.py::CacheMiddlewareTest::test_304_response_has_http_caching_headers_but_not_cached", "tests/cache/tests.py::CacheMiddlewareTest::test_cache_control_max_age"]
+plugins = ["pytest_django.plugin"]
+import_mode = "importlib"
+timeout_seconds = 120
+memory_mb = 768
+cpus = 1
+pids = 128

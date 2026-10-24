@@ -1,0 +1,22 @@
+{
+  "status": "official_reference_qualified_both_live_generations_unqualified",
+  "reference_report": "source:gap-fixes/pydanticai-host/reference-04/report.json",
+  "official_reference_implementation": "All six patched files byte-identical to official maintainer backport; intended foreign-Host regression, three normal Host controls and four existing app-construction tests pass full four-phase matrix.",
+  "provider_enabled_reports": [
+    "source:gap-fixes/pydanticai-host/ai-01/report.json",
+    "source:gap-fixes/pydanticai-host/ai-02/report.json"
+  ],
+  "generation_outcomes": [
+    "AI01 candidate1 patch rejected by Git context; genuine next attempt stopped after generic provider/session/usage failure.",
+    "AI02 candidate1 patch rejected by Git context; genuine next attempt reached32-call limit."
+  ],
+  "model_semantic_equivalence": "Neither model run produced an applicable verified final implementation; baseline/reference qualification does not qualify model proposals.",
+  "provider_exception_cause": "Raw SDK cause not exported; exact transport/provider/protocol parsing cause unknown. No confirmed transient outage claim.",
+  "vendor_comparison": "source:gap-fixes/pydanticai-host/vendor-file-comparison.json",
+  "patches_hand_edited": false,
+  "limits": [
+    "Only frozen Host health behavior and four existing app-construction tests verified, not full suite or deployed server.",
+    "Explicit frozen staged-monorepo plugin/authentic metadata-only bridge supplied by operator; no target implementation installed.",
+    "Initial host build/shared-clone metadata setup mistake preserved and superseded by isolated container-generated metadata before reference qualification."
+  ]
+}

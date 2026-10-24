@@ -1,0 +1,1 @@
+import sys; sys.path[:0] = ['/work/repo/pydantic_ai_slim', '/work/repo/pydantic_graph']

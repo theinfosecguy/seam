@@ -4,8 +4,8 @@ build-backend = "hatchling.build"
 
 [project]
 name = "seam"
-version = "0.4.0.dev0"
-description = "Agent-assisted security backports with execution evidence."
+version = "0.4.0"
+description = "Security backports with independent test evidence."
 readme = "README.md"
 requires-python = ">=3.12"
 license = "MIT"

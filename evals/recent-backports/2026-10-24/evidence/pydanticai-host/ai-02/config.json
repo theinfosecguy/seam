@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "oracle": {
+    "path": "oracle.py",
+    "security_test": "test_security_foreign_host",
+    "controls": [
+      "test_control_localhost",
+      "test_control_loopback_ipv6",
+      "test_control_lan_ip"
+    ],
+    "failure_marker": "FOREIGN_HOST_REGRESSION"
+  },
+  "runner": {
+    "image": "sha256:9ea642989e8a8bafe922fa305c27688124de46b2edf126f7005c9c590de2a7d0",
+    "docker": [
+      "sudo",
+      "-n",
+      "docker"
+    ],
+    "timeout_seconds": 180.0,
+    "memory_mb": 1024,
+    "cpus": 0.5,
+    "pids": 128,
+    "max_output_bytes": 131072,
+    "suite": [
+      "tests/test_ui_web.py::test_agent_to_web",
+      "tests/test_ui_web.py::test_agent_to_web_with_model_instances",
+      "tests/test_ui_web.py::test_agent_to_web_with_deps",
+      "tests/test_ui_web.py::test_agent_to_web_with_model_settings"
+    ],
+    "plugins": [
+      "anyio.pytest_plugin",
+      "pytest_mock.plugin",
+      "pytest_recording.plugin",
+      "staged_layout"
+    ],
+    "import_mode": "importlib",
+    "suite_markers": null,
+    "reviewed_fixtures": {}
+  },
+  "max_attempts": 3,
+  "reviewed_tests": null
+}

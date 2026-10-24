@@ -69,7 +69,7 @@ def _open_parent(root_fd: int, parts: tuple[str, ...]) -> int:
 
 
 def _link_target_parts(
-    root_fd: int, parent: tuple[str, ...], target: str
+    root_fd: int, parent: tuple[str, ...], target: str, *, allow_root: bool = False
 ) -> tuple[str, ...]:
     if target.startswith("/"):
         raise ValueError("Absolute symbolic link targets are unsupported")
@@ -104,7 +104,7 @@ def _link_target_parts(
             descriptor = child
     finally:
         os.close(descriptor)
-    if not normalized:
+    if not normalized and not allow_root:
         raise ValueError("Symbolic link target must be an ordinary file")
     return tuple(normalized)
 
@@ -137,6 +137,47 @@ def _open_link_target(root_fd: int, relative: Path) -> int:
     raise ValueError("Symbolic link chain exceeds the supported limit")
 
 
+def _directory_link_target(root_fd: int, path: Path) -> tuple[str, Path]:
+    """Validate a direct contained directory alias without following any links."""
+    if MAX_SNAPSHOT_LINKS < 1:
+        raise ValueError("Symbolic link chain exceeds the supported limit")
+    parent_fd = _open_parent(root_fd, path.parts[:-1])
+    try:
+        target = os.readlink(path.name, dir_fd=parent_fd)
+    finally:
+        os.close(parent_fd)
+    parts = _link_target_parts(root_fd, path.parts[:-1], target, allow_root=True)
+    descriptor = _open_parent(root_fd, parts)
+    os.close(descriptor)
+    return target, Path(*parts)
+
+
+def _check_directory_graph(edges: Mapping[Path, list[Path]]) -> None:
+    """Reject directory cycles in linear space without walking alias contents."""
+    active: set[Path] = set()
+    checked: set[Path] = set()
+    pending = [(Path("."), False)]
+    while pending:
+        path, finished = pending.pop()
+        if finished:
+            active.remove(path)
+            checked.add(path)
+        elif path in active:
+            raise ValueError(
+                f"Snapshot path {_display_path(path)}: "
+                "directory symbolic link cycle is unsupported"
+            )
+        elif path not in checked:
+            if path not in edges:
+                raise ValueError(
+                    f"Snapshot path {_display_path(path)}: "
+                    "directory target is missing from the snapshot"
+                )
+            active.add(path)
+            pending.append((path, True))
+            pending.extend((child, False) for child in edges[path])
+
+
 def _display_path(path: str | bytes | Path | None) -> str:
     decoded = os.fsdecode(path) if path is not None else "."
     displayed = "'[sensitive path]'" if contains_secret(decoded) else repr(decoded)
@@ -167,6 +208,8 @@ def _snapshot(
     try:
         total_bytes = 0
         total_entries = 0
+        directory_edges: dict[Path, list[Path]] = {}
+        directory_links: dict[Path, str] = {}
         for source, directories, files, directory_fd in os.fwalk(
             ".",
             topdown=True,
@@ -175,6 +218,7 @@ def _snapshot(
             dir_fd=root_fd,
         ):
             relative = Path(source)
+            directory_edges[relative] = []
             if len(relative.parts) > MAX_SNAPSHOT_DEPTH:
                 raise ValueError(
                     f"Snapshot path {_display_path(relative)}: "
@@ -197,11 +241,19 @@ def _snapshot(
                 )
             for name in directories:
                 path = relative / name
+                directory_edges[relative].append(path)
                 try:
                     metadata = os.stat(name, dir_fd=directory_fd, follow_symlinks=False)
-                    if not stat.S_ISDIR(metadata.st_mode):
-                        raise ValueError("Directory symbolic links are unsupported")
-                    if destination is not None:
+                    if stat.S_ISLNK(metadata.st_mode):
+                        target, resolved = _directory_link_target(root_fd, path)
+                        directory_links[path] = target
+                        directory_edges[path] = [resolved]
+                        total_bytes += len(os.fsencode(target))
+                        if total_bytes > MAX_SNAPSHOT_BYTES:
+                            raise ValueError("Source exceeds the snapshot size limit")
+                    elif not stat.S_ISDIR(metadata.st_mode):
+                        raise ValueError("Only ordinary directories are supported")
+                    elif destination is not None:
                         copied = destination / path
                         copied.mkdir(mode=0o755)
                         copied.chmod(0o755)
@@ -246,11 +298,15 @@ def _snapshot(
                         f"Snapshot path {_display_path(path)}: "
                         f"{error.strerror if isinstance(error, OSError) else error}"
                     ) from error
+        _check_directory_graph(directory_edges)
         if remaining_fixtures:
             raise ValueError(
                 f"Snapshot path {_display_path(min(remaining_fixtures))}: "
                 "reviewed fixture is missing or excluded"
             )
+        if destination is not None:
+            for path, target in directory_links.items():
+                (destination / path).symlink_to(target, target_is_directory=True)
     finally:
         os.close(root_fd)
 
@@ -270,7 +326,7 @@ def stage_snapshot(
     *,
     reviewed_fixtures: Mapping[str, tuple[str, ...]] | None = None,
 ) -> None:
-    """Copy a bounded source tree, materializing contained regular file links."""
+    """Copy bounded source, materializing file links and preserving directory links."""
     destination.mkdir(mode=0o755)
     destination.chmod(0o755)
     _snapshot(workspace, destination, reviewed_fixtures or {})

@@ -1,0 +1,17 @@
+{
+  "clone_command": [
+    "git",
+    "-c",
+    "core.hooksPath=/dev/null",
+    "clone",
+    "--no-local",
+    "--no-checkout",
+    "source:original-evaluation/pydanticai-host/repo",
+    "source:gap-fixes/pydanticai-host/metadata-independent"
+  ],
+  "alternates_present": false,
+  "max_pack_link_count": 1,
+  "is_shallow": "false",
+  "source_original_head": "f275d5c4c75d9cc96131800099619c5027b62873",
+  "source_original_status": ""
+}

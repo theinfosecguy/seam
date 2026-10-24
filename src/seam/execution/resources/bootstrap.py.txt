@@ -6,7 +6,7 @@ import sys
 # Import the image's pytest before target imports can shadow its installation.
 import pytest
 
-shutil.copytree('/source', '/work/repo')
+shutil.copytree('/source', '/work/repo', symlinks=True)
 os.chdir('/work/repo')
 sys.path[:0] = ['/work/repo/src', '/work/repo']
 raise SystemExit(pytest.main(sys.argv[1:]))

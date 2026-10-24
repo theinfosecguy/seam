@@ -4,6 +4,10 @@ from typing import Final
 
 MAX_PATCH_BYTES: Final = 262144
 
+MAX_GIT_OUTPUT_BYTES: Final = 1_048_576
+GIT_TIMEOUT_SECONDS: Final = 120
+MIN_GIT_VERSION: Final = (2, 38)
+
 SOURCE_TEST_NAMES: Final = frozenset({"test", "tests", "conftest.py"})
 
 SOURCE_DOCUMENTATION_DIRECTORIES: Final = frozenset({"docs", "doc", ".github"})

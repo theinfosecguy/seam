@@ -1,0 +1,695 @@
+{
+  "publication_schema": 1,
+  "source_report_sha256": "9ab8182318555c681e8823390d643f6903999904207f20bdf7ed97c34677531c",
+  "normalization": "Paths normalized; raw stdout/stderr, testcase messages and embedded bootstrap omitted with hashes. This is a publication derivative, not a seam inspect input.",
+  "report": {
+    "schema_version": 2,
+    "status": "verified",
+    "reason": "All four revisions met the frozen security and compatibility checks.",
+    "fix_commit": "44ad76efcbe3c4ca0f08bb9dabe916f6374596c9",
+    "parent_commit": "1b0184aa657bc3f5859aeb0206e7c1e94e48b103",
+    "target_commit": "47cf968c125e3fab317e10fe150ec479e745f995",
+    "image_id": "sha256:5d03a4a7baff03c96693404274e6e1f0226f19609f2545c3c0df0a5f2fd00bf3",
+    "oracle_sha256": "cda045174aaba3504e2d95c13aaea2831ef14ca89fd56d60f0fc166fa3dd7e1d",
+    "config_sha256": "bfe68a44d99a3f9ec80a1e7393aa8842f99c49ccd0bd034a35bdd4b51e2f32a3",
+    "patch_sha256": "371e5f5699e9e9b8ca1d224e238eff0fdde80191831c524abcca22aaba61b67f",
+    "phases": [
+      {
+        "name": "upstream_parent",
+        "revision": "1b0184aa657bc3f5859aeb0206e7c1e94e48b103",
+        "security": {
+          "returncode": 1,
+          "command": [
+            "python",
+            "-I",
+            "-B",
+            "-c",
+            "<bootstrap program omitted>",
+            "-q",
+            "--tb=short",
+            "--import-mode=importlib",
+            "-p",
+            "no:cacheprovider",
+            "--junitxml=/report.xml",
+            "-p",
+            "pytest_django.plugin",
+            "-c",
+            "/dev/null",
+            "--noconftest",
+            "--rootdir=/oracle",
+            "/oracle/oracle.py::test_security_regression",
+            "/oracle/oracle.py::test_ordinary_response_cached",
+            "/oracle/oracle.py::test_non_wildcard_vary_preserved",
+            "/oracle/oracle.py::test_private_not_cached",
+            "/oracle/oracle.py::test_never_cache_preserved"
+          ],
+          "timed_out": false,
+          "truncated": false,
+          "duration_seconds": 2.5555,
+          "tests": [
+            {
+              "name": "test_security_regression",
+              "classname": "oracle",
+              "outcome": "failed",
+              "expected_failure": false,
+              "message_sha256": "3eddb7a7117b01cc061eefe825e9f271b7bbe1b957b0b81c2e4c1e9d6c6b610d",
+              "expected_security_failure_marker_present": true
+            },
+            {
+              "name": "test_ordinary_response_cached",
+              "classname": "oracle",
+              "outcome": "passed",
+              "expected_failure": false,
+              "message_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "expected_security_failure_marker_present": false
+            },
+            {
+              "name": "test_non_wildcard_vary_preserved",
+              "classname": "oracle",
+              "outcome": "passed",
+              "expected_failure": false,
+              "message_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "expected_security_failure_marker_present": false
+            },
+            {
+              "name": "test_private_not_cached",
+              "classname": "oracle",
+              "outcome": "passed",
+              "expected_failure": false,
+              "message_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "expected_security_failure_marker_present": false
+            },
+            {
+              "name": "test_never_cache_preserved",
+              "classname": "oracle",
+              "outcome": "passed",
+              "expected_failure": false,
+              "message_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "expected_security_failure_marker_present": false
+            }
+          ],
+          "evidence_error": null,
+          "stdout_sha256": "eadd05e5e17276d0f7fb65923e7c5698105e1a4d293ddf9699f7400a133b7f8a",
+          "stdout_omitted": true,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr_omitted": true,
+          "bootstrap_program_sha256": "ee0219be18911a31ae9dc35364d90b89670a0a00ed74b1b1ae3a088c401e4b10"
+        },
+        "suite": {
+          "returncode": 0,
+          "command": [
+            "python",
+            "-I",
+            "-B",
+            "-c",
+            "<bootstrap program omitted>",
+            "-q",
+            "--tb=short",
+            "--import-mode=importlib",
+            "-p",
+            "no:cacheprovider",
+            "--junitxml=/report.xml",
+            "-p",
+            "pytest_django.plugin",
+            "tests/cache/tests.py::CacheMiddlewareTest::test_middleware",
+            "tests/cache/tests.py::CacheMiddlewareTest::test_view_decorator",
+            "tests/cache/tests.py::CacheMiddlewareTest::test_cache_page_timeout",
+            "tests/cache/tests.py::CacheMiddlewareTest::test_sensitive_cookie_not_cached",
+            "tests/cache/tests.py::CacheMiddlewareTest::test_304_response_has_http_caching_headers_but_not_cached",
+            "tests/cache/tests.py::CacheMiddlewareTest::test_cache_control_max_age"
+          ],
+          "timed_out": false,
+          "truncated": false,
+          "duration_seconds": 6.4992,
+          "tests": [
+            {
+              "name": "test_middleware",
+              "classname": "tests.cache.tests.CacheMiddlewareTest",
+              "outcome": "passed",
+              "expected_failure": false,
+              "message_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "expected_security_failure_marker_present": false
+            },
+            {
+              "name": "test_view_decorator",
+              "classname": "tests.cache.tests.CacheMiddlewareTest",
+              "outcome": "passed",
+              "expected_failure": false,
+              "message_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "expected_security_failure_marker_present": false
+            },
+            {
+              "name": "test_cache_page_timeout",
+              "classname": "tests.cache.tests.CacheMiddlewareTest",
+              "outcome": "passed",
+              "expected_failure": false,
+              "message_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "expected_security_failure_marker_present": false
+            },
+            {
+              "name": "test_sensitive_cookie_not_cached",
+              "classname": "tests.cache.tests.CacheMiddlewareTest",
+              "outcome": "passed",
+              "expected_failure": false,
+              "message_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "expected_security_failure_marker_present": false
+            },
+            {
+              "name": "test_304_response_has_http_caching_headers_but_not_cached",
+              "classname": "tests.cache.tests.CacheMiddlewareTest",
+              "outcome": "passed",
+              "expected_failure": false,
+              "message_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "expected_security_failure_marker_present": false
+            },
+            {
+              "name": "test_cache_control_max_age",
+              "classname": "tests.cache.tests.CacheMiddlewareTest",
+              "outcome": "passed",
+              "expected_failure": false,
+              "message_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "expected_security_failure_marker_present": false
+            }
+          ],
+          "evidence_error": null,
+          "stdout_sha256": "86ad647206c3906f81db017e060db46df7bdf6402c9f0e883971c93e19e7a7c3",
+          "stdout_omitted": true,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr_omitted": true,
+          "bootstrap_program_sha256": "ee0219be18911a31ae9dc35364d90b89670a0a00ed74b1b1ae3a088c401e4b10"
+        }
+      },
+      {
+        "name": "upstream_fix",
+        "revision": "44ad76efcbe3c4ca0f08bb9dabe916f6374596c9",
+        "security": {
+          "returncode": 0,
+          "command": [
+            "python",
+            "-I",
+            "-B",
+            "-c",
+            "<bootstrap program omitted>",
+            "-q",
+            "--tb=short",
+            "--import-mode=importlib",
+            "-p",
+            "no:cacheprovider",
+            "--junitxml=/report.xml",
+            "-p",
+            "pytest_django.plugin",
+            "-c",
+            "/dev/null",
+            "--noconftest",
+            "--rootdir=/oracle",
+            "/oracle/oracle.py::test_security_regression",
+            "/oracle/oracle.py::test_ordinary_response_cached",
+            "/oracle/oracle.py::test_non_wildcard_vary_preserved",
+            "/oracle/oracle.py::test_private_not_cached",
+            "/oracle/oracle.py::test_never_cache_preserved"
+          ],
+          "timed_out": false,
+          "truncated": false,
+          "duration_seconds": 2.4376,
+          "tests": [
+            {
+              "name": "test_security_regression",
+              "classname": "oracle",
+              "outcome": "passed",
+              "expected_failure": false,
+              "message_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "expected_security_failure_marker_present": false
+            },
+            {
+              "name": "test_ordinary_response_cached",
+              "classname": "oracle",
+              "outcome": "passed",
+              "expected_failure": false,
+              "message_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "expected_security_failure_marker_present": false
+            },
+            {
+              "name": "test_non_wildcard_vary_preserved",
+              "classname": "oracle",
+              "outcome": "passed",
+              "expected_failure": false,
+              "message_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "expected_security_failure_marker_present": false
+            },
+            {
+              "name": "test_private_not_cached",
+              "classname": "oracle",
+              "outcome": "passed",
+              "expected_failure": false,
+              "message_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "expected_security_failure_marker_present": false
+            },
+            {
+              "name": "test_never_cache_preserved",
+              "classname": "oracle",
+              "outcome": "passed",
+              "expected_failure": false,
+              "message_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "expected_security_failure_marker_present": false
+            }
+          ],
+          "evidence_error": null,
+          "stdout_sha256": "8e98b8448e54a326c5e73816f100eddf6b28544e8774f40779a3b21f3b5eb264",
+          "stdout_omitted": true,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr_omitted": true,
+          "bootstrap_program_sha256": "ee0219be18911a31ae9dc35364d90b89670a0a00ed74b1b1ae3a088c401e4b10"
+        },
+        "suite": {
+          "returncode": 0,
+          "command": [
+            "python",
+            "-I",
+            "-B",
+            "-c",
+            "<bootstrap program omitted>",
+            "-q",
+            "--tb=short",
+            "--import-mode=importlib",
+            "-p",
+            "no:cacheprovider",
+            "--junitxml=/report.xml",
+            "-p",
+            "pytest_django.plugin",
+            "tests/cache/tests.py::CacheMiddlewareTest::test_middleware",
+            "tests/cache/tests.py::CacheMiddlewareTest::test_view_decorator",
+            "tests/cache/tests.py::CacheMiddlewareTest::test_cache_page_timeout",
+            "tests/cache/tests.py::CacheMiddlewareTest::test_sensitive_cookie_not_cached",
+            "tests/cache/tests.py::CacheMiddlewareTest::test_304_response_has_http_caching_headers_but_not_cached",
+            "tests/cache/tests.py::CacheMiddlewareTest::test_cache_control_max_age"
+          ],
+          "timed_out": false,
+          "truncated": false,
+          "duration_seconds": 6.5509,
+          "tests": [
+            {
+              "name": "test_middleware",
+              "classname": "tests.cache.tests.CacheMiddlewareTest",
+              "outcome": "passed",
+              "expected_failure": false,
+              "message_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "expected_security_failure_marker_present": false
+            },
+            {
+              "name": "test_view_decorator",
+              "classname": "tests.cache.tests.CacheMiddlewareTest",
+              "outcome": "passed",
+              "expected_failure": false,
+              "message_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "expected_security_failure_marker_present": false
+            },
+            {
+              "name": "test_cache_page_timeout",
+              "classname": "tests.cache.tests.CacheMiddlewareTest",
+              "outcome": "passed",
+              "expected_failure": false,
+              "message_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "expected_security_failure_marker_present": false
+            },
+            {
+              "name": "test_sensitive_cookie_not_cached",
+              "classname": "tests.cache.tests.CacheMiddlewareTest",
+              "outcome": "passed",
+              "expected_failure": false,
+              "message_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "expected_security_failure_marker_present": false
+            },
+            {
+              "name": "test_304_response_has_http_caching_headers_but_not_cached",
+              "classname": "tests.cache.tests.CacheMiddlewareTest",
+              "outcome": "passed",
+              "expected_failure": false,
+              "message_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "expected_security_failure_marker_present": false
+            },
+            {
+              "name": "test_cache_control_max_age",
+              "classname": "tests.cache.tests.CacheMiddlewareTest",
+              "outcome": "passed",
+              "expected_failure": false,
+              "message_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "expected_security_failure_marker_present": false
+            }
+          ],
+          "evidence_error": null,
+          "stdout_sha256": "86ad647206c3906f81db017e060db46df7bdf6402c9f0e883971c93e19e7a7c3",
+          "stdout_omitted": true,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr_omitted": true,
+          "bootstrap_program_sha256": "ee0219be18911a31ae9dc35364d90b89670a0a00ed74b1b1ae3a088c401e4b10"
+        }
+      },
+      {
+        "name": "target_baseline",
+        "revision": "47cf968c125e3fab317e10fe150ec479e745f995",
+        "security": {
+          "returncode": 1,
+          "command": [
+            "python",
+            "-I",
+            "-B",
+            "-c",
+            "<bootstrap program omitted>",
+            "-q",
+            "--tb=short",
+            "--import-mode=importlib",
+            "-p",
+            "no:cacheprovider",
+            "--junitxml=/report.xml",
+            "-p",
+            "pytest_django.plugin",
+            "-c",
+            "/dev/null",
+            "--noconftest",
+            "--rootdir=/oracle",
+            "/oracle/oracle.py::test_security_regression",
+            "/oracle/oracle.py::test_ordinary_response_cached",
+            "/oracle/oracle.py::test_non_wildcard_vary_preserved",
+            "/oracle/oracle.py::test_private_not_cached",
+            "/oracle/oracle.py::test_never_cache_preserved"
+          ],
+          "timed_out": false,
+          "truncated": false,
+          "duration_seconds": 2.3959,
+          "tests": [
+            {
+              "name": "test_security_regression",
+              "classname": "oracle",
+              "outcome": "failed",
+              "expected_failure": false,
+              "message_sha256": "3eddb7a7117b01cc061eefe825e9f271b7bbe1b957b0b81c2e4c1e9d6c6b610d",
+              "expected_security_failure_marker_present": true
+            },
+            {
+              "name": "test_ordinary_response_cached",
+              "classname": "oracle",
+              "outcome": "passed",
+              "expected_failure": false,
+              "message_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "expected_security_failure_marker_present": false
+            },
+            {
+              "name": "test_non_wildcard_vary_preserved",
+              "classname": "oracle",
+              "outcome": "passed",
+              "expected_failure": false,
+              "message_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "expected_security_failure_marker_present": false
+            },
+            {
+              "name": "test_private_not_cached",
+              "classname": "oracle",
+              "outcome": "passed",
+              "expected_failure": false,
+              "message_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "expected_security_failure_marker_present": false
+            },
+            {
+              "name": "test_never_cache_preserved",
+              "classname": "oracle",
+              "outcome": "passed",
+              "expected_failure": false,
+              "message_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "expected_security_failure_marker_present": false
+            }
+          ],
+          "evidence_error": null,
+          "stdout_sha256": "eadd05e5e17276d0f7fb65923e7c5698105e1a4d293ddf9699f7400a133b7f8a",
+          "stdout_omitted": true,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr_omitted": true,
+          "bootstrap_program_sha256": "ee0219be18911a31ae9dc35364d90b89670a0a00ed74b1b1ae3a088c401e4b10"
+        },
+        "suite": {
+          "returncode": 0,
+          "command": [
+            "python",
+            "-I",
+            "-B",
+            "-c",
+            "<bootstrap program omitted>",
+            "-q",
+            "--tb=short",
+            "--import-mode=importlib",
+            "-p",
+            "no:cacheprovider",
+            "--junitxml=/report.xml",
+            "-p",
+            "pytest_django.plugin",
+            "tests/cache/tests.py::CacheMiddlewareTest::test_middleware",
+            "tests/cache/tests.py::CacheMiddlewareTest::test_view_decorator",
+            "tests/cache/tests.py::CacheMiddlewareTest::test_cache_page_timeout",
+            "tests/cache/tests.py::CacheMiddlewareTest::test_sensitive_cookie_not_cached",
+            "tests/cache/tests.py::CacheMiddlewareTest::test_304_response_has_http_caching_headers_but_not_cached",
+            "tests/cache/tests.py::CacheMiddlewareTest::test_cache_control_max_age"
+          ],
+          "timed_out": false,
+          "truncated": false,
+          "duration_seconds": 6.5925,
+          "tests": [
+            {
+              "name": "test_middleware",
+              "classname": "tests.cache.tests.CacheMiddlewareTest",
+              "outcome": "passed",
+              "expected_failure": false,
+              "message_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "expected_security_failure_marker_present": false
+            },
+            {
+              "name": "test_view_decorator",
+              "classname": "tests.cache.tests.CacheMiddlewareTest",
+              "outcome": "passed",
+              "expected_failure": false,
+              "message_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "expected_security_failure_marker_present": false
+            },
+            {
+              "name": "test_cache_page_timeout",
+              "classname": "tests.cache.tests.CacheMiddlewareTest",
+              "outcome": "passed",
+              "expected_failure": false,
+              "message_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "expected_security_failure_marker_present": false
+            },
+            {
+              "name": "test_sensitive_cookie_not_cached",
+              "classname": "tests.cache.tests.CacheMiddlewareTest",
+              "outcome": "passed",
+              "expected_failure": false,
+              "message_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "expected_security_failure_marker_present": false
+            },
+            {
+              "name": "test_304_response_has_http_caching_headers_but_not_cached",
+              "classname": "tests.cache.tests.CacheMiddlewareTest",
+              "outcome": "passed",
+              "expected_failure": false,
+              "message_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "expected_security_failure_marker_present": false
+            },
+            {
+              "name": "test_cache_control_max_age",
+              "classname": "tests.cache.tests.CacheMiddlewareTest",
+              "outcome": "passed",
+              "expected_failure": false,
+              "message_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "expected_security_failure_marker_present": false
+            }
+          ],
+          "evidence_error": null,
+          "stdout_sha256": "86ad647206c3906f81db017e060db46df7bdf6402c9f0e883971c93e19e7a7c3",
+          "stdout_omitted": true,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr_omitted": true,
+          "bootstrap_program_sha256": "ee0219be18911a31ae9dc35364d90b89670a0a00ed74b1b1ae3a088c401e4b10"
+        }
+      },
+      {
+        "name": "backport",
+        "revision": "47cf968c125e3fab317e10fe150ec479e745f995",
+        "security": {
+          "returncode": 0,
+          "command": [
+            "python",
+            "-I",
+            "-B",
+            "-c",
+            "<bootstrap program omitted>",
+            "-q",
+            "--tb=short",
+            "--import-mode=importlib",
+            "-p",
+            "no:cacheprovider",
+            "--junitxml=/report.xml",
+            "-p",
+            "pytest_django.plugin",
+            "-c",
+            "/dev/null",
+            "--noconftest",
+            "--rootdir=/oracle",
+            "/oracle/oracle.py::test_security_regression",
+            "/oracle/oracle.py::test_ordinary_response_cached",
+            "/oracle/oracle.py::test_non_wildcard_vary_preserved",
+            "/oracle/oracle.py::test_private_not_cached",
+            "/oracle/oracle.py::test_never_cache_preserved"
+          ],
+          "timed_out": false,
+          "truncated": false,
+          "duration_seconds": 2.3339,
+          "tests": [
+            {
+              "name": "test_security_regression",
+              "classname": "oracle",
+              "outcome": "passed",
+              "expected_failure": false,
+              "message_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "expected_security_failure_marker_present": false
+            },
+            {
+              "name": "test_ordinary_response_cached",
+              "classname": "oracle",
+              "outcome": "passed",
+              "expected_failure": false,
+              "message_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "expected_security_failure_marker_present": false
+            },
+            {
+              "name": "test_non_wildcard_vary_preserved",
+              "classname": "oracle",
+              "outcome": "passed",
+              "expected_failure": false,
+              "message_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "expected_security_failure_marker_present": false
+            },
+            {
+              "name": "test_private_not_cached",
+              "classname": "oracle",
+              "outcome": "passed",
+              "expected_failure": false,
+              "message_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "expected_security_failure_marker_present": false
+            },
+            {
+              "name": "test_never_cache_preserved",
+              "classname": "oracle",
+              "outcome": "passed",
+              "expected_failure": false,
+              "message_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "expected_security_failure_marker_present": false
+            }
+          ],
+          "evidence_error": null,
+          "stdout_sha256": "8e98b8448e54a326c5e73816f100eddf6b28544e8774f40779a3b21f3b5eb264",
+          "stdout_omitted": true,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr_omitted": true,
+          "bootstrap_program_sha256": "ee0219be18911a31ae9dc35364d90b89670a0a00ed74b1b1ae3a088c401e4b10"
+        },
+        "suite": {
+          "returncode": 0,
+          "command": [
+            "python",
+            "-I",
+            "-B",
+            "-c",
+            "<bootstrap program omitted>",
+            "-q",
+            "--tb=short",
+            "--import-mode=importlib",
+            "-p",
+            "no:cacheprovider",
+            "--junitxml=/report.xml",
+            "-p",
+            "pytest_django.plugin",
+            "tests/cache/tests.py::CacheMiddlewareTest::test_middleware",
+            "tests/cache/tests.py::CacheMiddlewareTest::test_view_decorator",
+            "tests/cache/tests.py::CacheMiddlewareTest::test_cache_page_timeout",
+            "tests/cache/tests.py::CacheMiddlewareTest::test_sensitive_cookie_not_cached",
+            "tests/cache/tests.py::CacheMiddlewareTest::test_304_response_has_http_caching_headers_but_not_cached",
+            "tests/cache/tests.py::CacheMiddlewareTest::test_cache_control_max_age"
+          ],
+          "timed_out": false,
+          "truncated": false,
+          "duration_seconds": 6.5415,
+          "tests": [
+            {
+              "name": "test_middleware",
+              "classname": "tests.cache.tests.CacheMiddlewareTest",
+              "outcome": "passed",
+              "expected_failure": false,
+              "message_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "expected_security_failure_marker_present": false
+            },
+            {
+              "name": "test_view_decorator",
+              "classname": "tests.cache.tests.CacheMiddlewareTest",
+              "outcome": "passed",
+              "expected_failure": false,
+              "message_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "expected_security_failure_marker_present": false
+            },
+            {
+              "name": "test_cache_page_timeout",
+              "classname": "tests.cache.tests.CacheMiddlewareTest",
+              "outcome": "passed",
+              "expected_failure": false,
+              "message_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "expected_security_failure_marker_present": false
+            },
+            {
+              "name": "test_sensitive_cookie_not_cached",
+              "classname": "tests.cache.tests.CacheMiddlewareTest",
+              "outcome": "passed",
+              "expected_failure": false,
+              "message_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "expected_security_failure_marker_present": false
+            },
+            {
+              "name": "test_304_response_has_http_caching_headers_but_not_cached",
+              "classname": "tests.cache.tests.CacheMiddlewareTest",
+              "outcome": "passed",
+              "expected_failure": false,
+              "message_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "expected_security_failure_marker_present": false
+            },
+            {
+              "name": "test_cache_control_max_age",
+              "classname": "tests.cache.tests.CacheMiddlewareTest",
+              "outcome": "passed",
+              "expected_failure": false,
+              "message_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "expected_security_failure_marker_present": false
+            }
+          ],
+          "evidence_error": null,
+          "stdout_sha256": "86ad647206c3906f81db017e060db46df7bdf6402c9f0e883971c93e19e7a7c3",
+          "stdout_omitted": true,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr_omitted": true,
+          "bootstrap_program_sha256": "ee0219be18911a31ae9dc35364d90b89670a0a00ed74b1b1ae3a088c401e4b10"
+        }
+      }
+    ],
+    "attempts": 1,
+    "adaptation": "agent",
+    "model_usage": {
+      "provider": "deepseek",
+      "model": "deepseek-flash",
+      "returned_model": "deepseek-flash",
+      "calls": 4,
+      "input_tokens": 23945,
+      "output_tokens": 3427,
+      "estimated_cost_usd": 0.0112959,
+      "reserved_cost_usd": 0.0,
+      "budget_usd": 1.0,
+      "pricing": "conservative text upper bounds; operator rates, checked schedules, or bundled genai-prices 0.1.13; no network updates"
+    },
+    "reviewed_tests": null,
+    "reviewed_fixtures": {}
+  }
+}

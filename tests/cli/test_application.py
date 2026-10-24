@@ -377,13 +377,32 @@ def test_doctor_identifies_installed_version_and_package_without_provider(
     monkeypatch.setattr(
         application,
         "run_process",
-        lambda *args, **kwargs: ProcessResult(returncode=0, stdout="available"),
+        lambda *args, **kwargs: ProcessResult(
+            returncode=0, stdout="git version 2.43.0"
+        ),
     )
     result = runner.invoke(cli.app, ["doctor"])
     assert result.exit_code == 0, result.output
     assert f"Seam: 0.2.0 ({tmp_path / 'seam'})" in result.output
     assert "Git: OK" in result.output
     assert "Docker: OK" in result.output
+
+
+@pytest.mark.parametrize(
+    "git_version,exit_code", [("2.37.9", 2), ("2.38.0", 0), ("3.0.0", 0)]
+)
+def test_doctor_checks_git_inventory_version(monkeypatch, git_version, exit_code):
+    monkeypatch.setattr(
+        application,
+        "run_process",
+        lambda *args, **kwargs: ProcessResult(
+            returncode=0, stdout=f"git version {git_version}"
+        ),
+    )
+    result = runner.invoke(cli.app, ["doctor"])
+    assert result.exit_code == exit_code, result.output
+    if exit_code:
+        assert "Git 2.38+ is required" in result.output
 
 
 @pytest.mark.parametrize(

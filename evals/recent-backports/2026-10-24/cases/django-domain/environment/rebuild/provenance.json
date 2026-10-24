@@ -1,0 +1,9 @@
+{
+  "type": "derived portable rebuild inputs",
+  "base_image": "python@sha256:f3fa41d74a768c2fce8016b98c191ae8c1bacd8f1152870a3f9f87d350920b7c",
+  "base_source": "Public Python digest recorded by the Django historical environment",
+  "dependency_source": "Recorded installed distribution versions; no target implementation package is installed",
+  "qualification": "Not executed as part of the historical runs. A rebuild has new image and config identities and requires complete matrix qualification before comparison.",
+  "source_files": "Exact reviewed plugin/settings and authentic container-generated metadata copied from sibling recorded/ and metadata/ inputs.",
+  "scope": "The target source checkout is supplied by Seam at execution time, outside the image."
+}

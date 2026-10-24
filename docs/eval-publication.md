@@ -2,7 +2,7 @@
 
 Publish the source dataset under [`evals/python`](../evals/python/README.md)
 with the harness wheel and an optional Docker image archive in the
-[v0.3.0 GitHub Release](https://github.com/theinfosecguy/seam/releases/tag/v0.3.0).
+[v0.4.0 GitHub Release](https://github.com/theinfosecguy/seam/releases/tag/v0.4.0).
 This is the release target; publish it only after all eight cases qualify.
 The qualification workflow does not publish artifacts.
 
@@ -118,3 +118,20 @@ required for the release archive or the public base images and wheel URLs.
 
 Publish the release only after reviewing its exact artifacts and checksums.
 Confirm anonymous downloads and their hashes before announcing availability.
+
+## Publish case-study evidence separately
+
+The [recent-backport supplement](../evals/recent-backports/2026-10-24/README.md)
+contains four additional historical case studies, outside the eight-case dataset.
+Its normalized evidence includes all 12 post-fix attempts and all ten earlier
+attempts, with setup failures, model failures and a runtime negative check intact.
+Original and public derivative hashes are recorded separately; derivatives are
+not original reports for `seam inspect`. Raw logs, credentials, provider
+conversations, environments and source clones are excluded.
+
+Keep this supplement and any new release qualification in separate directories.
+Do not replace its tested `0.4.0.dev0` wheel identity with a new release version.
+Historical local image IDs identify executed bytes; the included flattened rebuild
+recipes have not themselves been qualified by those historical runs. Publish new
+rebuild or release results with their own wheel, image, input hashes and attempt
+identifiers, preserving unsuccessful attempts and the original evidence.

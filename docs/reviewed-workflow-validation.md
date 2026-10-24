@@ -28,7 +28,8 @@ upstream Cookie-removal policy without changing test identities. The fresh live
 run used `deepseek-flash`, 8 calls, 44,152 input tokens and 2,333 output tokens;
 estimated cost was **$0.0160452**. The dollar cap was explicitly disabled and
 `--max-model-calls 32` configured. Eight calls do not demonstrate a need for more
-than the default 16. Its exported patch matched the supplied-candidate result.
+than the default of 16 in effect for that run. Its exported patch matched the
+supplied-candidate result.
 
 Authlib fix: `06f0813901a5238dd0b94521d26a7af9064497a0`;
 target: `dbbfa9abcfe725001b452cf08d9e48be0ebfdce9`.

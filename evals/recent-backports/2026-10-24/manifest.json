@@ -1,0 +1,985 @@
+{
+  "schema_version": 1,
+  "evaluation_date": "2026-10-24",
+  "source_material": "Immutable local evidence retained separately. source: identifiers are logical provenance labels, not download URLs.",
+  "normalization": "All original source SHA-256 values identify frozen original bytes. Exact copies retain bytes. Normalized derivatives have independent published hashes. No original evidence was modified.",
+  "cases": [
+    "django-domain",
+    "django-vary",
+    "pydanticai-host",
+    "litellm-context"
+  ],
+  "original_sources": [
+    {
+      "source_id": "gap-fixes/results.json",
+      "source_sha256": "ad47a575fb7673485cff333d8fcec08d0605d6d39067672f79a1c4c068c30fc0",
+      "published_path": "summary.json",
+      "published_sha256": "f9027d652df22f2fdcab19158b41cad1730e5d0bac721cf9e8d4d3597f54d1e8",
+      "copy_type": "normalized paths; original bytes not distributed"
+    },
+    {
+      "source_id": "original-evaluation/results.json",
+      "source_sha256": "34b221497326d81ac45e5bfa15ae0fa0e85bb71744a111005894ea94f39afc7f",
+      "published_path": "historical-summary.json",
+      "published_sha256": "a1e838e96992ce8ab0bd756ec6a4c1a56000dcca2b4ad128c8b618047d1c5163",
+      "copy_type": "normalized paths; original bytes not distributed"
+    },
+    {
+      "source_id": "original-evaluation/audit.json",
+      "source_sha256": "ea438d002566fcc36e889acc138dee6a8aca9d067a7ce223009ef9526637a27b",
+      "published_path": "audits/historical-matrix-audit.json",
+      "published_sha256": "ea438d002566fcc36e889acc138dee6a8aca9d067a7ce223009ef9526637a27b",
+      "copy_type": "normalized paths; original bytes not distributed"
+    },
+    {
+      "source_id": "gap-fixes/audit.json",
+      "source_sha256": "c49931eedbd4077bc3787d6e866d319b5d9ac54b4ad3f647da56120378d357da",
+      "published_path": "audits/matrix-audit.json",
+      "published_sha256": "c49931eedbd4077bc3787d6e866d319b5d9ac54b4ad3f647da56120378d357da",
+      "copy_type": "normalized paths; original bytes not distributed"
+    },
+    {
+      "source_id": "gap-fixes/findings-status.json",
+      "source_sha256": "1de47cca7202b2a766af63c9a5924d3076dc00f6915d6c11ff799b9d4059d8b9",
+      "published_path": "audits/findings-status.json",
+      "published_sha256": "1de47cca7202b2a766af63c9a5924d3076dc00f6915d6c11ff799b9d4059d8b9",
+      "copy_type": "normalized paths; original bytes not distributed"
+    },
+    {
+      "source_id": "gap-fixes/implementation-provenance.json",
+      "source_sha256": "1d7a89289a78325fd13137bf634ddb3d65cafc4829d20dad44510bc8071858f1",
+      "published_path": "provenance/tested-implementation.json",
+      "published_sha256": "88bf4339efadf78520b530e3995837e83196fea56e8a0ac72c1eea3e2244ff19",
+      "copy_type": "normalized paths; original bytes not distributed"
+    },
+    {
+      "source_id": "gap-fixes/artifact-scan.json",
+      "source_sha256": "211e95b3be97c8724adf17c38f6d5acf50059560aa10d74e06916f5a37fb1f7b",
+      "published_path": "audits/original-artifact-scan.json",
+      "published_sha256": "211e95b3be97c8724adf17c38f6d5acf50059560aa10d74e06916f5a37fb1f7b",
+      "copy_type": "normalized paths; original bytes not distributed"
+    },
+    {
+      "source_id": "gap-fixes/validation/checks.json",
+      "source_sha256": "4609c0713a88ab4bb4cc992d2375a922e8f614f532d06aa879dedd5e6ef09510",
+      "published_path": "audits/implementation-checks.json",
+      "published_sha256": "e78e2db2906ab2303db4ef81cd44d45e83d03ca3ab78a21d986f3941cdfc1550",
+      "copy_type": "normalized paths; original bytes not distributed"
+    },
+    {
+      "source_id": "gap-fixes/inventory-regression/results.json",
+      "source_sha256": "c0949282191a2ad10e089125662ec52ad318308b655c0052e7ddfcd0fd1fc389",
+      "published_path": "audits/inventory-boundaries.json",
+      "published_sha256": "fd52a04b11267e3a6c545401f0e3c33680b1a7324ddd0abdfda80ce9334282ac",
+      "copy_type": "normalized paths; original bytes not distributed"
+    },
+    {
+      "source_id": "original-evaluation/django-domain/trusted/harness.toml",
+      "source_sha256": "7695cb008f8d6f3c8cc9908b431af0de9b8acd8cdd63e9542a35333f91a6b15b",
+      "published_path": "cases/django-domain/harness.toml",
+      "published_sha256": "7695cb008f8d6f3c8cc9908b431af0de9b8acd8cdd63e9542a35333f91a6b15b",
+      "copy_type": "exact"
+    },
+    {
+      "source_id": "original-evaluation/django-domain/trusted/oracle.py",
+      "source_sha256": "72b684f3a06f6fcb7b72c972cbab69e953c96e04482f832fd61fa360b134734c",
+      "published_path": "cases/django-domain/oracle.py",
+      "published_sha256": "72b684f3a06f6fcb7b72c972cbab69e953c96e04482f832fd61fa360b134734c",
+      "copy_type": "exact"
+    },
+    {
+      "source_id": "original-evaluation/django-domain/trusted/reference-implementation.patch",
+      "source_sha256": "6f29b4d4c81fe4ad50792d3bc46f560ee3ce3264f1eeed3f0416a27ebda7525d",
+      "published_path": "cases/django-domain/reference.patch",
+      "published_sha256": "6f29b4d4c81fe4ad50792d3bc46f560ee3ce3264f1eeed3f0416a27ebda7525d",
+      "copy_type": "exact"
+    },
+    {
+      "source_id": "original-evaluation/django-vary/trusted/harness-v2.toml",
+      "source_sha256": "62cabd3c94cff933e4a47b8eaf65e59c48eb9ca50969cf5028166af006f9c6f1",
+      "published_path": "cases/django-vary/harness.toml",
+      "published_sha256": "62cabd3c94cff933e4a47b8eaf65e59c48eb9ca50969cf5028166af006f9c6f1",
+      "copy_type": "exact"
+    },
+    {
+      "source_id": "original-evaluation/django-vary/trusted/oracle.py",
+      "source_sha256": "cda045174aaba3504e2d95c13aaea2831ef14ca89fd56d60f0fc166fa3dd7e1d",
+      "published_path": "cases/django-vary/oracle.py",
+      "published_sha256": "cda045174aaba3504e2d95c13aaea2831ef14ca89fd56d60f0fc166fa3dd7e1d",
+      "copy_type": "exact"
+    },
+    {
+      "source_id": "original-evaluation/django-vary/trusted/reference-implementation.patch",
+      "source_sha256": "371e5f5699e9e9b8ca1d224e238eff0fdde80191831c524abcca22aaba61b67f",
+      "published_path": "cases/django-vary/reference.patch",
+      "published_sha256": "371e5f5699e9e9b8ca1d224e238eff0fdde80191831c524abcca22aaba61b67f",
+      "copy_type": "exact"
+    },
+    {
+      "source_id": "gap-fixes/pydanticai-host/harness.toml",
+      "source_sha256": "23bf571939f4ecaacefb5c4320498ef9bfecc2c832e7e3b23e0ec80370ad496c",
+      "published_path": "cases/pydanticai-host/harness.toml",
+      "published_sha256": "23bf571939f4ecaacefb5c4320498ef9bfecc2c832e7e3b23e0ec80370ad496c",
+      "copy_type": "exact"
+    },
+    {
+      "source_id": "gap-fixes/pydanticai-host/oracle.py",
+      "source_sha256": "1bf1ba75af3bda575433c824c39444eae1e65a057673b486d9e62b807645686a",
+      "published_path": "cases/pydanticai-host/oracle.py",
+      "published_sha256": "1bf1ba75af3bda575433c824c39444eae1e65a057673b486d9e62b807645686a",
+      "copy_type": "exact"
+    },
+    {
+      "source_id": "gap-fixes/pydanticai-host/reference.patch",
+      "source_sha256": "fd26c3d1fc9bbbdb604d5915939a48704cef0d7aff145fd13ff359a851f4dc7d",
+      "published_path": "cases/pydanticai-host/reference.patch",
+      "published_sha256": "fd26c3d1fc9bbbdb604d5915939a48704cef0d7aff145fd13ff359a851f4dc7d",
+      "copy_type": "exact"
+    },
+    {
+      "source_id": "gap-fixes/litellm-context/harness.toml",
+      "source_sha256": "3ce8d3532305ad62e7e336dbf2aeee9228560ad774f73971948df73cecf66c1c",
+      "published_path": "cases/litellm-context/harness.toml",
+      "published_sha256": "3ce8d3532305ad62e7e336dbf2aeee9228560ad774f73971948df73cecf66c1c",
+      "copy_type": "exact"
+    },
+    {
+      "source_id": "gap-fixes/litellm-context/oracle.py",
+      "source_sha256": "82ef6899914a3808c3608d07763f3b759a6fcc35db9517dde915a6363a903aa1",
+      "published_path": "cases/litellm-context/oracle.py",
+      "published_sha256": "82ef6899914a3808c3608d07763f3b759a6fcc35db9517dde915a6363a903aa1",
+      "copy_type": "exact"
+    },
+    {
+      "source_id": "gap-fixes/litellm-context/reference.patch",
+      "source_sha256": "21ec2b509209669819f2298760111f5b0d4eb28e47b42a710c10a6b22bd28252",
+      "published_path": "cases/litellm-context/reference.patch",
+      "published_sha256": "21ec2b509209669819f2298760111f5b0d4eb28e47b42a710c10a6b22bd28252",
+      "copy_type": "exact"
+    },
+    {
+      "source_id": "original-evaluation/django-domain/trusted/negative-no-fix.patch",
+      "source_sha256": "f03f84eb9d85b9d3d31fdb6d742db0c4cf8ad1d05d87b6978de494cece662562",
+      "published_path": "cases/django-domain/negative-no-fix.patch",
+      "published_sha256": "f03f84eb9d85b9d3d31fdb6d742db0c4cf8ad1d05d87b6978de494cece662562",
+      "copy_type": "exact"
+    },
+    {
+      "source_id": "original-evaluation/django-domain/model-run/backport.patch",
+      "source_sha256": "6f29b4d4c81fe4ad50792d3bc46f560ee3ce3264f1eeed3f0416a27ebda7525d",
+      "published_path": "cases/django-domain/prior-model.patch",
+      "published_sha256": "6f29b4d4c81fe4ad50792d3bc46f560ee3ce3264f1eeed3f0416a27ebda7525d",
+      "copy_type": "exact"
+    },
+    {
+      "source_id": "original-evaluation/django-vary/model-run/backport.patch",
+      "source_sha256": "371e5f5699e9e9b8ca1d224e238eff0fdde80191831c524abcca22aaba61b67f",
+      "published_path": "cases/django-vary/prior-model.patch",
+      "published_sha256": "371e5f5699e9e9b8ca1d224e238eff0fdde80191831c524abcca22aaba61b67f",
+      "copy_type": "exact"
+    },
+    {
+      "source_id": "gap-fixes/pydanticai-host/vendor-file-comparison.json",
+      "source_sha256": "6582218724d7d61889e5645a49a78374cf73392a6b581d587fb956115ab83241",
+      "published_path": "cases/pydanticai-host/vendor-file-comparison.json",
+      "published_sha256": "729e474dbde7f4cc8dac7f2b6297ffdabd0718a897de843230e59af3d16cb6a5",
+      "copy_type": "normalized paths; original bytes not distributed"
+    },
+    {
+      "source_id": "gap-fixes/pydanticai-host/advisory-scope-assessment.json",
+      "source_sha256": "7d151d1e0b907bdbe3f5e7b018b88d6c1e6887f66eeb00e872bdbb325924b50f",
+      "published_path": "cases/pydanticai-host/advisory-scope-assessment.json",
+      "published_sha256": "6fa44bb18f119eb18f7a6e85d7269aaf4b224abc4334f4ec8ab81996fe9d0c37",
+      "copy_type": "normalized paths; original bytes not distributed"
+    },
+    {
+      "source_id": "gap-fixes/pydanticai-host/image-identity.json",
+      "source_sha256": "be2e23fc586ef3a07f72d0e6e193958942606241e82b49305bf933270f5940ab",
+      "published_path": "cases/pydanticai-host/recorded-image.json",
+      "published_sha256": "837a7db6556fac2a588cf4211baca71f9fcb80652d26116d317b3bbd2507fd98",
+      "copy_type": "normalized paths; original bytes not distributed"
+    },
+    {
+      "source_id": "gap-fixes/pydanticai-host/installed-packages.json",
+      "source_sha256": "c1601a665033bf92d674ebb4d3dc10fd60f8ad2858acafdab95b432a013b874d",
+      "published_path": "cases/pydanticai-host/installed-packages.json",
+      "published_sha256": "6a61ab464c808b41947d5a6496a7fb93962d4cdae549113c8d5504091072b0d7",
+      "copy_type": "normalized paths; original bytes not distributed"
+    },
+    {
+      "source_id": "gap-fixes/litellm-context/vendor-file-comparison.json",
+      "source_sha256": "21acc8f0ecce07ba7cc3fa159298c19e8221f25d63c71d38407695c2a04d234f",
+      "published_path": "cases/litellm-context/vendor-file-comparison.json",
+      "published_sha256": "8c2652782dfcb81757c14cb9fe3c082ba39ca16cbaad21d2bd5d79405a3cb652",
+      "copy_type": "normalized paths; original bytes not distributed"
+    },
+    {
+      "source_id": "gap-fixes/litellm-context/advisory-scope-assessment.json",
+      "source_sha256": "80b96a089a0ca24524c43f761b079a33a9a58753455f5839e37cbdd4cf667c5e",
+      "published_path": "cases/litellm-context/advisory-scope-assessment.json",
+      "published_sha256": "0a8d88bf7b63e2e9ba7e76763c2b151f5aecb41257bac86f40f4e591c4ec110f",
+      "copy_type": "normalized paths; original bytes not distributed"
+    },
+    {
+      "source_id": "gap-fixes/litellm-context/image-identity.json",
+      "source_sha256": "3de4b18b381ecc4848a92c8e4c589819e743e3f183096ff3edeba827d16a4a2c",
+      "published_path": "cases/litellm-context/recorded-image.json",
+      "published_sha256": "3de4b18b381ecc4848a92c8e4c589819e743e3f183096ff3edeba827d16a4a2c",
+      "copy_type": "normalized paths; original bytes not distributed"
+    },
+    {
+      "source_id": "gap-fixes/litellm-context/installed-packages.json",
+      "source_sha256": "9315c460f5a881f3ace0d791fbaaf511baa4f2284c68ca2df6ae3f3898ee2426",
+      "published_path": "cases/litellm-context/installed-packages.json",
+      "published_sha256": "9315c460f5a881f3ace0d791fbaaf511baa4f2284c68ca2df6ae3f3898ee2426",
+      "copy_type": "normalized paths; original bytes not distributed"
+    },
+    {
+      "source_id": "gap-fixes/litellm-context/model-semantic-comparison.json",
+      "source_sha256": "6f5aca19b8456dc36c41b8776372879e37b03da8c1519a4d17cb4300de658d6e",
+      "published_path": "cases/litellm-context/model-semantic-comparison.json",
+      "published_sha256": "91d61e9d574037d58aa4ea57d5a8b887f349f8215129a5117c51ab22fe9dcfe4",
+      "copy_type": "normalized paths; original bytes not distributed"
+    },
+    {
+      "source_id": "gap-fixes/litellm-context/final-environment-deviations.json",
+      "source_sha256": "15ca0df1703b7058d700993506cfd71b79377067fa1c8511748e19915d8dfec9",
+      "published_path": "cases/litellm-context/final-environment-deviations.json",
+      "published_sha256": "15ca0df1703b7058d700993506cfd71b79377067fa1c8511748e19915d8dfec9",
+      "copy_type": "normalized paths; original bytes not distributed"
+    },
+    {
+      "source_id": "gap-fixes/litellm-context/union-dependency-audit.json",
+      "source_sha256": "71279e48d8357fede5e0d5fe609c2d736fc76784454be06493a1f3d6229d0037",
+      "published_path": "cases/litellm-context/union-dependency-audit.json",
+      "published_sha256": "71279e48d8357fede5e0d5fe609c2d736fc76784454be06493a1f3d6229d0037",
+      "copy_type": "normalized paths; original bytes not distributed"
+    },
+    {
+      "source_id": "gap-fixes/litellm-context/installed-packages.source-overlay.json",
+      "source_sha256": "ddf625012f43d3c0f67ac2a659b82dd62321dd0e289ca1df266fef8de518ad65",
+      "published_path": "cases/litellm-context/installed-packages.source-overlay.json",
+      "published_sha256": "ddf625012f43d3c0f67ac2a659b82dd62321dd0e289ca1df266fef8de518ad65",
+      "copy_type": "normalized paths; original bytes not distributed"
+    },
+    {
+      "source_id": "gap-fixes/litellm-context/model-vendor-unified.diff",
+      "source_sha256": "f0536080deac4b83c480e8eee3613a63b349b7db8c208d0d49aadaed04f5b7eb",
+      "published_path": "cases/litellm-context/model-vendor-unified.diff",
+      "published_sha256": "f0536080deac4b83c480e8eee3613a63b349b7db8c208d0d49aadaed04f5b7eb",
+      "copy_type": "exact"
+    },
+    {
+      "source_id": "gap-fixes/pydanticai-host/setup-host-metadata-mistake.json",
+      "source_sha256": "415128dc9ecb15b1b46916289204b11b7852754bc5dd4204c2a96ef9a64d5fda",
+      "published_path": "cases/pydanticai-host/setup-host-metadata-mistake.json",
+      "published_sha256": "8da2a7b958bf48255b267f8da67cd8436e8173ce5e9f6a570da2078d6789734d",
+      "copy_type": "normalized paths; original bytes not distributed"
+    },
+    {
+      "source_id": "gap-fixes/pydanticai-host/metadata-source-isolation.json",
+      "source_sha256": "df13027e1da73a841e55e6e1bd2edf0c8b8965d4f9cb5083fed75ca4b5596c3f",
+      "published_path": "cases/pydanticai-host/metadata-source-isolation.json",
+      "published_sha256": "6b457cb0888cd8a0865aeaf59f063d3f4f29d9fb1ddab3b09862ce485b23c663",
+      "copy_type": "normalized paths; original bytes not distributed"
+    },
+    {
+      "source_id": "gap-fixes/pydanticai-host/metadata-bridge.json",
+      "source_sha256": "229d37f856220e94fd0c2153230357726efd1d633e5c2bca9a873d2cbac964d2",
+      "published_path": "cases/pydanticai-host/metadata-bridge.json",
+      "published_sha256": "ab4dab003fa53b225efe677c4e7738154094e26b166155b670a9ca22a84a4501",
+      "copy_type": "normalized paths; original bytes not distributed"
+    },
+    {
+      "source_id": "gap-fixes/pydanticai-host/suite-dependency-qualification.json",
+      "source_sha256": "7cd441ccc090be9395143f16e487417fcd1ee90a7d897f9d0028c6d2114a1186",
+      "published_path": "cases/pydanticai-host/suite-dependency-qualification.json",
+      "published_sha256": "7cd441ccc090be9395143f16e487417fcd1ee90a7d897f9d0028c6d2114a1186",
+      "copy_type": "normalized paths; original bytes not distributed"
+    },
+    {
+      "source_id": "gap-fixes/django-replays/domain/run/report.json",
+      "source_sha256": "a575ee0e52faa7289444ca59f52d1c2e0fb4df34ce9a1c21b97c33c6aea76bb4",
+      "published_path": "evidence/django-replays/domain/run/evidence.json",
+      "published_sha256": "ad85fef99d3f021c33a5b9f65854f558421689ae3e320d65252cab9929c7845e",
+      "copy_type": "normalized evidence derivative; original bytes not distributed"
+    },
+    {
+      "source_id": "gap-fixes/django-replays/domain/run/config.json",
+      "source_sha256": "65fc3b1629b4130d0edf3f3360ed7474adbd63d822909799e0451980e5830de6",
+      "published_path": "evidence/django-replays/domain/run/config.json",
+      "published_sha256": "1af283952c50890738731fdc0935ff406261ea152d8a643fe798ed56a7ffb58f",
+      "copy_type": "oracle path normalized to oracle.py; original bytes not distributed"
+    },
+    {
+      "source_id": "gap-fixes/django-replays/domain/run/backport.patch",
+      "source_sha256": "6f29b4d4c81fe4ad50792d3bc46f560ee3ce3264f1eeed3f0416a27ebda7525d",
+      "published_path": "evidence/django-replays/domain/run/backport.patch",
+      "published_sha256": "6f29b4d4c81fe4ad50792d3bc46f560ee3ce3264f1eeed3f0416a27ebda7525d",
+      "copy_type": "exact"
+    },
+    {
+      "source_id": "gap-fixes/django-replays/domain/run/attempt-1.patch",
+      "source_sha256": "6f29b4d4c81fe4ad50792d3bc46f560ee3ce3264f1eeed3f0416a27ebda7525d",
+      "published_path": "evidence/django-replays/domain/run/attempt-1.patch",
+      "published_sha256": "6f29b4d4c81fe4ad50792d3bc46f560ee3ce3264f1eeed3f0416a27ebda7525d",
+      "copy_type": "exact"
+    },
+    {
+      "source_id": "gap-fixes/django-replays/domain-negative/run/report.json",
+      "source_sha256": "1700b458d3bda3690f36078943a759d850b629a55ff149da8347fa14196abe51",
+      "published_path": "evidence/django-replays/domain-negative/run/evidence.json",
+      "published_sha256": "9c21a5456465a557ce5052a36f2be1bd493c115682da4853e29b030f8f943ac7",
+      "copy_type": "normalized evidence derivative; original bytes not distributed"
+    },
+    {
+      "source_id": "gap-fixes/django-replays/domain-negative/run/config.json",
+      "source_sha256": "65fc3b1629b4130d0edf3f3360ed7474adbd63d822909799e0451980e5830de6",
+      "published_path": "evidence/django-replays/domain-negative/run/config.json",
+      "published_sha256": "1af283952c50890738731fdc0935ff406261ea152d8a643fe798ed56a7ffb58f",
+      "copy_type": "oracle path normalized to oracle.py; original bytes not distributed"
+    },
+    {
+      "source_id": "gap-fixes/django-replays/domain-negative/run/attempt-1.patch",
+      "source_sha256": "f03f84eb9d85b9d3d31fdb6d742db0c4cf8ad1d05d87b6978de494cece662562",
+      "published_path": "evidence/django-replays/domain-negative/run/attempt-1.patch",
+      "published_sha256": "f03f84eb9d85b9d3d31fdb6d742db0c4cf8ad1d05d87b6978de494cece662562",
+      "copy_type": "exact"
+    },
+    {
+      "source_id": "gap-fixes/django-replays/vary/run/report.json",
+      "source_sha256": "3673267954a656392db1e2272b43d774d3b469a4b068252683b36a5e995f75ab",
+      "published_path": "evidence/django-replays/vary/run/evidence.json",
+      "published_sha256": "057ea835a6cebd5d8bbc2a941544365db408a279820db733386fd1dad2b2445e",
+      "copy_type": "normalized evidence derivative; original bytes not distributed"
+    },
+    {
+      "source_id": "gap-fixes/django-replays/vary/run/config.json",
+      "source_sha256": "bfe68a44d99a3f9ec80a1e7393aa8842f99c49ccd0bd034a35bdd4b51e2f32a3",
+      "published_path": "evidence/django-replays/vary/run/config.json",
+      "published_sha256": "956732bd7e5db30adc3113a8599351f32ec022634845b60928e611fae49a9f94",
+      "copy_type": "oracle path normalized to oracle.py; original bytes not distributed"
+    },
+    {
+      "source_id": "gap-fixes/django-replays/vary/run/backport.patch",
+      "source_sha256": "371e5f5699e9e9b8ca1d224e238eff0fdde80191831c524abcca22aaba61b67f",
+      "published_path": "evidence/django-replays/vary/run/backport.patch",
+      "published_sha256": "371e5f5699e9e9b8ca1d224e238eff0fdde80191831c524abcca22aaba61b67f",
+      "copy_type": "exact"
+    },
+    {
+      "source_id": "gap-fixes/django-replays/vary/run/attempt-1.patch",
+      "source_sha256": "371e5f5699e9e9b8ca1d224e238eff0fdde80191831c524abcca22aaba61b67f",
+      "published_path": "evidence/django-replays/vary/run/attempt-1.patch",
+      "published_sha256": "371e5f5699e9e9b8ca1d224e238eff0fdde80191831c524abcca22aaba61b67f",
+      "copy_type": "exact"
+    },
+    {
+      "source_id": "gap-fixes/pydanticai-host/ai-01/report.json",
+      "source_sha256": "1843d321c8f6f3e43522712c01f4346fc6833c5f1d31e3fe1ddc97d1dda95724",
+      "published_path": "evidence/pydanticai-host/ai-01/evidence.json",
+      "published_sha256": "37985a25208067a6f3a4e5c1d44071df59f50101f0c4a9a9b721bc0bffbe37a8",
+      "copy_type": "normalized evidence derivative; original bytes not distributed"
+    },
+    {
+      "source_id": "gap-fixes/pydanticai-host/ai-01/config.json",
+      "source_sha256": "f2ad42381684fa25b2930172c3ccf6ce370bba7abee42c6b7e8046ba0ae1d7aa",
+      "published_path": "evidence/pydanticai-host/ai-01/config.json",
+      "published_sha256": "2da80f009493874ca1562942aff12e1b456e46e83d57356989a0693bdb849efb",
+      "copy_type": "oracle path normalized to oracle.py; original bytes not distributed"
+    },
+    {
+      "source_id": "gap-fixes/pydanticai-host/ai-01/attempt-1.patch",
+      "source_sha256": "c7441bbab03b81fdab70c0c98cd50f839e9944d43eb96ce25e60997a1cd0ad21",
+      "published_path": "evidence/pydanticai-host/ai-01/attempt-1.patch",
+      "published_sha256": "c7441bbab03b81fdab70c0c98cd50f839e9944d43eb96ce25e60997a1cd0ad21",
+      "copy_type": "exact"
+    },
+    {
+      "source_id": "gap-fixes/pydanticai-host/ai-02/report.json",
+      "source_sha256": "5ea9999bb53b1ac5254039453793bf693f734720f5946c5b7c102e3c4066d748",
+      "published_path": "evidence/pydanticai-host/ai-02/evidence.json",
+      "published_sha256": "0d617bcf616d8e172df9824658206c9649dc5d67b442521ca303d2d5eaa449e2",
+      "copy_type": "normalized evidence derivative; original bytes not distributed"
+    },
+    {
+      "source_id": "gap-fixes/pydanticai-host/ai-02/config.json",
+      "source_sha256": "f2ad42381684fa25b2930172c3ccf6ce370bba7abee42c6b7e8046ba0ae1d7aa",
+      "published_path": "evidence/pydanticai-host/ai-02/config.json",
+      "published_sha256": "2da80f009493874ca1562942aff12e1b456e46e83d57356989a0693bdb849efb",
+      "copy_type": "oracle path normalized to oracle.py; original bytes not distributed"
+    },
+    {
+      "source_id": "gap-fixes/pydanticai-host/ai-02/attempt-1.patch",
+      "source_sha256": "3437942704eeb06b4d5535d8b7b4f82e00f6517dcdc100cff9c81ff141c4b7d6",
+      "published_path": "evidence/pydanticai-host/ai-02/attempt-1.patch",
+      "published_sha256": "3437942704eeb06b4d5535d8b7b4f82e00f6517dcdc100cff9c81ff141c4b7d6",
+      "copy_type": "exact"
+    },
+    {
+      "source_id": "gap-fixes/pydanticai-host/reference-01/report.json",
+      "source_sha256": "044c7f803e9bbc5de5cfc8b788aaee1b7b10387c9d840670e3b770d842f83c4c",
+      "published_path": "evidence/pydanticai-host/reference-01/evidence.json",
+      "published_sha256": "dc9ba65e524346ddd5afa6d89caf35410c65866b90166611ece7b558b11af8fe",
+      "copy_type": "normalized evidence derivative; original bytes not distributed"
+    },
+    {
+      "source_id": "gap-fixes/pydanticai-host/reference-01/config.json",
+      "source_sha256": "cea50c6744d37c39d77179ce5d866ba285dca41c6d9912bb3c0deabd1f328a36",
+      "published_path": "evidence/pydanticai-host/reference-01/config.json",
+      "published_sha256": "40ff23bab9f2c482b6b82a21167795908e3700586a71ab22ca5ad7d46239162e",
+      "copy_type": "oracle path normalized to oracle.py; original bytes not distributed"
+    },
+    {
+      "source_id": "gap-fixes/pydanticai-host/reference-02/report.json",
+      "source_sha256": "a580c0fcbed416ac17243a4992b03b8dd65b4312ecf998b939d0a26bae0b7443",
+      "published_path": "evidence/pydanticai-host/reference-02/evidence.json",
+      "published_sha256": "3eab27d7d64674d4e8e56ac5f99e7e9b087c6a40523218677bbd14eeac1cd464",
+      "copy_type": "normalized evidence derivative; original bytes not distributed"
+    },
+    {
+      "source_id": "gap-fixes/pydanticai-host/reference-02/config.json",
+      "source_sha256": "85bc03e89283c8d865644e7fd6167dd6af2f9da333deb2023e76dff070b2a7ce",
+      "published_path": "evidence/pydanticai-host/reference-02/config.json",
+      "published_sha256": "c23b01f3cfc9a985e2029ccd8fc180d2095e1fabdb0f2ff1c2b667448fe47138",
+      "copy_type": "oracle path normalized to oracle.py; original bytes not distributed"
+    },
+    {
+      "source_id": "gap-fixes/pydanticai-host/reference-03/report.json",
+      "source_sha256": "7a0fde31b45a751c4c3523664bf9867949668f0ae13e892eff987bfdddc93ae2",
+      "published_path": "evidence/pydanticai-host/reference-03/evidence.json",
+      "published_sha256": "fac23f1b83d996210f4854c8887163133ea28fa00d3a7655b1494b76c5708bd7",
+      "copy_type": "normalized evidence derivative; original bytes not distributed"
+    },
+    {
+      "source_id": "gap-fixes/pydanticai-host/reference-03/config.json",
+      "source_sha256": "5e4f6f7d090b118f16ce24bf3f0416467bab1208f7dd4f239aa73ddba5ee1ac7",
+      "published_path": "evidence/pydanticai-host/reference-03/config.json",
+      "published_sha256": "5a23e6c68ac8512cc186b4f91eb1a5dd8405ba11e5716662c7985e5a77539022",
+      "copy_type": "oracle path normalized to oracle.py; original bytes not distributed"
+    },
+    {
+      "source_id": "gap-fixes/pydanticai-host/reference-04/report.json",
+      "source_sha256": "939cf188402f4cea6ec70225b3bb724c9c1d65621f69fbd9e33034ecb85e1889",
+      "published_path": "evidence/pydanticai-host/reference-04/evidence.json",
+      "published_sha256": "2ed4fbb937955ff0ba8482b93ca230b365f59d5dcc6ea8813473a433f86fce24",
+      "copy_type": "normalized evidence derivative; original bytes not distributed"
+    },
+    {
+      "source_id": "gap-fixes/pydanticai-host/reference-04/config.json",
+      "source_sha256": "f2ad42381684fa25b2930172c3ccf6ce370bba7abee42c6b7e8046ba0ae1d7aa",
+      "published_path": "evidence/pydanticai-host/reference-04/config.json",
+      "published_sha256": "2da80f009493874ca1562942aff12e1b456e46e83d57356989a0693bdb849efb",
+      "copy_type": "oracle path normalized to oracle.py; original bytes not distributed"
+    },
+    {
+      "source_id": "gap-fixes/pydanticai-host/reference-04/backport.patch",
+      "source_sha256": "fd26c3d1fc9bbbdb604d5915939a48704cef0d7aff145fd13ff359a851f4dc7d",
+      "published_path": "evidence/pydanticai-host/reference-04/backport.patch",
+      "published_sha256": "fd26c3d1fc9bbbdb604d5915939a48704cef0d7aff145fd13ff359a851f4dc7d",
+      "copy_type": "exact"
+    },
+    {
+      "source_id": "gap-fixes/pydanticai-host/reference-04/attempt-1.patch",
+      "source_sha256": "fd26c3d1fc9bbbdb604d5915939a48704cef0d7aff145fd13ff359a851f4dc7d",
+      "published_path": "evidence/pydanticai-host/reference-04/attempt-1.patch",
+      "published_sha256": "fd26c3d1fc9bbbdb604d5915939a48704cef0d7aff145fd13ff359a851f4dc7d",
+      "copy_type": "exact"
+    },
+    {
+      "source_id": "gap-fixes/litellm-context/ai-01/report.json",
+      "source_sha256": "77051f2215f2a734dcf4d429e7f3c23b2f11fe34da47a2ada6aff957ad507076",
+      "published_path": "evidence/litellm-context/ai-01/evidence.json",
+      "published_sha256": "89349e8bd161b05dd33c9bab7cc1c423e10a4ccb4820eabb0d5b290f494b1605",
+      "copy_type": "normalized evidence derivative; original bytes not distributed"
+    },
+    {
+      "source_id": "gap-fixes/litellm-context/ai-01/config.json",
+      "source_sha256": "15afebedef9a0cb8525ef3dd116d1b3adc5c9db3297110983d53b04c3c079838",
+      "published_path": "evidence/litellm-context/ai-01/config.json",
+      "published_sha256": "929dabe26b3ac7cfd373955b974c4b11e6d2aff1f244ea3c50d3cdf1c33de0f6",
+      "copy_type": "oracle path normalized to oracle.py; original bytes not distributed"
+    },
+    {
+      "source_id": "gap-fixes/litellm-context/ai-01/backport.patch",
+      "source_sha256": "bb194606e0699f98724643699f877cf54d88902c9c6fa4592cc5e8a2a939a2d8",
+      "published_path": "evidence/litellm-context/ai-01/backport.patch",
+      "published_sha256": "bb194606e0699f98724643699f877cf54d88902c9c6fa4592cc5e8a2a939a2d8",
+      "copy_type": "exact"
+    },
+    {
+      "source_id": "gap-fixes/litellm-context/ai-01/attempt-1.patch",
+      "source_sha256": "63a4bcfa18753ee1b44c676b5b63fd4f92f9c9338935b2b660191ab4e2e8d50f",
+      "published_path": "evidence/litellm-context/ai-01/attempt-1.patch",
+      "published_sha256": "63a4bcfa18753ee1b44c676b5b63fd4f92f9c9338935b2b660191ab4e2e8d50f",
+      "copy_type": "exact"
+    },
+    {
+      "source_id": "gap-fixes/litellm-context/reference-01/report.json",
+      "source_sha256": "37984b7e0178e40376c5fc7e187e07ad1bf5932eab379c2b081094538fa4a730",
+      "published_path": "evidence/litellm-context/reference-01/evidence.json",
+      "published_sha256": "9e21e5f307e4b65f0dbfb72d6f9fcd37154a57a241c99df0ce808733803420c8",
+      "copy_type": "normalized evidence derivative; original bytes not distributed"
+    },
+    {
+      "source_id": "gap-fixes/litellm-context/reference-01/config.json",
+      "source_sha256": "78de36996976dfaaacce4651b91c5568df2d40f52b4886493142c07ec6406974",
+      "published_path": "evidence/litellm-context/reference-01/config.json",
+      "published_sha256": "0b23d172c95ff2460529575e1e8652f5f5cb93bd47e87e5817bd60e743f08487",
+      "copy_type": "oracle path normalized to oracle.py; original bytes not distributed"
+    },
+    {
+      "source_id": "gap-fixes/litellm-context/reference-02/report.json",
+      "source_sha256": "8f72974ebea837aa8f0fdb7894ab88f68b3df37a0a5512175a5ab97bd98db907",
+      "published_path": "evidence/litellm-context/reference-02/evidence.json",
+      "published_sha256": "8bcf1dca37e84c06e1a9de1107c27c6d588fa0bfd0c4265141f144fbb2d63089",
+      "copy_type": "normalized evidence derivative; original bytes not distributed"
+    },
+    {
+      "source_id": "gap-fixes/litellm-context/reference-02/config.json",
+      "source_sha256": "15afebedef9a0cb8525ef3dd116d1b3adc5c9db3297110983d53b04c3c079838",
+      "published_path": "evidence/litellm-context/reference-02/config.json",
+      "published_sha256": "929dabe26b3ac7cfd373955b974c4b11e6d2aff1f244ea3c50d3cdf1c33de0f6",
+      "copy_type": "oracle path normalized to oracle.py; original bytes not distributed"
+    },
+    {
+      "source_id": "gap-fixes/litellm-context/reference-02/backport.patch",
+      "source_sha256": "21ec2b509209669819f2298760111f5b0d4eb28e47b42a710c10a6b22bd28252",
+      "published_path": "evidence/litellm-context/reference-02/backport.patch",
+      "published_sha256": "21ec2b509209669819f2298760111f5b0d4eb28e47b42a710c10a6b22bd28252",
+      "copy_type": "exact"
+    },
+    {
+      "source_id": "gap-fixes/litellm-context/reference-02/attempt-1.patch",
+      "source_sha256": "21ec2b509209669819f2298760111f5b0d4eb28e47b42a710c10a6b22bd28252",
+      "published_path": "evidence/litellm-context/reference-02/attempt-1.patch",
+      "published_sha256": "21ec2b509209669819f2298760111f5b0d4eb28e47b42a710c10a6b22bd28252",
+      "copy_type": "exact"
+    },
+    {
+      "source_id": "original-evaluation/django-domain/reference-run/report.json",
+      "source_sha256": "bf102352025df0d2226ea9dea64dc4d75265843715a182d0e63a6356d2f38570",
+      "published_path": "evidence/historical/django-domain/reference-run/evidence.json",
+      "published_sha256": "d29e7c2b55704e3b6e7f392983a007061aa70f737e851faa8969c7abdc559b56",
+      "copy_type": "normalized evidence derivative; original bytes not distributed"
+    },
+    {
+      "source_id": "original-evaluation/django-domain/reference-run/config.json",
+      "source_sha256": "65fc3b1629b4130d0edf3f3360ed7474adbd63d822909799e0451980e5830de6",
+      "published_path": "evidence/historical/django-domain/reference-run/config.json",
+      "published_sha256": "1af283952c50890738731fdc0935ff406261ea152d8a643fe798ed56a7ffb58f",
+      "copy_type": "oracle path normalized to oracle.py; original bytes not distributed"
+    },
+    {
+      "source_id": "original-evaluation/django-domain/reference-run/backport.patch",
+      "source_sha256": "6f29b4d4c81fe4ad50792d3bc46f560ee3ce3264f1eeed3f0416a27ebda7525d",
+      "published_path": "evidence/historical/django-domain/reference-run/backport.patch",
+      "published_sha256": "6f29b4d4c81fe4ad50792d3bc46f560ee3ce3264f1eeed3f0416a27ebda7525d",
+      "copy_type": "exact"
+    },
+    {
+      "source_id": "original-evaluation/django-domain/reference-run/attempt-1.patch",
+      "source_sha256": "6f29b4d4c81fe4ad50792d3bc46f560ee3ce3264f1eeed3f0416a27ebda7525d",
+      "published_path": "evidence/historical/django-domain/reference-run/attempt-1.patch",
+      "published_sha256": "6f29b4d4c81fe4ad50792d3bc46f560ee3ce3264f1eeed3f0416a27ebda7525d",
+      "copy_type": "exact"
+    },
+    {
+      "source_id": "original-evaluation/django-domain/model-run/report.json",
+      "source_sha256": "6c7d764f99483c3c31689f88de1ce9826401fe5643d6f5eb514807d128a92450",
+      "published_path": "evidence/historical/django-domain/model-run/evidence.json",
+      "published_sha256": "1f7701fa84342ea5ed1b0b5a43152a657eb03023cd937c6c85472668054d657b",
+      "copy_type": "normalized evidence derivative; original bytes not distributed"
+    },
+    {
+      "source_id": "original-evaluation/django-domain/model-run/config.json",
+      "source_sha256": "65fc3b1629b4130d0edf3f3360ed7474adbd63d822909799e0451980e5830de6",
+      "published_path": "evidence/historical/django-domain/model-run/config.json",
+      "published_sha256": "1af283952c50890738731fdc0935ff406261ea152d8a643fe798ed56a7ffb58f",
+      "copy_type": "oracle path normalized to oracle.py; original bytes not distributed"
+    },
+    {
+      "source_id": "original-evaluation/django-domain/model-run/backport.patch",
+      "source_sha256": "6f29b4d4c81fe4ad50792d3bc46f560ee3ce3264f1eeed3f0416a27ebda7525d",
+      "published_path": "evidence/historical/django-domain/model-run/backport.patch",
+      "published_sha256": "6f29b4d4c81fe4ad50792d3bc46f560ee3ce3264f1eeed3f0416a27ebda7525d",
+      "copy_type": "exact"
+    },
+    {
+      "source_id": "original-evaluation/django-domain/model-run/attempt-1.patch",
+      "source_sha256": "6f29b4d4c81fe4ad50792d3bc46f560ee3ce3264f1eeed3f0416a27ebda7525d",
+      "published_path": "evidence/historical/django-domain/model-run/attempt-1.patch",
+      "published_sha256": "6f29b4d4c81fe4ad50792d3bc46f560ee3ce3264f1eeed3f0416a27ebda7525d",
+      "copy_type": "exact"
+    },
+    {
+      "source_id": "original-evaluation/django-domain/negative-run/report.json",
+      "source_sha256": "b4fbcc86d7e5e41d338475209a4600872153439afcbcde9bb40b83ca94df066c",
+      "published_path": "evidence/historical/django-domain/negative-run/evidence.json",
+      "published_sha256": "ca21eddf01cd45a1e76c1d9be1e37e479eb9a9138fc40edcc7c89bdaf3b112b9",
+      "copy_type": "normalized evidence derivative; original bytes not distributed"
+    },
+    {
+      "source_id": "original-evaluation/django-domain/negative-run/config.json",
+      "source_sha256": "65fc3b1629b4130d0edf3f3360ed7474adbd63d822909799e0451980e5830de6",
+      "published_path": "evidence/historical/django-domain/negative-run/config.json",
+      "published_sha256": "1af283952c50890738731fdc0935ff406261ea152d8a643fe798ed56a7ffb58f",
+      "copy_type": "oracle path normalized to oracle.py; original bytes not distributed"
+    },
+    {
+      "source_id": "original-evaluation/django-domain/negative-run/attempt-1.patch",
+      "source_sha256": "f03f84eb9d85b9d3d31fdb6d742db0c4cf8ad1d05d87b6978de494cece662562",
+      "published_path": "evidence/historical/django-domain/negative-run/attempt-1.patch",
+      "published_sha256": "f03f84eb9d85b9d3d31fdb6d742db0c4cf8ad1d05d87b6978de494cece662562",
+      "copy_type": "exact"
+    },
+    {
+      "source_id": "original-evaluation/django-vary/reference-run-02/report.json",
+      "source_sha256": "d82995f7333a91f14ff24f45f2a990f243a7634412ee0cbd1935cfe9dafdfd51",
+      "published_path": "evidence/historical/django-vary/reference-run-02/evidence.json",
+      "published_sha256": "305ff7d3d49fb5c37a8869d8c56e22e913e654f14970b54a20d6bfada0a8cf69",
+      "copy_type": "normalized evidence derivative; original bytes not distributed"
+    },
+    {
+      "source_id": "original-evaluation/django-vary/reference-run-02/config.json",
+      "source_sha256": "bfe68a44d99a3f9ec80a1e7393aa8842f99c49ccd0bd034a35bdd4b51e2f32a3",
+      "published_path": "evidence/historical/django-vary/reference-run-02/config.json",
+      "published_sha256": "956732bd7e5db30adc3113a8599351f32ec022634845b60928e611fae49a9f94",
+      "copy_type": "oracle path normalized to oracle.py; original bytes not distributed"
+    },
+    {
+      "source_id": "original-evaluation/django-vary/reference-run-02/backport.patch",
+      "source_sha256": "371e5f5699e9e9b8ca1d224e238eff0fdde80191831c524abcca22aaba61b67f",
+      "published_path": "evidence/historical/django-vary/reference-run-02/backport.patch",
+      "published_sha256": "371e5f5699e9e9b8ca1d224e238eff0fdde80191831c524abcca22aaba61b67f",
+      "copy_type": "exact"
+    },
+    {
+      "source_id": "original-evaluation/django-vary/reference-run-02/attempt-1.patch",
+      "source_sha256": "371e5f5699e9e9b8ca1d224e238eff0fdde80191831c524abcca22aaba61b67f",
+      "published_path": "evidence/historical/django-vary/reference-run-02/attempt-1.patch",
+      "published_sha256": "371e5f5699e9e9b8ca1d224e238eff0fdde80191831c524abcca22aaba61b67f",
+      "copy_type": "exact"
+    },
+    {
+      "source_id": "original-evaluation/django-vary/model-run/report.json",
+      "source_sha256": "9ab8182318555c681e8823390d643f6903999904207f20bdf7ed97c34677531c",
+      "published_path": "evidence/historical/django-vary/model-run/evidence.json",
+      "published_sha256": "f6f9feef089e31e87d0fd578c9812bacfb30efac277ae609f43fb60c0b16eed4",
+      "copy_type": "normalized evidence derivative; original bytes not distributed"
+    },
+    {
+      "source_id": "original-evaluation/django-vary/model-run/config.json",
+      "source_sha256": "bfe68a44d99a3f9ec80a1e7393aa8842f99c49ccd0bd034a35bdd4b51e2f32a3",
+      "published_path": "evidence/historical/django-vary/model-run/config.json",
+      "published_sha256": "956732bd7e5db30adc3113a8599351f32ec022634845b60928e611fae49a9f94",
+      "copy_type": "oracle path normalized to oracle.py; original bytes not distributed"
+    },
+    {
+      "source_id": "original-evaluation/django-vary/model-run/backport.patch",
+      "source_sha256": "371e5f5699e9e9b8ca1d224e238eff0fdde80191831c524abcca22aaba61b67f",
+      "published_path": "evidence/historical/django-vary/model-run/backport.patch",
+      "published_sha256": "371e5f5699e9e9b8ca1d224e238eff0fdde80191831c524abcca22aaba61b67f",
+      "copy_type": "exact"
+    },
+    {
+      "source_id": "original-evaluation/django-vary/model-run/attempt-1.patch",
+      "source_sha256": "acc3daadc20694b66475c53fb4b78de9727b2daf0ff5a61cce9775e254b05b81",
+      "published_path": "evidence/historical/django-vary/model-run/attempt-1.patch",
+      "published_sha256": "acc3daadc20694b66475c53fb4b78de9727b2daf0ff5a61cce9775e254b05b81",
+      "copy_type": "exact"
+    },
+    {
+      "source_id": "original-evaluation/django-vary/reference-run/report.json",
+      "source_sha256": "bbd87044593d6199e9f712e8457d3abe20100fca3cb36ed8ca2e5599d634408e",
+      "published_path": "evidence/historical/django-vary/reference-run/evidence.json",
+      "published_sha256": "247257330bb62477a39ef153ad8d69e8dca5371594bacb3714dbfa26fc893e93",
+      "copy_type": "normalized evidence derivative; original bytes not distributed"
+    },
+    {
+      "source_id": "original-evaluation/django-vary/reference-run/config.json",
+      "source_sha256": "4d5ac6666d95233094892e5d6e3d45e89b22830303afe394ee4c67146b112c15",
+      "published_path": "evidence/historical/django-vary/reference-run/config.json",
+      "published_sha256": "0d8de50f13b263f37e6d89051906d5acce2414d91c713d8c438cf4df20beac87",
+      "copy_type": "oracle path normalized to oracle.py; original bytes not distributed"
+    },
+    {
+      "source_id": "original-evaluation/pydanticai-host/reference-01/report.json",
+      "source_sha256": "255dd83ee64f5ae01a04a2f522d88581034701b569c87c8d52da992992f01569",
+      "published_path": "evidence/historical/pydanticai-host/reference-01/evidence.json",
+      "published_sha256": "f2763a92b036064d35400c3578ccc6afe37dfab8ace10ca39a828053253e571f",
+      "copy_type": "normalized evidence derivative; original bytes not distributed"
+    },
+    {
+      "source_id": "original-evaluation/pydanticai-host/reference-01/config.json",
+      "source_sha256": "838218f75d6c3c376ee800c90624f82222afbd7a6e714d932dbef7a51fd87144",
+      "published_path": "evidence/historical/pydanticai-host/reference-01/config.json",
+      "published_sha256": "ed6aa83d6630822ba70d1bfae37917dfaa08d5415700fff08f643641a4a517b5",
+      "copy_type": "oracle path normalized to oracle.py; original bytes not distributed"
+    },
+    {
+      "source_id": "original-evaluation/pydanticai-host/reference-02/report.json",
+      "source_sha256": "5267d1e1a0b5eaeeed1e391dd945a668f4fb21347471d83920ba407ec7c37cc9",
+      "published_path": "evidence/historical/pydanticai-host/reference-02/evidence.json",
+      "published_sha256": "d501eec406d40ffb4c21b6cd4c2182c49f0f16e5aa92603fbdaffeffc8781799",
+      "copy_type": "normalized evidence derivative; original bytes not distributed"
+    },
+    {
+      "source_id": "original-evaluation/pydanticai-host/reference-02/config.json",
+      "source_sha256": "17ba10050807f014bbf2f1efbafead553d66b4d0a63dcfc81211f59e99171d94",
+      "published_path": "evidence/historical/pydanticai-host/reference-02/config.json",
+      "published_sha256": "40ff23bab9f2c482b6b82a21167795908e3700586a71ab22ca5ad7d46239162e",
+      "copy_type": "oracle path normalized to oracle.py; original bytes not distributed"
+    },
+    {
+      "source_id": "original-evaluation/litellm-context/shallow-eligibility-probe/report.json",
+      "source_sha256": "5664e549927d4c799110e474e2e774585f7219fc35dc009d9683abfcfff02d6b",
+      "published_path": "evidence/historical/litellm-context/shallow-eligibility-probe/evidence.json",
+      "published_sha256": "0e3b7b7536a27c9f9b62cc18e9e82d3e8effba8ef389c898c778e6c22fb19386",
+      "copy_type": "normalized evidence derivative; original bytes not distributed"
+    },
+    {
+      "source_id": "original-evaluation/litellm-context/shallow-eligibility-probe/config.json",
+      "source_sha256": "23da31016e263e4760eb4f6e30a27c2bef535d85b1d581d710a85450df03f795",
+      "published_path": "evidence/historical/litellm-context/shallow-eligibility-probe/config.json",
+      "published_sha256": "0ebbf18f48d828bf827ab133719838b32837f003e59a66221ffd9bc9b7f0d04b",
+      "copy_type": "oracle path normalized to oracle.py; original bytes not distributed"
+    },
+    {
+      "source_id": "original-evaluation/litellm-context/shallow-eligibility-probe-02/report.json",
+      "source_sha256": "1f56f3b9292f5de915e5e7209dc6526034c2840e0b6e74475e2edc87c0441487",
+      "published_path": "evidence/historical/litellm-context/shallow-eligibility-probe-02/evidence.json",
+      "published_sha256": "0107bb6085269160df0b039a787940a0718fc3f9faef160b6e9b9cf64c9ce910",
+      "copy_type": "normalized evidence derivative; original bytes not distributed"
+    },
+    {
+      "source_id": "original-evaluation/litellm-context/shallow-eligibility-probe-02/config.json",
+      "source_sha256": "23da31016e263e4760eb4f6e30a27c2bef535d85b1d581d710a85450df03f795",
+      "published_path": "evidence/historical/litellm-context/shallow-eligibility-probe-02/config.json",
+      "published_sha256": "0ebbf18f48d828bf827ab133719838b32837f003e59a66221ffd9bc9b7f0d04b",
+      "copy_type": "oracle path normalized to oracle.py; original bytes not distributed"
+    },
+    {
+      "source_id": "original-evaluation/django-domain/image/seam_django_settings.py",
+      "source_sha256": "2bf189f13a15832abb06cea392638c048b9b900836e13be2a36ac544984852ff",
+      "published_path": "cases/django-domain/environment/recorded/seam_django_settings.py",
+      "published_sha256": "2bf189f13a15832abb06cea392638c048b9b900836e13be2a36ac544984852ff",
+      "copy_type": "exact"
+    },
+    {
+      "source_id": "original-evaluation/django-domain/image/Dockerfile",
+      "source_sha256": "836c0a1f3e2cf5e29e292fa7e71c568b39029d8dc1f0553aad205248a4703c7b",
+      "published_path": "cases/django-domain/environment/recorded/Dockerfile",
+      "published_sha256": "836c0a1f3e2cf5e29e292fa7e71c568b39029d8dc1f0553aad205248a4703c7b",
+      "copy_type": "exact"
+    },
+    {
+      "source_id": "original-evaluation/django-vary/image-v2/seam_django_vary_settings.py",
+      "source_sha256": "d10c2183946df2623d3aeb407ccd4700e199cea7ba52a7f6916b79bc8f3f6402",
+      "published_path": "cases/django-vary/environment/recorded/seam_django_vary_settings.py",
+      "published_sha256": "d10c2183946df2623d3aeb407ccd4700e199cea7ba52a7f6916b79bc8f3f6402",
+      "copy_type": "exact"
+    },
+    {
+      "source_id": "original-evaluation/django-vary/image-v2/Dockerfile",
+      "source_sha256": "9ef22b2ab7ec8d3d69e2e4a8cf9a34272c13c87cb033cd1b0a7d19793298488c",
+      "published_path": "cases/django-vary/environment/recorded/Dockerfile",
+      "published_sha256": "9ef22b2ab7ec8d3d69e2e4a8cf9a34272c13c87cb033cd1b0a7d19793298488c",
+      "copy_type": "exact"
+    },
+    {
+      "source_id": "original-evaluation/django-domain/image/manifest.json",
+      "source_sha256": "b2b2e32d1a3e448e4655ee1c62618331dbe58597596b27a47c4b9c66edfd2dbd",
+      "published_path": "cases/django-domain/environment/recorded/manifest.json",
+      "published_sha256": "7ec561eabacee40d642bb11c90c282037a7c890debf7d3815576f19436e6276a",
+      "copy_type": "normalized paths; original bytes not distributed"
+    },
+    {
+      "source_id": "original-evaluation/pydanticai-host/image/staged-monorepo.pth",
+      "source_sha256": "2ea1cf98ecac7e15c603fc306a8a8d253d606ff9b959345dc9b123c890d516da",
+      "published_path": "cases/pydanticai-host/environment/recorded/base/staged-monorepo.pth",
+      "published_sha256": "2ea1cf98ecac7e15c603fc306a8a8d253d606ff9b959345dc9b123c890d516da",
+      "copy_type": "exact"
+    },
+    {
+      "source_id": "original-evaluation/pydanticai-host/image/requirements.txt",
+      "source_sha256": "08b5b23ff263c664fddd7763bd1a6d90753ee931f6efd76956ab0bdb00026df9",
+      "published_path": "cases/pydanticai-host/environment/recorded/base/requirements.txt",
+      "published_sha256": "08b5b23ff263c664fddd7763bd1a6d90753ee931f6efd76956ab0bdb00026df9",
+      "copy_type": "exact"
+    },
+    {
+      "source_id": "original-evaluation/pydanticai-host/image/Dockerfile",
+      "source_sha256": "ae7ea6686563643c09477d42916ff350b8a6d70f7995c4eb4318c950e58489c8",
+      "published_path": "cases/pydanticai-host/environment/recorded/base/Dockerfile",
+      "published_sha256": "ae7ea6686563643c09477d42916ff350b8a6d70f7995c4eb4318c950e58489c8",
+      "copy_type": "exact"
+    },
+    {
+      "source_id": "gap-fixes/pydanticai-host/image-layout/staged_layout.py",
+      "source_sha256": "833dc6c415935ab4379a50cc8484d2315223a7a85f9a20481c78827cc27d1ef3",
+      "published_path": "cases/pydanticai-host/environment/recorded/image-layout/staged_layout.py",
+      "published_sha256": "833dc6c415935ab4379a50cc8484d2315223a7a85f9a20481c78827cc27d1ef3",
+      "copy_type": "exact"
+    },
+    {
+      "source_id": "gap-fixes/pydanticai-host/image-layout/Dockerfile",
+      "source_sha256": "4e87e9b12e5ebc9130e2f09cb2bd5e91472881942976dc26ec76e7fa1bab0b93",
+      "published_path": "cases/pydanticai-host/environment/recorded/image-layout/Dockerfile",
+      "published_sha256": "4e87e9b12e5ebc9130e2f09cb2bd5e91472881942976dc26ec76e7fa1bab0b93",
+      "copy_type": "exact"
+    },
+    {
+      "source_id": "gap-fixes/pydanticai-host/image-test-deps/Dockerfile",
+      "source_sha256": "9f863bf3abfc98adc8b2aa3a8b7ddea04f9b6a88e4993a51be0f81a7d164e666",
+      "published_path": "cases/pydanticai-host/environment/recorded/image-test-deps/Dockerfile",
+      "published_sha256": "9f863bf3abfc98adc8b2aa3a8b7ddea04f9b6a88e4993a51be0f81a7d164e666",
+      "copy_type": "exact"
+    },
+    {
+      "source_id": "gap-fixes/pydanticai-host/metadata-image/requirements.txt",
+      "source_sha256": "03612fcfb3cfa6510479c29470077109c2a6ab2b0208b4a970b173486685b4e8",
+      "published_path": "cases/pydanticai-host/environment/recorded/metadata-image/requirements.txt",
+      "published_sha256": "03612fcfb3cfa6510479c29470077109c2a6ab2b0208b4a970b173486685b4e8",
+      "copy_type": "exact"
+    },
+    {
+      "source_id": "gap-fixes/pydanticai-host/metadata-image/Dockerfile",
+      "source_sha256": "da7e54f852661bd088b7d956146fb0986d50c9a13233f20f2084f8eac6e26d3d",
+      "published_path": "cases/pydanticai-host/environment/recorded/metadata-image/Dockerfile",
+      "published_sha256": "da7e54f852661bd088b7d956146fb0986d50c9a13233f20f2084f8eac6e26d3d",
+      "copy_type": "exact"
+    },
+    {
+      "source_id": "gap-fixes/litellm-context/image/requirements-locked.txt",
+      "source_sha256": "9193c3d2552086d46a3edfbe743a15f51c6db9182431687319ea04a2df878b80",
+      "published_path": "cases/litellm-context/environment/recorded/image/requirements-locked.txt",
+      "published_sha256": "9193c3d2552086d46a3edfbe743a15f51c6db9182431687319ea04a2df878b80",
+      "copy_type": "exact"
+    },
+    {
+      "source_id": "gap-fixes/litellm-context/image/staged-monorepo.pth",
+      "source_sha256": "cc32c3d3630551c94a4ff155689095b7f0394376c680a707ff2dbf31643ba2fb",
+      "published_path": "cases/litellm-context/environment/recorded/image/staged-monorepo.pth",
+      "published_sha256": "cc32c3d3630551c94a4ff155689095b7f0394376c680a707ff2dbf31643ba2fb",
+      "copy_type": "exact"
+    },
+    {
+      "source_id": "gap-fixes/litellm-context/image/requirements.txt",
+      "source_sha256": "154f20d1d14ec4fb017ec72a442c8002baf8f5e1e6769db4c4d77a3bede7a163",
+      "published_path": "cases/litellm-context/environment/recorded/image/requirements.txt",
+      "published_sha256": "154f20d1d14ec4fb017ec72a442c8002baf8f5e1e6769db4c4d77a3bede7a163",
+      "copy_type": "exact"
+    },
+    {
+      "source_id": "gap-fixes/litellm-context/image/Dockerfile",
+      "source_sha256": "aabbd9e0f6945acfaa4865b1c7927cebf76c430e862e37cc7b1676ce0ba7dd59",
+      "published_path": "cases/litellm-context/environment/recorded/image/Dockerfile",
+      "published_sha256": "aabbd9e0f6945acfaa4865b1c7927cebf76c430e862e37cc7b1676ce0ba7dd59",
+      "copy_type": "exact"
+    },
+    {
+      "source_id": "gap-fixes/litellm-context/image-layout/staged_layout.py",
+      "source_sha256": "c6250eb98201e6e65e5cb92a891ebccd5950a5b9fb51f694592b53347c637905",
+      "published_path": "cases/litellm-context/environment/recorded/image-layout/staged_layout.py",
+      "published_sha256": "c6250eb98201e6e65e5cb92a891ebccd5950a5b9fb51f694592b53347c637905",
+      "copy_type": "exact"
+    },
+    {
+      "source_id": "gap-fixes/litellm-context/image-layout/Dockerfile",
+      "source_sha256": "11fa5b598e6334bda802873ea634e0de44041ed56862f9863bf6b7a1c7f8d295",
+      "published_path": "cases/litellm-context/environment/recorded/image-layout/Dockerfile",
+      "published_sha256": "11fa5b598e6334bda802873ea634e0de44041ed56862f9863bf6b7a1c7f8d295",
+      "copy_type": "exact"
+    },
+    {
+      "source_id": "gap-fixes/litellm-context/image-union-deps/staged_layout.py",
+      "source_sha256": "7e240395c71b1bc04b155980c2121149ab3957a9bc81484012a0d4fa299a2907",
+      "published_path": "cases/litellm-context/environment/recorded/image-union-deps/staged_layout.py",
+      "published_sha256": "7e240395c71b1bc04b155980c2121149ab3957a9bc81484012a0d4fa299a2907",
+      "copy_type": "exact"
+    },
+    {
+      "source_id": "gap-fixes/litellm-context/image-union-deps/requirements-source-mcp.txt",
+      "source_sha256": "dcbe3b57de6f718be9ed32fa86333467c24123e3f844797ae22bed1757cc183f",
+      "published_path": "cases/litellm-context/environment/recorded/image-union-deps/requirements-source-mcp.txt",
+      "published_sha256": "dcbe3b57de6f718be9ed32fa86333467c24123e3f844797ae22bed1757cc183f",
+      "copy_type": "exact"
+    },
+    {
+      "source_id": "gap-fixes/litellm-context/image-union-deps/requirements-common.txt",
+      "source_sha256": "63e26ee450f337e8c14dfd1c205544e1ee74e3cb2c297bc262bde2e08f9a29ed",
+      "published_path": "cases/litellm-context/environment/recorded/image-union-deps/requirements-common.txt",
+      "published_sha256": "63e26ee450f337e8c14dfd1c205544e1ee74e3cb2c297bc262bde2e08f9a29ed",
+      "copy_type": "exact"
+    },
+    {
+      "source_id": "gap-fixes/litellm-context/image-union-deps/Dockerfile",
+      "source_sha256": "73a3c36da440804aa95add8b851993522649a3ec42916688c643187b9ebed12c",
+      "published_path": "cases/litellm-context/environment/recorded/image-union-deps/Dockerfile",
+      "published_sha256": "73a3c36da440804aa95add8b851993522649a3ec42916688c643187b9ebed12c",
+      "copy_type": "exact"
+    },
+    {
+      "source_id": "gap-fixes/pydanticai-host/build-metadata-container/upstream_fix/pydantic_graph-2.29.1.dev14+871c7aeec.dist-info/METADATA",
+      "source_sha256": "fe53b9e9440eb56cada33d6e0009767569ca2f23dfcfe60e5edb31476c614256",
+      "published_path": "cases/pydanticai-host/environment/metadata/upstream_fix/pydantic_graph-2.29.1.dev14+871c7aeec.dist-info/METADATA",
+      "published_sha256": "fe53b9e9440eb56cada33d6e0009767569ca2f23dfcfe60e5edb31476c614256",
+      "copy_type": "exact"
+    },
+    {
+      "source_id": "gap-fixes/pydanticai-host/build-metadata-container/upstream_fix/pydantic_ai_slim-2.29.1.dev14+871c7aeec.dist-info/METADATA",
+      "source_sha256": "81a2fbf5c1af4c6d1ee57392c73c8e10522dc8f120374f82e88cad0f132eaeb3",
+      "published_path": "cases/pydanticai-host/environment/metadata/upstream_fix/pydantic_ai_slim-2.29.1.dev14+871c7aeec.dist-info/METADATA",
+      "published_sha256": "81a2fbf5c1af4c6d1ee57392c73c8e10522dc8f120374f82e88cad0f132eaeb3",
+      "copy_type": "exact"
+    },
+    {
+      "source_id": "gap-fixes/pydanticai-host/build-metadata-container/upstream_parent/pydantic_graph-2.29.1.dev13+da29bfa38.dist-info/METADATA",
+      "source_sha256": "18746bcf57f68b95c1d7142a68679d497d838baf6ff9443fa36adb459bc257ae",
+      "published_path": "cases/pydanticai-host/environment/metadata/upstream_parent/pydantic_graph-2.29.1.dev13+da29bfa38.dist-info/METADATA",
+      "published_sha256": "18746bcf57f68b95c1d7142a68679d497d838baf6ff9443fa36adb459bc257ae",
+      "copy_type": "exact"
+    },
+    {
+      "source_id": "gap-fixes/pydanticai-host/build-metadata-container/upstream_parent/pydantic_ai_slim-2.29.1.dev13+da29bfa38.dist-info/METADATA",
+      "source_sha256": "793a7f360bec8207c851034d5b84ab11b0f47f8c62c53bba4b2b30aa3b905684",
+      "published_path": "cases/pydanticai-host/environment/metadata/upstream_parent/pydantic_ai_slim-2.29.1.dev13+da29bfa38.dist-info/METADATA",
+      "published_sha256": "793a7f360bec8207c851034d5b84ab11b0f47f8c62c53bba4b2b30aa3b905684",
+      "copy_type": "exact"
+    },
+    {
+      "source_id": "gap-fixes/pydanticai-host/build-metadata-container/target/pydantic_ai_slim-1.107.4.dist-info/METADATA",
+      "source_sha256": "214609c6da4da23d00fb810bdf38724a50f4a5f0e5e6f65a4daf57e7064bebec",
+      "published_path": "cases/pydanticai-host/environment/metadata/target/pydantic_ai_slim-1.107.4.dist-info/METADATA",
+      "published_sha256": "214609c6da4da23d00fb810bdf38724a50f4a5f0e5e6f65a4daf57e7064bebec",
+      "copy_type": "exact"
+    },
+    {
+      "source_id": "gap-fixes/pydanticai-host/build-metadata-container/target/pydantic_graph-1.107.4.dist-info/METADATA",
+      "source_sha256": "5009fb2aa4f1f8e651f1f41b991c9a839a6d9d1f919deab253073720038ab0cc",
+      "published_path": "cases/pydanticai-host/environment/metadata/target/pydantic_graph-1.107.4.dist-info/METADATA",
+      "published_sha256": "5009fb2aa4f1f8e651f1f41b991c9a839a6d9d1f919deab253073720038ab0cc",
+      "copy_type": "exact"
+    },
+    {
+      "source_id": "gap-fixes/pydanticai-host/build-metadata-container/manifest.json",
+      "source_sha256": "686bc8d8ad1938e5ae4bd228c8e535e0b1b9f61dabc8f6f3a59abc27e3e2fbd6",
+      "published_path": "cases/pydanticai-host/environment/metadata/manifest.json",
+      "published_sha256": "45f10d447530f9eeeae3f7c18429205d20fb5413c68fac0b8693b60db992197f",
+      "copy_type": "normalized paths; original bytes not distributed"
+    }
+  ],
+  "excluded": [
+    "credentials",
+    "provider conversations",
+    "raw model explanations",
+    "raw command logs and testcase tracebacks",
+    "private absolute paths",
+    "upstream source clones",
+    "virtual environments",
+    "dependency wheels",
+    "container layers",
+    "discarded host-generated PydanticAI metadata"
+  ]
+}

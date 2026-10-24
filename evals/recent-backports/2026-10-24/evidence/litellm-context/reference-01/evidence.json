@@ -1,0 +1,119 @@
+{
+  "publication_schema": 1,
+  "source_report_sha256": "37984b7e0178e40376c5fc7e187e07ad1bf5932eab379c2b081094538fa4a730",
+  "normalization": "Paths normalized; raw stdout/stderr, testcase messages and embedded bootstrap omitted with hashes. This is a publication derivative, not a seam inspect input.",
+  "report": {
+    "schema_version": 2,
+    "status": "inconclusive",
+    "reason": "Verification prerequisites were not established: upstream_parent security: pytest did not complete a normal test run",
+    "fix_commit": "a80eacacee118fbed54e3d98f239d17a63fac818",
+    "parent_commit": "e7d8bbc5deb36c960162d4ce3922985fe56db835",
+    "target_commit": "385266c14d6a4cb069751fd3525692e0a760ec57",
+    "image_id": "sha256:7ef882ee8971a636c34ebd40597a65b7acc04f620c9fd8f7186602665cbdfde7",
+    "oracle_sha256": "82ef6899914a3808c3608d07763f3b759a6fcc35db9517dde915a6363a903aa1",
+    "config_sha256": "78de36996976dfaaacce4651b91c5568df2d40f52b4886493142c07ec6406974",
+    "patch_sha256": null,
+    "phases": [
+      {
+        "name": "upstream_parent",
+        "revision": "e7d8bbc5deb36c960162d4ce3922985fe56db835",
+        "security": {
+          "returncode": 4,
+          "command": [
+            "python",
+            "-I",
+            "-B",
+            "-c",
+            "<bootstrap program omitted>",
+            "-q",
+            "--tb=short",
+            "--import-mode=importlib",
+            "-p",
+            "no:cacheprovider",
+            "--junitxml=/report.xml",
+            "-p",
+            "pytest_asyncio.plugin",
+            "-p",
+            "pytest_mock.plugin",
+            "-p",
+            "staged_layout",
+            "-c",
+            "/dev/null",
+            "--noconftest",
+            "--rootdir=/oracle",
+            "/oracle/oracle.py::test_security_regression",
+            "/oracle/oracle.py::test_stored_value_roundtrip",
+            "/oracle/oracle.py::test_session_value_roundtrip",
+            "/oracle/oracle.py::test_aes_stored_value_roundtrip"
+          ],
+          "timed_out": false,
+          "truncated": false,
+          "duration_seconds": 11.7932,
+          "tests": [
+            {
+              "name": "oracle",
+              "classname": "",
+              "outcome": "error",
+              "expected_failure": false,
+              "message_sha256": "5ef226c0eddbf1ce660477671461d5d8ca3deecd31c818ac804c0c03b93741e0",
+              "expected_security_failure_marker_present": false
+            }
+          ],
+          "evidence_error": null,
+          "stdout_sha256": "02509afee54a1e5291d62cb8bd09c72303ce66b14570f74eb1421d14877e9537",
+          "stdout_omitted": true,
+          "stderr_sha256": "d147ad1962de13a36fd875b744ada3ea1b83d26ffc78e404ffeb28e98281fa44",
+          "stderr_omitted": true,
+          "bootstrap_program_sha256": "9e998596533214cbe0bad366e6058c665669548be29e9d3ca17f60d2c31caaa5"
+        },
+        "suite": {
+          "returncode": 2,
+          "command": [
+            "python",
+            "-I",
+            "-B",
+            "-c",
+            "<bootstrap program omitted>",
+            "-q",
+            "--tb=short",
+            "--import-mode=importlib",
+            "-p",
+            "no:cacheprovider",
+            "--junitxml=/report.xml",
+            "-p",
+            "pytest_asyncio.plugin",
+            "-p",
+            "pytest_mock.plugin",
+            "-p",
+            "staged_layout",
+            "tests/test_litellm/proxy/common_utils/test_encrypt_decrypt_utils.py"
+          ],
+          "timed_out": false,
+          "truncated": false,
+          "duration_seconds": 12.3323,
+          "tests": [
+            {
+              "name": "tests.test_litellm.proxy.common_utils.test_encrypt_decrypt_utils",
+              "classname": "",
+              "outcome": "error",
+              "expected_failure": false,
+              "message_sha256": "295457412416ac4dbf2c978d3598fe000461ce393edabbcd015c3d7f1565040f",
+              "expected_security_failure_marker_present": false
+            }
+          ],
+          "evidence_error": null,
+          "stdout_sha256": "bc5df5a64dfc97235ceb3cde7efd45eb6e405093d38c69adbe37519039d0d0df",
+          "stdout_omitted": true,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr_omitted": true,
+          "bootstrap_program_sha256": "9e998596533214cbe0bad366e6058c665669548be29e9d3ca17f60d2c31caaa5"
+        }
+      }
+    ],
+    "attempts": 0,
+    "adaptation": "none",
+    "model_usage": {},
+    "reviewed_tests": null,
+    "reviewed_fixtures": {}
+  }
+}

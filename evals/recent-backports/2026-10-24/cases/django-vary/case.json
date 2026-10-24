@@ -1,0 +1,30 @@
+{
+  "repo": "https://github.com/django/django.git",
+  "parent": "1b0184aa657bc3f5859aeb0206e7c1e94e48b103",
+  "fix": "44ad76efcbe3c4ca0f08bb9dabe916f6374596c9",
+  "target": "47cf968c125e3fab317e10fe150ec479e745f995",
+  "official_backport": "2115d4eaee15107f5cd290d7cfcc5ffe3ad43661",
+  "issue": "CVE-2026-6907",
+  "published": "2026-05-05",
+  "source": "https://www.djangoproject.com/weblog/2026/may/05/security-releases/",
+  "history": "Full non-shallow upstream history",
+  "suite_cases": 6,
+  "controls": 4,
+  "assets": {
+    "config_sha256": "62cabd3c94cff933e4a47b8eaf65e59c48eb9ca50969cf5028166af006f9c6f1",
+    "oracle_sha256": "cda045174aaba3504e2d95c13aaea2831ef14ca89fd56d60f0fc166fa3dd7e1d",
+    "reference_patch_sha256": "371e5f5699e9e9b8ca1d224e238eff0fdde80191831c524abcca22aaba61b67f"
+  },
+  "upstream_licenses": [
+    {
+      "path": "LICENSE.upstream",
+      "revision": "47cf968c125e3fab317e10fe150ec479e745f995",
+      "sha256": "b846415d1b514e9c1dff14a22deb906d794bc546ca6129f950a18cd091e2a669"
+    },
+    {
+      "path": "LICENSE.python.upstream",
+      "revision": "47cf968c125e3fab317e10fe150ec479e745f995",
+      "sha256": "765e2b1e339fef8d3e9f12892e7e072a8be309996a0be43ffc5796398ec4e7d4"
+    }
+  ]
+}

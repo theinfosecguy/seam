@@ -34,3 +34,11 @@ Keep generated images, checkouts, reports, logs and credentials outside this
 directory. Publish source inputs and a reviewed summary only after fresh
 qualification succeeds for every case in the release. A setup failure, skipped
 check or incomplete run remains unresolved evidence.
+
+## Recent case-study evidence
+
+The [24 October 2026 supplement](recent-backports/2026-10-24/README.md) publishes
+four recent backport comparisons across Django, PydanticAI and LiteLLM. It includes
+normalized evidence for unsuccessful setup/model attempts and separates stored
+patch replays from fresh model adaptation. It is a historical evidence supplement,
+not an additional `seam eval` catalogue or a qualification of changed releases.

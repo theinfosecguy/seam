@@ -1,0 +1,3 @@
+FROM sha256:0dda45ece171f75d27acbe4dbd56e41f1009b8afb2ec01dfb868ab0cc3d16c2a
+COPY seam_django_vary_settings.py /usr/local/lib/python3.12/site-packages/seam_django_vary_settings.py
+ENV DJANGO_SETTINGS_MODULE=seam_django_vary_settings

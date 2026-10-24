@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "oracle": {
+    "path": "oracle.py",
+    "security_test": "test_security_regression",
+    "controls": [
+      "test_ordinary_ascii_domains",
+      "test_idna_modes",
+      "test_invalid_domains_preserved"
+    ],
+    "failure_marker": "DJANGO_DOMAIN_NEWLINE_REGRESSION"
+  },
+  "runner": {
+    "image": "sha256:0dda45ece171f75d27acbe4dbd56e41f1009b8afb2ec01dfb868ab0cc3d16c2a",
+    "docker": [
+      "sudo",
+      "-n",
+      "docker"
+    ],
+    "timeout_seconds": 120.0,
+    "memory_mb": 768,
+    "cpus": 1.0,
+    "pids": 128,
+    "max_output_bytes": 131072,
+    "suite": [
+      "tests/validators/tests.py"
+    ],
+    "plugins": [
+      "pytest_django.plugin"
+    ],
+    "import_mode": "importlib",
+    "suite_markers": null,
+    "reviewed_fixtures": {}
+  },
+  "max_attempts": 3,
+  "reviewed_tests": null
+}

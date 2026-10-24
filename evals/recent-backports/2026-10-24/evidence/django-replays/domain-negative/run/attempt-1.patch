@@ -1,0 +1,11 @@
+--- a/django/core/validators.py
++++ b/django/core/validators.py
+@@ -102,7 +102,7 @@
+         if self.accept_idna:
+             self.regex = _lazy_re_compile(
+                 r"^" + self.hostname_re + self.domain_re + self.tld_re + r"$",
+-                re.IGNORECASE,
++                re.IGNORECASE | 0,
+             )
+         else:
+             self.regex = _lazy_re_compile(

@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "oracle": {
+    "path": "oracle.py",
+    "security_test": "test_security_regression",
+    "controls": [
+      "test_stored_value_roundtrip",
+      "test_session_value_roundtrip",
+      "test_aes_stored_value_roundtrip"
+    ],
+    "failure_marker": "CONTEXT_DOMAIN_BOUNDARY_ORACLE"
+  },
+  "runner": {
+    "image": "sha256:2c794d912bb68230bb0c149a1525481428e2ed341fbe76a5883d803773724315",
+    "docker": [
+      "sudo",
+      "-n",
+      "docker"
+    ],
+    "timeout_seconds": 180.0,
+    "memory_mb": 1024,
+    "cpus": 1.0,
+    "pids": 128,
+    "max_output_bytes": 131072,
+    "suite": [
+      "tests/test_litellm/proxy/common_utils/test_encrypt_decrypt_utils.py"
+    ],
+    "plugins": [
+      "pytest_asyncio.plugin",
+      "pytest_mock.plugin",
+      "staged_layout"
+    ],
+    "import_mode": "importlib",
+    "suite_markers": null,
+    "reviewed_fixtures": {}
+  },
+  "max_attempts": 3,
+  "reviewed_tests": null
+}

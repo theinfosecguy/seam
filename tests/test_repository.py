@@ -7,27 +7,32 @@ import pytest
 
 from seam import repository
 from seam.exceptions import RepositoryError
-from seam.execution.processes import safe_environment
+from seam.execution.processes import run_process, safe_environment
+from seam.models import ProcessResult
 
 
 def make_repository(path: Path, content: str = "def answer():\n    return 1\n") -> Path:
     path.mkdir()
+    subprocess.run(
+        ["git", "init", "-b", "main", str(path)], check=True, capture_output=True
+    )
+    (path / "library.py").write_text(content, "utf-8")
+    repository.git(path, "add", "library.py")
+    commit_index(path, "Add initial library")
+    return path
+
+
+def commit_index(path: Path, message: str) -> None:
     environment = safe_environment() | {
         "GIT_AUTHOR_NAME": "Test Maintainer",
         "GIT_AUTHOR_EMAIL": "maintainer@example.invalid",
         "GIT_COMMITTER_NAME": "Test Maintainer",
         "GIT_COMMITTER_EMAIL": "maintainer@example.invalid",
     }
-    subprocess.run(
-        ["git", "init", "-b", "main", str(path)], check=True, capture_output=True
-    )
-    (path / "library.py").write_text(content, "utf-8")
-    repository.git(path, "add", "library.py")
-    message = "Add initial library"
     prohibited = bytes([99, 111, 100, 101, 120]).decode()
     for value in [
         message,
-        "main",
+        repository.git(path, "branch", "--show-current"),
         *(
             value
             for key, value in environment.items()
@@ -50,7 +55,74 @@ def make_repository(path: Path, content: str = "def answer():\n    return 1\n") 
         check=True,
         capture_output=True,
     )
-    return path
+
+
+def test_clone_inventory_does_not_include_long_tracked_paths(tmp_path: Path) -> None:
+    repo = make_repository(tmp_path / "repo")
+    for index in range(2300):
+        directory = repo / (f"{index // 230:02d}-" + "d" * 200)
+        directory.mkdir(exist_ok=True)
+        (directory / (f"{index:04d}-" + "f" * 200 + ".py")).write_text("VALUE = 1\n")
+    repository.git(repo, "add", ".")
+    commit_index(repo, "Add long source paths")
+    raw = run_process(
+        ["git", "-C", str(repo), "ls-files", "--stage", "-z"],
+        max_output=2 * 1_048_576,
+    )
+    assert raw.returncode == 0 and not raw.truncated
+    assert len(raw.stdout.encode()) > 1_048_576
+    clone = tmp_path / "clone"
+    repository.clone_at(repo, repository.resolve(repo, "HEAD"), clone)
+    assert len(list(clone.rglob("*.py"))) == 2301
+
+
+def test_mode_only_inventory_still_rejects_submodules(tmp_path: Path) -> None:
+    repo = make_repository(tmp_path / "repo")
+    revision = repository.resolve(repo, "HEAD")
+    repository.git(
+        repo, "update-index", "--add", "--cacheinfo", "160000", revision, "vendor"
+    )
+    commit_index(repo, "Add submodule entry")
+    with pytest.raises(RepositoryError, match="submodules are unsupported"):
+        repository.clone_at(repo, repository.resolve(repo, "HEAD"), tmp_path / "clone")
+
+
+@pytest.mark.parametrize(
+    "result,detail",
+    [
+        (ProcessResult(returncode=1), "exit status 1"),
+        (ProcessResult(returncode=-9, timed_out=True), "timeout after 120 seconds"),
+        (ProcessResult(returncode=0, truncated=True), "output exceeded 1048576 bytes"),
+    ],
+)
+def test_git_failures_identify_the_bound(tmp_path, monkeypatch, result, detail):
+    monkeypatch.setattr(repository, "run_process", lambda *args, **kwargs: result)
+    with pytest.raises(RepositoryError, match=detail):
+        repository.git(tmp_path, "ls-files", "--format=%(objectmode)")
+
+
+def test_inventory_failure_identifies_revision(tmp_path, monkeypatch):
+    def git(path, *arguments, **kwargs):
+        if arguments[0] == "ls-files":
+            raise RepositoryError("output exceeded 1048576 bytes")
+        return ""
+
+    monkeypatch.setattr(repository, "git", git)
+    with pytest.raises(RepositoryError, match=f"Commit {'a' * 40} inventory"):
+        repository.clone_at(tmp_path, "a" * 40, tmp_path / "clone")
+
+
+def test_candidate_cannot_change_source_through_directory_alias(tmp_path: Path) -> None:
+    repo = make_repository(tmp_path / "repo")
+    (repo / "pkg").mkdir()
+    (repo / "pkg/library.py").write_text("VALUE = 1\n")
+    (repo / "alias").symlink_to("pkg", target_is_directory=True)
+    patch = (
+        "--- a/alias/library.py\n+++ b/alias/library.py\n"
+        "@@ -1 +1 @@\n-VALUE = 1\n+VALUE = 2\n"
+    )
+    with pytest.raises(RepositoryError, match="traverses a symlink"):
+        repository.validate_patch(repo, patch)
 
 
 def test_clone_does_not_change_dirty_original(tmp_path: Path) -> None:

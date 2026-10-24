@@ -1,0 +1,113 @@
+{
+  "publication_schema": 1,
+  "source_report_sha256": "044c7f803e9bbc5de5cfc8b788aaee1b7b10387c9d840670e3b770d842f83c4c",
+  "normalization": "Paths normalized; raw stdout/stderr, testcase messages and embedded bootstrap omitted with hashes. This is a publication derivative, not a seam inspect input.",
+  "report": {
+    "schema_version": 2,
+    "status": "inconclusive",
+    "reason": "Verification prerequisites were not established: upstream_parent security: pytest did not complete a normal test run",
+    "fix_commit": "871c7aeec5dfed2138655ccbccbf15c6d763bae7",
+    "parent_commit": "da29bfa38d5fd4f89f98d2e668027505449ddaae",
+    "target_commit": "f275d5c4c75d9cc96131800099619c5027b62873",
+    "image_id": "sha256:380613810f5d99df91201ae7f6eb3eeadfc0c219060cdab8163236e818c1700a",
+    "oracle_sha256": "1bf1ba75af3bda575433c824c39444eae1e65a057673b486d9e62b807645686a",
+    "config_sha256": "cea50c6744d37c39d77179ce5d866ba285dca41c6d9912bb3c0deabd1f328a36",
+    "patch_sha256": null,
+    "phases": [
+      {
+        "name": "upstream_parent",
+        "revision": "da29bfa38d5fd4f89f98d2e668027505449ddaae",
+        "security": {
+          "returncode": 4,
+          "command": [
+            "python",
+            "-I",
+            "-B",
+            "-c",
+            "<bootstrap program omitted>",
+            "-q",
+            "--tb=short",
+            "--import-mode=importlib",
+            "-p",
+            "no:cacheprovider",
+            "--junitxml=/report.xml",
+            "-p",
+            "anyio.pytest_plugin",
+            "-p",
+            "pytest_mock.plugin",
+            "-p",
+            "pytest_recording.plugin",
+            "-c",
+            "/dev/null",
+            "--noconftest",
+            "--rootdir=/oracle",
+            "/oracle/oracle.py::test_security_foreign_host",
+            "/oracle/oracle.py::test_control_localhost",
+            "/oracle/oracle.py::test_control_loopback_ipv6",
+            "/oracle/oracle.py::test_control_lan_ip"
+          ],
+          "timed_out": false,
+          "truncated": false,
+          "duration_seconds": 3.9583,
+          "tests": [
+            {
+              "name": "oracle",
+              "classname": "",
+              "outcome": "error",
+              "expected_failure": false,
+              "message_sha256": "67aa7514513012661e4426b7f222a93ba87f951ef68208c47aeccb93b997efac",
+              "expected_security_failure_marker_present": false
+            }
+          ],
+          "evidence_error": null,
+          "stdout_sha256": "35348b157c04965ff7d884e345ba5ffd7ba2765956bd0a498e368a26f8552fb6",
+          "stdout_omitted": true,
+          "stderr_sha256": "17815f3998d17edfba299771d0725ac34d4e2b3d4b4d4b79fc098f4540f3ce6b",
+          "stderr_omitted": true,
+          "bootstrap_program_sha256": "9e998596533214cbe0bad366e6058c665669548be29e9d3ca17f60d2c31caaa5"
+        },
+        "suite": {
+          "returncode": 4,
+          "command": [
+            "python",
+            "-I",
+            "-B",
+            "-c",
+            "<bootstrap program omitted>",
+            "-q",
+            "--tb=short",
+            "--import-mode=importlib",
+            "-p",
+            "no:cacheprovider",
+            "--junitxml=/report.xml",
+            "-p",
+            "anyio.pytest_plugin",
+            "-p",
+            "pytest_mock.plugin",
+            "-p",
+            "pytest_recording.plugin",
+            "tests/test_ui_web.py::test_agent_to_web",
+            "tests/test_ui_web.py::test_agent_to_web_with_model_instances",
+            "tests/test_ui_web.py::test_agent_to_web_with_deps",
+            "tests/test_ui_web.py::test_agent_to_web_with_model_settings"
+          ],
+          "timed_out": false,
+          "truncated": false,
+          "duration_seconds": 2.4991,
+          "tests": [],
+          "evidence_error": "JUnit report is empty or exceeds the evidence limit",
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_omitted": true,
+          "stderr_sha256": "d5a9ca5f425ac6e924d77c13988a02b49c29d07000bb03bb73ad4229a71480fd",
+          "stderr_omitted": true,
+          "bootstrap_program_sha256": "9e998596533214cbe0bad366e6058c665669548be29e9d3ca17f60d2c31caaa5"
+        }
+      }
+    ],
+    "attempts": 0,
+    "adaptation": "none",
+    "model_usage": {},
+    "reviewed_tests": null,
+    "reviewed_fixtures": {}
+  }
+}

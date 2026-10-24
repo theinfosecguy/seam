@@ -23,10 +23,22 @@ Normal-behavior controls and the project suite check whether the candidate
 achieves security by breaking valid behavior.
 
 Source snapshots materialize relative file links only when resolution stays
-inside the checkout and ends at an ordinary file. Excluded paths, escapes,
-directory links, absolute links, cycles and hard links remain rejected. A shared
-preflight checks every selected revision before image preparation; staging repeats
-the checks because preflight cannot freeze a mutable filesystem.
+inside the checkout and ends at an ordinary file. Relative directory links are
+preserved only when their direct target and its ancestors are ordinary,
+nonexcluded directories inside the checkout. Staging and container copying keep
+the original link text without walking directory aliases. Absolute, escaping or
+dangling links, excluded paths, cycles, hard links, and directory targets reached
+through another directory link remain rejected. Directory links count toward
+entry limits and their link text counts toward byte limits; real-tree depth
+limits remain in force. Model-read and candidate-patch restrictions on symlinks
+are unchanged.
+
+A shared preflight checks every selected revision before image preparation;
+staging repeats the checks because preflight cannot freeze a mutable filesystem.
+Tracked-file inventory reads only Git object modes, so filename lengths do not
+consume its output budget. The inventory command remains bounded to 120 seconds
+and 1 MiB of combined stdout/stderr; snapshots are bounded to 20,000 entries,
+256 MiB and depth 100.
 
 Public cryptographic test fixtures require exact paths and reviewed SHA-256
 hashes in the operator's configuration. Staging checks those bytes in every
