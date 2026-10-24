@@ -84,6 +84,7 @@ uv run seam eval qualify jinja2 --build-image --output /tmp/seam-jinja2-eval
 
 This checks the supplied reference patch and a deliberately ineffective patch;
 it does not measure an AI model. See the [case catalogue](evals/python/README.md),
+[latest benchmark follow-up](docs/followup-benchmarks.md),
 [recent backport comparison](docs/recent-backports.md), and
 [earlier evaluations](docs/evaluations.md) for results and their limits.
 

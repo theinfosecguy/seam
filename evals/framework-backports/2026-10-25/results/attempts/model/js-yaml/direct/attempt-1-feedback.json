@@ -1,0 +1,4 @@
+{
+  "original_sha256": "dd67bcfea08fd319a06a7e2f9ad7d69194c48d20cbeb9166de89ca70ee7d3a40",
+  "feedback": "Git apply failed (exit status 1): error: lib/loader.js: No such file or directory\n\n"
+}

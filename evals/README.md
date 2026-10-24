@@ -50,3 +50,8 @@ initial npm cases, reviewed follow-ups, two new Python cases, fresh adaptation
 comparisons and an executed BackportBench crosscheck. It publishes unresolved
 attempts alongside successes. These standalone inputs do not change the default
 eight-case catalogue. See the [results guide](../docs/expanded-benchmarks.md).
+
+The [25 October follow-up](framework-backports/2026-10-25/README.md) adds the
+js-yaml Mocha compatibility fix, two historical Python issues, fresh npm
+regression runs and bounded Tape/Node reporting investigations. It preserves
+unsuccessful configurations and separates reference checks from AI adaptation.

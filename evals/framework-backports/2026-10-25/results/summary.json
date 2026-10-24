@@ -1,0 +1,453 @@
+{
+  "schema_version": 1,
+  "reports": 31,
+  "statuses": {
+    "failed": 9,
+    "verified": 19,
+    "inconclusive": 3
+  },
+  "attempts": [
+    {
+      "cohort": "mocha-installed",
+      "attempt": "installed-trial-01/js-yaml/negative",
+      "status": "failed",
+      "reason": "backport: security regression still fails",
+      "phases": 4,
+      "suite_counts": [
+        92,
+        92,
+        95,
+        95
+      ],
+      "model_usage": {}
+    },
+    {
+      "cohort": "mocha-installed",
+      "attempt": "installed-trial-01/js-yaml/reference",
+      "status": "verified",
+      "reason": "All four revisions met the frozen security and compatibility checks.",
+      "phases": 4,
+      "suite_counts": [
+        92,
+        92,
+        95,
+        95
+      ],
+      "model_usage": {}
+    },
+    {
+      "cohort": "mocha-installed",
+      "attempt": "installed-trial-01/js-yaml/repeat",
+      "status": "verified",
+      "reason": "All four revisions met the frozen security and compatibility checks.",
+      "phases": 4,
+      "suite_counts": [
+        92,
+        92,
+        95,
+        95
+      ],
+      "model_usage": {}
+    },
+    {
+      "cohort": "python",
+      "attempt": "final-dev2/marshmallow/negative",
+      "status": "failed",
+      "reason": "backport: security regression still fails",
+      "phases": 4,
+      "suite_counts": [
+        29,
+        29,
+        29,
+        29
+      ],
+      "model_usage": {}
+    },
+    {
+      "cohort": "python",
+      "attempt": "final-dev2/marshmallow/reference",
+      "status": "verified",
+      "reason": "All four revisions met the frozen security and compatibility checks.",
+      "phases": 4,
+      "suite_counts": [
+        29,
+        29,
+        29,
+        29
+      ],
+      "model_usage": {}
+    },
+    {
+      "cohort": "python",
+      "attempt": "final-dev2/marshmallow/repeat",
+      "status": "verified",
+      "reason": "All four revisions met the frozen security and compatibility checks.",
+      "phases": 4,
+      "suite_counts": [
+        29,
+        29,
+        29,
+        29
+      ],
+      "model_usage": {}
+    },
+    {
+      "cohort": "python",
+      "attempt": "final-dev2/pydantic/reference",
+      "status": "inconclusive",
+      "reason": "Verification prerequisites were not established: target_baseline: existing project suite failed",
+      "phases": 3,
+      "suite_counts": [
+        124,
+        142,
+        124
+      ],
+      "model_usage": {}
+    },
+    {
+      "cohort": "python",
+      "attempt": "final-dev2/pydantic-prepend/negative",
+      "status": "failed",
+      "reason": "backport: security regression still fails",
+      "phases": 4,
+      "suite_counts": [
+        124,
+        142,
+        124,
+        124
+      ],
+      "model_usage": {}
+    },
+    {
+      "cohort": "python",
+      "attempt": "final-dev2/pydantic-prepend/reference",
+      "status": "verified",
+      "reason": "All four revisions met the frozen security and compatibility checks.",
+      "phases": 4,
+      "suite_counts": [
+        124,
+        142,
+        124,
+        124
+      ],
+      "model_usage": {}
+    },
+    {
+      "cohort": "python",
+      "attempt": "final-dev2/pydantic-prepend/repeat",
+      "status": "verified",
+      "reason": "All four revisions met the frozen security and compatibility checks.",
+      "phases": 4,
+      "suite_counts": [
+        124,
+        142,
+        124,
+        124
+      ],
+      "model_usage": {}
+    },
+    {
+      "cohort": "python",
+      "attempt": "published-dev1/marshmallow/negative",
+      "status": "failed",
+      "reason": "backport: security regression still fails",
+      "phases": 4,
+      "suite_counts": [
+        29,
+        29,
+        29,
+        29
+      ],
+      "model_usage": {}
+    },
+    {
+      "cohort": "python",
+      "attempt": "published-dev1/marshmallow/reference",
+      "status": "verified",
+      "reason": "All four revisions met the frozen security and compatibility checks.",
+      "phases": 4,
+      "suite_counts": [
+        29,
+        29,
+        29,
+        29
+      ],
+      "model_usage": {}
+    },
+    {
+      "cohort": "python",
+      "attempt": "published-dev1/marshmallow/repeat",
+      "status": "verified",
+      "reason": "All four revisions met the frozen security and compatibility checks.",
+      "phases": 4,
+      "suite_counts": [
+        29,
+        29,
+        29,
+        29
+      ],
+      "model_usage": {}
+    },
+    {
+      "cohort": "python",
+      "attempt": "published-dev1/pydantic/reference",
+      "status": "inconclusive",
+      "reason": "Verification prerequisites were not established: target_baseline: existing project suite failed",
+      "phases": 3,
+      "suite_counts": [
+        124,
+        142,
+        124
+      ],
+      "model_usage": {}
+    },
+    {
+      "cohort": "model",
+      "attempt": "js-yaml/direct",
+      "status": "inconclusive",
+      "reason": "Candidate could not be applied: Git apply failed (exit status 1): error: lib/loader.js: No such file or directory\n",
+      "phases": 3,
+      "suite_counts": [
+        92,
+        92,
+        95
+      ],
+      "model_usage": {}
+    },
+    {
+      "cohort": "model",
+      "attempt": "js-yaml/model",
+      "status": "verified",
+      "reason": "All four revisions met the frozen security and compatibility checks.",
+      "phases": 4,
+      "suite_counts": [
+        92,
+        92,
+        95,
+        95
+      ],
+      "model_usage": {
+        "provider": "deepseek",
+        "model": "deepseek-flash",
+        "returned_model": "deepseek-flash",
+        "calls": 15,
+        "input_tokens": 107488,
+        "output_tokens": 21080,
+        "estimated_cost_usd": 0.0575424,
+        "reserved_cost_usd": 0.0,
+        "budget_usd": 1.0,
+        "pricing": "conservative text upper bounds; operator rates, checked schedules, or bundled genai-prices 0.1.13; no network updates"
+      }
+    },
+    {
+      "cohort": "npm-regression",
+      "attempt": "body-parser-reviewed/negative",
+      "status": "failed",
+      "reason": "backport: security regression still fails",
+      "phases": 4,
+      "suite_counts": [
+        3,
+        3,
+        3,
+        3
+      ],
+      "model_usage": {}
+    },
+    {
+      "cohort": "npm-regression",
+      "attempt": "body-parser-reviewed/reference",
+      "status": "verified",
+      "reason": "All four revisions met the frozen security and compatibility checks.",
+      "phases": 4,
+      "suite_counts": [
+        3,
+        3,
+        3,
+        3
+      ],
+      "model_usage": {}
+    },
+    {
+      "cohort": "npm-regression",
+      "attempt": "body-parser-reviewed/repeat",
+      "status": "verified",
+      "reason": "All four revisions met the frozen security and compatibility checks.",
+      "phases": 4,
+      "suite_counts": [
+        3,
+        3,
+        3,
+        3
+      ],
+      "model_usage": {}
+    },
+    {
+      "cohort": "npm-regression",
+      "attempt": "debug/negative",
+      "status": "failed",
+      "reason": "backport: security regression still fails",
+      "phases": 4,
+      "suite_counts": [
+        4,
+        4,
+        4,
+        4
+      ],
+      "model_usage": {}
+    },
+    {
+      "cohort": "npm-regression",
+      "attempt": "debug/reference",
+      "status": "verified",
+      "reason": "All four revisions met the frozen security and compatibility checks.",
+      "phases": 4,
+      "suite_counts": [
+        4,
+        4,
+        4,
+        4
+      ],
+      "model_usage": {}
+    },
+    {
+      "cohort": "npm-regression",
+      "attempt": "debug/repeat",
+      "status": "verified",
+      "reason": "All four revisions met the frozen security and compatibility checks.",
+      "phases": 4,
+      "suite_counts": [
+        4,
+        4,
+        4,
+        4
+      ],
+      "model_usage": {}
+    },
+    {
+      "cohort": "npm-regression",
+      "attempt": "ip/negative",
+      "status": "failed",
+      "reason": "backport: security regression still fails",
+      "phases": 4,
+      "suite_counts": [
+        65,
+        85,
+        65,
+        65
+      ],
+      "model_usage": {}
+    },
+    {
+      "cohort": "npm-regression",
+      "attempt": "ip/reference",
+      "status": "verified",
+      "reason": "All four revisions met the frozen security and compatibility checks.",
+      "phases": 4,
+      "suite_counts": [
+        65,
+        85,
+        65,
+        65
+      ],
+      "model_usage": {}
+    },
+    {
+      "cohort": "npm-regression",
+      "attempt": "ip/repeat",
+      "status": "verified",
+      "reason": "All four revisions met the frozen security and compatibility checks.",
+      "phases": 4,
+      "suite_counts": [
+        65,
+        85,
+        65,
+        65
+      ],
+      "model_usage": {}
+    },
+    {
+      "cohort": "npm-regression",
+      "attempt": "serve-static-reviewed/negative",
+      "status": "failed",
+      "reason": "backport: security regression still fails",
+      "phases": 4,
+      "suite_counts": [
+        90,
+        90,
+        90,
+        90
+      ],
+      "model_usage": {}
+    },
+    {
+      "cohort": "npm-regression",
+      "attempt": "serve-static-reviewed/reference",
+      "status": "verified",
+      "reason": "All four revisions met the frozen security and compatibility checks.",
+      "phases": 4,
+      "suite_counts": [
+        90,
+        90,
+        90,
+        90
+      ],
+      "model_usage": {}
+    },
+    {
+      "cohort": "npm-regression",
+      "attempt": "serve-static-reviewed/repeat",
+      "status": "verified",
+      "reason": "All four revisions met the frozen security and compatibility checks.",
+      "phases": 4,
+      "suite_counts": [
+        90,
+        90,
+        90,
+        90
+      ],
+      "model_usage": {}
+    },
+    {
+      "cohort": "npm-regression",
+      "attempt": "undici-private-cache/negative",
+      "status": "failed",
+      "reason": "backport: security regression still fails",
+      "phases": 4,
+      "suite_counts": [
+        25,
+        27,
+        25,
+        25
+      ],
+      "model_usage": {}
+    },
+    {
+      "cohort": "npm-regression",
+      "attempt": "undici-private-cache/reference",
+      "status": "verified",
+      "reason": "All four revisions met the frozen security and compatibility checks.",
+      "phases": 4,
+      "suite_counts": [
+        25,
+        27,
+        25,
+        25
+      ],
+      "model_usage": {}
+    },
+    {
+      "cohort": "npm-regression",
+      "attempt": "undici-private-cache/repeat",
+      "status": "verified",
+      "reason": "All four revisions met the frozen security and compatibility checks.",
+      "phases": 4,
+      "suite_counts": [
+        25,
+        27,
+        25,
+        25
+      ],
+      "model_usage": {}
+    }
+  ]
+}

@@ -1,0 +1,74 @@
+[
+  {
+    "case": "marshmallow",
+    "revision_role": "upstream_parent_commit",
+    "commit": "80f1110746a202e59ceedcbc78399feb1f48c257",
+    "tree": "5ab47383330cd8f35896cbd7b32525d91e8ac1e3",
+    "raw_parent_ids": [
+      "10fe10be814a77765a76334e00bc6f69cd18409b"
+    ]
+  },
+  {
+    "case": "marshmallow",
+    "revision_role": "upstream_fix_commit",
+    "commit": "218d98a785d3bd25dad8880bb07e9cce70340f31",
+    "tree": "9909bc325835c3aed16aa9982713ddc284eb9d36",
+    "raw_parent_ids": [
+      "80f1110746a202e59ceedcbc78399feb1f48c257"
+    ]
+  },
+  {
+    "case": "marshmallow",
+    "revision_role": "target_baseline_commit",
+    "commit": "4ab61bfb93a67113762b186eceaab9a9d473f92a",
+    "tree": "6dc1224b38f0c229fa79b0c519e694e56a68162e",
+    "raw_parent_ids": [
+      "7a71dfcb7a57fd415c2adb9de8e123d2d5d2fda8"
+    ]
+  },
+  {
+    "case": "marshmallow",
+    "revision_role": "backport_commit",
+    "commit": "0356a3f1c307830f8ded56d823abca5611c594c9",
+    "tree": "56d144071ae1734332427cc32c4505752e5e8346",
+    "raw_parent_ids": [
+      "4ab61bfb93a67113762b186eceaab9a9d473f92a"
+    ]
+  },
+  {
+    "case": "pydantic",
+    "revision_role": "upstream_parent_commit",
+    "commit": "79c6c9ee33da4afb2d793d312b186ba6ebd941c9",
+    "tree": "cdc118c39c590688db630bc543a4f3acfbba402b",
+    "raw_parent_ids": [
+      "8afe0e32a3438eaf3d43dc592532314dff5e63bc"
+    ]
+  },
+  {
+    "case": "pydantic",
+    "revision_role": "upstream_fix_commit",
+    "commit": "1c24f1d74ba95ea985b50bdc001ce96c813229aa",
+    "tree": "1212368bb630be15c11992bdb131c4cca13d9ca5",
+    "raw_parent_ids": [
+      "79c6c9ee33da4afb2d793d312b186ba6ebd941c9"
+    ]
+  },
+  {
+    "case": "pydantic",
+    "revision_role": "target_baseline_commit",
+    "commit": "00a128a3609dac82dfe0cdb4200bbf2011aa5f83",
+    "tree": "c6fba4e71cf78db0eaf4e446ce8c63383da51840",
+    "raw_parent_ids": [
+      "08922c3954b59762335dc74486a33ae30bafd370"
+    ]
+  },
+  {
+    "case": "pydantic",
+    "revision_role": "backport_commit",
+    "commit": "80e0dd3f752bef145dce12f160d262bb40ec8d47",
+    "tree": "f1cc133951cbe8f5766103dbd92c48a0295bfe84",
+    "raw_parent_ids": [
+      "00a128a3609dac82dfe0cdb4200bbf2011aa5f83"
+    ]
+  }
+]

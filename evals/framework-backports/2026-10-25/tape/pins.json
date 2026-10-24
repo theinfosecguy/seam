@@ -1,0 +1,29 @@
+{
+  "packages": {
+    "tape": {
+      "version": "5.10.3",
+      "git_head": "223d58ebbde2c4a8505ea1ecd149408b87e8423a",
+      "tarball": "https://registry.npmjs.org/tape/-/tape-5.10.3.tgz",
+      "integrity": "sha512-p+WLISY4ewSacY6yKWxlT6EY+iutUX2magjOlIx29LhmU08yDjWnZ7n7jBQSS8tsWYFuGW1asj3LUwkK1wW9LQ=="
+    },
+    "tap-junit": {
+      "version": "5.0.4",
+      "git_head": "d0bb28377a20abca337f99274e3796a7476fe01a",
+      "tarball": "https://registry.npmjs.org/tap-junit/-/tap-junit-5.0.4.tgz",
+      "integrity": "sha512-UIOngLK6VwLxcA3RAoEYje0XOtJslZUcFbkNUOVM2IAEPAqtWX7kK/UD0f16RDwj5jCF1FJrB+1BLI8jnEzmMA=="
+    },
+    "tap-parser": {
+      "version": "18.3.4",
+      "git_head": "e79377683b8ec7853984771353b16175050b2541",
+      "tarball": "https://registry.npmjs.org/tap-parser/-/tap-parser-18.3.4.tgz",
+      "integrity": "sha512-CiqzdpWn2CvONcWp7UNMF9/rCPJwCz0es+qykkgJruu1Y/rAS8A5MEQujmjx9NErfst3dGiZJU3lDS2jBsgbPA=="
+    },
+    "@tapjs/reporter": {
+      "version": "4.5.0",
+      "git_head": "8ab84eb1daae6dedbfcf07b8e0bf2c2a965ad81f",
+      "tarball": "https://registry.npmjs.org/@tapjs/reporter/-/reporter-4.5.0.tgz",
+      "integrity": "sha512-aowTYTTHOC/J9lLwpHbTvSBnHC5alAY/G+VVS11e4toRWs/aa99c9fVqu5ldQDiruGpE9fs2Ihs8mxyq+gImNQ=="
+    }
+  },
+  "package_lock_sha256": "1afdbe18b614e889e24fe089d991cd155c10927a8f41e10be7a64de72bdfc183"
+}

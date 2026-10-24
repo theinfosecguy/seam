@@ -1,0 +1,7 @@
+--- a/lib/util/cache.js
++++ b/lib/util/cache.js
+@@ -412,3 +412,4 @@
+   assertCacheStore,
+   makeDeduplicationKey
+ }
++// Intentionally ineffective evaluation patch.

@@ -1,0 +1,2554 @@
+{
+  "schema_version": 1,
+  "cohort": "mocha-installed",
+  "source_report": "installed-trial-01/js-yaml/repeat/report.json",
+  "execution_context": {
+    "exit_code": 0,
+    "timed_out": false,
+    "log_truncated": false,
+    "wheel_sha256": "a91acc4337b3eaca0942ef66773a555e3b2e18adfbfe57dbe74afb99ff0ecd66",
+    "driver_sha256": "82b9c8c44780d4165a025acdfe33d71867d387756c76910ee9c83ecfe9252666",
+    "freeze_sha256": "730a937c5c545dec3f63cda2339b2064d59ea63134da5b5673f73d4c1fc01d6c",
+    "inputs_unchanged": true,
+    "caller_unchanged": true
+  },
+  "configuration": {
+    "schema_version": 1,
+    "oracle": {
+      "path": "oracle.mjs",
+      "security_test": "test_security",
+      "controls": [
+        "test_scalar_and_sequence",
+        "test_ordinary_merge"
+      ],
+      "failure_marker": "JS_YAML_MERGE_PROTO_IS_OWN_DATA"
+    },
+    "runner": {
+      "kind": "mocha",
+      "image": "sha256:52f40f96867d88d68ced00067878ab5b917744d17f5649b82506f43e72d88cba",
+      "docker": [
+        "sudo",
+        "-n",
+        "docker"
+      ],
+      "timeout_seconds": 120.0,
+      "memory_mb": 512,
+      "cpus": 1.0,
+      "pids": 128,
+      "max_output_bytes": 131072,
+      "suite": [
+        "test/10-loader.js",
+        "test/11-load-errors.js"
+      ],
+      "plugins": [],
+      "import_mode": "importlib",
+      "suite_markers": null,
+      "mocha_ui": "bdd",
+      "mocha_interfaces": {
+        "0d3ca7a27b03a6c974790a30a89e456007d62976": "bdd",
+        "383665ff4248ec2192d1274e934462bb30426879": "bdd",
+        "37caaad57dc37d350d9a4577a5da53f482bb2983": "tdd"
+      },
+      "mocha_grep": null,
+      "reviewed_fixtures": {},
+      "reviewed_submodules": {},
+      "node_dependencies": {
+        "0d3ca7a27b03a6c974790a30a89e456007d62976": "/opt/seam/dependencies/0d3ca7a27b03a6c974790a30a89e456007d62976/node_modules",
+        "37caaad57dc37d350d9a4577a5da53f482bb2983": "/opt/seam/dependencies/37caaad57dc37d350d9a4577a5da53f482bb2983/node_modules",
+        "383665ff4248ec2192d1274e934462bb30426879": "/opt/seam/dependencies/383665ff4248ec2192d1274e934462bb30426879/node_modules"
+      }
+    },
+    "max_attempts": 3,
+    "reviewed_tests": null
+  },
+  "report": {
+    "schema_version": 2,
+    "status": "verified",
+    "reason": "All four revisions met the frozen security and compatibility checks.",
+    "fix_commit": "383665ff4248ec2192d1274e934462bb30426879",
+    "parent_commit": "0d3ca7a27b03a6c974790a30a89e456007d62976",
+    "target_commit": "37caaad57dc37d350d9a4577a5da53f482bb2983",
+    "image_id": "sha256:52f40f96867d88d68ced00067878ab5b917744d17f5649b82506f43e72d88cba",
+    "oracle_sha256": "c14a3e487cbfee0cad2cb03ab24b756c51bfba4e4be402df8fe523bfa9a46a4e",
+    "config_sha256": "d2e1da7939a808ea2ca1b0ad92f09697bcad05c4190e09b90a4aec00ed5cee8f",
+    "patch_sha256": "d6466d721051084b6cb3b95bc52862fb43a6a31f67208afe48baae2560406b95",
+    "attempts": 1,
+    "adaptation": "provided_patch",
+    "model_usage": {},
+    "reviewed_tests": null,
+    "reviewed_fixtures": {},
+    "reviewed_submodules": {},
+    "phases": [
+      {
+        "name": "upstream_parent",
+        "revision": "0d3ca7a27b03a6c974790a30a89e456007d62976",
+        "security": {
+          "returncode": 1,
+          "timed_out": false,
+          "truncated": false,
+          "duration_seconds": 1.5436,
+          "evidence_error": null,
+          "tests": [
+            {
+              "name": "test_security",
+              "classname": "/oracle/oracle.mjs::test",
+              "outcome": "failed",
+              "expected_failure": false,
+              "original_message_sha256": "edaacf70835b3b4e5d952e29ff2eb2a8296d964bdec2dd4526712001d414210f",
+              "expected_failure_marker_observed": true
+            },
+            {
+              "name": "test_scalar_and_sequence",
+              "classname": "/oracle/oracle.mjs::test",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_ordinary_merge",
+              "classname": "/oracle/oracle.mjs::test",
+              "outcome": "passed",
+              "expected_failure": false
+            }
+          ],
+          "command_sha256": "4f42fe6f5dcf6f954ca276ebf65b943ed4091a66794e807a0f9de89a78f58c1f",
+          "missing_modules": [],
+          "diagnostic_excerpts": [
+            "AssertionError [ERR_ASSERTION]: JS_YAML_MERGE_PROTO_IS_OWN_DATA"
+          ],
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 0,
+          "stderr_sha256": "1da3ff704b8b66ca94da28774022784f2ca74e656525adb14d162417b5a6d77a",
+          "stderr_bytes": 873
+        },
+        "suite": {
+          "returncode": 0,
+          "timed_out": false,
+          "truncated": false,
+          "duration_seconds": 2.0482,
+          "evidence_error": null,
+          "tests": [
+            {
+              "name": "construct-binary",
+              "classname": "/work/repo/test/10-loader.js::Loader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "construct-bool",
+              "classname": "/work/repo/test/10-loader.js::Loader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "construct-custom",
+              "classname": "/work/repo/test/10-loader.js::Loader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "construct-float",
+              "classname": "/work/repo/test/10-loader.js::Loader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "construct-int",
+              "classname": "/work/repo/test/10-loader.js::Loader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "construct-map",
+              "classname": "/work/repo/test/10-loader.js::Loader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "construct-merge",
+              "classname": "/work/repo/test/10-loader.js::Loader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "construct-null",
+              "classname": "/work/repo/test/10-loader.js::Loader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "construct-omap",
+              "classname": "/work/repo/test/10-loader.js::Loader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "construct-pairs",
+              "classname": "/work/repo/test/10-loader.js::Loader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "construct-seq",
+              "classname": "/work/repo/test/10-loader.js::Loader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "construct-set",
+              "classname": "/work/repo/test/10-loader.js::Loader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "construct-str-ascii",
+              "classname": "/work/repo/test/10-loader.js::Loader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "construct-str-utf8",
+              "classname": "/work/repo/test/10-loader.js::Loader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "construct-str",
+              "classname": "/work/repo/test/10-loader.js::Loader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "construct-string-types",
+              "classname": "/work/repo/test/10-loader.js::Loader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "construct-timestamp",
+              "classname": "/work/repo/test/10-loader.js::Loader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "construct-value",
+              "classname": "/work/repo/test/10-loader.js::Loader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "dump-empty-collections",
+              "classname": "/work/repo/test/10-loader.js::Loader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "duplicate-mapping-key",
+              "classname": "/work/repo/test/10-loader.js::Loader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "duplicate-merge-key",
+              "classname": "/work/repo/test/10-loader.js::Loader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "emitting-unacceptable-unicode-character-bug",
+              "classname": "/work/repo/test/10-loader.js::Loader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "invalid-single-quote-bug",
+              "classname": "/work/repo/test/10-loader.js::Loader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "more-floats",
+              "classname": "/work/repo/test/10-loader.js::Loader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "negative-float-bug",
+              "classname": "/work/repo/test/10-loader.js::Loader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "single-dot-is-not-float-bug",
+              "classname": "/work/repo/test/10-loader.js::Loader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "timestamp-bugs",
+              "classname": "/work/repo/test/10-loader.js::Loader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "utf8-implicit",
+              "classname": "/work/repo/test/10-loader.js::Loader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "a-nasty-libyaml-bug",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "document-separator-in-quoted-scalar",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "duplicate-key.js",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "duplicate-key",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "duplicate-tag-directive",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "duplicate-value-key.js",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "duplicate-value-key",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "duplicate-yaml-directive",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "expected-mapping",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "expected-scalar",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "expected-sequence",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "fetch-complex-value-bug",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "forbidden-entry",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "forbidden-key",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "forbidden-value",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "invalid-anchor-2",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "invalid-base64-data-2",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "invalid-base64-data",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "invalid-block-scalar-indicator",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "invalid-character",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "invalid-directive-line",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "invalid-directive-name-1",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "invalid-directive-name-2",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "invalid-escape-character",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "invalid-escape-numbers",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "invalid-indentation-indicator-1",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "invalid-indentation-indicator-2",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "invalid-item-without-trailing-break",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "invalid-merge-1",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "invalid-merge-2",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "invalid-omap-1",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "invalid-omap-2",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "invalid-omap-3",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "invalid-pairs-1",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "invalid-pairs-2",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "invalid-pairs-3",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "invalid-simple-key",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "invalid-starting-character",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "invalid-tag-2",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "invalid-tag-directive-handle",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "invalid-tag-handle-1",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "invalid-tag-handle-2",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "invalid-uri-escapes-1",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "invalid-uri",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "invalid-yaml-directive-version-1",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "invalid-yaml-directive-version-2",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "invalid-yaml-directive-version-3",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "invalid-yaml-directive-version-4",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "invalid-yaml-directive-version-5",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "invalid-yaml-directive-version-6",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "invalid-yaml-version",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "no-block-collection-end",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "no-block-mapping-end-2",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "no-block-mapping-end",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "no-document-start",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "no-flow-mapping-end",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "no-flow-sequence-end",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "no-node-1",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "no-node-2",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "remove-possible-simple-key-bug",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "unclosed-bracket",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "unclosed-quoted-scalar",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "undefined-anchor",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "undefined-tag-handle",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            }
+          ],
+          "command_sha256": "6de97af8633d01ee53e249ab26b545f7dae1e0983c393da6918950e947cbe8cb",
+          "missing_modules": [],
+          "diagnostic_excerpts": [],
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr_bytes": 0
+        }
+      },
+      {
+        "name": "upstream_fix",
+        "revision": "383665ff4248ec2192d1274e934462bb30426879",
+        "security": {
+          "returncode": 0,
+          "timed_out": false,
+          "truncated": false,
+          "duration_seconds": 1.8465,
+          "evidence_error": null,
+          "tests": [
+            {
+              "name": "test_security",
+              "classname": "/oracle/oracle.mjs::test",
+              "outcome": "passed",
+              "expected_failure": false,
+              "expected_failure_marker_observed": false
+            },
+            {
+              "name": "test_scalar_and_sequence",
+              "classname": "/oracle/oracle.mjs::test",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_ordinary_merge",
+              "classname": "/oracle/oracle.mjs::test",
+              "outcome": "passed",
+              "expected_failure": false
+            }
+          ],
+          "command_sha256": "300ae0b8fe99786745fce01d9749bbe8d94179d2d0e8555108b09a592de99c8c",
+          "missing_modules": [],
+          "diagnostic_excerpts": [],
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 0,
+          "stderr_sha256": "582bfb879f4cf777b9e8d6af3160c944681858ca0dbff8f0ebdeeeeb48007dc4",
+          "stderr_bytes": 225
+        },
+        "suite": {
+          "returncode": 0,
+          "timed_out": false,
+          "truncated": false,
+          "duration_seconds": 2.0739,
+          "evidence_error": null,
+          "tests": [
+            {
+              "name": "construct-binary",
+              "classname": "/work/repo/test/10-loader.js::Loader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "construct-bool",
+              "classname": "/work/repo/test/10-loader.js::Loader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "construct-custom",
+              "classname": "/work/repo/test/10-loader.js::Loader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "construct-float",
+              "classname": "/work/repo/test/10-loader.js::Loader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "construct-int",
+              "classname": "/work/repo/test/10-loader.js::Loader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "construct-map",
+              "classname": "/work/repo/test/10-loader.js::Loader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "construct-merge",
+              "classname": "/work/repo/test/10-loader.js::Loader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "construct-null",
+              "classname": "/work/repo/test/10-loader.js::Loader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "construct-omap",
+              "classname": "/work/repo/test/10-loader.js::Loader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "construct-pairs",
+              "classname": "/work/repo/test/10-loader.js::Loader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "construct-seq",
+              "classname": "/work/repo/test/10-loader.js::Loader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "construct-set",
+              "classname": "/work/repo/test/10-loader.js::Loader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "construct-str-ascii",
+              "classname": "/work/repo/test/10-loader.js::Loader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "construct-str-utf8",
+              "classname": "/work/repo/test/10-loader.js::Loader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "construct-str",
+              "classname": "/work/repo/test/10-loader.js::Loader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "construct-string-types",
+              "classname": "/work/repo/test/10-loader.js::Loader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "construct-timestamp",
+              "classname": "/work/repo/test/10-loader.js::Loader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "construct-value",
+              "classname": "/work/repo/test/10-loader.js::Loader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "dump-empty-collections",
+              "classname": "/work/repo/test/10-loader.js::Loader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "duplicate-mapping-key",
+              "classname": "/work/repo/test/10-loader.js::Loader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "duplicate-merge-key",
+              "classname": "/work/repo/test/10-loader.js::Loader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "emitting-unacceptable-unicode-character-bug",
+              "classname": "/work/repo/test/10-loader.js::Loader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "invalid-single-quote-bug",
+              "classname": "/work/repo/test/10-loader.js::Loader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "more-floats",
+              "classname": "/work/repo/test/10-loader.js::Loader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "negative-float-bug",
+              "classname": "/work/repo/test/10-loader.js::Loader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "single-dot-is-not-float-bug",
+              "classname": "/work/repo/test/10-loader.js::Loader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "timestamp-bugs",
+              "classname": "/work/repo/test/10-loader.js::Loader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "utf8-implicit",
+              "classname": "/work/repo/test/10-loader.js::Loader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "a-nasty-libyaml-bug",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "document-separator-in-quoted-scalar",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "duplicate-key.js",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "duplicate-key",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "duplicate-tag-directive",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "duplicate-value-key.js",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "duplicate-value-key",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "duplicate-yaml-directive",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "expected-mapping",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "expected-scalar",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "expected-sequence",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "fetch-complex-value-bug",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "forbidden-entry",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "forbidden-key",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "forbidden-value",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "invalid-anchor-2",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "invalid-base64-data-2",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "invalid-base64-data",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "invalid-block-scalar-indicator",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "invalid-character",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "invalid-directive-line",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "invalid-directive-name-1",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "invalid-directive-name-2",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "invalid-escape-character",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "invalid-escape-numbers",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "invalid-indentation-indicator-1",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "invalid-indentation-indicator-2",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "invalid-item-without-trailing-break",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "invalid-merge-1",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "invalid-merge-2",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "invalid-omap-1",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "invalid-omap-2",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "invalid-omap-3",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "invalid-pairs-1",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "invalid-pairs-2",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "invalid-pairs-3",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "invalid-simple-key",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "invalid-starting-character",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "invalid-tag-2",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "invalid-tag-directive-handle",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "invalid-tag-handle-1",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "invalid-tag-handle-2",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "invalid-uri-escapes-1",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "invalid-uri",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "invalid-yaml-directive-version-1",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "invalid-yaml-directive-version-2",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "invalid-yaml-directive-version-3",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "invalid-yaml-directive-version-4",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "invalid-yaml-directive-version-5",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "invalid-yaml-directive-version-6",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "invalid-yaml-version",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "no-block-collection-end",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "no-block-mapping-end-2",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "no-block-mapping-end",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "no-document-start",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "no-flow-mapping-end",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "no-flow-sequence-end",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "no-node-1",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "no-node-2",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "remove-possible-simple-key-bug",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "unclosed-bracket",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "unclosed-quoted-scalar",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "undefined-anchor",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "undefined-tag-handle",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            }
+          ],
+          "command_sha256": "c50021b2395130c7a4fcf00db4875f4adb256fef3cb35d0ffc759d800f95eb91",
+          "missing_modules": [],
+          "diagnostic_excerpts": [],
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr_bytes": 0
+        }
+      },
+      {
+        "name": "target_baseline",
+        "revision": "37caaad57dc37d350d9a4577a5da53f482bb2983",
+        "security": {
+          "returncode": 1,
+          "timed_out": false,
+          "truncated": false,
+          "duration_seconds": 1.794,
+          "evidence_error": null,
+          "tests": [
+            {
+              "name": "test_security",
+              "classname": "/oracle/oracle.mjs::test",
+              "outcome": "failed",
+              "expected_failure": false,
+              "original_message_sha256": "edaacf70835b3b4e5d952e29ff2eb2a8296d964bdec2dd4526712001d414210f",
+              "expected_failure_marker_observed": true
+            },
+            {
+              "name": "test_scalar_and_sequence",
+              "classname": "/oracle/oracle.mjs::test",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_ordinary_merge",
+              "classname": "/oracle/oracle.mjs::test",
+              "outcome": "passed",
+              "expected_failure": false
+            }
+          ],
+          "command_sha256": "3789b18e4d18c4f1da7fbc33ee107509f6d32165b9bb9577af848a514e24ce04",
+          "missing_modules": [],
+          "diagnostic_excerpts": [
+            "AssertionError [ERR_ASSERTION]: JS_YAML_MERGE_PROTO_IS_OWN_DATA"
+          ],
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 0,
+          "stderr_sha256": "c0bf3f68351122cc378f9793db43470ea59b877dc78b26a31b4f3bc3d5ca10be",
+          "stderr_bytes": 875
+        },
+        "suite": {
+          "returncode": 0,
+          "timed_out": false,
+          "truncated": false,
+          "duration_seconds": 2.5372,
+          "evidence_error": null,
+          "tests": [
+            {
+              "name": "construct-binary",
+              "classname": "/work/repo/test/10-loader.js::Loader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "construct-bool",
+              "classname": "/work/repo/test/10-loader.js::Loader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "construct-custom",
+              "classname": "/work/repo/test/10-loader.js::Loader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "construct-float",
+              "classname": "/work/repo/test/10-loader.js::Loader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "construct-int",
+              "classname": "/work/repo/test/10-loader.js::Loader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "construct-javascript-function",
+              "classname": "/work/repo/test/10-loader.js::Loader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "construct-javascript-regexp",
+              "classname": "/work/repo/test/10-loader.js::Loader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "construct-javascript-undefined",
+              "classname": "/work/repo/test/10-loader.js::Loader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "construct-map",
+              "classname": "/work/repo/test/10-loader.js::Loader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "construct-merge",
+              "classname": "/work/repo/test/10-loader.js::Loader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "construct-null",
+              "classname": "/work/repo/test/10-loader.js::Loader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "construct-omap",
+              "classname": "/work/repo/test/10-loader.js::Loader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "construct-pairs",
+              "classname": "/work/repo/test/10-loader.js::Loader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "construct-seq",
+              "classname": "/work/repo/test/10-loader.js::Loader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "construct-set",
+              "classname": "/work/repo/test/10-loader.js::Loader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "construct-str-ascii",
+              "classname": "/work/repo/test/10-loader.js::Loader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "construct-str-utf8",
+              "classname": "/work/repo/test/10-loader.js::Loader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "construct-str",
+              "classname": "/work/repo/test/10-loader.js::Loader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "construct-string-types",
+              "classname": "/work/repo/test/10-loader.js::Loader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "construct-timestamp",
+              "classname": "/work/repo/test/10-loader.js::Loader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "construct-value",
+              "classname": "/work/repo/test/10-loader.js::Loader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "dump-empty-collections",
+              "classname": "/work/repo/test/10-loader.js::Loader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "duplicate-mapping-key",
+              "classname": "/work/repo/test/10-loader.js::Loader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "duplicate-merge-key",
+              "classname": "/work/repo/test/10-loader.js::Loader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "emitting-unacceptable-unicode-character-bug",
+              "classname": "/work/repo/test/10-loader.js::Loader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "invalid-single-quote-bug",
+              "classname": "/work/repo/test/10-loader.js::Loader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "more-floats",
+              "classname": "/work/repo/test/10-loader.js::Loader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "negative-float-bug",
+              "classname": "/work/repo/test/10-loader.js::Loader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "single-dot-is-not-float-bug",
+              "classname": "/work/repo/test/10-loader.js::Loader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "timestamp-bugs",
+              "classname": "/work/repo/test/10-loader.js::Loader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "utf8-implicit",
+              "classname": "/work/repo/test/10-loader.js::Loader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "a-nasty-libyaml-bug",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "document-separator-in-quoted-scalar",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "duplicate-key.js",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "duplicate-key",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "duplicate-tag-directive",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "duplicate-value-key.js",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "duplicate-value-key",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "duplicate-yaml-directive",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "expected-mapping",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "expected-scalar",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "expected-sequence",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "fetch-complex-value-bug",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "forbidden-entry",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "forbidden-key",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "forbidden-value",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "invalid-anchor-2",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "invalid-base64-data-2",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "invalid-base64-data",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "invalid-block-scalar-indicator",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "invalid-character",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "invalid-directive-line",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "invalid-directive-name-1",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "invalid-directive-name-2",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "invalid-escape-character",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "invalid-escape-numbers",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "invalid-indentation-indicator-1",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "invalid-indentation-indicator-2",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "invalid-item-without-trailing-break",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "invalid-merge-1",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "invalid-merge-2",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "invalid-omap-1",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "invalid-omap-2",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "invalid-omap-3",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "invalid-pairs-1",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "invalid-pairs-2",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "invalid-pairs-3",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "invalid-simple-key",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "invalid-starting-character",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "invalid-tag-2",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "invalid-tag-directive-handle",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "invalid-tag-handle-1",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "invalid-tag-handle-2",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "invalid-uri-escapes-1",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "invalid-uri",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "invalid-yaml-directive-version-1",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "invalid-yaml-directive-version-2",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "invalid-yaml-directive-version-3",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "invalid-yaml-directive-version-4",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "invalid-yaml-directive-version-5",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "invalid-yaml-directive-version-6",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "invalid-yaml-version",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "no-block-collection-end",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "no-block-mapping-end-2",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "no-block-mapping-end",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "no-document-start",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "no-flow-mapping-end",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "no-flow-sequence-end",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "no-node-1",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "no-node-2",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "remove-possible-simple-key-bug",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "unclosed-bracket",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "unclosed-quoted-scalar",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "undefined-anchor",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "undefined-tag-handle",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            }
+          ],
+          "command_sha256": "9f0634b3de270c01a518073208c6b3523c1e992413dcbfcec3b114dde5e67d10",
+          "missing_modules": [],
+          "diagnostic_excerpts": [],
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr_bytes": 0
+        }
+      },
+      {
+        "name": "backport",
+        "revision": "37caaad57dc37d350d9a4577a5da53f482bb2983",
+        "security": {
+          "returncode": 0,
+          "timed_out": false,
+          "truncated": false,
+          "duration_seconds": 2.2741,
+          "evidence_error": null,
+          "tests": [
+            {
+              "name": "test_security",
+              "classname": "/oracle/oracle.mjs::test",
+              "outcome": "passed",
+              "expected_failure": false,
+              "expected_failure_marker_observed": false
+            },
+            {
+              "name": "test_scalar_and_sequence",
+              "classname": "/oracle/oracle.mjs::test",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_ordinary_merge",
+              "classname": "/oracle/oracle.mjs::test",
+              "outcome": "passed",
+              "expected_failure": false
+            }
+          ],
+          "command_sha256": "3789b18e4d18c4f1da7fbc33ee107509f6d32165b9bb9577af848a514e24ce04",
+          "missing_modules": [],
+          "diagnostic_excerpts": [],
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 0,
+          "stderr_sha256": "53559261ff60c161db972be8c7fc1bddff841fb26562c18f24b974548728ab43",
+          "stderr_bytes": 226
+        },
+        "suite": {
+          "returncode": 0,
+          "timed_out": false,
+          "truncated": false,
+          "duration_seconds": 2.0021,
+          "evidence_error": null,
+          "tests": [
+            {
+              "name": "construct-binary",
+              "classname": "/work/repo/test/10-loader.js::Loader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "construct-bool",
+              "classname": "/work/repo/test/10-loader.js::Loader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "construct-custom",
+              "classname": "/work/repo/test/10-loader.js::Loader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "construct-float",
+              "classname": "/work/repo/test/10-loader.js::Loader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "construct-int",
+              "classname": "/work/repo/test/10-loader.js::Loader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "construct-javascript-function",
+              "classname": "/work/repo/test/10-loader.js::Loader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "construct-javascript-regexp",
+              "classname": "/work/repo/test/10-loader.js::Loader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "construct-javascript-undefined",
+              "classname": "/work/repo/test/10-loader.js::Loader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "construct-map",
+              "classname": "/work/repo/test/10-loader.js::Loader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "construct-merge",
+              "classname": "/work/repo/test/10-loader.js::Loader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "construct-null",
+              "classname": "/work/repo/test/10-loader.js::Loader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "construct-omap",
+              "classname": "/work/repo/test/10-loader.js::Loader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "construct-pairs",
+              "classname": "/work/repo/test/10-loader.js::Loader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "construct-seq",
+              "classname": "/work/repo/test/10-loader.js::Loader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "construct-set",
+              "classname": "/work/repo/test/10-loader.js::Loader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "construct-str-ascii",
+              "classname": "/work/repo/test/10-loader.js::Loader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "construct-str-utf8",
+              "classname": "/work/repo/test/10-loader.js::Loader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "construct-str",
+              "classname": "/work/repo/test/10-loader.js::Loader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "construct-string-types",
+              "classname": "/work/repo/test/10-loader.js::Loader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "construct-timestamp",
+              "classname": "/work/repo/test/10-loader.js::Loader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "construct-value",
+              "classname": "/work/repo/test/10-loader.js::Loader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "dump-empty-collections",
+              "classname": "/work/repo/test/10-loader.js::Loader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "duplicate-mapping-key",
+              "classname": "/work/repo/test/10-loader.js::Loader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "duplicate-merge-key",
+              "classname": "/work/repo/test/10-loader.js::Loader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "emitting-unacceptable-unicode-character-bug",
+              "classname": "/work/repo/test/10-loader.js::Loader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "invalid-single-quote-bug",
+              "classname": "/work/repo/test/10-loader.js::Loader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "more-floats",
+              "classname": "/work/repo/test/10-loader.js::Loader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "negative-float-bug",
+              "classname": "/work/repo/test/10-loader.js::Loader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "single-dot-is-not-float-bug",
+              "classname": "/work/repo/test/10-loader.js::Loader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "timestamp-bugs",
+              "classname": "/work/repo/test/10-loader.js::Loader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "utf8-implicit",
+              "classname": "/work/repo/test/10-loader.js::Loader",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "a-nasty-libyaml-bug",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "document-separator-in-quoted-scalar",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "duplicate-key.js",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "duplicate-key",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "duplicate-tag-directive",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "duplicate-value-key.js",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "duplicate-value-key",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "duplicate-yaml-directive",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "expected-mapping",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "expected-scalar",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "expected-sequence",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "fetch-complex-value-bug",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "forbidden-entry",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "forbidden-key",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "forbidden-value",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "invalid-anchor-2",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "invalid-base64-data-2",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "invalid-base64-data",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "invalid-block-scalar-indicator",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "invalid-character",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "invalid-directive-line",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "invalid-directive-name-1",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "invalid-directive-name-2",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "invalid-escape-character",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "invalid-escape-numbers",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "invalid-indentation-indicator-1",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "invalid-indentation-indicator-2",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "invalid-item-without-trailing-break",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "invalid-merge-1",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "invalid-merge-2",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "invalid-omap-1",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "invalid-omap-2",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "invalid-omap-3",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "invalid-pairs-1",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "invalid-pairs-2",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "invalid-pairs-3",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "invalid-simple-key",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "invalid-starting-character",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "invalid-tag-2",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "invalid-tag-directive-handle",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "invalid-tag-handle-1",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "invalid-tag-handle-2",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "invalid-uri-escapes-1",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "invalid-uri",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "invalid-yaml-directive-version-1",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "invalid-yaml-directive-version-2",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "invalid-yaml-directive-version-3",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "invalid-yaml-directive-version-4",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "invalid-yaml-directive-version-5",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "invalid-yaml-directive-version-6",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "invalid-yaml-version",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "no-block-collection-end",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "no-block-mapping-end-2",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "no-block-mapping-end",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "no-document-start",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "no-flow-mapping-end",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "no-flow-sequence-end",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "no-node-1",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "no-node-2",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "remove-possible-simple-key-bug",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "unclosed-bracket",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "unclosed-quoted-scalar",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "undefined-anchor",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "undefined-tag-handle",
+              "classname": "/work/repo/test/11-load-errors.js::Load errors",
+              "outcome": "passed",
+              "expected_failure": false
+            }
+          ],
+          "command_sha256": "9f0634b3de270c01a518073208c6b3523c1e992413dcbfcec3b114dde5e67d10",
+          "missing_modules": [],
+          "diagnostic_excerpts": [],
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr_bytes": 0
+        }
+      }
+    ]
+  }
+}

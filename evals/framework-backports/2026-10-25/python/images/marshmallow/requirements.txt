@@ -1,0 +1,1 @@
+simplejson==3.20.2 --hash=sha256:3b6bb7fb96efd673eac2e4235200bfffdc2353ad12c54117e1e4e2fc485ac017

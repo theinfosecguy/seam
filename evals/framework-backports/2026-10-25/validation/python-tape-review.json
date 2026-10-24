@@ -1,0 +1,40 @@
+{
+  "scope": "Independent metadata audit only; no target tests, model calls, or library execution.",
+  "global_reports": 31,
+  "global_statuses": {
+    "failed": 9,
+    "verified": 19,
+    "inconclusive": 3
+  },
+  "python_reports_compared_with_originals": 11,
+  "python_phases_compared": 42,
+  "python_test_records_compared": 3144,
+  "distinct_python_library_issue_pairs": 2,
+  "python_configuration_variants": 3,
+  "tape_synthetic_probes": 20,
+  "tape_original_prerequisite_suites": 8,
+  "checks": {
+    "assertions": 5415,
+    "all_report_hash_mappings": 31,
+    "tape_prerequisite_suites": 8,
+    "privacy_scanned_files": 188
+  },
+  "issues": [],
+  "limitations": [
+    "Tape probes are diagnostic prerequisite evidence, not Seam security qualifications.",
+    "Marshmallow covers the selected collection-merging component; its complete release patch series is excluded.",
+    "Pydantic prepend and importlib are configurations of one issue.",
+    "No additional runtime execution was performed during this audit."
+  ],
+  "public_tree_sha256": "fcaf295451b81a242ffbd9d933a6b437a13347caa92328212e0f99d426e14138",
+  "raw_stream_and_conversation_fields_present": false,
+  "expected_negative_controls_rejected": 9,
+  "inconclusive_accounting": {
+    "pydantic_original_importlib": 2,
+    "js_yaml_direct_transfer": 1
+  },
+  "python_distinct_advisories": [
+    "CVE-2021-29510",
+    "CVE-2025-68480"
+  ]
+}

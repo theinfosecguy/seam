@@ -1,2 +1,4 @@
 # Unified diffs preserve a context prefix on otherwise empty lines.
 *.patch -whitespace
+# Frozen reporter probes retain exact input and output bytes.
+evals/framework-backports/2026-10-25/runtime/node20-fixtures/** -whitespace

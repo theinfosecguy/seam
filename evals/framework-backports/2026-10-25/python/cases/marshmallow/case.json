@@ -1,0 +1,51 @@
+{
+  "case_id": "marshmallow-collection-merge",
+  "library": "marshmallow",
+  "repository_url": "https://github.com/marshmallow-code/marshmallow",
+  "advisory_ids": [
+    "CVE-2025-68480"
+  ],
+  "advisory_published_at": "2025-12-22",
+  "advisory_recent_within_six_months": false,
+  "source_fixed_release": "4.1.2",
+  "target_fixed_release": "3.26.2",
+  "advertised_heads": {
+    "source-parent": "80f1110746a202e59ceedcbc78399feb1f48c257",
+    "source-fix": "218d98a785d3bd25dad8880bb07e9cce70340f31",
+    "target-baseline": "4ab61bfb93a67113762b186eceaab9a9d473f92a",
+    "target-backport": "0356a3f1c307830f8ded56d823abca5611c594c9"
+  },
+  "implementation_paths": [
+    "src/marshmallow/error_store.py"
+  ],
+  "status": "frozen_input",
+  "license": "MIT",
+  "scope": "The ordinary collection-merging performance fix only. The published security releases also contain a subsequent deepcopy compatibility adjustment; this case is not a full release patch-series or whole-CVE remediation claim.",
+  "sources": [
+    "https://github.com/marshmallow-code/marshmallow/security/advisories/GHSA-428g-f7cq-pgp5",
+    "https://github.com/marshmallow-code/marshmallow/commit/218d98a785d3bd25dad8880bb07e9cce70340f31",
+    "https://github.com/marshmallow-code/marshmallow/commit/0356a3f1c307830f8ded56d823abca5611c594c9"
+  ],
+  "input_sha256": {
+    "LICENSE.target": "906b5d9051e426144cb173ad911667b8ebd05a9c584c2c26c135b32a3ed12001",
+    "LICENSE.upstream": "906b5d9051e426144cb173ad911667b8ebd05a9c584c2c26c135b32a3ed12001",
+    "harness.toml": "0de2faec019bda62c0dbd5d9b7bd6afde73b131e0a269555e8c6a599ec26b97d",
+    "oracle.py": "6a60ac31cbfcb9b53b46916b28b661fa20dd2a75595db0e4059f31886680b944",
+    "reference.patch": "6c750a178e90ccd2381871f122d0ff0ad4aa51b113317aa977fd45662bcba353",
+    "upstream.patch": "6c750a178e90ccd2381871f122d0ff0ad4aa51b113317aa977fd45662bcba353"
+  },
+  "original_test_inputs_sha256": {
+    "backport_commit/tests/base.py": "35505d05586fd673f524b7adf4c118167432db26761e70557f089b51d6c1e205",
+    "backport_commit/tests/conftest.py": "8a6e204dade8798c79bd6f51b5343c7f439316afe7a9e5225265ddec4d185057",
+    "backport_commit/tests/test_error_store.py": "35430dd04945ed2b59bdb2c33597c46de5e62e3b090b8d755c17ca80177ca303",
+    "target_baseline_commit/tests/base.py": "35505d05586fd673f524b7adf4c118167432db26761e70557f089b51d6c1e205",
+    "target_baseline_commit/tests/conftest.py": "8a6e204dade8798c79bd6f51b5343c7f439316afe7a9e5225265ddec4d185057",
+    "target_baseline_commit/tests/test_error_store.py": "35430dd04945ed2b59bdb2c33597c46de5e62e3b090b8d755c17ca80177ca303",
+    "upstream_fix_commit/tests/base.py": "dbfd3c049814f3a3f49da4ddf111aad4fbe6f0cc1c8a0ad946fa1b0a09c144e1",
+    "upstream_fix_commit/tests/conftest.py": "8a6e204dade8798c79bd6f51b5343c7f439316afe7a9e5225265ddec4d185057",
+    "upstream_fix_commit/tests/test_error_store.py": "35430dd04945ed2b59bdb2c33597c46de5e62e3b090b8d755c17ca80177ca303",
+    "upstream_parent_commit/tests/base.py": "dbfd3c049814f3a3f49da4ddf111aad4fbe6f0cc1c8a0ad946fa1b0a09c144e1",
+    "upstream_parent_commit/tests/conftest.py": "8a6e204dade8798c79bd6f51b5343c7f439316afe7a9e5225265ddec4d185057",
+    "upstream_parent_commit/tests/test_error_store.py": "35430dd04945ed2b59bdb2c33597c46de5e62e3b090b8d755c17ca80177ca303"
+  }
+}

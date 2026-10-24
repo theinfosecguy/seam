@@ -40,6 +40,7 @@ src = ["src"]
 extend-exclude = [
     "evals/recent-backports/2026-10-24",
     "evals/expanded-backports/2026-10-24",
+    "evals/framework-backports/2026-10-25",
 ]
 
 [tool.ruff.lint]

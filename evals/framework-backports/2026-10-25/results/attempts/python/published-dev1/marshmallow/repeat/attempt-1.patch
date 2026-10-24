@@ -1,0 +1,60 @@
+diff --git a/src/marshmallow/error_store.py b/src/marshmallow/error_store.py
+index 61320ab..da7c69f 100644
+--- a/src/marshmallow/error_store.py
++++ b/src/marshmallow/error_store.py
+@@ -6,6 +6,8 @@
+     Users should not need to use this module directly.
+ """
+ 
++from copy import deepcopy
++
+ from marshmallow.exceptions import SCHEMA
+ 
+ 
+@@ -18,6 +20,7 @@ class ErrorStore:
+         # field error  -> store/merge error messages under field name key
+         # schema error -> if string or list, store/merge under _schema key
+         #              -> if dict, store/merge with other top-level keys
++        messages = deepcopy(messages)
+         if field_name != SCHEMA or not isinstance(messages, dict):
+             messages = {field_name: messages}
+         if index is not None:
+@@ -37,24 +40,26 @@ def merge_errors(errors1, errors2):  # noqa: PLR0911
+         return errors1
+     if isinstance(errors1, list):
+         if isinstance(errors2, list):
+-            return errors1 + errors2
++            errors1.extend(errors2)
++            return errors1
+         if isinstance(errors2, dict):
+-            return dict(errors2, **{SCHEMA: merge_errors(errors1, errors2.get(SCHEMA))})
+-        return [*errors1, errors2]
++            errors2[SCHEMA] = merge_errors(errors1, errors2.get(SCHEMA))
++            return errors2
++        errors1.append(errors2)
++        return errors1
+     if isinstance(errors1, dict):
+-        if isinstance(errors2, list):
+-            return dict(errors1, **{SCHEMA: merge_errors(errors1.get(SCHEMA), errors2)})
+         if isinstance(errors2, dict):
+-            errors = dict(errors1)
+             for key, val in errors2.items():
+-                if key in errors:
+-                    errors[key] = merge_errors(errors[key], val)
++                if key in errors1:
++                    errors1[key] = merge_errors(errors1[key], val)
+                 else:
+-                    errors[key] = val
+-            return errors
+-        return dict(errors1, **{SCHEMA: merge_errors(errors1.get(SCHEMA), errors2)})
++                    errors1[key] = val
++            return errors1
++        errors1[SCHEMA] = merge_errors(errors1.get(SCHEMA), errors2)
++        return errors1
+     if isinstance(errors2, list):
+         return [errors1, *errors2]
+     if isinstance(errors2, dict):
+-        return dict(errors2, **{SCHEMA: merge_errors(errors1, errors2.get(SCHEMA))})
++        errors2[SCHEMA] = merge_errors(errors1, errors2.get(SCHEMA))
++        return errors2
+     return [errors1, errors2]

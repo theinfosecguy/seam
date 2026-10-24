@@ -1,0 +1,596 @@
+{
+  "evaluation_kind": "reference patch verification with repeat and ineffective-patch controls; no AI generation",
+  "distinct_library_issue_pairs": 2,
+  "configuration_variants": 3,
+  "cli_runs": 11,
+  "outcomes": {
+    "failed": 3,
+    "verified": 6,
+    "inconclusive": 2
+  },
+  "expected_ineffective_patch_rejections": 3,
+  "original_import_mode_inconclusive_runs": 2,
+  "all_frozen_inputs_and_caller_checkouts_unchanged": true,
+  "target_builds_or_tests_on_host": false,
+  "api_model_calls": 0,
+  "records": [
+    {
+      "trial": "final-dev2",
+      "case": "marshmallow",
+      "mode": "negative",
+      "status": "failed",
+      "reason": "backport: security regression still fails",
+      "wheel_sha256": "a91acc4337b3eaca0942ef66773a555e3b2e18adfbfe57dbe74afb99ff0ecd66",
+      "image_id": "sha256:276e2324a98430cfd29610e514ef99ac263cbef392883efb3274d1111c70c341",
+      "oracle_sha256": "6a60ac31cbfcb9b53b46916b28b661fa20dd2a75595db0e4059f31886680b944",
+      "config_sha256": "74f6334e2277c44ab1a42bfb67c017e1fd2f66e7d853de6c96dbe29399f95ccf",
+      "report_sha256": "8c02763326c39c084fdad45cfb6b2384527ce768af5dde7fbb11b177822069bf",
+      "command_result_sha256": "b6752379b35531843a5ac629c209f27a6ce769a86d70fbbfed45ed08bf17c475",
+      "inputs_unchanged": true,
+      "caller_unchanged": true,
+      "model_calls": 0,
+      "phases": [
+        {
+          "revision_role": "upstream_parent",
+          "security_outcome": "failed",
+          "controls_passed": 2,
+          "suite_outcomes": {
+            "passed": 29
+          },
+          "suite_tests": 29
+        },
+        {
+          "revision_role": "upstream_fix",
+          "security_outcome": "passed",
+          "controls_passed": 2,
+          "suite_outcomes": {
+            "passed": 29
+          },
+          "suite_tests": 29
+        },
+        {
+          "revision_role": "target_baseline",
+          "security_outcome": "failed",
+          "controls_passed": 2,
+          "suite_outcomes": {
+            "passed": 29
+          },
+          "suite_tests": 29
+        },
+        {
+          "revision_role": "backport",
+          "security_outcome": "failed",
+          "controls_passed": 2,
+          "suite_outcomes": {
+            "passed": 29
+          },
+          "suite_tests": 29
+        }
+      ]
+    },
+    {
+      "trial": "final-dev2",
+      "case": "marshmallow",
+      "mode": "reference",
+      "status": "verified",
+      "reason": "All four revisions met the frozen security and compatibility checks.",
+      "wheel_sha256": "a91acc4337b3eaca0942ef66773a555e3b2e18adfbfe57dbe74afb99ff0ecd66",
+      "image_id": "sha256:276e2324a98430cfd29610e514ef99ac263cbef392883efb3274d1111c70c341",
+      "oracle_sha256": "6a60ac31cbfcb9b53b46916b28b661fa20dd2a75595db0e4059f31886680b944",
+      "config_sha256": "74f6334e2277c44ab1a42bfb67c017e1fd2f66e7d853de6c96dbe29399f95ccf",
+      "report_sha256": "48181cb9a19a3eadbcdf8bc3439804107bf55abee59cc96b26f8b913130a5e41",
+      "command_result_sha256": "ed1ad0e57023b23260a7c757bbfa63322968f9c31138720f2f2a6db515b06923",
+      "inputs_unchanged": true,
+      "caller_unchanged": true,
+      "model_calls": 0,
+      "phases": [
+        {
+          "revision_role": "upstream_parent",
+          "security_outcome": "failed",
+          "controls_passed": 2,
+          "suite_outcomes": {
+            "passed": 29
+          },
+          "suite_tests": 29
+        },
+        {
+          "revision_role": "upstream_fix",
+          "security_outcome": "passed",
+          "controls_passed": 2,
+          "suite_outcomes": {
+            "passed": 29
+          },
+          "suite_tests": 29
+        },
+        {
+          "revision_role": "target_baseline",
+          "security_outcome": "failed",
+          "controls_passed": 2,
+          "suite_outcomes": {
+            "passed": 29
+          },
+          "suite_tests": 29
+        },
+        {
+          "revision_role": "backport",
+          "security_outcome": "passed",
+          "controls_passed": 2,
+          "suite_outcomes": {
+            "passed": 29
+          },
+          "suite_tests": 29
+        }
+      ]
+    },
+    {
+      "trial": "final-dev2",
+      "case": "marshmallow",
+      "mode": "repeat",
+      "status": "verified",
+      "reason": "All four revisions met the frozen security and compatibility checks.",
+      "wheel_sha256": "a91acc4337b3eaca0942ef66773a555e3b2e18adfbfe57dbe74afb99ff0ecd66",
+      "image_id": "sha256:276e2324a98430cfd29610e514ef99ac263cbef392883efb3274d1111c70c341",
+      "oracle_sha256": "6a60ac31cbfcb9b53b46916b28b661fa20dd2a75595db0e4059f31886680b944",
+      "config_sha256": "74f6334e2277c44ab1a42bfb67c017e1fd2f66e7d853de6c96dbe29399f95ccf",
+      "report_sha256": "14902116fe7ca9f212412cb684ba0dffeb0a5da0ebfa611bcfb103d2fa2a322c",
+      "command_result_sha256": "c0344e0293479e307e263280cfbc024decfd9adc95cb8d3f0b50e4b25be579f5",
+      "inputs_unchanged": true,
+      "caller_unchanged": true,
+      "model_calls": 0,
+      "phases": [
+        {
+          "revision_role": "upstream_parent",
+          "security_outcome": "failed",
+          "controls_passed": 2,
+          "suite_outcomes": {
+            "passed": 29
+          },
+          "suite_tests": 29
+        },
+        {
+          "revision_role": "upstream_fix",
+          "security_outcome": "passed",
+          "controls_passed": 2,
+          "suite_outcomes": {
+            "passed": 29
+          },
+          "suite_tests": 29
+        },
+        {
+          "revision_role": "target_baseline",
+          "security_outcome": "failed",
+          "controls_passed": 2,
+          "suite_outcomes": {
+            "passed": 29
+          },
+          "suite_tests": 29
+        },
+        {
+          "revision_role": "backport",
+          "security_outcome": "passed",
+          "controls_passed": 2,
+          "suite_outcomes": {
+            "passed": 29
+          },
+          "suite_tests": 29
+        }
+      ]
+    },
+    {
+      "trial": "final-dev2",
+      "case": "pydantic",
+      "mode": "reference",
+      "status": "inconclusive",
+      "reason": "Verification prerequisites were not established: target_baseline: existing project suite failed",
+      "wheel_sha256": "a91acc4337b3eaca0942ef66773a555e3b2e18adfbfe57dbe74afb99ff0ecd66",
+      "image_id": "sha256:bda4ee09f70ca360a2d30f96bb03d457e8bef0b25f601072f43dd24623b4c33f",
+      "oracle_sha256": "5b5e39e5cfa47dcda0417171b02524ac23efd239d0065931ddb255b6ce4a0d3c",
+      "config_sha256": "3d602a27ccbcdd4235ad063cf0d1830be729d331e9ecb304c85433151a1081d0",
+      "report_sha256": "f88504c48e4548028fb716cd87fd500e789fe093d0283ca40fa66a9a398ebf19",
+      "command_result_sha256": "a0c13ba35ed85f024fca0efebe669fb07c8dda868681491092e80d23f66214e6",
+      "inputs_unchanged": true,
+      "caller_unchanged": true,
+      "model_calls": 0,
+      "phases": [
+        {
+          "revision_role": "upstream_parent",
+          "security_outcome": "failed",
+          "controls_passed": 2,
+          "suite_outcomes": {
+            "passed": 124
+          },
+          "suite_tests": 124
+        },
+        {
+          "revision_role": "upstream_fix",
+          "security_outcome": "passed",
+          "controls_passed": 2,
+          "suite_outcomes": {
+            "passed": 142
+          },
+          "suite_tests": 142
+        },
+        {
+          "revision_role": "target_baseline",
+          "security_outcome": "failed",
+          "controls_passed": 2,
+          "suite_outcomes": {
+            "passed": 108,
+            "failed": 16
+          },
+          "suite_tests": 124
+        }
+      ]
+    },
+    {
+      "trial": "final-dev2",
+      "case": "pydantic-prepend",
+      "mode": "negative",
+      "status": "failed",
+      "reason": "backport: security regression still fails",
+      "wheel_sha256": "a91acc4337b3eaca0942ef66773a555e3b2e18adfbfe57dbe74afb99ff0ecd66",
+      "image_id": "sha256:bda4ee09f70ca360a2d30f96bb03d457e8bef0b25f601072f43dd24623b4c33f",
+      "oracle_sha256": "5b5e39e5cfa47dcda0417171b02524ac23efd239d0065931ddb255b6ce4a0d3c",
+      "config_sha256": "e712d7db3cc4df64deb1458f503bc650770eddab92ab3d08df2e826691040abd",
+      "report_sha256": "bcf1797a54c11cbbea0afa4d0c7529c39e4850f49630b969ed32c9387ebc2b3c",
+      "command_result_sha256": "bd5157de12cf5615871cefcd9a4727c638eff03c9f2396d386eef00efbf678cb",
+      "inputs_unchanged": true,
+      "caller_unchanged": true,
+      "model_calls": 0,
+      "phases": [
+        {
+          "revision_role": "upstream_parent",
+          "security_outcome": "failed",
+          "controls_passed": 2,
+          "suite_outcomes": {
+            "passed": 124
+          },
+          "suite_tests": 124
+        },
+        {
+          "revision_role": "upstream_fix",
+          "security_outcome": "passed",
+          "controls_passed": 2,
+          "suite_outcomes": {
+            "passed": 142
+          },
+          "suite_tests": 142
+        },
+        {
+          "revision_role": "target_baseline",
+          "security_outcome": "failed",
+          "controls_passed": 2,
+          "suite_outcomes": {
+            "passed": 124
+          },
+          "suite_tests": 124
+        },
+        {
+          "revision_role": "backport",
+          "security_outcome": "failed",
+          "controls_passed": 2,
+          "suite_outcomes": {
+            "passed": 124
+          },
+          "suite_tests": 124
+        }
+      ]
+    },
+    {
+      "trial": "final-dev2",
+      "case": "pydantic-prepend",
+      "mode": "reference",
+      "status": "verified",
+      "reason": "All four revisions met the frozen security and compatibility checks.",
+      "wheel_sha256": "a91acc4337b3eaca0942ef66773a555e3b2e18adfbfe57dbe74afb99ff0ecd66",
+      "image_id": "sha256:bda4ee09f70ca360a2d30f96bb03d457e8bef0b25f601072f43dd24623b4c33f",
+      "oracle_sha256": "5b5e39e5cfa47dcda0417171b02524ac23efd239d0065931ddb255b6ce4a0d3c",
+      "config_sha256": "e712d7db3cc4df64deb1458f503bc650770eddab92ab3d08df2e826691040abd",
+      "report_sha256": "fe47adebb8f9a8dbbe5ce86a92a8d3075aa4b9c3a5bd1be6ad43727d64152724",
+      "command_result_sha256": "78883ee85cf3600abe28314267bef266f87a73675559ee19369d9b9e8c1b30cc",
+      "inputs_unchanged": true,
+      "caller_unchanged": true,
+      "model_calls": 0,
+      "phases": [
+        {
+          "revision_role": "upstream_parent",
+          "security_outcome": "failed",
+          "controls_passed": 2,
+          "suite_outcomes": {
+            "passed": 124
+          },
+          "suite_tests": 124
+        },
+        {
+          "revision_role": "upstream_fix",
+          "security_outcome": "passed",
+          "controls_passed": 2,
+          "suite_outcomes": {
+            "passed": 142
+          },
+          "suite_tests": 142
+        },
+        {
+          "revision_role": "target_baseline",
+          "security_outcome": "failed",
+          "controls_passed": 2,
+          "suite_outcomes": {
+            "passed": 124
+          },
+          "suite_tests": 124
+        },
+        {
+          "revision_role": "backport",
+          "security_outcome": "passed",
+          "controls_passed": 2,
+          "suite_outcomes": {
+            "passed": 124
+          },
+          "suite_tests": 124
+        }
+      ]
+    },
+    {
+      "trial": "final-dev2",
+      "case": "pydantic-prepend",
+      "mode": "repeat",
+      "status": "verified",
+      "reason": "All four revisions met the frozen security and compatibility checks.",
+      "wheel_sha256": "a91acc4337b3eaca0942ef66773a555e3b2e18adfbfe57dbe74afb99ff0ecd66",
+      "image_id": "sha256:bda4ee09f70ca360a2d30f96bb03d457e8bef0b25f601072f43dd24623b4c33f",
+      "oracle_sha256": "5b5e39e5cfa47dcda0417171b02524ac23efd239d0065931ddb255b6ce4a0d3c",
+      "config_sha256": "e712d7db3cc4df64deb1458f503bc650770eddab92ab3d08df2e826691040abd",
+      "report_sha256": "b04a2d72e36ecb87dc800e43f8ea18666895bc54aa8aabe83f62e0b038e18670",
+      "command_result_sha256": "ce01cf6c76043a1fd3bdacc0f5ae2b56d51d4b4b53c592f20690dda50046e2ea",
+      "inputs_unchanged": true,
+      "caller_unchanged": true,
+      "model_calls": 0,
+      "phases": [
+        {
+          "revision_role": "upstream_parent",
+          "security_outcome": "failed",
+          "controls_passed": 2,
+          "suite_outcomes": {
+            "passed": 124
+          },
+          "suite_tests": 124
+        },
+        {
+          "revision_role": "upstream_fix",
+          "security_outcome": "passed",
+          "controls_passed": 2,
+          "suite_outcomes": {
+            "passed": 142
+          },
+          "suite_tests": 142
+        },
+        {
+          "revision_role": "target_baseline",
+          "security_outcome": "failed",
+          "controls_passed": 2,
+          "suite_outcomes": {
+            "passed": 124
+          },
+          "suite_tests": 124
+        },
+        {
+          "revision_role": "backport",
+          "security_outcome": "passed",
+          "controls_passed": 2,
+          "suite_outcomes": {
+            "passed": 124
+          },
+          "suite_tests": 124
+        }
+      ]
+    },
+    {
+      "trial": "published-dev1",
+      "case": "marshmallow",
+      "mode": "negative",
+      "status": "failed",
+      "reason": "backport: security regression still fails",
+      "wheel_sha256": "fb1afe7d89a0cfd5a50ae6094f1b1a356cb57e6d187beba597d542fe8903c35c",
+      "image_id": "sha256:276e2324a98430cfd29610e514ef99ac263cbef392883efb3274d1111c70c341",
+      "oracle_sha256": "6a60ac31cbfcb9b53b46916b28b661fa20dd2a75595db0e4059f31886680b944",
+      "config_sha256": "af39945a7f2d95fc6a4bc86a5a60b3092b0bf9c08358028375e79db2828be3af",
+      "report_sha256": "c1f4657305ec82c40fa4036adf8fc60d93e6dd194f61086a2436ea103cd2b04e",
+      "command_result_sha256": "3ac04590a5c9dfa2e83acf1b8179f196e2871353f602c99beee4e5469fcfc8e3",
+      "inputs_unchanged": true,
+      "caller_unchanged": true,
+      "model_calls": 0,
+      "phases": [
+        {
+          "revision_role": "upstream_parent",
+          "security_outcome": "failed",
+          "controls_passed": 2,
+          "suite_outcomes": {
+            "passed": 29
+          },
+          "suite_tests": 29
+        },
+        {
+          "revision_role": "upstream_fix",
+          "security_outcome": "passed",
+          "controls_passed": 2,
+          "suite_outcomes": {
+            "passed": 29
+          },
+          "suite_tests": 29
+        },
+        {
+          "revision_role": "target_baseline",
+          "security_outcome": "failed",
+          "controls_passed": 2,
+          "suite_outcomes": {
+            "passed": 29
+          },
+          "suite_tests": 29
+        },
+        {
+          "revision_role": "backport",
+          "security_outcome": "failed",
+          "controls_passed": 2,
+          "suite_outcomes": {
+            "passed": 29
+          },
+          "suite_tests": 29
+        }
+      ]
+    },
+    {
+      "trial": "published-dev1",
+      "case": "marshmallow",
+      "mode": "reference",
+      "status": "verified",
+      "reason": "All four revisions met the frozen security and compatibility checks.",
+      "wheel_sha256": "fb1afe7d89a0cfd5a50ae6094f1b1a356cb57e6d187beba597d542fe8903c35c",
+      "image_id": "sha256:276e2324a98430cfd29610e514ef99ac263cbef392883efb3274d1111c70c341",
+      "oracle_sha256": "6a60ac31cbfcb9b53b46916b28b661fa20dd2a75595db0e4059f31886680b944",
+      "config_sha256": "af39945a7f2d95fc6a4bc86a5a60b3092b0bf9c08358028375e79db2828be3af",
+      "report_sha256": "2c498e0668341f54231b4a22be7a2645bfd4e75efcc5d3c8cf1b0c3c7092d147",
+      "command_result_sha256": "0f45d933123a971f97edc0817c04c84d81e76a27d06d18c3ae4104e0afeb8d76",
+      "inputs_unchanged": true,
+      "caller_unchanged": true,
+      "model_calls": 0,
+      "phases": [
+        {
+          "revision_role": "upstream_parent",
+          "security_outcome": "failed",
+          "controls_passed": 2,
+          "suite_outcomes": {
+            "passed": 29
+          },
+          "suite_tests": 29
+        },
+        {
+          "revision_role": "upstream_fix",
+          "security_outcome": "passed",
+          "controls_passed": 2,
+          "suite_outcomes": {
+            "passed": 29
+          },
+          "suite_tests": 29
+        },
+        {
+          "revision_role": "target_baseline",
+          "security_outcome": "failed",
+          "controls_passed": 2,
+          "suite_outcomes": {
+            "passed": 29
+          },
+          "suite_tests": 29
+        },
+        {
+          "revision_role": "backport",
+          "security_outcome": "passed",
+          "controls_passed": 2,
+          "suite_outcomes": {
+            "passed": 29
+          },
+          "suite_tests": 29
+        }
+      ]
+    },
+    {
+      "trial": "published-dev1",
+      "case": "marshmallow",
+      "mode": "repeat",
+      "status": "verified",
+      "reason": "All four revisions met the frozen security and compatibility checks.",
+      "wheel_sha256": "fb1afe7d89a0cfd5a50ae6094f1b1a356cb57e6d187beba597d542fe8903c35c",
+      "image_id": "sha256:276e2324a98430cfd29610e514ef99ac263cbef392883efb3274d1111c70c341",
+      "oracle_sha256": "6a60ac31cbfcb9b53b46916b28b661fa20dd2a75595db0e4059f31886680b944",
+      "config_sha256": "af39945a7f2d95fc6a4bc86a5a60b3092b0bf9c08358028375e79db2828be3af",
+      "report_sha256": "1eab2193da027f460eb06cad6bfcd83cea6535bacb5757de8c028413ccdb77f4",
+      "command_result_sha256": "c2c95b53bd2dff23aa893f903471fe94c0a297d9fccad463614b9b7555d934b3",
+      "inputs_unchanged": true,
+      "caller_unchanged": true,
+      "model_calls": 0,
+      "phases": [
+        {
+          "revision_role": "upstream_parent",
+          "security_outcome": "failed",
+          "controls_passed": 2,
+          "suite_outcomes": {
+            "passed": 29
+          },
+          "suite_tests": 29
+        },
+        {
+          "revision_role": "upstream_fix",
+          "security_outcome": "passed",
+          "controls_passed": 2,
+          "suite_outcomes": {
+            "passed": 29
+          },
+          "suite_tests": 29
+        },
+        {
+          "revision_role": "target_baseline",
+          "security_outcome": "failed",
+          "controls_passed": 2,
+          "suite_outcomes": {
+            "passed": 29
+          },
+          "suite_tests": 29
+        },
+        {
+          "revision_role": "backport",
+          "security_outcome": "passed",
+          "controls_passed": 2,
+          "suite_outcomes": {
+            "passed": 29
+          },
+          "suite_tests": 29
+        }
+      ]
+    },
+    {
+      "trial": "published-dev1",
+      "case": "pydantic",
+      "mode": "reference",
+      "status": "inconclusive",
+      "reason": "Verification prerequisites were not established: target_baseline: existing project suite failed",
+      "wheel_sha256": "fb1afe7d89a0cfd5a50ae6094f1b1a356cb57e6d187beba597d542fe8903c35c",
+      "image_id": "sha256:bda4ee09f70ca360a2d30f96bb03d457e8bef0b25f601072f43dd24623b4c33f",
+      "oracle_sha256": "5b5e39e5cfa47dcda0417171b02524ac23efd239d0065931ddb255b6ce4a0d3c",
+      "config_sha256": "4c3b3bc21dbdd1701abb4dcfa88da0096a2c012ed5850b8b7b6de9f1511c317f",
+      "report_sha256": "38b4d8c105da8fd1ccdf54bf3f82e20f3c5625f9cca2db6f75ec9ec1b5748f10",
+      "command_result_sha256": "9d9ccbf9df092856c705f855d05c19329496d6202e6f1a3f5bcaf7e977a1b222",
+      "inputs_unchanged": true,
+      "caller_unchanged": true,
+      "model_calls": 0,
+      "phases": [
+        {
+          "revision_role": "upstream_parent",
+          "security_outcome": "failed",
+          "controls_passed": 2,
+          "suite_outcomes": {
+            "passed": 124
+          },
+          "suite_tests": 124
+        },
+        {
+          "revision_role": "upstream_fix",
+          "security_outcome": "passed",
+          "controls_passed": 2,
+          "suite_outcomes": {
+            "passed": 142
+          },
+          "suite_tests": 142
+        },
+        {
+          "revision_role": "target_baseline",
+          "security_outcome": "failed",
+          "controls_passed": 2,
+          "suite_outcomes": {
+            "passed": 108,
+            "failed": 16
+          },
+          "suite_tests": 124
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1000 @@
+{
+  "schema_version": 1,
+  "cohort": "python",
+  "source_report": "published-dev1/marshmallow/negative/report.json",
+  "execution_context": {
+    "exit_code": 1,
+    "timed_out": false,
+    "log_truncated": false,
+    "wheel_sha256": "fb1afe7d89a0cfd5a50ae6094f1b1a356cb57e6d187beba597d542fe8903c35c",
+    "freeze_sha256": "f5fa5b227de18954e8c22fed4b881688a4e93d13428769fa01e21c19ade9c083",
+    "inputs_unchanged": true,
+    "caller_unchanged": true
+  },
+  "configuration": {
+    "schema_version": 1,
+    "oracle": {
+      "path": "oracle.py",
+      "security_test": "test_security",
+      "controls": [
+        "test_valid_records",
+        "test_indexed_validation_messages"
+      ],
+      "failure_marker": "BOUNDED_COLLECTION_MERGE_CPU"
+    },
+    "runner": {
+      "kind": "pytest",
+      "image": "sha256:276e2324a98430cfd29610e514ef99ac263cbef392883efb3274d1111c70c341",
+      "docker": [
+        "sudo",
+        "-n",
+        "docker"
+      ],
+      "timeout_seconds": 120.0,
+      "memory_mb": 512,
+      "cpus": 1.0,
+      "pids": 128,
+      "max_output_bytes": 131072,
+      "suite": [
+        "tests/test_error_store.py"
+      ],
+      "plugins": [],
+      "import_mode": "importlib",
+      "suite_markers": null,
+      "mocha_grep": null,
+      "reviewed_fixtures": {},
+      "reviewed_submodules": {},
+      "node_dependencies": {}
+    },
+    "max_attempts": 3,
+    "reviewed_tests": null
+  },
+  "report": {
+    "schema_version": 2,
+    "status": "failed",
+    "reason": "backport: security regression still fails",
+    "fix_commit": "218d98a785d3bd25dad8880bb07e9cce70340f31",
+    "parent_commit": "80f1110746a202e59ceedcbc78399feb1f48c257",
+    "target_commit": "4ab61bfb93a67113762b186eceaab9a9d473f92a",
+    "image_id": "sha256:276e2324a98430cfd29610e514ef99ac263cbef392883efb3274d1111c70c341",
+    "oracle_sha256": "6a60ac31cbfcb9b53b46916b28b661fa20dd2a75595db0e4059f31886680b944",
+    "config_sha256": "af39945a7f2d95fc6a4bc86a5a60b3092b0bf9c08358028375e79db2828be3af",
+    "patch_sha256": null,
+    "attempts": 1,
+    "adaptation": "provided_patch",
+    "model_usage": {},
+    "reviewed_tests": null,
+    "reviewed_fixtures": {},
+    "reviewed_submodules": {},
+    "phases": [
+      {
+        "name": "upstream_parent",
+        "revision": "80f1110746a202e59ceedcbc78399feb1f48c257",
+        "security": {
+          "returncode": 1,
+          "timed_out": false,
+          "truncated": false,
+          "duration_seconds": 5.3385,
+          "evidence_error": null,
+          "tests": [
+            {
+              "name": "test_security",
+              "classname": "oracle",
+              "outcome": "failed",
+              "expected_failure": false,
+              "original_message_sha256": "ba2212ff644a6c1dad50e9cc6fc4fd1eec1ba3fdf6170adc1ef63c5e504331ac",
+              "expected_failure_marker_observed": true
+            },
+            {
+              "name": "test_valid_records",
+              "classname": "oracle",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_indexed_validation_messages",
+              "classname": "oracle",
+              "outcome": "passed",
+              "expected_failure": false
+            }
+          ],
+          "command_sha256": "9fb09178473ffed3d465312a34b000b0b2d05da96cdafd4628d5f921c927e53d",
+          "missing_modules": [],
+          "diagnostic_excerpts": [
+            "AssertionError: BOUNDED_COLLECTION_MERGE_CPU",
+            "AssertionError: BOUNDED_COLLEC..."
+          ],
+          "stdout_sha256": "6fde33581de021fd1efbc85a7da46fcf458a1ba0d1ee57bb61f597ba1580b8d1",
+          "stdout_bytes": 798,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr_bytes": 0
+        },
+        "suite": {
+          "returncode": 0,
+          "timed_out": false,
+          "truncated": false,
+          "duration_seconds": 2.4139,
+          "evidence_error": null,
+          "tests": [
+            {
+              "name": "test_missing_is_falsy",
+              "classname": "tests.test_error_store",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_merging_none_and_string",
+              "classname": "tests.test_error_store.TestMergeErrors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_merging_none_and_custom_error",
+              "classname": "tests.test_error_store.TestMergeErrors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_merging_none_and_list",
+              "classname": "tests.test_error_store.TestMergeErrors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_merging_none_and_dict",
+              "classname": "tests.test_error_store.TestMergeErrors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_merging_string_and_none",
+              "classname": "tests.test_error_store.TestMergeErrors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_merging_custom_error_and_none",
+              "classname": "tests.test_error_store.TestMergeErrors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_merging_list_and_none",
+              "classname": "tests.test_error_store.TestMergeErrors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_merging_dict_and_none",
+              "classname": "tests.test_error_store.TestMergeErrors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_merging_string_and_string",
+              "classname": "tests.test_error_store.TestMergeErrors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_merging_custom_error_and_string",
+              "classname": "tests.test_error_store.TestMergeErrors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_merging_string_and_custom_error",
+              "classname": "tests.test_error_store.TestMergeErrors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_merging_custom_error_and_custom_error",
+              "classname": "tests.test_error_store.TestMergeErrors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_merging_string_and_list",
+              "classname": "tests.test_error_store.TestMergeErrors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_merging_string_and_dict",
+              "classname": "tests.test_error_store.TestMergeErrors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_merging_string_and_dict_with_schema_error",
+              "classname": "tests.test_error_store.TestMergeErrors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_merging_custom_error_and_list",
+              "classname": "tests.test_error_store.TestMergeErrors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_merging_custom_error_and_dict",
+              "classname": "tests.test_error_store.TestMergeErrors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_merging_custom_error_and_dict_with_schema_error",
+              "classname": "tests.test_error_store.TestMergeErrors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_merging_list_and_string",
+              "classname": "tests.test_error_store.TestMergeErrors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_merging_list_and_custom_error",
+              "classname": "tests.test_error_store.TestMergeErrors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_merging_list_and_list",
+              "classname": "tests.test_error_store.TestMergeErrors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_merging_list_and_dict",
+              "classname": "tests.test_error_store.TestMergeErrors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_merging_list_and_dict_with_schema_error",
+              "classname": "tests.test_error_store.TestMergeErrors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_merging_dict_and_string",
+              "classname": "tests.test_error_store.TestMergeErrors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_merging_dict_and_custom_error",
+              "classname": "tests.test_error_store.TestMergeErrors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_merging_dict_and_list",
+              "classname": "tests.test_error_store.TestMergeErrors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_merging_dict_and_dict",
+              "classname": "tests.test_error_store.TestMergeErrors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_deep_merging_dicts",
+              "classname": "tests.test_error_store.TestMergeErrors",
+              "outcome": "passed",
+              "expected_failure": false
+            }
+          ],
+          "command_sha256": "0e9cadcd02515c408a100d9b8efdad829cc35e6a670a8d8ab815736bd4c9d75c",
+          "missing_modules": [],
+          "diagnostic_excerpts": [],
+          "stdout_sha256": "ffed804477442a0a4034f27fe1b4f647db8f48257c4a554cd292e83233257791",
+          "stdout_bytes": 99,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr_bytes": 0
+        }
+      },
+      {
+        "name": "upstream_fix",
+        "revision": "218d98a785d3bd25dad8880bb07e9cce70340f31",
+        "security": {
+          "returncode": 0,
+          "timed_out": false,
+          "truncated": false,
+          "duration_seconds": 3.1859,
+          "evidence_error": null,
+          "tests": [
+            {
+              "name": "test_security",
+              "classname": "oracle",
+              "outcome": "passed",
+              "expected_failure": false,
+              "expected_failure_marker_observed": false
+            },
+            {
+              "name": "test_valid_records",
+              "classname": "oracle",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_indexed_validation_messages",
+              "classname": "oracle",
+              "outcome": "passed",
+              "expected_failure": false
+            }
+          ],
+          "command_sha256": "9fb09178473ffed3d465312a34b000b0b2d05da96cdafd4628d5f921c927e53d",
+          "missing_modules": [],
+          "diagnostic_excerpts": [],
+          "stdout_sha256": "723da7b49f865c5c16be612b377938b0f62f53ccd287966470919961a0c8dce1",
+          "stdout_bytes": 98,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr_bytes": 0
+        },
+        "suite": {
+          "returncode": 0,
+          "timed_out": false,
+          "truncated": false,
+          "duration_seconds": 1.6702,
+          "evidence_error": null,
+          "tests": [
+            {
+              "name": "test_missing_is_falsy",
+              "classname": "tests.test_error_store",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_merging_none_and_string",
+              "classname": "tests.test_error_store.TestMergeErrors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_merging_none_and_custom_error",
+              "classname": "tests.test_error_store.TestMergeErrors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_merging_none_and_list",
+              "classname": "tests.test_error_store.TestMergeErrors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_merging_none_and_dict",
+              "classname": "tests.test_error_store.TestMergeErrors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_merging_string_and_none",
+              "classname": "tests.test_error_store.TestMergeErrors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_merging_custom_error_and_none",
+              "classname": "tests.test_error_store.TestMergeErrors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_merging_list_and_none",
+              "classname": "tests.test_error_store.TestMergeErrors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_merging_dict_and_none",
+              "classname": "tests.test_error_store.TestMergeErrors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_merging_string_and_string",
+              "classname": "tests.test_error_store.TestMergeErrors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_merging_custom_error_and_string",
+              "classname": "tests.test_error_store.TestMergeErrors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_merging_string_and_custom_error",
+              "classname": "tests.test_error_store.TestMergeErrors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_merging_custom_error_and_custom_error",
+              "classname": "tests.test_error_store.TestMergeErrors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_merging_string_and_list",
+              "classname": "tests.test_error_store.TestMergeErrors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_merging_string_and_dict",
+              "classname": "tests.test_error_store.TestMergeErrors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_merging_string_and_dict_with_schema_error",
+              "classname": "tests.test_error_store.TestMergeErrors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_merging_custom_error_and_list",
+              "classname": "tests.test_error_store.TestMergeErrors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_merging_custom_error_and_dict",
+              "classname": "tests.test_error_store.TestMergeErrors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_merging_custom_error_and_dict_with_schema_error",
+              "classname": "tests.test_error_store.TestMergeErrors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_merging_list_and_string",
+              "classname": "tests.test_error_store.TestMergeErrors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_merging_list_and_custom_error",
+              "classname": "tests.test_error_store.TestMergeErrors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_merging_list_and_list",
+              "classname": "tests.test_error_store.TestMergeErrors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_merging_list_and_dict",
+              "classname": "tests.test_error_store.TestMergeErrors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_merging_list_and_dict_with_schema_error",
+              "classname": "tests.test_error_store.TestMergeErrors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_merging_dict_and_string",
+              "classname": "tests.test_error_store.TestMergeErrors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_merging_dict_and_custom_error",
+              "classname": "tests.test_error_store.TestMergeErrors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_merging_dict_and_list",
+              "classname": "tests.test_error_store.TestMergeErrors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_merging_dict_and_dict",
+              "classname": "tests.test_error_store.TestMergeErrors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_deep_merging_dicts",
+              "classname": "tests.test_error_store.TestMergeErrors",
+              "outcome": "passed",
+              "expected_failure": false
+            }
+          ],
+          "command_sha256": "0e9cadcd02515c408a100d9b8efdad829cc35e6a670a8d8ab815736bd4c9d75c",
+          "missing_modules": [],
+          "diagnostic_excerpts": [],
+          "stdout_sha256": "75d33f71a7383ed564f8369917267f478585257aed425c840de32d0b5601dfde",
+          "stdout_bytes": 99,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr_bytes": 0
+        }
+      },
+      {
+        "name": "target_baseline",
+        "revision": "4ab61bfb93a67113762b186eceaab9a9d473f92a",
+        "security": {
+          "returncode": 1,
+          "timed_out": false,
+          "truncated": false,
+          "duration_seconds": 5.0943,
+          "evidence_error": null,
+          "tests": [
+            {
+              "name": "test_security",
+              "classname": "oracle",
+              "outcome": "failed",
+              "expected_failure": false,
+              "original_message_sha256": "f2611f74d4888b450b5b3137f0800814cd3bdaa93c7b2cb8bf0cbed81c7c8603",
+              "expected_failure_marker_observed": true
+            },
+            {
+              "name": "test_valid_records",
+              "classname": "oracle",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_indexed_validation_messages",
+              "classname": "oracle",
+              "outcome": "passed",
+              "expected_failure": false
+            }
+          ],
+          "command_sha256": "9fb09178473ffed3d465312a34b000b0b2d05da96cdafd4628d5f921c927e53d",
+          "missing_modules": [],
+          "diagnostic_excerpts": [
+            "AssertionError: BOUNDED_COLLECTION_MERGE_CPU",
+            "AssertionError: BOUNDED_COLLEC..."
+          ],
+          "stdout_sha256": "f04f263dc3dca9bcbe4690036d03164438ed38be3e2f618f1888919c6ada41fc",
+          "stdout_bytes": 798,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr_bytes": 0
+        },
+        "suite": {
+          "returncode": 0,
+          "timed_out": false,
+          "truncated": false,
+          "duration_seconds": 2.1426,
+          "evidence_error": null,
+          "tests": [
+            {
+              "name": "test_missing_is_falsy",
+              "classname": "tests.test_error_store",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_merging_none_and_string",
+              "classname": "tests.test_error_store.TestMergeErrors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_merging_none_and_custom_error",
+              "classname": "tests.test_error_store.TestMergeErrors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_merging_none_and_list",
+              "classname": "tests.test_error_store.TestMergeErrors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_merging_none_and_dict",
+              "classname": "tests.test_error_store.TestMergeErrors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_merging_string_and_none",
+              "classname": "tests.test_error_store.TestMergeErrors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_merging_custom_error_and_none",
+              "classname": "tests.test_error_store.TestMergeErrors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_merging_list_and_none",
+              "classname": "tests.test_error_store.TestMergeErrors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_merging_dict_and_none",
+              "classname": "tests.test_error_store.TestMergeErrors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_merging_string_and_string",
+              "classname": "tests.test_error_store.TestMergeErrors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_merging_custom_error_and_string",
+              "classname": "tests.test_error_store.TestMergeErrors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_merging_string_and_custom_error",
+              "classname": "tests.test_error_store.TestMergeErrors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_merging_custom_error_and_custom_error",
+              "classname": "tests.test_error_store.TestMergeErrors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_merging_string_and_list",
+              "classname": "tests.test_error_store.TestMergeErrors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_merging_string_and_dict",
+              "classname": "tests.test_error_store.TestMergeErrors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_merging_string_and_dict_with_schema_error",
+              "classname": "tests.test_error_store.TestMergeErrors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_merging_custom_error_and_list",
+              "classname": "tests.test_error_store.TestMergeErrors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_merging_custom_error_and_dict",
+              "classname": "tests.test_error_store.TestMergeErrors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_merging_custom_error_and_dict_with_schema_error",
+              "classname": "tests.test_error_store.TestMergeErrors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_merging_list_and_string",
+              "classname": "tests.test_error_store.TestMergeErrors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_merging_list_and_custom_error",
+              "classname": "tests.test_error_store.TestMergeErrors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_merging_list_and_list",
+              "classname": "tests.test_error_store.TestMergeErrors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_merging_list_and_dict",
+              "classname": "tests.test_error_store.TestMergeErrors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_merging_list_and_dict_with_schema_error",
+              "classname": "tests.test_error_store.TestMergeErrors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_merging_dict_and_string",
+              "classname": "tests.test_error_store.TestMergeErrors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_merging_dict_and_custom_error",
+              "classname": "tests.test_error_store.TestMergeErrors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_merging_dict_and_list",
+              "classname": "tests.test_error_store.TestMergeErrors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_merging_dict_and_dict",
+              "classname": "tests.test_error_store.TestMergeErrors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_deep_merging_dicts",
+              "classname": "tests.test_error_store.TestMergeErrors",
+              "outcome": "passed",
+              "expected_failure": false
+            }
+          ],
+          "command_sha256": "0e9cadcd02515c408a100d9b8efdad829cc35e6a670a8d8ab815736bd4c9d75c",
+          "missing_modules": [],
+          "diagnostic_excerpts": [],
+          "stdout_sha256": "861a5e4144c59d06c4b16bd95676bf38ebf991e9ddbcdc1eb9dae189852be72f",
+          "stdout_bytes": 99,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr_bytes": 0
+        }
+      },
+      {
+        "name": "backport",
+        "revision": "4ab61bfb93a67113762b186eceaab9a9d473f92a",
+        "security": {
+          "returncode": 1,
+          "timed_out": false,
+          "truncated": false,
+          "duration_seconds": 5.3058,
+          "evidence_error": null,
+          "tests": [
+            {
+              "name": "test_security",
+              "classname": "oracle",
+              "outcome": "failed",
+              "expected_failure": false,
+              "original_message_sha256": "f2611f74d4888b450b5b3137f0800814cd3bdaa93c7b2cb8bf0cbed81c7c8603",
+              "expected_failure_marker_observed": true
+            },
+            {
+              "name": "test_valid_records",
+              "classname": "oracle",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_indexed_validation_messages",
+              "classname": "oracle",
+              "outcome": "passed",
+              "expected_failure": false
+            }
+          ],
+          "command_sha256": "9fb09178473ffed3d465312a34b000b0b2d05da96cdafd4628d5f921c927e53d",
+          "missing_modules": [],
+          "diagnostic_excerpts": [
+            "AssertionError: BOUNDED_COLLECTION_MERGE_CPU",
+            "AssertionError: BOUNDED_COLLEC..."
+          ],
+          "stdout_sha256": "1abe2144ed40b9213b23dde9e615279c6bbf4c1b09cd754e762637b10f609379",
+          "stdout_bytes": 798,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr_bytes": 0
+        },
+        "suite": {
+          "returncode": 0,
+          "timed_out": false,
+          "truncated": false,
+          "duration_seconds": 1.5432,
+          "evidence_error": null,
+          "tests": [
+            {
+              "name": "test_missing_is_falsy",
+              "classname": "tests.test_error_store",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_merging_none_and_string",
+              "classname": "tests.test_error_store.TestMergeErrors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_merging_none_and_custom_error",
+              "classname": "tests.test_error_store.TestMergeErrors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_merging_none_and_list",
+              "classname": "tests.test_error_store.TestMergeErrors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_merging_none_and_dict",
+              "classname": "tests.test_error_store.TestMergeErrors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_merging_string_and_none",
+              "classname": "tests.test_error_store.TestMergeErrors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_merging_custom_error_and_none",
+              "classname": "tests.test_error_store.TestMergeErrors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_merging_list_and_none",
+              "classname": "tests.test_error_store.TestMergeErrors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_merging_dict_and_none",
+              "classname": "tests.test_error_store.TestMergeErrors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_merging_string_and_string",
+              "classname": "tests.test_error_store.TestMergeErrors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_merging_custom_error_and_string",
+              "classname": "tests.test_error_store.TestMergeErrors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_merging_string_and_custom_error",
+              "classname": "tests.test_error_store.TestMergeErrors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_merging_custom_error_and_custom_error",
+              "classname": "tests.test_error_store.TestMergeErrors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_merging_string_and_list",
+              "classname": "tests.test_error_store.TestMergeErrors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_merging_string_and_dict",
+              "classname": "tests.test_error_store.TestMergeErrors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_merging_string_and_dict_with_schema_error",
+              "classname": "tests.test_error_store.TestMergeErrors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_merging_custom_error_and_list",
+              "classname": "tests.test_error_store.TestMergeErrors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_merging_custom_error_and_dict",
+              "classname": "tests.test_error_store.TestMergeErrors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_merging_custom_error_and_dict_with_schema_error",
+              "classname": "tests.test_error_store.TestMergeErrors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_merging_list_and_string",
+              "classname": "tests.test_error_store.TestMergeErrors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_merging_list_and_custom_error",
+              "classname": "tests.test_error_store.TestMergeErrors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_merging_list_and_list",
+              "classname": "tests.test_error_store.TestMergeErrors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_merging_list_and_dict",
+              "classname": "tests.test_error_store.TestMergeErrors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_merging_list_and_dict_with_schema_error",
+              "classname": "tests.test_error_store.TestMergeErrors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_merging_dict_and_string",
+              "classname": "tests.test_error_store.TestMergeErrors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_merging_dict_and_custom_error",
+              "classname": "tests.test_error_store.TestMergeErrors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_merging_dict_and_list",
+              "classname": "tests.test_error_store.TestMergeErrors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_merging_dict_and_dict",
+              "classname": "tests.test_error_store.TestMergeErrors",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_deep_merging_dicts",
+              "classname": "tests.test_error_store.TestMergeErrors",
+              "outcome": "passed",
+              "expected_failure": false
+            }
+          ],
+          "command_sha256": "0e9cadcd02515c408a100d9b8efdad829cc35e6a670a8d8ab815736bd4c9d75c",
+          "missing_modules": [],
+          "diagnostic_excerpts": [],
+          "stdout_sha256": "8f475134935a1f99ed04d6f60d0ccbe78a8690df1357a3e5d3c8a5f1140c8e28",
+          "stdout_bytes": 99,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr_bytes": 0
+        }
+      }
+    ]
+  }
+}

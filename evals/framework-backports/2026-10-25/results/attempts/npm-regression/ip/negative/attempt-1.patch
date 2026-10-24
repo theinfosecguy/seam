@@ -1,0 +1,7 @@
+--- a/lib/ip.js
++++ b/lib/ip.js
+@@ -425,3 +425,4 @@
+     ipl >> 8 & 255}.${
+     ipl & 255}`);
+ };
++// Intentionally ineffective evaluation patch.

@@ -1,0 +1,7 @@
+--- a/index.js
++++ b/index.js
+@@ -208,3 +208,4 @@
+     res.end(doc)
+   }
+ }
++// Intentionally ineffective evaluation patch.

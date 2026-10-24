@@ -1,0 +1,3386 @@
+{
+  "schema_version": 1,
+  "cohort": "python",
+  "source_report": "final-dev2/pydantic-prepend/repeat/report.json",
+  "execution_context": {
+    "exit_code": 0,
+    "timed_out": false,
+    "log_truncated": false,
+    "wheel_sha256": "a91acc4337b3eaca0942ef66773a555e3b2e18adfbfe57dbe74afb99ff0ecd66",
+    "freeze_sha256": "730a937c5c545dec3f63cda2339b2064d59ea63134da5b5673f73d4c1fc01d6c",
+    "inputs_unchanged": true,
+    "caller_unchanged": true
+  },
+  "configuration": {
+    "schema_version": 1,
+    "oracle": {
+      "path": "oracle.py",
+      "security_test": "test_security",
+      "controls": [
+        "test_ordinary_date",
+        "test_ordinary_millisecond_timestamp"
+      ],
+      "failure_marker": "EXTREME_DATE_PARSING_COMPLETES"
+    },
+    "runner": {
+      "kind": "pytest",
+      "image": "sha256:bda4ee09f70ca360a2d30f96bb03d457e8bef0b25f601072f43dd24623b4c33f",
+      "docker": [
+        "sudo",
+        "-n",
+        "docker"
+      ],
+      "timeout_seconds": 120.0,
+      "memory_mb": 512,
+      "cpus": 1.0,
+      "pids": 128,
+      "max_output_bytes": 131072,
+      "suite": [
+        "tests/test_datetime_parse.py"
+      ],
+      "plugins": [],
+      "import_mode": "prepend",
+      "suite_markers": null,
+      "mocha_ui": "bdd",
+      "mocha_interfaces": {},
+      "mocha_grep": null,
+      "reviewed_fixtures": {},
+      "reviewed_submodules": {},
+      "node_dependencies": {}
+    },
+    "max_attempts": 3,
+    "reviewed_tests": null
+  },
+  "report": {
+    "schema_version": 2,
+    "status": "verified",
+    "reason": "All four revisions met the frozen security and compatibility checks.",
+    "fix_commit": "1c24f1d74ba95ea985b50bdc001ce96c813229aa",
+    "parent_commit": "79c6c9ee33da4afb2d793d312b186ba6ebd941c9",
+    "target_commit": "00a128a3609dac82dfe0cdb4200bbf2011aa5f83",
+    "image_id": "sha256:bda4ee09f70ca360a2d30f96bb03d457e8bef0b25f601072f43dd24623b4c33f",
+    "oracle_sha256": "5b5e39e5cfa47dcda0417171b02524ac23efd239d0065931ddb255b6ce4a0d3c",
+    "config_sha256": "e712d7db3cc4df64deb1458f503bc650770eddab92ab3d08df2e826691040abd",
+    "patch_sha256": "9dc984b18312fbb30f7ea23816ac946e933b44dcdfa9fe907ce4d28b74c5624f",
+    "attempts": 1,
+    "adaptation": "provided_patch",
+    "model_usage": {},
+    "reviewed_tests": null,
+    "reviewed_fixtures": {},
+    "reviewed_submodules": {},
+    "phases": [
+      {
+        "name": "upstream_parent",
+        "revision": "79c6c9ee33da4afb2d793d312b186ba6ebd941c9",
+        "security": {
+          "returncode": 1,
+          "timed_out": false,
+          "truncated": false,
+          "duration_seconds": 3.696,
+          "evidence_error": null,
+          "tests": [
+            {
+              "name": "test_security",
+              "classname": "oracle",
+              "outcome": "failed",
+              "expected_failure": false,
+              "original_message_sha256": "044b7ba266b3432077b7f2f0acb0437f2c8da5d5fa812bc9ea91793a5fefb34c",
+              "expected_failure_marker_observed": true
+            },
+            {
+              "name": "test_ordinary_date",
+              "classname": "oracle",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_ordinary_millisecond_timestamp",
+              "classname": "oracle",
+              "outcome": "passed",
+              "expected_failure": false
+            }
+          ],
+          "command_sha256": "cf4e8bd1afe0c9c32946a5d787e04269188d31c50e302b87c4ff6b75f2f4d0cc",
+          "missing_modules": [],
+          "diagnostic_excerpts": [
+            "AssertionError: EXTREME_DATE_PARSING_COMPLETES",
+            "AssertionError: EXTREME_DATE_P..."
+          ],
+          "stdout_sha256": "85b335fb6286b004c10f2cdb2c95798121f61218c5ec10b02b10b28ab32d3bd0",
+          "stdout_bytes": 883,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr_bytes": 0
+        },
+        "suite": {
+          "returncode": 0,
+          "timed_out": false,
+          "truncated": false,
+          "duration_seconds": 2.0955,
+          "evidence_error": null,
+          "tests": [
+            {
+              "name": "test_date_parsing[1494012444.883309-result0]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_date_parsing[1494012444.883309-result1]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_date_parsing[1494012444.883309-result2]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_date_parsing[1494012444-result3]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_date_parsing[1494012444-result4]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_date_parsing[0-result5]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_date_parsing[2012-04-23-result6]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_date_parsing[2012-04-23-result7]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_date_parsing[2012-4-9-result8]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_date_parsing[value9-result9]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_date_parsing[value10-result10]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_date_parsing[x20120423-DateError]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_date_parsing[2012-04-56-DateError]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_date_parsing[19999999999-result13]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_date_parsing[20000000001-result14]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_date_parsing[1549316052-result15]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_date_parsing[1549316052104-result16]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_date_parsing[1549316052104324-result17]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_date_parsing[1549316052104324096-result18]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_time_parsing[09:15:00-result0]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_time_parsing[10:10-result1]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_time_parsing[10:20:30.400-result2]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_time_parsing[10:20:30.400-result3]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_time_parsing[4:8:16-result4]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_time_parsing[value5-result5]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_time_parsing[3610-result6]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_time_parsing[3600.5-result7]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_time_parsing[86399-result8]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_time_parsing[11:05:00-05:30-result9]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_time_parsing[11:05:00-0530-result10]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_time_parsing[11:05:00Z-result11]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_time_parsing[11:05:00+00-result12]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_time_parsing[11:05-06-result13]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_time_parsing[11:05+06-result14]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_time_parsing[86400-TimeError]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_time_parsing[xxx-TimeError]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_time_parsing[091500-TimeError0]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_time_parsing[091500-TimeError1]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_time_parsing[09:15:90-TimeError]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_time_parsing[11:05:00Y-TimeError]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_time_parsing[11:05:00-25:00-TimeError]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_datetime_parsing[1494012444.883309-result0]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_datetime_parsing[1494012444.883309-result1]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_datetime_parsing[1494012444-result2]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_datetime_parsing[1494012444-result3]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_datetime_parsing[1494012444-result4]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_datetime_parsing[1494012444000.883309-result5]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_datetime_parsing[-1494012444000.883309-result6]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_datetime_parsing[1494012444000-result7]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_datetime_parsing[2012-04-23T09:15:00-result8]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_datetime_parsing[2012-4-9 4:8:16-result9]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_datetime_parsing[2012-04-23T09:15:00Z-result10]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_datetime_parsing[2012-4-9 4:8:16-0320-result11]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_datetime_parsing[2012-04-23T10:20:30.400+02:30-result12]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_datetime_parsing[2012-04-23T10:20:30.400+02-result13]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_datetime_parsing[2012-04-23T10:20:30.400-02-result14]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_datetime_parsing[2012-04-23T10:20:30.400-02-result15]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_datetime_parsing[value16-result16]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_datetime_parsing[0-result17]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_datetime_parsing[x20120423091500-DateTimeError]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_datetime_parsing[2012-04-56T09:15:90-DateTimeError]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_datetime_parsing[2012-04-23T11:05:00-25:00-DateTimeError]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_datetime_parsing[19999999999-result21]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_datetime_parsing[20000000001-result22]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_datetime_parsing[1549316052-result23]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_datetime_parsing[1549316052104-result24]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_datetime_parsing[1549316052104324-result25]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_datetime_parsing[1549316052104324096-result26]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_parse_python_format[delta0]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_parse_python_format[delta1]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_parse_python_format[delta2]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_parse_python_format[delta3]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_parse_python_format[delta4]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_parse_python_format[delta5]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_parse_python_format[delta6]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_parse_durations[value0-result0]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_parse_durations[30-result1]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_parse_durations[30-result2]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_parse_durations[30.1-result3]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_parse_durations[15:30-result4]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_parse_durations[5:30-result5]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_parse_durations[10:15:30-result6]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_parse_durations[1:15:30-result7]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_parse_durations[100:200:300-result8]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_parse_durations[4 15:30-result9]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_parse_durations[4 10:15:30-result10]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_parse_durations[15:30.1-result11]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_parse_durations[15:30.01-result12]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_parse_durations[15:30.001-result13]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_parse_durations[15:30.0001-result14]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_parse_durations[15:30.00001-result15]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_parse_durations[15:30.000001-result16]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_parse_durations[15:30.000001-result17]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_parse_durations[-4 15:30-result18]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_parse_durations[-172800-result19]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_parse_durations[-15:30-result20]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_parse_durations[-1:15:30-result21]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_parse_durations[-30.1-result22]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_parse_durations[P4Y-DurationError]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_parse_durations[P4M-DurationError]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_parse_durations[P4W-DurationError]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_parse_durations[P4D-result26]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_parse_durations[P0.5D-result27]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_parse_durations[PT5H-result28]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_parse_durations[PT5M-result29]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_parse_durations[PT5S-result30]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_parse_durations[PT0.000005S-result31]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_parse_durations[PT0.000005S-result32]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_model_type_errors[dt-value0-invalid type; expected datetime, string, bytes, int or float]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_model_type_errors[dt-value1-invalid type; expected datetime, string, bytes, int or float]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_model_type_errors[dt-object-invalid type; expected datetime, string, bytes, int or float]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_model_type_errors[d-value3-invalid type; expected date, string, bytes, int or float]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_model_type_errors[d-value4-invalid type; expected date, string, bytes, int or float]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_model_type_errors[d-object-invalid type; expected date, string, bytes, int or float]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_model_type_errors[t-value6-invalid type; expected time, string, bytes, int or float]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_model_type_errors[t-value7-invalid type; expected time, string, bytes, int or float]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_model_type_errors[t-object-invalid type; expected time, string, bytes, int or float]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_model_type_errors[td-value9-invalid type; expected timedelta, string, bytes, int or float]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_model_type_errors[td-value10-invalid type; expected timedelta, string, bytes, int or float]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_model_type_errors[td-object-invalid type; expected timedelta, string, bytes, int or float]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_unicode_decode_error[dt0]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_unicode_decode_error[d]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_unicode_decode_error[t]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_unicode_decode_error[dt1]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            }
+          ],
+          "command_sha256": "0cf63ce76c7b7f5bdc50d28772892033fbf93583d14485d4d87e62c94fa76175",
+          "missing_modules": [],
+          "diagnostic_excerpts": [],
+          "stdout_sha256": "e36b4cbdb47c0b64097cf696e4dbfaf654da86b9b4d8f026820ba0b897804227",
+          "stdout_bytes": 261,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr_bytes": 0
+        }
+      },
+      {
+        "name": "upstream_fix",
+        "revision": "1c24f1d74ba95ea985b50bdc001ce96c813229aa",
+        "security": {
+          "returncode": 0,
+          "timed_out": false,
+          "truncated": false,
+          "duration_seconds": 2.2801,
+          "evidence_error": null,
+          "tests": [
+            {
+              "name": "test_security",
+              "classname": "oracle",
+              "outcome": "passed",
+              "expected_failure": false,
+              "expected_failure_marker_observed": false
+            },
+            {
+              "name": "test_ordinary_date",
+              "classname": "oracle",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_ordinary_millisecond_timestamp",
+              "classname": "oracle",
+              "outcome": "passed",
+              "expected_failure": false
+            }
+          ],
+          "command_sha256": "cf4e8bd1afe0c9c32946a5d787e04269188d31c50e302b87c4ff6b75f2f4d0cc",
+          "missing_modules": [],
+          "diagnostic_excerpts": [],
+          "stdout_sha256": "3dfe8584029d696c4b1b4ef0fc84f5cf14ad35f93c140c34219a0518186db956",
+          "stdout_bytes": 179,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr_bytes": 0
+        },
+        "suite": {
+          "returncode": 0,
+          "timed_out": false,
+          "truncated": false,
+          "duration_seconds": 4.3042,
+          "evidence_error": null,
+          "tests": [
+            {
+              "name": "test_date_parsing[1494012444.883309-result0]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_date_parsing[1494012444.883309-result1]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_date_parsing[1494012444.883309-result2]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_date_parsing[1494012444-result3]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_date_parsing[1494012444-result4]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_date_parsing[0-result5]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_date_parsing[2012-04-23-result6]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_date_parsing[2012-04-23-result7]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_date_parsing[2012-4-9-result8]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_date_parsing[value9-result9]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_date_parsing[value10-result10]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_date_parsing[x20120423-DateError]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_date_parsing[2012-04-56-DateError]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_date_parsing[19999999999-result13]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_date_parsing[20000000001-result14]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_date_parsing[1549316052-result15]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_date_parsing[1549316052104-result16]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_date_parsing[1549316052104324-result17]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_date_parsing[1549316052104324096-result18]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_date_parsing[infinity-result19]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_date_parsing[inf-result20]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_date_parsing[inf-result21]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_date_parsing[infinity -result22]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_date_parsing[10000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000-result23]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_date_parsing[inf-result24]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_date_parsing[-infinity-result25]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_date_parsing[-inf-result26]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_date_parsing[nan-ValueError]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_time_parsing[09:15:00-result0]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_time_parsing[10:10-result1]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_time_parsing[10:20:30.400-result2]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_time_parsing[10:20:30.400-result3]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_time_parsing[4:8:16-result4]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_time_parsing[value5-result5]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_time_parsing[3610-result6]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_time_parsing[3600.5-result7]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_time_parsing[86399-result8]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_time_parsing[11:05:00-05:30-result9]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_time_parsing[11:05:00-0530-result10]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_time_parsing[11:05:00Z-result11]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_time_parsing[11:05:00+00-result12]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_time_parsing[11:05-06-result13]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_time_parsing[11:05+06-result14]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_time_parsing[86400-TimeError]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_time_parsing[xxx-TimeError]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_time_parsing[091500-TimeError0]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_time_parsing[091500-TimeError1]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_time_parsing[09:15:90-TimeError]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_time_parsing[11:05:00Y-TimeError]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_time_parsing[11:05:00-25:00-TimeError]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_datetime_parsing[1494012444.883309-result0]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_datetime_parsing[1494012444.883309-result1]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_datetime_parsing[1494012444-result2]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_datetime_parsing[1494012444-result3]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_datetime_parsing[1494012444-result4]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_datetime_parsing[1494012444000.883309-result5]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_datetime_parsing[-1494012444000.883309-result6]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_datetime_parsing[1494012444000-result7]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_datetime_parsing[2012-04-23T09:15:00-result8]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_datetime_parsing[2012-4-9 4:8:16-result9]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_datetime_parsing[2012-04-23T09:15:00Z-result10]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_datetime_parsing[2012-4-9 4:8:16-0320-result11]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_datetime_parsing[2012-04-23T10:20:30.400+02:30-result12]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_datetime_parsing[2012-04-23T10:20:30.400+02-result13]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_datetime_parsing[2012-04-23T10:20:30.400-02-result14]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_datetime_parsing[2012-04-23T10:20:30.400-02-result15]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_datetime_parsing[value16-result16]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_datetime_parsing[0-result17]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_datetime_parsing[x20120423091500-DateTimeError]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_datetime_parsing[2012-04-56T09:15:90-DateTimeError]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_datetime_parsing[2012-04-23T11:05:00-25:00-DateTimeError]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_datetime_parsing[19999999999-result21]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_datetime_parsing[20000000001-result22]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_datetime_parsing[1549316052-result23]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_datetime_parsing[1549316052104-result24]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_datetime_parsing[1549316052104324-result25]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_datetime_parsing[1549316052104324096-result26]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_datetime_parsing[infinity-result27]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_datetime_parsing[inf-result28]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_datetime_parsing[inf -result29]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_datetime_parsing[1e+50-result30]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_datetime_parsing[inf-result31]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_datetime_parsing[-infinity-result32]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_datetime_parsing[-inf-result33]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_datetime_parsing[nan-ValueError]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_parse_python_format[delta0]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_parse_python_format[delta1]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_parse_python_format[delta2]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_parse_python_format[delta3]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_parse_python_format[delta4]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_parse_python_format[delta5]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_parse_python_format[delta6]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_parse_durations[value0-result0]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_parse_durations[30-result1]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_parse_durations[30-result2]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_parse_durations[30.1-result3]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_parse_durations[15:30-result4]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_parse_durations[5:30-result5]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_parse_durations[10:15:30-result6]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_parse_durations[1:15:30-result7]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_parse_durations[100:200:300-result8]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_parse_durations[4 15:30-result9]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_parse_durations[4 10:15:30-result10]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_parse_durations[15:30.1-result11]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_parse_durations[15:30.01-result12]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_parse_durations[15:30.001-result13]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_parse_durations[15:30.0001-result14]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_parse_durations[15:30.00001-result15]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_parse_durations[15:30.000001-result16]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_parse_durations[15:30.000001-result17]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_parse_durations[-4 15:30-result18]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_parse_durations[-172800-result19]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_parse_durations[-15:30-result20]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_parse_durations[-1:15:30-result21]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_parse_durations[-30.1-result22]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_parse_durations[P4Y-DurationError]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_parse_durations[P4M-DurationError]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_parse_durations[P4W-DurationError]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_parse_durations[P4D-result26]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_parse_durations[P0.5D-result27]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_parse_durations[PT5H-result28]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_parse_durations[PT5M-result29]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_parse_durations[PT5S-result30]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_parse_durations[PT0.000005S-result31]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_parse_durations[PT0.000005S-result32]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_model_type_errors[dt-value0-invalid type; expected datetime, string, bytes, int or float]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_model_type_errors[dt-value1-invalid type; expected datetime, string, bytes, int or float]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_model_type_errors[dt-object-invalid type; expected datetime, string, bytes, int or float]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_model_type_errors[d-value3-invalid type; expected date, string, bytes, int or float]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_model_type_errors[d-value4-invalid type; expected date, string, bytes, int or float]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_model_type_errors[d-object-invalid type; expected date, string, bytes, int or float]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_model_type_errors[t-value6-invalid type; expected time, string, bytes, int or float]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_model_type_errors[t-value7-invalid type; expected time, string, bytes, int or float]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_model_type_errors[t-object-invalid type; expected time, string, bytes, int or float]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_model_type_errors[td-value9-invalid type; expected timedelta, string, bytes, int or float]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_model_type_errors[td-value10-invalid type; expected timedelta, string, bytes, int or float]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_model_type_errors[td-object-invalid type; expected timedelta, string, bytes, int or float]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_unicode_decode_error[dt0]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_unicode_decode_error[d]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_unicode_decode_error[t]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_unicode_decode_error[dt1]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_nan",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            }
+          ],
+          "command_sha256": "0cf63ce76c7b7f5bdc50d28772892033fbf93583d14485d4d87e62c94fa76175",
+          "missing_modules": [],
+          "diagnostic_excerpts": [],
+          "stdout_sha256": "bf0cb445a13121b679c518bbc2546ca63ac05e176798c0f567802fec384c8809",
+          "stdout_bytes": 261,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr_bytes": 0
+        }
+      },
+      {
+        "name": "target_baseline",
+        "revision": "00a128a3609dac82dfe0cdb4200bbf2011aa5f83",
+        "security": {
+          "returncode": 1,
+          "timed_out": false,
+          "truncated": false,
+          "duration_seconds": 5.8501,
+          "evidence_error": null,
+          "tests": [
+            {
+              "name": "test_security",
+              "classname": "oracle",
+              "outcome": "failed",
+              "expected_failure": false,
+              "original_message_sha256": "627727865fa4cef5f12424f5cadea51544a19b7a7ebb98affc301912fda95c27",
+              "expected_failure_marker_observed": true
+            },
+            {
+              "name": "test_ordinary_date",
+              "classname": "oracle",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_ordinary_millisecond_timestamp",
+              "classname": "oracle",
+              "outcome": "passed",
+              "expected_failure": false
+            }
+          ],
+          "command_sha256": "cf4e8bd1afe0c9c32946a5d787e04269188d31c50e302b87c4ff6b75f2f4d0cc",
+          "missing_modules": [],
+          "diagnostic_excerpts": [
+            "AssertionError: EXTREME_DATE_PARSING_COMPLETES",
+            "AssertionError: EXTREME_DATE_P..."
+          ],
+          "stdout_sha256": "cc944eb393793003bf53a7e7ffb271b5d756e08e2026f5ed612395cfaa377660",
+          "stdout_bytes": 883,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr_bytes": 0
+        },
+        "suite": {
+          "returncode": 0,
+          "timed_out": false,
+          "truncated": false,
+          "duration_seconds": 1.7902,
+          "evidence_error": null,
+          "tests": [
+            {
+              "name": "test_date_parsing[1494012444.883309-result0]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_date_parsing[1494012444.883309-result1]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_date_parsing[1494012444.883309-result2]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_date_parsing[1494012444-result3]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_date_parsing[1494012444-result4]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_date_parsing[0-result5]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_date_parsing[2012-04-23-result6]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_date_parsing[2012-04-23-result7]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_date_parsing[2012-4-9-result8]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_date_parsing[value9-result9]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_date_parsing[value10-result10]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_date_parsing[x20120423-DateError]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_date_parsing[2012-04-56-DateError]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_date_parsing[19999999999-result13]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_date_parsing[20000000001-result14]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_date_parsing[1549316052-result15]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_date_parsing[1549316052104-result16]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_date_parsing[1549316052104324-result17]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_date_parsing[1549316052104324096-result18]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_time_parsing[09:15:00-result0]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_time_parsing[10:10-result1]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_time_parsing[10:20:30.400-result2]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_time_parsing[10:20:30.400-result3]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_time_parsing[4:8:16-result4]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_time_parsing[value5-result5]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_time_parsing[3610-result6]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_time_parsing[3600.5-result7]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_time_parsing[86399-result8]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_time_parsing[11:05:00-05:30-result9]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_time_parsing[11:05:00-0530-result10]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_time_parsing[11:05:00Z-result11]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_time_parsing[11:05:00+00-result12]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_time_parsing[11:05-06-result13]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_time_parsing[11:05+06-result14]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_time_parsing[86400-TimeError]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_time_parsing[xxx-TimeError]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_time_parsing[091500-TimeError0]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_time_parsing[091500-TimeError1]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_time_parsing[09:15:90-TimeError]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_time_parsing[11:05:00Y-TimeError]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_time_parsing[11:05:00-25:00-TimeError]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_datetime_parsing[1494012444.883309-result0]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_datetime_parsing[1494012444.883309-result1]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_datetime_parsing[1494012444-result2]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_datetime_parsing[1494012444-result3]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_datetime_parsing[1494012444-result4]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_datetime_parsing[1494012444000.883309-result5]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_datetime_parsing[-1494012444000.883309-result6]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_datetime_parsing[1494012444000-result7]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_datetime_parsing[2012-04-23T09:15:00-result8]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_datetime_parsing[2012-4-9 4:8:16-result9]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_datetime_parsing[2012-04-23T09:15:00Z-result10]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_datetime_parsing[2012-4-9 4:8:16-0320-result11]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_datetime_parsing[2012-04-23T10:20:30.400+02:30-result12]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_datetime_parsing[2012-04-23T10:20:30.400+02-result13]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_datetime_parsing[2012-04-23T10:20:30.400-02-result14]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_datetime_parsing[2012-04-23T10:20:30.400-02-result15]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_datetime_parsing[value16-result16]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_datetime_parsing[0-result17]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_datetime_parsing[x20120423091500-DateTimeError]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_datetime_parsing[2012-04-56T09:15:90-DateTimeError]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_datetime_parsing[2012-04-23T11:05:00-25:00-DateTimeError]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_datetime_parsing[19999999999-result21]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_datetime_parsing[20000000001-result22]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_datetime_parsing[1549316052-result23]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_datetime_parsing[1549316052104-result24]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_datetime_parsing[1549316052104324-result25]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_datetime_parsing[1549316052104324096-result26]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_parse_python_format[delta0]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_parse_python_format[delta1]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_parse_python_format[delta2]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_parse_python_format[delta3]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_parse_python_format[delta4]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_parse_python_format[delta5]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_parse_python_format[delta6]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_parse_durations[value0-result0]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_parse_durations[30-result1]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_parse_durations[30-result2]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_parse_durations[30.1-result3]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_parse_durations[15:30-result4]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_parse_durations[5:30-result5]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_parse_durations[10:15:30-result6]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_parse_durations[1:15:30-result7]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_parse_durations[100:200:300-result8]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_parse_durations[4 15:30-result9]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_parse_durations[4 10:15:30-result10]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_parse_durations[15:30.1-result11]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_parse_durations[15:30.01-result12]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_parse_durations[15:30.001-result13]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_parse_durations[15:30.0001-result14]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_parse_durations[15:30.00001-result15]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_parse_durations[15:30.000001-result16]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_parse_durations[15:30.000001-result17]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_parse_durations[-4 15:30-result18]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_parse_durations[-172800-result19]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_parse_durations[-15:30-result20]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_parse_durations[-1:15:30-result21]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_parse_durations[-30.1-result22]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_parse_durations[P4Y-DurationError]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_parse_durations[P4M-DurationError]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_parse_durations[P4W-DurationError]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_parse_durations[P4D-result26]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_parse_durations[P0.5D-result27]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_parse_durations[PT5H-result28]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_parse_durations[PT5M-result29]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_parse_durations[PT5S-result30]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_parse_durations[PT0.000005S-result31]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_parse_durations[PT0.000005S-result32]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_model_type_errors[dt-value0-invalid type; expected datetime, string, bytes, int or float]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_model_type_errors[dt-value1-invalid type; expected datetime, string, bytes, int or float]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_model_type_errors[dt-object-invalid type; expected datetime, string, bytes, int or float]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_model_type_errors[d-value3-invalid type; expected date, string, bytes, int or float]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_model_type_errors[d-value4-invalid type; expected date, string, bytes, int or float]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_model_type_errors[d-object-invalid type; expected date, string, bytes, int or float]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_model_type_errors[t-value6-invalid type; expected time, string, bytes, int or float]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_model_type_errors[t-value7-invalid type; expected time, string, bytes, int or float]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_model_type_errors[t-object-invalid type; expected time, string, bytes, int or float]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_model_type_errors[td-value9-invalid type; expected timedelta, string, bytes, int or float]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_model_type_errors[td-value10-invalid type; expected timedelta, string, bytes, int or float]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_model_type_errors[td-object-invalid type; expected timedelta, string, bytes, int or float]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_unicode_decode_error[dt0]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_unicode_decode_error[d]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_unicode_decode_error[t]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_unicode_decode_error[dt1]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            }
+          ],
+          "command_sha256": "0cf63ce76c7b7f5bdc50d28772892033fbf93583d14485d4d87e62c94fa76175",
+          "missing_modules": [],
+          "diagnostic_excerpts": [],
+          "stdout_sha256": "81f50fc357a6749c24a44263278f0edb531e94dd7781acc03ed2735b92e9e8e4",
+          "stdout_bytes": 261,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr_bytes": 0
+        }
+      },
+      {
+        "name": "backport",
+        "revision": "00a128a3609dac82dfe0cdb4200bbf2011aa5f83",
+        "security": {
+          "returncode": 0,
+          "timed_out": false,
+          "truncated": false,
+          "duration_seconds": 1.1472,
+          "evidence_error": null,
+          "tests": [
+            {
+              "name": "test_security",
+              "classname": "oracle",
+              "outcome": "passed",
+              "expected_failure": false,
+              "expected_failure_marker_observed": false
+            },
+            {
+              "name": "test_ordinary_date",
+              "classname": "oracle",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_ordinary_millisecond_timestamp",
+              "classname": "oracle",
+              "outcome": "passed",
+              "expected_failure": false
+            }
+          ],
+          "command_sha256": "cf4e8bd1afe0c9c32946a5d787e04269188d31c50e302b87c4ff6b75f2f4d0cc",
+          "missing_modules": [],
+          "diagnostic_excerpts": [],
+          "stdout_sha256": "88df712311308a15b59e2e17cb6234b69f811c052987546a9735671a8c0168e5",
+          "stdout_bytes": 179,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr_bytes": 0
+        },
+        "suite": {
+          "returncode": 0,
+          "timed_out": false,
+          "truncated": false,
+          "duration_seconds": 2.3188,
+          "evidence_error": null,
+          "tests": [
+            {
+              "name": "test_date_parsing[1494012444.883309-result0]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_date_parsing[1494012444.883309-result1]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_date_parsing[1494012444.883309-result2]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_date_parsing[1494012444-result3]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_date_parsing[1494012444-result4]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_date_parsing[0-result5]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_date_parsing[2012-04-23-result6]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_date_parsing[2012-04-23-result7]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_date_parsing[2012-4-9-result8]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_date_parsing[value9-result9]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_date_parsing[value10-result10]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_date_parsing[x20120423-DateError]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_date_parsing[2012-04-56-DateError]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_date_parsing[19999999999-result13]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_date_parsing[20000000001-result14]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_date_parsing[1549316052-result15]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_date_parsing[1549316052104-result16]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_date_parsing[1549316052104324-result17]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_date_parsing[1549316052104324096-result18]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_time_parsing[09:15:00-result0]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_time_parsing[10:10-result1]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_time_parsing[10:20:30.400-result2]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_time_parsing[10:20:30.400-result3]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_time_parsing[4:8:16-result4]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_time_parsing[value5-result5]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_time_parsing[3610-result6]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_time_parsing[3600.5-result7]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_time_parsing[86399-result8]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_time_parsing[11:05:00-05:30-result9]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_time_parsing[11:05:00-0530-result10]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_time_parsing[11:05:00Z-result11]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_time_parsing[11:05:00+00-result12]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_time_parsing[11:05-06-result13]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_time_parsing[11:05+06-result14]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_time_parsing[86400-TimeError]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_time_parsing[xxx-TimeError]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_time_parsing[091500-TimeError0]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_time_parsing[091500-TimeError1]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_time_parsing[09:15:90-TimeError]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_time_parsing[11:05:00Y-TimeError]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_time_parsing[11:05:00-25:00-TimeError]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_datetime_parsing[1494012444.883309-result0]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_datetime_parsing[1494012444.883309-result1]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_datetime_parsing[1494012444-result2]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_datetime_parsing[1494012444-result3]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_datetime_parsing[1494012444-result4]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_datetime_parsing[1494012444000.883309-result5]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_datetime_parsing[-1494012444000.883309-result6]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_datetime_parsing[1494012444000-result7]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_datetime_parsing[2012-04-23T09:15:00-result8]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_datetime_parsing[2012-4-9 4:8:16-result9]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_datetime_parsing[2012-04-23T09:15:00Z-result10]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_datetime_parsing[2012-4-9 4:8:16-0320-result11]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_datetime_parsing[2012-04-23T10:20:30.400+02:30-result12]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_datetime_parsing[2012-04-23T10:20:30.400+02-result13]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_datetime_parsing[2012-04-23T10:20:30.400-02-result14]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_datetime_parsing[2012-04-23T10:20:30.400-02-result15]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_datetime_parsing[value16-result16]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_datetime_parsing[0-result17]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_datetime_parsing[x20120423091500-DateTimeError]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_datetime_parsing[2012-04-56T09:15:90-DateTimeError]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_datetime_parsing[2012-04-23T11:05:00-25:00-DateTimeError]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_datetime_parsing[19999999999-result21]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_datetime_parsing[20000000001-result22]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_datetime_parsing[1549316052-result23]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_datetime_parsing[1549316052104-result24]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_datetime_parsing[1549316052104324-result25]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_datetime_parsing[1549316052104324096-result26]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_parse_python_format[delta0]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_parse_python_format[delta1]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_parse_python_format[delta2]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_parse_python_format[delta3]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_parse_python_format[delta4]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_parse_python_format[delta5]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_parse_python_format[delta6]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_parse_durations[value0-result0]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_parse_durations[30-result1]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_parse_durations[30-result2]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_parse_durations[30.1-result3]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_parse_durations[15:30-result4]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_parse_durations[5:30-result5]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_parse_durations[10:15:30-result6]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_parse_durations[1:15:30-result7]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_parse_durations[100:200:300-result8]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_parse_durations[4 15:30-result9]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_parse_durations[4 10:15:30-result10]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_parse_durations[15:30.1-result11]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_parse_durations[15:30.01-result12]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_parse_durations[15:30.001-result13]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_parse_durations[15:30.0001-result14]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_parse_durations[15:30.00001-result15]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_parse_durations[15:30.000001-result16]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_parse_durations[15:30.000001-result17]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_parse_durations[-4 15:30-result18]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_parse_durations[-172800-result19]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_parse_durations[-15:30-result20]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_parse_durations[-1:15:30-result21]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_parse_durations[-30.1-result22]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_parse_durations[P4Y-DurationError]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_parse_durations[P4M-DurationError]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_parse_durations[P4W-DurationError]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_parse_durations[P4D-result26]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_parse_durations[P0.5D-result27]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_parse_durations[PT5H-result28]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_parse_durations[PT5M-result29]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_parse_durations[PT5S-result30]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_parse_durations[PT0.000005S-result31]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_parse_durations[PT0.000005S-result32]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_model_type_errors[dt-value0-invalid type; expected datetime, string, bytes, int or float]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_model_type_errors[dt-value1-invalid type; expected datetime, string, bytes, int or float]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_model_type_errors[dt-object-invalid type; expected datetime, string, bytes, int or float]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_model_type_errors[d-value3-invalid type; expected date, string, bytes, int or float]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_model_type_errors[d-value4-invalid type; expected date, string, bytes, int or float]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_model_type_errors[d-object-invalid type; expected date, string, bytes, int or float]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_model_type_errors[t-value6-invalid type; expected time, string, bytes, int or float]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_model_type_errors[t-value7-invalid type; expected time, string, bytes, int or float]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_model_type_errors[t-object-invalid type; expected time, string, bytes, int or float]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_model_type_errors[td-value9-invalid type; expected timedelta, string, bytes, int or float]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_model_type_errors[td-value10-invalid type; expected timedelta, string, bytes, int or float]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_model_type_errors[td-object-invalid type; expected timedelta, string, bytes, int or float]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_unicode_decode_error[dt0]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_unicode_decode_error[d]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_unicode_decode_error[t]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_unicode_decode_error[dt1]",
+              "classname": "tests.test_datetime_parse",
+              "outcome": "passed",
+              "expected_failure": false
+            }
+          ],
+          "command_sha256": "0cf63ce76c7b7f5bdc50d28772892033fbf93583d14485d4d87e62c94fa76175",
+          "missing_modules": [],
+          "diagnostic_excerpts": [],
+          "stdout_sha256": "14a310f711356403fa0a412ae201bc51c7f8e55ce2af14fbf560d792c612879d",
+          "stdout_bytes": 261,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr_bytes": 0
+        }
+      }
+    ]
+  }
+}

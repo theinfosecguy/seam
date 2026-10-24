@@ -1,0 +1,22 @@
+[oracle]
+path = "oracle.mjs"
+security_test = "test_security"
+controls = ["test_scalar_and_sequence", "test_ordinary_merge"]
+failure_marker = "JS_YAML_MERGE_PROTO_IS_OWN_DATA"
+
+[runner]
+kind = "mocha"
+image = "sha256:52f40f96867d88d68ced00067878ab5b917744d17f5649b82506f43e72d88cba"
+docker = ["sudo", "-n", "docker"]
+suite = ["test/10-loader.js", "test/11-load-errors.js"]
+timeout_seconds = 120
+
+[runner.node_dependencies]
+"0d3ca7a27b03a6c974790a30a89e456007d62976" = "/opt/seam/dependencies/0d3ca7a27b03a6c974790a30a89e456007d62976/node_modules"
+"37caaad57dc37d350d9a4577a5da53f482bb2983" = "/opt/seam/dependencies/37caaad57dc37d350d9a4577a5da53f482bb2983/node_modules"
+"383665ff4248ec2192d1274e934462bb30426879" = "/opt/seam/dependencies/383665ff4248ec2192d1274e934462bb30426879/node_modules"
+
+[runner.mocha_interfaces]
+"0d3ca7a27b03a6c974790a30a89e456007d62976" = "bdd"
+"383665ff4248ec2192d1274e934462bb30426879" = "bdd"
+"37caaad57dc37d350d9a4577a5da53f482bb2983" = "tdd"

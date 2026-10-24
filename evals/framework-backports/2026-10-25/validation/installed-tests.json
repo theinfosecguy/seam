@@ -1,0 +1,13 @@
+{
+  "tests": 1307,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "original_junit_sha256": "8b5df93d7d5fbde7f1b3a0765e52a1b1a8cc0c75da480a8bd5bc61a638da7eb9",
+  "original_log_sha256": "28200789db28bf6866651b9ab700245656455d8dfd0b94985b0b09a037921dc1",
+  "controller_python": "3.12.3",
+  "installed_wheel_sha256": "a91acc4337b3eaca0942ef66773a555e3b2e18adfbfe57dbe74afb99ff0ecd66",
+  "real_docker_tests_enabled": true,
+  "privileged_client_cleanup_test_enabled": true,
+  "live_api_tests": "Separate bounded js-yaml experiment; test-suite model protocols are mocked."
+}
