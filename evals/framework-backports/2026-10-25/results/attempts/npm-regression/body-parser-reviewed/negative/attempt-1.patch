@@ -1,0 +1,7 @@
+--- a/lib/read.js
++++ b/lib/read.js
+@@ -203,3 +203,4 @@
+     req.resume()
+   }
+ }
++// Intentionally ineffective evaluation patch.

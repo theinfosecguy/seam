@@ -1,0 +1,12 @@
+{
+  "source": "https://api-docs.deepseek.com/quick_start/pricing/",
+  "checked_utc_date": "2026-10-24",
+  "requested_model": "deepseek-flash",
+  "documented_model_version": "DeepSeek-V4.1-Flash-1017",
+  "context_tokens": 1000000,
+  "explicit_input_usd_per_million": 0.3,
+  "explicit_output_usd_per_million": 1.2,
+  "per_run_budget_usd": 1,
+  "per_run_max_model_calls": 32,
+  "interpretation": "Conservative peak cache-miss estimates; provider billing is authoritative."
+}

@@ -1,0 +1,29 @@
+{
+  "source_report_sha256": "38b4d8c105da8fd1ccdf54bf3f82e20f3c5625f9cca2db6f75ec9ec1b5748f10",
+  "phase": "target_baseline",
+  "selected_suite_total": 124,
+  "passed_count": 108,
+  "failed_count": 16,
+  "shared_exception": "KeyError: 'test_datetime_parse'",
+  "shared_dependency_assumption": "pydantic/typing.py resolve_annotations looks up sys.modules[module_name]",
+  "failed_tests": [
+    "test_model_type_errors[dt-value0-invalid type; expected datetime, string, bytes, int or float]",
+    "test_model_type_errors[dt-value1-invalid type; expected datetime, string, bytes, int or float]",
+    "test_model_type_errors[dt-object-invalid type; expected datetime, string, bytes, int or float]",
+    "test_model_type_errors[d-value3-invalid type; expected date, string, bytes, int or float]",
+    "test_model_type_errors[d-value4-invalid type; expected date, string, bytes, int or float]",
+    "test_model_type_errors[d-object-invalid type; expected date, string, bytes, int or float]",
+    "test_model_type_errors[t-value6-invalid type; expected time, string, bytes, int or float]",
+    "test_model_type_errors[t-value7-invalid type; expected time, string, bytes, int or float]",
+    "test_model_type_errors[t-object-invalid type; expected time, string, bytes, int or float]",
+    "test_model_type_errors[td-value9-invalid type; expected timedelta, string, bytes, int or float]",
+    "test_model_type_errors[td-value10-invalid type; expected timedelta, string, bytes, int or float]",
+    "test_model_type_errors[td-object-invalid type; expected timedelta, string, bytes, int or float]",
+    "test_unicode_decode_error[dt0]",
+    "test_unicode_decode_error[d]",
+    "test_unicode_decode_error[t]",
+    "test_unicode_decode_error[dt1]"
+  ],
+  "implementation_oracle_or_suite_changed": false,
+  "classification": "pytest6.1.1 importlib loader compatibility; explicit existing import_mode setting is available, not a new Seam code defect"
+}

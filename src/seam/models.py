@@ -108,6 +108,10 @@ class RunnerConfig(Record):
     plugins: tuple[str, ...] = ()
     import_mode: Literal["importlib", "prepend", "append"] = "importlib"
     suite_markers: str | None = None
+    mocha_ui: Literal["bdd", "tdd"] = "bdd"
+    mocha_interfaces: dict[str, Literal["bdd", "tdd"]] = Field(
+        default_factory=dict, max_length=16
+    )
     mocha_grep: str | None = Field(default=None, min_length=1, max_length=1024)
     reviewed_fixtures: dict[str, tuple[str, ...]] = Field(default_factory=dict)
     reviewed_submodules: dict[str, tuple[str, ...]] = Field(default_factory=dict)
@@ -130,6 +134,8 @@ class RunnerConfig(Record):
             raise ValueError("node_dependencies requires a JavaScript runner")
         if self.mocha_grep is not None and self.kind != "mocha":
             raise ValueError("mocha_grep requires the Mocha runner")
+        if self.kind != "mocha" and (self.mocha_ui != "bdd" or self.mocha_interfaces):
+            raise ValueError("Mocha interface settings require the Mocha runner")
         return self
 
     @field_validator("mocha_grep")
@@ -140,6 +146,18 @@ class RunnerConfig(Record):
         ):
             raise ValueError("mocha_grep cannot contain newlines or NUL")
         return pattern
+
+    @field_validator("mocha_interfaces")
+    @classmethod
+    def valid_mocha_interfaces(
+        cls, interfaces: dict[str, Literal["bdd", "tdd"]]
+    ) -> dict[str, Literal["bdd", "tdd"]]:
+        if any(
+            re.fullmatch(r"[0-9a-f]{40}|[0-9a-f]{64}", revision) is None
+            for revision in interfaces
+        ):
+            raise ValueError("mocha_interfaces requires exact commit IDs")
+        return interfaces
 
     @field_validator("node_dependencies")
     @classmethod

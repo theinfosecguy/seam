@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "seam"
-version = "0.5.0.dev1"
+version = "0.5.0.dev2"
 description = "Security backports with independent test evidence."
 readme = "README.md"
 requires-python = ">=3.12"
@@ -40,6 +40,7 @@ src = ["src"]
 extend-exclude = [
     "evals/recent-backports/2026-10-24",
     "evals/expanded-backports/2026-10-24",
+    "evals/framework-backports/2026-10-25",
 ]
 
 [tool.ruff.lint]

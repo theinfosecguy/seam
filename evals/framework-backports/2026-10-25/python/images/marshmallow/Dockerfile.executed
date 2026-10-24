@@ -1,0 +1,4 @@
+FROM sha256:5c994eb5c630681a2141849869f60e16d5b69f55617067b910702c1795b9b0d2
+COPY wheels /opt/frozen-wheels
+COPY requirements.txt /opt/frozen-requirements.txt
+RUN python -m pip install --no-cache-dir --no-index --find-links=/opt/frozen-wheels --require-hashes --no-deps -r /opt/frozen-requirements.txt

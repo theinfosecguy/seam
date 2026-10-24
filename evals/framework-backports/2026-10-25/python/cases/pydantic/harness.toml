@@ -1,0 +1,12 @@
+[oracle]
+path = "oracle.py"
+security_test = "test_security"
+controls = ["test_ordinary_date", "test_ordinary_millisecond_timestamp"]
+failure_marker = "EXTREME_DATE_PARSING_COMPLETES"
+
+[runner]
+image = "sha256:bda4ee09f70ca360a2d30f96bb03d457e8bef0b25f601072f43dd24623b4c33f"
+docker = ["sudo", "-n", "docker"]
+suite = ["tests/test_datetime_parse.py"]
+plugins = []
+timeout_seconds = 120

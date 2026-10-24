@@ -1,0 +1,7 @@
+--- a/src/marshmallow/error_store.py
++++ b/src/marshmallow/error_store.py
+@@ -58,3 +58,4 @@
+     if isinstance(errors2, dict):
+         return dict(errors2, **{SCHEMA: merge_errors(errors1, errors2.get(SCHEMA))})
+     return [errors1, errors2]
++# Intentionally ineffective evaluation patch.

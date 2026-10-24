@@ -1,0 +1,13 @@
+{
+  "distinct_library_issue_pairs": 2,
+  "configuration_variants": 3,
+  "counts_note": "Pydantic importlib and prepend variants describe the same issue and may not be counted as two benchmark cases.",
+  "patch_note": "Both selected implementation-only upstream/reference diffs are byte-identical. A supplied reference-patch verification pass is not evidence of difficult AI adaptation.",
+  "recentness_note": "Marshmallow advisory published2025-12-22 and Pydantic advisory2021-05-11; neither is in the preceding six months as of2026-10-25.",
+  "marshmallow_scope": "Only the ordinary collection-merging performance component is evaluated, not the complete security-release patch series or whole CVE.",
+  "marshmallow_followup_commits_excluded": {
+    "source": "36f87877d0e889e682386a0121eabe030cde57b1",
+    "target": "489a8d421dc7955bb53b89e962d69465fbc5b6af"
+  },
+  "frozen_oracle_policy": "No threshold, test size, controls, oracle or selected suite was changed after results. The separately reviewed Pydantic config adds only import_mode=prepend; the failed original configurations remain included."
+}

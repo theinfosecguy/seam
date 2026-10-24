@@ -1,0 +1,13 @@
+{
+  "target_commit": "37caaad57dc37d350d9a4577a5da53f482bb2983",
+  "implementation_path": "lib/js-yaml/loader.js",
+  "method": "Apply each frozen patch independently to the same target file using Git, then compare complete output bytes. No target code executed.",
+  "resulting_implementation_sha256": {
+    "maintainer": "884515365389de0b95276209a8ab6d973f98093ffcafc8d7af8b3f7b1288b59d",
+    "model": "884515365389de0b95276209a8ab6d973f98093ffcafc8d7af8b3f7b1288b59d"
+  },
+  "identical_implementation_after_application": true,
+  "reference_patch_sha256": "d6466d721051084b6cb3b95bc52862fb43a6a31f67208afe48baae2560406b95",
+  "model_patch_sha256": "d6466d721051084b6cb3b95bc52862fb43a6a31f67208afe48baae2560406b95",
+  "scope": "Same tested implementation bytes; no claim of whole-library safety or older-runtime coverage."
+}

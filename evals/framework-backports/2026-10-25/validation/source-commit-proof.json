@@ -1,0 +1,8 @@
+{
+  "tested_runtime_source_commit": "bb6e493fd7be419bc0d21d9588bdcdcbea0a5036",
+  "original_freeze_sha256": "730a937c5c545dec3f63cda2339b2064d59ea63134da5b5673f73d4c1fc01d6c",
+  "all_frozen_source_and_test_files_match_commit": true,
+  "source_files": 74,
+  "test_files": 35,
+  "wheel_sha256": "a91acc4337b3eaca0942ef66773a555e3b2e18adfbfe57dbe74afb99ff0ecd66"
+}

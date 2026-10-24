@@ -1,0 +1,47 @@
+{
+  "maintainer_configuration": [
+    {
+      "role": "upstream_parent_commit",
+      "path": "proofs/pydantic-configurations/upstream_parent_commit/setup.cfg",
+      "sha256": "cd2947287611a120ffe60ced2e5751d43c83f851a6b3ca9d3bfe548e2768719d",
+      "import_mode_override_present": false,
+      "addopts": "-p no:hypothesispytest"
+    },
+    {
+      "role": "upstream_fix_commit",
+      "path": "proofs/pydantic-configurations/upstream_fix_commit/setup.cfg",
+      "sha256": "cd2947287611a120ffe60ced2e5751d43c83f851a6b3ca9d3bfe548e2768719d",
+      "import_mode_override_present": false,
+      "addopts": "-p no:hypothesispytest"
+    },
+    {
+      "role": "target_baseline_commit",
+      "path": "proofs/pydantic-configurations/target_baseline_commit/setup.cfg",
+      "sha256": "9debaa80c7b8a4517d6085c40eb92a35a4bb550039cc156a95a1d10ab4c69b2a",
+      "import_mode_override_present": false,
+      "addopts": ""
+    },
+    {
+      "role": "backport_commit",
+      "path": "proofs/pydantic-configurations/backport_commit/setup.cfg",
+      "sha256": "9debaa80c7b8a4517d6085c40eb92a35a4bb550039cc156a95a1d10ab4c69b2a",
+      "import_mode_override_present": false,
+      "addopts": ""
+    }
+  ],
+  "pytest_framework_default": {
+    "version": "6.1.1",
+    "url": "https://raw.githubusercontent.com/pytest-dev/pytest/6.1.1/src/_pytest/main.py",
+    "sha256": "72a2cc30f717b3756ea56607242872b96a6966a2d8bf4d36085b4bf85cc633c0",
+    "relevant_lines": [
+      "        \"--import-mode\",",
+      "        default=\"prepend\",",
+      "        choices=[\"prepend\", \"append\", \"importlib\"],",
+      "        dest=\"importmode\",",
+      "        help=\"prepend/append to sys.path when importing test modules and conftest files, \"",
+      "        \"default is to prepend.\",",
+      "    )"
+    ]
+  },
+  "conclusion": "All four original maintainer setup.cfg files omit an import-mode override. Source-line addopts only disables the hypothesis plugin. The pinned pytest6.1.1 default is prepend; Seam uses importlib unless explicitly configured."
+}

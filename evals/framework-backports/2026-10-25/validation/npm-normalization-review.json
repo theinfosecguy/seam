@@ -1,0 +1,116 @@
+{
+  "status": "passed",
+  "scope": "Read-only comparison of31 normalized records with original reports/configurations/command records; full matrix review for six npm cases. No target execution repeated.",
+  "report_mappings_checked": 31,
+  "statuses": {
+    "failed": 9,
+    "verified": 19,
+    "inconclusive": 3
+  },
+  "counts_are_reports_not_unique_libraries": true,
+  "qualified_npm_cases": {
+    "installed-trial-01/js-yaml": {
+      "reference": "verified",
+      "repeat": "verified",
+      "negative": "failed",
+      "suite_cases": [
+        92,
+        92,
+        95,
+        95
+      ],
+      "identities_stable": true
+    },
+    "body-parser-reviewed": {
+      "reference": "verified",
+      "repeat": "verified",
+      "negative": "failed",
+      "suite_cases": [
+        3,
+        3,
+        3,
+        3
+      ],
+      "identities_stable": true
+    },
+    "debug": {
+      "reference": "verified",
+      "repeat": "verified",
+      "negative": "failed",
+      "suite_cases": [
+        4,
+        4,
+        4,
+        4
+      ],
+      "identities_stable": true
+    },
+    "ip": {
+      "reference": "verified",
+      "repeat": "verified",
+      "negative": "failed",
+      "suite_cases": [
+        65,
+        85,
+        65,
+        65
+      ],
+      "identities_stable": true
+    },
+    "serve-static-reviewed": {
+      "reference": "verified",
+      "repeat": "verified",
+      "negative": "failed",
+      "suite_cases": [
+        90,
+        90,
+        90,
+        90
+      ],
+      "identities_stable": true
+    },
+    "undici-private-cache": {
+      "reference": "verified",
+      "repeat": "verified",
+      "negative": "failed",
+      "suite_cases": [
+        25,
+        27,
+        25,
+        25
+      ],
+      "identities_stable": true
+    }
+  },
+  "raw_hashes_configurations_outcomes_marker_flags_and_attempt_artifacts_match": true,
+  "qualification_frozen_inputs_unchanged": true,
+  "model": {
+    "status": "verified",
+    "fresh_runs": 1,
+    "patch_attempts": 2,
+    "initial_unapplied_patch_retained": true,
+    "calls": 15,
+    "input_tokens": 107488,
+    "output_tokens": 21080,
+    "estimated_cost_usd": "0.0575424",
+    "declared_input_usd_per_million": "0.3",
+    "declared_output_usd_per_million": "1.2",
+    "reference_patch_or_oracle_source_explicitly_supplied": false,
+    "canonical_patch_equals_maintainer": true,
+    "patch_sha256": "d6466d721051084b6cb3b95bc52862fb43a6a31f67208afe48baae2560406b95",
+    "four_phase_revisions_outcomes_and_test_identities_match_reference": true,
+    "frozen_inputs_and_caller_match_qualification": true
+  },
+  "installed_tests": {
+    "passed": 1307,
+    "failed": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "public_files_scanned_for_actual_credential_and_prohibited_attribution": 191,
+  "limits": [
+    "One model experiment is not an ecosystem success-rate estimate.",
+    "No stored provider conversation was audited; no-leak conclusion covers explicit inputs and reviewed workspace/tool boundaries, and actual credential absence in public files.",
+    "Cost is the local estimate at declared operator rates, not a reconciled provider invoice."
+  ]
+}

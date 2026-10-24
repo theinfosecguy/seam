@@ -1,0 +1,4 @@
+{
+  "original_sha256": "bb6e0b4608924c7702c5af695ddf56a2f2d67b0d4f8be5502add26c11f84c6ad",
+  "feedback": "Git apply failed (exit status 1): error: patch failed: lib/js-yaml/loader.js:337\nerror: lib/js-yaml/loader.js: patch does not apply\n\n"
+}

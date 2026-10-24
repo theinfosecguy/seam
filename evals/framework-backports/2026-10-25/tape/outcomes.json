@@ -1,0 +1,1344 @@
+{
+  "schema_version": 1,
+  "decision": "Tape remains unsupported; no Seam verdict or security qualification is claimed.",
+  "image": "sha256:823485b739c108393310be04e79f787db2e4476fa679ae4204080ae29e38d566",
+  "base_image": "node@sha256:06d7adf3e0ef61a13f1d28682726366f97a15aa1888c934d3ecec86c33918b53",
+  "node_version": "24.22.1",
+  "real_suite_prerequisites": {
+    "qs": {
+      "upstream_parent": {
+        "exit_code": 0,
+        "signal": null,
+        "scope_count": 81,
+        "assertion_count": 215,
+        "closed_scope_count": 81,
+        "stream_end_count": 1,
+        "skipped_or_todo_events": 0,
+        "failed_assertions": 0,
+        "plan_mismatch_events": 0,
+        "malformed_output_lines": 0,
+        "duplicate_scope_identities": [],
+        "identities_sha256": "55c4182a094995b666236e36f15c8b9f97ee43a7df0ed1b6c4dea8225631ab26",
+        "assertion_results_sha256": "d52b89d3026aff072a475965b068aa135c6641de96a92ddad948109ea0382022",
+        "raw_stdout_sha256": "7cb759528c58d2e8621c148f428106f4e955a1e22d5b6d641aba95fd3d2a2b27",
+        "raw_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "raw_stdout_bytes": 36733,
+        "raw_stderr_bytes": 0,
+        "test_file": "test/parse.js",
+        "source_snapshot_sha256": "cb2f6658b23a030fb55386ef71438ffbcbc633c444cf08bc476d12d0e1ac8cc5",
+        "commit": "ad63d36ce18cd2c315899ac1e8193de22be08cd8",
+        "source_repository": "https://github.com/ljharb/qs.git"
+      },
+      "upstream_fix": {
+        "exit_code": 0,
+        "signal": null,
+        "scope_count": 82,
+        "assertion_count": 223,
+        "closed_scope_count": 82,
+        "stream_end_count": 1,
+        "skipped_or_todo_events": 0,
+        "failed_assertions": 0,
+        "plan_mismatch_events": 0,
+        "malformed_output_lines": 0,
+        "duplicate_scope_identities": [],
+        "identities_sha256": "ed9c6905eafaff1dc062735ab790519ef8dbfadd301ff25d2287189fc507c060",
+        "assertion_results_sha256": "5a19428b01478f13a180ecddccf5a620db56fabf6cd6c05a345bb2d1f115a860",
+        "raw_stdout_sha256": "f85cdb87be17c4e669c7c092180bd7d1a0a3060e3f2fcd2dd19332289923d79b",
+        "raw_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "raw_stdout_bytes": 37774,
+        "raw_stderr_bytes": 0,
+        "test_file": "test/parse.js",
+        "source_snapshot_sha256": "84c76c6571df26cc617092e805c9bcb7e4862f674edfdb06cd89de9e16d835fb",
+        "commit": "8b4cc14cda94a5c89341b77e5fe435ec6c41be2d",
+        "source_repository": "https://github.com/ljharb/qs.git"
+      },
+      "target_baseline": {
+        "exit_code": 0,
+        "signal": null,
+        "scope_count": 80,
+        "assertion_count": 211,
+        "closed_scope_count": 80,
+        "stream_end_count": 1,
+        "skipped_or_todo_events": 0,
+        "failed_assertions": 0,
+        "plan_mismatch_events": 0,
+        "malformed_output_lines": 0,
+        "duplicate_scope_identities": [],
+        "identities_sha256": "e5fe2b6d09757f7eaa1b6c594e76e1d279ff5a50679f41c1fd1de1eba9e3e6ee",
+        "assertion_results_sha256": "bace503477e48f20e84dd549695ee1eb5c8778bbbe30f0f6e534452d94ed3f43",
+        "raw_stdout_sha256": "945bba602270d5250059fc18e555e8f0b28ed659db387ee8f0093d2d33f7f967",
+        "raw_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "raw_stdout_bytes": 36145,
+        "raw_stderr_bytes": 0,
+        "test_file": "test/parse.js",
+        "source_snapshot_sha256": "d634ef436a22d8ee667b9b1bb4a5ff3af7488dbb24af5ea581fc64e5ddd1e236",
+        "commit": "02ca358155297dc68fcc4c2ac312c26e10524e47",
+        "source_repository": "https://github.com/ljharb/qs.git",
+        "repeat": {
+          "exit_code": 0,
+          "signal": null,
+          "scope_count": 80,
+          "assertion_count": 211,
+          "closed_scope_count": 80,
+          "stream_end_count": 1,
+          "skipped_or_todo_events": 0,
+          "failed_assertions": 0,
+          "plan_mismatch_events": 0,
+          "malformed_output_lines": 0,
+          "duplicate_scope_identities": [],
+          "identities_sha256": "e5fe2b6d09757f7eaa1b6c594e76e1d279ff5a50679f41c1fd1de1eba9e3e6ee",
+          "assertion_results_sha256": "bace503477e48f20e84dd549695ee1eb5c8778bbbe30f0f6e534452d94ed3f43",
+          "raw_stdout_sha256": "945bba602270d5250059fc18e555e8f0b28ed659db387ee8f0093d2d33f7f967",
+          "raw_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "raw_stdout_bytes": 36145,
+          "raw_stderr_bytes": 0
+        },
+        "repeat_identities_match": true,
+        "repeat_assertion_results_match": true
+      },
+      "maintainer_backport": {
+        "exit_code": 0,
+        "signal": null,
+        "scope_count": 81,
+        "assertion_count": 219,
+        "closed_scope_count": 81,
+        "stream_end_count": 1,
+        "skipped_or_todo_events": 0,
+        "failed_assertions": 0,
+        "plan_mismatch_events": 0,
+        "malformed_output_lines": 0,
+        "duplicate_scope_identities": [],
+        "identities_sha256": "baa27d589dde1b579e8eb787d7cdbc2f7a758001a0f9b75bdf9c7be56c980216",
+        "assertion_results_sha256": "611bb2525d35e187a14d08f833fe1dd3ba1b75edd987cb54b89bda9a8d838b4d",
+        "raw_stdout_sha256": "3f60e65cca216e8dd4e6f18bfdd24e6758261d422f69859517a2d8c2f5f83b61",
+        "raw_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "raw_stdout_bytes": 37186,
+        "raw_stderr_bytes": 0,
+        "test_file": "test/parse.js",
+        "source_snapshot_sha256": "7a56f797d6f3e96348ff466cb1a043997cba8e4c3f77cf6cd411c63435df7b85",
+        "commit": "e799ba57e573a30c14b67c1889c7c04d508b9105",
+        "source_repository": "https://github.com/ljharb/qs.git"
+      }
+    },
+    "fast-uri": {
+      "upstream_parent": {
+        "exit_code": 0,
+        "signal": null,
+        "scope_count": 7,
+        "assertion_count": 56,
+        "closed_scope_count": 7,
+        "stream_end_count": 1,
+        "skipped_or_todo_events": 0,
+        "failed_assertions": 0,
+        "plan_mismatch_events": 0,
+        "malformed_output_lines": 0,
+        "duplicate_scope_identities": [],
+        "identities_sha256": "08463b7cbd076088c9b9085886cda5959ba1a9fce34cc3af00d03aeea4fc1e58",
+        "assertion_results_sha256": "e8950ca7209675a3ad46a223af65359501056910ff257b23de62a06eabf44917",
+        "raw_stdout_sha256": "47263ab33e3f92817f61028ec966f9fc4a9ab048cb2a0cb5f330bf1963735fd8",
+        "raw_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "raw_stdout_bytes": 7095,
+        "raw_stderr_bytes": 0,
+        "test_file": "test/scheme-validation.test.js",
+        "source_snapshot_sha256": "9e68333d99b2850cdf20fd8f1c97f069976f90c2df82ee493cd6eb2713e8ea82",
+        "commit": "0f89a8ab641f251613e2c9a64285cb2a44f1c378",
+        "source_repository": "https://github.com/fastify/fast-uri.git"
+      },
+      "upstream_fix": {
+        "exit_code": 0,
+        "signal": null,
+        "scope_count": 8,
+        "assertion_count": 105,
+        "closed_scope_count": 8,
+        "stream_end_count": 1,
+        "skipped_or_todo_events": 0,
+        "failed_assertions": 0,
+        "plan_mismatch_events": 0,
+        "malformed_output_lines": 0,
+        "duplicate_scope_identities": [],
+        "identities_sha256": "1893e4d939b1f3bda0ad944ef2a1590e4612973e27a97b8c51a7ff65fab3cd50",
+        "assertion_results_sha256": "f5d1e922110a35afc65c69d8ba5f754386eae6b073b34619aa199baa7423925a",
+        "raw_stdout_sha256": "938f4f7f0ec21d3e24567f1615d1a2be087cbc312d0350bb8c9e360ba3df8dc3",
+        "raw_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "raw_stdout_bytes": 13393,
+        "raw_stderr_bytes": 0,
+        "test_file": "test/scheme-validation.test.js",
+        "source_snapshot_sha256": "4ae557df4df4ae88978a73f5e16a12f9bb55dc6664da8d8deb0380b570e512e8",
+        "commit": "39933a1f1422986f14e2d844f552238feb40f5d4",
+        "source_repository": "https://github.com/fastify/fast-uri.git"
+      },
+      "target_baseline": {
+        "exit_code": 0,
+        "signal": null,
+        "scope_count": 7,
+        "assertion_count": 56,
+        "closed_scope_count": 7,
+        "stream_end_count": 1,
+        "skipped_or_todo_events": 0,
+        "failed_assertions": 0,
+        "plan_mismatch_events": 0,
+        "malformed_output_lines": 0,
+        "duplicate_scope_identities": [],
+        "identities_sha256": "08463b7cbd076088c9b9085886cda5959ba1a9fce34cc3af00d03aeea4fc1e58",
+        "assertion_results_sha256": "20e54f9185fcd5677bbfa94a823bb7faf1c4a5798154ea71955a4df858f39a7e",
+        "raw_stdout_sha256": "3c957013fceb344f709e407248033b76747c683c31d65925ca4b6123b1d9b4d3",
+        "raw_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "raw_stdout_bytes": 7087,
+        "raw_stderr_bytes": 0,
+        "test_file": "test/scheme-validation.test.js",
+        "source_snapshot_sha256": "9fa7bf70bdc8780ae6d44f1f67011de35fb50593f10fc2699a742b519e4f8cf4",
+        "commit": "8e8e5c637fa732805ab0ea66f49e22559698837d",
+        "source_repository": "https://github.com/fastify/fast-uri.git",
+        "repeat": {
+          "exit_code": 0,
+          "signal": null,
+          "scope_count": 7,
+          "assertion_count": 56,
+          "closed_scope_count": 7,
+          "stream_end_count": 1,
+          "skipped_or_todo_events": 0,
+          "failed_assertions": 0,
+          "plan_mismatch_events": 0,
+          "malformed_output_lines": 0,
+          "duplicate_scope_identities": [],
+          "identities_sha256": "08463b7cbd076088c9b9085886cda5959ba1a9fce34cc3af00d03aeea4fc1e58",
+          "assertion_results_sha256": "20e54f9185fcd5677bbfa94a823bb7faf1c4a5798154ea71955a4df858f39a7e",
+          "raw_stdout_sha256": "3c957013fceb344f709e407248033b76747c683c31d65925ca4b6123b1d9b4d3",
+          "raw_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "raw_stdout_bytes": 7087,
+          "raw_stderr_bytes": 0
+        },
+        "repeat_identities_match": true,
+        "repeat_assertion_results_match": true
+      },
+      "maintainer_backport": {
+        "exit_code": 0,
+        "signal": null,
+        "scope_count": 8,
+        "assertion_count": 105,
+        "closed_scope_count": 8,
+        "stream_end_count": 1,
+        "skipped_or_todo_events": 0,
+        "failed_assertions": 0,
+        "plan_mismatch_events": 0,
+        "malformed_output_lines": 0,
+        "duplicate_scope_identities": [],
+        "identities_sha256": "1893e4d939b1f3bda0ad944ef2a1590e4612973e27a97b8c51a7ff65fab3cd50",
+        "assertion_results_sha256": "ce60c7b2d3925423fb37bc1ed536b15783db369f5598e69cc573d9f68eedaf88",
+        "raw_stdout_sha256": "d8a9e504552d85f3bc335438e34c23724eed37e295e2630e8f382bc79b0310ab",
+        "raw_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "raw_stdout_bytes": 13389,
+        "raw_stderr_bytes": 0,
+        "test_file": "test/scheme-validation.test.js",
+        "source_snapshot_sha256": "e6f18ea749202d83e96b002f3d0cd04101e20928df6235198cd05a6dd92fc760",
+        "commit": "597f254c86d151568511eeb9a1df761fd12520b3",
+        "source_repository": "https://github.com/fastify/fast-uri.git"
+      }
+    }
+  },
+  "synthetic_observations": {
+    "async-fail": {
+      "exit_code": 1,
+      "signal": null,
+      "scope_count": 1,
+      "assertion_count": 1,
+      "closed_scope_count": 1,
+      "stream_end_count": 1,
+      "skipped_or_todo_events": 0,
+      "failed_assertions": 1,
+      "plan_mismatch_events": 0,
+      "malformed_output_lines": 0,
+      "duplicate_scope_identities": [],
+      "identities_sha256": "8fc41efc1f136424a868febd1b6fc5938dbd41177f719049788b4a5760843ec3",
+      "assertion_results_sha256": "b6b6d6efdb42bdb83a05838590db5fa3f90ba0c69a571e321b0e2805374f37d9",
+      "raw_stdout_sha256": "592140079a3ab75224bca13ddaa9c5e35e572e7bfefb7162ce3a29f3071d41aa",
+      "raw_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "raw_stdout_bytes": 417,
+      "raw_stderr_bytes": 0
+    },
+    "async-throw": {
+      "exit_code": 1,
+      "signal": null,
+      "scope_count": 1,
+      "assertion_count": 0,
+      "closed_scope_count": 0,
+      "stream_end_count": 0,
+      "skipped_or_todo_events": 0,
+      "failed_assertions": 0,
+      "plan_mismatch_events": 0,
+      "malformed_output_lines": 0,
+      "duplicate_scope_identities": [],
+      "identities_sha256": "e2043a38b1005a792c738e04f9934aa4b86ad8b53ee9713aa150e487ca175f9f",
+      "assertion_results_sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+      "raw_stdout_sha256": "0aa043096299dc9f58680d12a3a31c29d2d0ee088d847936186396e302d56f69",
+      "raw_stderr_sha256": "b3b557f6eca6e3526e6333537d0f610dd99b96b4439dc9d030c3e71619254698",
+      "raw_stdout_bytes": 70,
+      "raw_stderr_bytes": 429
+    },
+    "duplicate": {
+      "exit_code": 0,
+      "signal": null,
+      "scope_count": 1,
+      "assertion_count": 2,
+      "closed_scope_count": 1,
+      "stream_end_count": 1,
+      "skipped_or_todo_events": 0,
+      "failed_assertions": 0,
+      "plan_mismatch_events": 0,
+      "malformed_output_lines": 0,
+      "duplicate_scope_identities": [],
+      "identities_sha256": "91660307384343f704f18de9b5c4d00bb1e34d9fae5be0d23c1279a383611faa",
+      "assertion_results_sha256": "1773a5d41b1aa804c8d713954e652d45bfc9cb39906fde32e160a20f709ff3fc",
+      "raw_stdout_sha256": "48be54c14a61b5b508b18aef33820c492232cafb0acc4de43cef449f1a55c556",
+      "raw_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "raw_stdout_bytes": 341,
+      "raw_stderr_bytes": 0
+    },
+    "failure": {
+      "exit_code": 1,
+      "signal": null,
+      "scope_count": 1,
+      "assertion_count": 1,
+      "closed_scope_count": 1,
+      "stream_end_count": 1,
+      "skipped_or_todo_events": 0,
+      "failed_assertions": 1,
+      "plan_mismatch_events": 0,
+      "malformed_output_lines": 0,
+      "duplicate_scope_identities": [],
+      "identities_sha256": "b77544d0d2a34e8572a60929384911fcb99fc714319deac5aee357af8b2c9c49",
+      "assertion_results_sha256": "6ef7d958b6f956abda20f7d8479df5220e858db70786107f7e0708a96aa2a5b6",
+      "raw_stdout_sha256": "76c2cb5d388349c7a670559dbedb386ce7ae321132beb70fa1fb45342199ce21",
+      "raw_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "raw_stdout_bytes": 437,
+      "raw_stderr_bytes": 0
+    },
+    "import-error": {
+      "exit_code": 1,
+      "signal": null,
+      "scope_count": 0,
+      "assertion_count": 0,
+      "closed_scope_count": 0,
+      "stream_end_count": 0,
+      "skipped_or_todo_events": 0,
+      "failed_assertions": 0,
+      "plan_mismatch_events": 0,
+      "malformed_output_lines": 0,
+      "duplicate_scope_identities": [],
+      "identities_sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+      "assertion_results_sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+      "raw_stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "raw_stderr_sha256": "b74edca28c3a9121421ff65b1a90440ea298483f32de6014e855c9dd28071b53",
+      "raw_stdout_bytes": 0,
+      "raw_stderr_bytes": 1020
+    },
+    "late-async": {
+      "exit_code": 1,
+      "signal": null,
+      "scope_count": 1,
+      "assertion_count": 1,
+      "closed_scope_count": 1,
+      "stream_end_count": 1,
+      "skipped_or_todo_events": 0,
+      "failed_assertions": 0,
+      "plan_mismatch_events": 0,
+      "malformed_output_lines": 0,
+      "duplicate_scope_identities": [],
+      "identities_sha256": "84366daa46eb2c69b8ab10773e97ff82f164cc9c6924b8334d6218f2a7ba4910",
+      "assertion_results_sha256": "a5444b097ebfe7f9aebd82166ecdacc88223f9d84965b76e05023da53300902d",
+      "raw_stdout_sha256": "17a165d165e45f40b899a77feab1b2591561bdee98e171f84ab2a82cde52bcfc",
+      "raw_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "raw_stdout_bytes": 230,
+      "raw_stderr_bytes": 0
+    },
+    "no-end": {
+      "exit_code": 1,
+      "signal": null,
+      "scope_count": 1,
+      "assertion_count": 2,
+      "closed_scope_count": 0,
+      "stream_end_count": 0,
+      "skipped_or_todo_events": 0,
+      "failed_assertions": 1,
+      "plan_mismatch_events": 0,
+      "malformed_output_lines": 0,
+      "duplicate_scope_identities": [],
+      "identities_sha256": "2d816513f691c9faee93dcf5637320be26b6cd8db476afa99c69f00312f73deb",
+      "assertion_results_sha256": "1d9598681f7c2ab90d16a4dbc9f96ecde377b9bc29542bfc4bbe48c7a9a46e6a",
+      "raw_stdout_sha256": "aedfa283c83b32adc99875166a3f9e11f63f2e4dacf27e7ab107cba308ce7ac5",
+      "raw_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "raw_stdout_bytes": 522,
+      "raw_stderr_bytes": 0
+    },
+    "no-tests": {
+      "exit_code": 0,
+      "signal": null,
+      "scope_count": 0,
+      "assertion_count": 0,
+      "closed_scope_count": 0,
+      "stream_end_count": 1,
+      "skipped_or_todo_events": 0,
+      "failed_assertions": 0,
+      "plan_mismatch_events": 0,
+      "malformed_output_lines": 0,
+      "duplicate_scope_identities": [],
+      "identities_sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+      "assertion_results_sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+      "raw_stdout_sha256": "999915ddfa85976862c0850f6329ae356baad4749cd4f8872d00446520824c38",
+      "raw_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "raw_stdout_bytes": 22,
+      "raw_stderr_bytes": 0
+    },
+    "normal": {
+      "exit_code": 0,
+      "signal": null,
+      "scope_count": 3,
+      "assertion_count": 3,
+      "closed_scope_count": 3,
+      "stream_end_count": 1,
+      "skipped_or_todo_events": 0,
+      "failed_assertions": 0,
+      "plan_mismatch_events": 0,
+      "malformed_output_lines": 0,
+      "duplicate_scope_identities": [],
+      "identities_sha256": "b9aead4386553128fba3c82ec14ae1a254bd852a121a920d54cb9f59940d2762",
+      "assertion_results_sha256": "b06a4a674bef9dfb932f905afdcbf8a2d9e57630c5d2c71a2d4611ad053612ca",
+      "raw_stdout_sha256": "ea87d035119827a7e32bbd35890ec400503a93ef0ac78d4bd984e007e656ede7",
+      "raw_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "raw_stdout_bytes": 748,
+      "raw_stderr_bytes": 0
+    },
+    "only": {
+      "exit_code": 1,
+      "signal": null,
+      "scope_count": 0,
+      "assertion_count": 0,
+      "closed_scope_count": 0,
+      "stream_end_count": 0,
+      "skipped_or_todo_events": 0,
+      "failed_assertions": 0,
+      "plan_mismatch_events": 0,
+      "malformed_output_lines": 0,
+      "duplicate_scope_identities": [],
+      "identities_sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+      "assertion_results_sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+      "raw_stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "raw_stderr_sha256": "dae1229b9e65bf4b89536cfdac50c685226dbc35dd9c606d6f7fee5369ed1b99",
+      "raw_stdout_bytes": 0,
+      "raw_stderr_bytes": 834
+    },
+    "plan-short": {
+      "exit_code": 1,
+      "signal": null,
+      "scope_count": 1,
+      "assertion_count": 2,
+      "closed_scope_count": 1,
+      "stream_end_count": 1,
+      "skipped_or_todo_events": 0,
+      "failed_assertions": 1,
+      "plan_mismatch_events": 1,
+      "malformed_output_lines": 0,
+      "duplicate_scope_identities": [],
+      "identities_sha256": "eaf423ab9ebb7564240ddd386d60b82f951e25df04494a04ee2ad72b4605a8b8",
+      "assertion_results_sha256": "10064d8b08af04172b38fa6dae2397213aa872616a46c013680e236849724775",
+      "raw_stdout_sha256": "054a6d7ffcb07d40289495c59c78d4ce4b0d060fe5cbc9650ac5c1e270a90e21",
+      "raw_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "raw_stdout_bytes": 545,
+      "raw_stderr_bytes": 0
+    },
+    "premature-exit": {
+      "exit_code": 1,
+      "signal": null,
+      "scope_count": 1,
+      "assertion_count": 2,
+      "closed_scope_count": 1,
+      "stream_end_count": 0,
+      "skipped_or_todo_events": 0,
+      "failed_assertions": 1,
+      "plan_mismatch_events": 1,
+      "malformed_output_lines": 0,
+      "duplicate_scope_identities": [],
+      "identities_sha256": "9d5e116ecba56919e59b816e2038808a6ee4aa970bee01a5548bb22b685adbac",
+      "assertion_results_sha256": "5a02ca63c0bc64ce3e03e4c0e26616f144ce5afb8121a749748178c1e36d5fd6",
+      "raw_stdout_sha256": "423bf30ee2fefd86517718ff1527095da97a723f003f86db0beeeb1fd5fec1b9",
+      "raw_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "raw_stdout_bytes": 537,
+      "raw_stderr_bytes": 0
+    },
+    "skip": {
+      "exit_code": 0,
+      "signal": null,
+      "scope_count": 1,
+      "assertion_count": 2,
+      "closed_scope_count": 1,
+      "stream_end_count": 1,
+      "skipped_or_todo_events": 1,
+      "failed_assertions": 0,
+      "plan_mismatch_events": 0,
+      "malformed_output_lines": 0,
+      "duplicate_scope_identities": [],
+      "identities_sha256": "a7af447f20a2bfc5a2e7ba4d7e6231b88eba1c70e896790be6ce3427de45671d",
+      "assertion_results_sha256": "0fad499006c238ce5c4779304aa5255293ef503573731bc0af97d0d9d15966d9",
+      "raw_stdout_sha256": "a8fabc9296886d799a074c1b406f9c85de478bbba0ef53c04d7589690042ada8",
+      "raw_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "raw_stdout_bytes": 357,
+      "raw_stderr_bytes": 0
+    },
+    "todo": {
+      "exit_code": 0,
+      "signal": null,
+      "scope_count": 1,
+      "assertion_count": 1,
+      "closed_scope_count": 1,
+      "stream_end_count": 1,
+      "skipped_or_todo_events": 2,
+      "failed_assertions": 0,
+      "plan_mismatch_events": 0,
+      "malformed_output_lines": 0,
+      "duplicate_scope_identities": [],
+      "identities_sha256": "fb135c3140cc102f8438021d7e8a5673cd4b472a253b35b08facab9e7626a0eb",
+      "assertion_results_sha256": "e6a68bd828868ba5bba79944923c7aa222236c412cf7d57259580ab5c74882d5",
+      "raw_stdout_sha256": "ffa522834bd882f3e27ad11348644e4746cce2798e35e9e3ff3a3dbfc5990739",
+      "raw_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "raw_stdout_bytes": 378,
+      "raw_stderr_bytes": 0
+    },
+    "opts-skip": {
+      "exit_code": 0,
+      "signal": null,
+      "scope_count": 2,
+      "assertion_count": 1,
+      "closed_scope_count": 2,
+      "stream_end_count": 1,
+      "skipped_or_todo_events": 1,
+      "failed_assertions": 0,
+      "plan_mismatch_events": 0,
+      "malformed_output_lines": 0,
+      "duplicate_scope_identities": [],
+      "identities_sha256": "1c152f2d08d2838f206d5a1a1d35c2f31186a5844ddff0b8880bc769b9b0bc0f",
+      "assertion_results_sha256": "fe18ffc833f55b584a4675f53934b511fec204e54574239bb0a839b6610d4183",
+      "raw_stdout_sha256": "5055f4578a59fd4c98d1db2a9f09bd393f26e155e9cd18c90249e8d93be4e41d",
+      "raw_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "raw_stdout_bytes": 318,
+      "raw_stderr_bytes": 0
+    },
+    "empty-scope": {
+      "exit_code": 0,
+      "signal": null,
+      "scope_count": 1,
+      "assertion_count": 0,
+      "closed_scope_count": 1,
+      "stream_end_count": 1,
+      "skipped_or_todo_events": 0,
+      "failed_assertions": 0,
+      "plan_mismatch_events": 0,
+      "malformed_output_lines": 0,
+      "duplicate_scope_identities": [],
+      "identities_sha256": "5edc7358d52f9ab58d42e544f788a907fe173b99da3c4f4831a4b976a41c9908",
+      "assertion_results_sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+      "raw_stdout_sha256": "3c8dd95050e2156bf4263e8f03988b829eb5a84951c5156c342f1a38046e5efd",
+      "raw_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "raw_stdout_bytes": 116,
+      "raw_stderr_bytes": 0
+    },
+    "nested-skip": {
+      "exit_code": 0,
+      "signal": null,
+      "scope_count": 3,
+      "assertion_count": 1,
+      "closed_scope_count": 3,
+      "stream_end_count": 1,
+      "skipped_or_todo_events": 1,
+      "failed_assertions": 0,
+      "plan_mismatch_events": 0,
+      "malformed_output_lines": 0,
+      "duplicate_scope_identities": [],
+      "identities_sha256": "97346359309ed3c32438b346efa011cc6f6f7fd6f5573d39d63da40ba53b4803",
+      "assertion_results_sha256": "cebda5e1b47b9ef2bbdb4ef235d2b3fd216e71f1968c1446149cf524f5fbafc3",
+      "raw_stdout_sha256": "06a5c61a346d595846e11207cd1caf066bdec0ec6f20b818dd16d1a1cc973093",
+      "raw_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "raw_stdout_bytes": 435,
+      "raw_stderr_bytes": 0
+    },
+    "nested-static-skip": {
+      "exit_code": 0,
+      "signal": null,
+      "scope_count": 1,
+      "assertion_count": 1,
+      "closed_scope_count": 1,
+      "stream_end_count": 1,
+      "skipped_or_todo_events": 0,
+      "failed_assertions": 0,
+      "plan_mismatch_events": 0,
+      "malformed_output_lines": 0,
+      "duplicate_scope_identities": [],
+      "identities_sha256": "23898070b23e93b4128b51d1a46ae8608ae2ae0952da6e92c21104c00b1e4d61",
+      "assertion_results_sha256": "1d520c425483365131088c6fcc89be091c7c7059085b6c51200664bb2cc45965",
+      "raw_stdout_sha256": "81654fa18fa5c2e60cd321f66e1316f22c248de15073369ea476d02bb2a5066c",
+      "raw_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "raw_stdout_bytes": 222,
+      "raw_stderr_bytes": 0
+    },
+    "custom-harness": {
+      "exit_code": 0,
+      "signal": null,
+      "scope_count": 1,
+      "assertion_count": 1,
+      "closed_scope_count": 1,
+      "stream_end_count": 1,
+      "skipped_or_todo_events": 0,
+      "failed_assertions": 0,
+      "plan_mismatch_events": 0,
+      "malformed_output_lines": 0,
+      "duplicate_scope_identities": [],
+      "identities_sha256": "d0c19177168ff029c579b39881a0435b65bf72c61a8d81ced49e6582db7f24ac",
+      "assertion_results_sha256": "1d520c425483365131088c6fcc89be091c7c7059085b6c51200664bb2cc45965",
+      "raw_stdout_sha256": "4624cd9a2cb9154102cd62cc02ef05699e36cf676c8399c8029949a0cb0cd7c9",
+      "raw_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "raw_stdout_bytes": 211,
+      "raw_stderr_bytes": 0
+    },
+    "secondary-tape": {
+      "exit_code": 0,
+      "signal": null,
+      "scope_count": 1,
+      "assertion_count": 1,
+      "closed_scope_count": 1,
+      "stream_end_count": 1,
+      "skipped_or_todo_events": 0,
+      "failed_assertions": 0,
+      "plan_mismatch_events": 0,
+      "malformed_output_lines": 3,
+      "duplicate_scope_identities": [],
+      "identities_sha256": "d0c19177168ff029c579b39881a0435b65bf72c61a8d81ced49e6582db7f24ac",
+      "assertion_results_sha256": "1d520c425483365131088c6fcc89be091c7c7059085b6c51200664bb2cc45965",
+      "raw_stdout_sha256": "ed29095b6a04cccb1a291c706e2446907e247967a340ce334fe9a795c5744771",
+      "raw_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "raw_stdout_bytes": 271,
+      "raw_stderr_bytes": 0
+    }
+  },
+  "reporter_observations": {
+    "bailout.tap": {
+      "tap_junit": {
+        "exit_code": 0,
+        "case_count": 1,
+        "skipped_elements": 0,
+        "failure_elements": 0,
+        "error_elements": 0,
+        "duplicate_identities": [],
+        "raw_stdout_sha256": "578945e1e420787cfd74c5a8d72808629ce91aec903c95d6f4b1a8aef2e91066",
+        "raw_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "strict_parser": {
+        "exit_code": 1,
+        "ok": false,
+        "count": 1,
+        "fail": 0,
+        "skip": 0,
+        "todo": 0,
+        "bailout": "deliberate import prerequisite failure",
+        "raw_stdout_sha256": "69032e0a260ed09fb146708196424e198f6956fedf03ded81eac55c0114cba76",
+        "raw_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "tapjs_corrected_import": {
+        "exit_code": 0,
+        "root_counts": {
+          "tests": "1",
+          "failures": "1",
+          "assertions": "0",
+          "skipped": "0"
+        },
+        "case_count": 0,
+        "skipped_elements": 0,
+        "failure_elements": 0,
+        "raw_stdout_sha256": "0ce2c85068180c8e229ad741236219c20abb6e62fc5f046fb1e2df7d97532239",
+        "raw_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    "captured-async-fail.tap": {
+      "tap_junit": {
+        "exit_code": 0,
+        "case_count": 1,
+        "skipped_elements": 0,
+        "failure_elements": 1,
+        "error_elements": 0,
+        "duplicate_identities": [],
+        "raw_stdout_sha256": "ec87aec5d0281b0e9659421e3379677424c953066c6e7beafabe0bbfbc056e7c",
+        "raw_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "strict_parser": {
+        "exit_code": 1,
+        "ok": false,
+        "count": 1,
+        "fail": 1,
+        "skip": 0,
+        "todo": 0,
+        "bailout": false,
+        "raw_stdout_sha256": "46709d45e6d9e8a514530b1cd3775463a732c6405f63befe044977b9e11f7de8",
+        "raw_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    "captured-async-throw.tap": {
+      "tap_junit": {
+        "exit_code": 0,
+        "case_count": 0,
+        "skipped_elements": 0,
+        "failure_elements": 0,
+        "error_elements": 0,
+        "duplicate_identities": [],
+        "raw_stdout_sha256": "b9876ba0c3bd849afdbb8559d2966d82704a0616dffc0157b35fcbd93d98edbf",
+        "raw_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "strict_parser": {
+        "exit_code": 0,
+        "ok": true,
+        "count": 0,
+        "fail": 0,
+        "skip": 0,
+        "todo": 0,
+        "bailout": false,
+        "raw_stdout_sha256": "e8bef7abf05ff3662a04f8998a2d3e5d538fb490d83e7c399d502e0268e3ae07",
+        "raw_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    "captured-duplicate.tap": {
+      "tap_junit": {
+        "exit_code": 0,
+        "case_count": 2,
+        "skipped_elements": 0,
+        "failure_elements": 0,
+        "error_elements": 0,
+        "duplicate_identities": [
+          [
+            "",
+            "same"
+          ]
+        ],
+        "raw_stdout_sha256": "40d4831e8c8cf15a211d88d81859ae6729304a881a500365743430af448d8543",
+        "raw_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "strict_parser": {
+        "exit_code": 0,
+        "ok": true,
+        "count": 2,
+        "fail": 0,
+        "skip": 0,
+        "todo": 0,
+        "bailout": false,
+        "raw_stdout_sha256": "4801c6edabeed338f69682753bb75609d780cb1395b54a6ccf6f3a52521d65ea",
+        "raw_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    "captured-failure.tap": {
+      "tap_junit": {
+        "exit_code": 0,
+        "case_count": 1,
+        "skipped_elements": 0,
+        "failure_elements": 1,
+        "error_elements": 0,
+        "duplicate_identities": [],
+        "raw_stdout_sha256": "cb769c097cd081e235d23f75c5ca744c747359e8176d61207e44be87fc0a31b3",
+        "raw_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "strict_parser": {
+        "exit_code": 1,
+        "ok": false,
+        "count": 1,
+        "fail": 1,
+        "skip": 0,
+        "todo": 0,
+        "bailout": false,
+        "raw_stdout_sha256": "ee98b4e05fb5e019b557a368df78e5b1e6c28c7deeb4f4d844fe9369b437ac66",
+        "raw_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    "captured-import-error.tap": {
+      "tap_junit": {
+        "exit_code": 0,
+        "case_count": 0,
+        "skipped_elements": 0,
+        "failure_elements": 0,
+        "error_elements": 0,
+        "duplicate_identities": [],
+        "raw_stdout_sha256": "b9876ba0c3bd849afdbb8559d2966d82704a0616dffc0157b35fcbd93d98edbf",
+        "raw_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "strict_parser": {
+        "exit_code": 0,
+        "ok": true,
+        "count": 0,
+        "fail": 0,
+        "skip": 0,
+        "todo": 0,
+        "bailout": false,
+        "raw_stdout_sha256": "e8bef7abf05ff3662a04f8998a2d3e5d538fb490d83e7c399d502e0268e3ae07",
+        "raw_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    "captured-late-async.tap": {
+      "tap_junit": {
+        "exit_code": 0,
+        "case_count": 2,
+        "skipped_elements": 0,
+        "failure_elements": 1,
+        "error_elements": 0,
+        "duplicate_identities": [],
+        "raw_stdout_sha256": "aa22dbd9fd02ecc63d2bef47a403d3d8adb6155493feca693fd482d5847b4eb4",
+        "raw_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "strict_parser": {
+        "exit_code": 1,
+        "ok": false,
+        "count": 2,
+        "fail": 1,
+        "skip": 0,
+        "todo": 0,
+        "bailout": false,
+        "raw_stdout_sha256": "883b3669858256ac278f5bc47e330fdb16036aa15fa905fe777bd6a8a714e53f",
+        "raw_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    "captured-no-end.tap": {
+      "tap_junit": {
+        "exit_code": 0,
+        "case_count": 2,
+        "skipped_elements": 0,
+        "failure_elements": 1,
+        "error_elements": 0,
+        "duplicate_identities": [],
+        "raw_stdout_sha256": "4fef2b05ff772c9a91d2781d53bdc5c0ab9f686eeb5aea709ddbe350a44d9d86",
+        "raw_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "strict_parser": {
+        "exit_code": 1,
+        "ok": false,
+        "count": 2,
+        "fail": 1,
+        "skip": 0,
+        "todo": 0,
+        "bailout": false,
+        "raw_stdout_sha256": "befb3e96c3e7f0d3bc4d242065f9477927ca86ec6379d3b3bb981dbf94e0b047",
+        "raw_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    "captured-no-tests.tap": {
+      "tap_junit": {
+        "exit_code": 0,
+        "case_count": 0,
+        "skipped_elements": 0,
+        "failure_elements": 0,
+        "error_elements": 0,
+        "duplicate_identities": [],
+        "raw_stdout_sha256": "b9876ba0c3bd849afdbb8559d2966d82704a0616dffc0157b35fcbd93d98edbf",
+        "raw_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "strict_parser": {
+        "exit_code": 0,
+        "ok": true,
+        "count": 0,
+        "fail": 0,
+        "skip": 0,
+        "todo": 0,
+        "bailout": false,
+        "raw_stdout_sha256": "e8bef7abf05ff3662a04f8998a2d3e5d538fb490d83e7c399d502e0268e3ae07",
+        "raw_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    "captured-normal.tap": {
+      "tap_junit": {
+        "exit_code": 0,
+        "case_count": 3,
+        "skipped_elements": 0,
+        "failure_elements": 0,
+        "error_elements": 0,
+        "duplicate_identities": [
+          [
+            "",
+            "same assertion"
+          ]
+        ],
+        "raw_stdout_sha256": "d796ba9f4a4f7b90db1db1da9eae1729b0ce02aafd767dc94a7177dd4c2beabd",
+        "raw_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "strict_parser": {
+        "exit_code": 0,
+        "ok": true,
+        "count": 3,
+        "fail": 0,
+        "skip": 0,
+        "todo": 0,
+        "bailout": false,
+        "raw_stdout_sha256": "f4eb8db7696b72e5458668ac6a9360579da4f510cbd94e70d5c32d5e85914195",
+        "raw_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "tapjs_corrected_import": {
+        "exit_code": 0,
+        "root_counts": {
+          "tests": "1",
+          "failures": "0",
+          "assertions": "0",
+          "skipped": "0"
+        },
+        "case_count": 0,
+        "skipped_elements": 0,
+        "failure_elements": 0,
+        "raw_stdout_sha256": "a3cd3e301b1ca425e92766637bc3cdc45235f7527caf50fdd3dec669e55c4c88",
+        "raw_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    "captured-only.tap": {
+      "tap_junit": {
+        "exit_code": 0,
+        "case_count": 0,
+        "skipped_elements": 0,
+        "failure_elements": 0,
+        "error_elements": 0,
+        "duplicate_identities": [],
+        "raw_stdout_sha256": "b9876ba0c3bd849afdbb8559d2966d82704a0616dffc0157b35fcbd93d98edbf",
+        "raw_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "strict_parser": {
+        "exit_code": 0,
+        "ok": true,
+        "count": 0,
+        "fail": 0,
+        "skip": 0,
+        "todo": 0,
+        "bailout": false,
+        "raw_stdout_sha256": "e8bef7abf05ff3662a04f8998a2d3e5d538fb490d83e7c399d502e0268e3ae07",
+        "raw_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    "captured-plan-short.tap": {
+      "tap_junit": {
+        "exit_code": 0,
+        "case_count": 2,
+        "skipped_elements": 0,
+        "failure_elements": 1,
+        "error_elements": 0,
+        "duplicate_identities": [],
+        "raw_stdout_sha256": "0ae74427920010898c21a0671783f402dea8bfd43b07397324bc881907413983",
+        "raw_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "strict_parser": {
+        "exit_code": 1,
+        "ok": false,
+        "count": 2,
+        "fail": 1,
+        "skip": 0,
+        "todo": 0,
+        "bailout": false,
+        "raw_stdout_sha256": "b83bea9585595f022dff861ad4802f79bad61171ec3d5a0e4d005905de920907",
+        "raw_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    "captured-premature-exit.tap": {
+      "tap_junit": {
+        "exit_code": 0,
+        "case_count": 2,
+        "skipped_elements": 0,
+        "failure_elements": 1,
+        "error_elements": 0,
+        "duplicate_identities": [],
+        "raw_stdout_sha256": "e7dbd222c9ca750a0670f2ced95cf62e42a53c5c3c39cfc38f51d4a653c8fb82",
+        "raw_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "strict_parser": {
+        "exit_code": 1,
+        "ok": false,
+        "count": 2,
+        "fail": 1,
+        "skip": 0,
+        "todo": 0,
+        "bailout": false,
+        "raw_stdout_sha256": "62d3bd5b42f6d6c02d29db5f176df8747ee6b3ee7a8c403469a82f99aa7d28b5",
+        "raw_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    "captured-skip.tap": {
+      "tap_junit": {
+        "exit_code": 0,
+        "case_count": 2,
+        "skipped_elements": 1,
+        "failure_elements": 0,
+        "error_elements": 0,
+        "duplicate_identities": [],
+        "raw_stdout_sha256": "dab45fa9f47dca9e687492437a4af630879bb523a7e3173011b443b7db059c0c",
+        "raw_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "strict_parser": {
+        "exit_code": 0,
+        "ok": true,
+        "count": 2,
+        "fail": 0,
+        "skip": 1,
+        "todo": 0,
+        "bailout": false,
+        "raw_stdout_sha256": "86f9a05087588f578f6d1380f219778592255476f44bfd283e5247f676d50ba3",
+        "raw_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    "captured-todo.tap": {
+      "tap_junit": {
+        "exit_code": 0,
+        "case_count": 1,
+        "skipped_elements": 0,
+        "failure_elements": 1,
+        "error_elements": 0,
+        "duplicate_identities": [],
+        "raw_stdout_sha256": "171f871d5117b6a3a86ddbff4cf190baea0ea48bcc28df335850a5b82c54efba",
+        "raw_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "strict_parser": {
+        "exit_code": 0,
+        "ok": true,
+        "count": 1,
+        "fail": 1,
+        "skip": 0,
+        "todo": 1,
+        "bailout": false,
+        "raw_stdout_sha256": "073469f00e9b99ce513646e3679950192e53a016f000586a84889d85288395f0",
+        "raw_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    "empty.tap": {
+      "tap_junit": {
+        "exit_code": 0,
+        "case_count": 0,
+        "skipped_elements": 0,
+        "failure_elements": 0,
+        "error_elements": 0,
+        "duplicate_identities": [],
+        "raw_stdout_sha256": "b9876ba0c3bd849afdbb8559d2966d82704a0616dffc0157b35fcbd93d98edbf",
+        "raw_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "strict_parser": {
+        "exit_code": 0,
+        "ok": true,
+        "count": 0,
+        "fail": 0,
+        "skip": 0,
+        "todo": 0,
+        "bailout": false,
+        "raw_stdout_sha256": "e8bef7abf05ff3662a04f8998a2d3e5d538fb490d83e7c399d502e0268e3ae07",
+        "raw_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "tapjs_corrected_import": {
+        "exit_code": 0,
+        "root_counts": {
+          "tests": "1",
+          "failures": "0",
+          "assertions": "0",
+          "skipped": "1"
+        },
+        "case_count": 0,
+        "skipped_elements": 0,
+        "failure_elements": 0,
+        "raw_stdout_sha256": "8cfec09a6c2b2d89fbcb08892f30fb6d9630e9114f810a46bdc98e45e8e63f34",
+        "raw_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    "failure.tap": {
+      "tap_junit": {
+        "exit_code": 0,
+        "case_count": 1,
+        "skipped_elements": 0,
+        "failure_elements": 1,
+        "error_elements": 0,
+        "duplicate_identities": [],
+        "raw_stdout_sha256": "0f8b1d9451fc8aad5f30ea05b42c70985db8f4eecae6ef7ee068ec97f9b91714",
+        "raw_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "strict_parser": {
+        "exit_code": 1,
+        "ok": false,
+        "count": 1,
+        "fail": 1,
+        "skip": 0,
+        "todo": 0,
+        "bailout": false,
+        "raw_stdout_sha256": "4bfbe013980c699bc9ce75bb0a76fec69b6d56f64187ade3abdcf0d7cdb17293",
+        "raw_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "tapjs_corrected_import": {
+        "exit_code": 0,
+        "root_counts": {
+          "tests": "1",
+          "failures": "1",
+          "assertions": "0",
+          "skipped": "0"
+        },
+        "case_count": 0,
+        "skipped_elements": 0,
+        "failure_elements": 0,
+        "raw_stdout_sha256": "63e652381fd01995d98adde8a934ffb2dd79c8414cc704f9018e1ded6d478694",
+        "raw_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    "garbage.tap": {
+      "tap_junit": {
+        "exit_code": 0,
+        "case_count": 1,
+        "skipped_elements": 0,
+        "failure_elements": 0,
+        "error_elements": 0,
+        "duplicate_identities": [],
+        "raw_stdout_sha256": "6eca0a12514d91bf1898a8b8b3c6a376bdc89ce29f2f52b5d73895c2a242e323",
+        "raw_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "strict_parser": {
+        "exit_code": 1,
+        "ok": false,
+        "count": 1,
+        "fail": 1,
+        "skip": 0,
+        "todo": 0,
+        "bailout": false,
+        "raw_stdout_sha256": "90b7d70f3a0bcd279cb8a7ee3db61ad58bc3fde7c97c8b86efc5ef5d96852921",
+        "raw_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "tapjs_corrected_import": {
+        "exit_code": 0,
+        "root_counts": {
+          "tests": "1",
+          "failures": "0",
+          "assertions": "0",
+          "skipped": "0"
+        },
+        "case_count": 0,
+        "skipped_elements": 0,
+        "failure_elements": 0,
+        "raw_stdout_sha256": "ab424225d11608861d2525f3489e750c2ec8bd2675339a2a94f945dfb7091069",
+        "raw_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    "nested.tap": {
+      "tap_junit": {
+        "exit_code": 0,
+        "case_count": 2,
+        "skipped_elements": 0,
+        "failure_elements": 0,
+        "error_elements": 0,
+        "duplicate_identities": [],
+        "raw_stdout_sha256": "ee6ca4b5ce59e1b328c72c99125cdf28ba44d90742fe671a40c6f58cbb770ec2",
+        "raw_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "strict_parser": {
+        "exit_code": 0,
+        "ok": true,
+        "count": 2,
+        "fail": 0,
+        "skip": 0,
+        "todo": 0,
+        "bailout": false,
+        "raw_stdout_sha256": "4801c6edabeed338f69682753bb75609d780cb1395b54a6ccf6f3a52521d65ea",
+        "raw_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "tapjs_corrected_import": {
+        "exit_code": 0,
+        "root_counts": {
+          "tests": "5",
+          "failures": "0",
+          "assertions": "2",
+          "skipped": "0"
+        },
+        "case_count": 2,
+        "skipped_elements": 0,
+        "failure_elements": 0,
+        "raw_stdout_sha256": "797fc6dfc81483918ab2c8e97fe7530888817dfc1607b06cc6556e553630926a",
+        "raw_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    "no-plan.tap": {
+      "tap_junit": {
+        "exit_code": 0,
+        "case_count": 1,
+        "skipped_elements": 0,
+        "failure_elements": 0,
+        "error_elements": 0,
+        "duplicate_identities": [],
+        "raw_stdout_sha256": "ab31a7b198c329180f8328d7b381ab5e305b839dd641111b562a43b62049eaa0",
+        "raw_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "strict_parser": {
+        "exit_code": 1,
+        "ok": false,
+        "count": 1,
+        "fail": 1,
+        "skip": 0,
+        "todo": 0,
+        "bailout": false,
+        "raw_stdout_sha256": "270386d5b09f84eb56686eecd771bd6c4bb1f1a517f4c727ba8ccc44687336f5",
+        "raw_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "tapjs_corrected_import": {
+        "exit_code": 0,
+        "root_counts": {
+          "tests": "1",
+          "failures": "1",
+          "assertions": "0",
+          "skipped": "0"
+        },
+        "case_count": 0,
+        "skipped_elements": 0,
+        "failure_elements": 0,
+        "raw_stdout_sha256": "ee108fa2cf405ba363fb8d21a2cc240da403ed1f8e810d1a6150a21e01d9a3d1",
+        "raw_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    "normal.tap": {
+      "tap_junit": {
+        "exit_code": 0,
+        "case_count": 2,
+        "skipped_elements": 0,
+        "failure_elements": 0,
+        "error_elements": 0,
+        "duplicate_identities": [],
+        "raw_stdout_sha256": "0ba574a17f67e3fdf38b82e721223753afe4e2c6fae871a1b78cfbb69677dde8",
+        "raw_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "strict_parser": {
+        "exit_code": 0,
+        "ok": true,
+        "count": 2,
+        "fail": 0,
+        "skip": 0,
+        "todo": 0,
+        "bailout": false,
+        "raw_stdout_sha256": "4801c6edabeed338f69682753bb75609d780cb1395b54a6ccf6f3a52521d65ea",
+        "raw_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "tapjs_corrected_import": {
+        "exit_code": 0,
+        "root_counts": {
+          "tests": "1",
+          "failures": "0",
+          "assertions": "0",
+          "skipped": "0"
+        },
+        "case_count": 0,
+        "skipped_elements": 0,
+        "failure_elements": 0,
+        "raw_stdout_sha256": "4145187b3335a81153669d272149d5047ad3f86b20a53625fa4424613d7cab57",
+        "raw_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    "short-plan.tap": {
+      "tap_junit": {
+        "exit_code": 0,
+        "case_count": 1,
+        "skipped_elements": 0,
+        "failure_elements": 0,
+        "error_elements": 0,
+        "duplicate_identities": [],
+        "raw_stdout_sha256": "ab31a7b198c329180f8328d7b381ab5e305b839dd641111b562a43b62049eaa0",
+        "raw_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "strict_parser": {
+        "exit_code": 1,
+        "ok": false,
+        "count": 1,
+        "fail": 1,
+        "skip": 0,
+        "todo": 0,
+        "bailout": false,
+        "raw_stdout_sha256": "9f5b130c48aa1567f92dfa77ff48e00b7ed7481d4b804a0be6d1a0096e0670ec",
+        "raw_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "tapjs_corrected_import": {
+        "exit_code": 0,
+        "root_counts": {
+          "tests": "1",
+          "failures": "1",
+          "assertions": "0",
+          "skipped": "0"
+        },
+        "case_count": 0,
+        "skipped_elements": 0,
+        "failure_elements": 0,
+        "raw_stdout_sha256": "08642f1e7afb20df977a85c53bbf29a258a0137c79c5236d39645395e29d7c56",
+        "raw_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    "skip.tap": {
+      "tap_junit": {
+        "exit_code": 0,
+        "case_count": 2,
+        "skipped_elements": 1,
+        "failure_elements": 0,
+        "error_elements": 0,
+        "duplicate_identities": [],
+        "raw_stdout_sha256": "e1db863c6b98e81c3a7d44a60a2d999c4b6c377f69358ab6e1495d1482cbe5e8",
+        "raw_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "strict_parser": {
+        "exit_code": 0,
+        "ok": true,
+        "count": 2,
+        "fail": 0,
+        "skip": 1,
+        "todo": 0,
+        "bailout": false,
+        "raw_stdout_sha256": "267a5c17d8cd50a0788b730f0eac691924cb296ee08e4cf81ec9a973758e7a6c",
+        "raw_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "tapjs_corrected_import": {
+        "exit_code": 0,
+        "root_counts": {
+          "tests": "1",
+          "failures": "0",
+          "assertions": "0",
+          "skipped": "1"
+        },
+        "case_count": 0,
+        "skipped_elements": 0,
+        "failure_elements": 0,
+        "raw_stdout_sha256": "35cff76b3ff65534b9fd34bf989795d8ca057c094b0ac9d58703e4fa5651c54d",
+        "raw_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    "todo.tap": {
+      "tap_junit": {
+        "exit_code": 0,
+        "case_count": 1,
+        "skipped_elements": 0,
+        "failure_elements": 1,
+        "error_elements": 0,
+        "duplicate_identities": [],
+        "raw_stdout_sha256": "79270a177c1aef313254e868bc8bfafee115798b1a9115965bf9a2d01b108e48",
+        "raw_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "strict_parser": {
+        "exit_code": 0,
+        "ok": true,
+        "count": 1,
+        "fail": 1,
+        "skip": 0,
+        "todo": 1,
+        "bailout": false,
+        "raw_stdout_sha256": "24888cde032213bbaf43e0d1dc9fb884769b6964925788927413f16e187a8a5f",
+        "raw_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "tapjs_corrected_import": {
+        "exit_code": 0,
+        "root_counts": {
+          "tests": "1",
+          "failures": "0",
+          "assertions": "0",
+          "skipped": "1"
+        },
+        "case_count": 0,
+        "skipped_elements": 0,
+        "failure_elements": 0,
+        "raw_stdout_sha256": "8c814a120c45423ad58cb168557ef2a4b5efb9fcce4bcedd64ab8150b8797fd5",
+        "raw_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    }
+  },
+  "research_setup_errors": {
+    "dependency_lock_attempt_1": "The container user could not write the lockfile; rerun used the directory owner. No target execution or outcome involved.",
+    "tapjs_attempt_1": "A CommonJS require was invalid for this ESM-only package. Corrected import results are recorded below.",
+    "object_collector_attempt_1": "Serializing whole events encountered circular assertion values in qs. All four attempts were incomplete. The scalar projection collector was then run on every selected revision."
+  }
+}

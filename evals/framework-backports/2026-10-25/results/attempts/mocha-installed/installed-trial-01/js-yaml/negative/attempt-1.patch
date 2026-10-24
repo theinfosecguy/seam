@@ -1,0 +1,7 @@
+--- a/lib/js-yaml/loader.js
++++ b/lib/js-yaml/loader.js
+@@ -1642,3 +1642,4 @@
+ module.exports.load        = load;
+ module.exports.safeLoadAll = safeLoadAll;
+ module.exports.safeLoad    = safeLoad;
++// Intentionally ineffective evaluation patch.

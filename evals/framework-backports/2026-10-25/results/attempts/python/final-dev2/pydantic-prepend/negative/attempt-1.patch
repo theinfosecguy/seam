@@ -1,0 +1,7 @@
+--- a/pydantic/datetime_parse.py
++++ b/pydantic/datetime_parse.py
+@@ -239,3 +239,4 @@
+     kw_ = {k: float(v) for k, v in kw.items() if v is not None}
+ 
+     return sign * timedelta(**kw_)  # type: ignore
++# Intentionally ineffective evaluation patch.

@@ -62,12 +62,14 @@ def test_node_and_mocha_commands_have_fixed_reporters_and_no_discovered_config(
                 assert "--test-reporter=junit" in command
                 assert "--test-reporter=spec" in command
                 assert "--test-reporter-destination=stderr" in command
+                assert not any(argument.startswith("--ui=") for argument in command)
             elif runner_kind == "node":
                 assert command[-1] == "/work/repo/test/unit.js"
             else:
                 assert "--no-config" in command and "--no-package" in command
                 assert "--posix-exit-codes" in command and "--forbid-only" in command
                 assert "output=/report.xml" in command
+                assert "--ui=bdd" in command
 
 
 @pytest.mark.parametrize("suffix", ["cjs", "mjs"])
@@ -181,6 +183,7 @@ def test_node_setup_empty_and_skipped_suites_are_incomplete(
         assert [case.outcome for case in result.tests] == ["error"]
 
 
+@pytest.mark.parametrize("ui", ["bdd", "tdd"])
 @pytest.mark.parametrize(
     ("source", "outcomes"),
     [
@@ -191,6 +194,7 @@ def test_node_setup_empty_and_skipped_suites_are_incomplete(
         ("const broken = ;", []),
         ("module.exports = {};", []),
         ("it.only('partial suite', () => {});", []),
+        ("it('duplicate', () => {}); it('duplicate', () => {});", []),
         (
             "const assert = require('node:assert/strict');\n"
             "it('first', () => assert.fail('first assertion'));\n"
@@ -204,9 +208,12 @@ def test_mocha_native_xunit_preserves_results_and_rejects_incomplete_suites(
     node_runner: DockerRunner,
     source: str,
     outcomes: list[str],
+    ui: str,
 ) -> None:
     workspace = tmp_path / "source"
     (workspace / "test").mkdir(parents=True)
+    if ui == "tdd":
+        source = source.replace("it(", "test(").replace("it.", "test.")
     (workspace / "test/suite.cjs").write_text(source)
     (workspace / ".mocharc.json").write_text('{"require": "./missing-config.cjs"}')
     (workspace / "package.json").write_text(
@@ -218,9 +225,10 @@ def test_mocha_native_xunit_preserves_results_and_rejects_incomplete_suites(
         controls=("test_control",),
         failure_marker="SECURITY_MARKER",
     )
-    config = node_runner.config.model_copy(update={"kind": "mocha"})
+    config = node_runner.config.model_copy(update={"kind": "mocha", "mocha_ui": ui})
     runner = DockerRunner(config)
     result = runner.run(workspace, oracle, runner.resolve_image(), "suite")
+    assert f"--ui={ui}" in result.command
     assert [case.outcome for case in result.tests] == outcomes, result.model_dump()
     if outcomes == ["passed"]:
         assert result.returncode == 0 and result.evidence_issue() is None
@@ -247,6 +255,78 @@ def test_node_timeout_removes_the_container(
     runner = DockerRunner(config)
     result = runner.run(workspace, oracle, runner.resolve_image(), "suite")
     assert result.timed_out and result.evidence_issue() is not None, result.model_dump()
+
+
+def test_mocha_interfaces_follow_exact_head_and_keep_native_node_oracle(
+    tmp_path: Path,
+    node_runner: DockerRunner,
+) -> None:
+    workspace = tmp_path / "source"
+    (workspace / "test").mkdir(parents=True)
+    repository.git(workspace, "init")
+    repository.git(workspace, "config", "user.name", "Test Maintainer")
+    repository.git(workspace, "config", "user.email", "maintainer@example.invalid")
+    library = workspace / "library.cjs"
+    library.write_text("module.exports = { value: 1 };\n")
+    interfaces = {}
+    for ui, suite, test in (("bdd", "describe", "it"), ("tdd", "suite", "test")):
+        (workspace / "test/suite.cjs").write_text(
+            "const assert = require('node:assert/strict');\n"
+            f"{suite}('compatibility', () => {{\n"
+            f"{test}('ordinary input', () => {{\n"
+            "assert.equal(require('../library.cjs').value, 1);\n"
+            "}); });\n"
+        )
+        repository.git(workspace, "add", "library.cjs", "test/suite.cjs")
+        repository.git(workspace, "commit", "-m", f"Use the {ui} test interface")
+        interfaces[repository.resolve(workspace, "HEAD")] = ui
+    oracle_path = tmp_path / "oracle.cjs"
+    oracle_path.write_text(
+        "const { test } = require('node:test');\n"
+        "const assert = require('node:assert/strict');\n"
+        "test('test_security', () => {\n"
+        "assert.equal(require('/work/repo/library.cjs').value, 1, 'SECURITY_MARKER');\n"
+        "});\n"
+        "test('test_control', () => assert.equal(typeof test, 'function'));\n"
+    )
+    oracle = OracleConfig(
+        path=oracle_path,
+        security_test="test_security",
+        controls=("test_control",),
+        failure_marker="SECURITY_MARKER",
+    )
+    config = RunnerConfig.model_validate(
+        {
+            **node_runner.config.model_dump(),
+            "kind": "mocha",
+            "mocha_ui": "tdd",
+            "mocha_interfaces": interfaces,
+        }
+    )
+    runner = DockerRunner(config)
+    image = runner.resolve_image()
+    for revision, ui in interfaces.items():
+        repository.git(workspace, "checkout", "--detach", revision)
+        library.write_text(library.read_text() + "// candidate implementation edit\n")
+        original = library.read_bytes()
+        suite_result = runner.run(workspace, oracle, image, "suite")
+        assert suite_result.returncode == 0 and suite_result.evidence_issue() is None
+        assert f"--ui={ui}" in suite_result.command
+        assert [(case.classname, case.name) for case in suite_result.tests] == [
+            ("/work/repo/test/suite.cjs::compatibility", "ordinary input")
+        ]
+        security_result = runner.run(workspace, oracle, image, "security")
+        assert security_result.returncode == 0
+        assert security_result.evidence_issue() is None
+        assert len(security_result.tests) == 2
+        assert not any(arg.startswith("--ui=") for arg in security_result.command)
+        assert library.read_bytes() == original
+        repository.git(workspace, "restore", "library.cjs")
+    del config.mocha_interfaces[revision]
+    missing = runner.run(workspace, oracle, image, "suite")
+    assert missing.returncode == 125 and missing.tests == []
+    assert missing.evidence_error is not None
+    assert f"No Mocha interface is configured for {revision}" in missing.evidence_error
 
 
 @pytest.mark.parametrize("pattern", ["^relevant ", "^does not match$"])

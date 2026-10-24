@@ -1,0 +1,61 @@
+{
+  "scope": "Synthetic native JUnit report compatibility only; no Undici qualification or general Node20 support claim.",
+  "node_version": "20.18.1",
+  "platform": "linux/amd64",
+  "image": "sha256:796789f15b456fb7a2245190e89f6648ae71145b3e45c84a7bf55aa50d86ff01",
+  "fixtures": [
+    {
+      "name": "pass",
+      "exit_code": 0,
+      "report_sha256": "6354e92e8ce729386ce239da73a8162c665e48781d62bfe5bdd235822277b8fc",
+      "parse_error": "JavaScript test cases must identify their source file"
+    },
+    {
+      "name": "failure",
+      "exit_code": 1,
+      "report_sha256": "28edb40eff4076235677191858fbcb42760f40030710cd307ca422e77264c457",
+      "parse_error": "JavaScript test cases must identify their source file"
+    },
+    {
+      "name": "nested",
+      "exit_code": 0,
+      "report_sha256": "51bd1df766130f535b4354d8baf1987396fc1166ea5e8486a17620cbd34b364e",
+      "parse_error": "JavaScript test cases must identify their source file"
+    },
+    {
+      "name": "duplicate",
+      "exit_code": 0,
+      "report_sha256": "84e5ff8dc6bd4ece32212144a3db52a67e8ca79ba37ad5b1b7ea614749aa253a",
+      "parse_error": "JavaScript test cases must identify their source file"
+    },
+    {
+      "name": "skip",
+      "exit_code": 0,
+      "report_sha256": "694479bf27adfb9a59d0a33db6191076e34a028c781bde79137796975e89f000",
+      "parse_error": "JavaScript test cases must identify their source file"
+    },
+    {
+      "name": "import-error",
+      "exit_code": 1,
+      "report_sha256": "51ad9ca56395b0df94d43fb9f9284944fb01e624289aad1a7947718548dcad09",
+      "parse_error": "JavaScript test cases must identify their source file"
+    },
+    {
+      "name": "empty",
+      "exit_code": 0,
+      "report_sha256": "b00d9b316c9fb842fa3b791bd0db7ef2840ce7fa85a8e6068e606026c226fb04",
+      "parse_error": "JavaScript test cases must identify their source file"
+    }
+  ],
+  "controller_source_sha256": {
+    "src/seam/execution/container.py": "7164e7670f08384b15ea85bb71218478b621279dce79cf84e1f2659d24075171",
+    "src/seam/verification/junit.py": "5ff7bcebfb30f42a36430b7aacf5d2b9a4528cbec238eca6b177e5651f748603"
+  },
+  "setup_attempts": [
+    {
+      "description": "Driver setup rejected incomplete OracleConfig before any container execution; corrected explicit dummy config only.",
+      "driver_sha256": "532fac51441c58f031566ee3185a47a336ac1ae4e5ef473c95c782b3609a1f29"
+    }
+  ],
+  "probe_driver_sha256": "946e12be27b8c557409ed2e1f4d8a3eb45e861710e0a3766f044c9b5f3a83ff8"
+}

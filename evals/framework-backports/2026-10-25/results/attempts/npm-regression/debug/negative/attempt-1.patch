@@ -1,0 +1,7 @@
+--- a/src/node.js
++++ b/src/node.js
+@@ -244,3 +244,4 @@
+  */
+ 
+ exports.enable(load());
++// Intentionally ineffective evaluation patch.

@@ -1,0 +1,51 @@
+{
+  "case_id": "pydantic-infinite-date",
+  "library": "pydantic",
+  "repository_url": "https://github.com/pydantic/pydantic",
+  "advisory_ids": [
+    "CVE-2021-29510"
+  ],
+  "advisory_published_at": "2021-05-11",
+  "advisory_recent_within_six_months": false,
+  "source_fixed_release": "1.8.2",
+  "target_fixed_release": "1.7.4",
+  "advertised_heads": {
+    "source-parent": "79c6c9ee33da4afb2d793d312b186ba6ebd941c9",
+    "source-fix": "1c24f1d74ba95ea985b50bdc001ce96c813229aa",
+    "target-baseline": "00a128a3609dac82dfe0cdb4200bbf2011aa5f83",
+    "target-backport": "80e0dd3f752bef145dce12f160d262bb40ec8d47"
+  },
+  "implementation_paths": [
+    "pydantic/datetime_parse.py"
+  ],
+  "status": "frozen_input",
+  "license": "MIT",
+  "scope": "The ordinary date/datetime parsing fix and a minimal original parsing suite; this is a historical single-commit maintenance-line backport.",
+  "sources": [
+    "https://github.com/pydantic/pydantic/security/advisories/GHSA-5jqp-qgf6-3pvh",
+    "https://github.com/pydantic/pydantic/commit/1c24f1d74ba95ea985b50bdc001ce96c813229aa",
+    "https://github.com/pydantic/pydantic/commit/80e0dd3f752bef145dce12f160d262bb40ec8d47"
+  ],
+  "input_sha256": {
+    "LICENSE.target": "66badbfe56618ec52ddcbfda62450e43752d16fe1e7cae78d346c7ed10a35306",
+    "LICENSE.upstream": "9e3946690ac88b6b73e8f001a0586af13568be8852fd514e4393f39761764387",
+    "harness.toml": "66a48c168af719150e6cc793743c13dd3747c0e705b8aad26ae5ca03a77ad717",
+    "oracle.py": "5b5e39e5cfa47dcda0417171b02524ac23efd239d0065931ddb255b6ce4a0d3c",
+    "reference.patch": "9dc984b18312fbb30f7ea23816ac946e933b44dcdfa9fe907ce4d28b74c5624f",
+    "upstream.patch": "9dc984b18312fbb30f7ea23816ac946e933b44dcdfa9fe907ce4d28b74c5624f"
+  },
+  "original_test_inputs_sha256": {
+    "backport_commit/tests/conftest.py": "9a469d3a7733cd02485e9a0bc58540f83291ef51c6e858f02df0e96bbc8b89df",
+    "backport_commit/tests/requirements-testing.txt": "2a3884877d4dd878b83e1ece9eb8eb3943e432cc447d5a7f38920c8d2f5a6840",
+    "backport_commit/tests/test_datetime_parse.py": "6ee42e4fd57799df50e075f6170df05db639ec040ebedb6500ec46256620137e",
+    "target_baseline_commit/tests/conftest.py": "9a469d3a7733cd02485e9a0bc58540f83291ef51c6e858f02df0e96bbc8b89df",
+    "target_baseline_commit/tests/requirements-testing.txt": "2a3884877d4dd878b83e1ece9eb8eb3943e432cc447d5a7f38920c8d2f5a6840",
+    "target_baseline_commit/tests/test_datetime_parse.py": "00bdb8a5b78d9d40c6768f263831fbf3b7c3f514cc99b18a79abecc9210efbfe",
+    "upstream_fix_commit/tests/conftest.py": "55533142dd3647ddf7318ca1027b1484c1c41fc2caa00a20af51f3a656aa87a3",
+    "upstream_fix_commit/tests/requirements-testing.txt": "8257e29c23459054ddae41bacf52b3d748f03aacc7f3bdcf57d80c07fdc03812",
+    "upstream_fix_commit/tests/test_datetime_parse.py": "6ee42e4fd57799df50e075f6170df05db639ec040ebedb6500ec46256620137e",
+    "upstream_parent_commit/tests/conftest.py": "55533142dd3647ddf7318ca1027b1484c1c41fc2caa00a20af51f3a656aa87a3",
+    "upstream_parent_commit/tests/requirements-testing.txt": "8257e29c23459054ddae41bacf52b3d748f03aacc7f3bdcf57d80c07fdc03812",
+    "upstream_parent_commit/tests/test_datetime_parse.py": "00bdb8a5b78d9d40c6768f263831fbf3b7c3f514cc99b18a79abecc9210efbfe"
+  }
+}

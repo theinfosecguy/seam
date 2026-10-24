@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "instance_id": "js-yaml",
+  "package": "js-yaml",
+  "repository_directory": "js-yaml",
+  "repository_url": "https://github.com/nodeca/js-yaml.git",
+  "advisory_ids": [
+    "GHSA-mh29-5h37-fv8m",
+    "CVE-2025-64718"
+  ],
+  "upstream_parent_commit": "0d3ca7a27b03a6c974790a30a89e456007d62976",
+  "upstream_fix_commit": "383665ff4248ec2192d1274e934462bb30426879",
+  "base_commit": "37caaad57dc37d350d9a4577a5da53f482bb2983",
+  "maintainer_backport_parent": "37caaad57dc37d350d9a4577a5da53f482bb2983",
+  "maintainer_backport_commit": "5278870a17454fe8621dbd8c445c412529525266",
+  "upstream_implementation_paths": [
+    "lib/loader.js"
+  ],
+  "backport_implementation_paths": [
+    "lib/js-yaml/loader.js"
+  ],
+  "upstream_test_paths": [
+    "test/10-loader.js",
+    "test/11-load-errors.js"
+  ],
+  "target_test_paths": [
+    "test/10-loader.js",
+    "test/11-load-errors.js"
+  ],
+  "license": "MIT",
+  "missing_test_assets": {},
+  "asset_sha256": {
+    "LICENSE.upstream": "a07bc24468b9654ce76a547d47a2db282d07733b715db4c73a98bd63961f9550",
+    "maintainer-tests/maintainer_backport/test/10-loader.js": "be482b18c55a1e98a8ac6a65fcad9970a6217faed86e948434c49aa856ec326d",
+    "maintainer-tests/maintainer_backport/test/11-load-errors.js": "1017f0503701170fcd370f170fbe2adba0d3abf45d0bdfb8fb4db456de0be73b",
+    "maintainer-tests/target_baseline/test/10-loader.js": "be482b18c55a1e98a8ac6a65fcad9970a6217faed86e948434c49aa856ec326d",
+    "maintainer-tests/target_baseline/test/11-load-errors.js": "1017f0503701170fcd370f170fbe2adba0d3abf45d0bdfb8fb4db456de0be73b",
+    "maintainer-tests/upstream_fix/test/10-loader.js": "01bef52fc350cf711aabe7b8fdc1e39f99673251da4e4951d10fcdd494dc5db5",
+    "maintainer-tests/upstream_fix/test/11-load-errors.js": "8cd597156cfdf271388ad28a1a273e9a1ba19e4f9f1c4879f9258d20d6459805",
+    "maintainer-tests/upstream_parent/test/10-loader.js": "01bef52fc350cf711aabe7b8fdc1e39f99673251da4e4951d10fcdd494dc5db5",
+    "maintainer-tests/upstream_parent/test/11-load-errors.js": "8cd597156cfdf271388ad28a1a273e9a1ba19e4f9f1c4879f9258d20d6459805",
+    "package-maintainer_backport.json": "e5f7d1f23067e9422fbdda594386dc663442451a96785195fc27c7cd826fdf63",
+    "package-target_baseline.json": "e5f7d1f23067e9422fbdda594386dc663442451a96785195fc27c7cd826fdf63",
+    "package-upstream_fix.json": "fbaf61c90088b54dec9d97434c12eb8ffe75d3acd47eacb43910489a7b78336f",
+    "package-upstream_parent.json": "fbaf61c90088b54dec9d97434c12eb8ffe75d3acd47eacb43910489a7b78336f",
+    "reference.patch": "d6466d721051084b6cb3b95bc52862fb43a6a31f67208afe48baae2560406b95",
+    "upstream.patch": "5fc22071630a494d620186b341efa79d578b2646d73d2ea3bb3d77160d002fa1"
+  },
+  "status": "Runtime outcomes are recorded separately in results.",
+  "scope": "Original two loader suites; external prototype-merge regression and two ordinary controls; Node24.22.1/Mocha12.0.3.",
+  "source_case_metadata_sha256": "f9b863b43c439931eb93728314a113d4367e08c52a8ae482007b2b338efa094f"
+}

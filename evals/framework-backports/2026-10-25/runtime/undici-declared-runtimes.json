@@ -1,0 +1,23 @@
+[
+  {
+    "role": "upstream_parent_commit",
+    "revision": "10d93fc332f2c8c161982dec3833201de29891b5",
+    "engines": {
+      "node": ">=22.19.0"
+    }
+  },
+  {
+    "role": "upstream_fix_commit",
+    "revision": "4fe5bc5fefe5ac81a200fc8e1cf84b8bf8464451",
+    "engines": {
+      "node": ">=22.19.0"
+    }
+  },
+  {
+    "role": "base_commit",
+    "revision": "f9eba0ad9134e1c0977848476bba9d49734696e4",
+    "engines": {
+      "node": ">=20.18.1"
+    }
+  }
+]

@@ -1,0 +1,50 @@
+{
+  "image": "sha256:276e2324a98430cfd29610e514ef99ac263cbef392883efb3274d1111c70c341",
+  "installed_dependencies": {
+    "evaluated_target_installed": false,
+    "packages": {
+      "MarkupSafe": "3.0.3",
+      "Pygments": "2.21.0",
+      "asgiref": "3.12.1",
+      "ephemeral-port-reserve": "1.1.4",
+      "iniconfig": "2.3.1",
+      "packaging": "26.3",
+      "pillow": "11.3.0",
+      "pip": "25.0.1",
+      "pluggy": "1.7.0",
+      "psutil": "7.2.2",
+      "pytest": "9.1.1",
+      "pytest-django": "4.11.1",
+      "pytest-xprocess": "0.23.0",
+      "simplejson": "3.20.2",
+      "sqlparse": "0.5.3"
+    },
+    "python": "3.12.12 (main, Feb 24 2026, 19:45:37) [GCC 14.2.0]"
+  },
+  "origins": [
+    {
+      "role": "upstream_parent_commit",
+      "commit": "80f1110746a202e59ceedcbc78399feb1f48c257",
+      "package": "/staged/src/marshmallow/__init__.py",
+      "implementation": "/staged/src/marshmallow/error_store.py"
+    },
+    {
+      "role": "upstream_fix_commit",
+      "commit": "218d98a785d3bd25dad8880bb07e9cce70340f31",
+      "package": "/staged/src/marshmallow/__init__.py",
+      "implementation": "/staged/src/marshmallow/error_store.py"
+    },
+    {
+      "role": "target_baseline_commit",
+      "commit": "4ab61bfb93a67113762b186eceaab9a9d473f92a",
+      "package": "/staged/src/marshmallow/__init__.py",
+      "implementation": "/staged/src/marshmallow/error_store.py"
+    },
+    {
+      "role": "backport_commit",
+      "commit": "0356a3f1c307830f8ded56d823abca5611c594c9",
+      "package": "/staged/src/marshmallow/__init__.py",
+      "implementation": "/staged/src/marshmallow/error_store.py"
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "archive": "seam-framework-eval-images-2026-10-25.tar.gz",
+  "sha256": "9dd4b2c71ae4eff97d283e7b6e762074edaa234798eb61d75f5e911eee6dd919",
+  "bytes": 254513295,
+  "all_blob_hashes_verified": 40,
+  "reachable_descriptors_verified": 40,
+  "images": [
+    {
+      "image_id": "sha256:796789f15b456fb7a2245190e89f6648ae71145b3e45c84a7bf55aa50d86ff01",
+      "manifest": "sha256:796789f15b456fb7a2245190e89f6648ae71145b3e45c84a7bf55aa50d86ff01",
+      "config": "sha256:70ad5a57af6a37edbab480a0abcd9159740bc457d4d483f1b8847f76cdc47984",
+      "platform": "linux/amd64",
+      "rootfs_layers": 4
+    },
+    {
+      "image_id": "sha256:276e2324a98430cfd29610e514ef99ac263cbef392883efb3274d1111c70c341",
+      "manifest": "sha256:276e2324a98430cfd29610e514ef99ac263cbef392883efb3274d1111c70c341",
+      "config": "sha256:eb4af4c50e37552594eb4404667527ab752d85c907a577375b956e68c3c81fe8",
+      "platform": "linux/amd64",
+      "rootfs_layers": 13
+    },
+    {
+      "image_id": "sha256:bda4ee09f70ca360a2d30f96bb03d457e8bef0b25f601072f43dd24623b4c33f",
+      "manifest": "sha256:bda4ee09f70ca360a2d30f96bb03d457e8bef0b25f601072f43dd24623b4c33f",
+      "config": "sha256:1c7aa63eab197220e6725f9d6f5d9ba84dfec7b67ce78a9d5a0540bc8a2f4ec3",
+      "platform": "linux/amd64",
+      "rootfs_layers": 7
+    },
+    {
+      "image_id": "sha256:823485b739c108393310be04e79f787db2e4476fa679ae4204080ae29e38d566",
+      "manifest": "sha256:823485b739c108393310be04e79f787db2e4476fa679ae4204080ae29e38d566",
+      "config": "sha256:164ab1b6f885157e0f46a0e04f8e97b09ba86eef358577d8a6ad7c9ed77d4fb9",
+      "platform": "linux/amd64",
+      "rootfs_layers": 8
+    }
+  ],
+  "clean_daemon_restore_tested": false,
+  "verification_attempts": [
+    "First verifier traversed config JSON as a manifest and stopped with KeyError before issuing a verdict. Schema traversal corrected; archive bytes unchanged.",
+    "Full blob/descriptor/platform/rootfs validation succeeded."
+  ]
+}

@@ -1,0 +1,34 @@
+[
+  {
+    "library": "marshmallow",
+    "release_tag": "4.1.2",
+    "release_commit": "692e79df9cb03458c0bd215b32ef83d92afb9a47",
+    "fix_commit": "218d98a785d3bd25dad8880bb07e9cce70340f31",
+    "fix_is_ancestor": true,
+    "method": "git merge-base --is-ancestor after ordinary remote tag fetch"
+  },
+  {
+    "library": "marshmallow",
+    "release_tag": "3.26.2",
+    "release_commit": "1407d5102ae020421ddc8425474e976325a9539e",
+    "fix_commit": "0356a3f1c307830f8ded56d823abca5611c594c9",
+    "fix_is_ancestor": true,
+    "method": "git merge-base --is-ancestor after ordinary remote tag fetch"
+  },
+  {
+    "library": "pydantic",
+    "release_tag": "v1.8.2",
+    "release_commit": "a84cfacf9caf08bef8edca076c3325c3cf49475d",
+    "fix_commit": "1c24f1d74ba95ea985b50bdc001ce96c813229aa",
+    "fix_is_ancestor": true,
+    "method": "git merge-base --is-ancestor after ordinary remote tag fetch"
+  },
+  {
+    "library": "pydantic",
+    "release_tag": "v1.7.4",
+    "release_commit": "e3d1c161d79d54e0e2d549f96e7b458d74088205",
+    "fix_commit": "80e0dd3f752bef145dce12f160d262bb40ec8d47",
+    "fix_is_ancestor": true,
+    "method": "git merge-base --is-ancestor after ordinary remote tag fetch"
+  }
+]
