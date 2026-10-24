@@ -28,6 +28,52 @@ from seam.models import AgentContext
 REVISIONS = ("target", "upstream_parent", "upstream_fix")
 
 
+def test_javascript_inspection_is_scanned_and_does_not_accept_test_reads(
+    tmp_path: Path,
+) -> None:
+    (tmp_path / "parser.mjs").write_text("export const value = 1;\n")
+    (tmp_path / "parser.test.js").write_text("// test only\n")
+    (tmp_path / "private.cjs").write_text(
+        'const password = "synthetic-private-value";\n'
+    )
+    tools = WorkspaceTools(tmp_path, language="javascript")
+    for name in ("parser.test.js", "private.cjs"):
+        tools.execute(
+            "read_file", json.dumps({"path": name, "start_line": 1, "line_count": 10})
+        )
+        assert not tools.inspected_target
+    result = tools.execute(
+        "read_file",
+        json.dumps({"path": "parser.mjs", "start_line": 1, "line_count": 10}),
+    )
+    assert isinstance(result, dict) and result["content"] == "export const value = 1;"
+    assert tools.inspected_target
+
+
+def test_javascript_manifest_is_readable_but_installed_dependencies_are_not(
+    tmp_path: Path,
+) -> None:
+    (tmp_path / "package.json").write_text('{"type":"module"}')
+    dependencies = tmp_path / "node_modules"
+    dependencies.mkdir()
+    (dependencies / "index.js").write_text("// host dependency\n")
+    tools = WorkspaceTools(tmp_path, language="javascript")
+    result = tools.execute(
+        "read_file",
+        json.dumps({"path": "package.json", "start_line": 1, "line_count": 1}),
+    )
+    assert isinstance(result, dict) and result["content"] == '{"type":"module"}'
+    assert not tools.inspected_target
+    assert tools.execute("list_files", '{"directory":"."}') == {
+        "entries": ["package.json"],
+        "truncated": False,
+    }
+    assert tools.execute(
+        "read_file",
+        json.dumps({"path": "node_modules/index.js", "start_line": 1, "line_count": 1}),
+    ) == {"error": "requested path is unavailable or not permitted"}
+
+
 def _tools(workspace: Path) -> WorkspaceTools:
     for revision in REVISIONS:
         (workspace / revision).mkdir()
@@ -382,6 +428,7 @@ def test_retry_context_preserves_diff_feedback_and_available_sources(
     assert isinstance(part, UserPromptPart)
     assert isinstance(part.content, str)
     assert json.loads(part.content) == {
+        "language": "python",
         "upstream_diff": context.upstream_diff,
         "previous_patch": context.previous_patch,
         "feedback": context.feedback,

@@ -7,9 +7,10 @@ from contextlib import suppress
 from pathlib import Path
 from typing import Literal
 
+from seam import repository
 from seam.constants.execution import IMAGE_ID_PATTERN
 from seam.constants.verification import MAX_REPORT_BYTES
-from seam.exceptions import RunnerError
+from seam.exceptions import RepositoryError, RunnerError
 from seam.execution.container import build_container_arguments
 from seam.execution.processes import run_process
 from seam.execution.snapshot import copy_regular_file, stage_snapshot
@@ -105,7 +106,7 @@ class DockerRunner:
             )
         try:
             return self._run(workspace, oracle, image_id, kind)
-        except (OSError, ValueError) as exc:
+        except (OSError, RepositoryError, ValueError) as exc:
             return ExecutionResult(
                 returncode=125, evidence_error=f"Could not collect test evidence: {exc}"
             )
@@ -117,6 +118,12 @@ class DockerRunner:
         image_id: str,
         kind: Literal["security", "suite"],
     ) -> ExecutionResult:
+        node_modules = ""
+        if self.config.node_dependencies:
+            revision = repository.resolve(workspace, "HEAD")
+            if revision not in self.config.node_dependencies:
+                raise ValueError(f"No Node dependencies are configured for {revision}")
+            node_modules = self.config.node_dependencies[revision]
         with tempfile.TemporaryDirectory(prefix="backport-run-") as directory:
             root = Path(directory)
             snapshot = root / "source"
@@ -126,14 +133,27 @@ class DockerRunner:
             oracle_dir = root / "oracle"
             oracle_dir.mkdir(mode=0o755)
             oracle_dir.chmod(0o755)
-            copy_regular_file(oracle.path, oracle_dir / "oracle.py", MAX_REPORT_BYTES)
-            (oracle_dir / "oracle.py").chmod(0o444)
+            oracle_name = (
+                "oracle.py"
+                if self.config.kind == "pytest"
+                else f"oracle{oracle.path.suffix}"
+            )
+            copy_regular_file(oracle.path, oracle_dir / oracle_name, MAX_REPORT_BYTES)
+            (oracle_dir / oracle_name).chmod(0o444)
             report = root / "report.xml"
             report.touch(mode=0o666)
             report.chmod(0o666)
             name = f"backport-check-{uuid.uuid4().hex}"
             arguments = build_container_arguments(
-                self.config, name, image_id, snapshot, oracle_dir, report, oracle, kind
+                self.config,
+                name,
+                image_id,
+                snapshot,
+                oracle_dir,
+                report,
+                oracle,
+                kind,
+                node_modules=node_modules,
             )
             result = ProcessResult(returncode=125)
             created = False
@@ -164,7 +184,12 @@ class DockerRunner:
                 error = "Test output exceeded its capture limit"
             else:
                 try:
-                    tests = parse_junit(read_junit_report(report))
+                    tests = parse_junit(
+                        read_junit_report(report),
+                        runner="node"
+                        if kind == "security" and self.config.kind == "mocha"
+                        else self.config.kind,
+                    )
                 except (OSError, ValueError) as exc:
                     error = str(exc)
             details = result.model_dump()

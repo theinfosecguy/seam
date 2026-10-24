@@ -1,4 +1,4 @@
-"""Read and validate bounded pytest JUnit evidence."""
+"""Read and validate bounded JUnit evidence."""
 
 import os
 import stat
@@ -10,8 +10,10 @@ from seam.constants.verification import MAX_REPORT_BYTES
 from seam.models import TestCaseResult
 
 
-def parse_junit(report: bytes) -> list[TestCaseResult]:
-    """Parse bounded pytest JUnit evidence, rejecting ambiguous test identities."""
+def parse_junit(
+    report: bytes, *, runner: Literal["pytest", "node", "mocha"] = "pytest"
+) -> list[TestCaseResult]:
+    """Parse bounded JUnit evidence, rejecting ambiguous test identities."""
     if not report or len(report) > MAX_REPORT_BYTES:
         raise ValueError("JUnit report is empty or exceeds the evidence limit")
     try:
@@ -35,6 +37,13 @@ def parse_junit(report: bytes) -> list[TestCaseResult]:
     for element in elements:
         name = element.get("name", "")
         classname = element.get("classname", "")
+        filename = element.get("file", "")
+        if runner != "pytest":
+            if not filename:
+                raise ValueError(
+                    "JavaScript test cases must identify their source file"
+                )
+            classname = f"{filename}::{classname}"
         identity = (classname, name)
         if not name or identity in identities:
             raise ValueError("JUnit test case names must identify distinct tests")
@@ -61,6 +70,9 @@ def parse_junit(report: bytes) -> list[TestCaseResult]:
                 for value in (state.get("message", ""), "".join(state.itertext()))
                 if value
             )[:16_384]
+        if runner == "node" and name == filename:
+            outcome = "error"
+            message = message or "Node test file did not produce named test cases"
         results.append(
             TestCaseResult(
                 name=name,
@@ -72,13 +84,15 @@ def parse_junit(report: bytes) -> list[TestCaseResult]:
         )
 
     for suite in root.iter("testsuite"):
-        cases = list(suite.iter("testcase"))
-        expected = {
-            "tests": len(cases),
-            "failures": sum(case.find("failure") is not None for case in cases),
-            "errors": sum(case.find("error") is not None for case in cases),
-            "skipped": sum(case.find("skipped") is not None for case in cases),
-        }
+        expected = (
+            _node_suite_counts(suite)
+            if runner == "node"
+            else _junit_suite_counts(suite)
+        )
+        if runner == "mocha":
+            # Mocha's XUnit reporter labels assertion failures as suite errors.
+            expected["errors"] = expected["failures"]
+            expected["failures"] = 0
         for attribute, actual in expected.items():
             declared = suite.get(attribute)
             if declared is not None and (
@@ -88,6 +102,33 @@ def parse_junit(report: bytes) -> list[TestCaseResult]:
             ):
                 raise ValueError(f"JUnit {attribute} count contradicts test cases")
     return results
+
+
+def _junit_suite_counts(suite: ElementTree.Element) -> dict[str, int]:
+    cases = list(suite.iter("testcase"))
+    return {
+        "tests": len(cases),
+        "failures": sum(case.find("failure") is not None for case in cases),
+        "errors": sum(case.find("error") is not None for case in cases),
+        "skipped": sum(case.find("skipped") is not None for case in cases),
+    }
+
+
+def _node_suite_counts(suite: ElementTree.Element) -> dict[str, int]:
+    # Node counts direct child suites as one test, including their aggregate state.
+    children = [child for child in suite if child.tag in {"testcase", "testsuite"}]
+    return {
+        "tests": len(children),
+        "failures": sum(
+            child.find("failure") is not None or int(child.get("failures", "0")) > 0
+            for child in children
+        ),
+        "errors": 0,
+        "skipped": sum(
+            child.find("skipped") is not None or int(child.get("skipped", "0")) > 0
+            for child in children
+        ),
+    }
 
 
 def read_junit_report(path: Path) -> bytes:

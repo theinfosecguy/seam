@@ -121,6 +121,12 @@ def write_report(output: Path, report: RunReport) -> RunReport:
             f"- Reviewed cryptographic fixture paths: {len(report.reviewed_fixtures)} "
             "(SHA-256 pinned in report.json and config.json)"
         )
+    if report.reviewed_submodules:
+        rows.append(
+            "- Reviewed uninitialized submodule paths: "
+            f"{len(report.reviewed_submodules)} "
+            "(object IDs pinned; directories kept empty and never fetched)"
+        )
     rows.extend(
         [
             "",

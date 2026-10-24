@@ -98,11 +98,13 @@ def run_backport(
                 update={"path": Path("reviewed-tests.patch")}
             )
         report.reviewed_fixtures = config.runner.reviewed_fixtures.copy()
+        report.reviewed_submodules = config.runner.reviewed_submodules.copy()
         oracle_bytes = config.oracle.path.read_bytes()
         config_bytes = (config.model_dump_json(indent=2) + "\n").encode()
         report.oracle_sha256 = hashlib.sha256(oracle_bytes).hexdigest()
         report.config_sha256 = hashlib.sha256(config_bytes).hexdigest()
-        (output / "verification.py").write_bytes(oracle_bytes)
+        oracle_suffix = config.oracle.path.suffix
+        (output / f"verification{oracle_suffix}").write_bytes(oracle_bytes)
         (output / "config.json").write_bytes(config_bytes)
         fix_commit = repository.resolve(repo, fix)
         report.fix_commit = fix_commit
@@ -110,7 +112,9 @@ def run_backport(
         report.parent_commit = parent_commit
         target_commit = repository.resolve(repo, target)
         report.target_commit = target_commit
-        fix_patch = repository.upstream_patch(repo, parent_commit, fix_commit)
+        fix_patch = repository.upstream_patch(
+            repo, parent_commit, fix_commit, config.runner.language
+        )
         if (
             candidate_patch is not None
             and candidate_patch.stat().st_size > MAX_PATCH_BYTES
@@ -120,7 +124,7 @@ def run_backport(
         runner = DockerRunner(config.runner)
         with tempfile.TemporaryDirectory(prefix="security-backport-") as directory:
             root = Path(directory)
-            oracle_path = root / "test_regression.py"
+            oracle_path = root / f"test_regression{oracle_suffix}"
             oracle_path.write_bytes(oracle_bytes)
             frozen_oracle = config.oracle.model_copy(update={"path": oracle_path})
             baselines: tuple[tuple[PhaseName, str, bool], ...] = (
@@ -130,7 +134,15 @@ def run_backport(
             )
             for name, revision, _ in baselines:
                 workspace = root / name
-                repository.clone_at(repo, revision, workspace)
+                if config.runner.reviewed_submodules:
+                    repository.clone_at(
+                        repo,
+                        revision,
+                        workspace,
+                        reviewed_submodules=config.runner.reviewed_submodules,
+                    )
+                else:
+                    repository.clone_at(repo, revision, workspace)
                 try:
                     preflight_snapshot(
                         workspace, reviewed_fixtures=config.runner.reviewed_fixtures
@@ -186,12 +198,21 @@ def run_backport(
                 if progress is not None:
                     progress(f"Preparing candidate {attempt} of {attempt_limit}")
                 workspace = root / f"candidate-{attempt}"
-                repository.clone_at(repo, target_commit, workspace)
+                if config.runner.reviewed_submodules:
+                    repository.clone_at(
+                        repo,
+                        target_commit,
+                        workspace,
+                        reviewed_submodules=config.runner.reviewed_submodules,
+                    )
+                else:
+                    repository.clone_at(repo, target_commit, workspace)
                 if proposer is not None:
                     report.adaptation = "agent"
                     proposal = proposer.propose(
                         AgentContext(
                             workspace=workspace,
+                            language=config.runner.language,
                             upstream_diff=fix_patch,
                             feedback=feedback,
                             upstream_parent_workspace=root / "upstream_parent",
@@ -216,7 +237,9 @@ def run_backport(
                 # remains reviewable without recording provider conversations.
                 (output / f"attempt-{attempt}.patch").write_text(patch, "utf-8")
                 try:
-                    patch = repository.apply_patch(workspace, patch)
+                    patch = repository.apply_patch(
+                        workspace, patch, config.runner.language
+                    )
                 except RepositoryError as error:
                     feedback = str(error)
                     (output / f"attempt-{attempt}.txt").write_text(

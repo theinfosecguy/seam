@@ -1,11 +1,15 @@
 """Inspect local Git revisions and change disposable clones only."""
 
 import re
+from collections.abc import Mapping
 from pathlib import Path, PurePosixPath
 from typing import Literal
 
 from seam.constants.repository import (
     GIT_TIMEOUT_SECONDS,
+    JAVASCRIPT_CONFIG_STEMS,
+    JAVASCRIPT_NON_SOURCE_DIRECTORIES,
+    JAVASCRIPT_ROOT_SCRIPT_STEMS,
     MAX_GIT_OUTPUT_BYTES,
     MAX_PATCH_BYTES,
     SOURCE_DOCUMENTATION_DIRECTORIES,
@@ -13,10 +17,13 @@ from seam.constants.repository import (
     SOURCE_DOCUMENTATION_SUFFIXES,
     SOURCE_FORBIDDEN_NAMES,
     SOURCE_IGNORED_CONFIG_NAMES,
+    SOURCE_SUFFIXES,
     SOURCE_TEST_NAMES,
+    SourceLanguage,
 )
 from seam.exceptions import RepositoryError
 from seam.execution.processes import run_process
+from seam.security.paths import validate_reviewed_submodules
 
 
 def git(path: Path, *arguments: str, input_text: str | None = None) -> str:
@@ -72,9 +79,17 @@ def parent(repo: Path, commit: str) -> str:
     return parents[1]
 
 
-def clone_at(repo: Path, commit: str, destination: Path) -> None:
+def clone_at(
+    repo: Path,
+    commit: str,
+    destination: Path,
+    *,
+    reviewed_submodules: Mapping[str, tuple[str, ...]] | None = None,
+) -> None:
     """Create an independent clone without shared objects or recursive submodules."""
 
+    reviewed_submodules = reviewed_submodules or {}
+    validate_reviewed_submodules(reviewed_submodules)
     destination = destination.absolute()
     git(
         repo,
@@ -95,12 +110,47 @@ def clone_at(repo: Path, commit: str, destination: Path) -> None:
         raise RepositoryError(
             f"Commit {commit} inventory (requires Git 2.38+): {error}"
         ) from error
-    if "160000" in modes:
+    count = modes.count("160000")
+    if count and not reviewed_submodules:
         raise RepositoryError("submodules are unsupported in the first version")
+    if count:
+        inventory = git(
+            destination, "ls-files", "--stage", "-z", "--", *reviewed_submodules
+        )
+        accepted = set()
+        for entry in filter(None, inventory.split("\x00")):
+            metadata, name = entry.split("\t", 1)
+            mode, oid, stage = metadata.split()
+            if mode != "160000":
+                continue
+            if (
+                stage != "0"
+                or name in accepted
+                or oid not in reviewed_submodules.get(name, ())
+            ):
+                raise RepositoryError(f"Submodule is not pinned by its review: {name}")
+            module = destination / name
+            if (
+                module.is_symlink()
+                or any(
+                    ancestor.is_symlink()
+                    for ancestor in module.parents
+                    if destination in ancestor.parents
+                )
+                or not module.is_dir()
+                or next(module.iterdir(), None) is not None
+            ):
+                raise RepositoryError(
+                    f"Reviewed submodule must remain an empty directory: {name}"
+                )
+            accepted.add(name)
+        if len(accepted) != count:
+            raise RepositoryError("Repository contains unreviewed submodules")
 
 
 def _source_path_role(
     name: str,
+    language: SourceLanguage = "python",
 ) -> Literal["implementation", "test", "documentation", "unsupported"]:
     """Classify paths once for both upstream extraction and candidate validation."""
     path = PurePosixPath(name)
@@ -120,9 +170,33 @@ def _source_path_role(
         or filename.endswith("_test.py")
     ):
         return "test"
+    if language == "javascript" and (
+        any(
+            part
+            in {"spec", "specs", "__tests__", "__mocks__", "fixtures", "__fixtures__"}
+            for part in parts
+        )
+        or path.stem.casefold() in {"test", "tests", "spec", "specs"}
+        or filename.startswith(("test-", "test.", "spec-", "spec."))
+        or any(
+            marker in filename
+            for marker in (".test.", ".spec.", "_test.", "-test.", "_spec.", "-spec.")
+        )
+    ):
+        return "test"
     if any(part in SOURCE_DOCUMENTATION_DIRECTORIES for part in parts):
         return "documentation"
-    if path.suffix == ".py" and not any(
+    if language == "javascript" and (
+        any(part in JAVASCRIPT_NON_SOURCE_DIRECTORIES for part in parts)
+        or path.stem.casefold() in JAVASCRIPT_CONFIG_STEMS
+        or (len(parts) == 1 and path.stem.casefold() in JAVASCRIPT_ROOT_SCRIPT_STEMS)
+        or any(
+            filename.endswith(f".config{suffix}")
+            for suffix in SOURCE_SUFFIXES[language]
+        )
+    ):
+        return "unsupported"
+    if path.suffix in SOURCE_SUFFIXES[language] and not any(
         part.startswith(".") or part in SOURCE_FORBIDDEN_NAMES for part in parts
     ):
         return "implementation"
@@ -135,15 +209,17 @@ def _source_path_role(
     return "unsupported"
 
 
-def validate_source_path(name: str) -> None:
-    """Allow ordinary implementation Python files, excluding tests and setup code."""
-    if _source_path_role(name) != "implementation":
+def validate_source_path(name: str, language: SourceLanguage = "python") -> None:
+    """Allow implementation files of the selected language, excluding setup code."""
+    if _source_path_role(name, language) != "implementation":
         raise RepositoryError(
             f"patch path is outside supported implementation files: {name}"
         )
 
 
-def validate_patch(workspace: Path, patch: str) -> tuple[str, ...]:
+def validate_patch(
+    workspace: Path, patch: str, language: SourceLanguage = "python"
+) -> tuple[str, ...]:
     """Reject non-source changes, binary patches, mode changes, and empty diffs."""
 
     if not patch or len(patch.encode()) > MAX_PATCH_BYTES:
@@ -175,7 +251,7 @@ def validate_patch(workspace: Path, patch: str) -> tuple[str, ...]:
         if len(fields) != 3 or not fields[0].isdigit() or not fields[1].isdigit():
             raise RepositoryError("candidate is not an ordinary text patch")
         name = fields[2]
-        validate_source_path(name)
+        validate_source_path(name, language)
         destination = workspace / name
         if destination.is_symlink() or any(
             ancestor.is_symlink()
@@ -189,7 +265,9 @@ def validate_patch(workspace: Path, patch: str) -> tuple[str, ...]:
     return tuple(names)
 
 
-def apply_patch(workspace: Path, patch: str) -> str:
+def apply_patch(
+    workspace: Path, patch: str, language: SourceLanguage = "python"
+) -> str:
     """Apply a confined patch and return a canonical diff from its actual changes.
 
     Restore a missing patch terminator and recount generated hunk lengths while
@@ -199,7 +277,7 @@ def apply_patch(workspace: Path, patch: str) -> str:
 
     if patch and not patch.endswith("\n"):
         patch += "\n"
-    names = validate_patch(workspace, patch)
+    names = validate_patch(workspace, patch, language)
     git(
         workspace,
         "apply",
@@ -214,27 +292,29 @@ def apply_patch(workspace: Path, patch: str) -> str:
     canonical = git(
         workspace, "diff", "--no-ext-diff", "--no-textconv", "HEAD", "--", *names
     )
-    validate_patch(workspace, canonical)
+    validate_patch(workspace, canonical, language)
     return canonical
 
 
-def upstream_patch(repo: Path, before: str, after: str) -> str:
-    """Extract Python implementation changes from the original fix."""
+def upstream_patch(
+    repo: Path, before: str, after: str, language: SourceLanguage = "python"
+) -> str:
+    """Extract implementation changes under the selected language policy."""
 
     names = git(repo, "diff", "--name-only", "-z", before, after).split("\x00")
     allowed = []
     for name in filter(None, names):
-        role = _source_path_role(name)
+        role = _source_path_role(name, language)
         if role in {"test", "documentation"}:
             continue
         if role == "unsupported":
             raise RepositoryError(
                 f"fix includes unsupported changed file: {name}"
-                "; only ordinary Python implementation changes can be backported"
+                f"; only ordinary {language} implementation changes can be backported"
             )
         allowed.append(name)
     if not allowed:
-        raise RepositoryError("fix has no supported Python implementation changes")
+        raise RepositoryError(f"fix has no supported {language} implementation changes")
     return git(
         repo, "diff", "--no-ext-diff", "--no-textconv", before, after, "--", *allowed
     )

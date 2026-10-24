@@ -1,4 +1,4 @@
-"""Construct the fixed Docker isolation policy and pytest invocation."""
+"""Construct the fixed Docker isolation policy and explicit test invocation."""
 
 from importlib.resources import files
 from pathlib import Path, PurePosixPath
@@ -34,28 +34,67 @@ def build_container_arguments(
     report: Path,
     oracle: OracleConfig,
     kind: Literal["security", "suite"],
+    *,
+    node_modules: str = "",
 ) -> list[str]:
-    """Build the fixed isolation policy and explicitly selected pytest command."""
-    pytest_args = [
-        "-q",
-        "--tb=short",
-        f"--import-mode={config.import_mode}",
-        "-p",
-        "no:cacheprovider",
-        "--junitxml=/report.xml",
-    ]
-    for module in config.plugins:
-        pytest_args.extend(["-p", module])
-    if kind == "security":
-        pytest_args.extend(["-c", "/dev/null", "--noconftest", "--rootdir=/oracle"])
-        pytest_args.extend(
-            f"/oracle/oracle.py::{test}"
-            for test in (oracle.security_test, *oracle.controls)
-        )
+    """Build the fixed isolation policy and explicitly selected test command."""
+    if config.kind != "pytest":
+        if kind == "security":
+            arguments = [*_node_test_arguments(), f"/oracle/oracle{oracle.path.suffix}"]
+        else:
+            if any(
+                PurePosixPath(path).suffix not in {".js", ".mjs", ".cjs"}
+                or "::" in path
+                or any(character in path for character in "*?[]{}")
+                for path in config.suite
+            ):
+                raise ValueError("Node suite entries must be explicit JavaScript files")
+            arguments = (
+                [
+                    "/opt/seam/node_modules/mocha/bin/mocha.js",
+                    "--no-config",
+                    "--no-package",
+                    "--posix-exit-codes",
+                    "--forbid-only",
+                    "--timeout",
+                    "0",
+                    "--reporter",
+                    "xunit",
+                    "--reporter-options",
+                    "output=/report.xml",
+                ]
+                if config.kind == "mocha"
+                else _node_test_arguments()
+            )
+            if config.mocha_grep is not None:
+                arguments.append(f"--grep={config.mocha_grep}")
+            arguments.extend(
+                f"/work/repo/{path}" for path in _suite_paths(config.suite)
+            )
+        command = [
+            "node",
+            image_id,
+            "--eval",
+            files("seam.execution.resources")
+            .joinpath("bootstrap.cjs.txt")
+            .read_text(encoding="utf-8"),
+            "--",
+            node_modules,
+            *arguments,
+        ]
+        environment = ["NODE_OPTIONS=", "NODE_PATH="]
     else:
-        if config.suite_markers is not None:
-            pytest_args.extend(["-m", config.suite_markers])
-        pytest_args.extend(_suite_paths(config.suite))
+        command = _pytest_command(config, image_id, oracle, kind)
+        environment = [
+            "PYTEST_DISABLE_PLUGIN_AUTOLOAD=1",
+            "PYTEST_ADDOPTS=",
+            "PYTEST_PLUGINS=",
+            "PYTHONDONTWRITEBYTECODE=1",
+            "PYTHONPATH=/work/repo/src:/work/repo",
+        ]
+    environment_arguments = []
+    for value in [*environment, "HOME=/tmp"]:
+        environment_arguments.extend(["--env", value])
     return [
         "create",
         "--name",
@@ -93,19 +132,49 @@ def build_container_arguments(
         f"type=bind,src={report},dst=/report.xml",
         "--workdir",
         "/work",
-        "--env",
-        "PYTEST_DISABLE_PLUGIN_AUTOLOAD=1",
-        "--env",
-        "PYTEST_ADDOPTS=",
-        "--env",
-        "PYTEST_PLUGINS=",
-        "--env",
-        "PYTHONDONTWRITEBYTECODE=1",
-        "--env",
-        "PYTHONPATH=/work/repo/src:/work/repo",
-        "--env",
-        "HOME=/tmp",
+        *environment_arguments,
         "--entrypoint",
+        *command,
+    ]
+
+
+def _node_test_arguments() -> list[str]:
+    return [
+        "--test",
+        "--test-reporter=junit",
+        "--test-reporter-destination=/report.xml",
+        "--test-reporter=spec",
+        "--test-reporter-destination=stderr",
+    ]
+
+
+def _pytest_command(
+    config: RunnerConfig,
+    image_id: str,
+    oracle: OracleConfig,
+    kind: Literal["security", "suite"],
+) -> list[str]:
+    arguments = [
+        "-q",
+        "--tb=short",
+        f"--import-mode={config.import_mode}",
+        "-p",
+        "no:cacheprovider",
+        "--junitxml=/report.xml",
+    ]
+    for module in config.plugins:
+        arguments.extend(["-p", module])
+    if kind == "security":
+        arguments.extend(["-c", "/dev/null", "--noconftest", "--rootdir=/oracle"])
+        arguments.extend(
+            f"/oracle/oracle.py::{test}"
+            for test in (oracle.security_test, *oracle.controls)
+        )
+    else:
+        if config.suite_markers is not None:
+            arguments.extend(["-m", config.suite_markers])
+        arguments.extend(_suite_paths(config.suite))
+    return [
         "python",
         image_id,
         "-I",
@@ -114,5 +183,5 @@ def build_container_arguments(
         files("seam.execution.resources")
         .joinpath("bootstrap.py.txt")
         .read_text(encoding="utf-8"),
-        *pytest_args,
+        *arguments,
     ]

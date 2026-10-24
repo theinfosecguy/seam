@@ -8,6 +8,136 @@ from seam.models import ReviewedTestsConfig, RunnerConfig
 from seam.verification.config import load_config
 
 
+@pytest.mark.parametrize("kind", ["node", "mocha"])
+def test_javascript_config_selects_language_and_preserves_oracle(
+    tmp_path: Path, kind: str
+) -> None:
+    (tmp_path / "oracle.mjs").write_text("// external oracle\n")
+    path = tmp_path / "harness.toml"
+    path.write_text(
+        '[oracle]\npath = "oracle.mjs"\nsecurity_test = "test_security"\n'
+        'controls = ["test_control"]\nfailure_marker = "REGRESSION"\n'
+        f'[runner]\nkind = "{kind}"\nimage = "test-image"\n'
+        'suite = ["test/existing.cjs"]\n'
+    )
+    config = load_config(path)
+    assert config.runner.language == "javascript"
+    assert config.oracle.path == tmp_path / "oracle.mjs"
+    path.write_text(path.read_text().replace('kind = "' + kind + '"\n', ""))
+    with pytest.raises(ValueError, match="regular python file"):
+        load_config(path)
+
+
+@pytest.mark.parametrize(
+    "settings",
+    [
+        {"plugins": ["project.plugin"]},
+        {"suite_markers": "smoke"},
+        {"import_mode": "prepend"},
+    ],
+)
+def test_javascript_runner_rejects_python_settings(settings: dict[str, object]) -> None:
+    with pytest.raises(ValueError, match="pytest settings"):
+        RunnerConfig.model_validate({"kind": "node", "image": "image", **settings})
+
+
+@pytest.mark.parametrize(
+    "mapping",
+    [
+        {"main": "/opt/seam/revision/node_modules"},
+        {"a" * 40: "/home/dev/node_modules"},
+        {"a" * 40: "/opt/seam/../private/node_modules"},
+        {"a" * 40: "/opt/seam/./private/node_modules"},
+        {"a" * 40: "/opt/seam/revision/not-modules"},
+    ],
+)
+def test_node_dependencies_are_commit_pinned_image_paths(
+    mapping: dict[str, str],
+) -> None:
+    with pytest.raises(ValueError, match="commit IDs"):
+        RunnerConfig(kind="node", image="image", node_dependencies=mapping)
+
+
+def test_python_runner_rejects_node_dependency_mapping() -> None:
+    with pytest.raises(ValueError, match="JavaScript runner"):
+        RunnerConfig(
+            image="image", node_dependencies={"a" * 40: "/opt/seam/a/node_modules"}
+        )
+
+
+@pytest.mark.parametrize(
+    "pattern", ["", "line\nbreak", "line\rbreak", "nul\x00byte", "x" * 1025]
+)
+def test_mocha_grep_is_bounded_and_cannot_contain_line_breaks(pattern: str) -> None:
+    with pytest.raises(ValueError, match="mocha_grep"):
+        RunnerConfig(kind="mocha", image="image", mocha_grep=pattern)
+
+
+@pytest.mark.parametrize("kind", ["pytest", "node"])
+def test_mocha_grep_requires_the_mocha_runner(kind: str) -> None:
+    with pytest.raises(ValueError, match="Mocha runner"):
+        RunnerConfig.model_validate(
+            {"kind": kind, "image": "image", "mocha_grep": "^relevant "}
+        )
+
+
+def test_mocha_grep_is_preserved_in_frozen_configuration() -> None:
+    config = RunnerConfig(kind="mocha", image="image", mocha_grep="^relevant ")
+    assert config.model_dump(mode="json")["mocha_grep"] == "^relevant "
+
+
+@pytest.mark.parametrize(
+    "modules",
+    [
+        {".": ("a" * 40,)},
+        {"../outside": ("a" * 40,)},
+        {"/absolute": ("a" * 40,)},
+        {"fixtures/./module": ("a" * 40,)},
+        {"fixtures//module": ("a" * 40,)},
+        {"fixtures/.hidden": ("a" * 40,)},
+        {"fixtures\\module": ("a" * 40,)},
+        {"fixtures/module": ()},
+        {"fixtures/module": ("a" * 40, "a" * 40)},
+        {"fixtures/module": ("main",)},
+        {"fixtures/module": ("A" * 40,)},
+        {"fixtures/module": tuple(f"{number:040x}" for number in range(17))},
+        {f"fixtures/module{number}": ("a" * 40,) for number in range(17)},
+    ],
+)
+def test_reviewed_submodules_require_exact_bounded_paths_and_objects(
+    modules: dict[str, tuple[str, ...]],
+) -> None:
+    with pytest.raises(ValueError):
+        RunnerConfig(image="fixture-image", reviewed_submodules=modules)
+
+
+def test_reviewed_submodules_are_preserved_in_frozen_configuration() -> None:
+    modules = {"test/cache-fixtures": ("a" * 40, "b" * 64)}
+    config = RunnerConfig(image="fixture-image", reviewed_submodules=modules)
+    assert config.model_dump(mode="json")["reviewed_submodules"] == {
+        "test/cache-fixtures": ["a" * 40, "b" * 64]
+    }
+
+
+@pytest.mark.parametrize(
+    "selector",
+    ["--help", "../test.js", "/test.js", "test/*.js", "test.js::test_one", "test.ts"],
+)
+def test_javascript_suite_requires_exact_contained_files(
+    tmp_path: Path, selector: str
+) -> None:
+    (tmp_path / "oracle.mjs").write_text("// external oracle\n")
+    path = tmp_path / "harness.toml"
+    path.write_text(
+        '[oracle]\npath = "oracle.mjs"\nsecurity_test = "test_security"\n'
+        'controls = ["test_control"]\nfailure_marker = "REGRESSION"\n'
+        '[runner]\nkind = "node"\nimage = "test-image"\n'
+        f'suite = ["{selector}"]\n'
+    )
+    with pytest.raises(ValueError):
+        load_config(path)
+
+
 def test_config_unknown_fields_and_unsafe_suite_are_rejected(tmp_path: Path) -> None:
     oracle = tmp_path / "checks.py"
     oracle.write_text("# fixture\n")

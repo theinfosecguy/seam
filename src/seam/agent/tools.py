@@ -12,7 +12,12 @@ from seam.constants.agent import (
     MAX_ENTRIES,
     MAX_TEXT_BYTES,
 )
-from seam.constants.security import ALLOWED_SUFFIXES, MAX_SECRET_PARSE_BYTES
+from seam.constants.repository import SOURCE_SUFFIXES, SourceLanguage
+from seam.constants.security import (
+    ALLOWED_SUFFIXES,
+    MAX_SECRET_PARSE_BYTES,
+    SNAPSHOT_EXCLUDED_NAMES,
+)
 from seam.exceptions import AgentError, RepositoryError
 from seam.models import AgentProposal
 from seam.repository import validate_source_path
@@ -28,7 +33,9 @@ def _safe_parts(value: str, *, root_allowed: bool = False) -> tuple[str, ...]:
         or PurePosixPath(value).is_absolute()
         or "\\" in value
         or any(ord(char) < 32 or ord(char) == 127 for char in value)
-        or any(part.startswith(".") for part in parts)
+        or any(
+            part.startswith(".") or part in SNAPSHOT_EXCLUDED_NAMES for part in parts
+        )
         or is_sensitive_path(value)
         or contains_secret(value)
     ):
@@ -58,9 +65,13 @@ class WorkspaceTools:
         root: Path,
         upstream_parent: Path | None = None,
         upstream_fix: Path | None = None,
+        *,
+        language: SourceLanguage = "python",
     ) -> None:
         self.root = root.absolute()
         self.inspected_target = False
+        self.language = language
+        self._allowed_suffixes = ALLOWED_SUFFIXES | SOURCE_SUFFIXES[language]
         self._roots = {
             "target": self.root,
             "upstream_parent": upstream_parent,
@@ -77,6 +88,11 @@ class WorkspaceTools:
         if root is None:
             raise ValueError("requested revision is unavailable")
         return root
+
+    def _readable(self, name: str) -> bool:
+        return Path(name).suffix.lower() in self._allowed_suffixes or (
+            self.language == "javascript" and name == "package.json"
+        )
 
     def execute(self, name: str, arguments: str) -> AgentProposal | dict[str, object]:
         """Validate every call locally, including providers without strict schemas."""
@@ -131,9 +147,8 @@ class WorkspaceTools:
                         continue
                     if entry.is_dir(follow_symlinks=False):
                         result.append(entry.name + "/")
-                    elif (
-                        entry.is_file(follow_symlinks=False)
-                        and Path(entry.name).suffix.lower() in ALLOWED_SUFFIXES
+                    elif entry.is_file(follow_symlinks=False) and self._readable(
+                        entry.name
                     ):
                         result.append(entry.name)
             return {"entries": sorted(result), "truncated": truncated}
@@ -143,7 +158,7 @@ class WorkspaceTools:
     def read_file(self, argument: ReadFile) -> dict[str, object]:
         """Read bounded UTF-8 text from one independent regular file."""
         parts = _safe_parts(argument.path)
-        if Path(parts[-1]).suffix.lower() not in ALLOWED_SUFFIXES:
+        if not self._readable(parts[-1]):
             raise ValueError("file type is not allowed")
         directory = _open_directory(self._root(argument.revision), parts[:-1])
         try:
@@ -173,7 +188,7 @@ class WorkspaceTools:
         selected = selected_bytes[:MAX_TEXT_BYTES].decode("utf-8", errors="ignore")
         if argument.revision == "target" and selected.strip():
             try:
-                validate_source_path(argument.path)
+                validate_source_path(argument.path, self.language)
             except RepositoryError:
                 pass
             else:

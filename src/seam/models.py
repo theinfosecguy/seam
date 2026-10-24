@@ -18,14 +18,14 @@ from pydantic import (
     model_validator,
 )
 
-from seam.constants.repository import MAX_PATCH_BYTES
+from seam.constants.repository import MAX_PATCH_BYTES, SourceLanguage
 from seam.constants.verification import (
     MAX_PYTEST_MARKER_EXPRESSION,
     MAX_PYTEST_PLUGIN_NAME,
     MAX_PYTEST_PLUGINS,
     MAX_REVIEW_REASON_CHARACTERS,
 )
-from seam.security.paths import validate_reviewed_fixtures
+from seam.security.paths import validate_reviewed_fixtures, validate_reviewed_submodules
 
 
 class ModelProvider(StrEnum):
@@ -76,7 +76,7 @@ class Record(BaseModel):
 
 
 class OracleConfig(Record):
-    """Identify a trusted external pytest file and its expected regression."""
+    """Identify a trusted external test file and its expected regression."""
 
     path: Path
     security_test: str = Field(pattern=r"^test_[A-Za-z0-9_]+$")
@@ -89,13 +89,14 @@ class OracleConfig(Record):
         if len(set(names)) != len(names) or any(
             not re.fullmatch(r"test_[A-Za-z0-9_]+", name) for name in names
         ):
-            raise ValueError("controls must be unique pytest function names")
+            raise ValueError("controls must be unique test_* names")
         return names
 
 
 class RunnerConfig(Record):
     """Bound container execution using an operator-selected image."""
 
+    kind: Literal["pytest", "node", "mocha"] = "pytest"
     image: str = Field(min_length=1)
     docker: tuple[str, ...] = ("docker",)
     timeout_seconds: float = Field(default=120, gt=0, le=3600)
@@ -107,7 +108,53 @@ class RunnerConfig(Record):
     plugins: tuple[str, ...] = ()
     import_mode: Literal["importlib", "prepend", "append"] = "importlib"
     suite_markers: str | None = None
+    mocha_grep: str | None = Field(default=None, min_length=1, max_length=1024)
     reviewed_fixtures: dict[str, tuple[str, ...]] = Field(default_factory=dict)
+    reviewed_submodules: dict[str, tuple[str, ...]] = Field(default_factory=dict)
+    node_dependencies: dict[str, str] = Field(default_factory=dict, max_length=16)
+
+    @property
+    def language(self) -> SourceLanguage:
+        """Select the implementation policy from the explicit test runner."""
+        return "python" if self.kind == "pytest" else "javascript"
+
+    @model_validator(mode="after")
+    def runner_settings(self) -> "RunnerConfig":
+        if self.kind != "pytest" and (
+            self.plugins
+            or self.suite_markers is not None
+            or self.import_mode != "importlib"
+        ):
+            raise ValueError("JavaScript runners do not accept pytest settings")
+        if self.kind == "pytest" and self.node_dependencies:
+            raise ValueError("node_dependencies requires a JavaScript runner")
+        if self.mocha_grep is not None and self.kind != "mocha":
+            raise ValueError("mocha_grep requires the Mocha runner")
+        return self
+
+    @field_validator("mocha_grep")
+    @classmethod
+    def valid_mocha_grep(cls, pattern: str | None) -> str | None:
+        if pattern is not None and any(
+            character in pattern for character in "\r\n\x00"
+        ):
+            raise ValueError("mocha_grep cannot contain newlines or NUL")
+        return pattern
+
+    @field_validator("node_dependencies")
+    @classmethod
+    def valid_node_dependencies(cls, paths: dict[str, str]) -> dict[str, str]:
+        for revision, path in paths.items():
+            if (
+                re.fullmatch(r"[0-9a-f]{40}|[0-9a-f]{64}", revision) is None
+                or re.fullmatch(r"/opt/seam/(?:[A-Za-z0-9_.-]+/)*node_modules", path)
+                is None
+                or any(part in {".", ".."} for part in path.split("/"))
+            ):
+                raise ValueError(
+                    "node_dependencies requires commit IDs and /opt/seam image paths"
+                )
+        return paths
 
     @field_validator("reviewed_fixtures")
     @classmethod
@@ -115,6 +162,14 @@ class RunnerConfig(Record):
         cls, values: dict[str, tuple[str, ...]]
     ) -> dict[str, tuple[str, ...]]:
         validate_reviewed_fixtures(values)
+        return values
+
+    @field_validator("reviewed_submodules")
+    @classmethod
+    def valid_reviewed_submodules(
+        cls, values: dict[str, tuple[str, ...]]
+    ) -> dict[str, tuple[str, ...]]:
+        validate_reviewed_submodules(values)
         return values
 
     @field_validator("plugins")
@@ -222,7 +277,7 @@ class ExecutionResult(ProcessResult):
         if self.evidence_error:
             return self.evidence_error
         if self.returncode not in {0, 1}:
-            return "pytest did not complete a normal test run"
+            return "test runner did not complete a normal test run"
         if not self.tests:
             return "test execution produced no test cases"
         identities = {(test.classname, test.name) for test in self.tests}
@@ -251,6 +306,7 @@ class AgentContext(Record):
     """Give a patch proposer bounded evidence and disposable source checkouts."""
 
     workspace: Path
+    language: SourceLanguage = "python"
     upstream_diff: str
     feedback: str = ""
     upstream_parent_workspace: Path | None = None
@@ -294,6 +350,7 @@ class RunReport(Record):
     )
     reviewed_tests: ReviewedTestsConfig | None = None
     reviewed_fixtures: dict[str, tuple[str, ...]] = Field(default_factory=dict)
+    reviewed_submodules: dict[str, tuple[str, ...]] = Field(default_factory=dict)
 
     @field_validator("reviewed_fixtures")
     @classmethod
@@ -301,6 +358,14 @@ class RunReport(Record):
         cls, values: dict[str, tuple[str, ...]]
     ) -> dict[str, tuple[str, ...]]:
         validate_reviewed_fixtures(values)
+        return values
+
+    @field_validator("reviewed_submodules")
+    @classmethod
+    def valid_reviewed_submodules(
+        cls, values: dict[str, tuple[str, ...]]
+    ) -> dict[str, tuple[str, ...]]:
+        validate_reviewed_submodules(values)
         return values
 
     @model_validator(mode="after")

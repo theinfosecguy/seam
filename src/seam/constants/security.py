@@ -68,6 +68,8 @@ SNAPSHOT_EXCLUDED_NAMES: Final = frozenset(
         "venv",
         "__pycache__",
         ".pytest_cache",
+        "node_modules",
+        ".npm",
         ".mypy_cache",
         ".ruff_cache",
         ".ssh",
