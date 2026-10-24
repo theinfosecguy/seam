@@ -1,0 +1,16 @@
+{
+  "image_id": "sha256:2c794d912bb68230bb0c149a1525481428e2ed341fbe76a5883d803773724315",
+  "size_bytes": 177425516,
+  "tag": "seam-gap-litellm-context:20261024-union",
+  "target_package_installed": false,
+  "first_party_workspaces": "Staged /work/repo/enterprise and /work/repo/litellm-proxy-extras exposed by explicit image .pth; source paths not PyPI artifacts.",
+  "dockerfile_sha256": "73a3c36da440804aa95add8b851993522649a3ec42916688c643187b9ebed12c",
+  "requirements_sha256": "9193c3d2552086d46a3edfbe743a15f51c6db9182431687319ea04a2df878b80",
+  "staged_monorepo_bridge_sha256": "cc32c3d3630551c94a4ff155689095b7f0394376c680a707ff2dbf31643ba2fb",
+  "dependency_closure": "Real union environment; common base plus explicit upstream locked missing dependencies and common idna3.19; MCP2 overlay only for upstream snapshots. See exact manifests/deviations. This final environment is not target-lock-identical.",
+  "base_image": "sha256:7ef882ee8971a636c34ebd40597a65b7acc04f620c9fd8f7186602665cbdfde7",
+  "layout_plugin_sha256": "7e240395c71b1bc04b155980c2121149ab3957a9bc81484012a0d4fa299a2907",
+  "layout_plugin_purpose": "Refresh copied first-party source workspace roots after staging; no behavior substitutions.",
+  "dependency_deviations": "final-environment-deviations.json",
+  "source_sdk_overlay": "installed-packages.source-overlay.json"
+}

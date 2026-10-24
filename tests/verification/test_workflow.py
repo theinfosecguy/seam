@@ -17,7 +17,12 @@ from seam.verification import workflow
 def test_missing_repository_writes_inconclusive_report(tmp_path: Path) -> None:
     output = tmp_path / "evidence"
     report = workflow.run_backport(
-        tmp_path / "missing", "fix", "target", tmp_path / "missing.toml", output
+        tmp_path / "missing",
+        "fix",
+        "target",
+        tmp_path / "missing.toml",
+        output,
+        direct=True,
     )
     saved = RunReport.model_validate_json((output / "report.json").read_bytes())
     assert saved == report
@@ -38,7 +43,7 @@ def test_invalid_config_reports_validation_without_echoing_values(
     config = tmp_path / "invalid.toml"
     config.write_text('secret = "private-config-value"\n')
     output = tmp_path / "evidence"
-    report = workflow.run_backport(source, "fix", "target", config, output)
+    report = workflow.run_backport(source, "fix", "target", config, output, direct=True)
     assert report.status == "inconclusive"
     assert "oracle" in report.reason and "runner" in report.reason
     assert "private-config-value" not in (output / "report.json").read_text()
@@ -53,7 +58,7 @@ def test_real_git_rejection_retains_report_and_frozen_input(tmp_path: Path) -> N
     ).strip()
     output = tmp_path / "evidence"
     report = workflow.run_backport(
-        project.repo, initial, project.target, project.config_path, output
+        project.repo, initial, project.target, project.config_path, output, direct=True
     )
     assert report.status == "inconclusive"
     assert "one ordinary commit" in report.reason
@@ -80,7 +85,12 @@ def test_image_setup_failure_retains_preflighted_provenance(
     monkeypatch.setattr(workflow, "DockerRunner", BrokenRunner)
     output = tmp_path / "evidence"
     report = workflow.run_backport(
-        project.repo, project.fix, project.target, project.config_path, output
+        project.repo,
+        project.fix,
+        project.target,
+        project.config_path,
+        output,
+        direct=True,
     )
     assert report.status == "inconclusive"
     assert "fixture unavailable" in report.reason
@@ -112,6 +122,7 @@ def test_all_revisions_preflight_before_image_preparation(
         project.target,
         project.config_path,
         tmp_path / "evidence",
+        direct=True,
     )
     assert checked == ["upstream_parent", "upstream_fix", "target_baseline"]
     assert report.status == "inconclusive"
@@ -124,13 +135,17 @@ def test_output_safety_rejection_writes_nothing(tmp_path: Path) -> None:
     source = tmp_path / "source"
     source.mkdir()
     with pytest.raises(ValueError, match="outside"):
-        workflow.run_backport(source, "fix", "target", tmp_path / "none", source)
+        workflow.run_backport(
+            source, "fix", "target", tmp_path / "none", source, direct=True
+        )
     assert list(source.iterdir()) == []
     output = tmp_path / "evidence"
     output.mkdir()
     (output / "keep.txt").write_text("existing evidence")
     with pytest.raises(ValueError, match="new or empty"):
-        workflow.run_backport(source, "fix", "target", tmp_path / "none", output)
+        workflow.run_backport(
+            source, "fix", "target", tmp_path / "none", output, direct=True
+        )
     assert sorted(path.name for path in output.iterdir()) == ["keep.txt"]
     assert (output / "keep.txt").read_text() == "existing evidence"
 
@@ -200,7 +215,9 @@ image = "test-image"
             )
 
     monkeypatch.setattr(workflow, "DockerRunner", Runner)
-    report = workflow.run_backport(repo, "fix", "target", config, tmp_path / "output")
+    report = workflow.run_backport(
+        repo, "fix", "target", config, tmp_path / "output", direct=True
+    )
     assert report.status == "inconclusive"
     assert "collect" in report.reason.lower() or "missing" in report.reason.lower()
 

@@ -1,0 +1,174 @@
+{
+  "publication_schema": 1,
+  "source_report_sha256": "7a0fde31b45a751c4c3523664bf9867949668f0ae13e892eff987bfdddc93ae2",
+  "normalization": "Paths normalized; raw stdout/stderr, testcase messages and embedded bootstrap omitted with hashes. This is a publication derivative, not a seam inspect input.",
+  "report": {
+    "schema_version": 2,
+    "status": "inconclusive",
+    "reason": "Verification prerequisites were not established: upstream_parent suite: test execution contained errors or skipped tests",
+    "fix_commit": "871c7aeec5dfed2138655ccbccbf15c6d763bae7",
+    "parent_commit": "da29bfa38d5fd4f89f98d2e668027505449ddaae",
+    "target_commit": "f275d5c4c75d9cc96131800099619c5027b62873",
+    "image_id": "sha256:1d6b15e00a0eef9d521172b4e79b03c68ee2dc101f736e94280ae63cd0a611f2",
+    "oracle_sha256": "1bf1ba75af3bda575433c824c39444eae1e65a057673b486d9e62b807645686a",
+    "config_sha256": "5e4f6f7d090b118f16ce24bf3f0416467bab1208f7dd4f239aa73ddba5ee1ac7",
+    "patch_sha256": null,
+    "phases": [
+      {
+        "name": "upstream_parent",
+        "revision": "da29bfa38d5fd4f89f98d2e668027505449ddaae",
+        "security": {
+          "returncode": 1,
+          "command": [
+            "python",
+            "-I",
+            "-B",
+            "-c",
+            "<bootstrap program omitted>",
+            "-q",
+            "--tb=short",
+            "--import-mode=importlib",
+            "-p",
+            "no:cacheprovider",
+            "--junitxml=/report.xml",
+            "-p",
+            "anyio.pytest_plugin",
+            "-p",
+            "pytest_mock.plugin",
+            "-p",
+            "pytest_recording.plugin",
+            "-p",
+            "staged_layout",
+            "-c",
+            "/dev/null",
+            "--noconftest",
+            "--rootdir=/oracle",
+            "/oracle/oracle.py::test_security_foreign_host",
+            "/oracle/oracle.py::test_control_localhost",
+            "/oracle/oracle.py::test_control_loopback_ipv6",
+            "/oracle/oracle.py::test_control_lan_ip"
+          ],
+          "timed_out": false,
+          "truncated": false,
+          "duration_seconds": 4.3502,
+          "tests": [
+            {
+              "name": "test_security_foreign_host",
+              "classname": "oracle",
+              "outcome": "failed",
+              "expected_failure": false,
+              "message_sha256": "36f3231adda039937b33796283e9d56600b27fe2f0f80b355ec2216ca9fe28fc",
+              "expected_security_failure_marker_present": true
+            },
+            {
+              "name": "test_control_localhost",
+              "classname": "oracle",
+              "outcome": "passed",
+              "expected_failure": false,
+              "message_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "expected_security_failure_marker_present": false
+            },
+            {
+              "name": "test_control_loopback_ipv6",
+              "classname": "oracle",
+              "outcome": "passed",
+              "expected_failure": false,
+              "message_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "expected_security_failure_marker_present": false
+            },
+            {
+              "name": "test_control_lan_ip",
+              "classname": "oracle",
+              "outcome": "passed",
+              "expected_failure": false,
+              "message_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "expected_security_failure_marker_present": false
+            }
+          ],
+          "evidence_error": null,
+          "stdout_sha256": "2ade1b26fe4edd20424aaf56fb86affbe78fc3c62e697f3bfe4b52e1262e59a5",
+          "stdout_omitted": true,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr_omitted": true,
+          "bootstrap_program_sha256": "9e998596533214cbe0bad366e6058c665669548be29e9d3ca17f60d2c31caaa5"
+        },
+        "suite": {
+          "returncode": 1,
+          "command": [
+            "python",
+            "-I",
+            "-B",
+            "-c",
+            "<bootstrap program omitted>",
+            "-q",
+            "--tb=short",
+            "--import-mode=importlib",
+            "-p",
+            "no:cacheprovider",
+            "--junitxml=/report.xml",
+            "-p",
+            "anyio.pytest_plugin",
+            "-p",
+            "pytest_mock.plugin",
+            "-p",
+            "pytest_recording.plugin",
+            "-p",
+            "staged_layout",
+            "tests/test_ui_web.py::test_agent_to_web",
+            "tests/test_ui_web.py::test_agent_to_web_with_model_instances",
+            "tests/test_ui_web.py::test_agent_to_web_with_deps",
+            "tests/test_ui_web.py::test_agent_to_web_with_model_settings"
+          ],
+          "timed_out": false,
+          "truncated": false,
+          "duration_seconds": 5.249,
+          "tests": [
+            {
+              "name": "test_agent_to_web",
+              "classname": "tests.test_ui_web",
+              "outcome": "error",
+              "expected_failure": false,
+              "message_sha256": "fc560f76c47ecac7b2a4b24c22389b73225ed8778ecc25dcf80c5a86dc770b77",
+              "expected_security_failure_marker_present": false
+            },
+            {
+              "name": "test_agent_to_web_with_model_instances",
+              "classname": "tests.test_ui_web",
+              "outcome": "error",
+              "expected_failure": false,
+              "message_sha256": "fc560f76c47ecac7b2a4b24c22389b73225ed8778ecc25dcf80c5a86dc770b77",
+              "expected_security_failure_marker_present": false
+            },
+            {
+              "name": "test_agent_to_web_with_deps",
+              "classname": "tests.test_ui_web",
+              "outcome": "error",
+              "expected_failure": false,
+              "message_sha256": "fc560f76c47ecac7b2a4b24c22389b73225ed8778ecc25dcf80c5a86dc770b77",
+              "expected_security_failure_marker_present": false
+            },
+            {
+              "name": "test_agent_to_web_with_model_settings",
+              "classname": "tests.test_ui_web",
+              "outcome": "error",
+              "expected_failure": false,
+              "message_sha256": "fc560f76c47ecac7b2a4b24c22389b73225ed8778ecc25dcf80c5a86dc770b77",
+              "expected_security_failure_marker_present": false
+            }
+          ],
+          "evidence_error": null,
+          "stdout_sha256": "876a37ff0982f9f9bac7ee2a2cf0490918be14349b2ada26f56c8540ec72a29c",
+          "stdout_omitted": true,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr_omitted": true,
+          "bootstrap_program_sha256": "9e998596533214cbe0bad366e6058c665669548be29e9d3ca17f60d2c31caaa5"
+        }
+      }
+    ],
+    "attempts": 0,
+    "adaptation": "none",
+    "model_usage": {},
+    "reviewed_tests": null,
+    "reviewed_fixtures": {}
+  }
+}

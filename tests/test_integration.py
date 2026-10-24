@@ -140,7 +140,7 @@ def test_sdk_tools_adapt_conflict_and_real_verifier_accepts_patch(
         agent.close()
     assert report.status == "verified", report.model_dump()
     assert report.adaptation == "agent"
-    assert report.attempts == 2
+    assert report.attempts == 1
     assert report.model_usage["calls"] == 3
     assert report.patch_sha256 == hashlib.sha256(patch.encode()).hexdigest()
     assert report.oracle_sha256 == hashlib.sha256(oracle).hexdigest()
@@ -166,6 +166,7 @@ def test_clean_fix_is_applied_without_a_model(
         parent(project.repo, project.fix),
         project.config_path,
         tmp_path / "direct",
+        direct=True,
     )
     assert report.status == "verified", report.model_dump()
     assert report.adaptation == "direct_application"
@@ -194,7 +195,7 @@ def test_unavailable_provider_records_attempted_adaptation(
     )
     assert report.status == "inconclusive"
     assert report.adaptation == "agent"
-    assert report.attempts == 2
+    assert report.attempts == 1
     assert report.model_usage == {"calls": 1}
     assert "provider request failed" in report.reason
     assert report.patch_sha256 is None

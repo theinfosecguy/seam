@@ -1,0 +1,23 @@
+{
+  "publication_schema": 1,
+  "source_report_sha256": "255dd83ee64f5ae01a04a2f522d88581034701b569c87c8d52da992992f01569",
+  "normalization": "Paths normalized; raw stdout/stderr, testcase messages and embedded bootstrap omitted with hashes. This is a publication derivative, not a seam inspect input.",
+  "report": {
+    "schema_version": 2,
+    "status": "inconclusive",
+    "reason": "Run could not complete: Git clone failed or exceeded limits: Cloning into '<temporary-evaluation>/upstream_parent'...\nremote: warning: lazy fetching disabled; some objects may not be available        \nremote: fatal: could not fetch 8a721f3931fc23ff4e4a446cfc535ee9b4b5c89f from promisor remote        \nerror: git upload-pack: git-pack-objects died with error.\nremote: aborting due to possible repository corruption on the remote side.<NUL>\nfatal: early EOF\nfatal: fetch-pack: invalid index-pack output\nfatal: git upload-pack: aborting due to possible repository corruption on the remote side.\n",
+    "fix_commit": "871c7aeec5dfed2138655ccbccbf15c6d763bae7",
+    "parent_commit": "da29bfa38d5fd4f89f98d2e668027505449ddaae",
+    "target_commit": "f275d5c4c75d9cc96131800099619c5027b62873",
+    "image_id": null,
+    "oracle_sha256": "1bf1ba75af3bda575433c824c39444eae1e65a057673b486d9e62b807645686a",
+    "config_sha256": "838218f75d6c3c376ee800c90624f82222afbd7a6e714d932dbef7a51fd87144",
+    "patch_sha256": null,
+    "phases": [],
+    "attempts": 0,
+    "adaptation": "none",
+    "model_usage": {},
+    "reviewed_tests": null,
+    "reviewed_fixtures": {}
+  }
+}

@@ -1,6 +1,6 @@
 """Validated model tool arguments and their generated provider schemas."""
 
-from typing import Any, Final, TypedDict
+from typing import Any, Final, Literal, TypedDict
 
 from pydantic import BaseModel, ConfigDict, Field
 
@@ -17,6 +17,7 @@ class ListFiles(Arguments):
     """Select one project directory for a bounded listing."""
 
     directory: str = Field(min_length=1, max_length=500)
+    revision: Literal["target", "upstream_parent", "upstream_fix"] = "target"
 
 
 class ReadFile(Arguments):
@@ -25,6 +26,7 @@ class ReadFile(Arguments):
     path: str = Field(min_length=1, max_length=500)
     start_line: int = Field(ge=1, le=100000)
     line_count: int = Field(ge=1, le=200)
+    revision: Literal["target", "upstream_parent", "upstream_fix"] = "target"
 
 
 class SubmitPatch(Arguments):
@@ -51,7 +53,17 @@ def _tool(name: str, description: str, schema: type[Arguments]) -> ToolSchema:
 
 
 TOOL_SCHEMAS: Final[list[ToolSchema]] = [
-    _tool("list_files", "List one project directory; use '.' for root.", ListFiles),
-    _tool("read_file", "Read a bounded range of a safe UTF-8 project file.", ReadFile),
+    _tool(
+        "list_files",
+        "List one directory in a selected revision; use '.' for root. "
+        "Revision defaults to target.",
+        ListFiles,
+    ),
+    _tool(
+        "read_file",
+        "Read a bounded range of a safe UTF-8 file in a selected revision. "
+        "Revision defaults to target.",
+        ReadFile,
+    ),
     _tool("submit_patch", "Submit the candidate implementation diff.", SubmitPatch),
 ]

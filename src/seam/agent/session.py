@@ -69,7 +69,11 @@ class PatchSession:
 
     def propose(self, context: AgentContext) -> AgentProposal:
         """Inspect bounded evidence and return one diff for independent verification."""
-        tools = WorkspaceTools(context.workspace)
+        tools = WorkspaceTools(
+            context.workspace,
+            context.upstream_parent_workspace,
+            context.upstream_fix_workspace,
+        )
         conversation = initial_conversation(context)
         seen_ids: set[str] = set()
         while True:
@@ -104,7 +108,9 @@ class PatchSession:
             for call in calls:
                 result = tools.execute(call.tool_name, _arguments(call))
                 if isinstance(result, AgentProposal):
-                    return result
+                    if tools.inspected_target:
+                        return result
+                    result = {"error": instruction("require_inspection")}
                 outputs.append(
                     ToolReturnPart(
                         tool_name=call.tool_name,

@@ -1,0 +1,112 @@
+{
+  "scope": "Source fixes explicitly authorized by latest user instruction; historical black-box evidence remains unchanged.",
+  "findings": [
+    {
+      "id": "F1",
+      "status": "fixed",
+      "title": "Repository inventory scale and diagnostic failures",
+      "change": "Inventory emits only Git object modes, retaining120s/1MiB bounds and submodule refusal. Errors identify selected revision and exceeded bound/exit status. Doctor enforces Git2.38+.",
+      "files": [
+        "src/seam/repository.py",
+        "src/seam/constants/repository.py",
+        "src/seam/cli/application.py"
+      ],
+      "evidence": [
+        "inventory-regression/results.json",
+        "installed-tests.xml",
+        "validation/checks.json"
+      ],
+      "runtime_scope": "All three original threshold fixtures pass inventory; deliberate /bin/false image-prep stop is not a security success."
+    },
+    {
+      "id": "F2",
+      "status": "fixed",
+      "title": "Starter CLI documentation and request defaults",
+      "change": "Offline examples explicitly choose --direct; supplied patch replaces that mutually exclusive mode; default32 requests and actual installed-version reporting are documented.",
+      "files": [
+        "README.md",
+        "docs/api.md",
+        "docs/usage.md",
+        "docs/reviewed-workflow-validation.md"
+      ],
+      "evidence": [
+        "validation/documentation/offline-mode-smoke.json",
+        "validation/documentation/documentation-checks.json"
+      ]
+    },
+    {
+      "id": "L1",
+      "status": "supported_for_direct_contained_directory_links",
+      "title": "Directory-link coverage blocked real monorepos",
+      "change": "Stage direct relative aliases to ordinary contained directories without traversing their contents; preserve link text into runtime, scan real content once, count links and reject graph cycles. Existing model-read/candidate-patch symlink restrictions remain.",
+      "files": [
+        "src/seam/execution/snapshot.py",
+        "src/seam/execution/resources/bootstrap.py.txt"
+      ],
+      "evidence": [
+        "validation/snapshot/directory-links.json",
+        "installed-tests.xml",
+        "pydanticai-host/reference-04/report.json"
+      ],
+      "remaining_limit": "Absolute, escaping, dangling, excluded, cyclic and indirect directory-link targets remain unsupported."
+    }
+  ],
+  "post_fix_observations": [
+    {
+      "category": "model_quality_and_external_session",
+      "case": "pydanticai-host/ai-01",
+      "status": "inconclusive",
+      "observed": "Candidate1 had mismatched patch context and an extra terminator; correctly rejected and fed into retry. Candidate2 stopped on sanitized provider/request-or-usage error. No success patch exported.",
+      "classification": "No false verification and no confirmed new implementation defect. Underlying provider cause is unavailable in exported evidence.",
+      "evidence": [
+        "pydanticai-host/ai-01/report.json",
+        "pydanticai-host/ai-01/attempt-1.patch",
+        "pydanticai-host/ai-01/attempt-1.txt"
+      ]
+    },
+    {
+      "category": "evaluation_environment",
+      "status": "remediated_before_qualification",
+      "observed": "PydanticAI metadata was initially generated on host and one temporary shared-object metadata clone was used; those outputs were discarded. Qualifying metadata was regenerated from independent clones inside isolated target build containers.",
+      "classification": "Operator setup deviation, preserved and disclosed; no host-generated metadata used by qualified reference04.",
+      "evidence": [
+        "pydanticai-host/setup-host-metadata-mistake.json",
+        "pydanticai-host/metadata-source-isolation.json",
+        "pydanticai-host/container-metadata-commands.json"
+      ]
+    },
+    {
+      "category": "model_quality_and_call_limit",
+      "case": "pydanticai-host/ai-02",
+      "status": "inconclusive",
+      "observed": "Second separate run reached shared32-call cap after first patch application rejection and retry; no backport test phase or success patch. The opaque provider/session error did not recur.",
+      "classification": "Reference environment and harness coverage qualified, generated adaptation remained unsuccessful under the configured model/call budget. No false verification.",
+      "evidence": [
+        "pydanticai-host/ai-02/report.json",
+        "pydanticai-host/ai-02.completion.json"
+      ]
+    },
+    {
+      "category": "verified_model_comparison",
+      "case": "litellm-context/ai-01",
+      "status": "verified",
+      "observed": "Real model adaptation verified all four phases. Authentication implementation file equals vendor bytes. Crypto file differs only by guarded prefix slicing versus removeprefix, equivalent for declared string inputs. Exported unified patches are not byte-identical.",
+      "evidence": [
+        "litellm-context/ai-01/report.json",
+        "litellm-context/model-semantic-comparison.json",
+        "litellm-context/model-vendor-unified.diff"
+      ],
+      "scope": "Helper oracle, selected existing module, and two-file source comparison; no full authentication-service integration proof."
+    }
+  ],
+  "final_implementation_defects_fixed": [
+    "F1",
+    "F2"
+  ],
+  "coverage_limitation_extended": "L1: direct contained directory links supported and exercised on both previously blocked libraries.",
+  "remaining_practical_limits": [
+    "PydanticAI model adaptation failed to produce an applicable patch in two bounded runs; no generated-patch equivalence established.",
+    "Opaque DeepSeek/session failure does not expose a root cause; one unresolved cost reservation remains.",
+    "Selected target suites only; LiteLLM exact selected depth2 history, not full history."
+  ]
+}

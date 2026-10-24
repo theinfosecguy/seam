@@ -1,0 +1,48 @@
+{
+  "source_suite": {
+    "passed": 1131,
+    "skipped_opt_in": 9,
+    "seconds": 27.99
+  },
+  "installed_wheel_suite": {
+    "tests": 1140,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "seconds": 137.75,
+    "all_docker_and_sudo_opt_ins": true,
+    "junit": "source:gap-fixes/installed-tests.xml"
+  },
+  "ruff_check": "passed",
+  "ruff_format": "passed",
+  "strict_mypy": "passed;57 source files",
+  "independent_code_review": "passed; no actionable findings",
+  "package_source_files_matched": 139,
+  "inventory_boundary_probes": "all3 pass inventory, deliberately stop at /bin/false image preparation; no security-test success claimed",
+  "installed_testcase_identities_unique": 1140,
+  "independent_inventory_measurement": {
+    "files_per_fixture": 1087,
+    "original_stage_output_bytes": [
+      1048575,
+      1048576,
+      1048577
+    ],
+    "new_mode_only_output_bytes_per_fixture": 7609
+  },
+  "artifact_scanner_mock_selfchecks": {
+    "passed": 9,
+    "actual_credentials_read": false,
+    "evidence": "validation/artifact-scanner-selfcheck.json"
+  },
+  "final_source_integrity": {
+    "diff_whitespace": "passed",
+    "complete_fix_patch_reverse_apply_check": "passed",
+    "all16_changed_file_hashes_match_provenance": true,
+    "base_commit_unchanged": true,
+    "source_edits_after_installed_test_gate": "usage.md guidance only; runtime and regression-test bytes unchanged"
+  },
+  "independent_final_audit": {
+    "status": "passed",
+    "sha256": "f38706e1dc013ea890089f7a1398678335adf0837be4ab4a2055454e3678e52d"
+  }
+}

@@ -6,7 +6,7 @@ import pytest
 
 import seam.agent
 from seam.cli import credentials, providers
-from seam.constants.agent import CLI_MODEL_CALLS, MAX_API_CALLS
+from seam.constants.agent import MAX_API_CALLS
 from seam.constants.providers import API_KEY_NAMES
 from seam.models import ModelProvider
 from seam.security.files import read_controller_text
@@ -21,7 +21,7 @@ def test_selected_provider_uses_its_own_key(monkeypatch, provider, key_name):
         credentials.load_api_key(None, provider)
 
 
-@pytest.mark.parametrize("calls", [CLI_MODEL_CALLS, MAX_API_CALLS])
+@pytest.mark.parametrize("calls", [1, MAX_API_CALLS])
 def test_provider_factory_keeps_model_and_credentials_separate(
     tmp_path, monkeypatch, calls
 ):

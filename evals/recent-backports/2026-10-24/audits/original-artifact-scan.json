@@ -1,0 +1,18 @@
+{
+  "checked_utc": "2026-10-24T15:45:50.918070+00:00",
+  "passed": true,
+  "files": 358,
+  "archive_members": 546,
+  "payloads_checked": 2355,
+  "exact_credential_match_paths": [],
+  "credential_values_not_recorded": true,
+  "excluded_directory_names": [
+    ".git",
+    ".pytest_cache",
+    "__pycache__",
+    "installed-env",
+    "metadata-tools",
+    "repo"
+  ],
+  "scope": "Saved evidence and built archive contents; source/dependency clones and environments excluded."
+}

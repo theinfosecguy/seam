@@ -5,6 +5,8 @@ from pathlib import Path, PurePosixPath
 from typing import Literal
 
 from seam.constants.repository import (
+    GIT_TIMEOUT_SECONDS,
+    MAX_GIT_OUTPUT_BYTES,
     MAX_PATCH_BYTES,
     SOURCE_DOCUMENTATION_DIRECTORIES,
     SOURCE_DOCUMENTATION_PREFIXES,
@@ -35,12 +37,17 @@ def git(path: Path, *arguments: str, input_text: str | None = None) -> str:
             *arguments,
         ],
         input_text=input_text,
-        timeout=120,
-        max_output=1048576,
+        timeout=GIT_TIMEOUT_SECONDS,
+        max_output=MAX_GIT_OUTPUT_BYTES,
     )
     if result.returncode or result.timed_out or result.truncated:
+        reasons = [f"exit status {result.returncode}"]
+        if result.timed_out:
+            reasons.append(f"timeout after {GIT_TIMEOUT_SECONDS} seconds")
+        if result.truncated:
+            reasons.append(f"output exceeded {MAX_GIT_OUTPUT_BYTES} bytes")
         raise RepositoryError(
-            f"Git {arguments[0]} failed or exceeded limits: {result.stderr[:2000]}"
+            f"Git {arguments[0]} failed ({'; '.join(reasons)}): {result.stderr[:2000]}"
         )
     return result.stdout
 
@@ -81,10 +88,14 @@ def clone_at(repo: Path, commit: str, destination: Path) -> None:
         str(destination),
     )
     git(destination, "checkout", "--detach", "--force", commit)
-    if any(
-        line.startswith("160000 ")
-        for line in git(destination, "ls-files", "--stage").splitlines()
-    ):
+    try:
+        # Only modes are needed; long tracked paths must not consume this budget.
+        modes = git(destination, "ls-files", "--format=%(objectmode)").splitlines()
+    except RepositoryError as error:
+        raise RepositoryError(
+            f"Commit {commit} inventory (requires Git 2.38+): {error}"
+        ) from error
+    if "160000" in modes:
         raise RepositoryError("submodules are unsupported in the first version")
 
 
@@ -181,11 +192,13 @@ def validate_patch(workspace: Path, patch: str) -> tuple[str, ...]:
 def apply_patch(workspace: Path, patch: str) -> str:
     """Apply a confined patch and return a canonical diff from its actual changes.
 
-    Recounting repairs generated hunk lengths, while Git still requires matching
-    context and the same path and whitespace checks. Exported diffs come from
-    Git, so reviewers do not need a special flag to apply them.
+    Restore a missing patch terminator and recount generated hunk lengths while
+    retaining Git's context, path, and whitespace checks. Exported diffs come
+    from Git, so reviewers do not need a special flag to apply them.
     """
 
+    if patch and not patch.endswith("\n"):
+        patch += "\n"
     names = validate_patch(workspace, patch)
     git(
         workspace,

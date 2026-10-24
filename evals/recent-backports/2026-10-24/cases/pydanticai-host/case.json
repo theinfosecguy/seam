@@ -1,0 +1,30 @@
+{
+  "parent": "da29bfa38d5fd4f89f98d2e668027505449ddaae",
+  "fix": "871c7aeec5dfed2138655ccbccbf15c6d763bae7",
+  "target": "f275d5c4c75d9cc96131800099619c5027b62873",
+  "official_backport": "394cc1d31656620704a703a2daed752afa5135fe",
+  "target_release": "v1.107.4",
+  "publication_date": "2026-08-14",
+  "history_scope": "Complete hydrated non-shallow history; selected reachable-object checks passed.",
+  "limitations": [
+    "Only foreign-Host health regression, three normal Host controls, and four existing app-construction tests are covered.",
+    "Explicit frozen trusted image plugin supplies staged monorepo paths and authentic metadata-only records; not a full packaging/install or server deployment test.",
+    "Initial host metadata-build/shared-clone setup mistake was preserved and superseded by container-only independent-clone regeneration before qualifying reference."
+  ],
+  "repo": "https://github.com/pydantic/pydantic-ai.git",
+  "source": "https://github.com/pydantic/pydantic-ai/security/advisories/GHSA-q2xc-rrxj-58x9",
+  "suite_cases": 4,
+  "controls": 3,
+  "assets": {
+    "config_sha256": "23bf571939f4ecaacefb5c4320498ef9bfecc2c832e7e3b23e0ec80370ad496c",
+    "oracle_sha256": "1bf1ba75af3bda575433c824c39444eae1e65a057673b486d9e62b807645686a",
+    "reference_patch_sha256": "fd26c3d1fc9bbbdb604d5915939a48704cef0d7aff145fd13ff359a851f4dc7d"
+  },
+  "upstream_licenses": [
+    {
+      "path": "LICENSE.upstream",
+      "revision": "f275d5c4c75d9cc96131800099619c5027b62873",
+      "sha256": "bc0e89738f36944c8106e1947c3d69631f9c33b8f1bcb60ec4f89d677d2dfcf4"
+    }
+  ]
+}

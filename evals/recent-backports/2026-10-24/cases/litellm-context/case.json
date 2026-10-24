@@ -1,0 +1,32 @@
+{
+  "parent": "e7d8bbc5deb36c960162d4ce3922985fe56db835",
+  "fix": "a80eacacee118fbed54e3d98f239d17a63fac818",
+  "target": "385266c14d6a4cb069751fd3525692e0a760ec57",
+  "official_backport": "f7cd90f09e9716652b38daec9f0640cdf49d582b",
+  "target_release": "v1.100.3",
+  "publication_date": "2026-09-30",
+  "history_scope": "Complete exact selected snapshots in original depth-2 histories; not a full-history benchmark. Original commit IDs/parent links were not rewritten.",
+  "limitations": [
+    "Selected depth-2 history is a deliberate disclosed resource limitation; no complete ancestry claim.",
+    "Helper-level inert encryption/session-context regression and three legitimate round-trip controls; no authentication service, model, tool, or real server execution.",
+    "Real proxy imports and existing helper test module plus ancestor fixtures; no operator module stubs.",
+    "Frozen oracle does not invoke ExperimentalUIJWTToken callers; both auth_checks.py and crypto implementation comparison is required before an advisory-scope conclusion.",
+    "Frozen common union dependencies and per-revision actual MCP SDK overlay satisfy declared ranges; final environment is not target-lock-identical. Exact deviations are recorded."
+  ],
+  "repo": "https://github.com/BerriAI/litellm.git",
+  "source": "https://github.com/BerriAI/litellm/security/advisories/GHSA-7hp6-4w63-5g45",
+  "suite_cases": 10,
+  "controls": 3,
+  "assets": {
+    "config_sha256": "3ce8d3532305ad62e7e336dbf2aeee9228560ad774f73971948df73cecf66c1c",
+    "oracle_sha256": "82ef6899914a3808c3608d07763f3b759a6fcc35db9517dde915a6363a903aa1",
+    "reference_patch_sha256": "21ec2b509209669819f2298760111f5b0d4eb28e47b42a710c10a6b22bd28252"
+  },
+  "upstream_licenses": [
+    {
+      "path": "LICENSE.upstream",
+      "revision": "385266c14d6a4cb069751fd3525692e0a760ec57",
+      "sha256": "b170d6bf8e8835dd357e011681db028f4d51e2fb0ea892058f56e01fb39b8273"
+    }
+  ]
+}

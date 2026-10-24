@@ -1,0 +1,21 @@
+{
+  "image_id": "sha256:9ea642989e8a8bafe922fa305c27688124de46b2edf126f7005c9c590de2a7d0",
+  "dockerfile_sha256": "ae7ea6686563643c09477d42916ff350b8a6d70f7995c4eb4318c950e58489c8",
+  "requirements_sha256": "08b5b23ff263c664fddd7763bd1a6d90753ee931f6efd76956ab0bdb00026df9",
+  "monorepo_bridge_sha256": "2ea1cf98ecac7e15c603fc306a8a8d253d606ff9b959345dc9b123c890d516da",
+  "base_image": "sha256:1d6b15e00a0eef9d521172b4e79b03c68ee2dc101f736e94280ae63cd0a611f2",
+  "tag": "seam-gap-pydanticai-host:20261024-test-deps",
+  "layout_plugin_sha256": "833dc6c415935ab4379a50cc8484d2315223a7a85f9a20481c78827cc27d1ef3",
+  "layout_plugin_purpose": "Refresh staged monorepo import roots after runner copy; no package or behavior substitutions.",
+  "authentic_metadata_manifest_sha256": "686bc8d8ad1938e5ae4bd228c8e535e0b1b9f61dabc8f6f3a59abc27e3e2fbd6",
+  "metadata_bridge": "source:gap-fixes/pydanticai-host/metadata-bridge.json",
+  "extra_test_dependency_pins": [
+    "blockbuster==1.5.26",
+    "forbiddenfruit==0.1.4"
+  ],
+  "build_tool_pins": [
+    "setuptools==80.9.0",
+    "wheel==0.45.1"
+  ],
+  "test_deps_dockerfile_sha256": "9f863bf3abfc98adc8b2aa3a8b7ddea04f9b6a88e4993a51be0f81a7d164e666"
+}

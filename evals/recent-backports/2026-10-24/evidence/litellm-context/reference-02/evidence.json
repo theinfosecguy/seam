@@ -1,0 +1,860 @@
+{
+  "publication_schema": 1,
+  "source_report_sha256": "8f72974ebea837aa8f0fdb7894ab88f68b3df37a0a5512175a5ab97bd98db907",
+  "normalization": "Paths normalized; raw stdout/stderr, testcase messages and embedded bootstrap omitted with hashes. This is a publication derivative, not a seam inspect input.",
+  "report": {
+    "schema_version": 2,
+    "status": "verified",
+    "reason": "All four revisions met the frozen security and compatibility checks.",
+    "fix_commit": "a80eacacee118fbed54e3d98f239d17a63fac818",
+    "parent_commit": "e7d8bbc5deb36c960162d4ce3922985fe56db835",
+    "target_commit": "385266c14d6a4cb069751fd3525692e0a760ec57",
+    "image_id": "sha256:2c794d912bb68230bb0c149a1525481428e2ed341fbe76a5883d803773724315",
+    "oracle_sha256": "82ef6899914a3808c3608d07763f3b759a6fcc35db9517dde915a6363a903aa1",
+    "config_sha256": "15afebedef9a0cb8525ef3dd116d1b3adc5c9db3297110983d53b04c3c079838",
+    "patch_sha256": "21ec2b509209669819f2298760111f5b0d4eb28e47b42a710c10a6b22bd28252",
+    "phases": [
+      {
+        "name": "upstream_parent",
+        "revision": "e7d8bbc5deb36c960162d4ce3922985fe56db835",
+        "security": {
+          "returncode": 1,
+          "command": [
+            "python",
+            "-I",
+            "-B",
+            "-c",
+            "<bootstrap program omitted>",
+            "-q",
+            "--tb=short",
+            "--import-mode=importlib",
+            "-p",
+            "no:cacheprovider",
+            "--junitxml=/report.xml",
+            "-p",
+            "pytest_asyncio.plugin",
+            "-p",
+            "pytest_mock.plugin",
+            "-p",
+            "staged_layout",
+            "-c",
+            "/dev/null",
+            "--noconftest",
+            "--rootdir=/oracle",
+            "/oracle/oracle.py::test_security_regression",
+            "/oracle/oracle.py::test_stored_value_roundtrip",
+            "/oracle/oracle.py::test_session_value_roundtrip",
+            "/oracle/oracle.py::test_aes_stored_value_roundtrip"
+          ],
+          "timed_out": false,
+          "truncated": false,
+          "duration_seconds": 17.4764,
+          "tests": [
+            {
+              "name": "test_security_regression",
+              "classname": "oracle",
+              "outcome": "failed",
+              "expected_failure": false,
+              "message_sha256": "fcbfc1105ad621bfe2f0706a6e2a45b51c22aa5d4438c437f39dd2765a8b60b0",
+              "expected_security_failure_marker_present": true
+            },
+            {
+              "name": "test_stored_value_roundtrip",
+              "classname": "oracle",
+              "outcome": "passed",
+              "expected_failure": false,
+              "message_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "expected_security_failure_marker_present": false
+            },
+            {
+              "name": "test_session_value_roundtrip",
+              "classname": "oracle",
+              "outcome": "passed",
+              "expected_failure": false,
+              "message_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "expected_security_failure_marker_present": false
+            },
+            {
+              "name": "test_aes_stored_value_roundtrip",
+              "classname": "oracle",
+              "outcome": "passed",
+              "expected_failure": false,
+              "message_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "expected_security_failure_marker_present": false
+            }
+          ],
+          "evidence_error": null,
+          "stdout_sha256": "73cf9dc275f127c79f2adca3110d28d7b90f6147c1cc6d157df00cb1dfb1bb90",
+          "stdout_omitted": true,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr_omitted": true,
+          "bootstrap_program_sha256": "9e998596533214cbe0bad366e6058c665669548be29e9d3ca17f60d2c31caaa5"
+        },
+        "suite": {
+          "returncode": 0,
+          "command": [
+            "python",
+            "-I",
+            "-B",
+            "-c",
+            "<bootstrap program omitted>",
+            "-q",
+            "--tb=short",
+            "--import-mode=importlib",
+            "-p",
+            "no:cacheprovider",
+            "--junitxml=/report.xml",
+            "-p",
+            "pytest_asyncio.plugin",
+            "-p",
+            "pytest_mock.plugin",
+            "-p",
+            "staged_layout",
+            "tests/test_litellm/proxy/common_utils/test_encrypt_decrypt_utils.py"
+          ],
+          "timed_out": false,
+          "truncated": false,
+          "duration_seconds": 19.0397,
+          "tests": [
+            {
+              "name": "test_aes_decrypt_failure_returns_none_not_raise",
+              "classname": "tests.test_litellm.proxy.common_utils.test_encrypt_decrypt_utils",
+              "outcome": "passed",
+              "expected_failure": false,
+              "message_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "expected_security_failure_marker_present": false
+            },
+            {
+              "name": "test_aes_decrypt_failure_returns_original_when_requested",
+              "classname": "tests.test_litellm.proxy.common_utils.test_encrypt_decrypt_utils",
+              "outcome": "passed",
+              "expected_failure": false,
+              "message_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "expected_security_failure_marker_present": false
+            },
+            {
+              "name": "test_aes_gcm_round_trip",
+              "classname": "tests.test_litellm.proxy.common_utils.test_encrypt_decrypt_utils",
+              "outcome": "passed",
+              "expected_failure": false,
+              "message_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "expected_security_failure_marker_present": false
+            },
+            {
+              "name": "test_callback_prefix_composes_with_v2",
+              "classname": "tests.test_litellm.proxy.common_utils.test_encrypt_decrypt_utils",
+              "outcome": "passed",
+              "expected_failure": false,
+              "message_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "expected_security_failure_marker_present": false
+            },
+            {
+              "name": "test_decrypt_failure_debug_log_omits_raw_value",
+              "classname": "tests.test_litellm.proxy.common_utils.test_encrypt_decrypt_utils",
+              "outcome": "passed",
+              "expected_failure": false,
+              "message_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "expected_security_failure_marker_present": false
+            },
+            {
+              "name": "test_default_is_legacy_algorithm",
+              "classname": "tests.test_litellm.proxy.common_utils.test_encrypt_decrypt_utils",
+              "outcome": "passed",
+              "expected_failure": false,
+              "message_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "expected_security_failure_marker_present": false
+            },
+            {
+              "name": "test_empty_string_round_trips_under_aes",
+              "classname": "tests.test_litellm.proxy.common_utils.test_encrypt_decrypt_utils",
+              "outcome": "passed",
+              "expected_failure": false,
+              "message_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "expected_security_failure_marker_present": false
+            },
+            {
+              "name": "test_legacy_nacl_value_still_decrypts_after_flag_flip",
+              "classname": "tests.test_litellm.proxy.common_utils.test_encrypt_decrypt_utils",
+              "outcome": "passed",
+              "expected_failure": false,
+              "message_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "expected_security_failure_marker_present": false
+            },
+            {
+              "name": "test_unknown_algorithm_falls_back_to_legacy",
+              "classname": "tests.test_litellm.proxy.common_utils.test_encrypt_decrypt_utils",
+              "outcome": "passed",
+              "expected_failure": false,
+              "message_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "expected_security_failure_marker_present": false
+            },
+            {
+              "name": "test_v2_prefix_is_idempotent_marker",
+              "classname": "tests.test_litellm.proxy.common_utils.test_encrypt_decrypt_utils",
+              "outcome": "passed",
+              "expected_failure": false,
+              "message_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "expected_security_failure_marker_present": false
+            }
+          ],
+          "evidence_error": null,
+          "stdout_sha256": "71989e61852881b26f0ba0bc1e3833fea5f3680074171222b3ace217bf742afb",
+          "stdout_omitted": true,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr_omitted": true,
+          "bootstrap_program_sha256": "9e998596533214cbe0bad366e6058c665669548be29e9d3ca17f60d2c31caaa5"
+        }
+      },
+      {
+        "name": "upstream_fix",
+        "revision": "a80eacacee118fbed54e3d98f239d17a63fac818",
+        "security": {
+          "returncode": 0,
+          "command": [
+            "python",
+            "-I",
+            "-B",
+            "-c",
+            "<bootstrap program omitted>",
+            "-q",
+            "--tb=short",
+            "--import-mode=importlib",
+            "-p",
+            "no:cacheprovider",
+            "--junitxml=/report.xml",
+            "-p",
+            "pytest_asyncio.plugin",
+            "-p",
+            "pytest_mock.plugin",
+            "-p",
+            "staged_layout",
+            "-c",
+            "/dev/null",
+            "--noconftest",
+            "--rootdir=/oracle",
+            "/oracle/oracle.py::test_security_regression",
+            "/oracle/oracle.py::test_stored_value_roundtrip",
+            "/oracle/oracle.py::test_session_value_roundtrip",
+            "/oracle/oracle.py::test_aes_stored_value_roundtrip"
+          ],
+          "timed_out": false,
+          "truncated": false,
+          "duration_seconds": 17.3414,
+          "tests": [
+            {
+              "name": "test_security_regression",
+              "classname": "oracle",
+              "outcome": "passed",
+              "expected_failure": false,
+              "message_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "expected_security_failure_marker_present": false
+            },
+            {
+              "name": "test_stored_value_roundtrip",
+              "classname": "oracle",
+              "outcome": "passed",
+              "expected_failure": false,
+              "message_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "expected_security_failure_marker_present": false
+            },
+            {
+              "name": "test_session_value_roundtrip",
+              "classname": "oracle",
+              "outcome": "passed",
+              "expected_failure": false,
+              "message_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "expected_security_failure_marker_present": false
+            },
+            {
+              "name": "test_aes_stored_value_roundtrip",
+              "classname": "oracle",
+              "outcome": "passed",
+              "expected_failure": false,
+              "message_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "expected_security_failure_marker_present": false
+            }
+          ],
+          "evidence_error": null,
+          "stdout_sha256": "8a3c4fa494319cffcf9625d20cb88c769161478e136b236ff3156ef56b48824b",
+          "stdout_omitted": true,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr_omitted": true,
+          "bootstrap_program_sha256": "9e998596533214cbe0bad366e6058c665669548be29e9d3ca17f60d2c31caaa5"
+        },
+        "suite": {
+          "returncode": 0,
+          "command": [
+            "python",
+            "-I",
+            "-B",
+            "-c",
+            "<bootstrap program omitted>",
+            "-q",
+            "--tb=short",
+            "--import-mode=importlib",
+            "-p",
+            "no:cacheprovider",
+            "--junitxml=/report.xml",
+            "-p",
+            "pytest_asyncio.plugin",
+            "-p",
+            "pytest_mock.plugin",
+            "-p",
+            "staged_layout",
+            "tests/test_litellm/proxy/common_utils/test_encrypt_decrypt_utils.py"
+          ],
+          "timed_out": false,
+          "truncated": false,
+          "duration_seconds": 19.0969,
+          "tests": [
+            {
+              "name": "test_aes_decrypt_failure_returns_none_not_raise",
+              "classname": "tests.test_litellm.proxy.common_utils.test_encrypt_decrypt_utils",
+              "outcome": "passed",
+              "expected_failure": false,
+              "message_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "expected_security_failure_marker_present": false
+            },
+            {
+              "name": "test_aes_decrypt_failure_returns_original_when_requested",
+              "classname": "tests.test_litellm.proxy.common_utils.test_encrypt_decrypt_utils",
+              "outcome": "passed",
+              "expected_failure": false,
+              "message_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "expected_security_failure_marker_present": false
+            },
+            {
+              "name": "test_aes_gcm_round_trip",
+              "classname": "tests.test_litellm.proxy.common_utils.test_encrypt_decrypt_utils",
+              "outcome": "passed",
+              "expected_failure": false,
+              "message_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "expected_security_failure_marker_present": false
+            },
+            {
+              "name": "test_bearer_token_opens_only_under_its_own_prefix",
+              "classname": "tests.test_litellm.proxy.common_utils.test_encrypt_decrypt_utils",
+              "outcome": "passed",
+              "expected_failure": false,
+              "message_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "expected_security_failure_marker_present": false
+            },
+            {
+              "name": "test_bearer_token_uses_only_header_safe_characters[0]",
+              "classname": "tests.test_litellm.proxy.common_utils.test_encrypt_decrypt_utils",
+              "outcome": "passed",
+              "expected_failure": false,
+              "message_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "expected_security_failure_marker_present": false
+            },
+            {
+              "name": "test_bearer_token_uses_only_header_safe_characters[1]",
+              "classname": "tests.test_litellm.proxy.common_utils.test_encrypt_decrypt_utils",
+              "outcome": "passed",
+              "expected_failure": false,
+              "message_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "expected_security_failure_marker_present": false
+            },
+            {
+              "name": "test_bearer_token_uses_only_header_safe_characters[2]",
+              "classname": "tests.test_litellm.proxy.common_utils.test_encrypt_decrypt_utils",
+              "outcome": "passed",
+              "expected_failure": false,
+              "message_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "expected_security_failure_marker_present": false
+            },
+            {
+              "name": "test_bearer_token_uses_only_header_safe_characters[3]",
+              "classname": "tests.test_litellm.proxy.common_utils.test_encrypt_decrypt_utils",
+              "outcome": "passed",
+              "expected_failure": false,
+              "message_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "expected_security_failure_marker_present": false
+            },
+            {
+              "name": "test_bearer_token_uses_only_header_safe_characters[4]",
+              "classname": "tests.test_litellm.proxy.common_utils.test_encrypt_decrypt_utils",
+              "outcome": "passed",
+              "expected_failure": false,
+              "message_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "expected_security_failure_marker_present": false
+            },
+            {
+              "name": "test_bearer_token_uses_only_header_safe_characters[5]",
+              "classname": "tests.test_litellm.proxy.common_utils.test_encrypt_decrypt_utils",
+              "outcome": "passed",
+              "expected_failure": false,
+              "message_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "expected_security_failure_marker_present": false
+            },
+            {
+              "name": "test_callback_prefix_composes_with_v2",
+              "classname": "tests.test_litellm.proxy.common_utils.test_encrypt_decrypt_utils",
+              "outcome": "passed",
+              "expected_failure": false,
+              "message_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "expected_security_failure_marker_present": false
+            },
+            {
+              "name": "test_decrypt_failure_debug_log_omits_raw_value",
+              "classname": "tests.test_litellm.proxy.common_utils.test_encrypt_decrypt_utils",
+              "outcome": "passed",
+              "expected_failure": false,
+              "message_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "expected_security_failure_marker_present": false
+            },
+            {
+              "name": "test_default_is_legacy_algorithm",
+              "classname": "tests.test_litellm.proxy.common_utils.test_encrypt_decrypt_utils",
+              "outcome": "passed",
+              "expected_failure": false,
+              "message_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "expected_security_failure_marker_present": false
+            },
+            {
+              "name": "test_empty_string_round_trips_under_aes",
+              "classname": "tests.test_litellm.proxy.common_utils.test_encrypt_decrypt_utils",
+              "outcome": "passed",
+              "expected_failure": false,
+              "message_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "expected_security_failure_marker_present": false
+            },
+            {
+              "name": "test_legacy_nacl_value_still_decrypts_after_flag_flip",
+              "classname": "tests.test_litellm.proxy.common_utils.test_encrypt_decrypt_utils",
+              "outcome": "passed",
+              "expected_failure": false,
+              "message_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "expected_security_failure_marker_present": false
+            },
+            {
+              "name": "test_stored_value_is_not_a_bearer_token_even_when_reshaped[False]",
+              "classname": "tests.test_litellm.proxy.common_utils.test_encrypt_decrypt_utils",
+              "outcome": "passed",
+              "expected_failure": false,
+              "message_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "expected_security_failure_marker_present": false
+            },
+            {
+              "name": "test_stored_value_is_not_a_bearer_token_even_when_reshaped[True]",
+              "classname": "tests.test_litellm.proxy.common_utils.test_encrypt_decrypt_utils",
+              "outcome": "passed",
+              "expected_failure": false,
+              "message_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "expected_security_failure_marker_present": false
+            },
+            {
+              "name": "test_unknown_algorithm_falls_back_to_legacy",
+              "classname": "tests.test_litellm.proxy.common_utils.test_encrypt_decrypt_utils",
+              "outcome": "passed",
+              "expected_failure": false,
+              "message_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "expected_security_failure_marker_present": false
+            },
+            {
+              "name": "test_v2_prefix_is_idempotent_marker",
+              "classname": "tests.test_litellm.proxy.common_utils.test_encrypt_decrypt_utils",
+              "outcome": "passed",
+              "expected_failure": false,
+              "message_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "expected_security_failure_marker_present": false
+            }
+          ],
+          "evidence_error": null,
+          "stdout_sha256": "e2dd942d09499612c48e602104004ad0fd3f56c6c6678784fbd962a65178269a",
+          "stdout_omitted": true,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr_omitted": true,
+          "bootstrap_program_sha256": "9e998596533214cbe0bad366e6058c665669548be29e9d3ca17f60d2c31caaa5"
+        }
+      },
+      {
+        "name": "target_baseline",
+        "revision": "385266c14d6a4cb069751fd3525692e0a760ec57",
+        "security": {
+          "returncode": 1,
+          "command": [
+            "python",
+            "-I",
+            "-B",
+            "-c",
+            "<bootstrap program omitted>",
+            "-q",
+            "--tb=short",
+            "--import-mode=importlib",
+            "-p",
+            "no:cacheprovider",
+            "--junitxml=/report.xml",
+            "-p",
+            "pytest_asyncio.plugin",
+            "-p",
+            "pytest_mock.plugin",
+            "-p",
+            "staged_layout",
+            "-c",
+            "/dev/null",
+            "--noconftest",
+            "--rootdir=/oracle",
+            "/oracle/oracle.py::test_security_regression",
+            "/oracle/oracle.py::test_stored_value_roundtrip",
+            "/oracle/oracle.py::test_session_value_roundtrip",
+            "/oracle/oracle.py::test_aes_stored_value_roundtrip"
+          ],
+          "timed_out": false,
+          "truncated": false,
+          "duration_seconds": 14.6883,
+          "tests": [
+            {
+              "name": "test_security_regression",
+              "classname": "oracle",
+              "outcome": "failed",
+              "expected_failure": false,
+              "message_sha256": "6fffc6b547eacb1ca62ca5b78c6961b7d531ecc22ac081a4973d21b9a7c5ce41",
+              "expected_security_failure_marker_present": true
+            },
+            {
+              "name": "test_stored_value_roundtrip",
+              "classname": "oracle",
+              "outcome": "passed",
+              "expected_failure": false,
+              "message_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "expected_security_failure_marker_present": false
+            },
+            {
+              "name": "test_session_value_roundtrip",
+              "classname": "oracle",
+              "outcome": "passed",
+              "expected_failure": false,
+              "message_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "expected_security_failure_marker_present": false
+            },
+            {
+              "name": "test_aes_stored_value_roundtrip",
+              "classname": "oracle",
+              "outcome": "passed",
+              "expected_failure": false,
+              "message_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "expected_security_failure_marker_present": false
+            }
+          ],
+          "evidence_error": null,
+          "stdout_sha256": "c90cb6ac927ba884472014bb472cb8defbaa231d237a2baf09dc1ba0d602deb5",
+          "stdout_omitted": true,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr_omitted": true,
+          "bootstrap_program_sha256": "9e998596533214cbe0bad366e6058c665669548be29e9d3ca17f60d2c31caaa5"
+        },
+        "suite": {
+          "returncode": 0,
+          "command": [
+            "python",
+            "-I",
+            "-B",
+            "-c",
+            "<bootstrap program omitted>",
+            "-q",
+            "--tb=short",
+            "--import-mode=importlib",
+            "-p",
+            "no:cacheprovider",
+            "--junitxml=/report.xml",
+            "-p",
+            "pytest_asyncio.plugin",
+            "-p",
+            "pytest_mock.plugin",
+            "-p",
+            "staged_layout",
+            "tests/test_litellm/proxy/common_utils/test_encrypt_decrypt_utils.py"
+          ],
+          "timed_out": false,
+          "truncated": false,
+          "duration_seconds": 17.0006,
+          "tests": [
+            {
+              "name": "test_aes_decrypt_failure_returns_none_not_raise",
+              "classname": "tests.test_litellm.proxy.common_utils.test_encrypt_decrypt_utils",
+              "outcome": "passed",
+              "expected_failure": false,
+              "message_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "expected_security_failure_marker_present": false
+            },
+            {
+              "name": "test_aes_decrypt_failure_returns_original_when_requested",
+              "classname": "tests.test_litellm.proxy.common_utils.test_encrypt_decrypt_utils",
+              "outcome": "passed",
+              "expected_failure": false,
+              "message_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "expected_security_failure_marker_present": false
+            },
+            {
+              "name": "test_aes_gcm_round_trip",
+              "classname": "tests.test_litellm.proxy.common_utils.test_encrypt_decrypt_utils",
+              "outcome": "passed",
+              "expected_failure": false,
+              "message_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "expected_security_failure_marker_present": false
+            },
+            {
+              "name": "test_callback_prefix_composes_with_v2",
+              "classname": "tests.test_litellm.proxy.common_utils.test_encrypt_decrypt_utils",
+              "outcome": "passed",
+              "expected_failure": false,
+              "message_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "expected_security_failure_marker_present": false
+            },
+            {
+              "name": "test_decrypt_failure_debug_log_omits_raw_value",
+              "classname": "tests.test_litellm.proxy.common_utils.test_encrypt_decrypt_utils",
+              "outcome": "passed",
+              "expected_failure": false,
+              "message_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "expected_security_failure_marker_present": false
+            },
+            {
+              "name": "test_default_is_legacy_algorithm",
+              "classname": "tests.test_litellm.proxy.common_utils.test_encrypt_decrypt_utils",
+              "outcome": "passed",
+              "expected_failure": false,
+              "message_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "expected_security_failure_marker_present": false
+            },
+            {
+              "name": "test_empty_string_round_trips_under_aes",
+              "classname": "tests.test_litellm.proxy.common_utils.test_encrypt_decrypt_utils",
+              "outcome": "passed",
+              "expected_failure": false,
+              "message_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "expected_security_failure_marker_present": false
+            },
+            {
+              "name": "test_legacy_nacl_value_still_decrypts_after_flag_flip",
+              "classname": "tests.test_litellm.proxy.common_utils.test_encrypt_decrypt_utils",
+              "outcome": "passed",
+              "expected_failure": false,
+              "message_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "expected_security_failure_marker_present": false
+            },
+            {
+              "name": "test_unknown_algorithm_falls_back_to_legacy",
+              "classname": "tests.test_litellm.proxy.common_utils.test_encrypt_decrypt_utils",
+              "outcome": "passed",
+              "expected_failure": false,
+              "message_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "expected_security_failure_marker_present": false
+            },
+            {
+              "name": "test_v2_prefix_is_idempotent_marker",
+              "classname": "tests.test_litellm.proxy.common_utils.test_encrypt_decrypt_utils",
+              "outcome": "passed",
+              "expected_failure": false,
+              "message_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "expected_security_failure_marker_present": false
+            }
+          ],
+          "evidence_error": null,
+          "stdout_sha256": "ea953f397c4e92e10538649a0d16b17ef7673e8a1eb3b193c0ab05163b7146a6",
+          "stdout_omitted": true,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr_omitted": true,
+          "bootstrap_program_sha256": "9e998596533214cbe0bad366e6058c665669548be29e9d3ca17f60d2c31caaa5"
+        }
+      },
+      {
+        "name": "backport",
+        "revision": "385266c14d6a4cb069751fd3525692e0a760ec57",
+        "security": {
+          "returncode": 0,
+          "command": [
+            "python",
+            "-I",
+            "-B",
+            "-c",
+            "<bootstrap program omitted>",
+            "-q",
+            "--tb=short",
+            "--import-mode=importlib",
+            "-p",
+            "no:cacheprovider",
+            "--junitxml=/report.xml",
+            "-p",
+            "pytest_asyncio.plugin",
+            "-p",
+            "pytest_mock.plugin",
+            "-p",
+            "staged_layout",
+            "-c",
+            "/dev/null",
+            "--noconftest",
+            "--rootdir=/oracle",
+            "/oracle/oracle.py::test_security_regression",
+            "/oracle/oracle.py::test_stored_value_roundtrip",
+            "/oracle/oracle.py::test_session_value_roundtrip",
+            "/oracle/oracle.py::test_aes_stored_value_roundtrip"
+          ],
+          "timed_out": false,
+          "truncated": false,
+          "duration_seconds": 14.5332,
+          "tests": [
+            {
+              "name": "test_security_regression",
+              "classname": "oracle",
+              "outcome": "passed",
+              "expected_failure": false,
+              "message_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "expected_security_failure_marker_present": false
+            },
+            {
+              "name": "test_stored_value_roundtrip",
+              "classname": "oracle",
+              "outcome": "passed",
+              "expected_failure": false,
+              "message_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "expected_security_failure_marker_present": false
+            },
+            {
+              "name": "test_session_value_roundtrip",
+              "classname": "oracle",
+              "outcome": "passed",
+              "expected_failure": false,
+              "message_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "expected_security_failure_marker_present": false
+            },
+            {
+              "name": "test_aes_stored_value_roundtrip",
+              "classname": "oracle",
+              "outcome": "passed",
+              "expected_failure": false,
+              "message_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "expected_security_failure_marker_present": false
+            }
+          ],
+          "evidence_error": null,
+          "stdout_sha256": "5617245d94da2ebb7b6b63fbad2e7001dc9930f98b08f18adb6a60ffea629e7c",
+          "stdout_omitted": true,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr_omitted": true,
+          "bootstrap_program_sha256": "9e998596533214cbe0bad366e6058c665669548be29e9d3ca17f60d2c31caaa5"
+        },
+        "suite": {
+          "returncode": 0,
+          "command": [
+            "python",
+            "-I",
+            "-B",
+            "-c",
+            "<bootstrap program omitted>",
+            "-q",
+            "--tb=short",
+            "--import-mode=importlib",
+            "-p",
+            "no:cacheprovider",
+            "--junitxml=/report.xml",
+            "-p",
+            "pytest_asyncio.plugin",
+            "-p",
+            "pytest_mock.plugin",
+            "-p",
+            "staged_layout",
+            "tests/test_litellm/proxy/common_utils/test_encrypt_decrypt_utils.py"
+          ],
+          "timed_out": false,
+          "truncated": false,
+          "duration_seconds": 16.589,
+          "tests": [
+            {
+              "name": "test_aes_decrypt_failure_returns_none_not_raise",
+              "classname": "tests.test_litellm.proxy.common_utils.test_encrypt_decrypt_utils",
+              "outcome": "passed",
+              "expected_failure": false,
+              "message_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "expected_security_failure_marker_present": false
+            },
+            {
+              "name": "test_aes_decrypt_failure_returns_original_when_requested",
+              "classname": "tests.test_litellm.proxy.common_utils.test_encrypt_decrypt_utils",
+              "outcome": "passed",
+              "expected_failure": false,
+              "message_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "expected_security_failure_marker_present": false
+            },
+            {
+              "name": "test_aes_gcm_round_trip",
+              "classname": "tests.test_litellm.proxy.common_utils.test_encrypt_decrypt_utils",
+              "outcome": "passed",
+              "expected_failure": false,
+              "message_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "expected_security_failure_marker_present": false
+            },
+            {
+              "name": "test_callback_prefix_composes_with_v2",
+              "classname": "tests.test_litellm.proxy.common_utils.test_encrypt_decrypt_utils",
+              "outcome": "passed",
+              "expected_failure": false,
+              "message_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "expected_security_failure_marker_present": false
+            },
+            {
+              "name": "test_decrypt_failure_debug_log_omits_raw_value",
+              "classname": "tests.test_litellm.proxy.common_utils.test_encrypt_decrypt_utils",
+              "outcome": "passed",
+              "expected_failure": false,
+              "message_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "expected_security_failure_marker_present": false
+            },
+            {
+              "name": "test_default_is_legacy_algorithm",
+              "classname": "tests.test_litellm.proxy.common_utils.test_encrypt_decrypt_utils",
+              "outcome": "passed",
+              "expected_failure": false,
+              "message_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "expected_security_failure_marker_present": false
+            },
+            {
+              "name": "test_empty_string_round_trips_under_aes",
+              "classname": "tests.test_litellm.proxy.common_utils.test_encrypt_decrypt_utils",
+              "outcome": "passed",
+              "expected_failure": false,
+              "message_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "expected_security_failure_marker_present": false
+            },
+            {
+              "name": "test_legacy_nacl_value_still_decrypts_after_flag_flip",
+              "classname": "tests.test_litellm.proxy.common_utils.test_encrypt_decrypt_utils",
+              "outcome": "passed",
+              "expected_failure": false,
+              "message_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "expected_security_failure_marker_present": false
+            },
+            {
+              "name": "test_unknown_algorithm_falls_back_to_legacy",
+              "classname": "tests.test_litellm.proxy.common_utils.test_encrypt_decrypt_utils",
+              "outcome": "passed",
+              "expected_failure": false,
+              "message_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "expected_security_failure_marker_present": false
+            },
+            {
+              "name": "test_v2_prefix_is_idempotent_marker",
+              "classname": "tests.test_litellm.proxy.common_utils.test_encrypt_decrypt_utils",
+              "outcome": "passed",
+              "expected_failure": false,
+              "message_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "expected_security_failure_marker_present": false
+            }
+          ],
+          "evidence_error": null,
+          "stdout_sha256": "2c5aee81ba12869f86ad7ff0f6c52643118291a1a38264f0ca6c48014cb53275",
+          "stdout_omitted": true,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr_omitted": true,
+          "bootstrap_program_sha256": "9e998596533214cbe0bad366e6058c665669548be29e9d3ca17f60d2c31caaa5"
+        }
+      }
+    ],
+    "attempts": 1,
+    "adaptation": "provided_patch",
+    "model_usage": {},
+    "reviewed_tests": null,
+    "reviewed_fixtures": {}
+  }
+}

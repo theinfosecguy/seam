@@ -29,6 +29,13 @@ def test_summary(cases: list[TestCaseResult]) -> str:
 def render_report(report: RunReport) -> None:
     """Display the verification result and the scope of its evidence."""
     typer.echo(f"{report.status.upper()}: {display_text(report.reason)}")
+    if report.adaptation == "agent":
+        provider = display_text(str(report.model_usage.get("provider", "unknown")))
+        model = display_text(str(report.model_usage.get("model", "unknown")))
+        calls = display_text(str(report.model_usage.get("calls", "unknown")))
+        typer.echo(f"AI adaptation: {provider} / {model}; model requests: {calls}")
+    elif report.adaptation != "none":
+        typer.echo(f"Offline verification: {display_text(report.adaptation)}")
     if report.reviewed_tests is not None:
         typer.echo(
             "Reviewed test expectations: "

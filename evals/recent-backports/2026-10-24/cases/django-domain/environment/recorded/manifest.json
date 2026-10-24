@@ -1,0 +1,27 @@
+{
+  "python": "3.12.12 (main, Feb 24 2026, 19:45:37) [GCC 14.2.0]",
+  "packages": {
+    "pytest": "8.4.2",
+    "pytest-django": "4.11.1",
+    "asgiref": "3.9.2",
+    "sqlparse": "0.5.3",
+    "Pillow": "11.3.0",
+    "iniconfig": "2.3.1",
+    "packaging": "26.3",
+    "pluggy": "1.7.0",
+    "pygments": "2.21.0"
+  },
+  "image_id": "sha256:0dda45ece171f75d27acbe4dbd56e41f1009b8afb2ec01dfb868ab0cc3d16c2a",
+  "build_command": [
+    "sudo",
+    "-n",
+    "docker",
+    "build",
+    "--network",
+    "none",
+    "-t",
+    "seam-recent-django-domain:20261024",
+    "source:original-evaluation/django-domain/image"
+  ],
+  "target_library_source": "Loaded exclusively from the staged source revision, not installed into the image."
+}

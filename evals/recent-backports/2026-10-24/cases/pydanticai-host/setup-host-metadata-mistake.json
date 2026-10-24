@@ -1,0 +1,32 @@
+{
+  "classification": "Operator setup mistake; superseded before reference qualification",
+  "host_build_commands": [
+    "python3 -m pip install --target source:gap-fixes/pydanticai-host/metadata-tools hatchling uv-dynamic-versioning",
+    "PYTHONPATH=<owned metadata-tools> python3 -B: hatchling.build.prepare_metadata_for_build_wheel(output), cwd original target pydantic_ai_slim and pydantic_graph",
+    "git clone --shared --no-checkout <original source> <owned metadata-checkout>; detached checkouts da29bfa38d5fd4f89f98d2e668027505449ddaae and 871c7aeec5dfed2138655ccbccbf15c6d763bae7; same host metadata backend calls"
+  ],
+  "execution_isolation": "Host Python process, not Docker; source build metadata hooks executed without target code installation.",
+  "preserved_artifacts": [
+    "metadata-tools-install.log",
+    "metadata-checkout.log",
+    "build-metadata/target",
+    "build-metadata/upstream_parent",
+    "build-metadata/upstream_fix",
+    "build-metadata/upstream-manifest.json"
+  ],
+  "final_reference_uses_these_metadata": false,
+  "remediation": "Regenerate all metadata in trusted disposable container from independent --no-hardlinks clone; no Docker socket or API env.",
+  "source_head_after": "f275d5c4c75d9cc96131800099619c5027b62873",
+  "source_status_after": "",
+  "disposable_shared_checkout_removed": true,
+  "additional_diagnostic_isolation": {
+    "command": "docker run --rm --network none -v <original repo>/pydantic_ai_slim:/source:ro <frozen image> python -I -B -c <importlib find_spec cache diagnosis>",
+    "original_subtree_mounted_readonly": true,
+    "original_git_mounted": false,
+    "target_module_executed": false,
+    "find_spec_only": true,
+    "socket_or_api_env_passed": false
+  },
+  "command_archive": "source:gap-fixes/pydanticai-host/host-metadata-command-archive.json",
+  "host_environment_restricted": false
+}

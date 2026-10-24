@@ -131,8 +131,22 @@ def test_reviewed_fixture_cannot_use_a_directory_symlink(
     outside.mkdir()
     (outside / "example.pem").write_bytes(FIXTURE)
     (workspace / "tests/fixtures").symlink_to(outside, target_is_directory=True)
-    with pytest.raises(ValueError, match="Directory symbolic links"):
+    with pytest.raises(ValueError, match="Absolute symbolic link"):
         check_snapshot(workspace, tmp_path / "snapshot", stage)
+
+
+@pytest.mark.parametrize("stage", [False, True])
+def test_reviewed_fixture_path_cannot_traverse_a_contained_directory_link(
+    workspace: Path, tmp_path: Path, stage: bool
+) -> None:
+    (workspace / FIXTURE_PATH).unlink()
+    (workspace / "tests/fixtures").rmdir()
+    (workspace / "ordinary").mkdir()
+    (workspace / "ordinary/example.pem").write_bytes(FIXTURE)
+    (workspace / "tests/fixtures").symlink_to("../ordinary", target_is_directory=True)
+    with pytest.raises(ValueError, match="reviewed fixture is missing or excluded"):
+        check_snapshot(workspace, tmp_path / "snapshot", stage)
+    assert not (tmp_path / "snapshot/ordinary/example.pem").exists()
 
 
 @pytest.mark.parametrize("stage", [False, True])

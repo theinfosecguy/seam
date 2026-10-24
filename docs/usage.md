@@ -11,7 +11,7 @@ security change requires a different existing-test expectation.
 
 ## Installation
 
-The controller needs Linux, Python 3.12+, Git, and Docker. From this checkout:
+The controller needs Linux, Python 3.12+, Git 2.38+, and Docker. From this checkout:
 
 ```bash
 uv sync --frozen
@@ -29,9 +29,9 @@ python3 -m venv .venv
 Target interpreters and test dependencies live in the trusted Docker image and
 can differ from the controller. If your Docker socket needs a command prefix,
 use `seam doctor --docker 'sudo -n docker'` and the equivalent runner configuration.
-`doctor` prints the installed distribution version (`0.2.0` for this release)
-and actual package path. Check both when selecting an environment or replaying a
-report: older installations can expose the same command names with different
+`doctor` prints the installed distribution version and actual package path.
+Check both when selecting an environment or replaying a report: older
+installations can expose the same command names with different
 validation behavior.
 
 ## Demo
@@ -104,11 +104,25 @@ and image are trusted operator inputs; they are frozen before adaptation.
 
 Seam preflights all three clean revisions before preparing the image or running
 tests. Relative file symlinks are materialized when their final target is a
-contained ordinary file. Directory links, absolute or escaping links, cycles,
-hard links, and links into excluded paths are rejected with the offending path.
-Snapshots retain file, byte, nesting, and link-chain limits. Credential-like
-paths and certificate/key files are excluded by default; keep secrets outside
-the checkout. Exact public test-key exceptions require the review below.
+contained ordinary file. Relative directory links retain their original link
+text only when the target and its ancestors are ordinary, nonexcluded directories
+inside the checkout. Snapshot and container copying never descend through these
+directory aliases. Absolute, escaping or dangling links, cycles, hard links,
+links into excluded paths, and directory targets reached through another
+directory link are rejected with the offending path.
+
+Directory links count toward entry limits and their link text counts toward byte
+limits; nesting is measured from the real directory tree. File, byte, nesting,
+and link-chain limits still apply. Model reads and candidate patches cannot use
+symlinks. Credential-like paths and certificate/key files are excluded by default;
+keep secrets outside the checkout. Exact public test-key exceptions require the
+review below.
+
+Tracked-file inventory uses `git ls-files --format=%(objectmode)` to check modes
+without including filenames in command output. The inventory command retains a
+120-second timeout and a 1 MiB combined stdout/stderr limit. Snapshot limits are
+20,000 entries, 256 MiB and depth 100. Git inventory failures identify the selected
+commit and report a timeout, exceeded output limit, or unsuccessful exit status.
 
 ## Review public cryptographic fixtures
 
@@ -179,6 +193,21 @@ is trusted configuration, applied to every phase and included in the frozen
 configuration hash. Framework settings still belong in the trusted image or
 project's normal pytest configuration. See
 [pytest plugin loading](https://docs.pytest.org/en/stable/how-to/plugins.html).
+
+The bootstrap imports the image's trusted pytest before copying source, then adds
+`/work/repo` and `/work/repo/src` to Python's import path. For other monorepo
+layouts, freeze a trusted pytest plugin in the image and explicitly enable it
+through `runner.plugins`. Have it add the correct staged roots and call
+`importlib.invalidate_caches()` after staging: startup `.pth` entries can refer
+to paths that do not exist yet or whose import lookup was cached before copying.
+Assert that imported target modules resolve under staged source.
+
+Some packages also require distribution metadata. Generate authentic metadata
+for each clean revision in isolated target build containers, then freeze those
+records with the trusted image or plugin; use the target records for backport
+candidates. Select the matching records without installing another implementation.
+Keep the security oracle and existing tests unchanged while preparing this
+environment.
 
 If package downloads inside Docker fail, download wheels on the host and build
 offline. Pin the complete dependency set for the chosen target interpreter:
@@ -289,7 +318,8 @@ Try the upstream fix directly:
 ```bash
 uv run seam run \
   --repo /path/to/library --fix FIX_COMMIT --target release/1.x \
-  --config /path/to/harness.toml --output /tmp/seam-result
+  --config /path/to/harness.toml --output /tmp/seam-result \
+  --direct
 ```
 
 If the fix does not fit the maintained release, provide your adaptation:
@@ -301,12 +331,12 @@ uv run seam run \
   --candidate-patch /path/to/adapted.patch
 ```
 
-An incompatible fix without a supplied candidate or configured agent produces an
-inconclusive report. For model adaptation, select `--model` instead of
-`--candidate-patch`; see [API operation](api.md). The two options cannot be combined.
+An incompatible fix in `--direct` mode produces an inconclusive report. Select
+exactly one of `--direct`, `--candidate-patch`, or `--model`. For model adaptation,
+see [API operation](api.md).
 Use a new output directory for every run. The original checkout is preserved.
-Model adaptation defaults to 16 requests across all attempts. Select an integer
-from 1 to 32 with `--max-model-calls`, for example `--max-model-calls 32`.
+Model adaptation defaults to 32 requests across all attempts. Select an integer
+from 1 to 32 with `--max-model-calls`, for example `--max-model-calls 16`.
 The dollar budget and other execution limits remain in force.
 
 ## Read the results

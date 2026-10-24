@@ -129,10 +129,10 @@ also rejects an additional HTTP request within one reservation. Failed requests
 are not automatically retried. Native SDK error bodies and debug logs are not
 included in Seam's diagnostics.
 
-The CLI defaults to 16 model requests per run. Set `--max-model-calls` to an
+The CLI defaults to 32 model requests per run. Set `--max-model-calls` to an
 integer from 1 to 32 to select another request limit, for example
-`--max-model-calls 32` with `--model`. The count is cumulative across all attempts;
-raising it preserves the dollar cap and other limits. Each request allows at
+`--max-model-calls 16` with `--model`. The count is cumulative across all attempts;
+the dollar cap and other limits remain in force. Each request allows at
 most 16,384 output tokens and has a 120-second timeout. The public Python agent
 also accepts explicit limits within the hard bounds; its constructor defaults
 are independent of the CLI.

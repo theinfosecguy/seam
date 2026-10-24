@@ -1,0 +1,93 @@
+{
+  "target": "385266c14d6a4cb069751fd3525692e0a760ec57",
+  "vendor_backport_commit": "f7cd90f09e9716652b38daec9f0640cdf49d582b",
+  "method": "Populate bounded independent temporary text copies from immutable target blobs; apply exact exported patches without editing; compare resulting implementation bytes with official vendor blobs. No target code or tests executed; original Git object store/checkout unchanged.",
+  "patches": [
+    {
+      "patch": "source:gap-fixes/litellm-context/reference-02/backport.patch",
+      "patch_sha256": "21ec2b509209669819f2298760111f5b0d4eb28e47b42a710c10a6b22bd28252",
+      "git_apply_exit": 0,
+      "diagnostics": "",
+      "touched": [
+        "litellm/proxy/auth/auth_checks.py",
+        "litellm/proxy/common_utils/encrypt_decrypt_utils.py"
+      ]
+    },
+    {
+      "patch": "source:gap-fixes/litellm-context/ai-01/backport.patch",
+      "patch_sha256": "bb194606e0699f98724643699f877cf54d88902c9c6fa4592cc5e8a2a939a2d8",
+      "git_apply_exit": 0,
+      "diagnostics": "",
+      "touched": [
+        "litellm/proxy/auth/auth_checks.py",
+        "litellm/proxy/common_utils/encrypt_decrypt_utils.py"
+      ]
+    },
+    {
+      "patch": "source:gap-fixes/litellm-context/ai-01/attempt-1.patch",
+      "patch_sha256": "63a4bcfa18753ee1b44c676b5b63fd4f92f9c9338935b2b660191ab4e2e8d50f",
+      "git_apply_exit": 0,
+      "diagnostics": "",
+      "touched": [
+        "litellm/proxy/auth/auth_checks.py",
+        "litellm/proxy/common_utils/encrypt_decrypt_utils.py"
+      ]
+    }
+  ],
+  "files": [
+    {
+      "path": "litellm/proxy/auth/auth_checks.py",
+      "target_base_sha256": "a274e894661b279ab9df6d0c069816d7a089eca78f7b341da36793e737fefa50",
+      "vendor_file_sha256": "3bdc9e3c686202a6eb9fe57dcb96b0dcb1b2be690cac726af3aea4799d73dc43",
+      "reference_result_sha256": "3bdc9e3c686202a6eb9fe57dcb96b0dcb1b2be690cac726af3aea4799d73dc43",
+      "reference_result_identical_to_vendor": true,
+      "candidates": [
+        {
+          "patch": "source:gap-fixes/litellm-context/ai-01/backport.patch",
+          "touched": true,
+          "applicable": true,
+          "result_sha256": "3bdc9e3c686202a6eb9fe57dcb96b0dcb1b2be690cac726af3aea4799d73dc43",
+          "result_identical_to_reference": true,
+          "result_identical_to_vendor": true,
+          "verdict": "Data comparison only; runtime verification is separately recorded."
+        },
+        {
+          "patch": "source:gap-fixes/litellm-context/ai-01/attempt-1.patch",
+          "touched": true,
+          "applicable": true,
+          "result_sha256": "3bdc9e3c686202a6eb9fe57dcb96b0dcb1b2be690cac726af3aea4799d73dc43",
+          "result_identical_to_reference": true,
+          "result_identical_to_vendor": true,
+          "verdict": "Data comparison only; runtime verification is separately recorded."
+        }
+      ]
+    },
+    {
+      "path": "litellm/proxy/common_utils/encrypt_decrypt_utils.py",
+      "target_base_sha256": "5a4eb0a8e639bbdf94c045d87668f7eadf55db06c84f3b6ec3651bc60ad2939d",
+      "vendor_file_sha256": "3905082606f84ad7fdccf9a4f0000a2a5c89e89dca3850e0de6aa5ad405f6d02",
+      "reference_result_sha256": "3905082606f84ad7fdccf9a4f0000a2a5c89e89dca3850e0de6aa5ad405f6d02",
+      "reference_result_identical_to_vendor": true,
+      "candidates": [
+        {
+          "patch": "source:gap-fixes/litellm-context/ai-01/backport.patch",
+          "touched": true,
+          "applicable": true,
+          "result_sha256": "aa5b4058769f3809b92b84fd5a7e19a3fedfaeaab2e1ecdd076eca463688b378",
+          "result_identical_to_reference": false,
+          "result_identical_to_vendor": false,
+          "verdict": "Data comparison only; runtime verification is separately recorded."
+        },
+        {
+          "patch": "source:gap-fixes/litellm-context/ai-01/attempt-1.patch",
+          "touched": true,
+          "applicable": true,
+          "result_sha256": "aa5b4058769f3809b92b84fd5a7e19a3fedfaeaab2e1ecdd076eca463688b378",
+          "result_identical_to_reference": false,
+          "result_identical_to_vendor": false,
+          "verdict": "Data comparison only; runtime verification is separately recorded."
+        }
+      ]
+    }
+  ]
+}

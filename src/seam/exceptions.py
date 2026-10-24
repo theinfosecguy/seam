@@ -14,4 +14,4 @@ class RepositoryError(RuntimeError):
 
 
 class RunnerError(RuntimeError):
-    """Explain an execution environment that could not be prepared."""
+    """Explain an execution environment that could not be prepared or cleaned up."""

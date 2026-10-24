@@ -1,0 +1,23 @@
+{
+  "publication_schema": 1,
+  "source_report_sha256": "1f56f3b9292f5de915e5e7209dc6526034c2840e0b6e74475e2edc87c0441487",
+  "normalization": "Paths normalized; raw stdout/stderr, testcase messages and embedded bootstrap omitted with hashes. This is a publication derivative, not a seam inspect input.",
+  "report": {
+    "schema_version": 2,
+    "status": "inconclusive",
+    "reason": "Run could not complete: Git ls-files failed or exceeded limits: ",
+    "fix_commit": "a80eacacee118fbed54e3d98f239d17a63fac818",
+    "parent_commit": "e7d8bbc5deb36c960162d4ce3922985fe56db835",
+    "target_commit": "385266c14d6a4cb069751fd3525692e0a760ec57",
+    "image_id": null,
+    "oracle_sha256": "5570be6ff0e1f20b5f7b518bf010319ff1501ea52f409d1b8d7c433b38d17e68",
+    "config_sha256": "23da31016e263e4760eb4f6e30a27c2bef535d85b1d581d710a85450df03f795",
+    "patch_sha256": null,
+    "phases": [],
+    "attempts": 0,
+    "adaptation": "none",
+    "model_usage": {},
+    "reviewed_tests": null,
+    "reviewed_fixtures": {}
+  }
+}

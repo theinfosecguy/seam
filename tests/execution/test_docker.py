@@ -311,10 +311,10 @@ def test_failed_cleanup_prevents_verified_evidence(
     docker = DockerStub()
     docker.cleanup = ProcessResult(returncode=1)
     monkeypatch.setattr(runner_module, "run_process", docker)
-    result = DockerRunner(RunnerConfig(image="operator-image")).run(
-        workspace, oracle, IMAGE_ID, "security"
-    )
-    assert "removal" in (result.evidence_error or "")
+    with pytest.raises(RunnerError, match="removal"):
+        DockerRunner(RunnerConfig(image="operator-image")).run(
+            workspace, oracle, IMAGE_ID, "security"
+        )
 
 
 def test_symlink_report_cannot_read_host_file(
@@ -449,6 +449,7 @@ def test_docker_integration_runs_src_layout_with_readonly_inputs(
     workspace, oracle = target
     (workspace / ".env").write_text("PRIVATE_VALUE=must-not-enter-container\n")
     (workspace / ".git").mkdir()
+    (workspace / "linked").symlink_to("src", target_is_directory=True)
     (workspace / "large-fixture.bin").write_bytes(b"x" * (1_048_576 + 1))
     oracle.path.write_text(
         """import os
@@ -464,6 +465,12 @@ def test_control():
     assert 'OPENAI_API_KEY' not in os.environ
     assert not Path('/source/.env').exists()
     assert not Path('/source/.git').exists()
+    assert Path('/source/linked').is_symlink()
+    assert Path('/work/repo/linked').is_symlink()
+    assert os.readlink('/work/repo/linked') == 'src'
+    assert Path('/work/repo/linked/library.py').samefile(
+        '/work/repo/src/library.py'
+    )
     assert not Path('/var/run/docker.sock').exists()
     assert Path('/work/repo/large-fixture.bin').stat().st_size > 1_048_576
     with pytest.raises(OSError):

@@ -87,14 +87,155 @@ def test_cannot_hide_an_excluded_target_behind_a_file_link_chain(
 
 
 @pytest.mark.parametrize("stage", [False, True])
-def test_rejects_directory_links_even_when_contained(
+def test_preserves_contained_directory_links_without_walking_aliases(
     tmp_path: Path, stage: bool
 ) -> None:
     workspace = tmp_path / "workspace"
     (workspace / "ordinary").mkdir(parents=True)
+    (workspace / "ordinary/source.py").write_text("source")
+    (workspace / "ordinary/.env").write_text("private")
     (workspace / "linked").symlink_to("ordinary", target_is_directory=True)
-    with pytest.raises(ValueError, match=r"'linked': .*symbolic link"):
+    destination = tmp_path / "snapshot"
+    check_snapshot(workspace, destination, stage)
+    if stage:
+        assert (destination / "linked").is_symlink()
+        assert os.readlink(destination / "linked") == "ordinary"
+        assert (destination / "linked/source.py").read_text() == "source"
+        assert (destination / "linked/source.py").samefile(
+            destination / "ordinary/source.py"
+        )
+        assert not (destination / "linked/.env").exists()
+
+
+@pytest.mark.parametrize(
+    ("alias", "target", "real"),
+    [
+        (
+            ".claude/skills/complete-partial-pr",
+            "../../.agents/skills/complete-partial-pr",
+            ".agents/skills/complete-partial-pr",
+        ),
+        ("litellm/proxy/enterprise", "../../enterprise", "enterprise"),
+    ],
+)
+def test_public_repository_directory_link_layouts(
+    tmp_path: Path, alias: str, target: str, real: str
+) -> None:
+    workspace = tmp_path / "workspace"
+    (workspace / real).mkdir(parents=True)
+    (workspace / real / "source.py").write_text("source")
+    (workspace / alias).parent.mkdir(parents=True)
+    (workspace / alias).symlink_to(target, target_is_directory=True)
+    snapshot.preflight_snapshot(workspace)
+    destination = tmp_path / "snapshot"
+    snapshot.stage_snapshot(workspace, destination)
+    assert os.readlink(destination / alias) == target
+    assert (destination / alias / "source.py").samefile(
+        destination / real / "source.py"
+    )
+    assert os.readlink(workspace / alias) == target
+
+
+@pytest.mark.parametrize("stage", [False, True])
+@pytest.mark.parametrize("kind", ["root", "self", "ancestor", "mutual"])
+def test_directory_link_cycles_are_rejected(
+    tmp_path: Path, stage: bool, kind: str
+) -> None:
+    workspace = tmp_path / "workspace"
+    (workspace / "first/nested").mkdir(parents=True)
+    (workspace / "second").mkdir()
+    aliases = {
+        "root": {"linked": "."},
+        "self": {"first/linked": "."},
+        "ancestor": {"first/nested/linked": ".."},
+        "mutual": {"first/linked": "../second", "second/linked": "../first"},
+    }[kind]
+    for alias, target in aliases.items():
+        (workspace / alias).symlink_to(target, target_is_directory=True)
+    with pytest.raises(ValueError, match="directory symbolic link cycle"):
         check_snapshot(workspace, tmp_path / "snapshot", stage)
+
+
+@pytest.mark.parametrize("stage", [False, True])
+@pytest.mark.parametrize("target", ["alias", "alias/nested", "alias/../ordinary"])
+def test_directory_target_cannot_traverse_another_directory_link(
+    tmp_path: Path, stage: bool, target: str
+) -> None:
+    workspace = tmp_path / "workspace"
+    (workspace / "ordinary/nested").mkdir(parents=True)
+    (workspace / "alias").symlink_to("ordinary", target_is_directory=True)
+    (workspace / "linked").symlink_to(target, target_is_directory=True)
+    with pytest.raises(ValueError, match=r"'linked':"):
+        check_snapshot(workspace, tmp_path / "snapshot", stage)
+
+
+@pytest.mark.parametrize("stage", [False, True])
+@pytest.mark.parametrize("target", [".aws", ".aws/../ordinary", ".git/../ordinary"])
+def test_directory_link_cannot_enter_excluded_directories(
+    tmp_path: Path, stage: bool, target: str
+) -> None:
+    workspace = tmp_path / "workspace"
+    for directory in ("ordinary", ".aws", ".git"):
+        (workspace / directory).mkdir(parents=True)
+    (workspace / "linked").symlink_to(target, target_is_directory=True)
+    with pytest.raises(ValueError, match=r"'linked': .*excluded"):
+        check_snapshot(workspace, tmp_path / "snapshot", stage)
+
+
+@pytest.mark.parametrize("stage", [False, True])
+@pytest.mark.parametrize(
+    ("limit", "value", "expected"),
+    [
+        ("MAX_SNAPSHOT_BYTES", 3, "size limit"),
+        ("MAX_SNAPSHOT_FILES", 1, "too many"),
+        ("MAX_SNAPSHOT_DEPTH", 0, "nesting"),
+        ("MAX_SNAPSHOT_LINKS", 0, "chain"),
+    ],
+)
+def test_preserved_directory_links_remain_bounded(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+    stage: bool,
+    limit: str,
+    value: int,
+    expected: str,
+) -> None:
+    workspace = tmp_path / "workspace"
+    (workspace / "ordinary").mkdir(parents=True)
+    (workspace / "linked").symlink_to("ordinary", target_is_directory=True)
+    monkeypatch.setattr(snapshot, limit, value)
+    with pytest.raises(ValueError, match=expected):
+        check_snapshot(workspace, tmp_path / "snapshot", stage)
+
+
+def test_directory_aliases_copy_real_content_once_at_the_exact_size_limit(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    workspace = tmp_path / "workspace"
+    (workspace / "ordinary").mkdir(parents=True)
+    (workspace / "ordinary/source.py").write_bytes(b"data")
+    (workspace / "linked").symlink_to("ordinary", target_is_directory=True)
+    monkeypatch.setattr(snapshot, "MAX_SNAPSHOT_BYTES", len(b"dataordinary"))
+    monkeypatch.setattr(snapshot, "MAX_SNAPSHOT_FILES", 3)
+    snapshot.preflight_snapshot(workspace)
+    destination = tmp_path / "snapshot"
+    snapshot.stage_snapshot(workspace, destination)
+    assert (destination / "linked/source.py").samefile(
+        destination / "ordinary/source.py"
+    )
+
+
+def test_many_directory_alias_edges_do_not_use_python_recursion(tmp_path: Path) -> None:
+    workspace = tmp_path / "workspace"
+    workspace.mkdir()
+    count = 1200
+    for index in range(count):
+        (workspace / f"directory{index}").mkdir()
+    for index in range(count - 1):
+        (workspace / f"directory{index}/next").symlink_to(
+            f"../directory{index + 1}", target_is_directory=True
+        )
+    snapshot.preflight_snapshot(workspace)
 
 
 @pytest.mark.parametrize("stage", [False, True])

@@ -9,7 +9,8 @@ import httpx2 as httpx
 import pytest
 
 from seam.agent import DeepSeekPatchAgent
-from seam.agent.schemas import TOOL_SCHEMAS
+from seam.agent.schemas import TOOL_SCHEMAS, ReadFile
+from seam.agent.tools import WorkspaceTools
 from seam.constants.agent import MAX_ARGUMENT_BYTES
 from seam.constants.providers import (
     DEFAULT_DEEPSEEK_MODEL,
@@ -131,13 +132,27 @@ def make_deepseek_agent() -> Iterator[
 
 
 def _context(workspace: Path) -> AgentContext:
+    source = workspace / "example.py"
+    if not source.exists() or not source.read_text():
+        source.write_text("unsafe()\n")
     return AgentContext(workspace=workspace, upstream_diff=_PATCH)
+
+
+def _inspection(**options: Any) -> dict[str, object]:
+    return _response(
+        _call(
+            "read_file",
+            {"path": "example.py", "start_line": 1, "line_count": 1},
+            "inspect_target",
+        ),
+        **options,
+    )
 
 
 def test_request_uses_supported_parameters_and_locally_validated_tools(
     tmp_path: Path, make_deepseek_agent: Callable[..., Any]
 ) -> None:
-    agent, transport = make_deepseek_agent([_response()])
+    agent, transport = make_deepseek_agent([_inspection(), _response()])
     proposal = agent.propose(_context(tmp_path))
     assert proposal.patch == _PATCH
     request = transport.requests[0]
@@ -209,7 +224,14 @@ def test_plaintext_reasoning_is_preserved_in_stateless_tool_history(
     }
     agent, transport = make_deepseek_agent(
         [
-            _response(reasoning, _call("list_files", {"directory": "."}, "listing")),
+            _response(
+                reasoning,
+                _call(
+                    "read_file",
+                    {"path": "example.py", "start_line": 1, "line_count": 1},
+                    "reading",
+                ),
+            ),
             _response(),
         ]
     )
@@ -234,19 +256,21 @@ def test_text_only_response_is_corrected_before_accepting_a_tool_submission(
     tmp_path: Path, make_deepseek_agent: Callable[..., Any]
 ) -> None:
     text = f"Here is my proposed patch:\n{_PATCH}"
-    agent, transport = make_deepseek_agent([_response(_message(text)), _response()])
+    agent, transport = make_deepseek_agent(
+        [_response(_message(text)), _inspection(), _response()]
+    )
     proposal = agent.propose(_context(tmp_path))
     assert proposal.patch == _PATCH
-    assert len(transport.requests) == 2
+    assert len(transport.requests) == 3
     history = transport.requests[1]["messages"]
     assert history[-2]["role"] == "assistant"
     assert history[-2]["content"] == text
     assert history[-1]["role"] == "user"
     assert "submit_patch" in history[-1]["content"]
     assert "text message cannot submit a patch" in history[-1]["content"]
-    assert agent.usage["calls"] == 2
-    assert agent.usage["input_tokens"] == 2000
-    assert agent.usage["output_tokens"] == 400
+    assert agent.usage["calls"] == 3
+    assert agent.usage["input_tokens"] == 3000
+    assert agent.usage["output_tokens"] == 600
 
 
 def test_text_only_correction_loop_stops_at_call_ceiling(
@@ -276,8 +300,15 @@ def test_mixed_submission_batch_is_rejected_before_standalone_retry(
     def forbidden(*args: object, **kwargs: object) -> None:
         pytest.fail("A rejected submission batch must not execute any read tools")
 
+    reads = []
+    read_file = WorkspaceTools.read_file
+
+    def record_read(tools: WorkspaceTools, argument: ReadFile) -> dict[str, object]:
+        reads.append(argument.path)
+        return read_file(tools, argument)
+
     monkeypatch.setattr("seam.agent.tools.WorkspaceTools.list_files", forbidden)
-    monkeypatch.setattr("seam.agent.tools.WorkspaceTools.read_file", forbidden)
+    monkeypatch.setattr(WorkspaceTools, "read_file", record_read)
     calls = [_submission("submit_one")]
     if submission_count == 1:
         calls.append(_call("list_files", {"directory": "."}, "listing"))
@@ -293,6 +324,7 @@ def test_mixed_submission_batch_is_rejected_before_standalone_retry(
     retry_patch = _PATCH.replace("safe()", "safe_retry()")
     agent, transport = make_deepseek_agent(
         [
+            _inspection(),
             _response(*calls),
             _response(
                 _call(
@@ -305,9 +337,12 @@ def test_mixed_submission_batch_is_rejected_before_standalone_retry(
     )
     proposal = agent.propose(_context(tmp_path))
     assert proposal.patch == retry_patch
-    assert len(transport.requests) == 2
+    assert reads == ["example.py"]
+    assert len(transport.requests) == 3
     outputs = [
-        item for item in transport.requests[1]["messages"] if item.get("role") == "tool"
+        item
+        for item in transport.requests[2]["messages"]
+        if item.get("role") == "tool" and item["tool_call_id"] != "inspect_target"
     ]
     assert [output["tool_call_id"] for output in outputs] == [
         call["id"] for call in calls
@@ -318,7 +353,7 @@ def test_mixed_submission_batch_is_rejected_before_standalone_retry(
         assert "entire batch was rejected" in result["error"]
         assert "no tools ran" in result["error"]
         assert "submit_patch alone" in result["error"]
-    assert agent.usage["calls"] == 2
+    assert agent.usage["calls"] == 3
 
 
 def test_repeated_mixed_submission_batches_stop_at_call_ceiling(
@@ -404,13 +439,21 @@ def test_invalid_tool_arguments_return_only_declared_schema_before_valid_submiss
     def forbidden(*args: object, **kwargs: object) -> None:
         pytest.fail("Invalid arguments must not execute a workspace operation")
 
+    reads = []
+    read_file = WorkspaceTools.read_file
+
+    def record_read(tools: WorkspaceTools, argument: ReadFile) -> dict[str, object]:
+        reads.append(argument.path)
+        return read_file(tools, argument)
+
     monkeypatch.setattr("seam.agent.tools.WorkspaceTools.list_files", forbidden)
-    monkeypatch.setattr("seam.agent.tools.WorkspaceTools.read_file", forbidden)
+    monkeypatch.setattr(WorkspaceTools, "read_file", record_read)
     agent, transport = make_deepseek_agent(
-        [_response(_call(name, arguments, "invalid")), _response()]
+        [_response(_call(name, arguments, "invalid")), _inspection(), _response()]
     )
     proposal = agent.propose(_context(tmp_path))
     assert proposal.patch == _PATCH
+    assert reads == ["example.py"]
     feedback = json.loads(transport.requests[1]["messages"][-1]["content"])
     schema = next(tool["parameters"] for tool in TOOL_SCHEMAS if tool["name"] == name)
     assert feedback == {
@@ -418,10 +461,10 @@ def test_invalid_tool_arguments_return_only_declared_schema_before_valid_submiss
         "parameters": schema,
     }
     assert "rejected-input-marker" not in json.dumps(feedback)
-    assert len(transport.requests) == 2
-    assert agent.usage["calls"] == 2
-    assert agent.usage["input_tokens"] == 2000
-    assert agent.usage["output_tokens"] == 400
+    assert len(transport.requests) == 3
+    assert agent.usage["calls"] == 3
+    assert agent.usage["input_tokens"] == 3000
+    assert agent.usage["output_tokens"] == 600
 
 
 def test_invalid_read_can_be_corrected_before_submitting_a_patch(
@@ -556,14 +599,16 @@ def test_usage_uses_peak_uncached_upper_prices_even_when_input_was_cached(
     model: str,
     expected_cost: float,
 ) -> None:
-    agent, transport = make_deepseek_agent([_response(model=model)], model=model)
+    agent, transport = make_deepseek_agent(
+        [_inspection(model=model), _response(model=model)], model=model
+    )
     agent.propose(_context(tmp_path))
     assert transport.requests[0]["model"] == model
     assert agent.usage["model"] == model
-    assert agent.usage["calls"] == 1
-    assert agent.usage["input_tokens"] == 1000
-    assert agent.usage["output_tokens"] == 200
-    assert agent.usage["estimated_cost_usd"] == pytest.approx(expected_cost)
+    assert agent.usage["calls"] == 2
+    assert agent.usage["input_tokens"] == 2000
+    assert agent.usage["output_tokens"] == 400
+    assert agent.usage["estimated_cost_usd"] == pytest.approx(expected_cost * 2)
     assert agent.usage["reserved_cost_usd"] == 0
     assert agent.usage["budget_usd"] == "unlimited"
 
@@ -595,9 +640,9 @@ def test_explicit_finite_budget_reserves_before_contacting_deepseek(
 def test_explicit_budget_can_exceed_old_ten_dollar_limit(
     tmp_path: Path, make_deepseek_agent: Callable[..., Any]
 ) -> None:
-    agent, transport = make_deepseek_agent([_response()], budget_usd=25)
+    agent, transport = make_deepseek_agent([_inspection(), _response()], budget_usd=25)
     agent.propose(_context(tmp_path))
-    assert len(transport.requests) == 1
+    assert len(transport.requests) == 2
     assert agent.usage["budget_usd"] == 25
 
 

@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "oracle": {
+    "path": "oracle.py",
+    "security_test": "test_security_regression",
+    "controls": [
+      "test_stored_value_roundtrip",
+      "test_session_value_roundtrip"
+    ],
+    "failure_marker": "CONTEXT_DOMAIN_BOUNDARY_ORACLE"
+  },
+  "runner": {
+    "image": "security-backport-demo:local",
+    "docker": [
+      "sudo",
+      "-n",
+      "docker"
+    ],
+    "timeout_seconds": 120.0,
+    "memory_mb": 512,
+    "cpus": 1.0,
+    "pids": 128,
+    "max_output_bytes": 131072,
+    "suite": [
+      "tests/test_litellm/proxy/common_utils/test_encrypt_decrypt_utils.py"
+    ],
+    "plugins": [],
+    "import_mode": "importlib",
+    "suite_markers": null,
+    "reviewed_fixtures": {}
+  },
+  "max_attempts": 3,
+  "reviewed_tests": null
+}

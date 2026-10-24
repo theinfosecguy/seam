@@ -7,27 +7,32 @@ import pytest
 
 from seam import repository
 from seam.exceptions import RepositoryError
-from seam.execution.processes import safe_environment
+from seam.execution.processes import run_process, safe_environment
+from seam.models import ProcessResult
 
 
-def make_repository(path: Path) -> Path:
+def make_repository(path: Path, content: str = "def answer():\n    return 1\n") -> Path:
     path.mkdir()
+    subprocess.run(
+        ["git", "init", "-b", "main", str(path)], check=True, capture_output=True
+    )
+    (path / "library.py").write_text(content, "utf-8")
+    repository.git(path, "add", "library.py")
+    commit_index(path, "Add initial library")
+    return path
+
+
+def commit_index(path: Path, message: str) -> None:
     environment = safe_environment() | {
         "GIT_AUTHOR_NAME": "Test Maintainer",
         "GIT_AUTHOR_EMAIL": "maintainer@example.invalid",
         "GIT_COMMITTER_NAME": "Test Maintainer",
         "GIT_COMMITTER_EMAIL": "maintainer@example.invalid",
     }
-    subprocess.run(
-        ["git", "init", "-b", "main", str(path)], check=True, capture_output=True
-    )
-    (path / "library.py").write_text("def answer():\n    return 1\n", "utf-8")
-    repository.git(path, "add", "library.py")
-    message = "Add initial library"
     prohibited = bytes([99, 111, 100, 101, 120]).decode()
     for value in [
         message,
-        "main",
+        repository.git(path, "branch", "--show-current"),
         *(
             value
             for key, value in environment.items()
@@ -50,7 +55,74 @@ def make_repository(path: Path) -> Path:
         check=True,
         capture_output=True,
     )
-    return path
+
+
+def test_clone_inventory_does_not_include_long_tracked_paths(tmp_path: Path) -> None:
+    repo = make_repository(tmp_path / "repo")
+    for index in range(2300):
+        directory = repo / (f"{index // 230:02d}-" + "d" * 200)
+        directory.mkdir(exist_ok=True)
+        (directory / (f"{index:04d}-" + "f" * 200 + ".py")).write_text("VALUE = 1\n")
+    repository.git(repo, "add", ".")
+    commit_index(repo, "Add long source paths")
+    raw = run_process(
+        ["git", "-C", str(repo), "ls-files", "--stage", "-z"],
+        max_output=2 * 1_048_576,
+    )
+    assert raw.returncode == 0 and not raw.truncated
+    assert len(raw.stdout.encode()) > 1_048_576
+    clone = tmp_path / "clone"
+    repository.clone_at(repo, repository.resolve(repo, "HEAD"), clone)
+    assert len(list(clone.rglob("*.py"))) == 2301
+
+
+def test_mode_only_inventory_still_rejects_submodules(tmp_path: Path) -> None:
+    repo = make_repository(tmp_path / "repo")
+    revision = repository.resolve(repo, "HEAD")
+    repository.git(
+        repo, "update-index", "--add", "--cacheinfo", "160000", revision, "vendor"
+    )
+    commit_index(repo, "Add submodule entry")
+    with pytest.raises(RepositoryError, match="submodules are unsupported"):
+        repository.clone_at(repo, repository.resolve(repo, "HEAD"), tmp_path / "clone")
+
+
+@pytest.mark.parametrize(
+    "result,detail",
+    [
+        (ProcessResult(returncode=1), "exit status 1"),
+        (ProcessResult(returncode=-9, timed_out=True), "timeout after 120 seconds"),
+        (ProcessResult(returncode=0, truncated=True), "output exceeded 1048576 bytes"),
+    ],
+)
+def test_git_failures_identify_the_bound(tmp_path, monkeypatch, result, detail):
+    monkeypatch.setattr(repository, "run_process", lambda *args, **kwargs: result)
+    with pytest.raises(RepositoryError, match=detail):
+        repository.git(tmp_path, "ls-files", "--format=%(objectmode)")
+
+
+def test_inventory_failure_identifies_revision(tmp_path, monkeypatch):
+    def git(path, *arguments, **kwargs):
+        if arguments[0] == "ls-files":
+            raise RepositoryError("output exceeded 1048576 bytes")
+        return ""
+
+    monkeypatch.setattr(repository, "git", git)
+    with pytest.raises(RepositoryError, match=f"Commit {'a' * 40} inventory"):
+        repository.clone_at(tmp_path, "a" * 40, tmp_path / "clone")
+
+
+def test_candidate_cannot_change_source_through_directory_alias(tmp_path: Path) -> None:
+    repo = make_repository(tmp_path / "repo")
+    (repo / "pkg").mkdir()
+    (repo / "pkg/library.py").write_text("VALUE = 1\n")
+    (repo / "alias").symlink_to("pkg", target_is_directory=True)
+    patch = (
+        "--- a/alias/library.py\n+++ b/alias/library.py\n"
+        "@@ -1 +1 @@\n-VALUE = 1\n+VALUE = 2\n"
+    )
+    with pytest.raises(RepositoryError, match="traverses a symlink"):
+        repository.validate_patch(repo, patch)
 
 
 def test_clone_does_not_change_dirty_original(tmp_path: Path) -> None:
@@ -110,7 +182,8 @@ def test_patch_paths_are_confined(path: str) -> None:
         repository.validate_source_path(path)
 
 
-def test_apply_patch_and_reject_test_change(tmp_path: Path) -> None:
+@pytest.mark.parametrize("final_newline", ["\n", ""])
+def test_apply_patch_and_reject_test_change(tmp_path: Path, final_newline: str) -> None:
     repo = make_repository(tmp_path / "repo")
     patch = (
         "--- a/library.py\n"
@@ -118,11 +191,11 @@ def test_apply_patch_and_reject_test_change(tmp_path: Path) -> None:
         "@@ -1,2 +1,2 @@\n"
         " def answer():\n"
         "-    return 1\n"
-        "+    return 2\n"
+        "+    return 2" + final_newline
     )
     repository.apply_patch(repo, patch)
     assert "return 2" in (repo / "library.py").read_text()
-    with pytest.raises(RepositoryError):
+    with pytest.raises(RepositoryError, match="outside supported implementation"):
         repository.apply_patch(repo, patch.replace("library.py", "tests/test_check.py"))
 
 
@@ -148,6 +221,76 @@ def test_recounts_generated_hunks_and_exports_an_ordinary_applicable_diff(
     assert (clone / "library.py").read_text() == (repo / "library.py").read_text()
 
 
+def test_captured_unterminated_hunk_exports_an_ordinary_applicable_diff(
+    tmp_path: Path,
+) -> None:
+    source = "\n" * 1890 + (
+        "def parse_form(headers):\n"
+        "    content_length: int | float | bytes | None = "
+        'headers.get("Content-Length")\n'
+        "    if content_length is not None:\n"
+        "        content_length = int(content_length)\n"
+        "    else:\n"
+        '        content_length = float("inf")\n'
+        "    bytes_read = 0\n"
+    )
+    repo = make_repository(tmp_path / "repo", source)
+    revision = repository.resolve(repo, "HEAD")
+    patch = (
+        "diff --git a/library.py b/library.py\n"
+        "--- a/library.py\n"
+        "+++ b/library.py\n"
+        "@@ -1900,6 +1900,8 @@ def parse_form(\n"
+        "     content_length: int | float | bytes | None = "
+        'headers.get("Content-Length")\n'
+        "     if content_length is not None:\n"
+        "         content_length = int(content_length)\n"
+        "+        if content_length < 0:\n"
+        '+            raise ValueError("Content-Length must be non-negative")\n'
+        "     else:\n"
+        '         content_length = float("inf")\n'
+        "     bytes_read = 0"
+    )
+    canonical = repository.apply_patch(repo, patch)
+    expected = source.replace(
+        "        content_length = int(content_length)\n",
+        "        content_length = int(content_length)\n"
+        "        if content_length < 0:\n"
+        '            raise ValueError("Content-Length must be non-negative")\n',
+    )
+    assert (repo / "library.py").read_text() == expected
+    assert canonical.endswith("\n")
+    consumer = tmp_path / "consumer"
+    repository.clone_at(repo, revision, consumer)
+    repository.git(consumer, "apply", "--check", "-", input_text=canonical)
+    repository.git(consumer, "apply", "-", input_text=canonical)
+    assert (consumer / "library.py").read_text() == expected
+
+
+def test_missing_patch_terminator_preserves_explicit_file_newline_marker(
+    tmp_path: Path,
+) -> None:
+    repo = make_repository(tmp_path / "repo")
+    revision = repository.resolve(repo, "HEAD")
+    patch = (
+        "--- a/library.py\n"
+        "+++ b/library.py\n"
+        "@@ -1,2 +1,2 @@\n"
+        " def answer():\n"
+        "-    return 1\n"
+        "+    return 2\n"
+        "\\ No newline at end of file"
+    )
+    canonical = repository.apply_patch(repo, patch)
+    expected = "def answer():\n    return 2"
+    assert (repo / "library.py").read_text() == expected
+    assert "\\ No newline at end of file\n" in canonical
+    consumer = tmp_path / "consumer"
+    repository.clone_at(repo, revision, consumer)
+    repository.git(consumer, "apply", "-", input_text=canonical)
+    assert (consumer / "library.py").read_text() == expected
+
+
 def test_canonical_patch_includes_new_implementation_files(tmp_path: Path) -> None:
     repo = make_repository(tmp_path / "repo")
     patch = "--- /dev/null\n+++ b/helper.py\n@@ -0,0 +1 @@\n+VALUE = 1\n"
@@ -156,7 +299,10 @@ def test_canonical_patch_includes_new_implementation_files(tmp_path: Path) -> No
     assert "+VALUE = 1" in canonical
 
 
-def test_recounting_does_not_accept_incorrect_context(tmp_path: Path) -> None:
+@pytest.mark.parametrize("final_newline", ["\n", ""])
+def test_recounting_does_not_accept_incorrect_context(
+    tmp_path: Path, final_newline: str
+) -> None:
     repo = make_repository(tmp_path / "repo")
     patch = (
         "--- a/library.py\n"
@@ -164,7 +310,7 @@ def test_recounting_does_not_accept_incorrect_context(tmp_path: Path) -> None:
         "@@ -1,99 +1,777 @@\n"
         " def missing():\n"
         "-    return 1\n"
-        "+    return 2\n"
+        "+    return 2" + final_newline
     )
     with pytest.raises(RepositoryError):
         repository.apply_patch(repo, patch)

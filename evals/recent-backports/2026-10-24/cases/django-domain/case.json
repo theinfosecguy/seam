@@ -1,0 +1,30 @@
+{
+  "repo": "https://github.com/django/django.git",
+  "parent": "38dfbd27d7d4f4e6eaa087d7a90f2613fbf55b3a",
+  "fix": "a5de13f1491f1dbf2bb0ad9b91570524ebbc8acd",
+  "target": "6c66eb8cec52b303af85c2c6e4dd00aa37654dbc",
+  "official_backport": "d5d60ed0323cddaa0ce0237a26a3d49ac21ee05e",
+  "issue": "CVE-2026-53878",
+  "published": "2026-07-07",
+  "source": "https://www.djangoproject.com/weblog/2026/jul/07/security-releases/",
+  "history": "Full non-shallow upstream history",
+  "suite_cases": 15,
+  "controls": 3,
+  "assets": {
+    "config_sha256": "7695cb008f8d6f3c8cc9908b431af0de9b8acd8cdd63e9542a35333f91a6b15b",
+    "oracle_sha256": "72b684f3a06f6fcb7b72c972cbab69e953c96e04482f832fd61fa360b134734c",
+    "reference_patch_sha256": "6f29b4d4c81fe4ad50792d3bc46f560ee3ce3264f1eeed3f0416a27ebda7525d"
+  },
+  "upstream_licenses": [
+    {
+      "path": "LICENSE.upstream",
+      "revision": "6c66eb8cec52b303af85c2c6e4dd00aa37654dbc",
+      "sha256": "b846415d1b514e9c1dff14a22deb906d794bc546ca6129f950a18cd091e2a669"
+    },
+    {
+      "path": "LICENSE.python.upstream",
+      "revision": "6c66eb8cec52b303af85c2c6e4dd00aa37654dbc",
+      "sha256": "765e2b1e339fef8d3e9f12892e7e072a8be309996a0be43ffc5796398ec4e7d4"
+    }
+  ]
+}

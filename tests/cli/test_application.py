@@ -5,8 +5,9 @@ from pathlib import Path
 import pytest
 from typer.testing import CliRunner
 
+import seam.agent
 from seam import cli
-from seam.cli import application, credentials
+from seam.cli import application, credentials, providers
 from seam.constants.agent import CLI_MODEL_CALLS, MAX_API_CALLS
 from seam.models import ModelProvider, ProcessResult, RunReport
 
@@ -83,24 +84,63 @@ def arguments(tmp_path: Path) -> list[str]:
     "status,exit_code", [("verified", 0), ("failed", 1), ("inconclusive", 2)]
 )
 @pytest.mark.parametrize("provider_args", [[], ["--provider", "deepseek"]])
-def test_run_reports_status_and_never_enables_model_implicitly(
-    tmp_path, monkeypatch, status, exit_code, provider_args
+@pytest.mark.parametrize("offline_mode", ["direct", "candidate"])
+def test_explicit_offline_modes_report_status_without_a_model(
+    tmp_path, monkeypatch, status, exit_code, provider_args, offline_mode
 ):
+    candidate = tmp_path / "candidate.patch"
+    candidate.write_text("explicit supplied patch\n")
+
     def fake_run(*args, **kwargs):
         assert kwargs["proposer"] is None
+        assert kwargs["direct"] is (offline_mode == "direct")
+        assert kwargs["candidate_patch"] == (
+            candidate if offline_mode == "candidate" else None
+        )
         return report(status)
 
     def forbidden(*args, **kwargs):
-        pytest.fail("Default CLI unexpectedly constructed a model provider")
+        pytest.fail("Offline verification unexpectedly constructed a model provider")
 
     monkeypatch.setattr(application, "run_backport", fake_run)
     monkeypatch.setattr(application, "make_proposer", forbidden)
-    result = runner.invoke(cli.app, [*arguments(tmp_path), *provider_args])
+    mode_args = (
+        ["--direct"]
+        if offline_mode == "direct"
+        else ["--candidate-patch", str(candidate)]
+    )
+    result = runner.invoke(cli.app, [*arguments(tmp_path), *provider_args, *mode_args])
     assert result.exit_code == exit_code, result.output
     assert status.upper() in result.output
     assert "recorded oracle" in result.output
     if status == "verified":
         assert f"Patch: {tmp_path / 'evidence' / 'backport.patch'}" in result.output
+
+
+@pytest.mark.parametrize(
+    "mode_args",
+    [
+        [],
+        ["--provider", "deepseek"],
+        ["--model", ""],
+        ["--model", " "],
+        ["--model", "some-model", "--direct"],
+        ["--candidate-patch", "candidate.patch", "--direct"],
+        ["--candidate-patch", "candidate.patch", "--model", "some-model"],
+    ],
+)
+def test_missing_or_conflicting_modes_fail_before_provider_or_output(
+    tmp_path, monkeypatch, mode_args
+):
+    def forbidden(*args, **kwargs):
+        pytest.fail("Invalid mode must fail before provider construction or execution")
+
+    monkeypatch.setattr(application, "make_proposer", forbidden)
+    monkeypatch.setattr(application, "run_backport", forbidden)
+    result = runner.invoke(cli.app, [*arguments(tmp_path), *mode_args])
+    assert result.exit_code == 2, result.output
+    assert "--model" in result.output
+    assert not (tmp_path / "evidence").exists()
 
 
 def test_explicit_model_passes_budget_and_explicit_key_file(tmp_path, monkeypatch):
@@ -123,6 +163,7 @@ def test_explicit_model_passes_budget_and_explicit_key_file(tmp_path, monkeypatc
 
     def fake_run(*args, **kwargs):
         assert kwargs["proposer"] is sentinel
+        assert kwargs["direct"] is False
         return report()
 
     monkeypatch.setattr(application, "make_proposer", factory)
@@ -144,6 +185,37 @@ def test_explicit_model_passes_budget_and_explicit_key_file(tmp_path, monkeypatc
     assert closed == [True]
 
 
+def test_normal_run_defaults_to_32_model_requests_without_changing_budget(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    seen: dict[str, object] = {}
+    closed = []
+
+    class Provider:
+        def close(self) -> None:
+            closed.append(True)
+
+    proposer = Provider()
+
+    def construct(**options: object) -> Provider:
+        seen.update(options)
+        return proposer
+
+    def execute(*args: object, **options: object) -> RunReport:
+        assert options["proposer"] is proposer
+        return report()
+
+    monkeypatch.setattr(seam.agent, "PatchAgent", construct)
+    monkeypatch.setattr(providers, "load_api_key", lambda *_: "offline-test-key")
+    monkeypatch.setattr(application, "run_backport", execute)
+    result = runner.invoke(cli.app, [*arguments(tmp_path), "--model", "explicit-model"])
+
+    assert result.exit_code == 0, result.output
+    assert seen["max_calls"] == 32
+    assert seen["budget_usd"] == 10
+    assert closed == [True]
+
+
 def test_provider_is_closed_when_verification_raises(tmp_path, monkeypatch):
     closed = []
 
@@ -161,6 +233,23 @@ def test_provider_is_closed_when_verification_raises(tmp_path, monkeypatch):
     result = runner.invoke(cli.app, [*arguments(tmp_path), "--model", "approved-model"])
     assert result.exit_code == 2
     assert closed == [True]
+
+
+def test_provider_failure_never_falls_back_to_offline_verification(
+    tmp_path, monkeypatch
+):
+    def fail(*args, **kwargs):
+        raise RuntimeError("provider unavailable")
+
+    def forbidden(*args, **kwargs):
+        pytest.fail("Provider failure must not start offline verification")
+
+    monkeypatch.setattr(application, "make_proposer", fail)
+    monkeypatch.setattr(application, "run_backport", forbidden)
+    result = runner.invoke(cli.app, [*arguments(tmp_path), "--model", "some-model"])
+    assert result.exit_code == 2, result.output
+    assert "provider unavailable" in result.output
+    assert not (tmp_path / "evidence").exists()
 
 
 def test_key_file_requires_model_and_candidate_cannot_enable_model(tmp_path):
@@ -260,6 +349,9 @@ def test_run_help_exposes_model_call_limit():
     result = runner.invoke(cli.app, ["run", "--help"], color=False)
     assert result.exit_code == 0, result.output
     assert "--max-model-calls" in result.output
+    assert "default: 32" in result.output
+    assert "--direct" in result.output
+    assert "explicit model" in result.output
 
 
 def test_custom_model_call_limit_requires_model(tmp_path, monkeypatch):
@@ -268,9 +360,7 @@ def test_custom_model_call_limit_requires_model(tmp_path, monkeypatch):
 
     monkeypatch.setattr(application, "make_proposer", forbidden)
     monkeypatch.setattr(application, "run_backport", forbidden)
-    result = runner.invoke(
-        cli.app, [*arguments(tmp_path), "--max-model-calls", str(MAX_API_CALLS)]
-    )
+    result = runner.invoke(cli.app, [*arguments(tmp_path), "--max-model-calls", "1"])
     assert result.exit_code == 2
     assert "--max-model-calls requires an explicit --model" in result.output
 
@@ -287,13 +377,32 @@ def test_doctor_identifies_installed_version_and_package_without_provider(
     monkeypatch.setattr(
         application,
         "run_process",
-        lambda *args, **kwargs: ProcessResult(returncode=0, stdout="available"),
+        lambda *args, **kwargs: ProcessResult(
+            returncode=0, stdout="git version 2.43.0"
+        ),
     )
     result = runner.invoke(cli.app, ["doctor"])
     assert result.exit_code == 0, result.output
     assert f"Seam: 0.2.0 ({tmp_path / 'seam'})" in result.output
     assert "Git: OK" in result.output
     assert "Docker: OK" in result.output
+
+
+@pytest.mark.parametrize(
+    "git_version,exit_code", [("2.37.9", 2), ("2.38.0", 0), ("3.0.0", 0)]
+)
+def test_doctor_checks_git_inventory_version(monkeypatch, git_version, exit_code):
+    monkeypatch.setattr(
+        application,
+        "run_process",
+        lambda *args, **kwargs: ProcessResult(
+            returncode=0, stdout=f"git version {git_version}"
+        ),
+    )
+    result = runner.invoke(cli.app, ["doctor"])
+    assert result.exit_code == exit_code, result.output
+    if exit_code:
+        assert "Git 2.38+ is required" in result.output
 
 
 @pytest.mark.parametrize(
@@ -408,6 +517,7 @@ def test_real_config_rejection_has_report_and_inconclusive_exit(tmp_path):
             str(config),
             "--output",
             str(output),
+            "--direct",
         ],
     )
     assert result.exit_code == 2, result.output
@@ -434,6 +544,7 @@ def test_missing_repository_and_config_paths_reach_structured_report(tmp_path):
             str(tmp_path / "missing.toml"),
             "--output",
             str(output),
+            "--direct",
         ],
     )
     assert result.exit_code == 2

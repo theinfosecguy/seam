@@ -1,0 +1,25 @@
+{
+  "method": "Read-only independent temporary text copy, exact raw patch apply, full per-file bytes/diff plus guarded string-expression equivalence. No target execution, no patch edits.",
+  "files": [
+    {
+      "path": "litellm/proxy/auth/auth_checks.py",
+      "model_sha256": "3bdc9e3c686202a6eb9fe57dcb96b0dcb1b2be690cac726af3aea4799d73dc43",
+      "vendor_sha256": "3bdc9e3c686202a6eb9fe57dcb96b0dcb1b2be690cac726af3aea4799d73dc43",
+      "byte_identical": true,
+      "semantic_review": "All UI/CLI minting and UI decoding call sites identical to official backport."
+    },
+    {
+      "path": "litellm/proxy/common_utils/encrypt_decrypt_utils.py",
+      "model_sha256": "aa5b4058769f3809b92b84fd5a7e19a3fedfaeaab2e1ecdd076eca463688b378",
+      "vendor_sha256": "3905082606f84ad7fdccf9a4f0000a2a5c89e89dca3850e0de6aa5ad405f6d02",
+      "byte_identical": false,
+      "semantic_review": "Only prefix removal expression differs. With declared str inputs and the immediately preceding startswith guard, slicing removes exactly the same prefix as removeprefix; all cryptographic operations, authenticated context, input validation and rejection behavior are otherwise byte-identical."
+    }
+  ],
+  "runtime_qualification": "AI01 verified full four-phase frozen CLI matrix; inspect accepted; all three controls and focused existing suite pass. Helper oracle itself does not invoke authentication callers; exact complete auth file comparison establishes caller migration.",
+  "raw_candidate_patch": "source:gap-fixes/litellm-context/ai-01/attempt-1.patch",
+  "raw_candidate_patch_sha256": "63a4bcfa18753ee1b44c676b5b63fd4f92f9c9338935b2b660191ab4e2e8d50f",
+  "candidate_patch": "source:gap-fixes/litellm-context/ai-01/backport.patch",
+  "candidate_patch_sha256": "bb194606e0699f98724643699f877cf54d88902c9c6fa4592cc5e8a2a939a2d8",
+  "exported_and_raw_resulting_implementation_files_identical": true
+}

@@ -1,0 +1,23 @@
+{
+  "publication_schema": 1,
+  "source_report_sha256": "5267d1e1a0b5eaeeed1e391dd945a668f4fb21347471d83920ba407ec7c37cc9",
+  "normalization": "Paths normalized; raw stdout/stderr, testcase messages and embedded bootstrap omitted with hashes. This is a publication derivative, not a seam inspect input.",
+  "report": {
+    "schema_version": 2,
+    "status": "inconclusive",
+    "reason": "Run could not complete: upstream_parent snapshot: Snapshot path '.claude/skills/complete-partial-pr': Directory symbolic links are unsupported",
+    "fix_commit": "871c7aeec5dfed2138655ccbccbf15c6d763bae7",
+    "parent_commit": "da29bfa38d5fd4f89f98d2e668027505449ddaae",
+    "target_commit": "f275d5c4c75d9cc96131800099619c5027b62873",
+    "image_id": null,
+    "oracle_sha256": "1bf1ba75af3bda575433c824c39444eae1e65a057673b486d9e62b807645686a",
+    "config_sha256": "17ba10050807f014bbf2f1efbafead553d66b4d0a63dcfc81211f59e99171d94",
+    "patch_sha256": null,
+    "phases": [],
+    "attempts": 0,
+    "adaptation": "none",
+    "model_usage": {},
+    "reviewed_tests": null,
+    "reviewed_fixtures": {}
+  }
+}

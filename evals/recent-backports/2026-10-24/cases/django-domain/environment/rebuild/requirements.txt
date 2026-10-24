@@ -1,0 +1,9 @@
+pytest==8.4.2
+pytest-django==4.11.1
+asgiref==3.9.2
+sqlparse==0.5.3
+Pillow==11.3.0
+iniconfig==2.3.1
+packaging==26.3
+pluggy==1.7.0
+pygments==2.21.0

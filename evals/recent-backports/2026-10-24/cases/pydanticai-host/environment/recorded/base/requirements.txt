@@ -1,0 +1,14 @@
+pytest==9.0.3
+pytest-mock==3.15.1
+pytest-recording==0.13.4
+anyio==4.13.0
+httpx==0.28.1
+pydantic==2.13.4
+starlette==0.50.0
+vcrpy==8.1.0
+dirty-equals==0.11
+logfire-api==4.34.0
+opentelemetry-api==1.39.1
+typing-inspection==0.4.2
+genai-prices==0.0.62
+griffelib==2.0.0

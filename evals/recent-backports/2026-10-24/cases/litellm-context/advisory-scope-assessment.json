@@ -1,0 +1,21 @@
+{
+  "status": "verified_scoped_behavior_and_reviewed_vendor_implementation_equivalence",
+  "reference_report": "source:gap-fixes/litellm-context/reference-02/report.json",
+  "provider_enabled_report": "source:gap-fixes/litellm-context/ai-01/report.json",
+  "oracle_scope": "Real crypto helper context separation and wrong-context rejection, three normal round-trip controls; real proxy imports and focused existing crypto tests. No auth request/server/model/tool executed.",
+  "auth_checks_py": "Full file byte-identical to official maintainer backport, including both UI/CLI minting call sites and session decoding; caller migration is present.",
+  "encrypt_decrypt_utils_py": "Full file differs only token[len(prefix):] vs token.removeprefix(prefix) after the identical startswith rejection guard; equivalent for declared str inputs. Cryptography/AAD, legacy storage and input validation code otherwise byte-identical.",
+  "equivalence_evidence": [
+    "vendor-file-comparison.json",
+    "model-semantic-comparison.json",
+    "model-vendor-unified.diff"
+  ],
+  "limits": [
+    "Frozen helper oracle alone cannot establish auth caller integration; conclusion combines runtime oracle with complete implementation-file review.",
+    "No broad deployed authentication, browser UI, async service, database, packaging or full-project suite verification.",
+    "Input uses complete exact selected depth2 snapshots with original SHA/parent identities; not complete ancestry/full-history benchmark.",
+    "Trusted monorepo path plugin and real per-revision MCP SDK overlay were operator-provided; final dependency union differs from target lock as explicitly recorded."
+  ],
+  "patches_hand_edited": false,
+  "target_implementation_installed_from_distribution": false
+}

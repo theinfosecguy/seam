@@ -1,0 +1,64 @@
+{
+  "tool_image_id": "sha256:fbfef8488b32dac8dd3b9034963cee11f7541b0cfa56b0140221bb0a1cecf13f",
+  "source_clone": "source:gap-fixes/pydanticai-host/metadata-independent",
+  "source_clone_independent": true,
+  "revisions": {
+    "target": {
+      "revision": "f275d5c4c75d9cc96131800099619c5027b62873",
+      "git_describe": "v1.107.4-0-gf275d5c4c",
+      "metadata_directories": [
+        "pydantic_ai_slim-1.107.4.dist-info",
+        "pydantic_graph-1.107.4.dist-info"
+      ],
+      "source_init_sha256": "2b8a569ddfc6a0bd414818de33c92ef73538ff32a759f3078ca944fe0fd9283c",
+      "source_hosts_sha256": null,
+      "source_working_tree_status": "",
+      "files": {
+        "pydantic_ai_slim.stdout": "7387e1214a9cf3901a2f8baccd13d62735778edaf077b0254f46675d0ac4538e",
+        "pydantic_graph.stdout": "af49fb2b3a3a6f879f27e4a9509bae274651f3707f71ebe486cf977817fcfddc",
+        "pydantic_ai_slim.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "pydantic_graph.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "pydantic_ai_slim-1.107.4.dist-info/METADATA": "214609c6da4da23d00fb810bdf38724a50f4a5f0e5e6f65a4daf57e7064bebec",
+        "pydantic_graph-1.107.4.dist-info/METADATA": "5009fb2aa4f1f8e651f1f41b991c9a839a6d9d1f919deab253073720038ab0cc"
+      }
+    },
+    "upstream_parent": {
+      "revision": "da29bfa38d5fd4f89f98d2e668027505449ddaae",
+      "git_describe": "v2.29.0-13-gda29bfa38",
+      "metadata_directories": [
+        "pydantic_ai_slim-2.29.1.dev13+da29bfa38.dist-info",
+        "pydantic_graph-2.29.1.dev13+da29bfa38.dist-info"
+      ],
+      "source_init_sha256": "195dd19bd679dc34ea5631567ead9f5f995aace4c08a82edb0fe34d012a3e3c2",
+      "source_hosts_sha256": null,
+      "source_working_tree_status": "",
+      "files": {
+        "pydantic_ai_slim.stdout": "f544661b1eeb5189796b6583417f74471f38e10ed06620cc85bc6fecfa5b8636",
+        "pydantic_graph.stdout": "d9b25fb73f01762c6ab6f7d0708829eb7cb478a827b2c6889b6e666b5b1a870a",
+        "pydantic_ai_slim.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "pydantic_graph.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "pydantic_graph-2.29.1.dev13+da29bfa38.dist-info/METADATA": "18746bcf57f68b95c1d7142a68679d497d838baf6ff9443fa36adb459bc257ae",
+        "pydantic_ai_slim-2.29.1.dev13+da29bfa38.dist-info/METADATA": "793a7f360bec8207c851034d5b84ab11b0f47f8c62c53bba4b2b30aa3b905684"
+      }
+    },
+    "upstream_fix": {
+      "revision": "871c7aeec5dfed2138655ccbccbf15c6d763bae7",
+      "git_describe": "v2.29.0-14-g871c7aeec",
+      "metadata_directories": [
+        "pydantic_ai_slim-2.29.1.dev14+871c7aeec.dist-info",
+        "pydantic_graph-2.29.1.dev14+871c7aeec.dist-info"
+      ],
+      "source_init_sha256": "195dd19bd679dc34ea5631567ead9f5f995aace4c08a82edb0fe34d012a3e3c2",
+      "source_hosts_sha256": "d4391fb5e54ae52c5d2c768ad602518a869a7791dc3b4a4d3343fc24b6074e09",
+      "source_working_tree_status": "",
+      "files": {
+        "pydantic_ai_slim.stdout": "a6db2e60597306b0f7283d3ec6ea55f0ad7a43c1218a09df008abeaf41434ce1",
+        "pydantic_graph.stdout": "46e951bdf6282a533c40044bf9004be7211f597588231bb6e27ef825da673b48",
+        "pydantic_ai_slim.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "pydantic_graph.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "pydantic_graph-2.29.1.dev14+871c7aeec.dist-info/METADATA": "fe53b9e9440eb56cada33d6e0009767569ca2f23dfcfe60e5edb31476c614256",
+        "pydantic_ai_slim-2.29.1.dev14+871c7aeec.dist-info/METADATA": "81a2fbf5c1af4c6d1ee57392c73c8e10522dc8f120374f82e88cad0f132eaeb3"
+      }
+    }
+  }
+}

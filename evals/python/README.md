@@ -70,14 +70,14 @@ dependencies selected by each container recipe. Fetching repositories, base
 images and dependencies requires network access; test containers run with
 network access disabled.
 
-Download `seam-0.3.0-py3-none-any.whl` from the
-[GitHub Release](https://github.com/theinfosecguy/seam/releases/tag/v0.3.0),
+Download `seam-0.4.0-py3-none-any.whl` from the
+[GitHub Release](https://github.com/theinfosecguy/seam/releases/tag/v0.4.0),
 then install it in a virtual environment:
 
 ```bash
 python3 -m venv .venv
 . .venv/bin/activate
-python -m pip install ./seam-0.3.0-py3-none-any.whl
+python -m pip install ./seam-0.4.0-py3-none-any.whl
 seam eval check
 ```
 

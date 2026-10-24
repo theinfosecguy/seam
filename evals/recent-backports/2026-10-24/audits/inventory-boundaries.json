@@ -1,0 +1,32 @@
+[
+  {
+    "case": "below-1mib",
+    "exit_code": 2,
+    "inventory_passed": true,
+    "intentional_stop": "/bin/false Docker image preparation",
+    "security_tests_run": 0,
+    "model_calls": 0,
+    "seconds": 5.409,
+    "report": "source:gap-fixes/inventory-regression/below-1mib/run/report.json"
+  },
+  {
+    "case": "exact-1mib",
+    "exit_code": 2,
+    "inventory_passed": true,
+    "intentional_stop": "/bin/false Docker image preparation",
+    "security_tests_run": 0,
+    "model_calls": 0,
+    "seconds": 4.668,
+    "report": "source:gap-fixes/inventory-regression/exact-1mib/run/report.json"
+  },
+  {
+    "case": "above-1mib",
+    "exit_code": 2,
+    "inventory_passed": true,
+    "intentional_stop": "/bin/false Docker image preparation",
+    "security_tests_run": 0,
+    "model_calls": 0,
+    "seconds": 4.665,
+    "report": "source:gap-fixes/inventory-regression/above-1mib/run/report.json"
+  }
+]

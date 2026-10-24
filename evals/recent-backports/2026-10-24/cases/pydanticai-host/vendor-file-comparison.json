@@ -1,0 +1,213 @@
+{
+  "target": "f275d5c4c75d9cc96131800099619c5027b62873",
+  "vendor_backport_commit": "394cc1d31656620704a703a2daed752afa5135fe",
+  "method": "Populate bounded independent temporary text copies from immutable target blobs; apply exact exported patches without editing; compare resulting implementation bytes with official vendor blobs. No target code or tests executed; original Git object store/checkout unchanged.",
+  "patches": [
+    {
+      "patch": "source:gap-fixes/pydanticai-host/reference-04/backport.patch",
+      "patch_sha256": "fd26c3d1fc9bbbdb604d5915939a48704cef0d7aff145fd13ff359a851f4dc7d",
+      "git_apply_exit": 0,
+      "diagnostics": "",
+      "touched": [
+        "pydantic_ai_slim/pydantic_ai/_cli/__init__.py",
+        "pydantic_ai_slim/pydantic_ai/_cli/web.py",
+        "pydantic_ai_slim/pydantic_ai/agent/__init__.py",
+        "pydantic_ai_slim/pydantic_ai/ui/_web/_hosts.py",
+        "pydantic_ai_slim/pydantic_ai/ui/_web/api.py",
+        "pydantic_ai_slim/pydantic_ai/ui/_web/app.py"
+      ]
+    },
+    {
+      "patch": "source:gap-fixes/pydanticai-host/ai-01/attempt-1.patch",
+      "patch_sha256": "c7441bbab03b81fdab70c0c98cd50f839e9944d43eb96ce25e60997a1cd0ad21",
+      "git_apply_exit": 1,
+      "diagnostics": "warning: recount: unexpected line: *** End Patch\n\nerror: patch failed: pydantic_ai_slim/pydantic_ai/_cli/web.py:33\nerror: pydantic_ai_slim/pydantic_ai/_cli/web.py: patch does not apply\nerror: patch failed: pydantic_ai_slim/pydantic_ai/ui/_web/app.py:139\nerror: pydantic_ai_slim/pydantic_ai/ui/_web/app.py: patch does not apply\n",
+      "touched": [
+        "pydantic_ai_slim/pydantic_ai/_cli/__init__.py",
+        "pydantic_ai_slim/pydantic_ai/_cli/web.py",
+        "pydantic_ai_slim/pydantic_ai/agent/__init__.py",
+        "pydantic_ai_slim/pydantic_ai/ui/_web/_hosts.py",
+        "pydantic_ai_slim/pydantic_ai/ui/_web/api.py",
+        "pydantic_ai_slim/pydantic_ai/ui/_web/app.py"
+      ]
+    },
+    {
+      "patch": "source:gap-fixes/pydanticai-host/ai-02/attempt-1.patch",
+      "patch_sha256": "3437942704eeb06b4d5535d8b7b4f82e00f6517dcdc100cff9c81ff141c4b7d6",
+      "git_apply_exit": 1,
+      "diagnostics": "error: patch failed: pydantic_ai_slim/pydantic_ai/ui/_web/app.py:161\nerror: pydantic_ai_slim/pydantic_ai/ui/_web/app.py: patch does not apply\n",
+      "touched": [
+        "pydantic_ai_slim/pydantic_ai/_cli/__init__.py",
+        "pydantic_ai_slim/pydantic_ai/_cli/web.py",
+        "pydantic_ai_slim/pydantic_ai/agent/__init__.py",
+        "pydantic_ai_slim/pydantic_ai/ui/_web/_hosts.py",
+        "pydantic_ai_slim/pydantic_ai/ui/_web/api.py",
+        "pydantic_ai_slim/pydantic_ai/ui/_web/app.py"
+      ]
+    }
+  ],
+  "files": [
+    {
+      "path": "pydantic_ai_slim/pydantic_ai/_cli/__init__.py",
+      "target_base_sha256": "6dbdfc76f82705ae82cd41d4113ec370acf7778a4d0ed53397c78e9716085a86",
+      "vendor_file_sha256": "9af2c0ec7a5c0572854619afc3de565a3d077eb710d80ac42765957c265bba51",
+      "reference_result_sha256": "9af2c0ec7a5c0572854619afc3de565a3d077eb710d80ac42765957c265bba51",
+      "reference_result_identical_to_vendor": true,
+      "candidates": [
+        {
+          "patch": "source:gap-fixes/pydanticai-host/ai-01/attempt-1.patch",
+          "touched": true,
+          "applicable": false,
+          "result_sha256": null,
+          "result_identical_to_reference": null,
+          "result_identical_to_vendor": null,
+          "verdict": "No applicable implementation; semantic equivalence not established."
+        },
+        {
+          "patch": "source:gap-fixes/pydanticai-host/ai-02/attempt-1.patch",
+          "touched": true,
+          "applicable": false,
+          "result_sha256": null,
+          "result_identical_to_reference": null,
+          "result_identical_to_vendor": null,
+          "verdict": "No applicable implementation; semantic equivalence not established."
+        }
+      ]
+    },
+    {
+      "path": "pydantic_ai_slim/pydantic_ai/_cli/web.py",
+      "target_base_sha256": "6df5ab36a88b556f47e4f621ff4a5c5d9d36505da4d21eb97aebb7ef55ac84c2",
+      "vendor_file_sha256": "43d68a5316279fa991df37a90d201d2b31a386c7377fe34f3e0348a049292767",
+      "reference_result_sha256": "43d68a5316279fa991df37a90d201d2b31a386c7377fe34f3e0348a049292767",
+      "reference_result_identical_to_vendor": true,
+      "candidates": [
+        {
+          "patch": "source:gap-fixes/pydanticai-host/ai-01/attempt-1.patch",
+          "touched": true,
+          "applicable": false,
+          "result_sha256": null,
+          "result_identical_to_reference": null,
+          "result_identical_to_vendor": null,
+          "verdict": "No applicable implementation; semantic equivalence not established."
+        },
+        {
+          "patch": "source:gap-fixes/pydanticai-host/ai-02/attempt-1.patch",
+          "touched": true,
+          "applicable": false,
+          "result_sha256": null,
+          "result_identical_to_reference": null,
+          "result_identical_to_vendor": null,
+          "verdict": "No applicable implementation; semantic equivalence not established."
+        }
+      ]
+    },
+    {
+      "path": "pydantic_ai_slim/pydantic_ai/agent/__init__.py",
+      "target_base_sha256": "d5612a0306b90c0a41476110dc8091b496474bb8721db85011040c0ff2413f6a",
+      "vendor_file_sha256": "f3cbe65f90617d76f8a1c5273c78aba10bdf927c7d826640e0b5169471f199d8",
+      "reference_result_sha256": "f3cbe65f90617d76f8a1c5273c78aba10bdf927c7d826640e0b5169471f199d8",
+      "reference_result_identical_to_vendor": true,
+      "candidates": [
+        {
+          "patch": "source:gap-fixes/pydanticai-host/ai-01/attempt-1.patch",
+          "touched": true,
+          "applicable": false,
+          "result_sha256": null,
+          "result_identical_to_reference": null,
+          "result_identical_to_vendor": null,
+          "verdict": "No applicable implementation; semantic equivalence not established."
+        },
+        {
+          "patch": "source:gap-fixes/pydanticai-host/ai-02/attempt-1.patch",
+          "touched": true,
+          "applicable": false,
+          "result_sha256": null,
+          "result_identical_to_reference": null,
+          "result_identical_to_vendor": null,
+          "verdict": "No applicable implementation; semantic equivalence not established."
+        }
+      ]
+    },
+    {
+      "path": "pydantic_ai_slim/pydantic_ai/ui/_web/_hosts.py",
+      "target_base_sha256": null,
+      "vendor_file_sha256": "d4391fb5e54ae52c5d2c768ad602518a869a7791dc3b4a4d3343fc24b6074e09",
+      "reference_result_sha256": "d4391fb5e54ae52c5d2c768ad602518a869a7791dc3b4a4d3343fc24b6074e09",
+      "reference_result_identical_to_vendor": true,
+      "candidates": [
+        {
+          "patch": "source:gap-fixes/pydanticai-host/ai-01/attempt-1.patch",
+          "touched": true,
+          "applicable": false,
+          "result_sha256": null,
+          "result_identical_to_reference": null,
+          "result_identical_to_vendor": null,
+          "verdict": "No applicable implementation; semantic equivalence not established."
+        },
+        {
+          "patch": "source:gap-fixes/pydanticai-host/ai-02/attempt-1.patch",
+          "touched": true,
+          "applicable": false,
+          "result_sha256": null,
+          "result_identical_to_reference": null,
+          "result_identical_to_vendor": null,
+          "verdict": "No applicable implementation; semantic equivalence not established."
+        }
+      ]
+    },
+    {
+      "path": "pydantic_ai_slim/pydantic_ai/ui/_web/api.py",
+      "target_base_sha256": "1240631d0feec600194f52f70b126a101489849ee303fef55b9df25596109b0b",
+      "vendor_file_sha256": "2a7245585487f8c793ec6b6e9cfd0a3b867d3bee1d80a592385ca86e255ee29e",
+      "reference_result_sha256": "2a7245585487f8c793ec6b6e9cfd0a3b867d3bee1d80a592385ca86e255ee29e",
+      "reference_result_identical_to_vendor": true,
+      "candidates": [
+        {
+          "patch": "source:gap-fixes/pydanticai-host/ai-01/attempt-1.patch",
+          "touched": true,
+          "applicable": false,
+          "result_sha256": null,
+          "result_identical_to_reference": null,
+          "result_identical_to_vendor": null,
+          "verdict": "No applicable implementation; semantic equivalence not established."
+        },
+        {
+          "patch": "source:gap-fixes/pydanticai-host/ai-02/attempt-1.patch",
+          "touched": true,
+          "applicable": false,
+          "result_sha256": null,
+          "result_identical_to_reference": null,
+          "result_identical_to_vendor": null,
+          "verdict": "No applicable implementation; semantic equivalence not established."
+        }
+      ]
+    },
+    {
+      "path": "pydantic_ai_slim/pydantic_ai/ui/_web/app.py",
+      "target_base_sha256": "fb4d597fa933e1d438e62120644207e6f47e3df6a1364855ad57ef2ff0c2a37e",
+      "vendor_file_sha256": "d130223382e9ecf6af506ff3d3009b82aba9fed877e7a648091d8ed36f5c494f",
+      "reference_result_sha256": "d130223382e9ecf6af506ff3d3009b82aba9fed877e7a648091d8ed36f5c494f",
+      "reference_result_identical_to_vendor": true,
+      "candidates": [
+        {
+          "patch": "source:gap-fixes/pydanticai-host/ai-01/attempt-1.patch",
+          "touched": true,
+          "applicable": false,
+          "result_sha256": null,
+          "result_identical_to_reference": null,
+          "result_identical_to_vendor": null,
+          "verdict": "No applicable implementation; semantic equivalence not established."
+        },
+        {
+          "patch": "source:gap-fixes/pydanticai-host/ai-02/attempt-1.patch",
+          "touched": true,
+          "applicable": false,
+          "result_sha256": null,
+          "result_identical_to_reference": null,
+          "result_identical_to_vendor": null,
+          "verdict": "No applicable implementation; semantic equivalence not established."
+        }
+      ]
+    }
+  ]
+}
