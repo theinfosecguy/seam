@@ -27,7 +27,7 @@
   ],
   "license": "BSD-3-Clause",
   "status": "Evaluated with frozen Tape variant; see normalized reports.",
-  "scope": "No new oracle, dependency build, exploit script, or target execution.",
+  "scope": "Executed the unchanged original test/scheme-validation.test.js selection and external security oracle with two normal controls on Node 24, using the frozen Tape variant. See normalized reports for qualification outcomes.",
   "asset_sha256": {
     "LICENSE.upstream": "b010b0dfdfdb23d7396e03b82cd4621fc9bb8f95d6b0aea70b9c24e12074c786",
     "maintainer-tests/maintainer_backport/test/scheme-validation.test.js": "fdf1a23b352f9e6cb7508af38065ac7654c0b406f9547d65dac6461d7d75e421",

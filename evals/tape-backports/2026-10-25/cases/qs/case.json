@@ -27,7 +27,7 @@
   ],
   "license": "BSD-3-Clause",
   "status": "Evaluated with frozen Tape variant; see normalized reports.",
-  "scope": "No new oracle, dependency build, exploit script, or target execution.",
+  "scope": "Executed the unchanged original test/parse.js selection and external security oracle with two normal controls on Node 24, using the frozen Tape variant. See normalized reports for qualification outcomes.",
   "asset_sha256": {
     "LICENSE.upstream": "e7dc37bf662d7f786efcb46c545615e70c1daf458a38385521c63cf6607cdfe1",
     "maintainer-tests/maintainer_backport/test/parse.js": "5286aa903292d8cb5ac15cac0e0bafbf5dd6fa4d4162649f57d9d7bd530b7557",

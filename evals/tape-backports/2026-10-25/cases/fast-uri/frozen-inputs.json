@@ -32,5 +32,5 @@
   "dependency_directory": "/opt/seam/node_modules",
   "rejected_preparation_freeze_sha256": "6c233da02ec949769aecb27695d37776083960ae2103bd9bd44abf968e562d26",
   "original_record_sha256": "a4e236ad724475287c6d5da2a0404c9020541c35490b5551a373a52a32f5b227",
-  "publication_note": "Local paths omitted. Use repository URL and immutable Git refs; source archives are not bundled. Original metadata hashes are retained."
+  "publication_note": "Frozen inputs were prepared before execution; preparation status describes that point in time. Local paths omitted. Use repository URL and immutable Git refs; source archives are not bundled. Original metadata hashes are retained."
 }

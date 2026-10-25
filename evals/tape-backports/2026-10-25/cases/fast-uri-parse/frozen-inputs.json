@@ -33,5 +33,5 @@
   "rejected_preparation_freeze_sha256": "6c233da02ec949769aecb27695d37776083960ae2103bd9bd44abf968e562d26",
   "source_case_sha256": "1d94f8c8365076231b07770f31b6078fda0c133bc7c51f3878f42ae1a1853140",
   "original_record_sha256": "bcc325db5a2f6396409c7efd1a8b3a65c88f34ab8f9142e4497cb090638b37ae",
-  "publication_note": "Local paths omitted. Use repository URL and immutable Git refs; source archives are not bundled. Original metadata hashes are retained."
+  "publication_note": "Frozen inputs were prepared before execution; preparation status describes that point in time. Local paths omitted. Use repository URL and immutable Git refs; source archives are not bundled. Original metadata hashes are retained."
 }
