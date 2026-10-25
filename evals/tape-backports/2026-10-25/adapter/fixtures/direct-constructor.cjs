@@ -1,0 +1,1 @@
+const tape = require('tape'); const direct = new tape.Test('unobserved constructor', t => { t.fail('UNOBSERVED_DIRECT_FAILURE'); t.end(); }); direct.run(); tape('observed', t => { t.pass('normal'); t.end(); });

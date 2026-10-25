@@ -1,8 +1,8 @@
 # Backporting JavaScript fixes
 
 JavaScript support is experimental. Seam can check ordinary `.js`, `.mjs` and
-`.cjs` implementation changes with Node's built-in test runner or Mocha. Python
-and pytest remain the default. TypeScript compilation, npm lifecycle scripts and
+`.cjs` implementation changes with Node's built-in test runner, Mocha or Tape.
+Python and pytest remain the default. TypeScript compilation, npm lifecycle scripts and
 other test frameworks need separate support.
 
 You need an independently reviewed regression test, normal-behavior controls,
@@ -62,6 +62,27 @@ Only selected cases appear in the evidence; this establishes coverage of that
 selection. The external security oracle always runs independently of the filter.
 Zero matching tests, or skips and duplicate identities within the selection,
 remain inconclusive.
+
+Use `kind = "tape"` for one explicit Tape test file. Prepare the image with
+Tape 5.10.3 under `/opt/seam/node_modules`; Node 24 is the tested runtime.
+CommonJS and synchronous ESM suites are supported. Top-level await remains
+unsupported. The external oracle still runs independently with `node:test`.
+
+Each named Tape scope containing assertions becomes one reported case. All of
+its assertions contribute to the outcome; repeated assertion labels do not
+require invented test numbers. Parent scope names and the selected filename
+identify each case. Duplicate full scope names remain inconclusive.
+
+The Tape runner observes a controlled harness through a separate bounded channel
+and checks the child process after it exits. Static `tape.skip`, focused `.only`,
+custom harnesses, direct Tape implementation imports and reporter/lifecycle APIs
+are rejected. Visible skipped or todo scopes remain skipped. Unfinished plans,
+empty leaves, late assertions, swallowed exceptions and explicit `process.exit`
+or `process.execve` remain inconclusive. Suites must run in one process: imports of
+`worker_threads`, `child_process` and `cluster`, including
+`process.getBuiltinModule` access, are rejected because separate harnesses there
+cannot be observed. This supports the recorded framework path; it does not
+establish complete observation of arbitrary test code or deliberate tampering.
 
 Check a published backport with the regular command:
 

@@ -1,0 +1,7 @@
+--- a/lib/parse.js
++++ b/lib/parse.js
+@@ -255,3 +255,4 @@
+ 
+     return utils.compact(obj);
+ };
++// Intentionally ineffective evaluation patch.

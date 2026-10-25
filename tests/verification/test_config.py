@@ -8,7 +8,7 @@ from seam.models import ReviewedTestsConfig, RunnerConfig
 from seam.verification.config import load_config
 
 
-@pytest.mark.parametrize("kind", ["node", "mocha"])
+@pytest.mark.parametrize("kind", ["node", "mocha", "tape"])
 def test_javascript_config_selects_language_and_preserves_oracle(
     tmp_path: Path, kind: str
 ) -> None:
@@ -36,9 +36,12 @@ def test_javascript_config_selects_language_and_preserves_oracle(
         {"import_mode": "prepend"},
     ],
 )
-def test_javascript_runner_rejects_python_settings(settings: dict[str, object]) -> None:
+@pytest.mark.parametrize("kind", ["node", "mocha", "tape"])
+def test_javascript_runner_rejects_python_settings(
+    settings: dict[str, object], kind: str
+) -> None:
     with pytest.raises(ValueError, match="pytest settings"):
-        RunnerConfig.model_validate({"kind": "node", "image": "image", **settings})
+        RunnerConfig.model_validate({"kind": kind, "image": "image", **settings})
 
 
 @pytest.mark.parametrize(
@@ -73,7 +76,7 @@ def test_mocha_grep_is_bounded_and_cannot_contain_line_breaks(pattern: str) -> N
         RunnerConfig(kind="mocha", image="image", mocha_grep=pattern)
 
 
-@pytest.mark.parametrize("kind", ["pytest", "node"])
+@pytest.mark.parametrize("kind", ["pytest", "node", "tape"])
 def test_mocha_grep_requires_the_mocha_runner(kind: str) -> None:
     with pytest.raises(ValueError, match="Mocha runner"):
         RunnerConfig.model_validate(
@@ -86,6 +89,13 @@ def test_mocha_grep_is_preserved_in_frozen_configuration() -> None:
     assert config.model_dump(mode="json")["mocha_grep"] == "^relevant "
 
 
+def test_tape_requires_one_suite_file() -> None:
+    with pytest.raises(ValueError, match="exactly one"):
+        RunnerConfig(kind="tape", image="image", suite=("first.js", "second.js"))
+    config = RunnerConfig(kind="tape", image="image", suite=("test/parse.js",))
+    assert config.model_dump(mode="json")["suite"] == ["test/parse.js"]
+
+
 @pytest.mark.parametrize("value", ["qunit", "exports", "./custom-ui.cjs", "--help"])
 def test_mocha_ui_accepts_only_reviewed_builtin_interfaces(value: str) -> None:
     with pytest.raises(ValueError, match="mocha_ui"):
@@ -94,7 +104,7 @@ def test_mocha_ui_accepts_only_reviewed_builtin_interfaces(value: str) -> None:
         )
 
 
-@pytest.mark.parametrize("kind", ["pytest", "node"])
+@pytest.mark.parametrize("kind", ["pytest", "node", "tape"])
 def test_mocha_tdd_requires_the_mocha_runner(kind: str) -> None:
     with pytest.raises(ValueError, match="Mocha runner"):
         RunnerConfig.model_validate({"kind": kind, "image": "image", "mocha_ui": "tdd"})
@@ -125,7 +135,7 @@ def test_mocha_interfaces_require_bounded_exact_commits_and_builtin_names(
         )
 
 
-@pytest.mark.parametrize("kind", ["pytest", "node"])
+@pytest.mark.parametrize("kind", ["pytest", "node", "tape"])
 def test_mocha_interface_mapping_requires_mocha(kind: str) -> None:
     with pytest.raises(ValueError, match="Mocha runner"):
         RunnerConfig.model_validate(

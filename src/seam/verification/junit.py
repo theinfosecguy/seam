@@ -11,7 +11,7 @@ from seam.models import TestCaseResult
 
 
 def parse_junit(
-    report: bytes, *, runner: Literal["pytest", "node", "mocha"] = "pytest"
+    report: bytes, *, runner: Literal["pytest", "node", "mocha", "tape"] = "pytest"
 ) -> list[TestCaseResult]:
     """Parse bounded JUnit evidence, rejecting ambiguous test identities."""
     if not report or len(report) > MAX_REPORT_BYTES:

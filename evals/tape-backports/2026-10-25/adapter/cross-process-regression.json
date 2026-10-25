@@ -1,0 +1,105 @@
+{
+  "schema_version": 1,
+  "before_resource_sha256": "d45a14a9d48169c414727b928b877f0fa9e70f61b06fd88b0111f4fee30e061c",
+  "after_resource_sha256": "6795d26b4898a9de9881dd9216ad7494403f9c1d90ad33f5900c650d326e1894",
+  "before_observations_sha256": "e146fbc1ce6f35faf74ffb414d272b5def8f6585f617797cfdcb8a905ade4909",
+  "scope": "Development adapter regression; the incomplete adapter was not released.",
+  "observations": {
+    "cross-process-child-getbuiltin.cjs": {
+      "fixture_sha256": "80efec16b577ea9b7024bf968fb998a01727194ccf721b629f093b262d76507c",
+      "before": {
+        "exit_code": 0,
+        "signal": null,
+        "case_count": 1,
+        "outcome_counts": {
+          "passed": 1
+        },
+        "identities_sha256": "89fe128557c9c38ce4350cc2ba74be073193d8aab142a64ba23252833b4daac5",
+        "report_sha256": "b037a7be9e4b6282f9702606c90d661be8243f4147bf57f39e995cf2c8480e8a",
+        "hidden_failure_executed": true,
+        "hidden_harness_exit_code": 0
+      },
+      "after": {
+        "exit_code": 125,
+        "signal": null,
+        "case_count": 1,
+        "outcome_counts": {
+          "error": 1
+        },
+        "report_sha256": "38a7c7699d4b9bf1cf82eb56c0fcdbe09d5f4056fc14a68a45ebc4a6e044d6d0"
+      }
+    },
+    "cross-process-child.cjs": {
+      "fixture_sha256": "e7573ceb90f63013fc8d9f56a6eeb38c6083d4dc68b4d1f39fb0c2a5ba723e08",
+      "before": {
+        "exit_code": 0,
+        "signal": null,
+        "case_count": 1,
+        "outcome_counts": {
+          "passed": 1
+        },
+        "identities_sha256": "fd689adf7708174c6d8305e9b7fb3100c74ecc02d223ce0d0f771631cddf44c8",
+        "report_sha256": "2384a958821429d9cd6445f4b823cc5b8d61e0ed86615cee475f8c6ca4920b50",
+        "hidden_failure_executed": true,
+        "hidden_harness_exit_code": 0
+      },
+      "after": {
+        "exit_code": 125,
+        "signal": null,
+        "case_count": 1,
+        "outcome_counts": {
+          "error": 1
+        },
+        "report_sha256": "dfca963337a6ce9effd743e57b41b6169e04cf7dff72c81bd07c6007af58c108"
+      }
+    },
+    "cross-process-worker-getbuiltin.cjs": {
+      "fixture_sha256": "6544ba78429163580ee7aa2d7e94a5c2d6551c66c13d90b4f0c73880a3d0b28d",
+      "before": {
+        "exit_code": 0,
+        "signal": null,
+        "case_count": 1,
+        "outcome_counts": {
+          "passed": 1
+        },
+        "identities_sha256": "07429c3354cebbee07602397c8de6225e4d581adb644411e6ae72a11176f8cc3",
+        "report_sha256": "3579e38cf815e7cba2a832b5831b6c18717cc665a6adf3b2b1af1848e7819bd2",
+        "hidden_failure_executed": true,
+        "hidden_harness_exit_code": 0
+      },
+      "after": {
+        "exit_code": 125,
+        "signal": null,
+        "case_count": 1,
+        "outcome_counts": {
+          "error": 1
+        },
+        "report_sha256": "d54c6a16fcbea624906e8cc0a7ef4408d29c952d4fd8d51277d83632ca5d7c70"
+      }
+    },
+    "cross-process-worker.cjs": {
+      "fixture_sha256": "0d69b756f0a85faf87faeb42213c1252d78ebd6b9d45e7b2273143ad15b48a16",
+      "before": {
+        "exit_code": 0,
+        "signal": null,
+        "case_count": 1,
+        "outcome_counts": {
+          "passed": 1
+        },
+        "identities_sha256": "1ed4bc1ca6dc663cbfa005c3b9c125e41d6efcaa2c629fbbd9991d712de9c038",
+        "report_sha256": "7ceee6804cf1d2f43e5db5cbd426146977358b4d1b7b480b4a6435b3955eea83",
+        "hidden_failure_executed": true,
+        "hidden_harness_exit_code": 0
+      },
+      "after": {
+        "exit_code": 125,
+        "signal": null,
+        "case_count": 1,
+        "outcome_counts": {
+          "error": 1
+        },
+        "report_sha256": "5bf07232d53e327eff153193e2a80c0388e51cf17fdc571cdb3dcdd89d07c4e6"
+      }
+    }
+  }
+}

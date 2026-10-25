@@ -1,0 +1,2241 @@
+{
+  "schema_version": 1,
+  "cohort": "model",
+  "source_report": "qs/direct/report.json",
+  "execution_context": {
+    "exit_code": 0,
+    "timed_out": false,
+    "log_truncated": false,
+    "wheel_sha256": "f58026ad4a97b0b3a647a8b408be2a6b3c28b8e3ba589910c9b918305fc64249",
+    "driver_sha256": "d7a0fd4da75465a81ba6933972c8ade007589ce334d43336b5050f5d73d13142",
+    "freeze_sha256": "297b7e01ba1d6a90a31432c844806ad15cd147f19578a190c113ede10e5e1a20",
+    "reference_patch_provided": false,
+    "oracle_source_provided": false,
+    "inputs_unchanged": true,
+    "caller_unchanged": true
+  },
+  "configuration": {
+    "schema_version": 1,
+    "oracle": {
+      "path": "oracle.mjs",
+      "security_test": "test_security",
+      "controls": [
+        "test_nested_properties",
+        "test_repeated_array_values"
+      ],
+      "failure_marker": "QS_LOCAL_PROTOTYPE_PRESERVED"
+    },
+    "runner": {
+      "kind": "tape",
+      "image": "sha256:277b9b3c5907cb97119813d8c5f71cb3a4f92bf94ed60910ccb0e2d53837d09d",
+      "docker": [
+        "sudo",
+        "-n",
+        "docker"
+      ],
+      "timeout_seconds": 120.0,
+      "memory_mb": 512,
+      "cpus": 1.0,
+      "pids": 128,
+      "max_output_bytes": 131072,
+      "suite": [
+        "test/parse.js"
+      ],
+      "plugins": [],
+      "import_mode": "importlib",
+      "suite_markers": null,
+      "mocha_ui": "bdd",
+      "mocha_interfaces": {},
+      "mocha_grep": null,
+      "reviewed_fixtures": {},
+      "reviewed_submodules": {},
+      "node_dependencies": {}
+    },
+    "max_attempts": 3,
+    "reviewed_tests": null
+  },
+  "report": {
+    "schema_version": 2,
+    "status": "verified",
+    "reason": "All four revisions met the frozen security and compatibility checks.",
+    "fix_commit": "8b4cc14cda94a5c89341b77e5fe435ec6c41be2d",
+    "parent_commit": "ad63d36ce18cd2c315899ac1e8193de22be08cd8",
+    "target_commit": "02ca358155297dc68fcc4c2ac312c26e10524e47",
+    "image_id": "sha256:277b9b3c5907cb97119813d8c5f71cb3a4f92bf94ed60910ccb0e2d53837d09d",
+    "oracle_sha256": "7be0c63408b17c05eac2e5caa108beaafc177a384077904b728fcf4cf9eae93a",
+    "config_sha256": "1a547bf844fd993f2564c3be056365a98818f31a59215fd64e35954fe278fb4d",
+    "patch_sha256": "321a180a2f17c87f9ac7d9d885d39c750f3e46f1acf3972bdffbefe7003c8d50",
+    "attempts": 1,
+    "adaptation": "direct_application",
+    "model_usage": {},
+    "reviewed_tests": null,
+    "reviewed_fixtures": {},
+    "reviewed_submodules": {},
+    "phases": [
+      {
+        "name": "upstream_parent",
+        "revision": "ad63d36ce18cd2c315899ac1e8193de22be08cd8",
+        "security": {
+          "returncode": 1,
+          "timed_out": false,
+          "truncated": false,
+          "duration_seconds": 0.6479,
+          "evidence_error": null,
+          "tests": [
+            {
+              "name": "test_security",
+              "classname": "/oracle/oracle.mjs::test",
+              "outcome": "failed",
+              "expected_failure": false,
+              "original_message_sha256": "4a10ac99caead7d80eb7777c63716d3f5cacff371eda7660cce9c08f168f852a",
+              "expected_failure_marker_observed": true
+            },
+            {
+              "name": "test_nested_properties",
+              "classname": "/oracle/oracle.mjs::test",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_repeated_array_values",
+              "classname": "/oracle/oracle.mjs::test",
+              "outcome": "passed",
+              "expected_failure": false
+            }
+          ],
+          "command_sha256": "b0aef0d5bd75daf7808134565f5639427c54910d04e02b1dd1fb3a8ad7314a2c",
+          "missing_modules": [],
+          "diagnostic_excerpts": [
+            "AssertionError [ERR_ASSERTION]: QS_LOCAL_PROTOTYPE_PRESERVED"
+          ],
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 0,
+          "stderr_sha256": "b97a3086b8aae9735389ad85499ffc42419a21baab534083ae3de0b0cda1b09d",
+          "stderr_bytes": 964
+        },
+        "suite": {
+          "returncode": 0,
+          "timed_out": false,
+          "truncated": false,
+          "duration_seconds": 0.9371,
+          "evidence_error": null,
+          "tests": [
+            {
+              "name": "parse()",
+              "classname": "/work/repo/test/parse.js::[]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "parses a simple string",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "arrayFormat: brackets allows only explicit arrays",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "arrayFormat: indices allows only indexed arrays",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "arrayFormat: comma allows only comma-separated arrays",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "arrayFormat: repeat allows only repeated values",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "allows enabling dot notation",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "only parses one level when depth = 1",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "uses original key when depth = 0",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "uses original key when depth = false",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "parses an explicit array",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "parses a mix of simple and explicit arrays",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "parses a nested array",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "allows to specify array indices",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "limits specific array indices to arrayLimit",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "supports encoded = signs",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "is ok with url encoded strings",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "allows brackets in the value",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "allows empty values",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "transforms arrays to objects",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "transforms arrays to objects (dot notation)",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "correctly prunes undefined values when converting an array to an object",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "supports malformed uri characters",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "doesn't produce empty keys",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "cannot access Object prototype",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "parses arrays of objects",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "allows for empty strings in arrays",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "compacts sparse arrays",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "parses sparse arrays",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "parses semi-parsed strings",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "parses buffers correctly",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "parses jquery-param strings",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "continues parsing when no parent is found",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "does not error when parsing a very long array",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should not throw when a native prototype has an enumerable property",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "parses a string with an alternative string delimiter",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "parses a string with an alternative RegExp delimiter",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "does not use non-splittable objects as delimiters",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "allows overriding parameter limit",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "allows setting the parameter limit to Infinity",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "allows overriding array limit",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "allows disabling array parsing",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "allows for query string prefix",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "parses an object",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "parses string with comma as array divider",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "parses values with comma as array divider",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "use number decoder, parses string that has one number with comma option enabled",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "parses brackets holds array of arrays when having two parts of strings with comma as array divider",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "parses comma delimited array while having percent-encoded comma treated as normal text",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "parses an object in dot notation",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "parses an object and not child values",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "does not blow up when Buffer global is missing",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "does not crash when parsing circular references",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "does not crash when parsing deep objects",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "parses null objects correctly",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "parses dates correctly",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "parses regular expressions correctly",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "does not allow overwriting prototype properties",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "can allow overwriting prototype properties",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "params starting with a closing bracket",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "params starting with a starting bracket",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "add keys to objects",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "can return null objects",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "can parse with custom encoding",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "receives the default decoder as a second argument",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "throws error with wrong decoder",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "does not mutate the options argument",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "throws if an invalid charset is specified",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "parses an iso-8859-1 string if asked to",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "prefers an utf-8 charset specified by the utf8 sentinel to a default charset of iso-8859-1",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "prefers an iso-8859-1 charset specified by the utf8 sentinel to a default charset of utf-8",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "does not require the utf8 sentinel to be defined before the parameters whose decoding it affects",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should ignore an utf8 sentinel with an unknown value",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "uses the utf8 sentinel to switch to utf-8 when no default charset is given",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "uses the utf8 sentinel to switch to iso-8859-1 when no default charset is given",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "interprets numeric entities in iso-8859-1 when `interpretNumericEntities`",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "handles a custom decoder returning `null`, in the `iso-8859-1` charset, when `interpretNumericEntities`",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "does not interpret numeric entities in iso-8859-1 when `interpretNumericEntities` is absent",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "does not interpret numeric entities when the charset is utf-8, even when `interpretNumericEntities`",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "does not interpret %uXXXX syntax in iso-8859-1 mode",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "allows for decoding keys and values differently",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            }
+          ],
+          "command_sha256": "d7da20d69f64f7ff4630c764e0d3c7224d01255c88b218dab2411210b4a19ff0",
+          "missing_modules": [],
+          "diagnostic_excerpts": [],
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr_bytes": 0
+        }
+      },
+      {
+        "name": "upstream_fix",
+        "revision": "8b4cc14cda94a5c89341b77e5fe435ec6c41be2d",
+        "security": {
+          "returncode": 0,
+          "timed_out": false,
+          "truncated": false,
+          "duration_seconds": 0.6027,
+          "evidence_error": null,
+          "tests": [
+            {
+              "name": "test_security",
+              "classname": "/oracle/oracle.mjs::test",
+              "outcome": "passed",
+              "expected_failure": false,
+              "expected_failure_marker_observed": false
+            },
+            {
+              "name": "test_nested_properties",
+              "classname": "/oracle/oracle.mjs::test",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_repeated_array_values",
+              "classname": "/oracle/oracle.mjs::test",
+              "outcome": "passed",
+              "expected_failure": false
+            }
+          ],
+          "command_sha256": "b0aef0d5bd75daf7808134565f5639427c54910d04e02b1dd1fb3a8ad7314a2c",
+          "missing_modules": [],
+          "diagnostic_excerpts": [],
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 0,
+          "stderr_sha256": "02549100cc9a43c4633e784795497fac12098b14fad2dd6b815df71e8b8deda8",
+          "stderr_bytes": 229
+        },
+        "suite": {
+          "returncode": 0,
+          "timed_out": false,
+          "truncated": false,
+          "duration_seconds": 0.9929,
+          "evidence_error": null,
+          "tests": [
+            {
+              "name": "parse()",
+              "classname": "/work/repo/test/parse.js::[]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "parses a simple string",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "arrayFormat: brackets allows only explicit arrays",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "arrayFormat: indices allows only indexed arrays",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "arrayFormat: comma allows only comma-separated arrays",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "arrayFormat: repeat allows only repeated values",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "allows enabling dot notation",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "only parses one level when depth = 1",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "uses original key when depth = 0",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "uses original key when depth = false",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "parses an explicit array",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "parses a mix of simple and explicit arrays",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "parses a nested array",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "allows to specify array indices",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "limits specific array indices to arrayLimit",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "supports encoded = signs",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "is ok with url encoded strings",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "allows brackets in the value",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "allows empty values",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "transforms arrays to objects",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "transforms arrays to objects (dot notation)",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "correctly prunes undefined values when converting an array to an object",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "supports malformed uri characters",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "doesn't produce empty keys",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "cannot access Object prototype",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "parses arrays of objects",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "allows for empty strings in arrays",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "compacts sparse arrays",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "parses sparse arrays",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "parses semi-parsed strings",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "parses buffers correctly",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "parses jquery-param strings",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "continues parsing when no parent is found",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "does not error when parsing a very long array",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should not throw when a native prototype has an enumerable property",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "parses a string with an alternative string delimiter",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "parses a string with an alternative RegExp delimiter",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "does not use non-splittable objects as delimiters",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "allows overriding parameter limit",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "allows setting the parameter limit to Infinity",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "allows overriding array limit",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "allows disabling array parsing",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "allows for query string prefix",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "parses an object",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "parses string with comma as array divider",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "parses values with comma as array divider",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "use number decoder, parses string that has one number with comma option enabled",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "parses brackets holds array of arrays when having two parts of strings with comma as array divider",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "parses comma delimited array while having percent-encoded comma treated as normal text",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "parses an object in dot notation",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "parses an object and not child values",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "does not blow up when Buffer global is missing",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "does not crash when parsing circular references",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "does not crash when parsing deep objects",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "parses null objects correctly",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "parses dates correctly",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "parses regular expressions correctly",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "does not allow overwriting prototype properties",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "can allow overwriting prototype properties",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "params starting with a closing bracket",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "params starting with a starting bracket",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "add keys to objects",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "dunder proto is ignored",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "can return null objects",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "can parse with custom encoding",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "receives the default decoder as a second argument",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "throws error with wrong decoder",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "does not mutate the options argument",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "throws if an invalid charset is specified",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "parses an iso-8859-1 string if asked to",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "prefers an utf-8 charset specified by the utf8 sentinel to a default charset of iso-8859-1",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "prefers an iso-8859-1 charset specified by the utf8 sentinel to a default charset of utf-8",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "does not require the utf8 sentinel to be defined before the parameters whose decoding it affects",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should ignore an utf8 sentinel with an unknown value",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "uses the utf8 sentinel to switch to utf-8 when no default charset is given",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "uses the utf8 sentinel to switch to iso-8859-1 when no default charset is given",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "interprets numeric entities in iso-8859-1 when `interpretNumericEntities`",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "handles a custom decoder returning `null`, in the `iso-8859-1` charset, when `interpretNumericEntities`",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "does not interpret numeric entities in iso-8859-1 when `interpretNumericEntities` is absent",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "does not interpret numeric entities when the charset is utf-8, even when `interpretNumericEntities`",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "does not interpret %uXXXX syntax in iso-8859-1 mode",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "allows for decoding keys and values differently",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            }
+          ],
+          "command_sha256": "d7da20d69f64f7ff4630c764e0d3c7224d01255c88b218dab2411210b4a19ff0",
+          "missing_modules": [],
+          "diagnostic_excerpts": [],
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr_bytes": 0
+        }
+      },
+      {
+        "name": "target_baseline",
+        "revision": "02ca358155297dc68fcc4c2ac312c26e10524e47",
+        "security": {
+          "returncode": 1,
+          "timed_out": false,
+          "truncated": false,
+          "duration_seconds": 0.5981,
+          "evidence_error": null,
+          "tests": [
+            {
+              "name": "test_security",
+              "classname": "/oracle/oracle.mjs::test",
+              "outcome": "failed",
+              "expected_failure": false,
+              "original_message_sha256": "4a10ac99caead7d80eb7777c63716d3f5cacff371eda7660cce9c08f168f852a",
+              "expected_failure_marker_observed": true
+            },
+            {
+              "name": "test_nested_properties",
+              "classname": "/oracle/oracle.mjs::test",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_repeated_array_values",
+              "classname": "/oracle/oracle.mjs::test",
+              "outcome": "passed",
+              "expected_failure": false
+            }
+          ],
+          "command_sha256": "b0aef0d5bd75daf7808134565f5639427c54910d04e02b1dd1fb3a8ad7314a2c",
+          "missing_modules": [],
+          "diagnostic_excerpts": [
+            "AssertionError [ERR_ASSERTION]: QS_LOCAL_PROTOTYPE_PRESERVED"
+          ],
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 0,
+          "stderr_sha256": "fdbe0c4fc83c3e589e08f136b717af552b2e0b5c39114614a2ed07d3053d691f",
+          "stderr_bytes": 966
+        },
+        "suite": {
+          "returncode": 0,
+          "timed_out": false,
+          "truncated": false,
+          "duration_seconds": 0.9572,
+          "evidence_error": null,
+          "tests": [
+            {
+              "name": "parse()",
+              "classname": "/work/repo/test/parse.js::[]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "parses a simple string",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "arrayFormat: brackets allows only explicit arrays",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "arrayFormat: indices allows only indexed arrays",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "arrayFormat: comma allows only comma-separated arrays",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "arrayFormat: repeat allows only repeated values",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "allows enabling dot notation",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "only parses one level when depth = 1",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "uses original key when depth = 0",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "uses original key when depth = false",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "parses an explicit array",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "parses a mix of simple and explicit arrays",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "parses a nested array",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "allows to specify array indices",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "limits specific array indices to arrayLimit",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "supports encoded = signs",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "is ok with url encoded strings",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "allows brackets in the value",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "allows empty values",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "transforms arrays to objects",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "transforms arrays to objects (dot notation)",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "correctly prunes undefined values when converting an array to an object",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "supports malformed uri characters",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "doesn't produce empty keys",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "cannot access Object prototype",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "parses arrays of objects",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "allows for empty strings in arrays",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "compacts sparse arrays",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "parses semi-parsed strings",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "parses buffers correctly",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "parses jquery-param strings",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "continues parsing when no parent is found",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "does not error when parsing a very long array",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should not throw when a native prototype has an enumerable property",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "parses a string with an alternative string delimiter",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "parses a string with an alternative RegExp delimiter",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "does not use non-splittable objects as delimiters",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "allows overriding parameter limit",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "allows setting the parameter limit to Infinity",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "allows overriding array limit",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "allows disabling array parsing",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "allows for query string prefix",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "parses an object",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "parses string with comma as array divider",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "parses values with comma as array divider",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "use number decoder, parses string that has one number with comma option enabled",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "parses brackets holds array of arrays when having two parts of strings with comma as array divider",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "parses comma delimited array while having percent-encoded comma treated as normal text",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "parses an object in dot notation",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "parses an object and not child values",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "does not blow up when Buffer global is missing",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "does not crash when parsing circular references",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "does not crash when parsing deep objects",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "parses null objects correctly",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "parses dates correctly",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "parses regular expressions correctly",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "does not allow overwriting prototype properties",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "can allow overwriting prototype properties",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "params starting with a closing bracket",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "params starting with a starting bracket",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "add keys to objects",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "can return null objects",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "can parse with custom encoding",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "receives the default decoder as a second argument",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "throws error with wrong decoder",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "does not mutate the options argument",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "throws if an invalid charset is specified",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "parses an iso-8859-1 string if asked to",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "prefers an utf-8 charset specified by the utf8 sentinel to a default charset of iso-8859-1",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "prefers an iso-8859-1 charset specified by the utf8 sentinel to a default charset of utf-8",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "does not require the utf8 sentinel to be defined before the parameters whose decoding it affects",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should ignore an utf8 sentinel with an unknown value",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "uses the utf8 sentinel to switch to utf-8 when no default charset is given",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "uses the utf8 sentinel to switch to iso-8859-1 when no default charset is given",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "interprets numeric entities in iso-8859-1 when `interpretNumericEntities`",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "handles a custom decoder returning `null`, in the `iso-8859-1` charset, when `interpretNumericEntities`",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "does not interpret numeric entities in iso-8859-1 when `interpretNumericEntities` is absent",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "does not interpret numeric entities when the charset is utf-8, even when `interpretNumericEntities`",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "does not interpret %uXXXX syntax in iso-8859-1 mode",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "allows for decoding keys and values differently",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            }
+          ],
+          "command_sha256": "d7da20d69f64f7ff4630c764e0d3c7224d01255c88b218dab2411210b4a19ff0",
+          "missing_modules": [],
+          "diagnostic_excerpts": [],
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr_bytes": 0
+        }
+      },
+      {
+        "name": "backport",
+        "revision": "02ca358155297dc68fcc4c2ac312c26e10524e47",
+        "security": {
+          "returncode": 0,
+          "timed_out": false,
+          "truncated": false,
+          "duration_seconds": 0.6012,
+          "evidence_error": null,
+          "tests": [
+            {
+              "name": "test_security",
+              "classname": "/oracle/oracle.mjs::test",
+              "outcome": "passed",
+              "expected_failure": false,
+              "expected_failure_marker_observed": false
+            },
+            {
+              "name": "test_nested_properties",
+              "classname": "/oracle/oracle.mjs::test",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_repeated_array_values",
+              "classname": "/oracle/oracle.mjs::test",
+              "outcome": "passed",
+              "expected_failure": false
+            }
+          ],
+          "command_sha256": "b0aef0d5bd75daf7808134565f5639427c54910d04e02b1dd1fb3a8ad7314a2c",
+          "missing_modules": [],
+          "diagnostic_excerpts": [],
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 0,
+          "stderr_sha256": "04a279cc11aa139c04ad313f8eb5c546298dd00b952a0ee7e9074defea59aa78",
+          "stderr_bytes": 230
+        },
+        "suite": {
+          "returncode": 0,
+          "timed_out": false,
+          "truncated": false,
+          "duration_seconds": 0.9359,
+          "evidence_error": null,
+          "tests": [
+            {
+              "name": "parse()",
+              "classname": "/work/repo/test/parse.js::[]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "parses a simple string",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "arrayFormat: brackets allows only explicit arrays",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "arrayFormat: indices allows only indexed arrays",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "arrayFormat: comma allows only comma-separated arrays",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "arrayFormat: repeat allows only repeated values",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "allows enabling dot notation",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "only parses one level when depth = 1",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "uses original key when depth = 0",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "uses original key when depth = false",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "parses an explicit array",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "parses a mix of simple and explicit arrays",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "parses a nested array",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "allows to specify array indices",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "limits specific array indices to arrayLimit",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "supports encoded = signs",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "is ok with url encoded strings",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "allows brackets in the value",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "allows empty values",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "transforms arrays to objects",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "transforms arrays to objects (dot notation)",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "correctly prunes undefined values when converting an array to an object",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "supports malformed uri characters",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "doesn't produce empty keys",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "cannot access Object prototype",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "parses arrays of objects",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "allows for empty strings in arrays",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "compacts sparse arrays",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "parses semi-parsed strings",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "parses buffers correctly",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "parses jquery-param strings",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "continues parsing when no parent is found",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "does not error when parsing a very long array",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should not throw when a native prototype has an enumerable property",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "parses a string with an alternative string delimiter",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "parses a string with an alternative RegExp delimiter",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "does not use non-splittable objects as delimiters",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "allows overriding parameter limit",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "allows setting the parameter limit to Infinity",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "allows overriding array limit",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "allows disabling array parsing",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "allows for query string prefix",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "parses an object",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "parses string with comma as array divider",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "parses values with comma as array divider",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "use number decoder, parses string that has one number with comma option enabled",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "parses brackets holds array of arrays when having two parts of strings with comma as array divider",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "parses comma delimited array while having percent-encoded comma treated as normal text",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "parses an object in dot notation",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "parses an object and not child values",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "does not blow up when Buffer global is missing",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "does not crash when parsing circular references",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "does not crash when parsing deep objects",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "parses null objects correctly",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "parses dates correctly",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "parses regular expressions correctly",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "does not allow overwriting prototype properties",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "can allow overwriting prototype properties",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "params starting with a closing bracket",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "params starting with a starting bracket",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "add keys to objects",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "can return null objects",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "can parse with custom encoding",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "receives the default decoder as a second argument",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "throws error with wrong decoder",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "does not mutate the options argument",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "throws if an invalid charset is specified",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "parses an iso-8859-1 string if asked to",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "prefers an utf-8 charset specified by the utf8 sentinel to a default charset of iso-8859-1",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "prefers an iso-8859-1 charset specified by the utf8 sentinel to a default charset of utf-8",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "does not require the utf8 sentinel to be defined before the parameters whose decoding it affects",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "should ignore an utf8 sentinel with an unknown value",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "uses the utf8 sentinel to switch to utf-8 when no default charset is given",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "uses the utf8 sentinel to switch to iso-8859-1 when no default charset is given",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "interprets numeric entities in iso-8859-1 when `interpretNumericEntities`",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "handles a custom decoder returning `null`, in the `iso-8859-1` charset, when `interpretNumericEntities`",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "does not interpret numeric entities in iso-8859-1 when `interpretNumericEntities` is absent",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "does not interpret numeric entities when the charset is utf-8, even when `interpretNumericEntities`",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "does not interpret %uXXXX syntax in iso-8859-1 mode",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "allows for decoding keys and values differently",
+              "classname": "/work/repo/test/parse.js::[\"parse()\"]",
+              "outcome": "passed",
+              "expected_failure": false
+            }
+          ],
+          "command_sha256": "d7da20d69f64f7ff4630c764e0d3c7224d01255c88b218dab2411210b4a19ff0",
+          "missing_modules": [],
+          "diagnostic_excerpts": [],
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr_bytes": 0
+        }
+      }
+    ]
+  }
+}

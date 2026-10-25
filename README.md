@@ -8,8 +8,8 @@ existing tests to catch regressions. You get a patch and a report explaining wha
 passed, failed, or could not be checked.
 
 Seam supports **Python libraries tested with pytest**, with an experimental
-[JavaScript runner](docs/javascript.md) for Node.js and Mocha tests. You can ask an
-AI model to adapt a fix, apply the upstream patch unchanged, or check a patch you
+[JavaScript runner](docs/javascript.md) for Node.js, Mocha and Tape tests. You can ask
+an AI model to adapt a fix, apply the upstream patch unchanged, or check a patch you
 have already written. It works in disposable copies of your repository and never
 pushes or merges changes.
 
@@ -84,7 +84,8 @@ uv run seam eval qualify jinja2 --build-image --output /tmp/seam-jinja2-eval
 
 This checks the supplied reference patch and a deliberately ineffective patch;
 it does not measure an AI model. See the [case catalogue](evals/python/README.md),
-[latest benchmark follow-up](docs/followup-benchmarks.md),
+[Tape backport results](docs/tape-benchmarks.md),
+[framework follow-up](docs/followup-benchmarks.md),
 [recent backport comparison](docs/recent-backports.md), and
 [earlier evaluations](docs/evaluations.md) for results and their limits.
 

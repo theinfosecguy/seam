@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "instance_id": "fast-uri",
+  "package": "fast-uri",
+  "repository_directory": "fast-uri",
+  "repository_url": "https://github.com/fastify/fast-uri.git",
+  "advisory_ids": [
+    "GHSA-w74x-v6f9-j3xg",
+    "CVE-2026-110306"
+  ],
+  "upstream_parent_commit": "0f89a8ab641f251613e2c9a64285cb2a44f1c378",
+  "upstream_fix_commit": "39933a1f1422986f14e2d844f552238feb40f5d4",
+  "base_commit": "8e8e5c637fa732805ab0ea66f49e22559698837d",
+  "maintainer_backport_parent": "8e8e5c637fa732805ab0ea66f49e22559698837d",
+  "maintainer_backport_commit": "597f254c86d151568511eeb9a1df761fd12520b3",
+  "upstream_implementation_paths": [
+    "index.js"
+  ],
+  "backport_implementation_paths": [
+    "index.js"
+  ],
+  "upstream_test_paths": [
+    "test/scheme-validation.test.js"
+  ],
+  "target_test_paths": [
+    "test/scheme-validation.test.js"
+  ],
+  "license": "BSD-3-Clause",
+  "status": "Evaluated with frozen Tape variant; see normalized reports.",
+  "scope": "Executed the unchanged original test/scheme-validation.test.js selection and external security oracle with two normal controls on Node 24, using the frozen Tape variant. See normalized reports for qualification outcomes.",
+  "asset_sha256": {
+    "LICENSE.upstream": "b010b0dfdfdb23d7396e03b82cd4621fc9bb8f95d6b0aea70b9c24e12074c786",
+    "maintainer-tests/maintainer_backport/test/scheme-validation.test.js": "fdf1a23b352f9e6cb7508af38065ac7654c0b406f9547d65dac6461d7d75e421",
+    "maintainer-tests/target_baseline/test/scheme-validation.test.js": "eeb22864d23236f723fe00f8fccace70911b95ef9a3f74f116921e5cb18cce32",
+    "maintainer-tests/upstream_fix/test/scheme-validation.test.js": "a60d96ccf461ddc96e6cc1bb9916d8ac829abde6451a8bdd71378b4c4cc373ae",
+    "maintainer-tests/upstream_parent/test/scheme-validation.test.js": "40b1b535d6358acbc79d1c7db357241b85bf7dbb8168232af8c2bf3bafaaa889",
+    "package-maintainer_backport.json": "30cad05aad3d3596513706451dbfc7e0422f9c1d00f2903ecc34580327d54bc7",
+    "package-target_baseline.json": "30cad05aad3d3596513706451dbfc7e0422f9c1d00f2903ecc34580327d54bc7",
+    "package-upstream_fix.json": "c181566b934b386b614dcd5d7aeb438ebd6bfaa6b3f54f187eccccb3983cfb48",
+    "package-upstream_parent.json": "c181566b934b386b614dcd5d7aeb438ebd6bfaa6b3f54f187eccccb3983cfb48",
+    "reference.patch": "1619737cd3c2ae41807a1c0da29ba4f27a7b7603b3bc5695b1d8723863255560",
+    "upstream.patch": "b0516d06107ee9539d5fd2abbeb671acfe870de1330ea2bfea7a4956049a09c9"
+  },
+  "original_record_sha256": "1d94f8c8365076231b07770f31b6078fda0c133bc7c51f3878f42ae1a1853140"
+}

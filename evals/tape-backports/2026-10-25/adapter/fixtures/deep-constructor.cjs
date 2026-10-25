@@ -1,0 +1,1 @@
+const tape = require('tape'); const Test = require('tape/lib/test'); const direct = new Test('unobserved deep constructor', t => { t.fail('UNOBSERVED_DEEP_FAILURE'); t.end(); }); direct.run(); tape('observed', t => { t.pass('normal'); t.end(); });

@@ -1,0 +1,1 @@
+const tape = require('tape'); const other = tape.createHarness({autoclose: true}); other('unobserved custom failure', t => { t.fail('UNOBSERVED_CUSTOM_FAILURE'); t.end(); }); other.createStream().resume(); tape('observed', t => { t.pass('normal'); t.end(); });

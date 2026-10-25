@@ -1,0 +1,9 @@
+{
+  "tests": 1366,
+  "failures": 0,
+  "errors": 0,
+  "skips": 0,
+  "xml_sha256": "0f3f963c632acf04e37cbb588d23970d0df2fcec4020ca844dd8a8663ea245f4",
+  "log_sha256": "1a000d490aae94f6847f78bfb1723eba6d5a42475753b756963b3b723b643504",
+  "runtime_commit": "e638e0aa2a7e8d67f1e9df6b7eef970c66d59f78"
+}

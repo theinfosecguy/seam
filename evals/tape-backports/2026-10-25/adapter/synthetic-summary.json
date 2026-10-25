@@ -1,0 +1,860 @@
+{
+  "schema_version": 1,
+  "image": "sha256:277b9b3c5907cb97119813d8c5f71cb3a4f92bf94ed60910ccb0e2d53837d09d",
+  "node_version": "24.22.1",
+  "tape_version": "5.10.3",
+  "resource_sha256": "6795d26b4898a9de9881dd9216ad7494403f9c1d90ad33f5900c650d326e1894",
+  "input_observations_sha256": "bf98adfd2eeadd839baa71bf5d354ab34150ee3cac02569dc5cff4b822f0da64",
+  "fixture_count": 65,
+  "observations": {
+    "aliased-copy-failure.cjs": {
+      "fixture_sha256": "5b19226dfcd4f94a49176ee1ebc0295232a4f2f6b52bfb64f1fffc8242678fb5",
+      "expected": "inconclusive: explicit runner error",
+      "matches_expected": true,
+      "exit_code": 125,
+      "signal": null,
+      "case_count": 1,
+      "outcome_counts": {
+        "error": 1
+      },
+      "identities_sha256": "ecaf60f72368c6169957bf2d0675749cbbd25c1eb3875c3648f2f8dec592e656",
+      "report_sha256": "849e18867401709314174b7ec2cdf95aee8598feddf1cbe836ee71aa19d79e9a"
+    },
+    "allowed-builtin.cjs": {
+      "fixture_sha256": "2ba204e30610d55e092ac6927ba77953c26953bfc325133e50e01b800af3e5bf",
+      "expected": "complete passing scope evidence",
+      "matches_expected": true,
+      "exit_code": 0,
+      "signal": null,
+      "case_count": 1,
+      "outcome_counts": {
+        "passed": 1
+      },
+      "identities_sha256": "87dd829948cfab46925e9516ceabde9624dcc45ac0299fc5d44818f20a56f018",
+      "report_sha256": "4e99856ed680ffea0e31f33002b96d8a0f9b0c516fcc5492bf99c57687c169df"
+    },
+    "assert-todo.cjs": {
+      "fixture_sha256": "a7261fabebbe3c267e5796a6e5a6e74e2a4b977eba02b749f2241f421a59ecd2",
+      "expected": "inconclusive: visible skipped or todo scope",
+      "matches_expected": true,
+      "exit_code": 0,
+      "signal": null,
+      "case_count": 1,
+      "outcome_counts": {
+        "skipped": 1
+      },
+      "identities_sha256": "d417915a470086112cc3debbf19d63523d603db1071ea12ece8d6f537ef6b1f4",
+      "report_sha256": "b27e7b4e346014669674cfed122db32c117130dbcf665e9644084ccd8d40d806"
+    },
+    "assertions-after-end.cjs": {
+      "fixture_sha256": "e9ce39652986080e87461f95d9a5e6f2c00de8e3306ca2e7a4434b0553ae0732",
+      "expected": "inconclusive: explicit runner error",
+      "matches_expected": true,
+      "exit_code": 125,
+      "signal": null,
+      "case_count": 1,
+      "outcome_counts": {
+        "error": 1
+      },
+      "identities_sha256": "4e18fc315423587a2e9a7b65b6a16ecbc95e888b9a7993ccb7e0af3dd408d777",
+      "report_sha256": "171ac86b9ebb4f2a2de24a45efa244265fe38826f0e738397ce1c8dd51602902"
+    },
+    "async-fail.cjs": {
+      "fixture_sha256": "5dff6b45cbeb1555436b662822d9d91e35fcaa0f56a5163aae8d33847dab2321",
+      "expected": "ordinary assertion failure",
+      "matches_expected": true,
+      "exit_code": 1,
+      "signal": null,
+      "case_count": 1,
+      "outcome_counts": {
+        "failure": 1
+      },
+      "identities_sha256": "e344c62031208a3cec9e18baa594911e99466057ab4b1db5ab1a5f50951907dc",
+      "report_sha256": "6219b15a70333de53525b34de37057626a9d8eb16ff6c9288e0165df082223d9"
+    },
+    "async-throw.cjs": {
+      "fixture_sha256": "06789dc2733a7d7c4d8645c494c8d87eb699b7773c459d897e1608a9ad1d59cb",
+      "expected": "inconclusive: explicit runner error",
+      "matches_expected": true,
+      "exit_code": 125,
+      "signal": null,
+      "case_count": 1,
+      "outcome_counts": {
+        "error": 1
+      },
+      "identities_sha256": "8d16a136154524de0b1cf4107e5c48b0b4198c5b7d1a23107e8dc7dff4388d20",
+      "report_sha256": "481e7a4231324d82a97830802919e5c7cf4d3f181127d16fd7023a355ba15fac"
+    },
+    "before-exit-time-failure.cjs": {
+      "fixture_sha256": "d4083d68bc6af28ced151353c9ce8405f66f8a8f6684523622021d53d7fcd00c",
+      "expected": "inconclusive: explicit runner error",
+      "matches_expected": true,
+      "exit_code": 125,
+      "signal": null,
+      "case_count": 1,
+      "outcome_counts": {
+        "error": 1
+      },
+      "identities_sha256": "e9e42f10da6ef237426c965fd725c0a49d27c46ba7e523d54853de7beead7533",
+      "report_sha256": "8e6eab3f3d49f4bde7071dbc0a91702911cca9ea60a7dd252414535ee93b2987"
+    },
+    "cached-second-failure.cjs": {
+      "fixture_sha256": "df9ee83e970e8d132e0aad77c482432359e0eff6d1f98d50169a4d149d4eaf72",
+      "expected": "inconclusive: explicit runner error",
+      "matches_expected": true,
+      "exit_code": 125,
+      "signal": null,
+      "case_count": 1,
+      "outcome_counts": {
+        "error": 1
+      },
+      "identities_sha256": "b832732ec1f5111c2984988569bc198b25b00a60993a5ad0dbc19c5d23a8c59e",
+      "report_sha256": "f6b011bbc733bf341fde2d246ebfcafa7ae67ab0a519f3876b66c96fa360d282"
+    },
+    "caught-custom-harness.cjs": {
+      "fixture_sha256": "af75d938a72850554dc74d3ceece0665052b34833a1f48616cd5224a7145f0de",
+      "expected": "inconclusive: explicit runner error",
+      "matches_expected": true,
+      "exit_code": 125,
+      "signal": null,
+      "case_count": 1,
+      "outcome_counts": {
+        "error": 1
+      },
+      "identities_sha256": "b55d30ed3ea28fceb23caf2b8e5a937aa9aa33e64dc43b16b16eec06c78267e2",
+      "report_sha256": "e864514d9a09ebf2e3cfa68c8d2122b0c84909ea349524e2dccadf27f4c06c0b"
+    },
+    "caught-deep-import.cjs": {
+      "fixture_sha256": "e5070b955a81274754220c490ef141242921306e680001cc7d3f72914055570f",
+      "expected": "inconclusive: explicit runner error",
+      "matches_expected": true,
+      "exit_code": 125,
+      "signal": null,
+      "case_count": 1,
+      "outcome_counts": {
+        "error": 1
+      },
+      "identities_sha256": "64a6390cd75a29cc7ae34c31ffa1dc8c1c394037a1ece33a8cfb5846f3033d5d",
+      "report_sha256": "0103570e29b2c5fa69ff018be228f99abbad6b1198c285f6c8419bd27c97d9ca"
+    },
+    "caught-only.cjs": {
+      "fixture_sha256": "24fea135a1cf5ac77c7f45a2d5de1539d8d3a687c5f59cd91a3a5d028efcce91",
+      "expected": "inconclusive: explicit runner error",
+      "matches_expected": true,
+      "exit_code": 125,
+      "signal": null,
+      "case_count": 1,
+      "outcome_counts": {
+        "error": 1
+      },
+      "identities_sha256": "cc32adbb3660386f69adad32d26dc5e54c7bdce37acebaf9a358c499a9e661f3",
+      "report_sha256": "96c44d9e3c8ffbbb07be4a7ae919e6fb7d8fe06b8097050fed747f9758dd7cdb"
+    },
+    "caught-static-skip.cjs": {
+      "fixture_sha256": "2eeb6271635c4ec7495cc39959f79cb46f97baa3fe77a5bd631bafc508b811ff",
+      "expected": "inconclusive: explicit runner error",
+      "matches_expected": true,
+      "exit_code": 125,
+      "signal": null,
+      "case_count": 1,
+      "outcome_counts": {
+        "error": 1
+      },
+      "identities_sha256": "3eda519e444ec92f156b30ebf91678f1e82eefc3fb223f84e3a60e621224c69f",
+      "report_sha256": "d47d144894622aeb25cbab3faf44673d7c409965a2e3185af4657fe3aa5491a5"
+    },
+    "child-opts-skip.cjs": {
+      "fixture_sha256": "4380337f86165316bd6083a88c792abf3481a3abadc91bd75b3da745c48f1c36",
+      "expected": "inconclusive: visible skipped or todo scope",
+      "matches_expected": true,
+      "exit_code": 0,
+      "signal": null,
+      "case_count": 2,
+      "outcome_counts": {
+        "passed": 1,
+        "skipped": 1
+      },
+      "identities_sha256": "c1256f24fcbef3d0d7bfd11134a8f6f89d2fdec6727cc35c1ec2082a9ae65852",
+      "report_sha256": "8edf56f173b05280a7662438066ddcd317091a5b5a97f83a64e7921b14e343f1"
+    },
+    "cross-process-child-getbuiltin.cjs": {
+      "fixture_sha256": "80efec16b577ea9b7024bf968fb998a01727194ccf721b629f093b262d76507c",
+      "expected": "inconclusive: explicit runner error",
+      "matches_expected": true,
+      "exit_code": 125,
+      "signal": null,
+      "case_count": 1,
+      "outcome_counts": {
+        "error": 1
+      },
+      "identities_sha256": "99513fac134f3c4676a51e40cff4d01fd87f30b493909f67c312fc967e5b87d7",
+      "report_sha256": "38a7c7699d4b9bf1cf82eb56c0fcdbe09d5f4056fc14a68a45ebc4a6e044d6d0"
+    },
+    "cross-process-child.cjs": {
+      "fixture_sha256": "e7573ceb90f63013fc8d9f56a6eeb38c6083d4dc68b4d1f39fb0c2a5ba723e08",
+      "expected": "inconclusive: explicit runner error",
+      "matches_expected": true,
+      "exit_code": 125,
+      "signal": null,
+      "case_count": 1,
+      "outcome_counts": {
+        "error": 1
+      },
+      "identities_sha256": "a0d492a21257fdd25a6e1fe317d769ec0c3a894317c7549e237cf58a1d925302",
+      "report_sha256": "dfca963337a6ce9effd743e57b41b6169e04cf7dff72c81bd07c6007af58c108"
+    },
+    "cross-process-cluster.cjs": {
+      "fixture_sha256": "f2d8d724a020d7bb213eb39d23e2cf180df606101ebc4a60bc1b29ae61b1302e",
+      "expected": "inconclusive: explicit runner error",
+      "matches_expected": true,
+      "exit_code": 125,
+      "signal": null,
+      "case_count": 1,
+      "outcome_counts": {
+        "error": 1
+      },
+      "identities_sha256": "7e85d6c35d7115eb68148f478d497a1ecace2734cefee5513c1384f35f451690",
+      "report_sha256": "c7bfae25de07e8441b0f1c229451ac5409d0b89e00d38ac0c2d4ac52addf68f6"
+    },
+    "cross-process-esm-getbuiltin.mjs": {
+      "fixture_sha256": "44f96cf303ee8691ae45527c9bdda22433b5b1939ffd85ec9ccdce9a3a1128df",
+      "expected": "inconclusive: explicit runner error",
+      "matches_expected": true,
+      "exit_code": 125,
+      "signal": null,
+      "case_count": 1,
+      "outcome_counts": {
+        "error": 1
+      },
+      "identities_sha256": "cf0b116a2660881387cfd21c3cd9faef95b17d4525117a958afc53f244621665",
+      "report_sha256": "9bc5dc67a0ac8a0a636cfc8b94a85cd0ac9a3b06cafc60c4419efb651d22993c"
+    },
+    "cross-process-worker-getbuiltin.cjs": {
+      "fixture_sha256": "6544ba78429163580ee7aa2d7e94a5c2d6551c66c13d90b4f0c73880a3d0b28d",
+      "expected": "inconclusive: explicit runner error",
+      "matches_expected": true,
+      "exit_code": 125,
+      "signal": null,
+      "case_count": 1,
+      "outcome_counts": {
+        "error": 1
+      },
+      "identities_sha256": "f3a4961c2f96054909514daaa9a8135ca5c54c93dd1c8c7442c46514e32ee60e",
+      "report_sha256": "d54c6a16fcbea624906e8cc0a7ef4408d29c952d4fd8d51277d83632ca5d7c70"
+    },
+    "cross-process-worker.cjs": {
+      "fixture_sha256": "0d69b756f0a85faf87faeb42213c1252d78ebd6b9d45e7b2273143ad15b48a16",
+      "expected": "inconclusive: explicit runner error",
+      "matches_expected": true,
+      "exit_code": 125,
+      "signal": null,
+      "case_count": 1,
+      "outcome_counts": {
+        "error": 1
+      },
+      "identities_sha256": "b2397af17467d5f4031258f5b400a3bac20f7cfb2668d6163b1237494df75954",
+      "report_sha256": "5bf07232d53e327eff153193e2a80c0388e51cf17fdc571cdb3dcdd89d07c4e6"
+    },
+    "custom-harness-options.cjs": {
+      "fixture_sha256": "2ecc76b598f93f35917813877fbf4677d068ee95afc0a7ba1a23fc108c0317dd",
+      "expected": "inconclusive: explicit runner error",
+      "matches_expected": true,
+      "exit_code": 125,
+      "signal": null,
+      "case_count": 1,
+      "outcome_counts": {
+        "error": 1
+      },
+      "identities_sha256": "2728abee7b7093e08d22509f73f95cce567e49a995c02484657ec91c81a55e62",
+      "report_sha256": "1313c1a4144589c57acaecc5000cd6bed1695876caca3eec0c4b3c7ca491a76d"
+    },
+    "custom-harness.cjs": {
+      "fixture_sha256": "9ef221c2a12facbe053a8d55314afaf378fbbf2fc7286446d3e1a3ee1c5e14ca",
+      "expected": "inconclusive: explicit runner error",
+      "matches_expected": true,
+      "exit_code": 125,
+      "signal": null,
+      "case_count": 1,
+      "outcome_counts": {
+        "error": 1
+      },
+      "identities_sha256": "27513d5384990f090211bffdf7dca420d81e449aed3b7ef1340996f8635ac1d9",
+      "report_sha256": "56878905cbaefd356472945ee0488bfabb5ca5c62b302f49cb466d54c24f88f8"
+    },
+    "deep-constructor.cjs": {
+      "fixture_sha256": "25897211e0ad2830ea3234dc50a07b55408c5e25a0765ce14134129461064279",
+      "expected": "inconclusive: explicit runner error",
+      "matches_expected": true,
+      "exit_code": 125,
+      "signal": null,
+      "case_count": 1,
+      "outcome_counts": {
+        "error": 1
+      },
+      "identities_sha256": "be7d0368eaf2a7147e49510596550948837ce8a3cd2ca39e68591e9124b4199e",
+      "report_sha256": "9a4ca4a4acd07cbe92061d1757108c57b8dce0a27ad18b53dfdf128c0aaea2e4"
+    },
+    "destructured-static-skip.cjs": {
+      "fixture_sha256": "37b37036b9576c1b3699b08709f8401f9c3cd7638e15f10c24fdbe78924c023f",
+      "expected": "inconclusive: explicit runner error",
+      "matches_expected": true,
+      "exit_code": 125,
+      "signal": null,
+      "case_count": 1,
+      "outcome_counts": {
+        "error": 1
+      },
+      "identities_sha256": "1c1599e01e26bc947db2d436f622a745684cb74cf76fb4def26cd4c4c762775d",
+      "report_sha256": "fb7961cd6202c6d6dd047f7f946d8120c4ad324247fa98f1c2ab6baf1b323b9c"
+    },
+    "direct-constructor.cjs": {
+      "fixture_sha256": "759698845afc4b4ebbd8b8ff6891ab6cfea96fa58d731ed10469c5ff5b2b604d",
+      "expected": "inconclusive: explicit runner error",
+      "matches_expected": true,
+      "exit_code": 125,
+      "signal": null,
+      "case_count": 1,
+      "outcome_counts": {
+        "error": 1
+      },
+      "identities_sha256": "4845259892234bb3e3b15aa8e2a11086fba79f0a63a937784fcbbd804ebcbe6f",
+      "report_sha256": "802b4b688d17c0413a32b8d288a20aa995bd50c97a1b7c5ea20d618cfa684f0c"
+    },
+    "duplicate-nested-scopes.cjs": {
+      "fixture_sha256": "e98d011c41eea66c024df624e58cabcf26d43ccf5844c8484b62b940134b7da7",
+      "expected": "inconclusive: explicit runner error",
+      "matches_expected": true,
+      "exit_code": 125,
+      "signal": null,
+      "case_count": 1,
+      "outcome_counts": {
+        "error": 1
+      },
+      "identities_sha256": "0a50ce024e6786e67c62d963e80feee2c50963f36ee95209b38448a9a465ebb9",
+      "report_sha256": "003909f6cdf4e1574df94562db6ac68026e557f85538f0e5cd5ecc4d2a06a16e"
+    },
+    "duplicate-scopes.cjs": {
+      "fixture_sha256": "34b706209bc9cae6fbe5870776d4734f5c87fbd99addc2ca40374fa252681e30",
+      "expected": "inconclusive: explicit runner error",
+      "matches_expected": true,
+      "exit_code": 125,
+      "signal": null,
+      "case_count": 1,
+      "outcome_counts": {
+        "error": 1
+      },
+      "identities_sha256": "e117006dc641329bf79d416063fb9e7f4233847fad8ac2d2e25a4a285c96c547",
+      "report_sha256": "8bf2d682788cb8e3d93e5a5b9398c3452605472a45fa3340f0fbe6e2b8871d20"
+    },
+    "duplicate.cjs": {
+      "fixture_sha256": "41da99f03fa5e943a26abce56619419c7a2ee9b75ec5d6511f304be3e5a70526",
+      "expected": "complete passing scope evidence",
+      "matches_expected": true,
+      "exit_code": 0,
+      "signal": null,
+      "case_count": 1,
+      "outcome_counts": {
+        "passed": 1
+      },
+      "identities_sha256": "8ac3888cfe637df38a596e9346fdc59cc7fee17c52718427e7f706a1b4a4b661",
+      "report_sha256": "825a5a3d69b9c2687ae98a999f87de31d8f560b152ed1aad1c65faa427c341c6"
+    },
+    "empty-scope.cjs": {
+      "fixture_sha256": "62da966b266f9fe0255e08333425174fba655ae25159035d328892a2b8bc223b",
+      "expected": "inconclusive: explicit runner error",
+      "matches_expected": true,
+      "exit_code": 125,
+      "signal": null,
+      "case_count": 1,
+      "outcome_counts": {
+        "error": 1
+      },
+      "identities_sha256": "c8957b527d50ccd54df975e2582a450d6c0164a14b89d0b55bf6486e4c5c8901",
+      "report_sha256": "c514bbf4a95056e6b49ab7265029813f1d5d6a68dc60d0a1c962d215b224807f"
+    },
+    "esm-forced-exit.mjs": {
+      "fixture_sha256": "5b92a340290ee4d8d94854176f50bd03dad720a83b149213f57adf2c13d5165b",
+      "expected": "inconclusive: explicit runner error",
+      "matches_expected": true,
+      "exit_code": 125,
+      "signal": null,
+      "case_count": 1,
+      "outcome_counts": {
+        "error": 1
+      },
+      "identities_sha256": "98e18f871f4c05b8f48d6fb2df75ec01e8f709d6bad4a3e53e6456acfa08cb7b",
+      "report_sha256": "10d2df494be3ed1180c87251fac2e93aba26f9bf19f70ffd96f7b499141b626b"
+    },
+    "event-limit.cjs": {
+      "fixture_sha256": "7423e72043fdd2c724c5eeafe16637d39a8bc1b1e399309cada311992b273940",
+      "expected": "inconclusive: explicit runner error",
+      "matches_expected": true,
+      "exit_code": 125,
+      "signal": null,
+      "case_count": 1,
+      "outcome_counts": {
+        "error": 1
+      },
+      "identities_sha256": "bf8325cf1c03b37334307e052e4cb1d1ba26de765083596d90f8b1d6490d91ee",
+      "report_sha256": "766932194d3a1450305d39e19e97269466e9833a561788bbd6f38db24c3af08c"
+    },
+    "exit-handler-late-failure.cjs": {
+      "fixture_sha256": "90e42156943db35da884ffd19acce22082c42e5c099c242c39f7c6b5c482f8ef",
+      "expected": "inconclusive: explicit runner error",
+      "matches_expected": true,
+      "exit_code": 125,
+      "signal": null,
+      "case_count": 1,
+      "outcome_counts": {
+        "error": 1
+      },
+      "identities_sha256": "0cc3780534ea8ce1929bffc0ec09a3cf8673530365c85b966b5e96d14eff16a5",
+      "report_sha256": "20390e6157eb9ad6458a8d9a78fd39030b2a99ee4de17f85db888a28bcda1e52"
+    },
+    "exit-time-failure.cjs": {
+      "fixture_sha256": "ffce826a99989ea70c33dcca1ca0387adff0bd3dc4404ac2ce081676f10c278c",
+      "expected": "inconclusive: explicit runner error",
+      "matches_expected": true,
+      "exit_code": 125,
+      "signal": null,
+      "case_count": 1,
+      "outcome_counts": {
+        "error": 1
+      },
+      "identities_sha256": "d68123b61ba9f41a91f721f2cf32a5062e30318c6488f20e3487c6ae0281bc03",
+      "report_sha256": "7726838276cd8f8febccb1735494ec6d28ba0b758d0786602743a3542a793a27"
+    },
+    "failure.cjs": {
+      "fixture_sha256": "e32e6a10d4b500e88f219eeb1f3c6d39e9d0f4a9b5be6e6aa9de3ac179002e4b",
+      "expected": "ordinary assertion failure",
+      "matches_expected": true,
+      "exit_code": 1,
+      "signal": null,
+      "case_count": 1,
+      "outcome_counts": {
+        "failure": 1
+      },
+      "identities_sha256": "7aabe0a957d24768d45602b45dc402c9af847c903e3b575513940ea692c49b8a",
+      "report_sha256": "bf802b934014f0155becdbbe99041668934b5d1714418ee53753f1280f4a2faa"
+    },
+    "forced-exit-hides-late-failure.cjs": {
+      "fixture_sha256": "2a7d3351eff79be710474b2ac5d9b81eb60bfcdb3ddbdce3f7876365c3433cd8",
+      "expected": "inconclusive: explicit runner error",
+      "matches_expected": true,
+      "exit_code": 125,
+      "signal": null,
+      "case_count": 1,
+      "outcome_counts": {
+        "error": 1
+      },
+      "identities_sha256": "25e8b4fb63076a3b0bf7fa383396a9a3c60af1ebb88dbbdb5d80c5be74ba0344",
+      "report_sha256": "af15202b436b13c10f284ea24f566112d7185a9c1940dd130db990741b3f0c1f"
+    },
+    "global-error-handler.cjs": {
+      "fixture_sha256": "5a8224371f6d1083388a25f50445e373c7751340ef550f1cdea5ed2220fc65cf",
+      "expected": "inconclusive: explicit runner error",
+      "matches_expected": true,
+      "exit_code": 125,
+      "signal": null,
+      "case_count": 1,
+      "outcome_counts": {
+        "error": 1
+      },
+      "identities_sha256": "69df22157d401eee7eaf12a2d483c25ccb9db85fa9dcc7b2bdeb21b787077b82",
+      "report_sha256": "733196bfb27878136252dfeb901a291eb82eb041f2de650482c2ac962bf0c6c6"
+    },
+    "import-error.cjs": {
+      "fixture_sha256": "ec5f6aab5864dc89caeabb440397fff5844598cd41a333359dd11224bcabe87b",
+      "expected": "inconclusive: explicit runner error",
+      "matches_expected": true,
+      "exit_code": 125,
+      "signal": null,
+      "case_count": 1,
+      "outcome_counts": {
+        "error": 1
+      },
+      "identities_sha256": "6bc8be073a20de1570d9ef631124657ebdcc7313b906efd4206b1c33e8ca7309",
+      "report_sha256": "1f1c567f7966ce1c677eabb9994e2981a7742c9405e01db04e198d4c0a1fcdf2"
+    },
+    "late-async.cjs": {
+      "fixture_sha256": "59b67c2400440c7e6244ed3dab4affe48e4d71bec0e4aa48419195bac7913958",
+      "expected": "inconclusive: explicit runner error",
+      "matches_expected": true,
+      "exit_code": 125,
+      "signal": null,
+      "case_count": 1,
+      "outcome_counts": {
+        "error": 1
+      },
+      "identities_sha256": "9355806f7f983475956d90d30eea5630db46ae87b8f060a4b53e5b49d03282d3",
+      "report_sha256": "b3fae51bdfc988f03880030c37123d569f943c20a3584c211eccb8c5c354a2f9"
+    },
+    "late-nested-scope.cjs": {
+      "fixture_sha256": "056a3ba5d7d1f36cd1d9189379e7fa2ed23c5c118f4706786f78950e3cc20766",
+      "expected": "inconclusive: explicit runner error",
+      "matches_expected": true,
+      "exit_code": 125,
+      "signal": null,
+      "case_count": 1,
+      "outcome_counts": {
+        "error": 1
+      },
+      "identities_sha256": "b4213d4b9f76dde5ae07a2911f261fa2b14efe96ce87fc4c4be5a44186aeeab9",
+      "report_sha256": "f2189162a9440f13f65d1131064a277945b81ce0e80f155c776437802ba25454"
+    },
+    "long-plan.cjs": {
+      "fixture_sha256": "bf1e62db8f68362159880713e9e19f3f08ef47d67f0f6d94ef967803cc8e4464",
+      "expected": "inconclusive: explicit runner error",
+      "matches_expected": true,
+      "exit_code": 125,
+      "signal": null,
+      "case_count": 1,
+      "outcome_counts": {
+        "error": 1
+      },
+      "identities_sha256": "387f0f68f1f7677dfc4ed6d431bb61fa206bcc6d1ab199998290eb2ef40ff421",
+      "report_sha256": "58db556517ecb03fdb87657154dc016bfad03120879a552fce6b084d5c6b8065"
+    },
+    "nested-after-parent-closure.cjs": {
+      "fixture_sha256": "8fb55f9a274eaec4ead676d5f44ee96f3200ce104e510a0c7a8ee7c4db8ef3a3",
+      "expected": "inconclusive: explicit runner error",
+      "matches_expected": true,
+      "exit_code": 125,
+      "signal": null,
+      "case_count": 1,
+      "outcome_counts": {
+        "error": 1
+      },
+      "identities_sha256": "23d9f8c9b219d8c6d998b82510be1df8e511bcea61949dbca2b22d544ecfe45c",
+      "report_sha256": "1d6416d619817ff7e68626777a824afcc36929dfe27e7fd8556caea8cfea50e4"
+    },
+    "nested-skip.cjs": {
+      "fixture_sha256": "13383d3a76844fa8863be9e182a12c7ef2385d9d3a58b92cb0feb4f0efd210eb",
+      "expected": "inconclusive: visible skipped or todo scope",
+      "matches_expected": true,
+      "exit_code": 0,
+      "signal": null,
+      "case_count": 2,
+      "outcome_counts": {
+        "skipped": 1,
+        "passed": 1
+      },
+      "identities_sha256": "8e4afabfbbfbe0a02168d103e6e555cad24de5c80aeebb6cda12a6a798083611",
+      "report_sha256": "d5fa9ce9ee7cb45b9469edd24534d58cba0cd1706fe10f190d35a9b8f61d5524"
+    },
+    "nested-static-skip.cjs": {
+      "fixture_sha256": "e23a456e24f50221c19437e176287ce53d6d4ea904b7862c3cc913b6343afebd",
+      "expected": "inconclusive: explicit runner error",
+      "matches_expected": true,
+      "exit_code": 125,
+      "signal": null,
+      "case_count": 1,
+      "outcome_counts": {
+        "error": 1
+      },
+      "identities_sha256": "dc73993e2a06a0a0580a952916b905e45d09d731aadc6b96a0c57f3bd84b5965",
+      "report_sha256": "bdf766b28d3494ae84fffa982c725560d75e298f8a7d48c74cb7a382b0476d24"
+    },
+    "no-end.cjs": {
+      "fixture_sha256": "453e5caf3243615152f5c29c81f8c77c82c8f9c7989ea64ed2fc06028b45c071",
+      "expected": "inconclusive: explicit runner error",
+      "matches_expected": true,
+      "exit_code": 125,
+      "signal": null,
+      "case_count": 1,
+      "outcome_counts": {
+        "error": 1
+      },
+      "identities_sha256": "6900bb2b3e2bbb7c6d34884ebaf187977176f0d3cfec486b7d440d69ca8c1175",
+      "report_sha256": "ade8d8e2df87fa0b367d8d5477741d68f286157aa19db2839632243a4b7936fe"
+    },
+    "no-tests.cjs": {
+      "fixture_sha256": "3e900a84dc851e760ad93c463b5da7ace971207cf7d7aed568e2bce032f71f48",
+      "expected": "inconclusive: explicit runner error",
+      "matches_expected": true,
+      "exit_code": 125,
+      "signal": null,
+      "case_count": 1,
+      "outcome_counts": {
+        "error": 1
+      },
+      "identities_sha256": "8b349e9c37cf8b1e518add08146eaada489a20a63b14e6eca3e04aaaa76e882d",
+      "report_sha256": "e5a45678448226a75eba4ec66e40a66f4500d2437fb4c31ff6ae003a490ec90c"
+    },
+    "normal.cjs": {
+      "fixture_sha256": "0cc801221d2a7a50038515f691ce58d0dfaf76e2573766641f21c9da438c0816",
+      "expected": "complete passing scope evidence",
+      "matches_expected": true,
+      "exit_code": 0,
+      "signal": null,
+      "case_count": 3,
+      "outcome_counts": {
+        "passed": 3
+      },
+      "identities_sha256": "68194a75b84012eb7f7b39622e224f5e07ec07fe261f9f6667ada1d4daa8f612",
+      "report_sha256": "ad2fe153c47d77e7660c12f4045bbc1cc10dffd52589715d6259b53eb586abc7"
+    },
+    "only.cjs": {
+      "fixture_sha256": "748939519c799230cd80f68a4757080680f39bd8f0780f85be189c7b436c00fa",
+      "expected": "inconclusive: explicit runner error",
+      "matches_expected": true,
+      "exit_code": 125,
+      "signal": null,
+      "case_count": 1,
+      "outcome_counts": {
+        "error": 1
+      },
+      "identities_sha256": "b1ac57a2ca31031aa4f4ab66ffaa4448f860b8b7d90b96757045dc4c8e543702",
+      "report_sha256": "5b56465b4dc2b01f442db3db603f048c02cd66dfba533242cf4ccfcd57c55346"
+    },
+    "opts-skip.cjs": {
+      "fixture_sha256": "e177c49bbbc0656728c51f727f08009ae74eee26ed521eb19928896106bb95ba",
+      "expected": "inconclusive: visible skipped or todo scope",
+      "matches_expected": true,
+      "exit_code": 0,
+      "signal": null,
+      "case_count": 2,
+      "outcome_counts": {
+        "skipped": 1,
+        "passed": 1
+      },
+      "identities_sha256": "599addd9658c3fd12aac3e26519879e01f0a4b9225c5a26fb04252a24bcee1e1",
+      "report_sha256": "f832206e06870605803df8e43a0251067cc0d490644f1b5991ccf6f88e719577"
+    },
+    "plan-description-collision.cjs": {
+      "fixture_sha256": "5bb7a224c0325a2ed099cb1dec827266393f7db069d665b258c38c02a3772a26",
+      "expected": "ordinary assertion failure",
+      "matches_expected": true,
+      "exit_code": 1,
+      "signal": null,
+      "case_count": 1,
+      "outcome_counts": {
+        "failure": 1
+      },
+      "identities_sha256": "42cc8c85a52d1c3f6ce356c947f05019bec78508ff4787e2cd46ba1c381409f8",
+      "report_sha256": "3172704edfacb234c872068480b7b4a5c96b2944848ee8110803a204c9e5efb5"
+    },
+    "plan-short.cjs": {
+      "fixture_sha256": "914523d1ad94a54844feb3d90b41a132b534cb0fbdfd7eb9810b60b26c3c8b71",
+      "expected": "inconclusive: explicit runner error",
+      "matches_expected": true,
+      "exit_code": 125,
+      "signal": null,
+      "case_count": 1,
+      "outcome_counts": {
+        "error": 1
+      },
+      "identities_sha256": "defce2fd28fa4ae1c7025e80f935b51ddadcd112035a29b0801120c8c7cf6249",
+      "report_sha256": "9cf65581293fcd1f32e6bf506017d18ee0f3fcccaa2a9e69867fd63ff691acff"
+    },
+    "planet-failure.cjs": {
+      "fixture_sha256": "d0d6b44ab0e9c4ee34f03662b6642bd39b7d4eb9d7568c820a9b5fa35a88f902",
+      "expected": "ordinary assertion failure",
+      "matches_expected": true,
+      "exit_code": 1,
+      "signal": null,
+      "case_count": 1,
+      "outcome_counts": {
+        "failure": 1
+      },
+      "identities_sha256": "7c6dbb5f4f20186efb2ab8ac17122ac99bac755c63f279b8634f4df6e7b53173",
+      "report_sha256": "4157f893b94b9b15a654c346de17e87650821487fcc5bf638ab9d8a156f491d8"
+    },
+    "premature-exit.cjs": {
+      "fixture_sha256": "7d78c9fec6ceb1f4bb951c4c0efb9e6257defd3b2e47e1c2c29873540b40b67a",
+      "expected": "inconclusive: explicit runner error",
+      "matches_expected": true,
+      "exit_code": 125,
+      "signal": null,
+      "case_count": 1,
+      "outcome_counts": {
+        "error": 1
+      },
+      "identities_sha256": "69112bf80bfc54edcb46daff10f8d97d66d60b3999b5aa06710323dbe21a0b43",
+      "report_sha256": "508ad8dbd0d6c1b55d074d0c6a215a3c43b0a195c64f56d471cd22c4d59ea1d3"
+    },
+    "process-exit-after-closed.cjs": {
+      "fixture_sha256": "b15bdb1def56456a437bf90ebf0acda2be72beccf584791207f7626490d101a4",
+      "expected": "inconclusive: explicit runner error",
+      "matches_expected": true,
+      "exit_code": 125,
+      "signal": null,
+      "case_count": 1,
+      "outcome_counts": {
+        "error": 1
+      },
+      "identities_sha256": "dd3c13ae98bea7c507f5cddd20a8dd7ab6be386c56471d9ba0f024748168425b",
+      "report_sha256": "5a02b41b4de547edb26840fa8620733d1a2f33041f826eee43c6b8a40ed7b8a1"
+    },
+    "process-replacement-esm.mjs": {
+      "fixture_sha256": "c49b550a3f4eb98a9000efae9536ca2dd446d78734c556663557141652cc3188",
+      "expected": "inconclusive: explicit runner error",
+      "matches_expected": true,
+      "exit_code": 125,
+      "signal": null,
+      "case_count": 1,
+      "outcome_counts": {
+        "error": 1
+      },
+      "identities_sha256": "82aafd0663c74d6f8b7edffe113d70a31f1a644df13bcaf94feb17cd353591d2",
+      "report_sha256": "0fae9b6b1aec9e2cac9bdc1a7c17763ba17448f0d2df2663e5af66c45cab6662"
+    },
+    "process-replacement.cjs": {
+      "fixture_sha256": "a2166bca010af01d0be901b367c3cf2f669648f1e1a191ae16df3ae3c593e11f",
+      "expected": "inconclusive: explicit runner error",
+      "matches_expected": true,
+      "exit_code": 125,
+      "signal": null,
+      "case_count": 1,
+      "outcome_counts": {
+        "error": 1
+      },
+      "identities_sha256": "8c032a5d78368faf89abc455607ed72967365fc87acdaabc6a0ae5728f5d31b2",
+      "report_sha256": "d53d59cc07ddbd6e43b39822a09d8ed5351f4a42c0d61cd2f0628b0501bc7b23"
+    },
+    "report-limit.cjs": {
+      "fixture_sha256": "7c55769f50928b546d086503ed27753efdc336f52d63104922e7a3cba1e2aca7",
+      "expected": "inconclusive: explicit runner error",
+      "matches_expected": true,
+      "exit_code": 125,
+      "signal": null,
+      "case_count": 1,
+      "outcome_counts": {
+        "error": 1
+      },
+      "identities_sha256": "576784bf202e43a23513e5e51d110780c698ce89fb67a86c50b64b89ea358e3f",
+      "report_sha256": "d4b18df0d08a7a6937bc7eca9535e8a21f76f706e028812f1c779b128231881a"
+    },
+    "scope-skip-string.cjs": {
+      "fixture_sha256": "9425665fae6b1d050296debf6d74393f8756a32d538842bf357fadeef72948c7",
+      "expected": "inconclusive: visible skipped or todo scope",
+      "matches_expected": true,
+      "exit_code": 0,
+      "signal": null,
+      "case_count": 2,
+      "outcome_counts": {
+        "skipped": 1,
+        "passed": 1
+      },
+      "identities_sha256": "8f604f85ab93359f65dc2302f5bfff6f1250589282edae6fbecfb1e414915683",
+      "report_sha256": "e02f565fe82da76ade13a2af542fb407f53992ed074a450fc57aab027041c756"
+    },
+    "secondary-tape.cjs": {
+      "fixture_sha256": "e544f214c5c3fef8721f64c717c93a7a40ab3d7bd7eb0e537babddc72b27dd57",
+      "expected": "complete passing scope evidence",
+      "matches_expected": true,
+      "exit_code": 0,
+      "signal": null,
+      "case_count": 2,
+      "outcome_counts": {
+        "passed": 2
+      },
+      "identities_sha256": "e33aa7cbf9b1930f57e374c1ed5936d84baa1d9a9076347c839390ad9ff644aa",
+      "report_sha256": "34583e06c7110f8f2f9a00c9ddcc9630171020e73d722ded5a7b6f2cf4249f55"
+    },
+    "skip.cjs": {
+      "fixture_sha256": "e6aba0c2cca9bda9a6a2797a8a798efbf554e112d84fc14a128f6288b94aaa08",
+      "expected": "inconclusive: explicit runner error",
+      "matches_expected": true,
+      "exit_code": 125,
+      "signal": null,
+      "case_count": 1,
+      "outcome_counts": {
+        "error": 1
+      },
+      "identities_sha256": "8e9bc58d7dd67765a9d62d2bda82de1aa0ea9267a69201e437df1f8b60fdaca8",
+      "report_sha256": "9a5cae89eff94931313cb25f891fd2e045c41aaf52cd6c23b73d7dd0b017b7c8"
+    },
+    "static-skip-only.cjs": {
+      "fixture_sha256": "c63fa720823248470cb32f41e5ba9097439068afc229070d0187c98d4ac81ad3",
+      "expected": "inconclusive: explicit runner error",
+      "matches_expected": true,
+      "exit_code": 125,
+      "signal": null,
+      "case_count": 1,
+      "outcome_counts": {
+        "error": 1
+      },
+      "identities_sha256": "6f2c6b01f1cacfccbc9108bae7cd39f638da3a1f8b430c9265603069e40327d9",
+      "report_sha256": "4f41402939b0bd33db33d01c93d3fc7751c16be8be7cd42c97f11121af705168"
+    },
+    "stdout-contamination.cjs": {
+      "fixture_sha256": "fc387ba5083e9c3ede7bec19a72ebfc346c9371b4a3b1c543387e0a95d87a170",
+      "expected": "complete passing scope evidence",
+      "matches_expected": true,
+      "exit_code": 0,
+      "signal": null,
+      "case_count": 1,
+      "outcome_counts": {
+        "passed": 1
+      },
+      "identities_sha256": "678af665140a4cbe6eacedc2ee2e7588447c601645e88e29fb5501889b6d4606",
+      "report_sha256": "6799d4e79e5131dfd23b9ebb990270f09c4d4ba09553fafac7df4121ecbdf5d8"
+    },
+    "swallowed-rejection.cjs": {
+      "fixture_sha256": "2e1241bd29bbc1e381fec98cee6bbd08e7e792da91720138a08e417b686d02fb",
+      "expected": "inconclusive: explicit runner error",
+      "matches_expected": true,
+      "exit_code": 125,
+      "signal": null,
+      "case_count": 1,
+      "outcome_counts": {
+        "error": 1
+      },
+      "identities_sha256": "260d16226af3c37d5cae1e669e2a3ef92a6b4e7c9e871a886c5d9c1ac11877e6",
+      "report_sha256": "1813b3ef1466bef6e7b7d6f98a154a269b88f2b7c0fec35fdeb7d66a8e4dba68"
+    },
+    "sync-esm.mjs": {
+      "fixture_sha256": "f2acdf73538fc4c13cb37c3de34cb4bc4fef06c0a0424eaf184cd4af3e3ec0bf",
+      "expected": "complete passing scope evidence",
+      "matches_expected": true,
+      "exit_code": 0,
+      "signal": null,
+      "case_count": 2,
+      "outcome_counts": {
+        "passed": 2
+      },
+      "identities_sha256": "d666a7f55cc9b16ac899f732e4a85946675621a40eb6cef29f157d4a355f4594",
+      "report_sha256": "e005d616dae13ed4a97c799531644826fcdf620ff0f22642a86d3ffa943120b4"
+    },
+    "todo.cjs": {
+      "fixture_sha256": "db60c58631c09665f84f64ce592893e9ac3967904a7575f2893334c112fbda06",
+      "expected": "inconclusive: visible skipped or todo scope",
+      "matches_expected": true,
+      "exit_code": 0,
+      "signal": null,
+      "case_count": 1,
+      "outcome_counts": {
+        "skipped": 1
+      },
+      "identities_sha256": "9aec20610baaf1159c2f66078f32e2d1416fe67d5b4d22fcaeb4097b37b3008f",
+      "report_sha256": "b5b2d869699c99fd9da9f091bf5d875d169194e6e0fe43cddcea86fba017f633"
+    },
+    "top-level-await.mjs": {
+      "fixture_sha256": "190445f092ac790b26e5f5ac7edb7f563c39f5ba3c838347b86ae5e42f7fd1af",
+      "expected": "inconclusive: explicit runner error",
+      "matches_expected": true,
+      "exit_code": 125,
+      "signal": null,
+      "case_count": 1,
+      "outcome_counts": {
+        "error": 1
+      },
+      "identities_sha256": "ef9976f4b83049a529c1d0759009bd51eeb6cce4c003d2e801e00a39fc3e8ed6",
+      "report_sha256": "343c7b0bc3896f211bcb04ff2e11d4932d221e1ed74d194b3c8539390c1c3336"
+    },
+    "xml-identities.cjs": {
+      "fixture_sha256": "52ec4c8c6391818b0c4aa0f9f22a2cbf466c0585396c3a46c65a0ddc3f37979e",
+      "expected": "complete passing scope evidence",
+      "matches_expected": true,
+      "exit_code": 0,
+      "signal": null,
+      "case_count": 1,
+      "outcome_counts": {
+        "passed": 1
+      },
+      "identities_sha256": "f7d15b7cf7baecf383b1a83979dafeafeb65888b9e265baff3689a8a82e3cd8b",
+      "report_sha256": "68f009f649765ec775061cc4373f12a67122d552d481e85cd53964f3d012ad50"
+    }
+  }
+}

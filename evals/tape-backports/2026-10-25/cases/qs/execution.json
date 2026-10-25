@@ -1,0 +1,8 @@
+{
+  "instance_id": "qs",
+  "config": "harness-tape.toml",
+  "source_case_sha256": "315958664993f0ea851dca0abfe1cfad36e5fe219bcb5a2fb771f3fafb5110a3",
+  "source_instance_id": "qs",
+  "scope": "Original selected suite and external oracle unchanged.",
+  "original_record_sha256": "3b5d81e114ea92b720fbf20bb4fe3e339ae4905809171ab0b9f441660dd82137"
+}

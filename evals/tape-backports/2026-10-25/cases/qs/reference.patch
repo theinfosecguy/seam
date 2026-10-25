@@ -1,0 +1,13 @@
+diff --git a/lib/parse.js b/lib/parse.js
+index 553498b..698a310 100644
+--- a/lib/parse.js
++++ b/lib/parse.js
+@@ -135,7 +135,7 @@ var parseObject = function (chain, val, options, valuesParsed) {
+             ) {
+                 obj = [];
+                 obj[index] = leaf;
+-            } else {
++            } else if (cleanRoot !== '__proto__') {
+                 obj[cleanRoot] = leaf;
+             }
+         }

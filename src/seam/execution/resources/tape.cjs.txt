@@ -1,0 +1,272 @@
+'use strict';
+
+const fs = require('node:fs');
+const { spawnSync } = require('node:child_process');
+const MAX_BYTES = 1024 * 1024;
+const suite = process.argv[1];
+if (process.argv.length !== 2 || !suite.startsWith('/work/repo/')) {
+  throw new Error('Tape requires exactly one selected suite file');
+}
+
+function observeTape() {
+  const fs = require('node:fs');
+  const path = require('node:path');
+  const { createRequire, registerHooks } = require('node:module');
+  const { fileURLToPath } = require('node:url');
+  const suite = process.argv[1];
+  const suiteRequire = createRequire(suite);
+  const tapeEntry = suiteRequire.resolve('tape');
+  const tape = suiteRequire('tape');
+  if (suiteRequire('tape/package.json').version !== '5.10.3') {
+    throw new Error('Only Tape 5.10.3 is supported');
+  }
+  const write = row => fs.writeSync(3, JSON.stringify(row) + '\n');
+  const reject = name => {
+    write({ type: 'issue', message: `Unsupported Tape API: ${name}` });
+    throw new Error(`Unsupported Tape API: ${name}`);
+  };
+  const unobservedModules = new Set([
+    'node:worker_threads', 'node:child_process', 'node:cluster',
+  ]);
+  const getBuiltinModule = process.getBuiltinModule.bind(process);
+  process.getBuiltinModule = id => {
+    const name = typeof id === 'string' && !id.startsWith('node:') ? `node:${id}` : id;
+    if (unobservedModules.has(name)) reject(`cross-process module ${name}`);
+    return getBuiltinModule(id);
+  };
+  const exit = process.exit.bind(process);
+  process.exit = code => {
+    write({ type: 'issue', message: 'Explicit process.exit' });
+    exit(code);
+  };
+  process.execve = () => reject('process.execve');
+  const harness = tape.createHarness({ noOnly: true });
+  let complete = false;
+  function watch(test) {
+    test.on('test', watch);
+    test.on('result', row => {
+      if (complete && typeof row !== 'string') {
+        write({ type: 'issue', message: 'Assertion after Tape stream completion' });
+      }
+    });
+  }
+  const controlled = (...args) => {
+    if (complete) reject('test after stream completion');
+    const test = harness(...args);
+    watch(test);
+    return test;
+  };
+  controlled.test = controlled;
+  for (const name of [
+    'skip', 'only', 'createHarness', 'Test', 'getHarness', 'createStream',
+    'wait', 'run', 'onFinish', 'onFailure',
+  ]) {
+    controlled[name] = function () { return reject(name); };
+  }
+  Object.freeze(controlled);
+  require.cache[tapeEntry].exports = controlled;
+  globalThis.__seamTape = controlled;
+  const facade = 'file:///seam-controlled-tape.cjs';
+  const packageNames = new Map();
+  function isTape(filename) {
+    let directory = path.dirname(filename);
+    const visited = [];
+    while (!packageNames.has(directory)) {
+      visited.push(directory);
+      const manifest = path.join(directory, 'package.json');
+      if (fs.existsSync(manifest)) {
+        const metadata = JSON.parse(fs.readFileSync(manifest, 'utf8'));
+        packageNames.set(directory, metadata.name);
+        break;
+      }
+      const parent = path.dirname(directory);
+      if (parent === directory) {
+        packageNames.set(directory, null);
+        break;
+      }
+      directory = parent;
+    }
+    const name = packageNames.get(directory);
+    for (const seen of visited) packageNames.set(seen, name);
+    return name === 'tape';
+  }
+  registerHooks({
+    resolve(specifier, context, nextResolve) {
+      if (specifier === 'tape') return { url: facade, shortCircuit: true };
+      const resolved = nextResolve(specifier, context);
+      if (unobservedModules.has(resolved.url)) {
+        reject(`cross-process module ${resolved.url}`);
+      }
+      if (resolved.url.startsWith('file:') && isTape(fileURLToPath(resolved.url))) {
+        reject('Tape implementation import');
+      }
+      return resolved;
+    },
+    load(url, context, nextLoad) {
+      if (url === facade) return {
+        format: 'commonjs', shortCircuit: true,
+        // The literal .test export lets Node recognize synchronous ESM named imports.
+        source: 'module.exports = globalThis.__seamTape; '
+          + 'module.exports.test = globalThis.__seamTape;',
+      };
+      return nextLoad(url, context);
+    },
+  });
+  const fields = [
+    'type', 'id', 'name', 'parent', 'test', 'ok', 'skip', 'todo', 'operator',
+  ];
+  const stream = harness.createStream({ objectMode: true });
+  stream.on('data', row => {
+    if (typeof row === 'string') return;
+    const normalized = {};
+    for (const field of fields) {
+      if (!Object.hasOwn(row, field) || row[field] === undefined) continue;
+      if (!['string', 'number', 'boolean'].includes(typeof row[field])) {
+        reject('non-scalar result');
+      }
+      normalized[field] = row[field];
+    }
+    if (row.operator === 'fail' && row.name === 'plan != count'
+        && Number.isSafeInteger(row.actual) && Number.isSafeInteger(row.expected)) {
+      normalized.actual = row.actual;
+      normalized.expected = row.expected;
+    }
+    write(normalized);
+  });
+  stream.on('end', () => {
+    complete = true;
+    write({ type: 'complete' });
+  });
+  process.on('uncaughtExceptionMonitor', () => {
+    write({ type: 'issue', message: 'Uncaught exception' });
+  });
+  process.on('unhandledRejection', () => {
+    write({ type: 'issue', message: 'Unhandled rejection' });
+    process.exitCode = 1;
+  });
+  process.on('beforeExit', () => write({ type: 'natural' }));
+  suiteRequire(suite);
+}
+
+function collect(events) {
+  const scopes = new Map();
+  const names = new Set();
+  let complete = false;
+  let natural = false;
+  const validId = value => Number.isSafeInteger(value) && value >= 0;
+  const validFlag = value => value === undefined
+    || typeof value === 'boolean' || typeof value === 'string';
+  for (const row of events) {
+    if (!row || typeof row !== 'object' || Array.isArray(row)) {
+      throw new Error('Invalid Tape event');
+    }
+    if (row.type === 'issue') throw new Error(String(row.message).slice(0, 4096));
+    if (row.type === 'natural') { natural = true; continue; }
+    if (complete) throw new Error('Event after Tape stream completion');
+    if (row.type === 'complete') { complete = true; continue; }
+    if (!validFlag(row.skip) || !validFlag(row.todo)) {
+      throw new Error('Invalid Tape skip or todo flag');
+    }
+    if (row.type === 'test') {
+      const parent = row.parent === undefined ? null : scopes.get(row.parent);
+      if (!validId(row.id) || scopes.has(row.id)
+          || typeof row.name !== 'string' || !row.name
+          || (row.parent !== undefined
+            && (!validId(row.parent) || !parent || parent.closed))) {
+        throw new Error('Invalid Tape scope identity');
+      }
+      const segments = [...(parent?.segments || []), row.name];
+      const identity = JSON.stringify(segments);
+      if (names.has(identity)) throw new Error('Duplicate full Tape scope identity');
+      names.add(identity);
+      if (parent) parent.children++;
+      scopes.set(row.id, {
+        segments, children: 0, assertions: 0, failures: [], closed: false,
+        skipped: !!(row.skip || row.todo),
+      });
+      continue;
+    }
+    const scope = validId(row.test) && scopes.get(row.test);
+    if (!scope) throw new Error('Tape event without a known scope');
+    if (row.type === 'end') {
+      if (scope.closed) throw new Error('Repeated Tape scope closure');
+      scope.closed = true;
+    } else if (row.type === 'assert') {
+      if (scope.closed) throw new Error('Assertion after Tape scope closure');
+      if (typeof row.ok !== 'boolean' || typeof row.name !== 'string'
+          || typeof row.operator !== 'string') {
+        throw new Error('Invalid Tape assertion');
+      }
+      if (row.operator === 'fail' && row.name === 'plan != count'
+          && Number.isSafeInteger(row.actual) && Number.isSafeInteger(row.expected)) {
+        throw new Error('Tape assertion plan did not match');
+      }
+      scope.assertions++;
+      if (row.skip || row.todo) scope.skipped = true;
+      if (!row.ok) scope.failures.push(`${row.operator}: ${row.name}`);
+    } else throw new Error('Unknown Tape event');
+  }
+  if (!complete || !natural || !scopes.size) {
+    throw new Error('Incomplete or empty Tape stream');
+  }
+  for (const scope of scopes.values()) {
+    if (!scope.closed || (!scope.assertions && !scope.children && !scope.skipped)) {
+      throw new Error('Unclosed or empty Tape scope');
+    }
+  }
+  return [...scopes.values()].filter(scope => scope.assertions || scope.skipped);
+}
+
+function xml(value) {
+  const text = String(value);
+  if (!text.isWellFormed() || /[\x00-\x08\x0b\x0c\x0e-\x1f]/.test(text)) {
+    throw new Error('Tape identity contains characters XML cannot represent');
+  }
+  return text.replace(/[&<>"'\t\n\r]/g, character => ({
+    '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&apos;',
+    '\t': '&#9;', '\n': '&#10;', '\r': '&#13;',
+  })[character]);
+}
+
+function report(cases, errors = 0) {
+  const failures = cases.filter(item => item.state === 'failure').length;
+  const skipped = cases.filter(item => item.state === 'skipped').length;
+  const body = cases.map(item => {
+    const state = item.state
+      ? `<${item.state} message="${xml(item.message)}"/>` : '';
+    return `<testcase file="${xml(suite)}" classname="${xml(item.classname)}" `
+      + `name="${xml(item.name)}">${state}</testcase>`;
+  }).join('');
+  const document = `<testsuite tests="${cases.length}" failures="${failures}" `
+    + `errors="${errors}" skipped="${skipped}">${body}</testsuite>`;
+  if (Buffer.byteLength(document) > MAX_BYTES) {
+    throw new Error('Tape JUnit report exceeds the evidence limit');
+  }
+  fs.writeFileSync('/report.xml', document);
+}
+
+try {
+  const child = spawnSync(process.execPath, [
+    '--eval', `(${observeTape.toString()})();`, '--', suite,
+  ], { stdio: ['ignore', 'inherit', 'inherit', 'pipe'], maxBuffer: MAX_BYTES });
+  if (child.error) throw child.error;
+  if (child.status !== 0 || child.signal) {
+    throw new Error('Tape child process failed or was interrupted');
+  }
+  const events = child.output[3].toString('utf8').split('\n')
+    .filter(Boolean).map(JSON.parse);
+  const cases = collect(events).map(scope => ({
+    name: scope.segments.at(-1), classname: JSON.stringify(scope.segments.slice(0, -1)),
+    state: scope.skipped ? 'skipped' : scope.failures.length ? 'failure' : '',
+    message: scope.skipped ? 'Skipped or todo Tape scope'
+      : scope.failures.join('\n').slice(0, 16384),
+  }));
+  report(cases);
+  process.exitCode = cases.some(item => item.state === 'failure') ? 1 : 0;
+} catch (error) {
+  report([{
+    name: suite, classname: 'tape', state: 'error',
+    message: String(error.message).slice(0, 4096),
+  }], 1);
+  process.exitCode = 125;
+}

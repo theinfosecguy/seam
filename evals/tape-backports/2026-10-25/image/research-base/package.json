@@ -1,0 +1,14 @@
+{
+  "private": true,
+  "name": "seam-tape-reporter-proof",
+  "version": "1.0.0",
+  "dependencies": {
+    "tape": "5.10.3",
+    "tap-junit": "5.0.4",
+    "tap-parser": "18.3.4",
+    "@tapjs/reporter": "4.5.0",
+    "iconv-lite": "0.5.2",
+    "safer-buffer": "2.1.2",
+    "side-channel": "1.1.0"
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "instance_id": "qs",
+  "package": "qs",
+  "repository_directory": "qs",
+  "repository_url": "https://github.com/ljharb/qs.git",
+  "advisory_ids": [
+    "GHSA-hrpp-h998-j3pp",
+    "CVE-2022-24999"
+  ],
+  "upstream_parent_commit": "ad63d36ce18cd2c315899ac1e8193de22be08cd8",
+  "upstream_fix_commit": "8b4cc14cda94a5c89341b77e5fe435ec6c41be2d",
+  "base_commit": "02ca358155297dc68fcc4c2ac312c26e10524e47",
+  "maintainer_backport_parent": "02ca358155297dc68fcc4c2ac312c26e10524e47",
+  "maintainer_backport_commit": "e799ba57e573a30c14b67c1889c7c04d508b9105",
+  "upstream_implementation_paths": [
+    "lib/parse.js"
+  ],
+  "backport_implementation_paths": [
+    "lib/parse.js"
+  ],
+  "upstream_test_paths": [
+    "test/parse.js"
+  ],
+  "target_test_paths": [
+    "test/parse.js"
+  ],
+  "license": "BSD-3-Clause",
+  "status": "Evaluated with frozen Tape variant; see normalized reports.",
+  "scope": "Executed the unchanged original test/parse.js selection and external security oracle with two normal controls on Node 24, using the frozen Tape variant. See normalized reports for qualification outcomes.",
+  "asset_sha256": {
+    "LICENSE.upstream": "e7dc37bf662d7f786efcb46c545615e70c1daf458a38385521c63cf6607cdfe1",
+    "maintainer-tests/maintainer_backport/test/parse.js": "5286aa903292d8cb5ac15cac0e0bafbf5dd6fa4d4162649f57d9d7bd530b7557",
+    "maintainer-tests/target_baseline/test/parse.js": "72efc012f0e1e01cb1e4e84db245ecb0e2292ed880a3bc91505747ccb212dfe2",
+    "maintainer-tests/upstream_fix/test/parse.js": "31b566248958bb949392fcbdff8fa871a1a97126e8323ea02bfc5074ebbc695e",
+    "maintainer-tests/upstream_parent/test/parse.js": "618323512f8d4670651f49a1456684d9171db034f7de6807f62927f81b58db7b",
+    "package-maintainer_backport.json": "bca7f4a00adb44c727f893a4f84c48159e0ba787ab6f05138dc8fcf01a4e77f6",
+    "package-target_baseline.json": "bca7f4a00adb44c727f893a4f84c48159e0ba787ab6f05138dc8fcf01a4e77f6",
+    "package-upstream_fix.json": "29e9fb2c5b8003b8aeb765a2217891ad7933a55751e4fa2adb1333783244f601",
+    "package-upstream_parent.json": "29e9fb2c5b8003b8aeb765a2217891ad7933a55751e4fa2adb1333783244f601",
+    "reference.patch": "321a180a2f17c87f9ac7d9d885d39c750f3e46f1acf3972bdffbefe7003c8d50",
+    "upstream.patch": "b512a4bb96d3939d404bee2b7fdc9ae7c59ad32fa9f776d98e8088a20d9e748b"
+  },
+  "original_record_sha256": "315958664993f0ea851dca0abfe1cfad36e5fe219bcb5a2fb771f3fafb5110a3"
+}

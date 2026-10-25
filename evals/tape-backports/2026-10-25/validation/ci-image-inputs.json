@@ -1,0 +1,14 @@
+{
+  "files": {
+    "Dockerfile": "60dabe52fec47555b3f03f2c2e82e8ba4acbd3b13e917ff5f969fa6615eae854",
+    "package-lock.json": "66d13043727442cdeb1ec903a027d1f2eae6327ba1e8ed4c2e415e86f8b7b03b",
+    "package.json": "d5b9f5c401c03293b2e2b53c411320f7dd723cdf5bed951f353b88791f8f4247"
+  },
+  "base_image": "sha256:06d7adf3e0ef61a13f1d28682726366f97a15aa1888c934d3ecec86c33918b53",
+  "direct_dependencies": {
+    "mocha": "12.0.3",
+    "tape": "5.10.3"
+  },
+  "lock_generated": "npm install --package-lock-only --ignore-scripts --no-audit --no-fund inside isolated pinned Node container; no credentials/socket/checkout mounted",
+  "image": "sha256:cd813a539af9721b7e8a41869461e645c070f93c8da81dd9059c75e2dd81e4a7"
+}

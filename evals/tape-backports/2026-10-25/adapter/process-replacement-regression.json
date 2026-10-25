@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "before_resource_sha256": "cf9e39410d7b8f41278b7640cd20585670974e023ea724c0603365be983df576",
+  "after_resource_sha256": "6795d26b4898a9de9881dd9216ad7494403f9c1d90ad33f5900c650d326e1894",
+  "before_observations_sha256": "320c08debbc2272e0364292fada5e5351087c6d3c3dce3650fd4dd29ec068ef1",
+  "scope": "Development adapter regression; the incomplete adapter was not released.",
+  "fixture_sha256": "a2166bca010af01d0be901b367c3cf2f669648f1e1a191ae16df3ae3c593e11f",
+  "before": {
+    "exit_code": 0,
+    "signal": null,
+    "case_count": 1,
+    "outcome_counts": {
+      "passed": 1
+    },
+    "identities_sha256": "268b187479ced8a4cfe158ae3541d8a6baa7b0192c4c3e37e7e0872cddcf5a13",
+    "report_sha256": "e58ea806b29b399886d39a2030a2ecd48e326c15814f763e62dfb73e179d4dc9",
+    "replacement_entered": true,
+    "hidden_failure_executed": true
+  },
+  "after": {
+    "fixture_sha256": "a2166bca010af01d0be901b367c3cf2f669648f1e1a191ae16df3ae3c593e11f",
+    "expected": "inconclusive: explicit runner error",
+    "matches_expected": true,
+    "exit_code": 125,
+    "signal": null,
+    "case_count": 1,
+    "outcome_counts": {
+      "error": 1
+    },
+    "identities_sha256": "8c032a5d78368faf89abc455607ed72967365fc87acdaabc6a0ae5728f5d31b2",
+    "report_sha256": "d53d59cc07ddbd6e43b39822a09d8ed5351f4a42c0d61cd2f0628b0501bc7b23"
+  },
+  "esm_named_import_after": {
+    "fixture_sha256": "c49b550a3f4eb98a9000efae9536ca2dd446d78734c556663557141652cc3188",
+    "expected": "inconclusive: explicit runner error",
+    "matches_expected": true,
+    "exit_code": 125,
+    "signal": null,
+    "case_count": 1,
+    "outcome_counts": {
+      "error": 1
+    },
+    "identities_sha256": "82aafd0663c74d6f8b7edffe113d70a31f1a644df13bcaf94feb17cd353591d2",
+    "report_sha256": "0fae9b6b1aec9e2cac9bdc1a7c17763ba17448f0d2df2663e5af66c45cab6662"
+  }
+}
