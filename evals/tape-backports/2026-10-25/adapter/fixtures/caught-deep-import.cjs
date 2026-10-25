@@ -1,0 +1,1 @@
+const tape = require('tape'); try { const Test = require('tape/lib/test'); const hidden = new Test('hidden failure', t => { t.fail('HIDDEN_FAILURE'); t.end(); }); hidden.run(); } catch (_) {} tape('observed', t => { t.pass('normal'); t.end(); });

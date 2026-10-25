@@ -1,0 +1,148 @@
+{
+  "schema_version": 1,
+  "reports": 9,
+  "statuses": {
+    "inconclusive": 1,
+    "failed": 2,
+    "verified": 6
+  },
+  "attempts": [
+    {
+      "cohort": "tape-installed",
+      "attempt": "trial-01/fast-uri/reference",
+      "status": "inconclusive",
+      "reason": "backport suite: test runner did not complete a normal test run",
+      "phases": 4,
+      "suite_counts": [
+        7,
+        8,
+        7,
+        1
+      ],
+      "model_usage": {}
+    },
+    {
+      "cohort": "tape-installed",
+      "attempt": "trial-01/fast-uri-parse/negative",
+      "status": "failed",
+      "reason": "backport: security regression still fails",
+      "phases": 4,
+      "suite_counts": [
+        7,
+        7,
+        1,
+        1
+      ],
+      "model_usage": {}
+    },
+    {
+      "cohort": "tape-installed",
+      "attempt": "trial-01/fast-uri-parse/reference",
+      "status": "verified",
+      "reason": "All four revisions met the frozen security and compatibility checks.",
+      "phases": 4,
+      "suite_counts": [
+        7,
+        7,
+        1,
+        1
+      ],
+      "model_usage": {}
+    },
+    {
+      "cohort": "tape-installed",
+      "attempt": "trial-01/fast-uri-parse/repeat",
+      "status": "verified",
+      "reason": "All four revisions met the frozen security and compatibility checks.",
+      "phases": 4,
+      "suite_counts": [
+        7,
+        7,
+        1,
+        1
+      ],
+      "model_usage": {}
+    },
+    {
+      "cohort": "tape-installed",
+      "attempt": "trial-01/qs/negative",
+      "status": "failed",
+      "reason": "backport: security regression still fails",
+      "phases": 4,
+      "suite_counts": [
+        81,
+        82,
+        80,
+        80
+      ],
+      "model_usage": {}
+    },
+    {
+      "cohort": "tape-installed",
+      "attempt": "trial-01/qs/reference",
+      "status": "verified",
+      "reason": "All four revisions met the frozen security and compatibility checks.",
+      "phases": 4,
+      "suite_counts": [
+        81,
+        82,
+        80,
+        80
+      ],
+      "model_usage": {}
+    },
+    {
+      "cohort": "tape-installed",
+      "attempt": "trial-01/qs/repeat",
+      "status": "verified",
+      "reason": "All four revisions met the frozen security and compatibility checks.",
+      "phases": 4,
+      "suite_counts": [
+        81,
+        82,
+        80,
+        80
+      ],
+      "model_usage": {}
+    },
+    {
+      "cohort": "model",
+      "attempt": "qs/direct",
+      "status": "verified",
+      "reason": "All four revisions met the frozen security and compatibility checks.",
+      "phases": 4,
+      "suite_counts": [
+        81,
+        82,
+        80,
+        80
+      ],
+      "model_usage": {}
+    },
+    {
+      "cohort": "model",
+      "attempt": "qs/model",
+      "status": "verified",
+      "reason": "All four revisions met the frozen security and compatibility checks.",
+      "phases": 4,
+      "suite_counts": [
+        81,
+        82,
+        80,
+        80
+      ],
+      "model_usage": {
+        "provider": "deepseek",
+        "model": "deepseek-flash",
+        "returned_model": "deepseek-flash",
+        "calls": 3,
+        "input_tokens": 10260,
+        "output_tokens": 904,
+        "estimated_cost_usd": 0.0041628,
+        "reserved_cost_usd": 0.0,
+        "budget_usd": 1.0,
+        "pricing": "conservative text upper bounds; operator rates, checked schedules, or bundled genai-prices 0.1.13; no network updates"
+      }
+    }
+  ]
+}

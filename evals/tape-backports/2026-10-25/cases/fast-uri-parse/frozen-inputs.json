@@ -1,0 +1,37 @@
+{
+  "instance_id": "fast-uri-parse",
+  "refs": {
+    "upstream_parent": "0f89a8ab641f251613e2c9a64285cb2a44f1c378",
+    "upstream_fix": "39933a1f1422986f14e2d844f552238feb40f5d4",
+    "target_baseline": "8e8e5c637fa732805ab0ea66f49e22559698837d",
+    "maintainer_backport": "597f254c86d151568511eeb9a1df761fd12520b3"
+  },
+  "upstream_url": "https://github.com/fastify/fast-uri.git",
+  "clone_mode": "git clone --no-local --no-checkout; no alternates or shared files",
+  "image": "sha256:277b9b3c5907cb97119813d8c5f71cb3a4f92bf94ed60910ccb0e2d53837d09d",
+  "previous_oracle_sha256": "fd6946c66e9030686e617a2801a94eec29fd724b53d610dd8f0d057b65d56eab",
+  "asset_sha256": {
+    "LICENSE.upstream": "b010b0dfdfdb23d7396e03b82cd4621fc9bb8f95d6b0aea70b9c24e12074c786",
+    "harness-tape.toml": "f0f69e741e278ee3c94eb5e3fab5da02a5ccb0ee6ba7a3e48687903ed390fa01",
+    "maintainer-tests/maintainer_backport/test/parse.test.js": "53d2c5bf0c198a834cb131dfd71795a30df6e49a28cedb1c62eec2d497192702",
+    "maintainer-tests/target_baseline/test/parse.test.js": "53d2c5bf0c198a834cb131dfd71795a30df6e49a28cedb1c62eec2d497192702",
+    "maintainer-tests/upstream_fix/test/parse.test.js": "0946c313fae627734a4ca05944f3615cd0a18cdc966bfa8e1f8f969be1075a6b",
+    "maintainer-tests/upstream_parent/test/parse.test.js": "0946c313fae627734a4ca05944f3615cd0a18cdc966bfa8e1f8f969be1075a6b",
+    "oracle.mjs": "fd6946c66e9030686e617a2801a94eec29fd724b53d610dd8f0d057b65d56eab",
+    "package-maintainer_backport.json": "30cad05aad3d3596513706451dbfc7e0422f9c1d00f2903ecc34580327d54bc7",
+    "package-target_baseline.json": "30cad05aad3d3596513706451dbfc7e0422f9c1d00f2903ecc34580327d54bc7",
+    "package-upstream_fix.json": "c181566b934b386b614dcd5d7aeb438ebd6bfaa6b3f54f187eccccb3983cfb48",
+    "package-upstream_parent.json": "c181566b934b386b614dcd5d7aeb438ebd6bfaa6b3f54f187eccccb3983cfb48",
+    "reference.patch": "1619737cd3c2ae41807a1c0da29ba4f27a7b7603b3bc5695b1d8723863255560",
+    "scope.md": "9de7c75e1b7976783aee71a0b0d64f8312253cdcc369989c682dda80b08fb959",
+    "upstream.patch": "b0516d06107ee9539d5fd2abbeb671acfe870de1330ea2bfea7a4956049a09c9"
+  },
+  "status": "Separately reviewed parsing scope approved before execution; original scheme suite result retained.",
+  "scope": "This separate case preserves only the unchanged original test/parse.test.js suite. It checks ordinary URI parsing while the unchanged external oracle checks encoded-scheme rejection and its two normal controls. It does not certify the original scheme-validation suite or the full package suite. The original fast-uri case retains scheme-validation.test.js unchanged and must be reported separately. No executable filters or deleted test expectations are used. This case is a second scope for the same advisory and must not increase the distinct-library or distinct-advisory count.",
+  "schema_version": 2,
+  "dependency_directory": "/opt/seam/node_modules",
+  "rejected_preparation_freeze_sha256": "6c233da02ec949769aecb27695d37776083960ae2103bd9bd44abf968e562d26",
+  "source_case_sha256": "1d94f8c8365076231b07770f31b6078fda0c133bc7c51f3878f42ae1a1853140",
+  "original_record_sha256": "bcc325db5a2f6396409c7efd1a8b3a65c88f34ab8f9142e4497cb090638b37ae",
+  "publication_note": "Local paths omitted. Use repository URL and immutable Git refs; source archives are not bundled. Original metadata hashes are retained."
+}

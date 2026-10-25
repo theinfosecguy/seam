@@ -1,0 +1,7 @@
+--- a/index.js
++++ b/index.js
+@@ -629,3 +629,4 @@
+ module.exports = fastUri
+ module.exports.default = fastUri
+ module.exports.fastUri = fastUri
++// Intentionally ineffective evaluation patch.

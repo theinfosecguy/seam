@@ -1,0 +1,12 @@
+{
+  "filename": "seam-tape-images-2026-10-25.tar.gz",
+  "sha256": "018c022e6ce6cd0229fa08afbc4baa60ee4ef30febfade42869a6b8682ad5241",
+  "bytes": 92952140,
+  "sha256_blobs_verified": 17,
+  "image_ids": [
+    "sha256:277b9b3c5907cb97119813d8c5f71cb3a4f92bf94ed60910ccb0e2d53837d09d",
+    "sha256:cd813a539af9721b7e8a41869461e645c070f93c8da81dd9059c75e2dd81e4a7"
+  ],
+  "referenced_blob_sizes_verified": true,
+  "clean_daemon_restore_tested": false
+}

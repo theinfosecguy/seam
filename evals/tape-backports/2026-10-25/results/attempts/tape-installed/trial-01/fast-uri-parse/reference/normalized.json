@@ -1,0 +1,397 @@
+{
+  "schema_version": 1,
+  "cohort": "tape-installed",
+  "source_report": "trial-01/fast-uri-parse/reference/report.json",
+  "execution_context": {
+    "exit_code": 0,
+    "timed_out": false,
+    "log_truncated": false,
+    "wheel_sha256": "f58026ad4a97b0b3a647a8b408be2a6b3c28b8e3ba589910c9b918305fc64249",
+    "driver_sha256": "b561034c8404d7008ca94f4bdb9f52a19e81d69a84ac7a79f5836bdf689eab48",
+    "freeze_sha256": "297b7e01ba1d6a90a31432c844806ad15cd147f19578a190c113ede10e5e1a20",
+    "inputs_unchanged": true,
+    "caller_unchanged": true
+  },
+  "configuration": {
+    "schema_version": 1,
+    "oracle": {
+      "path": "oracle.mjs",
+      "security_test": "test_security",
+      "controls": [
+        "test_ordinary_scheme",
+        "test_ordinary_serialize"
+      ],
+      "failure_marker": "URI_ENCODED_SCHEME_REJECTED"
+    },
+    "runner": {
+      "kind": "tape",
+      "image": "sha256:277b9b3c5907cb97119813d8c5f71cb3a4f92bf94ed60910ccb0e2d53837d09d",
+      "docker": [
+        "sudo",
+        "-n",
+        "docker"
+      ],
+      "timeout_seconds": 120.0,
+      "memory_mb": 512,
+      "cpus": 1.0,
+      "pids": 128,
+      "max_output_bytes": 131072,
+      "suite": [
+        "test/parse.test.js"
+      ],
+      "plugins": [],
+      "import_mode": "importlib",
+      "suite_markers": null,
+      "mocha_ui": "bdd",
+      "mocha_interfaces": {},
+      "mocha_grep": null,
+      "reviewed_fixtures": {},
+      "reviewed_submodules": {},
+      "node_dependencies": {}
+    },
+    "max_attempts": 3,
+    "reviewed_tests": null
+  },
+  "report": {
+    "schema_version": 2,
+    "status": "verified",
+    "reason": "All four revisions met the frozen security and compatibility checks.",
+    "fix_commit": "39933a1f1422986f14e2d844f552238feb40f5d4",
+    "parent_commit": "0f89a8ab641f251613e2c9a64285cb2a44f1c378",
+    "target_commit": "8e8e5c637fa732805ab0ea66f49e22559698837d",
+    "image_id": "sha256:277b9b3c5907cb97119813d8c5f71cb3a4f92bf94ed60910ccb0e2d53837d09d",
+    "oracle_sha256": "fd6946c66e9030686e617a2801a94eec29fd724b53d610dd8f0d057b65d56eab",
+    "config_sha256": "42a8a0b0f99e70f18c81fda569080c4e5468aa0bc73dd508f3077fce48ba90b2",
+    "patch_sha256": "1619737cd3c2ae41807a1c0da29ba4f27a7b7603b3bc5695b1d8723863255560",
+    "attempts": 1,
+    "adaptation": "provided_patch",
+    "model_usage": {},
+    "reviewed_tests": null,
+    "reviewed_fixtures": {},
+    "reviewed_submodules": {},
+    "phases": [
+      {
+        "name": "upstream_parent",
+        "revision": "0f89a8ab641f251613e2c9a64285cb2a44f1c378",
+        "security": {
+          "returncode": 1,
+          "timed_out": false,
+          "truncated": false,
+          "duration_seconds": 0.8915,
+          "evidence_error": null,
+          "tests": [
+            {
+              "name": "test_security",
+              "classname": "/oracle/oracle.mjs::test",
+              "outcome": "failed",
+              "expected_failure": false,
+              "original_message_sha256": "d6c0662c9653f09d38c5f52037b34235b33b3a37d695f597e8aa3a42ba406f91",
+              "expected_failure_marker_observed": true
+            },
+            {
+              "name": "test_ordinary_scheme",
+              "classname": "/oracle/oracle.mjs::test",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_ordinary_serialize",
+              "classname": "/oracle/oracle.mjs::test",
+              "outcome": "passed",
+              "expected_failure": false
+            }
+          ],
+          "command_sha256": "b0aef0d5bd75daf7808134565f5639427c54910d04e02b1dd1fb3a8ad7314a2c",
+          "missing_modules": [],
+          "diagnostic_excerpts": [
+            "AssertionError [ERR_ASSERTION]: URI_ENCODED_SCHEME_REJECTED"
+          ],
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 0,
+          "stderr_sha256": "6d50c1dc6368b0db4517db726b11b31a4a7c3f6a45806677b01ff5daf043f27e",
+          "stderr_bytes": 942
+        },
+        "suite": {
+          "returncode": 0,
+          "timed_out": false,
+          "truncated": false,
+          "duration_seconds": 0.9472,
+          "evidence_error": null,
+          "tests": [
+            {
+              "name": "URI parse",
+              "classname": "/work/repo/test/parse.test.js::[]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "Mailto parsing normalizes Unicode domains according to options",
+              "classname": "/work/repo/test/parse.test.js::[]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "Mailto parsing preserves and reports malformed recipient domains",
+              "classname": "/work/repo/test/parse.test.js::[]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "Mailto parsing handles domain literals, empty queries, and malformed headers",
+              "classname": "/work/repo/test/parse.test.js::[]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "Mailto parsing folds lone surrogates in raw input",
+              "classname": "/work/repo/test/parse.test.js::[]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "Mailto domain fast path agrees with the WHATWG parser",
+              "classname": "/work/repo/test/parse.test.js::[]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "Mailto headers use a null prototype",
+              "classname": "/work/repo/test/parse.test.js::[]",
+              "outcome": "passed",
+              "expected_failure": false
+            }
+          ],
+          "command_sha256": "1b5c70914beeff576cbe6ae051439ee8eaf32287af4055855002809e04334d19",
+          "missing_modules": [],
+          "diagnostic_excerpts": [],
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr_bytes": 0
+        }
+      },
+      {
+        "name": "upstream_fix",
+        "revision": "39933a1f1422986f14e2d844f552238feb40f5d4",
+        "security": {
+          "returncode": 0,
+          "timed_out": false,
+          "truncated": false,
+          "duration_seconds": 1.0437,
+          "evidence_error": null,
+          "tests": [
+            {
+              "name": "test_security",
+              "classname": "/oracle/oracle.mjs::test",
+              "outcome": "passed",
+              "expected_failure": false,
+              "expected_failure_marker_observed": false
+            },
+            {
+              "name": "test_ordinary_scheme",
+              "classname": "/oracle/oracle.mjs::test",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_ordinary_serialize",
+              "classname": "/oracle/oracle.mjs::test",
+              "outcome": "passed",
+              "expected_failure": false
+            }
+          ],
+          "command_sha256": "b0aef0d5bd75daf7808134565f5639427c54910d04e02b1dd1fb3a8ad7314a2c",
+          "missing_modules": [],
+          "diagnostic_excerpts": [],
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 0,
+          "stderr_sha256": "906ed159a040781d3af9fefe00e7072463a9781dddd0045f2c27343f57a83aaa",
+          "stderr_bytes": 225
+        },
+        "suite": {
+          "returncode": 0,
+          "timed_out": false,
+          "truncated": false,
+          "duration_seconds": 1.0905,
+          "evidence_error": null,
+          "tests": [
+            {
+              "name": "URI parse",
+              "classname": "/work/repo/test/parse.test.js::[]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "Mailto parsing normalizes Unicode domains according to options",
+              "classname": "/work/repo/test/parse.test.js::[]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "Mailto parsing preserves and reports malformed recipient domains",
+              "classname": "/work/repo/test/parse.test.js::[]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "Mailto parsing handles domain literals, empty queries, and malformed headers",
+              "classname": "/work/repo/test/parse.test.js::[]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "Mailto parsing folds lone surrogates in raw input",
+              "classname": "/work/repo/test/parse.test.js::[]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "Mailto domain fast path agrees with the WHATWG parser",
+              "classname": "/work/repo/test/parse.test.js::[]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "Mailto headers use a null prototype",
+              "classname": "/work/repo/test/parse.test.js::[]",
+              "outcome": "passed",
+              "expected_failure": false
+            }
+          ],
+          "command_sha256": "1b5c70914beeff576cbe6ae051439ee8eaf32287af4055855002809e04334d19",
+          "missing_modules": [],
+          "diagnostic_excerpts": [],
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr_bytes": 0
+        }
+      },
+      {
+        "name": "target_baseline",
+        "revision": "8e8e5c637fa732805ab0ea66f49e22559698837d",
+        "security": {
+          "returncode": 1,
+          "timed_out": false,
+          "truncated": false,
+          "duration_seconds": 0.9543,
+          "evidence_error": null,
+          "tests": [
+            {
+              "name": "test_security",
+              "classname": "/oracle/oracle.mjs::test",
+              "outcome": "failed",
+              "expected_failure": false,
+              "original_message_sha256": "d6c0662c9653f09d38c5f52037b34235b33b3a37d695f597e8aa3a42ba406f91",
+              "expected_failure_marker_observed": true
+            },
+            {
+              "name": "test_ordinary_scheme",
+              "classname": "/oracle/oracle.mjs::test",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_ordinary_serialize",
+              "classname": "/oracle/oracle.mjs::test",
+              "outcome": "passed",
+              "expected_failure": false
+            }
+          ],
+          "command_sha256": "b0aef0d5bd75daf7808134565f5639427c54910d04e02b1dd1fb3a8ad7314a2c",
+          "missing_modules": [],
+          "diagnostic_excerpts": [
+            "AssertionError [ERR_ASSERTION]: URI_ENCODED_SCHEME_REJECTED"
+          ],
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 0,
+          "stderr_sha256": "6e0db98fe43f265e9d36f2b2fd6ecc7fded0ef5e5e54ed58dd082997051999f0",
+          "stderr_bytes": 944
+        },
+        "suite": {
+          "returncode": 0,
+          "timed_out": false,
+          "truncated": false,
+          "duration_seconds": 1.2839,
+          "evidence_error": null,
+          "tests": [
+            {
+              "name": "URI parse",
+              "classname": "/work/repo/test/parse.test.js::[]",
+              "outcome": "passed",
+              "expected_failure": false
+            }
+          ],
+          "command_sha256": "1b5c70914beeff576cbe6ae051439ee8eaf32287af4055855002809e04334d19",
+          "missing_modules": [],
+          "diagnostic_excerpts": [],
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr_bytes": 0
+        }
+      },
+      {
+        "name": "backport",
+        "revision": "8e8e5c637fa732805ab0ea66f49e22559698837d",
+        "security": {
+          "returncode": 0,
+          "timed_out": false,
+          "truncated": false,
+          "duration_seconds": 0.8456,
+          "evidence_error": null,
+          "tests": [
+            {
+              "name": "test_security",
+              "classname": "/oracle/oracle.mjs::test",
+              "outcome": "passed",
+              "expected_failure": false,
+              "expected_failure_marker_observed": false
+            },
+            {
+              "name": "test_ordinary_scheme",
+              "classname": "/oracle/oracle.mjs::test",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_ordinary_serialize",
+              "classname": "/oracle/oracle.mjs::test",
+              "outcome": "passed",
+              "expected_failure": false
+            }
+          ],
+          "command_sha256": "b0aef0d5bd75daf7808134565f5639427c54910d04e02b1dd1fb3a8ad7314a2c",
+          "missing_modules": [],
+          "diagnostic_excerpts": [],
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 0,
+          "stderr_sha256": "f2c65733e6bddd327d6ec7a0f1bb7fb25a9032d2e86af97b08423193f2ad535a",
+          "stderr_bytes": 225
+        },
+        "suite": {
+          "returncode": 0,
+          "timed_out": false,
+          "truncated": false,
+          "duration_seconds": 0.9809,
+          "evidence_error": null,
+          "tests": [
+            {
+              "name": "URI parse",
+              "classname": "/work/repo/test/parse.test.js::[]",
+              "outcome": "passed",
+              "expected_failure": false
+            }
+          ],
+          "command_sha256": "1b5c70914beeff576cbe6ae051439ee8eaf32287af4055855002809e04334d19",
+          "missing_modules": [],
+          "diagnostic_excerpts": [],
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr_bytes": 0
+        }
+      }
+    ]
+  }
+}

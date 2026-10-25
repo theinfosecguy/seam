@@ -1,0 +1,9 @@
+{
+  "tests": 81,
+  "failures": 0,
+  "errors": 0,
+  "skips": 0,
+  "image": "sha256:cd813a539af9721b7e8a41869461e645c070f93c8da81dd9059c75e2dd81e4a7",
+  "xml_sha256": "592e91796b3beebe4e5c4abe0fa9ea9a4ca5693f2fe3d704dc558ac2629c3b7c",
+  "log_sha256": "865350d84e8871d133ebeeed766c28a69e9d116e466e29d45b19bb4c40fecdc0"
+}

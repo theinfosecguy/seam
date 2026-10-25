@@ -1,0 +1,5 @@
+{
+  "scope_approved": true,
+  "freeze_sha256": "bcc325db5a2f6396409c7efd1a8b3a65c88f34ab8f9142e4497cb090638b37ae",
+  "basis": "Unchanged original parse suite at all four refs, unchanged external security oracle and controls; original scheme suite result must remain visible, one advisory only."
+}

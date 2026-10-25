@@ -1,0 +1,442 @@
+{
+  "schema_version": 1,
+  "cohort": "tape-installed",
+  "source_report": "trial-01/fast-uri/reference/report.json",
+  "execution_context": {
+    "exit_code": 2,
+    "timed_out": false,
+    "log_truncated": false,
+    "wheel_sha256": "f58026ad4a97b0b3a647a8b408be2a6b3c28b8e3ba589910c9b918305fc64249",
+    "driver_sha256": "b561034c8404d7008ca94f4bdb9f52a19e81d69a84ac7a79f5836bdf689eab48",
+    "freeze_sha256": "297b7e01ba1d6a90a31432c844806ad15cd147f19578a190c113ede10e5e1a20",
+    "inputs_unchanged": true,
+    "caller_unchanged": true
+  },
+  "configuration": {
+    "schema_version": 1,
+    "oracle": {
+      "path": "oracle.mjs",
+      "security_test": "test_security",
+      "controls": [
+        "test_ordinary_scheme",
+        "test_ordinary_serialize"
+      ],
+      "failure_marker": "URI_ENCODED_SCHEME_REJECTED"
+    },
+    "runner": {
+      "kind": "tape",
+      "image": "sha256:277b9b3c5907cb97119813d8c5f71cb3a4f92bf94ed60910ccb0e2d53837d09d",
+      "docker": [
+        "sudo",
+        "-n",
+        "docker"
+      ],
+      "timeout_seconds": 120.0,
+      "memory_mb": 512,
+      "cpus": 1.0,
+      "pids": 128,
+      "max_output_bytes": 131072,
+      "suite": [
+        "test/scheme-validation.test.js"
+      ],
+      "plugins": [],
+      "import_mode": "importlib",
+      "suite_markers": null,
+      "mocha_ui": "bdd",
+      "mocha_interfaces": {},
+      "mocha_grep": null,
+      "reviewed_fixtures": {},
+      "reviewed_submodules": {},
+      "node_dependencies": {}
+    },
+    "max_attempts": 3,
+    "reviewed_tests": null
+  },
+  "report": {
+    "schema_version": 2,
+    "status": "inconclusive",
+    "reason": "backport suite: test runner did not complete a normal test run",
+    "fix_commit": "39933a1f1422986f14e2d844f552238feb40f5d4",
+    "parent_commit": "0f89a8ab641f251613e2c9a64285cb2a44f1c378",
+    "target_commit": "8e8e5c637fa732805ab0ea66f49e22559698837d",
+    "image_id": "sha256:277b9b3c5907cb97119813d8c5f71cb3a4f92bf94ed60910ccb0e2d53837d09d",
+    "oracle_sha256": "fd6946c66e9030686e617a2801a94eec29fd724b53d610dd8f0d057b65d56eab",
+    "config_sha256": "e016d862c7513b2d51562099cc6b5e4ff497b6cb410c9e1dd8cd4db3ca2c9d24",
+    "patch_sha256": null,
+    "attempts": 1,
+    "adaptation": "provided_patch",
+    "model_usage": {},
+    "reviewed_tests": null,
+    "reviewed_fixtures": {},
+    "reviewed_submodules": {},
+    "phases": [
+      {
+        "name": "upstream_parent",
+        "revision": "0f89a8ab641f251613e2c9a64285cb2a44f1c378",
+        "security": {
+          "returncode": 1,
+          "timed_out": false,
+          "truncated": false,
+          "duration_seconds": 0.8316,
+          "evidence_error": null,
+          "tests": [
+            {
+              "name": "test_security",
+              "classname": "/oracle/oracle.mjs::test",
+              "outcome": "failed",
+              "expected_failure": false,
+              "original_message_sha256": "d6c0662c9653f09d38c5f52037b34235b33b3a37d695f597e8aa3a42ba406f91",
+              "expected_failure_marker_observed": true
+            },
+            {
+              "name": "test_ordinary_scheme",
+              "classname": "/oracle/oracle.mjs::test",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_ordinary_serialize",
+              "classname": "/oracle/oracle.mjs::test",
+              "outcome": "passed",
+              "expected_failure": false
+            }
+          ],
+          "command_sha256": "b0aef0d5bd75daf7808134565f5639427c54910d04e02b1dd1fb3a8ad7314a2c",
+          "missing_modules": [],
+          "diagnostic_excerpts": [
+            "AssertionError [ERR_ASSERTION]: URI_ENCODED_SCHEME_REJECTED"
+          ],
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 0,
+          "stderr_sha256": "554db825062bb6c0ac3eac77ba342aab8ba8b5c88485f472c1cfdc9d684336a6",
+          "stderr_bytes": 941
+        },
+        "suite": {
+          "returncode": 0,
+          "timed_out": false,
+          "truncated": false,
+          "duration_seconds": 1.0497,
+          "evidence_error": null,
+          "tests": [
+            {
+              "name": "parse validates the decoded scheme against RFC 3986",
+              "classname": "/work/repo/test/scheme-validation.test.js::[]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "decoded schemes select their scheme handlers",
+              "classname": "/work/repo/test/scheme-validation.test.js::[]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "normalize preserves schemes that decode to invalid identifiers",
+              "classname": "/work/repo/test/scheme-validation.test.js::[]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "scheme normalization cannot introduce authority or control delimiters",
+              "classname": "/work/repo/test/scheme-validation.test.js::[]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "equal returns false for malformed decoded schemes",
+              "classname": "/work/repo/test/scheme-validation.test.js::[]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "resolve rejects malformed decoded schemes in either input",
+              "classname": "/work/repo/test/scheme-validation.test.js::[]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "serialize validates decoded component schemes",
+              "classname": "/work/repo/test/scheme-validation.test.js::[]",
+              "outcome": "passed",
+              "expected_failure": false
+            }
+          ],
+          "command_sha256": "c2df2aa606e6700b6b962f6bdbcb10f8fdcb950d579159e282d8fdfd56cacf2e",
+          "missing_modules": [],
+          "diagnostic_excerpts": [],
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr_bytes": 0
+        }
+      },
+      {
+        "name": "upstream_fix",
+        "revision": "39933a1f1422986f14e2d844f552238feb40f5d4",
+        "security": {
+          "returncode": 0,
+          "timed_out": false,
+          "truncated": false,
+          "duration_seconds": 0.7084,
+          "evidence_error": null,
+          "tests": [
+            {
+              "name": "test_security",
+              "classname": "/oracle/oracle.mjs::test",
+              "outcome": "passed",
+              "expected_failure": false,
+              "expected_failure_marker_observed": false
+            },
+            {
+              "name": "test_ordinary_scheme",
+              "classname": "/oracle/oracle.mjs::test",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_ordinary_serialize",
+              "classname": "/oracle/oracle.mjs::test",
+              "outcome": "passed",
+              "expected_failure": false
+            }
+          ],
+          "command_sha256": "b0aef0d5bd75daf7808134565f5639427c54910d04e02b1dd1fb3a8ad7314a2c",
+          "missing_modules": [],
+          "diagnostic_excerpts": [],
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 0,
+          "stderr_sha256": "ba3c8b3cbceffb2a6613db84061f60294a05ecc457fe5fcde39132efb35a701b",
+          "stderr_bytes": 225
+        },
+        "suite": {
+          "returncode": 0,
+          "timed_out": false,
+          "truncated": false,
+          "duration_seconds": 0.8928,
+          "evidence_error": null,
+          "tests": [
+            {
+              "name": "parse validates the decoded scheme against RFC 3986",
+              "classname": "/work/repo/test/scheme-validation.test.js::[]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "percent-encoded schemes do not select scheme handlers",
+              "classname": "/work/repo/test/scheme-validation.test.js::[]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "normalization cannot synthesize a scheme from encoded input",
+              "classname": "/work/repo/test/scheme-validation.test.js::[]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "normalize preserves schemes that decode to invalid identifiers",
+              "classname": "/work/repo/test/scheme-validation.test.js::[]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "scheme normalization cannot introduce authority or control delimiters",
+              "classname": "/work/repo/test/scheme-validation.test.js::[]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "equal returns false for malformed decoded schemes",
+              "classname": "/work/repo/test/scheme-validation.test.js::[]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "resolve rejects malformed decoded schemes in either input",
+              "classname": "/work/repo/test/scheme-validation.test.js::[]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "serialize validates component schemes without decoding them",
+              "classname": "/work/repo/test/scheme-validation.test.js::[]",
+              "outcome": "passed",
+              "expected_failure": false
+            }
+          ],
+          "command_sha256": "c2df2aa606e6700b6b962f6bdbcb10f8fdcb950d579159e282d8fdfd56cacf2e",
+          "missing_modules": [],
+          "diagnostic_excerpts": [],
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr_bytes": 0
+        }
+      },
+      {
+        "name": "target_baseline",
+        "revision": "8e8e5c637fa732805ab0ea66f49e22559698837d",
+        "security": {
+          "returncode": 1,
+          "timed_out": false,
+          "truncated": false,
+          "duration_seconds": 1.031,
+          "evidence_error": null,
+          "tests": [
+            {
+              "name": "test_security",
+              "classname": "/oracle/oracle.mjs::test",
+              "outcome": "failed",
+              "expected_failure": false,
+              "original_message_sha256": "d6c0662c9653f09d38c5f52037b34235b33b3a37d695f597e8aa3a42ba406f91",
+              "expected_failure_marker_observed": true
+            },
+            {
+              "name": "test_ordinary_scheme",
+              "classname": "/oracle/oracle.mjs::test",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_ordinary_serialize",
+              "classname": "/oracle/oracle.mjs::test",
+              "outcome": "passed",
+              "expected_failure": false
+            }
+          ],
+          "command_sha256": "b0aef0d5bd75daf7808134565f5639427c54910d04e02b1dd1fb3a8ad7314a2c",
+          "missing_modules": [],
+          "diagnostic_excerpts": [
+            "AssertionError [ERR_ASSERTION]: URI_ENCODED_SCHEME_REJECTED"
+          ],
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 0,
+          "stderr_sha256": "6aa8f52e45d4976c17ca7bc8337474e4c5b82385439ed792a2ea903900a2de3c",
+          "stderr_bytes": 944
+        },
+        "suite": {
+          "returncode": 0,
+          "timed_out": false,
+          "truncated": false,
+          "duration_seconds": 0.9863,
+          "evidence_error": null,
+          "tests": [
+            {
+              "name": "parse validates the decoded scheme against RFC 3986",
+              "classname": "/work/repo/test/scheme-validation.test.js::[]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "decoded schemes select their scheme handlers",
+              "classname": "/work/repo/test/scheme-validation.test.js::[]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "normalize preserves schemes that decode to invalid identifiers",
+              "classname": "/work/repo/test/scheme-validation.test.js::[]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "scheme normalization cannot introduce authority or control delimiters",
+              "classname": "/work/repo/test/scheme-validation.test.js::[]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "equal returns false for malformed decoded schemes",
+              "classname": "/work/repo/test/scheme-validation.test.js::[]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "resolve rejects malformed decoded schemes in either input",
+              "classname": "/work/repo/test/scheme-validation.test.js::[]",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "serialize validates decoded component schemes",
+              "classname": "/work/repo/test/scheme-validation.test.js::[]",
+              "outcome": "passed",
+              "expected_failure": false
+            }
+          ],
+          "command_sha256": "c2df2aa606e6700b6b962f6bdbcb10f8fdcb950d579159e282d8fdfd56cacf2e",
+          "missing_modules": [],
+          "diagnostic_excerpts": [],
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr_bytes": 0
+        }
+      },
+      {
+        "name": "backport",
+        "revision": "8e8e5c637fa732805ab0ea66f49e22559698837d",
+        "security": {
+          "returncode": 0,
+          "timed_out": false,
+          "truncated": false,
+          "duration_seconds": 1.0335,
+          "evidence_error": null,
+          "tests": [
+            {
+              "name": "test_security",
+              "classname": "/oracle/oracle.mjs::test",
+              "outcome": "passed",
+              "expected_failure": false,
+              "expected_failure_marker_observed": false
+            },
+            {
+              "name": "test_ordinary_scheme",
+              "classname": "/oracle/oracle.mjs::test",
+              "outcome": "passed",
+              "expected_failure": false
+            },
+            {
+              "name": "test_ordinary_serialize",
+              "classname": "/oracle/oracle.mjs::test",
+              "outcome": "passed",
+              "expected_failure": false
+            }
+          ],
+          "command_sha256": "b0aef0d5bd75daf7808134565f5639427c54910d04e02b1dd1fb3a8ad7314a2c",
+          "missing_modules": [],
+          "diagnostic_excerpts": [],
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 0,
+          "stderr_sha256": "dad626b51c34ddfb5e301ca84848dcda9c4daf6302cacbd500db56e089c7d7ba",
+          "stderr_bytes": 224
+        },
+        "suite": {
+          "returncode": 125,
+          "timed_out": false,
+          "truncated": false,
+          "duration_seconds": 1.0906,
+          "evidence_error": null,
+          "tests": [
+            {
+              "name": "/work/repo/test/scheme-validation.test.js",
+              "classname": "/work/repo/test/scheme-validation.test.js::tape",
+              "outcome": "error",
+              "expected_failure": false,
+              "original_message_sha256": "b907fc54227d150d5c416a6749e6bfa4018e09cd321bf548f961963b312eaa65"
+            }
+          ],
+          "command_sha256": "c2df2aa606e6700b6b962f6bdbcb10f8fdcb950d579159e282d8fdfd56cacf2e",
+          "missing_modules": [],
+          "diagnostic_excerpts": [
+            "TypeError: URI scheme is malformed."
+          ],
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_bytes": 0,
+          "stderr_sha256": "e8a110b077c8b0f5d8f73d809633f0d6ec3edc206c45d8b328d1b7b485d190eb",
+          "stderr_bytes": 512
+        }
+      }
+    ]
+  }
+}

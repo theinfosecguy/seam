@@ -1,0 +1,9 @@
+{
+  "instance_id": "fast-uri-parse",
+  "config": "harness-tape.toml",
+  "source_case_sha256": "1d94f8c8365076231b07770f31b6078fda0c133bc7c51f3878f42ae1a1853140",
+  "derivative_case_sha256": "cc4caa2f4409e931522963b2cbf51badcde513d0830e8eb93a84df61cd316f7b",
+  "source_instance_id": "fast-uri",
+  "scope": "Unchanged test/parse.test.js only; original scheme-suite result retained separately.",
+  "original_record_sha256": "6e696de8ea9a6e689b10674ca119c2593c21cf5abd7b932d2163b55bd2b4104c"
+}

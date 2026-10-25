@@ -6,7 +6,8 @@ The first npm evaluation tested 20 cases across 17 libraries. Its unresolved cas
 
 The [follow-up evaluations](followup-benchmarks.md) qualify js-yaml with explicitly
 pinned BDD/TDD interfaces. Tape now has a separate pinned runner with an explicit
-single-file, single-process boundary; Node 20 reporting remains unresolved.
+single-file, single-process boundary; the [Tape study](tape-benchmarks.md) records
+its qualified scopes and retained failures. Node 20 reporting remains unresolved.
 
 ## Next JavaScript work
 

@@ -1,0 +1,36 @@
+{
+  "instance_id": "fast-uri",
+  "refs": {
+    "upstream_parent": "0f89a8ab641f251613e2c9a64285cb2a44f1c378",
+    "upstream_fix": "39933a1f1422986f14e2d844f552238feb40f5d4",
+    "target_baseline": "8e8e5c637fa732805ab0ea66f49e22559698837d",
+    "maintainer_backport": "597f254c86d151568511eeb9a1df761fd12520b3"
+  },
+  "upstream_url": "https://github.com/fastify/fast-uri.git",
+  "clone_mode": "git clone --no-local --no-checkout; no alternates or shared files",
+  "image": "sha256:277b9b3c5907cb97119813d8c5f71cb3a4f92bf94ed60910ccb0e2d53837d09d",
+  "previous_oracle_sha256": "fd6946c66e9030686e617a2801a94eec29fd724b53d610dd8f0d057b65d56eab",
+  "asset_sha256": {
+    "LICENSE.upstream": "b010b0dfdfdb23d7396e03b82cd4621fc9bb8f95d6b0aea70b9c24e12074c786",
+    "harness-tape.toml": "18aab435ce6017dc176bf6344f2ec9eb52b97c7bdfbe6424ae2e65d7a41a7c13",
+    "harness.toml": "cc700171007a1f194e2865f663ca7120550898fbd1d9886d3b497c566f0fad9f",
+    "maintainer-tests/maintainer_backport/test/scheme-validation.test.js": "fdf1a23b352f9e6cb7508af38065ac7654c0b406f9547d65dac6461d7d75e421",
+    "maintainer-tests/target_baseline/test/scheme-validation.test.js": "eeb22864d23236f723fe00f8fccace70911b95ef9a3f74f116921e5cb18cce32",
+    "maintainer-tests/upstream_fix/test/scheme-validation.test.js": "a60d96ccf461ddc96e6cc1bb9916d8ac829abde6451a8bdd71378b4c4cc373ae",
+    "maintainer-tests/upstream_parent/test/scheme-validation.test.js": "40b1b535d6358acbc79d1c7db357241b85bf7dbb8168232af8c2bf3bafaaa889",
+    "oracle.mjs": "fd6946c66e9030686e617a2801a94eec29fd724b53d610dd8f0d057b65d56eab",
+    "package-maintainer_backport.json": "30cad05aad3d3596513706451dbfc7e0422f9c1d00f2903ecc34580327d54bc7",
+    "package-target_baseline.json": "30cad05aad3d3596513706451dbfc7e0422f9c1d00f2903ecc34580327d54bc7",
+    "package-upstream_fix.json": "c181566b934b386b614dcd5d7aeb438ebd6bfaa6b3f54f187eccccb3983cfb48",
+    "package-upstream_parent.json": "c181566b934b386b614dcd5d7aeb438ebd6bfaa6b3f54f187eccccb3983cfb48",
+    "reference.patch": "1619737cd3c2ae41807a1c0da29ba4f27a7b7603b3bc5695b1d8723863255560",
+    "upstream.patch": "b0516d06107ee9539d5fd2abbeb671acfe870de1330ea2bfea7a4956049a09c9"
+  },
+  "status": "Executable inputs frozen; awaiting installed-wheel matrix",
+  "scope": "Original selected suite unchanged; Node 24 only; oldest declared runtime not certified.",
+  "schema_version": 2,
+  "dependency_directory": "/opt/seam/node_modules",
+  "rejected_preparation_freeze_sha256": "6c233da02ec949769aecb27695d37776083960ae2103bd9bd44abf968e562d26",
+  "original_record_sha256": "a4e236ad724475287c6d5da2a0404c9020541c35490b5551a373a52a32f5b227",
+  "publication_note": "Local paths omitted. Use repository URL and immutable Git refs; source archives are not bundled. Original metadata hashes are retained."
+}

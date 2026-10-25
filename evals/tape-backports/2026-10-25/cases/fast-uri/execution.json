@@ -1,0 +1,8 @@
+{
+  "instance_id": "fast-uri",
+  "config": "harness-tape.toml",
+  "source_case_sha256": "1d94f8c8365076231b07770f31b6078fda0c133bc7c51f3878f42ae1a1853140",
+  "source_instance_id": "fast-uri",
+  "scope": "Original selected suite and external oracle unchanged.",
+  "original_record_sha256": "b4da53cba152698a021a8fca248e3032b881abc7fa5b74078577c4f2574b44f0"
+}

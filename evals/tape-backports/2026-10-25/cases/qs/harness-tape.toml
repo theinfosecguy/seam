@@ -1,0 +1,12 @@
+[oracle]
+path = "oracle.mjs"
+security_test = "test_security"
+controls = ["test_nested_properties", "test_repeated_array_values"]
+failure_marker = "QS_LOCAL_PROTOTYPE_PRESERVED"
+
+[runner]
+kind = "tape"
+image = "sha256:277b9b3c5907cb97119813d8c5f71cb3a4f92bf94ed60910ccb0e2d53837d09d"
+docker = ["sudo", "-n", "docker"]
+suite = ["test/parse.js"]
+timeout_seconds = 120

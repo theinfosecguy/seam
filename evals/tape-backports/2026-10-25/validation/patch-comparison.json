@@ -1,0 +1,10 @@
+{
+  "package": "qs",
+  "fresh_model_canonical_patch_byte_identical_to_reference": true,
+  "direct_canonical_patch_byte_identical_to_reference": true,
+  "canonical_sha256": "321a180a2f17c87f9ac7d9d885d39c750f3e46f1acf3972bdffbefe7003c8d50",
+  "attempts": 1,
+  "model_calls": 3,
+  "estimated_cost_usd": 0.0041628,
+  "limitation": "Direct transfer already applies; this is an integration check, not evidence of difficult adaptation."
+}

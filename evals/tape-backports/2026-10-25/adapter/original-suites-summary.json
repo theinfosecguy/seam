@@ -1,0 +1,141 @@
+{
+  "schema_version": 1,
+  "image": "sha256:277b9b3c5907cb97119813d8c5f71cb3a4f92bf94ed60910ccb0e2d53837d09d",
+  "resource_sha256": "6795d26b4898a9de9881dd9216ad7494403f9c1d90ad33f5900c650d326e1894",
+  "input_observations_sha256": "8e4561583d2e3ee17ece940eeec123b9c8453b9bbfa99ae5e0db4d666849e968",
+  "scope": "Framework compatibility probes; not Seam security qualifications or model results.",
+  "observations": {
+    "qs": {
+      "upstream_parent": {
+        "source_repository": "https://github.com/ljharb/qs.git",
+        "commit": "ad63d36ce18cd2c315899ac1e8193de22be08cd8",
+        "test_file": "test/parse.js",
+        "source_snapshot_sha256": "cb2f6658b23a030fb55386ef71438ffbcbc633c444cf08bc476d12d0e1ac8cc5",
+        "verified_files": 28,
+        "exact_snapshot_files_match": true,
+        "exit_code": 0,
+        "signal": null,
+        "case_count": 81,
+        "outcome_counts": {
+          "passed": 81
+        },
+        "identities_sha256": "82d1c3e91840e5ac69d20d01ea434f72c6e1b6d0182dfb8df90cc12c251a783e",
+        "report_sha256": "8d670525ec58616f80b7c595635b34090ccb417c1e98ffcb1a6d93eac96dab7b"
+      },
+      "upstream_fix": {
+        "source_repository": "https://github.com/ljharb/qs.git",
+        "commit": "8b4cc14cda94a5c89341b77e5fe435ec6c41be2d",
+        "test_file": "test/parse.js",
+        "source_snapshot_sha256": "84c76c6571df26cc617092e805c9bcb7e4862f674edfdb06cd89de9e16d835fb",
+        "verified_files": 28,
+        "exact_snapshot_files_match": true,
+        "exit_code": 0,
+        "signal": null,
+        "case_count": 82,
+        "outcome_counts": {
+          "passed": 82
+        },
+        "identities_sha256": "7206b4bc7f8edf00b41f4443dc8bc3ae78ef797d82b9e7b512894716f974959a",
+        "report_sha256": "1ed8d1f3bdb3dfb712c2e4813cae2b60b363ac8a9d24ef87bc4a5b61c5e981e6"
+      },
+      "target_baseline": {
+        "source_repository": "https://github.com/ljharb/qs.git",
+        "commit": "02ca358155297dc68fcc4c2ac312c26e10524e47",
+        "test_file": "test/parse.js",
+        "source_snapshot_sha256": "d634ef436a22d8ee667b9b1bb4a5ff3af7488dbb24af5ea581fc64e5ddd1e236",
+        "verified_files": 27,
+        "exact_snapshot_files_match": true,
+        "exit_code": 0,
+        "signal": null,
+        "case_count": 80,
+        "outcome_counts": {
+          "passed": 80
+        },
+        "identities_sha256": "b24238228171a530bd3b79610ee6396cf4050ec5b5af78705140871e8b0fd18d",
+        "report_sha256": "893a957e739467a463c2ad6367b7278ce22c1597ef81c4c80508eb040b5d481c"
+      },
+      "maintainer_backport": {
+        "source_repository": "https://github.com/ljharb/qs.git",
+        "commit": "e799ba57e573a30c14b67c1889c7c04d508b9105",
+        "test_file": "test/parse.js",
+        "source_snapshot_sha256": "7a56f797d6f3e96348ff466cb1a043997cba8e4c3f77cf6cd411c63435df7b85",
+        "verified_files": 27,
+        "exact_snapshot_files_match": true,
+        "exit_code": 0,
+        "signal": null,
+        "case_count": 81,
+        "outcome_counts": {
+          "passed": 81
+        },
+        "identities_sha256": "ddbb67efb679feb39f4d493dbc132f6f769c45770dcdd1b90660438267f89c00",
+        "report_sha256": "52a9535ec9d8438a456e50b07059915ee2199dc13986424a7351feebd752bf68"
+      }
+    },
+    "fast-uri": {
+      "upstream_parent": {
+        "source_repository": "https://github.com/fastify/fast-uri.git",
+        "commit": "0f89a8ab641f251613e2c9a64285cb2a44f1c378",
+        "test_file": "test/scheme-validation.test.js",
+        "source_snapshot_sha256": "9e68333d99b2850cdf20fd8f1c97f069976f90c2df82ee493cd6eb2713e8ea82",
+        "verified_files": 55,
+        "exact_snapshot_files_match": true,
+        "exit_code": 0,
+        "signal": null,
+        "case_count": 7,
+        "outcome_counts": {
+          "passed": 7
+        },
+        "identities_sha256": "12bff552a1ca9b30fa511afc8fc7e1107299ac8792641014a3aec63fe02d7911",
+        "report_sha256": "b73437905aaabcbf76f18cd2acfc756b486f1a1d4d1ea0debaf26429eebb22f0"
+      },
+      "upstream_fix": {
+        "source_repository": "https://github.com/fastify/fast-uri.git",
+        "commit": "39933a1f1422986f14e2d844f552238feb40f5d4",
+        "test_file": "test/scheme-validation.test.js",
+        "source_snapshot_sha256": "4ae557df4df4ae88978a73f5e16a12f9bb55dc6664da8d8deb0380b570e512e8",
+        "verified_files": 55,
+        "exact_snapshot_files_match": true,
+        "exit_code": 0,
+        "signal": null,
+        "case_count": 8,
+        "outcome_counts": {
+          "passed": 8
+        },
+        "identities_sha256": "6adf8586b1279f9b5da06a88bf52faa1a36b3bda7917c455460a5ab151a96a5a",
+        "report_sha256": "688a842f6ed8e4c65cb217e26fef64f913adb74f924888e6607afd036f91084f"
+      },
+      "target_baseline": {
+        "source_repository": "https://github.com/fastify/fast-uri.git",
+        "commit": "8e8e5c637fa732805ab0ea66f49e22559698837d",
+        "test_file": "test/scheme-validation.test.js",
+        "source_snapshot_sha256": "9fa7bf70bdc8780ae6d44f1f67011de35fb50593f10fc2699a742b519e4f8cf4",
+        "verified_files": 47,
+        "exact_snapshot_files_match": true,
+        "exit_code": 0,
+        "signal": null,
+        "case_count": 7,
+        "outcome_counts": {
+          "passed": 7
+        },
+        "identities_sha256": "12bff552a1ca9b30fa511afc8fc7e1107299ac8792641014a3aec63fe02d7911",
+        "report_sha256": "b73437905aaabcbf76f18cd2acfc756b486f1a1d4d1ea0debaf26429eebb22f0"
+      },
+      "maintainer_backport": {
+        "source_repository": "https://github.com/fastify/fast-uri.git",
+        "commit": "597f254c86d151568511eeb9a1df761fd12520b3",
+        "test_file": "test/scheme-validation.test.js",
+        "source_snapshot_sha256": "e6f18ea749202d83e96b002f3d0cd04101e20928df6235198cd05a6dd92fc760",
+        "verified_files": 47,
+        "exact_snapshot_files_match": true,
+        "exit_code": 0,
+        "signal": null,
+        "case_count": 8,
+        "outcome_counts": {
+          "passed": 8
+        },
+        "identities_sha256": "6adf8586b1279f9b5da06a88bf52faa1a36b3bda7917c455460a5ab151a96a5a",
+        "report_sha256": "688a842f6ed8e4c65cb217e26fef64f913adb74f924888e6607afd036f91084f"
+      }
+    }
+  }
+}

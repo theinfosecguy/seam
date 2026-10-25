@@ -1,0 +1,12 @@
+[oracle]
+path = "oracle.mjs"
+security_test = "test_security"
+controls = ["test_ordinary_scheme", "test_ordinary_serialize"]
+failure_marker = "URI_ENCODED_SCHEME_REJECTED"
+
+[runner]
+kind = "tape"
+image = "sha256:277b9b3c5907cb97119813d8c5f71cb3a4f92bf94ed60910ccb0e2d53837d09d"
+docker = ["sudo", "-n", "docker"]
+suite = ["test/scheme-validation.test.js"]
+timeout_seconds = 120
