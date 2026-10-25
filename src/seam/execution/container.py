@@ -50,8 +50,16 @@ def build_container_arguments(
                 for path in config.suite
             ):
                 raise ValueError("Node suite entries must be explicit JavaScript files")
-            arguments = (
-                [
+            if config.kind == "tape":
+                arguments = [
+                    "--eval",
+                    files("seam.execution.resources")
+                    .joinpath("tape.cjs.txt")
+                    .read_text(encoding="utf-8"),
+                    "--",
+                ]
+            elif config.kind == "mocha":
+                arguments = [
                     "/opt/seam/node_modules/mocha/bin/mocha.js",
                     "--no-config",
                     "--no-package",
@@ -65,9 +73,8 @@ def build_container_arguments(
                     "--reporter-options",
                     "output=/report.xml",
                 ]
-                if config.kind == "mocha"
-                else _node_test_arguments()
-            )
+            else:
+                arguments = _node_test_arguments()
             if config.mocha_grep is not None:
                 arguments.append(f"--grep={config.mocha_grep}")
             arguments.extend(

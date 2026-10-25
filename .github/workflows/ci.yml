@@ -77,3 +77,44 @@ jobs:
         run: >-
           uv run --frozen pytest -q tests/test_integration.py
           tests/execution tests/verification/test_junit.py
+
+  javascript-runners:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6.1.0
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6.3.0
+        with:
+          python-version: '3.12'
+      - run: python -m pip install uv==0.13.1
+      - run: uv sync --frozen
+      - run: uv build --wheel --no-sources
+      - name: Build the pinned JavaScript test environment
+        run: docker build -t seam-javascript-tests:local tests/execution/javascript-image
+      - name: Verify installed JavaScript runners without skipped tests
+        env:
+          BACKPORT_TEST_NODE_IMAGE: seam-javascript-tests:local
+          BACKPORT_TEST_TAPE_IMAGE: seam-javascript-tests:local
+        shell: bash
+        run: |
+          UV_PROJECT_ENVIRONMENT="$RUNNER_TEMP/javascript-controller" \
+            uv sync --frozen --no-editable
+          uv pip install --python "$RUNNER_TEMP/javascript-controller/bin/python" \
+            --no-deps --reinstall dist/*.whl
+          cd "$RUNNER_TEMP"
+          "$RUNNER_TEMP/javascript-controller/bin/python" -I -m pytest -q \
+            "$GITHUB_WORKSPACE/tests/execution/test_node.py" \
+            "$GITHUB_WORKSPACE/tests/execution/test_tape.py" \
+            --junitxml="$RUNNER_TEMP/javascript-tests.xml"
+          "$RUNNER_TEMP/javascript-controller/bin/python" - <<'PY'
+          import os
+          from pathlib import Path
+          from xml.etree import ElementTree
+
+          report = Path(os.environ["RUNNER_TEMP"]) / "javascript-tests.xml"
+          root = ElementTree.parse(report).getroot()
+          assert list(root.iter("testcase")), "No JavaScript tests ran"
+          assert not list(root.iter("skipped")), "JavaScript integration tests skipped"
+          PY

@@ -96,7 +96,7 @@ class OracleConfig(Record):
 class RunnerConfig(Record):
     """Bound container execution using an operator-selected image."""
 
-    kind: Literal["pytest", "node", "mocha"] = "pytest"
+    kind: Literal["pytest", "node", "mocha", "tape"] = "pytest"
     image: str = Field(min_length=1)
     docker: tuple[str, ...] = ("docker",)
     timeout_seconds: float = Field(default=120, gt=0, le=3600)
@@ -136,6 +136,8 @@ class RunnerConfig(Record):
             raise ValueError("mocha_grep requires the Mocha runner")
         if self.kind != "mocha" and (self.mocha_ui != "bdd" or self.mocha_interfaces):
             raise ValueError("Mocha interface settings require the Mocha runner")
+        if self.kind == "tape" and len(self.suite) != 1:
+            raise ValueError("Tape requires exactly one explicit suite file")
         return self
 
     @field_validator("mocha_grep")

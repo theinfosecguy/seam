@@ -194,7 +194,7 @@ class DockerRunner:
                     tests = parse_junit(
                         read_junit_report(report),
                         runner="node"
-                        if kind == "security" and self.config.kind == "mocha"
+                        if kind == "security" and self.config.kind != "pytest"
                         else self.config.kind,
                     )
                 except (OSError, ValueError) as exc:
